@@ -1,0 +1,215 @@
+﻿@{
+    // Namespace	: Splg.Areas.Jleague
+    // Controller   : JlgTeamInfoPlayerDetail
+    // FileName		: Index.cshtml
+    // Developer	: e-concier
+    // Update date  : 2015-05-06
+    // Html No      : 10-2-5-6
+    int jType = Convert.ToInt32(ViewBag.JType);
+    string title = string.Empty;
+    switch (jType)
+    {
+        case 1:
+            title = "チーム情報　選手（J1）";
+            break;
+        case 2:
+            title = "チーム情報　選手（J2）";
+            break;
+    }
+    if (ViewBag.JType == 1)
+    {
+        ViewBag.Title = "チーム情報　選手詳細";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J1_T_PYRDTL;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J1_T_PYRDTL;
+    }
+    else
+    {
+        ViewBag.Title = "チーム情報　選手詳細";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J2_T_PYRDTL;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J2_T_PYRDTL;
+    }
+    Layout = "~/Views/Shared/Mobile/_jlgLayout.cshtml";
+}
+@using Splg.Areas.Jleague.Models.ViewModel;
+@model Splg.Areas.Jleague.Models.ViewModel.JlgTeamInfoPlayerDetailViewModel
+<!-- path -->
+@Html.Partial("~/Areas/Jleague/Views/Shared/Mobile/_JlgTeamInfoMenu.cshtml")
+<section class="block_9 clear">
+    @Html.Action("ShowPersonInfo", "JlgRightContent", new { area = "Jleague", teamID = @ViewBag.TeamID, playerID = @ViewBag.PlayerID })
+        <div class="jtbl01">
+        <h3>今シーズンの成績</h3>
+        @if (Model != null && Model.PlayerInfoYear != null)
+        {
+            <div class="jrow02">
+                <p class="j01">得点</p>
+                <p class="j02 num">@Model.PlayerInfoYear.PlayerInfoPS.Goal</p>
+            </div>
+            <div class="jrow02">
+                <p class="j01">PK得点</p>
+                <p class="j02 num">>@Model.PlayerInfoYear.PlayerInfoPS.GoalPK</p>
+            </div>
+            <div class="jrow02">
+                <p class="j01">シュート数</p>
+                <p class="j02 num">@Model.PlayerInfoYear.PlayerInfoPS.Shoot</p>
+            </div>
+            <div class="jrow02">
+                <p class="j01">警告</p>
+                <p class="j02 num">@Model.PlayerInfoYear.PlayerInfoPS.Yellow</p>
+            </div>
+            <div class="jrow02">
+                <p class="j01">退場</p>
+                <p class="j02 num">@Model.PlayerInfoYear.PlayerInfoPS.Red</p>
+            </div>
+            <div class="jrow02">
+                <p class="j01">試合数</p>
+                <p class="j02 num">@Model.PlayerInfoYear.PlayerInfoPS.Game</p>
+            </div>
+            <div class="jrow02">
+                <p class="j01">出場時間</p>
+                <p class="j02 num">@string.Format("{0}分", Model.PlayerInfoYear.PlayerInfoPS.Time)</p>
+            </div>
+            <div class="jrow02">
+                <p class="j01">シュート決定率</p>
+                <p class="j02 num">@String.Format("{0:0.0000}％", System.Math.Round((double)(Model.PlayerInfoYear.PlayerInfoPS.Shoot > 0 ? 100 * Model.PlayerInfoYear.PlayerInfoPS.Goal / Model.PlayerInfoYear.PlayerInfoPS.Shoot : 0), 4, MidpointRounding.AwayFromZero))</p>
+            </div>
+            <div class="jrow02">
+                <p class="j01">90分平均得点</p>
+                <p class="j02 num">@String.Format("{0:0.0000}点", System.Math.Round((double)(Model.PlayerInfoYear.PlayerInfoPS.Time > 0 ? 90 * Model.PlayerInfoYear.PlayerInfoPS.Goal / Model.PlayerInfoYear.PlayerInfoPS.Time : 0), 4, MidpointRounding.AwayFromZero))</p>
+            </div>
+        }
+        </div>
+
+        <div class="jtbl01">
+            <h3>通算成績</h3>
+            @if (Model != null && Model.PlayerSum != null)
+            {
+                <div class="jrow02">
+                    <p class="j01">試合数</p>
+                    <p class="j02 num">@Model.PlayerSum.Game</p>
+                </div>
+                <div class="jrow02">
+                    <p class="j01">得点</p>
+                    <p class="j02 num">@Model.PlayerSum.Goal</p>
+                </div>
+            }
+        </div>
+
+    <div class="space20"> </div>
+    <h3 class="subtitle2">Jリーグ成績</h3>
+    @if (Model != null && Model.PlayerInfoOccasion != null && Model.PlayerInfoOccasion.Any())
+    {
+            {
+                int OccasionNoMax = 0;
+                int j = 0;
+                foreach (var item in Model.PlayerInfoOccasion)
+                {
+                    OccasionNoMax = (int)@item.OccasionNo;
+                    j++;
+                }
+
+                var i = 1;
+                foreach (var item in Model.PlayerInfoOccasion)
+                {
+                    if (i == @item.OccasionNo)
+                    {
+					    <nav class="news-panel">
+						    <a href="#" class="prev">前の月</a>
+                            <h4>@string.Format("今シーズンの第{0}節の成績", i)</h4>
+						    <a href="#" class="next">次の月</a>
+					    </nav>
+                        <div class="block_8_2">
+                            <div class="jrow02">
+                                <p class="j01">出場時間</p>
+                                <p class="j02 num">@string.Format("{0}分　{1}", item.Time, item.StartF == 1 ? "(スタメン)" : "")</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">得点</p>
+                                <p class="j02 num">@item.Score</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">PK得点</p>
+                                <p class="j02 num">@item.PKScore</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">シュート数</p>
+                                <p class="j02 num">@item.Shoot</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">警告</p>
+                                <p class="j02 num">1</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">退場</p>
+                                <p class="j02 num">@item.Red</p>
+                            </div>
+                        </div>
+                    }
+
+                    for (; i < @item.OccasionNo; i++)
+                    {
+						<nav class="news-panel">
+                            <a href="">前の月</a>
+                            <h4>@string.Format("今シーズンの第{0}節の成績", i)</h4>
+                            <a href="">次の月</a>
+						</nav>
+                        <div class="block_8_2">
+                            <div class="jrow02">
+                                <p class="j01">得点</p>
+                                <p class="j02 num">0</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">警告</p>
+                                <p class="j02 num">0</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">PK得点</p>
+                                <p class="j02 num">0</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">退場</p>
+                                <p class="j02 num">0</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">シュート数</p>
+                                <p class="j02 num">0</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">出場時間</p>
+                                <p class="j02 num">0分</p>
+                            </div>
+                        </div>
+                        break;
+                    }
+                    i = 1 + (int)@item.OccasionNo;
+                    break;
+                }
+            }
+    }
+</section>
+@if (Model.TeamPostedInfoList != null && Model.TeamPostedInfoList.Any())
+{
+    <section class="block_2 clear">
+        <h3 class="subtitle3">@ViewBag.TeamName 関連記事</h3>
+        <ul class="block-list clear">
+            @foreach (var post in Model.TeamPostedInfoList.Take(3))
+            {
+                string postContent = string.Format("{0}&nbsp;&nbsp;&nbsp;{1}投稿", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                <li>
+                    <a href="/user/@post.MemberId/">
+                        <figure><img src="@post.ProfileImg" alt="" /></figure>
+                    </a>
+                    <div>
+                        <h4><a href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a></h4>
+                        <p>@Html.Raw(postContent)</p>
+                    </div>
+                </li>
+            }
+        </ul>
+        <p class="panel-link"><a class="bold" href="/user_article/1/sport/">投稿記事をもっと読む</a></p>
+    </section>
+}
+@Html.Action("ShowJlgRecentNews", "JlgRightContent", new { area = "Jleague", type = @ViewBag.Name, playerID = @ViewBag.PlayerID })
+
+
+
+

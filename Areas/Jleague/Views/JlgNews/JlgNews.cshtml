@@ -1,0 +1,107 @@
+﻿@*
+    * Developer	: Tran Sy Huynh
+    *
+*@
+
+@model Splg.Areas.Jleague.Models.ViewModel.JlgTeamNewsViewModel
+@using PagedList.Mvc;
+@using Splg;
+@using Splg.Areas.Jleague;
+@{
+    if (ViewBag.JType == 1)
+    {
+        ViewBag.Title = "J1 ニュースリスト";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J1_NEWSLIST;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J1_NEWSLIST;
+    }
+    else
+    {
+        ViewBag.Title = "J2 ニュースリスト";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J2_NEWSLIST;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J2_NEWSLIST;
+    }
+    Layout = "~/Views/Shared/_JlgContentsLayout.cshtml";
+}
+
+<div class="jblock_01">
+    <div class="subtitle06">
+        @using (Html.BeginForm(null,
+                            null,
+                            FormMethod.Get, new { @action = string.Format("/jleague/j{0}/news", ViewBag.JType) } ))
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = "全て", Value = string.Empty, Selected = (ViewBag.teamId == string.Empty) });
+            foreach (var team in Model.TeamList)
+            {
+                items.Add(new SelectListItem { Text = team.TeamName, Value = Convert.ToString(team.TeamID), Selected = (ViewBag.teamId == string.Empty) ? false : (team.TeamID == Convert.ToInt32(ViewBag.teamId)) });
+            }
+            <h2>J @ViewBag.JType　ニュース</h2>
+            <span>
+                @Html.DropDownList("strTeamId", items, new { onchange = @"form.submit();" })
+            </span>
+        }
+    </div>
+    <div class="space"> </div>
+    @if (Model.TeamNewsList != null && Model.TeamNewsList.Count() > 0)
+    {
+        DateTime dayCount = Model.TeamNewsList.FirstOrDefault().DeliveryDate;
+        var ulBegin = "<ul class='news_list'>";
+        var ulEnd = "</ul>";
+        <h3 class="news_title"> @dayCount.ToString("MM/dd") (@Utils.GetWeekDayToJapanTime(dayCount)) </h3>
+        @Html.Raw(ulBegin)
+        foreach (var item in Model.TeamNewsList)
+        {
+            var imageLocation = Utils.GetNewsImageLocation(item.Content ?? Constants.IMAGE_DEFAULT);
+            if (dayCount.Date.CompareTo(item.DeliveryDate.Date) != 0)
+            {
+                dayCount = item.DeliveryDate;
+                @Html.Raw(ulEnd)
+                <h3 class="news_title"> @dayCount.ToString("MM/dd") (@Utils.GetWeekDayToJapanTime(dayCount)) </h3>
+                @Html.Raw(ulBegin)
+            }
+            <li>
+                <p><img class="resimg" src="@Url.Content(imageLocation)" alt="" /></p>
+                <div>
+                    <h4>@Html.RouteLink(string.Format("{0} {1}", item.Headline, item.SubHeadline), "7_1", new { areas = string.Empty, topic = JlgConstants.JLG_TOPIC_NAME, newsItemID = item.NewsItemID, sportID = JlgConstants.JLG_SPORT_ID, uniqueID = (ViewBag.JType == 1 ? JlgConstants.JLG_GAMEKIND_J1 : JlgConstants.JLG_GAMEKIND_J2), teamID = Constants.NEWS_DEFAULT_PARAMETER })</h4>
+                    <p>@Utils.ShortenString(item.newstext, 50)</p>
+                    <p class="gray">@item.SentFrom - @item.DeliveryDate.ToString("MM/dd HH:mm")</p>
+                </div>
+            </li>
+        }
+        @Html.Raw(ulEnd)
+        <div class="board_control">
+            @if (Model.TeamNewsList.PageNumber > 1)
+            {
+                var nextPage = Model.TeamNewsList.PageNumber - 1;
+                <a class="board_prev" href="?page=@nextPage&strTeamId=@ViewBag.teamId">≪前のページ</a>
+            }
+            else
+            {
+                <a class="board_prev">≪前のページ</a>
+            }
+            @if (Model.TeamNewsList.PageNumber < Model.TeamNewsList.PageCount)
+            {
+                var nextPage = Model.TeamNewsList.PageNumber + 1;
+                <a class="board_next" href="?page=@nextPage&strTeamId=@ViewBag.teamId">次のページ≫</a>
+            }
+            else
+            {
+                <a class="board_next">次のページ≫</a>
+            }
+        </div>
+    }
+</div>
+<!--Right Content-->
+@section JlgPage{
+    <div class="cat_stitle">
+        
+        @if (ViewBag.JleagueMenu == 2)
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_J1, jType = 1 })
+        }
+        else if (ViewBag.JleagueMenu == 3)
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_J2, jType = 2 })
+        }
+    </div>
+}

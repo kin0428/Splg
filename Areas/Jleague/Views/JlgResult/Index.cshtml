@@ -1,0 +1,52 @@
+﻿@{
+    // Namespace	: Splg.Areas.Jleague.Models.ViewModel
+    // FileName		: Index.cshtml
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-05-20
+    // Html No      : 10-2-3 ; 10-3-3
+}
+@using Splg.Areas.Jleague;
+@model Splg.Areas.Jleague.Models.ViewModel.JlgResultViewModel	
+@{      
+    if (ViewBag.JType == 1)
+    {
+        ViewBag.Title = "戦績表";
+        ViewBag.Name = JlgConstants.JLG_J1_MAT;
+        ViewBag.pageNo =JlgConstants.JLG_J1_MAT;
+    }
+    else
+    {
+        ViewBag.Title = "戦績表";
+        ViewBag.Name = JlgConstants.JLG_J2_MAT;
+        ViewBag.pageNo = JlgConstants.JLG_J2_MAT;
+    }
+    Layout = "~/Views/Shared/_JlgContentsLayout.cshtml";  
+}
+@section scripts
+{
+    <script src="~/Areas/Jleague/Scripts/10-2-3.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+}
+<div class="jblock_01">
+
+    <h2 class="jtitle">
+        @string.Format("{0}{1}", ViewBag.JleagueMenu == 2 ? "J1" : ViewBag.JleagueMenu == 3 ? "J2" : "", "戦績表")<span class="fs10"></span>      
+    </h2>
+    
+@if (Model != null && Model.JlgResultTeamInfos != null && Model.JlgResultTeamInfos.Any())
+{
+    <ul class="jlogo">
+        @foreach(var item in Model.JlgResultTeamInfos )
+        {             
+            <li>
+                <a onclick="GetResultGameInfos('@item.TeamID', '@ViewBag.JleagueMenu')" href="javascript:void(0)"><img class="resimg" src="@Url.Content(item.TeamIcon ?? Constants.IMAGE_DEFAULT)" alt="logo" /></a>        
+            </li>      
+        }   
+    </ul>
+}
+    <div id="resultDefault">
+        @Html.Partial("~/Areas/Jleague/Views/Shared/_JleagueGameInfosResult.cshtml", Model, new ViewDataDictionary(ViewData))
+    </div>
+</div>
+

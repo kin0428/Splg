@@ -1,0 +1,58 @@
+﻿@{
+    //Author : Nojima
+    //FileName : Index.cshtml (3-2)
+    //Created Date : 2015/04/12
+}
+
+@using Splg.Areas.MyPage.Models.ViewModel;
+@model Splg.Areas.MyPage.Models.ViewModel.MyPageExpectedListViewModel
+
+@{
+    ViewBag.Title = "予想リスト";
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.EXPECTEDLIST_INDEX;
+    Layout = "~/Views/Shared/_MyPageLayout.cshtml";
+}
+<script src="~/Scripts/jquery.shorten.1.0.js"></script>
+<script src="~/Scripts/splgCommon.js"></script>
+
+<script src="~/Areas/MyPage/Scripts/Views/3-2.js"></script>
+
+<!--News Top View-->
+@*@Html.Action("ShowNpbNewsTopViews", "NpbRightContent", new { area = "Npb" })*@
+
+<div class="block_04">
+    @if (Model != null)
+    {
+
+        <h2 class="mytitle">予想リスト</h2>
+        <div class="block_04_3">
+            <ul class="block_04_3_l1 clear">
+                <li @Model.YearListClass[0]><a href="#">@Model.LastYear<span class="arrow yarrow"> </span></a></li>
+                <li @Model.YearListClass[1]><a href="#">@Model.ThisYear<span class="arrow yarrow"> </span></a></li>
+                <li @Model.YearListClass[2]><a href="#">@Model.NextYear<span class="arrow yarrow"> </span></a></li>
+            </ul>
+            @if (Model.MonthListClass != null)
+            {
+                <div class="space"> </div>
+                <p class="j_rank bold">
+                    <a @Model.MonthListClass[0] href=" #"><span class="fs20">1</span>月</a> /
+                    <a @Model.MonthListClass[1] href=" #"><span class="fs20">2</span>月</a> /
+                    <a @Model.MonthListClass[2] href=" #"><span class="fs20">3</span>月</a> /
+                    <a @Model.MonthListClass[3] href=" #"><span class="fs20">4</span>月</a> /
+                    <a @Model.MonthListClass[4] href=" #"><span class="fs20">5</span>月</a> /
+                    <a @Model.MonthListClass[5] href=" #"><span class="fs20">6</span>月</a> /
+                    <a @Model.MonthListClass[6] href=" #"><span class="fs20">7</span>月</a> /
+                    <a @Model.MonthListClass[7] href=" #"><span class="fs20">8</span>月</a> /
+                    <a @Model.MonthListClass[8] href=" #"><span class="fs20">9</span>月</a> /
+                    <a @Model.MonthListClass[9] href=" #"><span class="fs20">10</span>月</a> /
+                    <a @Model.MonthListClass[10] href=" #"><span class="fs20">11</span>月</a> /
+                    <a @Model.MonthListClass[11] href=" #"><span class="fs20">12</span>月</a> /
+                </p>
+            }
+        </div>
+     <div class="block_04_5" id="GameLists">
+       @Html.Partial("~/Areas/MyPage/Views/Shared/_MyPageExpectedListInfo.cshtml",Model.GameInfo)
+     </div>
+    }
+
+</div>

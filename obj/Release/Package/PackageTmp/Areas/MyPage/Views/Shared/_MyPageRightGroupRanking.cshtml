@@ -1,0 +1,20 @@
+﻿@{
+    //Author : Nojima
+    //FileName :_MyPageRightGroupRanking.cshtml
+    //Created Date :2015/5/1
+}
+
+@using Splg.Areas.MyPage.Models.ViewModel;
+@model IEnumerable<MyPageGroupListViewModel.GroupListInfo>
+@using Splg;
+
+@if (Model != null)
+{
+    <ul class="side_list02">
+        @foreach (var item in Model)
+        {
+            <li><a href="/mypage/group/@item.GroupID/">@item.GroupName</a>@{@item.NumberOfMember}人</li>
+        }
+    </ul>
+}
+

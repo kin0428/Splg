@@ -1,0 +1,101 @@
+﻿@{
+    // Namespace	: Splg.Areas.Jleague
+    // Controller   : JlgTeamInfoScheduleResult
+    // FileName		: Index.cshtml
+    // Developer	: Nguyen Ho Long Hai
+    // Update date  : 2015-04-02
+    // Html No      : 10-2-5-2 && 10-3-5-2
+    int jType = Convert.ToInt32(ViewBag.JType);
+    string jLeague = string.Empty;
+    string title = string.Empty;
+    switch (jType)
+    {
+        case 1:
+            title = "チーム情報　日程・結果（J1）";
+            jLeague = "j1";
+            ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J1_T_SCH;
+            ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J1_T_SCH;
+            break;
+        case 2:
+            title = "チーム情報　日程・結果（J2）";
+            jLeague = "j2";
+            ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J2_T_SCH;
+            ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J2_T_SCH;
+            break;
+    }
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/_JlgContentsLayout.cshtml";
+}
+@using Splg.Areas.Jleague;
+@model IEnumerable<Splg.Areas.Jleague.Models.ViewModel.JlgTeamInfoScheduleResultViewModel>
+
+<div class="jblock_01">
+    <!--Sub Menu-->
+    @Html.Partial("~/Areas/Jleague/Views/Shared/JleagueTeamMenu.cshtml")
+    @if (Model != null && Model.Count() > 0)
+    {
+
+        foreach (var item in Model)
+        {
+            var homeIcon = item.HomeIcon != null ? item.HomeIcon.Replace("~", string.Empty) : string.Empty;
+            var occasionNo = item.OccasionNo;
+            var groupID = "Ｊリーグ公式戦";
+            if (!string.IsNullOrEmpty(item.GroupID))
+            {
+                if (item.GroupID == "A" || item.GroupID == "B")
+                {
+                    groupID = "ヤマザキナビスコカップ";
+                }
+            }
+            var awayTeamName = item.AwayTeamName;
+            var scoreLose = !string.IsNullOrEmpty(item.ScoreLose) ? item.ScoreLose : string.Empty;
+            var seasonID = item.SeasonID;
+            var stadiumName = item.StadiumName;
+            <dl class='jrow'>
+                <dt>第<span class='fi'>@occasionNo</span>節<span>@groupID</span></dt>
+                <dd>
+                    <div><img src="@homeIcon" alt='@item.HomeTeamID' /></div>
+                    <p>
+                        <span class='fs14'>VS</span>
+                        <a class='fs14' href="/jleague/@jLeague/teams/@item.AwayTeamID/">@awayTeamName</a>
+                        <span class='fs24 fi blue'>@scoreLose</span>
+                        @stadiumName
+                    </p>
+
+                    @switch (item.GameResult)
+                    {
+                        case "W":
+                            <span><img src='/Content/img/jleague/icon01.png' alt='' /></span>
+                            break;
+                        case "L":
+                        <span><img src='/Content/img/jleague/icon02.png' alt='' /></span>
+                            break;
+                        case "D":
+                        <span><img src='/Content/img/jleague/icon03.png' alt='' /></span>
+                            break;
+                    }
+                </dd>
+            </dl>
+        }
+    }
+</div>
+<!--Right Content-->
+@section JlgPage{
+    <div class="cat_stitle">
+
+        @*Html.Action("ShowJlgRightRecentNews", "JlgRightRecentNews", new { area = "Jleague" })*@
+
+        @if (ViewBag.JleagueMenu == 2)
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_J1, jType = 1 })
+        }
+        else if (ViewBag.JleagueMenu == 3)
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_J2, jType = 2 })
+        }
+        else
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_NABISCO, jType = ViewBag.JType })
+        }
+    </div>
+}

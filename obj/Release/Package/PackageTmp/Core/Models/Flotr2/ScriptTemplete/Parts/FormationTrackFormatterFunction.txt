@@ -1,0 +1,8 @@
+function (e){
+                var PlayerID@Suffix = @PlayerIDList;
+				var ValueName@Suffix = @ValueList;
+                x = e.x;
+                y = e.y;
+				z = ValueName@Suffix[e.index];
+                url = "https://spolog.jp/jleague/players/" + PlayerID@Suffix[e.index] + "/";
+            }

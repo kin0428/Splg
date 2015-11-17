@@ -1,0 +1,34 @@
+﻿@{
+    //Author : Nojima
+    //FileName :_MyPageRightGroupRanking.cshtml
+    //Created Date :2015/5/1
+}
+@using Splg.Areas.MyPage.Models.ViewModel;
+@using Splg.Areas.MyPage.Models.InfoModel;
+@model List<FollowingMemberForMyPage>
+@using Splg;
+
+@if (Model != null)
+{
+    <ul class="side_list02">
+            @foreach (FollowingMemberForMyPage m in Model)
+{
+    <li>
+        @if (m.PointRank == 1)
+        {
+        <span class="side_num organge">@m.PointRank</span>
+        }
+        else
+        {
+        <span class="side_num">@m.PointRank</span>
+        }
+
+        <img class="side_mem" src="@Url.Content(@m.ProfileImg)" alt="@m.NickName" />
+        <a href="/user/@m.MemberId">@m.NickName</a>
+        <span class="side_price">@m.CurrentPoints pt</span>
+    </li>
+}
+        
+    </ul>
+}
+

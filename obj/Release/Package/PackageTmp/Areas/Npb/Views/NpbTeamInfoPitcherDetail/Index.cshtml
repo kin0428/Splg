@@ -1,0 +1,524 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : Index.cshtml (8-5-8)
+    //Created Date : 2015/03/12
+}
+
+@model Splg.Areas.Npb.Models.ViewModel.NpbTeamInfoPitcherDetailViewModel
+@using Splg;
+<link href="~/Content/bxslider.css" rel="stylesheet" />
+<script type="text/javascript" src="~/Scripts/jquery.cslide.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#cslide-slides-int1").cslide();
+        $("#cslide-slides-int2").cslide();
+        $("#cslide-slides-int3").cslide();
+    });
+</script>
+
+@{
+    ViewBag.Title = "チーム情報　投手";
+    ViewBag.Name = Constants.NPBTEAMINFOPITCHER;
+    Layout = "~/Views/Shared/_NpbLayout.cshtml";
+}
+<div class="jblock_01">
+    <!--Sub Menu-->
+    @Html.Partial("~/Areas/Npb/Views/Shared/_NpbTeamInfoMenu.cshtml")   
+    <div class="space"></div> 
+    <h2 class="jtitle">@ViewBag.TeamName</h2>
+    <!--Person Info-->
+    @Html.Action("ShowPersonInfo", "NpbRightContent", new { area = "Npb", teamID = @ViewBag.TeamID, playerID = @ViewBag.PlayerID })
+    <!--Pitching Info-->
+    @if (Model != null && Model.PitchingStats != null)
+    {
+        <div class="space"> </div>
+        <h4 class="mem_title01">今シーズンの投手成績</h4>
+        <div class="row">
+            @{
+        var eRA = string.Empty;
+                if (@Model.PitchingStats.EarnedRunAverage != "-")
+                {
+                    eRA = @Model.PitchingStats.EarnedRunAverage.Substring(0, 4);
+                }
+                else
+                {
+                    eRA = @Model.PitchingStats.EarnedRunAverage;
+                }
+            }
+            <dl class="feed_row">
+                <dt>防御率</dt>
+                <dd class="bold">@eRA</dd>
+            </dl>
+            <dl class="feed_row">
+                <dt>試合数</dt>
+                <dd class="bold">@Model.PitchingStats.Game</dd>
+            </dl>
+            <dl class="feed_row">
+                <dt>投球回数</dt>
+                <dd class="bold">@Utils.FormatInningPitched(true, @Model.PitchingStats.InningsPitched.Value.ToString(), @Model.PitchingStats.InningsPitched3rd.Value.ToString())</dd>
+            </dl>
+            <dl class="feed_row">
+                <dt>完投</dt>
+                <dd class="bold">@Model.PitchingStats.CompleteGame</dd>
+            </dl>
+        </div>
+        <div class="row">
+            <dl class="feed_row">
+                <dt>交代完了</dt>
+                <dd class="bold">@Model.PitchingStats.Finished</dd>
+            </dl>
+            <dl class="feed_row">
+                <dt>試合当初</dt>
+                <dd class="bold">@Model.PitchingStats.Started</dd>
+            </dl>
+            <dl class="feed_row">
+                <dt>補回試合</dt>
+                <dd class="bold">@Model.PitchingStats.Extension</dd>
+            </dl>
+            <dl class="feed_row">
+                <dt>無失点勝利</dt>
+                <dd class="bold">@Model.PitchingStats.Shutout</dd>
+            </dl>
+        </div>
+        <div class="row">
+            <dl class="feed_row">
+                <dt>無四球試合</dt>
+                <dd class="bold">@Model.PitchingStats.NoBaseOnBall</dd>
+            </dl>
+            <dl class="feed_row">
+                <dt>勝利</dt>
+                <dd class="bold">@Model.PitchingStats.Win</dd>
+            </dl>
+            <dl class="feed_row">
+                <dt>敗戦</dt>
+                <dd class="bold">@Model.PitchingStats.Lost</dd>
+            </dl>
+            <dl class="feed_row">
+                <dt>勝率</dt>
+                <dd class="bold">@Utils.FormatPercentage(@Model.PitchingStats.WinningPercentage)</dd>
+            </dl>
+        </div>
+        <div class="row">
+            <dl class="feed_row">
+                <dt>ホールド</dt>
+                <dd class="bold">@Model.PitchingStats.Hold</dd>
+            </dl>
+            <dl class="feed_row">
+                <dt>ホールドポイント</dt>
+                <dd class="bold">@Model.PitchingStats.HoldPoint</dd>
+            </dl>
+            <dl class="feed_row">
+                <dt>セーブ</dt>
+                <dd class="bold">@Model.PitchingStats.Save</dd>
+            </dl>
+            <dl class="feed_row">
+                <dt>相手打者数</dt>
+                <dd class="bold">@Model.PitchingStats.Batmen</dd>
+            </dl>
+        </div>
+        <div class="row">
+            <dl class="feed_row">
+                <dt>被安打</dt>
+                <dd class="bold">@Model.PitchingStats.Hit</dd>
+            </dl>
+            <dl class="feed_row">
+                <dt>被本塁打</dt>
+                <dd class="bold">@Model.PitchingStats.HomeRunHitAgainst</dd>
+            </dl>
+            <dl class="feed_row">
+                <dt>奪三振</dt>
+                <dd class="bold">@Model.PitchingStats.Strikeout</dd>
+            </dl>
+            <dl class="feed_row">
+                <dt>与四球</dt>
+                <dd class="bold">@Model.PitchingStats.BasesOnBall</dd>
+            </dl>
+        </div>
+        <div class="row">
+            <dl class="feed_row">
+                <dt>与死球</dt>
+                <dd class="bold">@Model.PitchingStats.HitBastsmen</dd>
+            </dl>
+            <dl class="feed_row">
+                <dt>暴投</dt>
+                <dd class="bold">@Model.PitchingStats.WildPitch</dd>
+            </dl>
+            <dl class="feed_row">
+                <dt>ボーク</dt>
+                <dd class="bold">@Model.PitchingStats.Balk</dd>
+            </dl>
+            <dl class="feed_row">
+                <dt>失点</dt>
+                <dd class="bold">@Model.PitchingStats.PointLost</dd>
+            </dl>
+        </div>
+        <div class="row">
+            <dl class="feed_row">
+                <dt>自責点</dt>
+                <dd class="bold">@Model.PitchingStats.EarnedRun</dd>
+            </dl>
+        </div>
+    }
+    <div class="space20"> </div>
+    <!--Batting Info-->
+    @Html.Action("ShowHittingStats", "NpbRightContent", new { area = "Npb", teamID = @ViewBag.TeamID, playerID = @ViewBag.PlayerID })
+    @if (Model != null && Model.ListPitchingStats6thGameInfo != null)
+    {
+        if (Model.ListPitchingStats6thGameInfo.Any())
+        {
+            var totalItem = Model.ListPitchingStats6thGameInfo.Count() * 100;
+            <div class="space"> </div>
+            <div class="feed_content">
+                <h4 class="mem_title01">最近6試合の成績</h4>
+                <div class="feed_slider cslide-slides-master" id="cslide-slides-int1">
+                    <div class="cslide-prev-next" style="display: block;">
+                        <span class="cslide-prev cslide-disabled"> </span>
+                        <span class="cslide-next"> </span>
+                    </div>
+                    <div class="cslide-slides-container">
+                        @foreach (var item in @Model.ListPitchingStats6thGameInfo.OrderByDescending(m => m.GameDate))
+                            {
+                                var gameDate = Utils.GetDateMMddDayofWeekToJapanTime(DateTime.ParseExact(@item.GameDate.ToString(), "yyyyMMdd", null));
+                                var moundName = Utils.GetMoundName(@item.PitchingStats6thGameInfo.MoundCD.Value);
+                                var gameTime = DateTime.ParseExact(@item.Time, "HHmm", null).ToString("HH:mm");
+                                var pitchingResult = Utils.GetPitchingResultName(@item.PitchingStats6thGameInfo.PitchingResult.Value);                               
+                        <div class="cslide-slide">
+                            <ul>
+                                <li>
+                                    <p class="feed_info bold">
+                                        <span class="fs14">@gameDate</span>
+                                        <span>@pitchingResult</span>
+                                        <span>@Html.ActionLink(string.Concat(Constants.TEAMVS, ".", @item.PitchingStats6thGameInfo.ShortNameTeamsOpponent, " ", @item.HScore, " - ", @item.VScore), "Index", "NpbGameInformation", new { area = "Npb", gameID = @item.GameID }, null)</span>
+                                        <span class="mleft">@moundName</span>
+                                    </p>
+                                    <dl class="feed_info1">
+                                        <dt>@item.StadiumName</dt>
+                                        <dd>@gameTime</dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <dl class="feed_row">
+                                        <dt>投球回数</dt>
+                                        <dd class="bold">@Utils.FormatInningPitched(true, @item.PitchingStats6thGameInfo.InningsPitched.Value.ToString(), @item.PitchingStats6thGameInfo.InningsPitched3rd)</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>打者</dt>
+                                        <dd class="bold">@item.PitchingStats6thGameInfo.Batmen</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>被安打</dt>
+                                        <dd class="bold">@item.PitchingStats6thGameInfo.Hit</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>被本塁打</dt>
+                                        <dd class="bold">@item.PitchingStats6thGameInfo.HomeRunHitAgainst</dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <dl class="feed_row">
+                                        <dt>奪三振</dt>
+                                        <dd class="bold">@item.PitchingStats6thGameInfo.Strikeout</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>与四球</dt>
+                                        <dd class="bold">@item.PitchingStats6thGameInfo.BasesOnBall</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>与死球</dt>
+                                        <dd class="bold">@item.PitchingStats6thGameInfo.HitBastsmen</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>投球数</dt>
+                                        <dd class="bold">@item.PitchingStats6thGameInfo.TotalPitch</dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <dl class="feed_row">
+                                        <dt>失点</dt>
+                                        <dd class="bold">@item.PitchingStats6thGameInfo.PointLost</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>自責点</dt>
+                                        <dd class="bold">@item.PitchingStats6thGameInfo.EarnedRun</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>暴投</dt>
+                                        <dd class="bold">@item.PitchingStats6thGameInfo.WildPitch</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>ボーク</dt>
+                                        <dd class="bold">@item.PitchingStats6thGameInfo.Balk</dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </div>
+                            }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    <!--Pitching Team Opponent Info-->
+    @if (Model != null && Model.ListPitchingStatsTeamOpponentInfo != null)
+    {
+        if (Model.ListPitchingStatsTeamOpponentInfo.Any())
+        {
+            var index = 0;
+            var indexChild = 0;
+            var firstRecord = Model.ListPitchingStatsTeamOpponentInfo.OrderBy(m => m.PitchingStatsTeamsInfo.TeamsOpponentCD).FirstOrDefault();
+            var classTab = string.Empty;
+            <div class="space"> </div>
+            <div class="feed_content">
+                <h4 class="mem_title01">@ViewBag.LeagueName</h4>
+                <ul class="feed-name">
+                    @foreach (var item in Model.ListPitchingStatsTeamOpponentInfo.OrderBy(m => m.PitchingStatsTeamsInfo.TeamsOpponentCD))
+                        {
+                            if (item.PitchingStatsTeamsInfo.TeamsOpponentCD.Equals(firstRecord.PitchingStatsTeamsInfo.TeamsOpponentCD))
+                            {
+                                classTab = "active";
+                            }
+                            else
+                            {
+                                classTab = "";
+                            }
+                            index++;
+                        <li class="@classTab bold"><a href="@string.Concat("#feedtab",index)"><img src="@Url.Content(@item.TeamIcon)" alt="">@string.Concat(Constants.TEAMVS + "." + @item.PitchingStatsTeamsInfo.ShortNameTeamsOpponent)</a></li>
+                        }
+                </ul>
+                @foreach (var item in Model.ListPitchingStatsTeamOpponentInfo.OrderBy(m => m.PitchingStatsTeamsInfo.TeamsOpponentCD))
+                      {
+                          indexChild++;
+                <div class="feedtab-contain" id="@string.Concat("feedtab", indexChild)">
+                    <ul>
+                        <li>
+                            <dl class="feed_row">
+                                <dt>防御率</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.EarnedRunAverage</dd>
+                            </dl>
+                            <dl class="feed_row">
+                                <dt>試合数</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.Game</dd>
+                            </dl>
+                            <dl class="feed_row">
+                                <dt>完投</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.CompleteGame</dd>
+                            </dl>
+                            <dl class="feed_row">
+                                <dt>無点数</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.Shutout</dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl class="feed_row">
+                                <dt>無四球</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.NoBaseOnBall</dd>
+                            </dl>
+                            <dl class="feed_row">
+                                <dt>勝数</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.Win</dd>
+                            </dl>
+                            <dl class="feed_row">
+                                <dt>敗数</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.Lost</dd>
+                            </dl>
+                            <dl class="feed_row">
+                                <dt>ホールド</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.Hold</dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl class="feed_row">
+                                <dt>セーブ</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.Save</dd>
+                            </dl>
+                            <dl class="feed_row">
+                                <dt>勝率</dt>
+                                <dd class="bold">@Utils.FormatPercentage(@item.PitchingStatsTeamsInfo.WinningPercentage)</dd>
+                            </dl>
+                            <dl class="feed_row">
+                                <dt>投球回数</dt>
+                                <dd class="bold">@Utils.FormatInningPitched(true, @item.PitchingStatsTeamsInfo.InningsPitched.Value.ToString(), @item.PitchingStatsTeamsInfo.InningsPitched3rd.Value.ToString())</dd>
+                            </dl>
+                            <dl class="feed_row">
+                                <dt>打者</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.Batmen</dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl class="feed_row">
+                                <dt>被安打</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.Hit</dd>
+                            </dl>
+                            <dl class="feed_row">
+                                <dt>被本塁打</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.HomeRunHitAgainst</dd>
+                            </dl>
+                            <dl class="feed_row">
+                                <dt>奪三振</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.Strikeout</dd>
+                            </dl>
+                            <dl class="feed_row">
+                                <dt>奪三振率</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.StrikeoutPercentage</dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl class="feed_row">
+                                <dt>与四球</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.BasesOnBall</dd>
+                            </dl>
+                            <dl class="feed_row">
+                                <dt>与死球</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.HitBastsmen</dd>
+                            </dl>
+                            <dl class="feed_row">
+                                <dt>暴投</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.WildPitch</dd>
+                            </dl>
+                            <dl class="feed_row">
+                                <dt>失点</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.PointLost</dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl class="feed_row">
+                                <dt>自責点</dt>
+                                <dd class="bold">@item.PitchingStatsTeamsInfo.EarnedRun</dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+                      }
+
+            </div>
+        }
+    }
+    <!--Pitching 3 Year Info-->
+    @if (Model != null && Model.ListPitchingStats3YearInfo != null)
+    {
+        if (Model.ListPitchingStats3YearInfo.Any())
+        {
+            <div class="space"> </div>
+            <div class="feed_content">
+                <h4 class="mem_title01">過去3年間の成績</h4>
+            </div>
+            <div class="feed_slider cslide-slides-master" id="cslide-slides-int3">
+                <div class="cslide-prev-next" style="display: block;">
+                    <span class="cslide-prev cslide-disabled"> </span>
+                    <span class="cslide-next"> </span>
+                </div>
+                <div class="cslide-slides-container">
+                    @foreach (var item in Model.ListPitchingStats3YearInfo.OrderByDescending(m => m.Year))
+                        {
+                    <div class="cslide-slide">
+                        <ul>
+                            <li>
+                                <h5 class="fs18">@item.Year</h5>
+                            </li>
+                            <li>
+                                <dl class="feed_row">
+                                    <dt>チーム</dt>
+                                    <dd>@Html.ActionLink(@item.TeamS, "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamID }, null)</dd>
+                                </dl>
+                                <dl class="feed_row">
+                                    <dt>防御率</dt>
+                                    <dd class="bold">@item.ERA</dd>
+                                </dl>
+                                <dl class="feed_row">
+                                    <dt>試合数</dt>
+                                    <dd class="bold">@item.G</dd>
+                                </dl>
+                                <dl class="feed_row">
+                                    <dt>勝</dt>
+                                    <dd class="bold">@item.W</dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl class="feed_row">
+                                    <dt>負</dt>
+                                    <dd class="bold">@item.L</dd>
+                                </dl>
+                                <dl class="feed_row">
+                                    <dt>ホールド</dt>
+                                    <dd class="bold">@item.HLD</dd>
+                                </dl>
+                                <dl class="feed_row">
+                                    <dt>セーブ</dt>
+                                    <dd class="bold">@item.S</dd>
+                                </dl>
+                                <dl class="feed_row">
+                                    <dt>投球回数</dt>
+                                    <dd class="bold">@Utils.FormatInningPitched(true, @item.IP.Value.ToString(), @item.IP3.Value.ToString())</dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl class="feed_row">
+                                    <dt>被安打</dt>
+                                    <dd class="bold">@item.H</dd>
+                                </dl>
+                                <dl class="feed_row">
+                                    <dt>被本塁打</dt>
+                                    <dd class="bold">@item.HR</dd>
+                                </dl>
+                                <dl class="feed_row">
+                                    <dt>奪三振</dt>
+                                    <dd class="bold">@item.SO</dd>
+                                </dl>
+                                <dl class="feed_row">
+                                    <dt>与四球</dt>
+                                    <dd class="bold">@item.BB</dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl class="feed_row">
+                                    <dt>与死球</dt>
+                                    <dd class="bold">@item.HBP</dd>
+                                </dl>
+                                <dl class="feed_row">
+                                    <dt>自責点</dt>
+                                    <dd class="bold">@item.ER</dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </div>
+                        }
+                </div>
+            </div>
+        }
+    }
+    <div class="space20"> </div>
+    <!--Post Info-->
+    @if (Model.TeamPostedInfoList != null && Model.TeamPostedInfoList.Any())
+    {
+        <div class="cat_stitle">
+            <h3>@ViewBag.TeamName 投稿記事</h3>
+            <p><a href="/user_article/1/sport/">投稿記事をもっと読む</a></p>
+        </div>
+        <ul class="evt_list01">
+            @foreach (var post in Model.TeamPostedInfoList.Take(3))
+            {
+                string postContent = string.Format("{0}&nbsp;&nbsp;&nbsp;{1}投稿", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                <li>
+                    <a href="/user/@post.MemberId/"><img src="@post.ProfileImg" alt="icon" /></a>
+                    <a class="bold" href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a>
+					<br />
+					@Html.Raw(postContent)
+                </li>
+            }
+        </ul>
+    }
+    <div class="space20"> </div>
+    <!--News Player Info-->
+    @Html.Action("ShowNpbRecentNews", "NpbRightContent", new { area = "Npb", type = @ViewBag.Name, teamID = @ViewBag.TeamID })
+</div>
+
+<!--Right Content-->
+@section NpbPage{        
+    <div class="cat_stitle">
+        <h3>順位表</h3>
+        <p>@Html.ActionLink("一覧で見る", "Index", "NpbOrder", new { area = "Npb" }, null)</p>
+    </div>
+    <div id="npbTop3Ranking">
+        @Html.Action("ShowTopNRanking", "NpbRightContent", new { area = "Npb" })
+    </div>
+}

@@ -1,0 +1,2927 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ComModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AppActionLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberId" Type="bigint" />
+          <Property Name="ControllerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ActionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserAgent" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Url" Type="nvarchar" MaxLength="2000" />
+          <Property Name="UrlReferrer" Type="nvarchar" MaxLength="2000" />
+          <Property Name="SessionId" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="2000" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BackOfficeAccount">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="AccountId" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="PasswordExpireDate" Type="smallint" Nullable="false" />
+          <Property Name="PasswordLastUpdateTime" Type="datetime" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Status" Type="smallint" Nullable="false" />
+          <Property Name="CreatedAccountId" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BetClassMaster">
+          <Key>
+            <PropertyRef Name="BetClassID" />
+          </Key>
+          <Property Name="BetClassID" Type="bigint" Nullable="false" />
+          <Property Name="SportsID" Type="bigint" Nullable="false" />
+          <Property Name="GameClassCD" Type="int" Nullable="false" />
+          <Property Name="BetClassName" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="BetSelectMaster">
+          <Key>
+            <PropertyRef Name="BetSelectMasterID" />
+          </Key>
+          <Property Name="BetSelectMasterID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BetSelectID" Type="int" Nullable="false" />
+          <Property Name="BetClassID" Type="bigint" Nullable="false" />
+          <Property Name="BetSelectName" Type="nvarchar" MaxLength="128" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate " Type="datetime" />
+        </EntityType>
+        <EntityType Name="BriefNews">
+          <Key>
+            <PropertyRef Name="NewsItemID" />
+          </Key>
+          <Property Name="NewsItemID" Type="bigint" Nullable="false" />
+          <Property Name="DateFolderName" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Filename" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="DeliveryDate" Type="datetime" Nullable="false" />
+          <Property Name="CarryLimitDate" Type="datetime" Nullable="false" />
+          <Property Name="RevisionID" Type="int" Nullable="false" />
+          <Property Name="Update" Type="char" MaxLength="1" />
+          <Property Name="Status" Type="varchar" MaxLength="8" />
+          <Property Name="Headline" Type="nvarchar" MaxLength="128" />
+          <Property Name="SubHeadline" Type="nvarchar" MaxLength="128" />
+          <Property Name="newstext" Type="nvarchar" MaxLength="512" />
+          <Property Name="SentFrom" Type="nvarchar" MaxLength="64" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CampaignInfo">
+          <Key>
+            <PropertyRef Name="CampaignId" />
+          </Key>
+          <Property Name="CampaignId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CampaignTitle" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CampaignClass" Type="smallint" Nullable="false" />
+          <Property Name="Condition" Type="smallint" />
+          <Property Name="Points" Type="int" Nullable="false" />
+          <Property Name="GiveTime" Type="datetime" />
+          <Property Name="CampaignStartTime" Type="datetime" Nullable="false" />
+          <Property Name="CampaignEndTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedAccountId" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Contribution">
+          <Key>
+            <PropertyRef Name="ContributeId" />
+          </Key>
+          <Property Name="ContributeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberId" Type="bigint" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ContributedPicture" Type="nvarchar" MaxLength="128" />
+          <Property Name="ContributeDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ContributionQuotOrg">
+          <Key>
+            <PropertyRef Name="ContributeId" />
+          </Key>
+          <Property Name="ContributeId" Type="bigint" Nullable="false" />
+          <Property Name="NewsClassId" Type="bigint" Nullable="false" />
+          <Property Name="QuoteUniqueId1" Type="bigint" Nullable="false" />
+          <Property Name="QuoteUniqueId2" Type="bigint" Nullable="false" />
+          <Property Name="QuoteUniqueId3" Type="bigint" Nullable="false" />
+          <Property Name="Status" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContributionReading">
+          <Key>
+            <PropertyRef Name="ContributionReadingId" />
+          </Key>
+          <Property Name="ContributionReadingId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContributeId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CurrentDayPerExpectTargetTotalPoint">
+          <Key>
+            <PropertyRef Name="ExpectTargetID" />
+          </Key>
+          <Property Name="ExpectTargetID" Type="bigint" Nullable="false" />
+          <Property Name="TotalPoint" Type="bigint" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Deviation">
+          <Key>
+            <PropertyRef Name="StartYear" />
+            <PropertyRef Name="Month" />
+            <PropertyRef Name="Week" />
+            <PropertyRef Name="SportsID" />
+            <PropertyRef Name="UniqueID" />
+          </Key>
+          <Property Name="StartYear" Type="int" Nullable="false" />
+          <Property Name="Month" Type="int" Nullable="false" />
+          <Property Name="Week" Type="smallint" Nullable="false" />
+          <Property Name="SportsID" Type="int" Nullable="false" />
+          <Property Name="UniqueID" Type="int" Nullable="false" />
+          <Property Name="ClassClass" Type="smallint" Nullable="false" />
+          <Property Name="ExpectationsDeviation" Type="decimal" Precision="30" Scale="6" Nullable="false" />
+          <Property Name="BetrayalDeviation" Type="decimal" Precision="30" Scale="6" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EntryHistory">
+          <Key>
+            <PropertyRef Name="EntryHistoryId" />
+          </Key>
+          <Property Name="EntryHistoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PayOffPointsId" Type="bigint" Nullable="false" />
+          <Property Name="PrizeId" Type="bigint" Nullable="false" />
+          <Property Name="EntryPoint" Type="int" Nullable="false" />
+          <Property Name="EntryHistoryTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ExpectPoint">
+          <Key>
+            <PropertyRef Name="ExpectPointID" />
+          </Key>
+          <Property Name="ExpectPointID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExpectTargetID" Type="bigint" Nullable="false" />
+          <Property Name="PointID" Type="bigint" Nullable="false" />
+          <Property Name="ExpectPoint" Type="int" Nullable="false" />
+          <Property Name="AcquisitionPoint" Type="int" />
+          <Property Name="ClassClass" Type="smallint" />
+          <Property Name="UniqueID" Type="int" />
+          <Property Name="BetSelectID" Type="int" />
+          <Property Name="VorD" Type="smallint" />
+          <Property Name="SituationStatus" Type="smallint" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ExpectTarget">
+          <Key>
+            <PropertyRef Name="ExpectTargetID" />
+          </Key>
+          <Property Name="ExpectTargetID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SportsID" Type="int" Nullable="false" />
+          <Property Name="ClassClass" Type="smallint" Nullable="false" />
+          <Property Name="UniqueID" Type="int" Nullable="false" />
+          <Property Name="Status" Type="smallint" Nullable="false" />
+          <Property Name="StartScheduleDate" Type="datetime" />
+          <Property Name="FixBetSelectID" Type="int" />
+          <Property Name="FixDate" Type="datetime" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="FollowList">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="FollowerMemberID" />
+          </Key>
+          <Property Name="MemberID" Type="bigint" Nullable="false" />
+          <Property Name="FollowerMemberID" Type="bigint" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GroupMember">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="GroupID" Type="bigint" Nullable="false" />
+          <Property Name="MemberID" Type="bigint" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="MemberID" Type="bigint" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ItpcSubject">
+          <Key>
+            <PropertyRef Name="NewsItemID" />
+            <PropertyRef Name="IptcSubjectCode" />
+          </Key>
+          <Property Name="NewsItemID" Type="bigint" Nullable="false" />
+          <Property Name="IptcSubjectCode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItpcSubjectMaster">
+          <Key>
+            <PropertyRef Name="IptcSubjectCode" />
+          </Key>
+          <Property Name="IptcSubjectCode" Type="int" Nullable="false" />
+          <Property Name="Subject" Type="int" Nullable="false" />
+          <Property Name="SubjectMatter" Type="int" />
+          <Property Name="SubjectDetail" Type="int" />
+          <Property Name="SubjectJp" Type="nvarchar" MaxLength="30" />
+          <Property Name="SubjectMatterJp" Type="nvarchar" MaxLength="30" />
+          <Property Name="SubjectDetailJp" Type="nvarchar" MaxLength="30" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LikeSports">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="SportsID" />
+          </Key>
+          <Property Name="MemberID" Type="bigint" Nullable="false" />
+          <Property Name="SportsID" Type="int" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LikeTeam">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="SportsID" />
+            <PropertyRef Name="TeamID" />
+          </Key>
+          <Property Name="MemberID" Type="bigint" Nullable="false" />
+          <Property Name="SportsID" Type="int" Nullable="false" />
+          <Property Name="TeamID" Type="int" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LoginHistory">
+          <Key>
+            <PropertyRef Name="LoginHistoryId" />
+          </Key>
+          <Property Name="LoginHistoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="bigint" Nullable="false" />
+          <Property Name="LoginDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MailDeliverCond">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="MailDelivCondID" />
+          </Key>
+          <Property Name="MemberID" Type="bigint" Nullable="false" />
+          <Property Name="MailDelivCondID" Type="bigint" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MailDeliverCondMaster">
+          <Key>
+            <PropertyRef Name="MailDelivCondID" />
+          </Key>
+          <Property Name="MailDelivCondID" Type="bigint" Nullable="false" />
+          <Property Name="MailDelivCondision" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="MemberId" />
+          </Key>
+          <Property Name="MemberId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DisplayMemberId" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Nickname" Type="nvarchar" MaxLength="20" />
+          <Property Name="ProfileImg" Type="varchar" MaxLength="256" />
+          <Property Name="Gender" Type="smallint" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="BirthdayYear" Type="smallint" />
+          <Property Name="BirthdayMonth" Type="smallint" />
+          <Property Name="BirthdayDay" Type="smallint" />
+          <Property Name="PrefecturesId" Type="smallint" />
+          <Property Name="Mail" Type="varchar" MaxLength="128" />
+          <Property Name="Password" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="Status" Type="smallint" Nullable="false" />
+          <Property Name="LoginKeepFlg" Type="bit" />
+          <Property Name="InterimRegistTime" Type="datetime" />
+          <Property Name="RegistTime" Type="datetime" />
+          <Property Name="ExitTime" Type="datetime" />
+          <Property Name="CompelExitTime" Type="datetime" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MonthlyResults">
+          <Key>
+            <PropertyRef Name="ReleVantYear" />
+            <PropertyRef Name="ReleVantMonth" />
+            <PropertyRef Name="SportsID" />
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="ReleVantYear" Type="smallint" Nullable="false" />
+          <Property Name="ReleVantMonth" Type="smallint" Nullable="false" />
+          <Property Name="SportsID" Type="int" Nullable="false" />
+          <Property Name="MemberID" Type="bigint" Nullable="false" />
+          <Property Name="ExpectNumber" Type="int" Nullable="false" />
+          <Property Name="CorrectPercent" Type="smallint" Nullable="false" />
+          <Property Name="CorrectPoint" Type="int" Nullable="false" />
+          <Property Name="CalculationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NewsClassMaster">
+          <Key>
+            <PropertyRef Name="NewsClassId" />
+          </Key>
+          <Property Name="NewsClassId" Type="bigint" Nullable="false" />
+          <Property Name="NewsClassName" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NewsGenre">
+          <Key>
+            <PropertyRef Name="NewsItemID" />
+            <PropertyRef Name="LargeCategory" />
+            <PropertyRef Name="SmallCategory" />
+          </Key>
+          <Property Name="NewsItemID" Type="bigint" Nullable="false" />
+          <Property Name="LargeCategory" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="SmallCategory" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NewsGenreMaster">
+          <Key>
+            <PropertyRef Name="LargeCategory" />
+            <PropertyRef Name="SmallCategory" />
+          </Key>
+          <Property Name="LargeCategory" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="SmallCategory" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LargeCategoryJp" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="SmallCategoryJp" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NewsHistory">
+          <Key>
+            <PropertyRef Name="DateFolderName" />
+            <PropertyRef Name="Filename" />
+            <PropertyRef Name="DeliveryDate" />
+          </Key>
+          <Property Name="DateFolderName" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Filename" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="DeliveryDate" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="smallint" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NewsReading">
+          <Key>
+            <PropertyRef Name="NewsReadingID" />
+          </Key>
+          <Property Name="NewsReadingID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NewsItemID" Type="bigint" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NewsTopic">
+          <Key>
+            <PropertyRef Name="NewsItemID" />
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="NewsItemID" Type="bigint" Nullable="false" />
+          <Property Name="TopicID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NoticeDeliverySubject">
+          <Key>
+            <PropertyRef Name="NoticeDeliverySubjectId" />
+          </Key>
+          <Property Name="NoticeDeliverySubjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NoticeId" Type="int" Nullable="false" />
+          <Property Name="MemberId" Type="int" Nullable="false" />
+          <Property Name="ClassClass" Type="smallint" Nullable="false" />
+          <Property Name="UniqueID" Type="int" Nullable="false" />
+          <Property Name="UniqueID2" Type="int" />
+          <Property Name="UniqueID3" Type="int" />
+          <Property Name="AlreadyReadFlg" Type="bit" Nullable="false" />
+          <Property Name="NoticeDeliveryStatus" Type="smallint" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NoticeInfo">
+          <Key>
+            <PropertyRef Name="NoticeId" />
+          </Key>
+          <Property Name="NoticeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NoticeClass" Type="smallint" Nullable="false" />
+          <Property Name="MailDelivCondID" Type="bigint" Nullable="false" />
+          <Property Name="NoticeBody" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Title" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Body" Type="nvarchar" MaxLength="1024" Nullable="false" />
+          <Property Name="DeliveryTime" Type="datetime" Nullable="false" />
+          <Property Name="NoticeDisplayEndTime" Type="datetime" Nullable="false" />
+          <Property Name="TransitionsURL" Type="varchar" MaxLength="512" />
+          <Property Name="MailCC" Type="varchar" MaxLength="256" />
+          <Property Name="MailBCC" Type="varchar" MaxLength="256" />
+          <Property Name="MailSendStatus" Type="smallint" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NoticePopupDisplayHistory">
+          <Key>
+            <PropertyRef Name="NoticePopupDisplayHistoryId" />
+          </Key>
+          <Property Name="NoticePopupDisplayHistoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberId" Type="bigint" Nullable="false" />
+          <Property Name="ClassClass" Type="smallint" Nullable="false" />
+          <Property Name="UniqueID" Type="int" Nullable="false" />
+          <Property Name="UniqueID2" Type="int" Nullable="false" />
+          <Property Name="AlreadyReadFlg" Type="bit" Nullable="false" />
+          <Property Name="NoticeTime" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="OddsInfo">
+          <Key>
+            <PropertyRef Name="ExpectTargetID" />
+            <PropertyRef Name="BetSelectMasterID" />
+          </Key>
+          <Property Name="ExpectTargetID" Type="bigint" Nullable="false" />
+          <Property Name="BetSelectMasterID" Type="bigint" Nullable="false" />
+          <Property Name="SportID" Type="bigint" Nullable="false" />
+          <Property Name="ClassificationType" Type="smallint" Nullable="false" />
+          <Property Name="UniqueID" Type="int" Nullable="false" />
+          <Property Name="Odds" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="Status" Type="smallint" Nullable="false" />
+          <Property Name="FixDate" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PageInfo">
+          <Key>
+            <PropertyRef Name="PageNo" />
+          </Key>
+          <Property Name="PageNo" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="PageName" Type="nvarchar" MaxLength="125" />
+          <Property Name="MemberStatus" Type="smallint" />
+          <Property Name="Url1" Type="nvarchar" MaxLength="125" />
+          <Property Name="Url2" Type="nvarchar" MaxLength="125" />
+          <Property Name="Url3" Type="nvarchar" MaxLength="125" />
+          <Property Name="Url4" Type="nvarchar" MaxLength="125" />
+          <Property Name="Url5" Type="nvarchar" MaxLength="125" />
+          <Property Name="Url6" Type="nvarchar" MaxLength="125" />
+          <Property Name="Title" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Keywords" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CanAutomatic" Type="smallint" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PayOffPoints">
+          <Key>
+            <PropertyRef Name="PayOffPointsId" />
+          </Key>
+          <Property Name="PayOffPointsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberId" Type="bigint" Nullable="false" />
+          <Property Name="PayOffPoints" Type="int" Nullable="false" />
+          <Property Name="EntryPoints" Type="int" Nullable="false" />
+          <Property Name="EntryEnablePoints" Type="int" Nullable="false" />
+          <Property Name="PayOffFinishTime" Type="datetime" />
+          <Property Name="EntryStartTime" Type="datetime" />
+          <Property Name="EntryEndTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PhotoNews">
+          <Key>
+            <PropertyRef Name="NewsItemID" />
+            <PropertyRef Name="Duid" />
+          </Key>
+          <Property Name="NewsItemID" Type="bigint" Nullable="false" />
+          <Property Name="Duid" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Content" Type="nvarchar" MaxLength="250" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Point">
+          <Key>
+            <PropertyRef Name="PointID" />
+          </Key>
+          <Property Name="PointID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="bigint" Nullable="false" />
+          <Property Name="FundsPoint" Type="int" Nullable="false" />
+          <Property Name="PossesionPoint" Type="int" Nullable="false" />
+          <Property Name="GivingDate" Type="datetime" Nullable="false" />
+          <Property Name="GiveTargetYear" Type="smallint" Nullable="false" />
+          <Property Name="GiveTargetMonth" Type="smallint" Nullable="false" />
+          <Property Name="GiveTargetWeek" Type="smallint" Nullable="false" />
+          <Property Name="BetStartDate" Type="datetime" Nullable="false" />
+          <Property Name="BetEndDate" Type="datetime" Nullable="false" />
+          <Property Name="PayOffPointsId" Type="bigint" />
+          <Property Name="PayOffFlg" Type="bit" />
+          <Property Name="PayOffPoints" Type="int" Nullable="false" />
+          <Property Name="PayOffTime" Type="datetime" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PointBulkTemporal">
+          <Key>
+            <PropertyRef Name="PointBulkID" />
+          </Key>
+          <Property Name="PointBulkID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="bigint" />
+          <Property Name="PointClass" Type="smallint" />
+          <Property Name="GiveTargetYear" Type="smallint" />
+          <Property Name="GiveTargetMonth" Type="smallint" />
+          <Property Name="GiveTargetWeek" Type="smallint" />
+          <Property Name="GivingDate" Type="datetime" />
+          <Property Name="CampaignId" Type="bigint" />
+          <Property Name="Points" Type="int" />
+          <Property Name="DisposalFlg" Type="smallint" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PointHistory">
+          <Key>
+            <PropertyRef Name="PontHistoryId" />
+          </Key>
+          <Property Name="PontHistoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PointId" Type="bigint" />
+          <Property Name="ExpectPointId" Type="bigint" />
+          <Property Name="CampaignId" Type="bigint" />
+          <Property Name="PointClass" Type="smallint" Nullable="false" />
+          <Property Name="Points" Type="int" Nullable="false" />
+          <Property Name="HistoryClass" Type="smallint" Nullable="false" />
+          <Property Name="AdjustmentClass" Type="smallint" Nullable="false" />
+          <Property Name="OperationClass" Type="smallint" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PointRanking">
+          <Key>
+            <PropertyRef Name="ReleVantYear" />
+            <PropertyRef Name="ReleVantMonth" />
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="ReleVantYear" Type="smallint" Nullable="false" />
+          <Property Name="ReleVantMonth" Type="smallint" Nullable="false" />
+          <Property Name="MemberID" Type="bigint" Nullable="false" />
+          <Property Name="PayOffPoints" Type="int" Nullable="false" />
+          <Property Name="CalculationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PopularTopicsAggregate">
+          <Key>
+            <PropertyRef Name="TargetDate" />
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="TargetDate" Type="datetime" Nullable="false" />
+          <Property Name="TopicID" Type="bigint" Nullable="false" />
+          <Property Name="NewsClassID" Type="bigint" Nullable="false" />
+          <Property Name="Views" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PossesionPointRanking">
+          <Key>
+            <PropertyRef Name="PossesionPointRankingID" />
+          </Key>
+          <Property Name="PossesionPointRankingID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="bigint" Nullable="false" />
+          <Property Name="TargetDate" Type="datetime" Nullable="false" />
+          <Property Name="TargetPossesionPoint" Type="int" Nullable="false" />
+          <Property Name="UpDownPoint" Type="int" Nullable="false" />
+          <Property Name="TargetRanking" Type="int" Nullable="false" />
+          <Property Name="UpDownRanking" Type="int" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PrefectureMaster">
+          <Key>
+            <PropertyRef Name="PrefecturesID" />
+          </Key>
+          <Property Name="PrefecturesID" Type="int" Nullable="false" />
+          <Property Name="PrefecturesName" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prize">
+          <Key>
+            <PropertyRef Name="PrizeID" />
+          </Key>
+          <Property Name="PrizeID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrizeName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PrizeImg" Type="varchar" MaxLength="64" />
+          <Property Name="PrizeDescription" Type="nvarchar" MaxLength="512" />
+          <Property Name="PrizePoints" Type="int" Nullable="false" />
+          <Property Name="PrizeMethod" Type="smallint" Nullable="false" />
+          <Property Name="EntryStartTime" Type="datetime" Nullable="false" />
+          <Property Name="EntryEndTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="QuotTopic">
+          <Key>
+            <PropertyRef Name="ContributeID" />
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="ContributeID" Type="bigint" Nullable="false" />
+          <Property Name="TopicID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SeasonTotalResults">
+          <Key>
+            <PropertyRef Name="StartYear" />
+            <PropertyRef Name="SportsID" />
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="StartYear" Type="smallint" Nullable="false" />
+          <Property Name="SportsID" Type="int" Nullable="false" />
+          <Property Name="MemberID" Type="bigint" Nullable="false" />
+          <Property Name="ExpectNumber" Type="int" Nullable="false" />
+          <Property Name="CorrectPercent" Type="smallint" Nullable="false" />
+          <Property Name="CorrectPoint" Type="int" Nullable="false" />
+          <Property Name="LastTotalDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SnsAuthInformation">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="bigint" Nullable="false" />
+          <Property Name="SnsID" Type="bigint" Nullable="false" />
+          <Property Name="SnsMemberID" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="AccessKey" Type="varchar" MaxLength="256" />
+          <Property Name="SecretKey" Type="varchar" MaxLength="256" />
+          <Property Name="ExpireDate" Type="datetime" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SnsCorpInformation">
+          <Key>
+            <PropertyRef Name="SnsID" />
+          </Key>
+          <Property Name="SnsID" Type="bigint" Nullable="false" />
+          <Property Name="SnsName" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="AccessKey" Type="varchar" MaxLength="256" />
+          <Property Name="SecretKey" Type="varchar" MaxLength="256" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SNSShareHistory">
+          <Key>
+            <PropertyRef Name="SNSShareHistoryId" />
+          </Key>
+          <Property Name="SNSShareHistoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="bigint" Nullable="false" />
+          <Property Name="SnsID" Type="bigint" Nullable="false" />
+          <Property Name="ContributeId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SportsMaster">
+          <Key>
+            <PropertyRef Name="SportsID" />
+          </Key>
+          <Property Name="SportsID" Type="int" Nullable="false" />
+          <Property Name="SportsName" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SportsStandardDeviation">
+          <Key>
+            <PropertyRef Name="StartYear" />
+            <PropertyRef Name="SportsID" />
+          </Key>
+          <Property Name="StartYear" Type="bigint" Nullable="false" />
+          <Property Name="SportsID" Type="int" Nullable="false" />
+          <Property Name="ClassClass" Type="smallint" Nullable="false" />
+          <Property Name="ExpectationsAverage" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ExpectationsVariance" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ExpectationsStandardDeviation" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="BetrayalAverage" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="BetrayalVariance" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="BetrayalStandardDeviation" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SystemParamater">
+          <Key>
+            <PropertyRef Name="Scode" />
+          </Key>
+          <Property Name="Scode" Type="int" Nullable="false" />
+          <Property Name="Spara" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="Note" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TokenAcInfo">
+          <Key>
+            <PropertyRef Name="TokenID" />
+            <PropertyRef Name="TokenValue" />
+          </Key>
+          <Property Name="TokenID" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="TokenValue" Type="nvarchar" MaxLength="1024" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TokenControl">
+          <Key>
+            <PropertyRef Name="TokenID" />
+          </Key>
+          <Property Name="TokenID" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="MemberID" Type="bigint" Nullable="false" />
+          <Property Name="TokenClass" Type="smallint" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="ExpireDate" Type="datetime" />
+          <Property Name="IssueDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TopicMaster">
+          <Key>
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="TopicID" Type="bigint" Nullable="false" />
+          <Property Name="SportID" Type="int" Nullable="false" />
+          <Property Name="ClassificationType" Type="smallint" Nullable="false" />
+          <Property Name="UniqueID" Type="int" Nullable="false" />
+          <Property Name="TopicName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="JumpUrl" Type="varchar" MaxLength="512" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TotalDailyReport">
+          <Key>
+            <PropertyRef Name="TotalTargetTime" />
+            <PropertyRef Name="SportsId" />
+          </Key>
+          <Property Name="TotalTargetTime" Type="int" Nullable="false" />
+          <Property Name="SportsId" Type="smallint" Nullable="false" />
+          <Property Name="TotalTargetYear" Type="smallint" Nullable="false" />
+          <Property Name="TotalTargetMonth" Type="smallint" Nullable="false" />
+          <Property Name="TotalTargetDay" Type="smallint" Nullable="false" />
+          <Property Name="GameCount" Type="smallint" Nullable="false" />
+          <Property Name="ExpectCount" Type="int" Nullable="false" />
+          <Property Name="FirstExpectCount" Type="int" Nullable="false" />
+          <Property Name="ContinueExpectCount" Type="int" Nullable="false" />
+          <Property Name="PerExpectCount" Type="int" Nullable="false" />
+          <Property Name="UuExpectCount" Type="smallint" Nullable="false" />
+          <Property Name="WriteCount" Type="int" Nullable="false" />
+          <Property Name="WriteUuCount" Type="int" Nullable="false" />
+          <Property Name="UuWriteCount" Type="int" Nullable="false" />
+          <Property Name="GroundTotalWirte" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TotalMemberReport">
+          <Key>
+            <PropertyRef Name="TotalTargetTime" />
+            <PropertyRef Name="SportsId" />
+          </Key>
+          <Property Name="TotalTargetTime" Type="int" Nullable="false" />
+          <Property Name="SportsId" Type="smallint" Nullable="false" />
+          <Property Name="TotalTargetYear" Type="smallint" Nullable="false" />
+          <Property Name="TotalTargetMonth" Type="smallint" Nullable="false" />
+          <Property Name="TotalTargetDay" Type="smallint" Nullable="false" />
+          <Property Name="TotalTargetWeek" Type="smallint" Nullable="false" />
+          <Property Name="MemberCount" Type="smallint" Nullable="false" />
+          <Property Name="ExitCount" Type="smallint" Nullable="false" />
+          <Property Name="GroundTotalMember" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TotalMonthlyReport">
+          <Key>
+            <PropertyRef Name="SportsId" />
+            <PropertyRef Name="TotalTargetYear" />
+            <PropertyRef Name="TotalTargetMonth" />
+          </Key>
+          <Property Name="SportsId" Type="smallint" Nullable="false" />
+          <Property Name="TotalTargetYear" Type="smallint" Nullable="false" />
+          <Property Name="TotalTargetMonth" Type="smallint" Nullable="false" />
+          <Property Name="GameCount" Type="smallint" Nullable="false" />
+          <Property Name="ExpectCount" Type="int" Nullable="false" />
+          <Property Name="FirstExpectCount" Type="int" Nullable="false" />
+          <Property Name="ContinueExpectCount" Type="int" Nullable="false" />
+          <Property Name="PerExpectCount" Type="int" Nullable="false" />
+          <Property Name="UuExpectCount" Type="smallint" Nullable="false" />
+          <Property Name="WriteCount" Type="int" Nullable="false" />
+          <Property Name="WriteUuCount" Type="int" Nullable="false" />
+          <Property Name="UuWriteCount" Type="int" Nullable="false" />
+          <Property Name="GroundTotalWirte" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TotalWeeklyReport">
+          <Key>
+            <PropertyRef Name="SportsId" />
+            <PropertyRef Name="TotalTargetYear" />
+            <PropertyRef Name="TotalTargetMonth" />
+            <PropertyRef Name="TotalTargetWeek" />
+          </Key>
+          <Property Name="SportsId" Type="smallint" Nullable="false" />
+          <Property Name="TotalTargetYear" Type="smallint" Nullable="false" />
+          <Property Name="TotalTargetMonth" Type="smallint" Nullable="false" />
+          <Property Name="TotalTargetWeek" Type="smallint" Nullable="false" />
+          <Property Name="GameCount" Type="smallint" Nullable="false" />
+          <Property Name="ExpectCount" Type="int" Nullable="false" />
+          <Property Name="FirstExpectCount" Type="int" Nullable="false" />
+          <Property Name="ContinueExpectCount" Type="int" Nullable="false" />
+          <Property Name="PerExpectCount" Type="int" Nullable="false" />
+          <Property Name="UuExpectCount" Type="smallint" Nullable="false" />
+          <Property Name="WriteCount" Type="int" Nullable="false" />
+          <Property Name="WriteUuCount" Type="int" Nullable="false" />
+          <Property Name="UuWriteCount" Type="int" Nullable="false" />
+          <Property Name="GroundTotalWirte" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UnitBrowser">
+          <Key>
+            <PropertyRef Name="UnitBrowserId" />
+          </Key>
+          <Property Name="UnitBrowserId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrowserID" Type="varchar" MaxLength="32" />
+          <Property Name="BrowserType" Type="varchar" MaxLength="32" />
+          <Property Name="CookieGuid" Type="varchar" MaxLength="256" />
+          <Property Name="UserAgent" Type="varchar" MaxLength="512" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="WeekResults">
+          <Key>
+            <PropertyRef Name="RelevantYear" />
+            <PropertyRef Name="RelevantMonth" />
+            <PropertyRef Name="RelevantWeek" />
+            <PropertyRef Name="SportsID" />
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="RelevantYear" Type="smallint" Nullable="false" />
+          <Property Name="RelevantMonth" Type="smallint" Nullable="false" />
+          <Property Name="RelevantWeek" Type="smallint" Nullable="false" />
+          <Property Name="SportsID" Type="int" Nullable="false" />
+          <Property Name="MemberID" Type="bigint" Nullable="false" />
+          <Property Name="ExpectNumber" Type="int" Nullable="false" />
+          <Property Name="CorrectPercent" Type="smallint" Nullable="false" />
+          <Property Name="CorrectPoint" Type="int" Nullable="false" />
+          <Property Name="CalculationDate" Type="datetime" />
+        </EntityType>
+        <!--生成中に見つかったエラー:
+警告 6002: テーブル/ビュー 'Splg.Com.NewsReadingSumView' には主キーが定義されていません。主キーは推論され、定義は読み取り専用のテーブル/ビューとして作成されました。-->
+        <EntityType Name="NewsReadingSumView">
+          <Key>
+            <PropertyRef Name="NewsItemID" />
+          </Key>
+          <Property Name="NewsItemID" Type="bigint" Nullable="false" />
+          <Property Name="View" Type="int" />
+        </EntityType>
+        <EntityContainer Name="ComModelStoreContainer">
+          <EntitySet Name="AppActionLog" EntityType="Self.AppActionLog" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="BackOfficeAccount" EntityType="Self.BackOfficeAccount" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="BetClassMaster" EntityType="Self.BetClassMaster" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="BetSelectMaster" EntityType="Self.BetSelectMaster" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="BriefNews" EntityType="Self.BriefNews" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="CampaignInfo" EntityType="Self.CampaignInfo" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="Contribution" EntityType="Self.Contribution" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="ContributionQuotOrg" EntityType="Self.ContributionQuotOrg" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="ContributionReading" EntityType="Self.ContributionReading" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="CurrentDayPerExpectTargetTotalPoint" EntityType="Self.CurrentDayPerExpectTargetTotalPoint" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="Deviation" EntityType="Self.Deviation" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="EntryHistory" EntityType="Self.EntryHistory" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="ExpectPoint" EntityType="Self.ExpectPoint" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="ExpectTarget" EntityType="Self.ExpectTarget" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="FollowList" EntityType="Self.FollowList" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="GroupMember" EntityType="Self.GroupMember" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="ItpcSubject" EntityType="Self.ItpcSubject" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="ItpcSubjectMaster" EntityType="Self.ItpcSubjectMaster" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="LikeSports" EntityType="Self.LikeSports" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="LikeTeam" EntityType="Self.LikeTeam" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="LoginHistory" EntityType="Self.LoginHistory" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="MailDeliverCond" EntityType="Self.MailDeliverCond" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="MailDeliverCondMaster" EntityType="Self.MailDeliverCondMaster" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="Member" EntityType="Self.Member" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="MonthlyResults" EntityType="Self.MonthlyResults" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="NewsClassMaster" EntityType="Self.NewsClassMaster" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="NewsGenre" EntityType="Self.NewsGenre" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="NewsGenreMaster" EntityType="Self.NewsGenreMaster" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="NewsHistory" EntityType="Self.NewsHistory" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="NewsReading" EntityType="Self.NewsReading" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="NewsTopic" EntityType="Self.NewsTopic" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="NoticeDeliverySubject" EntityType="Self.NoticeDeliverySubject" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="NoticeInfo" EntityType="Self.NoticeInfo" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="NoticePopupDisplayHistory" EntityType="Self.NoticePopupDisplayHistory" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="OddsInfo" EntityType="Self.OddsInfo" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="PageInfo" EntityType="Self.PageInfo" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="PayOffPoints" EntityType="Self.PayOffPoints" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="PhotoNews" EntityType="Self.PhotoNews" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="Point" EntityType="Self.Point" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="PointBulkTemporal" EntityType="Self.PointBulkTemporal" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="PointHistory" EntityType="Self.PointHistory" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="PointRanking" EntityType="Self.PointRanking" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="PopularTopicsAggregate" EntityType="Self.PopularTopicsAggregate" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="PossesionPointRanking" EntityType="Self.PossesionPointRanking" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="PrefectureMaster" EntityType="Self.PrefectureMaster" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="Prize" EntityType="Self.Prize" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="QuotTopic" EntityType="Self.QuotTopic" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="SeasonTotalResults" EntityType="Self.SeasonTotalResults" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="SnsAuthInformation" EntityType="Self.SnsAuthInformation" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="SnsCorpInformation" EntityType="Self.SnsCorpInformation" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="SNSShareHistory" EntityType="Self.SNSShareHistory" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="SportsMaster" EntityType="Self.SportsMaster" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="SportsStandardDeviation" EntityType="Self.SportsStandardDeviation" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="SystemParamater" EntityType="Self.SystemParamater" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="TokenAcInfo" EntityType="Self.TokenAcInfo" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="TokenControl" EntityType="Self.TokenControl" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="TopicMaster" EntityType="Self.TopicMaster" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="TotalDailyReport" EntityType="Self.TotalDailyReport" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="TotalMemberReport" EntityType="Self.TotalMemberReport" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="TotalMonthlyReport" EntityType="Self.TotalMonthlyReport" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="TotalWeeklyReport" EntityType="Self.TotalWeeklyReport" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="UnitBrowser" EntityType="Self.UnitBrowser" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="WeekResults" EntityType="Self.WeekResults" Schema="Com" store:Type="Tables" />
+          <EntitySet Name="NewsReadingSumView" EntityType="Self.NewsReadingSumView" store:Type="Views" store:Schema="Com">
+            <DefiningQuery>SELECT 
+    [NewsReadingSumView].[NewsItemID] AS [NewsItemID], 
+    [NewsReadingSumView].[View] AS [View]
+    FROM [Com].[NewsReadingSumView] AS [NewsReadingSumView]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ComModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BriefNews">
+          <Key>
+            <PropertyRef Name="NewsItemID" />
+          </Key>
+          <Property Name="NewsItemID" Type="Int64" Nullable="false" />
+          <Property Name="DateFolderName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Filename" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeliveryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CarryLimitDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RevisionID" Type="Int32" Nullable="false" />
+          <Property Name="Update" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Headline" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SubHeadline" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="newstext" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="SentFrom" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CampaignInfo">
+          <Key>
+            <PropertyRef Name="CampaignId" />
+          </Key>
+          <Property Name="CampaignId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CampaignTitle" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CampaignClass" Type="Int16" Nullable="false" />
+          <Property Name="Condition" Type="Int16" />
+          <Property Name="Points" Type="Int32" Nullable="false" />
+          <Property Name="GiveTime" Type="DateTime" Precision="3" />
+          <Property Name="CampaignStartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CampaignEndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedAccountId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Contribution">
+          <Key>
+            <PropertyRef Name="ContributeId" />
+          </Key>
+          <Property Name="ContributeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int64" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContributedPicture" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ContributeDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ContributionQuotOrg">
+          <Key>
+            <PropertyRef Name="ContributeId" />
+          </Key>
+          <Property Name="ContributeId" Type="Int64" Nullable="false" />
+          <Property Name="NewsClassId" Type="Int64" Nullable="false" />
+          <Property Name="QuoteUniqueId1" Type="Int64" Nullable="false" />
+          <Property Name="QuoteUniqueId2" Type="Int64" Nullable="false" />
+          <Property Name="QuoteUniqueId3" Type="Int64" Nullable="false" />
+          <Property Name="Status" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CurrentDayPerExpectTargetTotalPoint">
+          <Key>
+            <PropertyRef Name="ExpectTargetID" />
+          </Key>
+          <Property Name="ExpectTargetID" Type="Int64" Nullable="false" />
+          <Property Name="TotalPoint" Type="Int64" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Deviation">
+          <Key>
+            <PropertyRef Name="StartYear" />
+            <PropertyRef Name="Month" />
+            <PropertyRef Name="Week" />
+            <PropertyRef Name="SportsID" />
+            <PropertyRef Name="UniqueID" />
+          </Key>
+          <Property Name="StartYear" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="Week" Type="Int16" Nullable="false" />
+          <Property Name="SportsID" Type="Int32" Nullable="false" />
+          <Property Name="UniqueID" Type="Int32" Nullable="false" />
+          <Property Name="ClassClass" Type="Int16" Nullable="false" />
+          <Property Name="ExpectationsDeviation" Type="Decimal" Precision="30" Scale="6" Nullable="false" />
+          <Property Name="BetrayalDeviation" Type="Decimal" Precision="30" Scale="6" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="EntryHistory">
+          <Key>
+            <PropertyRef Name="EntryHistoryId" />
+          </Key>
+          <Property Name="EntryHistoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PayOffPointsId" Type="Int64" Nullable="false" />
+          <Property Name="PrizeId" Type="Int64" Nullable="false" />
+          <Property Name="EntryPoint" Type="Int32" Nullable="false" />
+          <Property Name="EntryHistoryTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ExpectTarget">
+          <Key>
+            <PropertyRef Name="ExpectTargetID" />
+          </Key>
+          <Property Name="ExpectTargetID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SportsID" Type="Int32" Nullable="false" />
+          <Property Name="ClassClass" Type="Int16" Nullable="false" />
+          <Property Name="UniqueID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int16" Nullable="false" />
+          <Property Name="StartScheduleDate" Type="DateTime" Precision="3" />
+          <Property Name="FixBetSelectID" Type="Int32" />
+          <Property Name="FixDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="FollowList">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="FollowerMemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int64" Nullable="false" />
+          <Property Name="FollowerMemberID" Type="Int64" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="GroupMember">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="GroupID" Type="Int64" Nullable="false" />
+          <Property Name="MemberID" Type="Int64" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Name="GroupID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MemberID" Type="Int64" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ItpcSubject">
+          <Key>
+            <PropertyRef Name="NewsItemID" />
+            <PropertyRef Name="IptcSubjectCode" />
+          </Key>
+          <Property Name="NewsItemID" Type="Int64" Nullable="false" />
+          <Property Name="IptcSubjectCode" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItpcSubjectMaster">
+          <Key>
+            <PropertyRef Name="IptcSubjectCode" />
+          </Key>
+          <Property Name="IptcSubjectCode" Type="Int32" Nullable="false" />
+          <Property Name="Subject" Type="Int32" Nullable="false" />
+          <Property Name="SubjectMatter" Type="Int32" />
+          <Property Name="SubjectDetail" Type="Int32" />
+          <Property Name="SubjectJp" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectMatterJp" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectDetailJp" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="LikeSports">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="SportsID" />
+          </Key>
+          <Property Name="MemberID" Type="Int64" Nullable="false" />
+          <Property Name="SportsID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="LikeTeam">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="SportsID" />
+            <PropertyRef Name="TeamID" />
+          </Key>
+          <Property Name="MemberID" Type="Int64" Nullable="false" />
+          <Property Name="SportsID" Type="Int32" Nullable="false" />
+          <Property Name="TeamID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="LoginHistory">
+          <Key>
+            <PropertyRef Name="LoginHistoryId" />
+          </Key>
+          <Property Name="LoginHistoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int64" Nullable="false" />
+          <Property Name="LoginDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="MailDeliverCond">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="MailDelivCondID" />
+          </Key>
+          <Property Name="MemberID" Type="Int64" Nullable="false" />
+          <Property Name="MailDelivCondID" Type="Int64" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MonthlyResults">
+          <Key>
+            <PropertyRef Name="ReleVantYear" />
+            <PropertyRef Name="ReleVantMonth" />
+            <PropertyRef Name="SportsID" />
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="ReleVantYear" Type="Int16" Nullable="false" />
+          <Property Name="ReleVantMonth" Type="Int16" Nullable="false" />
+          <Property Name="SportsID" Type="Int32" Nullable="false" />
+          <Property Name="MemberID" Type="Int64" Nullable="false" />
+          <Property Name="ExpectNumber" Type="Int32" Nullable="false" />
+          <Property Name="CorrectPercent" Type="Int16" Nullable="false" />
+          <Property Name="CorrectPoint" Type="Int32" Nullable="false" />
+          <Property Name="CalculationDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="NewsGenre">
+          <Key>
+            <PropertyRef Name="NewsItemID" />
+            <PropertyRef Name="LargeCategory" />
+            <PropertyRef Name="SmallCategory" />
+          </Key>
+          <Property Name="NewsItemID" Type="Int64" Nullable="false" />
+          <Property Name="LargeCategory" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SmallCategory" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NewsGenreMaster">
+          <Key>
+            <PropertyRef Name="LargeCategory" />
+            <PropertyRef Name="SmallCategory" />
+          </Key>
+          <Property Name="LargeCategory" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SmallCategory" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LargeCategoryJp" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SmallCategoryJp" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="NewsHistory">
+          <Key>
+            <PropertyRef Name="DateFolderName" />
+            <PropertyRef Name="Filename" />
+            <PropertyRef Name="DeliveryDate" />
+          </Key>
+          <Property Name="DateFolderName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Filename" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeliveryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Int16" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="NoticeInfo">
+          <Key>
+            <PropertyRef Name="NoticeId" />
+          </Key>
+          <Property Name="NoticeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoticeClass" Type="Int16" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Body" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeliveryTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NoticeDisplayEndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TransitionsURL" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="MailCC" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="MailBCC" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="MailSendStatus" Type="Int16" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="MailDelivCondID" Type="Int16" Nullable="false" />
+          <Property Name="NoticeBody" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PageInfo">
+          <Key>
+            <PropertyRef Name="PageNo" />
+          </Key>
+          <Property Name="PageNo" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PageName" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="MemberStatus" Type="Int16" />
+          <Property Name="Url1" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="Url2" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="Url3" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="Url4" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="Url5" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="Url6" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Keywords" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CanAutomatic" Type="Int16" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PhotoNews">
+          <Key>
+            <PropertyRef Name="NewsItemID" />
+            <PropertyRef Name="Duid" />
+          </Key>
+          <Property Name="NewsItemID" Type="Int64" Nullable="false" />
+          <Property Name="Duid" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PointHistory">
+          <Key>
+            <PropertyRef Name="PontHistoryId" />
+          </Key>
+          <Property Name="PontHistoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PointId" Type="Int64" />
+          <Property Name="ExpectPointId" Type="Int64" />
+          <Property Name="CampaignId" Type="Int64" />
+          <Property Name="PointClass" Type="Int16" Nullable="false" />
+          <Property Name="Points" Type="Int32" Nullable="false" />
+          <Property Name="AdjustmentClass" Type="Int16" Nullable="false" />
+          <Property Name="OperationClass" Type="Int16" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="HistoryClass" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PointRanking">
+          <Key>
+            <PropertyRef Name="ReleVantYear" />
+            <PropertyRef Name="ReleVantMonth" />
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="ReleVantYear" Type="Int16" Nullable="false" />
+          <Property Name="ReleVantMonth" Type="Int16" Nullable="false" />
+          <Property Name="MemberID" Type="Int64" Nullable="false" />
+          <Property Name="PayOffPoints" Type="Int32" Nullable="false" />
+          <Property Name="CalculationDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PopularTopicsAggregate">
+          <Key>
+            <PropertyRef Name="TargetDate" />
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="TargetDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TopicID" Type="Int64" Nullable="false" />
+          <Property Name="NewsClassID" Type="Int64" Nullable="false" />
+          <Property Name="Views" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PrefectureMaster">
+          <Key>
+            <PropertyRef Name="PrefecturesID" />
+          </Key>
+          <Property Name="PrefecturesID" Type="Int32" Nullable="false" />
+          <Property Name="PrefecturesName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prize">
+          <Key>
+            <PropertyRef Name="PrizeID" />
+          </Key>
+          <Property Name="PrizeID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrizeName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PrizeImg" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="PrizeDescription" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="PrizePoints" Type="Int32" Nullable="false" />
+          <Property Name="PrizeMethod" Type="Int16" Nullable="false" />
+          <Property Name="EntryStartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryEndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="QuotTopic">
+          <Key>
+            <PropertyRef Name="ContributeID" />
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="ContributeID" Type="Int64" Nullable="false" />
+          <Property Name="TopicID" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SeasonTotalResults">
+          <Key>
+            <PropertyRef Name="StartYear" />
+            <PropertyRef Name="SportsID" />
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="StartYear" Type="Int16" Nullable="false" />
+          <Property Name="SportsID" Type="Int32" Nullable="false" />
+          <Property Name="MemberID" Type="Int64" Nullable="false" />
+          <Property Name="ExpectNumber" Type="Int32" Nullable="false" />
+          <Property Name="CorrectPercent" Type="Int16" Nullable="false" />
+          <Property Name="CorrectPoint" Type="Int32" Nullable="false" />
+          <Property Name="LastTotalDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SNSShareHistory">
+          <Key>
+            <PropertyRef Name="SNSShareHistoryId" />
+          </Key>
+          <Property Name="SNSShareHistoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int64" Nullable="false" />
+          <Property Name="SnsID" Type="Int64" Nullable="false" />
+          <Property Name="ContributeId" Type="Int64" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="SportsMaster">
+          <Key>
+            <PropertyRef Name="SportsID" />
+          </Key>
+          <Property Name="SportsID" Type="Int32" Nullable="false" />
+          <Property Name="SportsName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SystemParamater">
+          <Key>
+            <PropertyRef Name="Scode" />
+          </Key>
+          <Property Name="Scode" Type="Int32" Nullable="false" />
+          <Property Name="Spara" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TokenAcInfo">
+          <Key>
+            <PropertyRef Name="TokenID" />
+            <PropertyRef Name="TokenValue" />
+          </Key>
+          <Property Name="TokenID" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TokenValue" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TokenControl">
+          <Key>
+            <PropertyRef Name="TokenID" />
+          </Key>
+          <Property Name="TokenID" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MemberID" Type="Int64" Nullable="false" />
+          <Property Name="TokenClass" Type="Int16" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="ExpireDate" Type="DateTime" Precision="3" />
+          <Property Name="IssueDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TotalDailyReport">
+          <Key>
+            <PropertyRef Name="TotalTargetTime" />
+            <PropertyRef Name="SportsId" />
+          </Key>
+          <Property Name="TotalTargetTime" Type="Int32" Nullable="false" />
+          <Property Name="SportsId" Type="Int16" Nullable="false" />
+          <Property Name="TotalTargetYear" Type="Int16" Nullable="false" />
+          <Property Name="TotalTargetMonth" Type="Int16" Nullable="false" />
+          <Property Name="TotalTargetDay" Type="Int16" Nullable="false" />
+          <Property Name="GameCount" Type="Int16" Nullable="false" />
+          <Property Name="ExpectCount" Type="Int32" Nullable="false" />
+          <Property Name="FirstExpectCount" Type="Int32" Nullable="false" />
+          <Property Name="ContinueExpectCount" Type="Int32" Nullable="false" />
+          <Property Name="PerExpectCount" Type="Int32" Nullable="false" />
+          <Property Name="UuExpectCount" Type="Int16" Nullable="false" />
+          <Property Name="WriteCount" Type="Int32" Nullable="false" />
+          <Property Name="WriteUuCount" Type="Int32" Nullable="false" />
+          <Property Name="UuWriteCount" Type="Int32" Nullable="false" />
+          <Property Name="GroundTotalWirte" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TotalMemberReport">
+          <Key>
+            <PropertyRef Name="TotalTargetTime" />
+            <PropertyRef Name="SportsId" />
+          </Key>
+          <Property Name="TotalTargetTime" Type="Int32" Nullable="false" />
+          <Property Name="SportsId" Type="Int16" Nullable="false" />
+          <Property Name="TotalTargetYear" Type="Int16" Nullable="false" />
+          <Property Name="TotalTargetMonth" Type="Int16" Nullable="false" />
+          <Property Name="TotalTargetDay" Type="Int16" Nullable="false" />
+          <Property Name="TotalTargetWeek" Type="Int16" Nullable="false" />
+          <Property Name="MemberCount" Type="Int16" Nullable="false" />
+          <Property Name="ExitCount" Type="Int16" Nullable="false" />
+          <Property Name="GroundTotalMember" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TotalMonthlyReport">
+          <Key>
+            <PropertyRef Name="SportsId" />
+            <PropertyRef Name="TotalTargetYear" />
+            <PropertyRef Name="TotalTargetMonth" />
+          </Key>
+          <Property Name="SportsId" Type="Int16" Nullable="false" />
+          <Property Name="TotalTargetYear" Type="Int16" Nullable="false" />
+          <Property Name="TotalTargetMonth" Type="Int16" Nullable="false" />
+          <Property Name="GameCount" Type="Int16" Nullable="false" />
+          <Property Name="ExpectCount" Type="Int32" Nullable="false" />
+          <Property Name="FirstExpectCount" Type="Int32" Nullable="false" />
+          <Property Name="ContinueExpectCount" Type="Int32" Nullable="false" />
+          <Property Name="PerExpectCount" Type="Int32" Nullable="false" />
+          <Property Name="UuExpectCount" Type="Int16" Nullable="false" />
+          <Property Name="WriteCount" Type="Int32" Nullable="false" />
+          <Property Name="WriteUuCount" Type="Int32" Nullable="false" />
+          <Property Name="UuWriteCount" Type="Int32" Nullable="false" />
+          <Property Name="GroundTotalWirte" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TotalWeeklyReport">
+          <Key>
+            <PropertyRef Name="SportsId" />
+            <PropertyRef Name="TotalTargetYear" />
+            <PropertyRef Name="TotalTargetMonth" />
+            <PropertyRef Name="TotalTargetWeek" />
+          </Key>
+          <Property Name="SportsId" Type="Int16" Nullable="false" />
+          <Property Name="TotalTargetYear" Type="Int16" Nullable="false" />
+          <Property Name="TotalTargetMonth" Type="Int16" Nullable="false" />
+          <Property Name="TotalTargetWeek" Type="Int16" Nullable="false" />
+          <Property Name="GameCount" Type="Int16" Nullable="false" />
+          <Property Name="ExpectCount" Type="Int32" Nullable="false" />
+          <Property Name="FirstExpectCount" Type="Int32" Nullable="false" />
+          <Property Name="ContinueExpectCount" Type="Int32" Nullable="false" />
+          <Property Name="PerExpectCount" Type="Int32" Nullable="false" />
+          <Property Name="UuExpectCount" Type="Int16" Nullable="false" />
+          <Property Name="WriteCount" Type="Int32" Nullable="false" />
+          <Property Name="WriteUuCount" Type="Int32" Nullable="false" />
+          <Property Name="UuWriteCount" Type="Int32" Nullable="false" />
+          <Property Name="GroundTotalWirte" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="WeekResults">
+          <Key>
+            <PropertyRef Name="RelevantYear" />
+            <PropertyRef Name="RelevantMonth" />
+            <PropertyRef Name="RelevantWeek" />
+            <PropertyRef Name="SportsID" />
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="RelevantYear" Type="Int16" Nullable="false" />
+          <Property Name="RelevantMonth" Type="Int16" Nullable="false" />
+          <Property Name="RelevantWeek" Type="Int16" Nullable="false" />
+          <Property Name="SportsID" Type="Int32" Nullable="false" />
+          <Property Name="MemberID" Type="Int64" Nullable="false" />
+          <Property Name="ExpectNumber" Type="Int32" Nullable="false" />
+          <Property Name="CorrectPercent" Type="Int16" Nullable="false" />
+          <Property Name="CorrectPoint" Type="Int32" Nullable="false" />
+          <Property Name="CalculationDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="ComEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BriefNews" EntityType="Self.BriefNews" />
+          <EntitySet Name="CampaignInfo" EntityType="Self.CampaignInfo" />
+          <EntitySet Name="Contribution" EntityType="Self.Contribution" />
+          <EntitySet Name="ContributionQuotOrg" EntityType="Self.ContributionQuotOrg" />
+          <EntitySet Name="CurrentDayPerExpectTargetTotalPoint" EntityType="Self.CurrentDayPerExpectTargetTotalPoint" />
+          <EntitySet Name="Deviation" EntityType="Self.Deviation" />
+          <EntitySet Name="EntryHistory" EntityType="Self.EntryHistory" />
+          <EntitySet Name="ExpectTarget" EntityType="Self.ExpectTarget" />
+          <EntitySet Name="FollowList" EntityType="Self.FollowList" />
+          <EntitySet Name="GroupMember" EntityType="Self.GroupMember" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" />
+          <EntitySet Name="ItpcSubject" EntityType="Self.ItpcSubject" />
+          <EntitySet Name="ItpcSubjectMaster" EntityType="Self.ItpcSubjectMaster" />
+          <EntitySet Name="LikeSports" EntityType="Self.LikeSports" />
+          <EntitySet Name="LikeTeam" EntityType="Self.LikeTeam" />
+          <EntitySet Name="LoginHistory" EntityType="Self.LoginHistory" />
+          <EntitySet Name="MailDeliverCond" EntityType="Self.MailDeliverCond" />
+          <EntitySet Name="MonthlyResults" EntityType="Self.MonthlyResults" />
+          <EntitySet Name="NewsGenre" EntityType="Self.NewsGenre" />
+          <EntitySet Name="NewsGenreMaster" EntityType="Self.NewsGenreMaster" />
+          <EntitySet Name="NewsHistory" EntityType="Self.NewsHistory" />
+          <EntitySet Name="NoticeInfo" EntityType="Self.NoticeInfo" />
+          <EntitySet Name="PageInfo" EntityType="Self.PageInfo" />
+          <EntitySet Name="PhotoNews" EntityType="Self.PhotoNews" />
+          <EntitySet Name="PointHistory" EntityType="Self.PointHistory" />
+          <EntitySet Name="PointRanking" EntityType="Self.PointRanking" />
+          <EntitySet Name="PopularTopicsAggregate" EntityType="Self.PopularTopicsAggregate" />
+          <EntitySet Name="PrefectureMaster" EntityType="Self.PrefectureMaster" />
+          <EntitySet Name="Prize" EntityType="Self.Prize" />
+          <EntitySet Name="QuotTopic" EntityType="Self.QuotTopic" />
+          <EntitySet Name="SeasonTotalResults" EntityType="Self.SeasonTotalResults" />
+          <EntitySet Name="SNSShareHistory" EntityType="Self.SNSShareHistory" />
+          <EntitySet Name="SportsMaster" EntityType="Self.SportsMaster" />
+          <EntitySet Name="SystemParamater" EntityType="Self.SystemParamater" />
+          <EntitySet Name="TokenAcInfo" EntityType="Self.TokenAcInfo" />
+          <EntitySet Name="TokenControl" EntityType="Self.TokenControl" />
+          <EntitySet Name="TotalDailyReport" EntityType="Self.TotalDailyReport" />
+          <EntitySet Name="TotalMemberReport" EntityType="Self.TotalMemberReport" />
+          <EntitySet Name="TotalMonthlyReport" EntityType="Self.TotalMonthlyReport" />
+          <EntitySet Name="TotalWeeklyReport" EntityType="Self.TotalWeeklyReport" />
+          <EntitySet Name="WeekResults" EntityType="Self.WeekResults" />
+          <EntitySet Name="SportsStandardDeviation" EntityType="ComModel.SportsStandardDeviation" />
+          <EntitySet Name="BetClassMaster" EntityType="ComModel.BetClassMaster" />
+          <EntitySet Name="BackOfficeAccount" EntityType="ComModel.BackOfficeAccount" />
+          <EntitySet Name="ExpectPoint" EntityType="ComModel.ExpectPoint" />
+          <EntitySet Name="Member" EntityType="ComModel.Member" />
+          <EntitySet Name="NewsReading" EntityType="ComModel.NewsReading" />
+          <EntitySet Name="NewsTopic" EntityType="ComModel.NewsTopic" />
+          <EntitySet Name="TopicMaster" EntityType="ComModel.TopicMaster" />
+          <EntitySet Name="OddsInfo" EntityType="ComModel.OddsInfo" />
+          <EntitySet Name="PayOffPoints" EntityType="ComModel.PayOffPoints" />
+          <EntitySet Name="Point" EntityType="ComModel.Point" />
+          <EntitySet Name="NewsClassMaster" EntityType="ComModel.NewsClassMaster" />
+          <EntitySet Name="BetSelectMaster" EntityType="ComModel.BetSelectMaster" />
+          <EntitySet Name="MailDeliverCondMaster" EntityType="ComModel.MailDeliverCondMaster" />
+          <EntitySet Name="SnsCorpInformation" EntityType="ComModel.SnsCorpInformation" />
+          <EntitySet Name="NewsReadingSumView" EntityType="ComModel.NewsReadingSumView" />
+          <EntitySet Name="ContributionReading" EntityType="ComModel.ContributionReading" />
+          <EntitySet Name="SnsAuthInformation" EntityType="ComModel.SnsAuthInformation" />
+          <EntitySet Name="NoticeDeliverySubject" EntityType="ComModel.NoticeDeliverySubject" />
+          <EntitySet Name="PointBulkTemporal" EntityType="ComModel.PointBulkTemporal" />
+          <EntitySet Name="UnitBrowser" EntityType="ComModel.UnitBrowser" />
+          <EntitySet Name="PossesionPointRanking" EntityType="ComModel.PossesionPointRanking" />
+          <EntitySet Name="AppActionLog" EntityType="ComModel.AppActionLog" />
+          <EntitySet Name="NoticePopupDisplayHistory" EntityType="ComModel.NoticePopupDisplayHistory" />
+        </EntityContainer>
+        <EntityType Name="SportsStandardDeviation">
+          <Key>
+            <PropertyRef Name="StartYear" />
+            <PropertyRef Name="SportsID" />
+          </Key>
+          <Property Name="StartYear" Type="Int64" Nullable="false" />
+          <Property Name="SportsID" Type="Int32" Nullable="false" />
+          <Property Name="ClassClass" Type="Int16" Nullable="false" />
+          <Property Name="ExpectationsAverage" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ExpectationsVariance" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ExpectationsStandardDeviation" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="BetrayalAverage" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="BetrayalVariance" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="BetrayalStandardDeviation" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="BetClassMaster">
+          <Key>
+            <PropertyRef Name="BetClassID" />
+          </Key>
+          <Property Name="BetClassID" Type="Int64" Nullable="false" />
+          <Property Name="SportsID" Type="Int64" Nullable="false" />
+          <Property Name="GameClassCD" Type="Int32" Nullable="false" />
+          <Property Name="BetClassName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BackOfficeAccount">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="AccountId" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordExpireDate" Type="Int16" Nullable="false" />
+          <Property Name="PasswordLastUpdateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Mail" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int16" Nullable="false" />
+          <Property Name="CreatedAccountId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ExpectPoint">
+          <Key>
+            <PropertyRef Name="ExpectPointID" />
+          </Key>
+          <Property Name="ExpectPointID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExpectTargetID" Type="Int64" Nullable="false" />
+          <Property Name="PointID" Type="Int64" Nullable="false" />
+          <Property Name="ExpectPoint1" Type="Int32" Nullable="false" />
+          <Property Name="AcquisitionPoint" Type="Int32" />
+          <Property Name="ClassClass" Type="Int16" />
+          <Property Name="UniqueID" Type="Int32" />
+          <Property Name="BetSelectID" Type="Int32" />
+          <Property Name="VorD" Type="Int16" />
+          <Property Name="SituationStatus" Type="Int16" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="MemberId" />
+          </Key>
+          <Property Name="MemberId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayMemberId" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ProfileImg" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="Int16" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="BirthdayYear" Type="Int16" />
+          <Property Name="BirthdayMonth" Type="Int16" />
+          <Property Name="BirthdayDay" Type="Int16" />
+          <Property Name="PrefecturesId" Type="Int16" />
+          <Property Name="Mail" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int16" Nullable="false" />
+          <Property Name="LoginKeepFlg" Type="Boolean" />
+          <Property Name="InterimRegistTime" Type="DateTime" Precision="3" />
+          <Property Name="RegistTime" Type="DateTime" Precision="3" />
+          <Property Name="ExitTime" Type="DateTime" Precision="3" />
+          <Property Name="CompelExitTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="NewsReading">
+          <Key>
+            <PropertyRef Name="NewsReadingID" />
+          </Key>
+          <Property Name="NewsItemID" Type="Int64" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="NewsReadingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="NewsTopic">
+          <Key>
+            <PropertyRef Name="NewsItemID" />
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="NewsItemID" Type="Int64" Nullable="false" />
+          <Property Name="TopicID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TopicMaster">
+          <Key>
+            <PropertyRef Name="TopicID" />
+          </Key>
+          <Property Name="TopicID" Type="Int64" Nullable="false" />
+          <Property Name="SportID" Type="Int32" Nullable="false" />
+          <Property Name="ClassificationType" Type="Int16" Nullable="false" />
+          <Property Name="UniqueID" Type="Int32" Nullable="false" />
+          <Property Name="TopicName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="JumpUrl" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OddsInfo">
+          <Key>
+            <PropertyRef Name="ExpectTargetID" />
+            <PropertyRef Name="BetSelectMasterID" />
+          </Key>
+          <Property Name="ExpectTargetID" Type="Int64" Nullable="false" />
+          <Property Name="BetSelectMasterID" Type="Int64" Nullable="false" />
+          <Property Name="SportID" Type="Int64" Nullable="false" />
+          <Property Name="ClassificationType" Type="Int16" Nullable="false" />
+          <Property Name="UniqueID" Type="Int32" Nullable="false" />
+          <Property Name="Odds" Type="Decimal" Nullable="false" Precision="18" Scale="1" />
+          <Property Name="Status" Type="Int16" Nullable="false" />
+          <Property Name="FixDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PayOffPoints">
+          <Key>
+            <PropertyRef Name="PayOffPointsId" />
+          </Key>
+          <Property Name="PayOffPointsId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int64" Nullable="false" />
+          <Property Name="PayOffPoints1" Type="Int32" Nullable="false" />
+          <Property Name="EntryPoints" Type="Int32" Nullable="false" />
+          <Property Name="EntryEnablePoints" Type="Int32" Nullable="false" />
+          <Property Name="PayOffFinishTime" Type="DateTime" Precision="3" />
+          <Property Name="EntryStartTime" Type="DateTime" Precision="3" />
+          <Property Name="EntryEndTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Point">
+          <Key>
+            <PropertyRef Name="PointID" />
+          </Key>
+          <Property Name="PointID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int64" Nullable="false" />
+          <Property Name="FundsPoint" Type="Int32" Nullable="false" />
+          <Property Name="PossesionPoint" Type="Int32" Nullable="false" />
+          <Property Name="GivingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GiveTargetWeek" Type="Int16" Nullable="false" />
+          <Property Name="BetStartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BetEndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PayOffPointsId" Type="Int64" />
+          <Property Name="PayOffFlg" Type="Boolean" />
+          <Property Name="PayOffPoints" Type="Int32" Nullable="false" />
+          <Property Name="PayOffTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="GiveTargetYear" Type="Int16" Nullable="false" />
+          <Property Name="GiveTargetMonth" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NewsClassMaster">
+          <Key>
+            <PropertyRef Name="NewsClassId" />
+          </Key>
+          <Property Name="NewsClassId" Type="Int64" Nullable="false" />
+          <Property Name="NewsClassName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="BetSelectMaster">
+          <Key>
+            <PropertyRef Name="BetSelectMasterID" />
+          </Key>
+          <Property Name="BetSelectMasterID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BetSelectID" Type="Int32" Nullable="false" />
+          <Property Name="BetClassID" Type="Int64" Nullable="false" />
+          <Property Name="BetSelectName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate_" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MailDeliverCondMaster">
+          <Key>
+            <PropertyRef Name="MailDelivCondID" />
+          </Key>
+          <Property Name="MailDelivCondID" Type="Int64" Nullable="false" />
+          <Property Name="MailDelivCondision" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SnsCorpInformation">
+          <Key>
+            <PropertyRef Name="SnsID" />
+          </Key>
+          <Property Name="SnsID" Type="Int64" Nullable="false" />
+          <Property Name="SnsName" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="AccessKey" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="SecretKey" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="NewsReadingSumView">
+          <Key>
+            <PropertyRef Name="NewsItemID" />
+          </Key>
+          <Property Name="NewsItemID" Type="Int64" Nullable="false" />
+          <Property Name="View" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ContributionReading">
+          <Key>
+            <PropertyRef Name="ContributionReadingId" />
+          </Key>
+          <Property Name="ContributionReadingId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContributeId" Type="Int64" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SnsAuthInformation">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int64" Nullable="false" />
+          <Property Name="SnsID" Type="Int64" Nullable="false" />
+          <Property Name="SnsMemberID" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AccessKey" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="SecretKey" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="ExpireDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="NoticeDeliverySubject">
+          <Key>
+            <PropertyRef Name="NoticeDeliverySubjectId" />
+          </Key>
+          <Property Name="NoticeDeliverySubjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoticeId" Type="Int32" Nullable="false" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="ClassClass" Type="Int16" Nullable="false" />
+          <Property Name="UniqueID" Type="Int32" Nullable="false" />
+          <Property Name="UniqueID2" Type="Int32" />
+          <Property Name="AlreadyReadFlg" Type="Boolean" Nullable="false" />
+          <Property Name="NoticeDeliveryStatus" Type="Int16" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="UniqueID3" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PointBulkTemporal">
+          <Key>
+            <PropertyRef Name="PointBulkID" />
+          </Key>
+          <Property Name="PointBulkID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int64" />
+          <Property Name="PointClass" Type="Int16" />
+          <Property Name="GiveTargetYear" Type="Int16" />
+          <Property Name="GiveTargetMonth" Type="Int16" />
+          <Property Name="GiveTargetWeek" Type="Int16" />
+          <Property Name="GivingDate" Type="DateTime" Precision="3" />
+          <Property Name="CampaignId" Type="Int64" />
+          <Property Name="Points" Type="Int32" />
+          <Property Name="DisposalFlg" Type="Int16" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UnitBrowser">
+          <Key>
+            <PropertyRef Name="UnitBrowserId" />
+          </Key>
+          <Property Name="UnitBrowserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrowserID" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="BrowserType" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="CookieGuid" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="UserAgent" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PossesionPointRanking">
+          <Key>
+            <PropertyRef Name="PossesionPointRankingID" />
+          </Key>
+          <Property Name="MemberID" Type="Int64" Nullable="false" />
+          <Property Name="UpDownPoint" Type="Int32" Nullable="false" />
+          <Property Name="UpDownRanking" Type="Int32" Nullable="false" />
+          <Property Name="PossesionPointRankingID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TargetDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TargetPossesionPoint" Type="Int32" Nullable="false" />
+          <Property Name="TargetRanking" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="AppActionLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int64" />
+          <Property Name="ControllerName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ActionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserAgent" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="UrlReferrer" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SessionId" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NoticePopupDisplayHistory">
+          <Key>
+            <PropertyRef Name="NoticePopupDisplayHistoryId" />
+          </Key>
+          <Property Name="NoticePopupDisplayHistoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int64" Nullable="false" />
+          <Property Name="ClassClass" Type="Int16" Nullable="false" />
+          <Property Name="UniqueID" Type="Int32" Nullable="false" />
+          <Property Name="UniqueID2" Type="Int32" Nullable="false" />
+          <Property Name="AlreadyReadFlg" Type="Boolean" Nullable="false" />
+          <Property Name="NoticeTime" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ComModelStoreContainer" CdmEntityContainer="ComEntities">
+          <EntitySetMapping Name="BriefNews">
+            <EntityTypeMapping TypeName="ComModel.BriefNews">
+              <MappingFragment StoreEntitySet="BriefNews">
+                <ScalarProperty Name="NewsItemID" ColumnName="NewsItemID" />
+                <ScalarProperty Name="DateFolderName" ColumnName="DateFolderName" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="CarryLimitDate" ColumnName="CarryLimitDate" />
+                <ScalarProperty Name="RevisionID" ColumnName="RevisionID" />
+                <ScalarProperty Name="Update" ColumnName="Update" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Headline" ColumnName="Headline" />
+                <ScalarProperty Name="SubHeadline" ColumnName="SubHeadline" />
+                <ScalarProperty Name="newstext" ColumnName="newstext" />
+                <ScalarProperty Name="SentFrom" ColumnName="SentFrom" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CampaignInfo">
+            <EntityTypeMapping TypeName="ComModel.CampaignInfo">
+              <MappingFragment StoreEntitySet="CampaignInfo">
+                <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+                <ScalarProperty Name="CampaignTitle" ColumnName="CampaignTitle" />
+                <ScalarProperty Name="CampaignClass" ColumnName="CampaignClass" />
+                <ScalarProperty Name="Condition" ColumnName="Condition" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="GiveTime" ColumnName="GiveTime" />
+                <ScalarProperty Name="CampaignStartTime" ColumnName="CampaignStartTime" />
+                <ScalarProperty Name="CampaignEndTime" ColumnName="CampaignEndTime" />
+                <ScalarProperty Name="CreatedAccountId" ColumnName="CreatedAccountId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contribution">
+            <EntityTypeMapping TypeName="ComModel.Contribution">
+              <MappingFragment StoreEntitySet="Contribution">
+                <ScalarProperty Name="ContributeId" ColumnName="ContributeId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="ContributedPicture" ColumnName="ContributedPicture" />
+                <ScalarProperty Name="ContributeDate" ColumnName="ContributeDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContributionQuotOrg">
+            <EntityTypeMapping TypeName="ComModel.ContributionQuotOrg">
+              <MappingFragment StoreEntitySet="ContributionQuotOrg">
+                <ScalarProperty Name="ContributeId" ColumnName="ContributeId" />
+                <ScalarProperty Name="NewsClassId" ColumnName="NewsClassId" />
+                <ScalarProperty Name="QuoteUniqueId1" ColumnName="QuoteUniqueId1" />
+                <ScalarProperty Name="QuoteUniqueId2" ColumnName="QuoteUniqueId2" />
+                <ScalarProperty Name="QuoteUniqueId3" ColumnName="QuoteUniqueId3" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrentDayPerExpectTargetTotalPoint">
+            <EntityTypeMapping TypeName="ComModel.CurrentDayPerExpectTargetTotalPoint">
+              <MappingFragment StoreEntitySet="CurrentDayPerExpectTargetTotalPoint">
+                <ScalarProperty Name="ExpectTargetID" ColumnName="ExpectTargetID" />
+                <ScalarProperty Name="TotalPoint" ColumnName="TotalPoint" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Deviation">
+            <EntityTypeMapping TypeName="ComModel.Deviation">
+              <MappingFragment StoreEntitySet="Deviation">
+                <ScalarProperty Name="StartYear" ColumnName="StartYear" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Week" ColumnName="Week" />
+                <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+                <ScalarProperty Name="ClassClass" ColumnName="ClassClass" />
+                <ScalarProperty Name="ExpectationsDeviation" ColumnName="ExpectationsDeviation" />
+                <ScalarProperty Name="BetrayalDeviation" ColumnName="BetrayalDeviation" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EntryHistory">
+            <EntityTypeMapping TypeName="ComModel.EntryHistory">
+              <MappingFragment StoreEntitySet="EntryHistory">
+                <ScalarProperty Name="EntryHistoryId" ColumnName="EntryHistoryId" />
+                <ScalarProperty Name="PayOffPointsId" ColumnName="PayOffPointsId" />
+                <ScalarProperty Name="PrizeId" ColumnName="PrizeId" />
+                <ScalarProperty Name="EntryPoint" ColumnName="EntryPoint" />
+                <ScalarProperty Name="EntryHistoryTime" ColumnName="EntryHistoryTime" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpectTarget">
+            <EntityTypeMapping TypeName="ComModel.ExpectTarget">
+              <MappingFragment StoreEntitySet="ExpectTarget">
+                <ScalarProperty Name="ExpectTargetID" ColumnName="ExpectTargetID" />
+                <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+                <ScalarProperty Name="ClassClass" ColumnName="ClassClass" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StartScheduleDate" ColumnName="StartScheduleDate" />
+                <ScalarProperty Name="FixBetSelectID" ColumnName="FixBetSelectID" />
+                <ScalarProperty Name="FixDate" ColumnName="FixDate" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FollowList">
+            <EntityTypeMapping TypeName="ComModel.FollowList">
+              <MappingFragment StoreEntitySet="FollowList">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="FollowerMemberID" ColumnName="FollowerMemberID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupMember">
+            <EntityTypeMapping TypeName="ComModel.GroupMember">
+              <MappingFragment StoreEntitySet="GroupMember">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="ComModel.Groups">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItpcSubject">
+            <EntityTypeMapping TypeName="ComModel.ItpcSubject">
+              <MappingFragment StoreEntitySet="ItpcSubject">
+                <ScalarProperty Name="NewsItemID" ColumnName="NewsItemID" />
+                <ScalarProperty Name="IptcSubjectCode" ColumnName="IptcSubjectCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItpcSubjectMaster">
+            <EntityTypeMapping TypeName="ComModel.ItpcSubjectMaster">
+              <MappingFragment StoreEntitySet="ItpcSubjectMaster">
+                <ScalarProperty Name="IptcSubjectCode" ColumnName="IptcSubjectCode" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="SubjectMatter" ColumnName="SubjectMatter" />
+                <ScalarProperty Name="SubjectDetail" ColumnName="SubjectDetail" />
+                <ScalarProperty Name="SubjectJp" ColumnName="SubjectJp" />
+                <ScalarProperty Name="SubjectMatterJp" ColumnName="SubjectMatterJp" />
+                <ScalarProperty Name="SubjectDetailJp" ColumnName="SubjectDetailJp" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LikeSports">
+            <EntityTypeMapping TypeName="ComModel.LikeSports">
+              <MappingFragment StoreEntitySet="LikeSports">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LikeTeam">
+            <EntityTypeMapping TypeName="ComModel.LikeTeam">
+              <MappingFragment StoreEntitySet="LikeTeam">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginHistory">
+            <EntityTypeMapping TypeName="ComModel.LoginHistory">
+              <MappingFragment StoreEntitySet="LoginHistory">
+                <ScalarProperty Name="LoginHistoryId" ColumnName="LoginHistoryId" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailDeliverCond">
+            <EntityTypeMapping TypeName="ComModel.MailDeliverCond">
+              <MappingFragment StoreEntitySet="MailDeliverCond">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="MailDelivCondID" ColumnName="MailDelivCondID" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonthlyResults">
+            <EntityTypeMapping TypeName="ComModel.MonthlyResults">
+              <MappingFragment StoreEntitySet="MonthlyResults">
+                <ScalarProperty Name="ReleVantYear" ColumnName="ReleVantYear" />
+                <ScalarProperty Name="ReleVantMonth" ColumnName="ReleVantMonth" />
+                <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ExpectNumber" ColumnName="ExpectNumber" />
+                <ScalarProperty Name="CorrectPercent" ColumnName="CorrectPercent" />
+                <ScalarProperty Name="CorrectPoint" ColumnName="CorrectPoint" />
+                <ScalarProperty Name="CalculationDate" ColumnName="CalculationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsGenre">
+            <EntityTypeMapping TypeName="ComModel.NewsGenre">
+              <MappingFragment StoreEntitySet="NewsGenre">
+                <ScalarProperty Name="NewsItemID" ColumnName="NewsItemID" />
+                <ScalarProperty Name="LargeCategory" ColumnName="LargeCategory" />
+                <ScalarProperty Name="SmallCategory" ColumnName="SmallCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsGenreMaster">
+            <EntityTypeMapping TypeName="ComModel.NewsGenreMaster">
+              <MappingFragment StoreEntitySet="NewsGenreMaster">
+                <ScalarProperty Name="LargeCategory" ColumnName="LargeCategory" />
+                <ScalarProperty Name="SmallCategory" ColumnName="SmallCategory" />
+                <ScalarProperty Name="LargeCategoryJp" ColumnName="LargeCategoryJp" />
+                <ScalarProperty Name="SmallCategoryJp" ColumnName="SmallCategoryJp" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsHistory">
+            <EntityTypeMapping TypeName="ComModel.NewsHistory">
+              <MappingFragment StoreEntitySet="NewsHistory">
+                <ScalarProperty Name="DateFolderName" ColumnName="DateFolderName" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NoticeInfo">
+            <EntityTypeMapping TypeName="ComModel.NoticeInfo">
+              <MappingFragment StoreEntitySet="NoticeInfo">
+                <ScalarProperty Name="NoticeBody" ColumnName="NoticeBody" />
+                <ScalarProperty Name="MailDelivCondID" ColumnName="MailDelivCondID" />
+                <ScalarProperty Name="NoticeId" ColumnName="NoticeId" />
+                <ScalarProperty Name="NoticeClass" ColumnName="NoticeClass" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="DeliveryTime" ColumnName="DeliveryTime" />
+                <ScalarProperty Name="NoticeDisplayEndTime" ColumnName="NoticeDisplayEndTime" />
+                <ScalarProperty Name="TransitionsURL" ColumnName="TransitionsURL" />
+                <ScalarProperty Name="MailCC" ColumnName="MailCC" />
+                <ScalarProperty Name="MailBCC" ColumnName="MailBCC" />
+                <ScalarProperty Name="MailSendStatus" ColumnName="MailSendStatus" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PageInfo">
+            <EntityTypeMapping TypeName="ComModel.PageInfo">
+              <MappingFragment StoreEntitySet="PageInfo">
+                <ScalarProperty Name="PageNo" ColumnName="PageNo" />
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="MemberStatus" ColumnName="MemberStatus" />
+                <ScalarProperty Name="Url1" ColumnName="Url1" />
+                <ScalarProperty Name="Url2" ColumnName="Url2" />
+                <ScalarProperty Name="Url3" ColumnName="Url3" />
+                <ScalarProperty Name="Url4" ColumnName="Url4" />
+                <ScalarProperty Name="Url5" ColumnName="Url5" />
+                <ScalarProperty Name="Url6" ColumnName="Url6" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="CanAutomatic" ColumnName="CanAutomatic" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhotoNews">
+            <EntityTypeMapping TypeName="ComModel.PhotoNews">
+              <MappingFragment StoreEntitySet="PhotoNews">
+                <ScalarProperty Name="NewsItemID" ColumnName="NewsItemID" />
+                <ScalarProperty Name="Duid" ColumnName="Duid" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PointHistory">
+            <EntityTypeMapping TypeName="ComModel.PointHistory">
+              <MappingFragment StoreEntitySet="PointHistory">
+                <ScalarProperty Name="HistoryClass" ColumnName="HistoryClass" />
+                <ScalarProperty Name="PontHistoryId" ColumnName="PontHistoryId" />
+                <ScalarProperty Name="PointId" ColumnName="PointId" />
+                <ScalarProperty Name="ExpectPointId" ColumnName="ExpectPointId" />
+                <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+                <ScalarProperty Name="PointClass" ColumnName="PointClass" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="AdjustmentClass" ColumnName="AdjustmentClass" />
+                <ScalarProperty Name="OperationClass" ColumnName="OperationClass" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PointRanking">
+            <EntityTypeMapping TypeName="ComModel.PointRanking">
+              <MappingFragment StoreEntitySet="PointRanking">
+                <ScalarProperty Name="ReleVantYear" ColumnName="ReleVantYear" />
+                <ScalarProperty Name="ReleVantMonth" ColumnName="ReleVantMonth" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="PayOffPoints" ColumnName="PayOffPoints" />
+                <ScalarProperty Name="CalculationDate" ColumnName="CalculationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PopularTopicsAggregate">
+            <EntityTypeMapping TypeName="ComModel.PopularTopicsAggregate">
+              <MappingFragment StoreEntitySet="PopularTopicsAggregate">
+                <ScalarProperty Name="TargetDate" ColumnName="TargetDate" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+                <ScalarProperty Name="NewsClassID" ColumnName="NewsClassID" />
+                <ScalarProperty Name="Views" ColumnName="Views" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrefectureMaster">
+            <EntityTypeMapping TypeName="ComModel.PrefectureMaster">
+              <MappingFragment StoreEntitySet="PrefectureMaster">
+                <ScalarProperty Name="PrefecturesID" ColumnName="PrefecturesID" />
+                <ScalarProperty Name="PrefecturesName" ColumnName="PrefecturesName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prize">
+            <EntityTypeMapping TypeName="ComModel.Prize">
+              <MappingFragment StoreEntitySet="Prize">
+                <ScalarProperty Name="PrizeID" ColumnName="PrizeID" />
+                <ScalarProperty Name="PrizeName" ColumnName="PrizeName" />
+                <ScalarProperty Name="PrizeImg" ColumnName="PrizeImg" />
+                <ScalarProperty Name="PrizeDescription" ColumnName="PrizeDescription" />
+                <ScalarProperty Name="PrizePoints" ColumnName="PrizePoints" />
+                <ScalarProperty Name="PrizeMethod" ColumnName="PrizeMethod" />
+                <ScalarProperty Name="EntryStartTime" ColumnName="EntryStartTime" />
+                <ScalarProperty Name="EntryEndTime" ColumnName="EntryEndTime" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuotTopic">
+            <EntityTypeMapping TypeName="ComModel.QuotTopic">
+              <MappingFragment StoreEntitySet="QuotTopic">
+                <ScalarProperty Name="ContributeID" ColumnName="ContributeID" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeasonTotalResults">
+            <EntityTypeMapping TypeName="ComModel.SeasonTotalResults">
+              <MappingFragment StoreEntitySet="SeasonTotalResults">
+                <ScalarProperty Name="StartYear" ColumnName="StartYear" />
+                <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ExpectNumber" ColumnName="ExpectNumber" />
+                <ScalarProperty Name="CorrectPercent" ColumnName="CorrectPercent" />
+                <ScalarProperty Name="CorrectPoint" ColumnName="CorrectPoint" />
+                <ScalarProperty Name="LastTotalDate" ColumnName="LastTotalDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SNSShareHistory">
+            <EntityTypeMapping TypeName="ComModel.SNSShareHistory">
+              <MappingFragment StoreEntitySet="SNSShareHistory">
+                <ScalarProperty Name="SNSShareHistoryId" ColumnName="SNSShareHistoryId" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="SnsID" ColumnName="SnsID" />
+                <ScalarProperty Name="ContributeId" ColumnName="ContributeId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SportsMaster">
+            <EntityTypeMapping TypeName="ComModel.SportsMaster">
+              <MappingFragment StoreEntitySet="SportsMaster">
+                <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+                <ScalarProperty Name="SportsName" ColumnName="SportsName" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemParamater">
+            <EntityTypeMapping TypeName="ComModel.SystemParamater">
+              <MappingFragment StoreEntitySet="SystemParamater">
+                <ScalarProperty Name="Scode" ColumnName="Scode" />
+                <ScalarProperty Name="Spara" ColumnName="Spara" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TokenAcInfo">
+            <EntityTypeMapping TypeName="ComModel.TokenAcInfo">
+              <MappingFragment StoreEntitySet="TokenAcInfo">
+                <ScalarProperty Name="TokenID" ColumnName="TokenID" />
+                <ScalarProperty Name="TokenValue" ColumnName="TokenValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TokenControl">
+            <EntityTypeMapping TypeName="ComModel.TokenControl">
+              <MappingFragment StoreEntitySet="TokenControl">
+                <ScalarProperty Name="TokenID" ColumnName="TokenID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="TokenClass" ColumnName="TokenClass" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+                <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TotalDailyReport">
+            <EntityTypeMapping TypeName="ComModel.TotalDailyReport">
+              <MappingFragment StoreEntitySet="TotalDailyReport">
+                <ScalarProperty Name="TotalTargetTime" ColumnName="TotalTargetTime" />
+                <ScalarProperty Name="SportsId" ColumnName="SportsId" />
+                <ScalarProperty Name="TotalTargetYear" ColumnName="TotalTargetYear" />
+                <ScalarProperty Name="TotalTargetMonth" ColumnName="TotalTargetMonth" />
+                <ScalarProperty Name="TotalTargetDay" ColumnName="TotalTargetDay" />
+                <ScalarProperty Name="GameCount" ColumnName="GameCount" />
+                <ScalarProperty Name="ExpectCount" ColumnName="ExpectCount" />
+                <ScalarProperty Name="FirstExpectCount" ColumnName="FirstExpectCount" />
+                <ScalarProperty Name="ContinueExpectCount" ColumnName="ContinueExpectCount" />
+                <ScalarProperty Name="PerExpectCount" ColumnName="PerExpectCount" />
+                <ScalarProperty Name="UuExpectCount" ColumnName="UuExpectCount" />
+                <ScalarProperty Name="WriteCount" ColumnName="WriteCount" />
+                <ScalarProperty Name="WriteUuCount" ColumnName="WriteUuCount" />
+                <ScalarProperty Name="UuWriteCount" ColumnName="UuWriteCount" />
+                <ScalarProperty Name="GroundTotalWirte" ColumnName="GroundTotalWirte" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TotalMemberReport">
+            <EntityTypeMapping TypeName="ComModel.TotalMemberReport">
+              <MappingFragment StoreEntitySet="TotalMemberReport">
+                <ScalarProperty Name="TotalTargetTime" ColumnName="TotalTargetTime" />
+                <ScalarProperty Name="SportsId" ColumnName="SportsId" />
+                <ScalarProperty Name="TotalTargetYear" ColumnName="TotalTargetYear" />
+                <ScalarProperty Name="TotalTargetMonth" ColumnName="TotalTargetMonth" />
+                <ScalarProperty Name="TotalTargetDay" ColumnName="TotalTargetDay" />
+                <ScalarProperty Name="TotalTargetWeek" ColumnName="TotalTargetWeek" />
+                <ScalarProperty Name="MemberCount" ColumnName="MemberCount" />
+                <ScalarProperty Name="ExitCount" ColumnName="ExitCount" />
+                <ScalarProperty Name="GroundTotalMember" ColumnName="GroundTotalMember" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TotalMonthlyReport">
+            <EntityTypeMapping TypeName="ComModel.TotalMonthlyReport">
+              <MappingFragment StoreEntitySet="TotalMonthlyReport">
+                <ScalarProperty Name="SportsId" ColumnName="SportsId" />
+                <ScalarProperty Name="TotalTargetYear" ColumnName="TotalTargetYear" />
+                <ScalarProperty Name="TotalTargetMonth" ColumnName="TotalTargetMonth" />
+                <ScalarProperty Name="GameCount" ColumnName="GameCount" />
+                <ScalarProperty Name="ExpectCount" ColumnName="ExpectCount" />
+                <ScalarProperty Name="FirstExpectCount" ColumnName="FirstExpectCount" />
+                <ScalarProperty Name="ContinueExpectCount" ColumnName="ContinueExpectCount" />
+                <ScalarProperty Name="PerExpectCount" ColumnName="PerExpectCount" />
+                <ScalarProperty Name="UuExpectCount" ColumnName="UuExpectCount" />
+                <ScalarProperty Name="WriteCount" ColumnName="WriteCount" />
+                <ScalarProperty Name="WriteUuCount" ColumnName="WriteUuCount" />
+                <ScalarProperty Name="UuWriteCount" ColumnName="UuWriteCount" />
+                <ScalarProperty Name="GroundTotalWirte" ColumnName="GroundTotalWirte" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TotalWeeklyReport">
+            <EntityTypeMapping TypeName="ComModel.TotalWeeklyReport">
+              <MappingFragment StoreEntitySet="TotalWeeklyReport">
+                <ScalarProperty Name="SportsId" ColumnName="SportsId" />
+                <ScalarProperty Name="TotalTargetYear" ColumnName="TotalTargetYear" />
+                <ScalarProperty Name="TotalTargetMonth" ColumnName="TotalTargetMonth" />
+                <ScalarProperty Name="TotalTargetWeek" ColumnName="TotalTargetWeek" />
+                <ScalarProperty Name="GameCount" ColumnName="GameCount" />
+                <ScalarProperty Name="ExpectCount" ColumnName="ExpectCount" />
+                <ScalarProperty Name="FirstExpectCount" ColumnName="FirstExpectCount" />
+                <ScalarProperty Name="ContinueExpectCount" ColumnName="ContinueExpectCount" />
+                <ScalarProperty Name="PerExpectCount" ColumnName="PerExpectCount" />
+                <ScalarProperty Name="UuExpectCount" ColumnName="UuExpectCount" />
+                <ScalarProperty Name="WriteCount" ColumnName="WriteCount" />
+                <ScalarProperty Name="WriteUuCount" ColumnName="WriteUuCount" />
+                <ScalarProperty Name="UuWriteCount" ColumnName="UuWriteCount" />
+                <ScalarProperty Name="GroundTotalWirte" ColumnName="GroundTotalWirte" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeekResults">
+            <EntityTypeMapping TypeName="ComModel.WeekResults">
+              <MappingFragment StoreEntitySet="WeekResults">
+                <ScalarProperty Name="RelevantYear" ColumnName="RelevantYear" />
+                <ScalarProperty Name="RelevantMonth" ColumnName="RelevantMonth" />
+                <ScalarProperty Name="RelevantWeek" ColumnName="RelevantWeek" />
+                <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ExpectNumber" ColumnName="ExpectNumber" />
+                <ScalarProperty Name="CorrectPercent" ColumnName="CorrectPercent" />
+                <ScalarProperty Name="CorrectPoint" ColumnName="CorrectPoint" />
+                <ScalarProperty Name="CalculationDate" ColumnName="CalculationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SportsStandardDeviation">
+            <EntityTypeMapping TypeName="ComModel.SportsStandardDeviation">
+              <MappingFragment StoreEntitySet="SportsStandardDeviation">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="BetrayalStandardDeviation" ColumnName="BetrayalStandardDeviation" />
+                <ScalarProperty Name="BetrayalVariance" ColumnName="BetrayalVariance" />
+                <ScalarProperty Name="BetrayalAverage" ColumnName="BetrayalAverage" />
+                <ScalarProperty Name="ExpectationsStandardDeviation" ColumnName="ExpectationsStandardDeviation" />
+                <ScalarProperty Name="ExpectationsVariance" ColumnName="ExpectationsVariance" />
+                <ScalarProperty Name="ExpectationsAverage" ColumnName="ExpectationsAverage" />
+                <ScalarProperty Name="ClassClass" ColumnName="ClassClass" />
+                <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+                <ScalarProperty Name="StartYear" ColumnName="StartYear" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BetClassMaster">
+            <EntityTypeMapping TypeName="ComModel.BetClassMaster">
+              <MappingFragment StoreEntitySet="BetClassMaster">
+                <ScalarProperty Name="BetClassName" ColumnName="BetClassName" />
+                <ScalarProperty Name="GameClassCD" ColumnName="GameClassCD" />
+                <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+                <ScalarProperty Name="BetClassID" ColumnName="BetClassID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BackOfficeAccount">
+            <EntityTypeMapping TypeName="ComModel.BackOfficeAccount">
+              <MappingFragment StoreEntitySet="BackOfficeAccount">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedAccountId" ColumnName="CreatedAccountId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="PasswordLastUpdateTime" ColumnName="PasswordLastUpdateTime" />
+                <ScalarProperty Name="PasswordExpireDate" ColumnName="PasswordExpireDate" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpectPoint">
+            <EntityTypeMapping TypeName="ComModel.ExpectPoint">
+              <MappingFragment StoreEntitySet="ExpectPoint">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="SituationStatus" ColumnName="SituationStatus" />
+                <ScalarProperty Name="VorD" ColumnName="VorD" />
+                <ScalarProperty Name="BetSelectID" ColumnName="BetSelectID" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+                <ScalarProperty Name="ClassClass" ColumnName="ClassClass" />
+                <ScalarProperty Name="AcquisitionPoint" ColumnName="AcquisitionPoint" />
+                <ScalarProperty Name="ExpectPoint1" ColumnName="ExpectPoint" />
+                <ScalarProperty Name="PointID" ColumnName="PointID" />
+                <ScalarProperty Name="ExpectTargetID" ColumnName="ExpectTargetID" />
+                <ScalarProperty Name="ExpectPointID" ColumnName="ExpectPointID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Member">
+            <EntityTypeMapping TypeName="ComModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CompelExitTime" ColumnName="CompelExitTime" />
+                <ScalarProperty Name="ExitTime" ColumnName="ExitTime" />
+                <ScalarProperty Name="RegistTime" ColumnName="RegistTime" />
+                <ScalarProperty Name="InterimRegistTime" ColumnName="InterimRegistTime" />
+                <ScalarProperty Name="LoginKeepFlg" ColumnName="LoginKeepFlg" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="PrefecturesId" ColumnName="PrefecturesId" />
+                <ScalarProperty Name="BirthdayDay" ColumnName="BirthdayDay" />
+                <ScalarProperty Name="BirthdayMonth" ColumnName="BirthdayMonth" />
+                <ScalarProperty Name="BirthdayYear" ColumnName="BirthdayYear" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="ProfileImg" ColumnName="ProfileImg" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="DisplayMemberId" ColumnName="DisplayMemberId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsReading">
+            <EntityTypeMapping TypeName="ComModel.NewsReading">
+              <MappingFragment StoreEntitySet="NewsReading">
+                <ScalarProperty Name="NewsReadingID" ColumnName="NewsReadingID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="NewsItemID" ColumnName="NewsItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsTopic">
+            <EntityTypeMapping TypeName="ComModel.NewsTopic">
+              <MappingFragment StoreEntitySet="NewsTopic">
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+                <ScalarProperty Name="NewsItemID" ColumnName="NewsItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TopicMaster">
+            <EntityTypeMapping TypeName="ComModel.TopicMaster">
+              <MappingFragment StoreEntitySet="TopicMaster">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="JumpUrl" ColumnName="JumpUrl" />
+                <ScalarProperty Name="TopicName" ColumnName="TopicName" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+                <ScalarProperty Name="ClassificationType" ColumnName="ClassificationType" />
+                <ScalarProperty Name="SportID" ColumnName="SportID" />
+                <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OddsInfo">
+            <EntityTypeMapping TypeName="ComModel.OddsInfo">
+              <MappingFragment StoreEntitySet="OddsInfo">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="FixDate" ColumnName="FixDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Odds" ColumnName="Odds" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+                <ScalarProperty Name="ClassificationType" ColumnName="ClassificationType" />
+                <ScalarProperty Name="SportID" ColumnName="SportID" />
+                <ScalarProperty Name="BetSelectMasterID" ColumnName="BetSelectMasterID" />
+                <ScalarProperty Name="ExpectTargetID" ColumnName="ExpectTargetID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PayOffPoints">
+            <EntityTypeMapping TypeName="ComModel.PayOffPoints">
+              <MappingFragment StoreEntitySet="PayOffPoints">
+                <ScalarProperty Name="EntryEndTime" ColumnName="EntryEndTime" />
+                <ScalarProperty Name="EntryStartTime" ColumnName="EntryStartTime" />
+                <ScalarProperty Name="PayOffFinishTime" ColumnName="PayOffFinishTime" />
+                <ScalarProperty Name="EntryEnablePoints" ColumnName="EntryEnablePoints" />
+                <ScalarProperty Name="EntryPoints" ColumnName="EntryPoints" />
+                <ScalarProperty Name="PayOffPoints1" ColumnName="PayOffPoints" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="PayOffPointsId" ColumnName="PayOffPointsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Point">
+            <EntityTypeMapping TypeName="ComModel.Point">
+              <MappingFragment StoreEntitySet="Point">
+                <ScalarProperty Name="GiveTargetMonth" ColumnName="GiveTargetMonth" />
+                <ScalarProperty Name="GiveTargetYear" ColumnName="GiveTargetYear" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="PayOffTime" ColumnName="PayOffTime" />
+                <ScalarProperty Name="PayOffPoints" ColumnName="PayOffPoints" />
+                <ScalarProperty Name="PayOffFlg" ColumnName="PayOffFlg" />
+                <ScalarProperty Name="PayOffPointsId" ColumnName="PayOffPointsId" />
+                <ScalarProperty Name="BetEndDate" ColumnName="BetEndDate" />
+                <ScalarProperty Name="BetStartDate" ColumnName="BetStartDate" />
+                <ScalarProperty Name="GiveTargetWeek" ColumnName="GiveTargetWeek" />
+                <ScalarProperty Name="GivingDate" ColumnName="GivingDate" />
+                <ScalarProperty Name="PossesionPoint" ColumnName="PossesionPoint" />
+                <ScalarProperty Name="FundsPoint" ColumnName="FundsPoint" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="PointID" ColumnName="PointID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsClassMaster">
+            <EntityTypeMapping TypeName="ComModel.NewsClassMaster">
+              <MappingFragment StoreEntitySet="NewsClassMaster">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="NewsClassName" ColumnName="NewsClassName" />
+                <ScalarProperty Name="NewsClassId" ColumnName="NewsClassId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BetSelectMaster">
+            <EntityTypeMapping TypeName="ComModel.BetSelectMaster">
+              <MappingFragment StoreEntitySet="BetSelectMaster">
+                <ScalarProperty Name="ModifiedDate_" ColumnName="ModifiedDate " />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="BetSelectName" ColumnName="BetSelectName" />
+                <ScalarProperty Name="BetClassID" ColumnName="BetClassID" />
+                <ScalarProperty Name="BetSelectID" ColumnName="BetSelectID" />
+                <ScalarProperty Name="BetSelectMasterID" ColumnName="BetSelectMasterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MailDeliverCondMaster">
+            <EntityTypeMapping TypeName="ComModel.MailDeliverCondMaster">
+              <MappingFragment StoreEntitySet="MailDeliverCondMaster">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="MailDelivCondision" ColumnName="MailDelivCondision" />
+                <ScalarProperty Name="MailDelivCondID" ColumnName="MailDelivCondID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SnsCorpInformation">
+            <EntityTypeMapping TypeName="ComModel.SnsCorpInformation">
+              <MappingFragment StoreEntitySet="SnsCorpInformation">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="SecretKey" ColumnName="SecretKey" />
+                <ScalarProperty Name="AccessKey" ColumnName="AccessKey" />
+                <ScalarProperty Name="SnsName" ColumnName="SnsName" />
+                <ScalarProperty Name="SnsID" ColumnName="SnsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsReadingSumView">
+            <EntityTypeMapping TypeName="ComModel.NewsReadingSumView">
+              <MappingFragment StoreEntitySet="NewsReadingSumView">
+                <ScalarProperty Name="View" ColumnName="View" />
+                <ScalarProperty Name="NewsItemID" ColumnName="NewsItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContributionReading">
+            <EntityTypeMapping TypeName="ComModel.ContributionReading">
+              <MappingFragment StoreEntitySet="ContributionReading">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ContributeId" ColumnName="ContributeId" />
+                <ScalarProperty Name="ContributionReadingId" ColumnName="ContributionReadingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SnsAuthInformation">
+            <EntityTypeMapping TypeName="ComModel.SnsAuthInformation">
+              <MappingFragment StoreEntitySet="SnsAuthInformation">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+                <ScalarProperty Name="SecretKey" ColumnName="SecretKey" />
+                <ScalarProperty Name="AccessKey" ColumnName="AccessKey" />
+                <ScalarProperty Name="SnsMemberID" ColumnName="SnsMemberID" />
+                <ScalarProperty Name="SnsID" ColumnName="SnsID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NoticeDeliverySubject">
+            <EntityTypeMapping TypeName="ComModel.NoticeDeliverySubject">
+              <MappingFragment StoreEntitySet="NoticeDeliverySubject">
+                <ScalarProperty Name="UniqueID3" ColumnName="UniqueID3" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="NoticeDeliveryStatus" ColumnName="NoticeDeliveryStatus" />
+                <ScalarProperty Name="AlreadyReadFlg" ColumnName="AlreadyReadFlg" />
+                <ScalarProperty Name="UniqueID2" ColumnName="UniqueID2" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+                <ScalarProperty Name="ClassClass" ColumnName="ClassClass" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="NoticeId" ColumnName="NoticeId" />
+                <ScalarProperty Name="NoticeDeliverySubjectId" ColumnName="NoticeDeliverySubjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PointBulkTemporal">
+            <EntityTypeMapping TypeName="ComModel.PointBulkTemporal">
+              <MappingFragment StoreEntitySet="PointBulkTemporal">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="DisposalFlg" ColumnName="DisposalFlg" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+                <ScalarProperty Name="GivingDate" ColumnName="GivingDate" />
+                <ScalarProperty Name="GiveTargetWeek" ColumnName="GiveTargetWeek" />
+                <ScalarProperty Name="GiveTargetMonth" ColumnName="GiveTargetMonth" />
+                <ScalarProperty Name="GiveTargetYear" ColumnName="GiveTargetYear" />
+                <ScalarProperty Name="PointClass" ColumnName="PointClass" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="PointBulkID" ColumnName="PointBulkID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnitBrowser">
+            <EntityTypeMapping TypeName="ComModel.UnitBrowser">
+              <MappingFragment StoreEntitySet="UnitBrowser">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+                <ScalarProperty Name="CookieGuid" ColumnName="CookieGuid" />
+                <ScalarProperty Name="BrowserType" ColumnName="BrowserType" />
+                <ScalarProperty Name="BrowserID" ColumnName="BrowserID" />
+                <ScalarProperty Name="UnitBrowserId" ColumnName="UnitBrowserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PossesionPointRanking">
+            <EntityTypeMapping TypeName="ComModel.PossesionPointRanking">
+              <MappingFragment StoreEntitySet="PossesionPointRanking">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="TargetRanking" ColumnName="TargetRanking" />
+                <ScalarProperty Name="TargetPossesionPoint" ColumnName="TargetPossesionPoint" />
+                <ScalarProperty Name="TargetDate" ColumnName="TargetDate" />
+                <ScalarProperty Name="PossesionPointRankingID" ColumnName="PossesionPointRankingID" />
+                <ScalarProperty Name="UpDownRanking" ColumnName="UpDownRanking" />
+                <ScalarProperty Name="UpDownPoint" ColumnName="UpDownPoint" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppActionLog">
+            <EntityTypeMapping TypeName="ComModel.AppActionLog">
+              <MappingFragment StoreEntitySet="AppActionLog">
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UrlReferrer" ColumnName="UrlReferrer" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NoticePopupDisplayHistory">
+            <EntityTypeMapping TypeName="ComModel.NoticePopupDisplayHistory">
+              <MappingFragment StoreEntitySet="NoticePopupDisplayHistory">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="NoticeTime" ColumnName="NoticeTime" />
+                <ScalarProperty Name="AlreadyReadFlg" ColumnName="AlreadyReadFlg" />
+                <ScalarProperty Name="UniqueID2" ColumnName="UniqueID2" />
+                <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+                <ScalarProperty Name="ClassClass" ColumnName="ClassClass" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="NoticePopupDisplayHistoryId" ColumnName="NoticePopupDisplayHistoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

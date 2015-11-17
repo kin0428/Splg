@@ -1,0 +1,2197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NpbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BatGTE">
+    <Key>
+      <PropertyRef Name="BatGTEId" />
+    </Key>
+    <Property Name="BatGTEId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TextInfoGTEId" Type="bigint" Nullable="false" />
+    <Property Name="No" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="BatGTS">
+    <Key>
+      <PropertyRef Name="BatGTSId" />
+    </Key>
+    <Property Name="BatGTSId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TextInfoGTSId" Type="bigint" Nullable="false" />
+    <Property Name="No" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="BattingAverageBest10">
+    <Key>
+      <PropertyRef Name="BattingAverageBest10Id" />
+    </Key>
+    <Property Name="BattingAverageBest10Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BattingAverageBest10HeaderId" Type="bigint" Nullable="false" />
+    <Property Name="Ranking" Type="int" Nullable="false" />
+    <Property Name="PlayerCD" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="Num" Type="nvarchar" MaxLength="4" />
+    <Property Name="TeamCD" Type="int" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamInitial" Type="nvarchar" MaxLength="8" />
+    <Property Name="BattingAverage" Type="nvarchar" MaxLength="8" />
+    <Property Name="Game" Type="int" />
+    <Property Name="PlateAppearance" Type="int" />
+    <Property Name="AtBat" Type="int" />
+    <Property Name="Run" Type="int" />
+    <Property Name="Hit" Type="int" />
+    <Property Name="Double" Type="int" />
+    <Property Name="Triple" Type="int" />
+    <Property Name="Homerun" Type="int" />
+    <Property Name="Base" Type="int" />
+    <Property Name="RunsBattingIn" Type="int" />
+    <Property Name="WinningRunsBattedIn" Type="int" />
+    <Property Name="StrikeOut" Type="int" />
+    <Property Name="BaseOnBall" Type="int" />
+    <Property Name="HitByPitch" Type="int" />
+    <Property Name="SacrificeHit" Type="int" />
+    <Property Name="SacrificeFly" Type="int" />
+    <Property Name="StolenBase" Type="int" />
+    <Property Name="TGIDP" Type="int" />
+    <Property Name="Error" Type="int" />
+    <Property Name="TBAWRIS" Type="nvarchar" MaxLength="8" />
+    <Property Name="OnBase" Type="nvarchar" MaxLength="8" />
+    <Property Name="Slugging" Type="nvarchar" MaxLength="8" />
+    <Property Name="Ops" Type="nvarchar" MaxLength="8" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="BattingAverageBest10Header">
+    <Key>
+      <PropertyRef Name="BattingAverageBest10HeaderId" />
+    </Key>
+    <Property Name="BattingAverageBest10HeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameAssortment" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="4" />
+    <Property Name="HomeTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="VisitorTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="League" Type="nvarchar" MaxLength="4" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CatcherGL">
+    <Key>
+      <PropertyRef Name="CatcherGLId" />
+    </Key>
+    <Property Name="CatcherGLId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReliefInfoGLId" Type="bigint" Nullable="false" />
+    <Property Name="No" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Num" Type="nvarchar" MaxLength="8" />
+    <Property Name="NameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="NameL" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamID" Type="int" />
+    <Property Name="TeamS" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamES" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="CommentGameCO">
+    <Key>
+      <PropertyRef Name="CommentGameCOId" />
+    </Key>
+    <Property Name="CommentGameCOId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameDate" Type="int" Nullable="false" />
+    <Property Name="CommentF" Type="smallint" Nullable="false" />
+    <Property Name="MEPF" Type="smallint" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="DefenceLocationMST">
+    <Key>
+      <PropertyRef Name="DefenceLocationID" />
+    </Key>
+    <Property Name="DefenceLocationID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="NameS" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="DetailsGL">
+    <Key>
+      <PropertyRef Name="DetailsGLId" />
+    </Key>
+    <Property Name="DetailsGLId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlayerGLId" Type="bigint" Nullable="false" />
+    <Property Name="TotalC" Type="int" Nullable="false" />
+    <Property Name="Run" Type="smallint" />
+    <Property Name="Inn" Type="int" />
+    <Property Name="TB" Type="smallint" />
+    <Property Name="RHR" Type="smallint" />
+    <Property Name="Direction" Type="smallint" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Directory">
+    <Key>
+      <PropertyRef Name="DirectoryId" />
+    </Key>
+    <Property Name="DirectoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamID" Type="int" Nullable="false" />
+    <Property Name="TeamName" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamNameE" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamNameES" Type="nvarchar" MaxLength="64" />
+    <Property Name="TotalCount" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="DSMEPInfoCO">
+    <Key>
+      <PropertyRef Name="DSMEPInfoCOId" />
+    </Key>
+    <Property Name="DSMEPInfoCOId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameInfoCOId" Type="bigint" Nullable="false" />
+    <Property Name="PlayerID" Type="int" Nullable="false" />
+    <Property Name="PlayerName" Type="nvarchar" MaxLength="64" />
+    <Property Name="PlayerNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="BackNumber" Type="nvarchar" MaxLength="8" />
+    <Property Name="TeamID" Type="int" />
+    <Property Name="TeamName" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="MEPReason" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="EarnedRunAverageBest10">
+    <Key>
+      <PropertyRef Name="EarnedRunAverageBest10Id" />
+    </Key>
+    <Property Name="EarnedRunAverageBest10Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EarnedRunAverageBest10HeaderId" Type="bigint" Nullable="false" />
+    <Property Name="Ranking" Type="int" Nullable="false" />
+    <Property Name="PlayerCD" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="Num" Type="nvarchar" MaxLength="4" />
+    <Property Name="TeamCD" Type="int" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamInitial" Type="nvarchar" MaxLength="8" />
+    <Property Name="EarnedRunAverage" Type="nvarchar" MaxLength="64" />
+    <Property Name="Game" Type="int" />
+    <Property Name="CompleteGame" Type="int" />
+    <Property Name="Shutout" Type="int" />
+    <Property Name="NoBaseOnBall" Type="int" />
+    <Property Name="Win" Type="int" />
+    <Property Name="Lost" Type="int" />
+    <Property Name="Save" Type="int" />
+    <Property Name="Hold" Type="int" />
+    <Property Name="HoldPoint" Type="int" />
+    <Property Name="Batmen" Type="int" />
+    <Property Name="InningsPitched" Type="int" />
+    <Property Name="InningsPitched3rd" Type="int" />
+    <Property Name="Hit" Type="int" />
+    <Property Name="HomeRunHitAgainst" Type="int" />
+    <Property Name="Strikeout" Type="int" />
+    <Property Name="BasesOnBall" Type="int" />
+    <Property Name="HitBastsmen" Type="int" />
+    <Property Name="WildPitch" Type="int" />
+    <Property Name="Balk" Type="int" />
+    <Property Name="WinningPercentage" Type="nvarchar" MaxLength="8" />
+    <Property Name="StrikeoutPercentage" Type="nvarchar" MaxLength="64" />
+    <Property Name="PointLost" Type="int" />
+    <Property Name="EarnedRun" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="EarnedRunAverageBest10Header">
+    <Key>
+      <PropertyRef Name="EarnedRunAverageBest10HeaderId" />
+    </Key>
+    <Property Name="EarnedRunAverageBest10HeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameAssortment" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="4" />
+    <Property Name="HomeTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="VisitorTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="League" Type="nvarchar" MaxLength="4" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ExhibitionGameStats">
+    <Key>
+      <PropertyRef Name="ExhibitionGameStatsId" />
+    </Key>
+    <Property Name="ExhibitionGameStatsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExhibitionGameStatsHeaderId" Type="bigint" Nullable="false" />
+    <Property Name="Ranking" Type="int" Nullable="false" />
+    <Property Name="TeamCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="Game" Type="int" />
+    <Property Name="Win" Type="int" />
+    <Property Name="Lose" Type="int" />
+    <Property Name="Draw" Type="int" />
+    <Property Name="WinningPercentage" Type="nvarchar" MaxLength="8" />
+    <Property Name="GameBehind" Type="nvarchar" MaxLength="8" />
+    <Property Name="Run" Type="int" />
+    <Property Name="PointLost" Type="int" />
+    <Property Name="RankShiftF" Type="smallint" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ExhibitionGameStatsHeader">
+    <Key>
+      <PropertyRef Name="ExhibitionGameStatsHeaderId" />
+    </Key>
+    <Property Name="ExhibitionGameStatsHeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameAssortment" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="4" />
+    <Property Name="HomeTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="VisitorTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="League" Type="nvarchar" MaxLength="4" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GameClassMST">
+    <Key>
+      <PropertyRef Name="GameClassMSTId" />
+    </Key>
+    <Property Name="GameClassMSTId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameClassCD" Type="int" Nullable="false" />
+    <Property Name="GameClass" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GameEndInfoGL">
+    <Key>
+      <PropertyRef Name="GameEndInfoGLId" />
+    </Key>
+    <Property Name="GameEndInfoGLId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameLiveGLId" Type="bigint" Nullable="false" />
+    <Property Name="ResultID" Type="int" Nullable="false" />
+    <Property Name="EndTime" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GameEndInfoGTE">
+    <Key>
+      <PropertyRef Name="GameEndInfoGTEId" />
+    </Key>
+    <Property Name="GameEndInfoGTEId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameInfoGTEId" Type="bigint" Nullable="false" />
+    <Property Name="ResultID" Type="int" Nullable="false" />
+    <Property Name="EndTime" Type="int" />
+    <Property Name="WinPitcher" Type="nvarchar" MaxLength="128" />
+    <Property Name="LosePitcher" Type="nvarchar" MaxLength="128" />
+    <Property Name="SavePitcher" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GameEndInfoGTS">
+    <Key>
+      <PropertyRef Name="GameEndInfoGTSId" />
+    </Key>
+    <Property Name="GameEndInfoGTSId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameInfoGTSId" Type="bigint" Nullable="false" />
+    <Property Name="ResultID" Type="int" Nullable="false" />
+    <Property Name="EndTime" Type="int" />
+    <Property Name="WinPitcher" Type="nvarchar" MaxLength="128" />
+    <Property Name="LosePitcher" Type="nvarchar" MaxLength="128" />
+    <Property Name="SavePitcher" Type="nvarchar" MaxLength="128" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GameInfoCO">
+    <Key>
+      <PropertyRef Name="GameInfoCOId" />
+    </Key>
+    <Property Name="GameInfoCOId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CommentGameCOId" Type="bigint" Nullable="false" />
+    <Property Name="GameID" Type="int" Nullable="false" />
+    <Property Name="Year" Type="int" />
+    <Property Name="GameKindName" Type="nvarchar" MaxLength="64" />
+    <Property Name="StadiumName" Type="nvarchar" MaxLength="64" />
+    <Property Name="StadiumNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="Round" Type="int" />
+    <Property Name="StartTime" Type="int" />
+    <Property Name="EndTime" Type="int" />
+    <Property Name="Atendance" Type="int" />
+    <Property Name="GameSection" Type="smallint" />
+    <Property Name="Inning" Type="int" />
+    <Property Name="TB" Type="smallint" />
+    <Property Name="Xflag" Type="smallint" />
+    <Property Name="GameEndState" Type="nvarchar" MaxLength="64" />
+    <Property Name="CompleteF" Type="smallint" />
+    <Property Name="GameComment" Type="nvarchar" MaxLength="255" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GameInfoGL">
+    <Key>
+      <PropertyRef Name="GameInfoGLId" />
+    </Key>
+    <Property Name="GameInfoGLId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameLiveGLId" Type="bigint" Nullable="false" />
+    <Property Name="GameDate" Type="int" Nullable="false" />
+    <Property Name="GameTime" Type="int" Nullable="false" />
+    <Property Name="GameTypeID" Type="int" Nullable="false" />
+    <Property Name="GameTypeName" Type="nvarchar" MaxLength="64" />
+    <Property Name="StadiumID" Type="int" />
+    <Property Name="StadiumName" Type="nvarchar" MaxLength="64" />
+    <Property Name="Round" Type="int" />
+    <Property Name="DoubleHeaderF" Type="smallint" />
+    <Property Name="DayNight" Type="smallint" />
+    <Property Name="StartTime" Type="int" />
+    <Property Name="Attendance" Type="int" />
+    <Property Name="GameStateID" Type="int" />
+    <Property Name="GameStateName" Type="nvarchar" MaxLength="64" />
+    <Property Name="UmpireChief" Type="nvarchar" MaxLength="64" />
+    <Property Name="UmpireFirst" Type="nvarchar" MaxLength="64" />
+    <Property Name="UmpireSecond" Type="nvarchar" MaxLength="64" />
+    <Property Name="UmpireThird" Type="nvarchar" MaxLength="64" />
+    <Property Name="UmpireLeft" Type="nvarchar" MaxLength="64" />
+    <Property Name="UmpireRight" Type="nvarchar" MaxLength="64" />
+    <Property Name="VsWinC" Type="int" />
+    <Property Name="VsLoseC" Type="int" />
+    <Property Name="VsDrawC" Type="int" />
+    <Property Name="Inning" Type="int" />
+    <Property Name="TB" Type="smallint" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GameInfoGTE">
+    <Key>
+      <PropertyRef Name="GameInfoGTEId" />
+    </Key>
+    <Property Name="GameInfoGTEId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameID" Type="int" Nullable="false" />
+    <Property Name="GameDate" Type="int" />
+    <Property Name="GameTime" Type="int" />
+    <Property Name="StartTime" Type="int" />
+    <Property Name="Round" Type="int" />
+    <Property Name="GameKindID" Type="int" />
+    <Property Name="GameKindName" Type="nvarchar" MaxLength="64" />
+    <Property Name="StadiumID" Type="int" />
+    <Property Name="StadiumName" Type="nvarchar" MaxLength="64" />
+    <Property Name="DoubleHeaderF" Type="smallint" />
+    <Property Name="Attendance" Type="int" />
+    <Property Name="UmpireChief" Type="nvarchar" MaxLength="64" />
+    <Property Name="UmpireFirst" Type="nvarchar" MaxLength="64" />
+    <Property Name="UmpireSecond" Type="nvarchar" MaxLength="64" />
+    <Property Name="UmpireThird" Type="nvarchar" MaxLength="64" />
+    <Property Name="UmpireLeft" Type="nvarchar" MaxLength="64" />
+    <Property Name="UmpireRight" Type="nvarchar" MaxLength="64" />
+    <Property Name="GameStateID" Type="smallint" />
+    <Property Name="Inning" Type="int" />
+    <Property Name="TB" Type="smallint" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GameInfoGTS">
+    <Key>
+      <PropertyRef Name="GameInfoGTSId" />
+    </Key>
+    <Property Name="GameInfoGTSId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameID" Type="int" Nullable="false" />
+    <Property Name="GameDate" Type="int" />
+    <Property Name="GameTime" Type="int" />
+    <Property Name="StartTime" Type="int" />
+    <Property Name="Round" Type="int" />
+    <Property Name="GameKindID" Type="int" />
+    <Property Name="GameKindName" Type="nvarchar" MaxLength="64" />
+    <Property Name="StadiumID" Type="int" />
+    <Property Name="StadiumName" Type="nvarchar" MaxLength="64" />
+    <Property Name="DoubleHeaderF" Type="smallint" />
+    <Property Name="Attendance" Type="int" />
+    <Property Name="UmpireChief" Type="nvarchar" MaxLength="64" />
+    <Property Name="UmpireFirst" Type="nvarchar" MaxLength="64" />
+    <Property Name="UmpireSecond" Type="nvarchar" MaxLength="64" />
+    <Property Name="UmpireThird" Type="nvarchar" MaxLength="64" />
+    <Property Name="UmpireLeft" Type="nvarchar" MaxLength="64" />
+    <Property Name="UmpireRight" Type="nvarchar" MaxLength="64" />
+    <Property Name="GameStateID" Type="smallint" />
+    <Property Name="Inning" Type="int" />
+    <Property Name="TB" Type="smallint" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GameInfoPSP">
+    <Key>
+      <PropertyRef Name="GameInfoPSPId" />
+    </Key>
+    <Property Name="GameInfoPSPId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameID" Type="int" Nullable="false" />
+    <Property Name="GameKindID" Type="int" Nullable="false" />
+    <Property Name="GameKindName" Type="nvarchar" MaxLength="64" />
+    <Property Name="GameDate" Type="int" />
+    <Property Name="WeekDay" Type="smallint" />
+    <Property Name="StartTime" Type="int" />
+    <Property Name="StadiumID" Type="int" />
+    <Property Name="StadiumName" Type="nvarchar" MaxLength="64" />
+    <Property Name="Round" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GameInfoRGI">
+    <Key>
+      <PropertyRef Name="GameInfoRGIId" />
+    </Key>
+    <Property Name="GameInfoRGIId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RealGameInfoRootRGIId" Type="bigint" Nullable="false" />
+    <Property Name="GameID" Type="int" Nullable="false" />
+    <Property Name="HomeTeam" Type="int" Nullable="false" />
+    <Property Name="ShortNameHomeTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="VisitorTeam" Type="int" />
+    <Property Name="ShortNameVisitorTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="StadiumCD" Type="int" />
+    <Property Name="ShortNameStadium" Type="nvarchar" MaxLength="64" />
+    <Property Name="Round" Type="int" />
+    <Property Name="Win" Type="int" />
+    <Property Name="Lose" Type="int" />
+    <Property Name="Draw" Type="int" />
+    <Property Name="Inning" Type="int" />
+    <Property Name="BottomTop" Type="nvarchar" MaxLength="64" />
+    <Property Name="GameSetSituationCD" Type="nvarchar" MaxLength="8" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GameInfoSS">
+    <Key>
+      <PropertyRef Name="GameInfoSSId" />
+    </Key>
+    <Property Name="GameInfoSSId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MonthGroupSSId" Type="bigint" Nullable="false" />
+    <Property Name="SeqNo" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="GameDate" Type="int" Nullable="false" />
+    <Property Name="Week" Type="int" Nullable="false" />
+    <Property Name="Time" Type="nvarchar" MaxLength="64" />
+    <Property Name="StadiumID" Type="int" />
+    <Property Name="StadiumName" Type="nvarchar" MaxLength="64" />
+    <Property Name="StadiumNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="Round" Type="int" />
+    <Property Name="DoubleHeaderF" Type="smallint" />
+    <Property Name="DayNight" Type="smallint" />
+    <Property Name="GamesDateNo" Type="int" />
+    <Property Name="GamesSeqNo" Type="int" />
+    <Property Name="GameName" Type="nvarchar" MaxLength="64" />
+    <Property Name="GameState" Type="smallint" />
+    <Property Name="GameResult" Type="smallint" />
+    <Property Name="HomeScore" Type="int" />
+    <Property Name="VisitorScore" Type="int" />
+    <Property Name="HomeTeamID" Type="int" />
+    <Property Name="HomeTeamName" Type="nvarchar" MaxLength="64" />
+    <Property Name="HomeTeamNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="HomeTeamNameE" Type="nvarchar" MaxLength="64" />
+    <Property Name="HomeTeamNameES" Type="nvarchar" MaxLength="64" />
+    <Property Name="HomeTeamInitial" Type="nvarchar" MaxLength="64" />
+    <Property Name="VisitorTeamID" Type="int" />
+    <Property Name="VisitorTeamName" Type="nvarchar" MaxLength="64" />
+    <Property Name="VisitorTeamNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="VisitorTeamNameE" Type="nvarchar" MaxLength="64" />
+    <Property Name="VisitorTeamNameES" Type="nvarchar" MaxLength="64" />
+    <Property Name="VisitorTeamInitial" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GameInfoSSN">
+    <Key>
+      <PropertyRef Name="GameInfoSSNId" />
+    </Key>
+    <Property Name="GameInfoSSNId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MonthGroupSSNId" Type="bigint" Nullable="false" />
+    <Property Name="SeqNo" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="GameKindID" Type="int" Nullable="false" />
+    <Property Name="DateJPN" Type="int" Nullable="false" />
+    <Property Name="TimeJPN" Type="nvarchar" MaxLength="64" />
+    <Property Name="WeekDayJPN" Type="int" />
+    <Property Name="StadiumID" Type="int" />
+    <Property Name="StadiumName" Type="nvarchar" MaxLength="64" />
+    <Property Name="Round" Type="int" />
+    <Property Name="DhF" Type="smallint" />
+    <Property Name="GameState" Type="smallint" />
+    <Property Name="GameResult" Type="smallint" />
+    <Property Name="HScore" Type="int" />
+    <Property Name="VScore" Type="int" />
+    <Property Name="HTeamID" Type="int" />
+    <Property Name="HTeamNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="VTeamID" Type="int" />
+    <Property Name="VTeamNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GameLiveGL">
+    <Key>
+      <PropertyRef Name="GameLiveGLId" />
+    </Key>
+    <Property Name="GameLiveGLId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameID" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GameOrderGO">
+    <Key>
+      <PropertyRef Name="GameOrderGOId" />
+    </Key>
+    <Property Name="GameOrderGOId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameID" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GameResultInfoRGI">
+    <Key>
+      <PropertyRef Name="GameResultInfoRGIId" />
+    </Key>
+    <Property Name="GameResultInfoRGIId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RealGameInfoRootRGIId" Type="bigint" Nullable="false" />
+    <Property Name="WinTeamCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameWinTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GWRBIPlayerGL">
+    <Key>
+      <PropertyRef Name="GWRBIPlayerGLId" />
+    </Key>
+    <Property Name="GWRBIPlayerGLId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameEndInfoGLId" Type="bigint" Nullable="false" />
+    <Property Name="PlayerID" Type="int" Nullable="false" />
+    <Property Name="BackNumber" Type="nvarchar" MaxLength="8" />
+    <Property Name="PlayerNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="PlayerNameL" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamID" Type="int" />
+    <Property Name="TeamS" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamES" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GWRBIRGI">
+    <Key>
+      <PropertyRef Name="GWRBIRGIId" />
+    </Key>
+    <Property Name="GWRBIRGIId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameResultInfoRGIId" Type="bigint" Nullable="false" />
+    <Property Name="PlayerCD" Type="int" Nullable="false" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="Round" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HittingStats">
+    <Key>
+      <PropertyRef Name="HittingStatsId" />
+    </Key>
+    <Property Name="HittingStatsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HittingStatsHeaderId" Type="bigint" Nullable="false" />
+    <Property Name="TeamCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="PlayerCD" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="Num" Type="nvarchar" MaxLength="4" />
+    <Property Name="BattingAverage" Type="nvarchar" MaxLength="8" />
+    <Property Name="Game" Type="int" />
+    <Property Name="PlateAppearance" Type="int" />
+    <Property Name="AtBat" Type="int" />
+    <Property Name="Run" Type="int" />
+    <Property Name="Hit" Type="int" />
+    <Property Name="Double" Type="int" />
+    <Property Name="Triple" Type="int" />
+    <Property Name="Homerun" Type="int" />
+    <Property Name="Base" Type="int" />
+    <Property Name="RunsBattingIn" Type="int" />
+    <Property Name="WinningRunsBattedIn" Type="int" />
+    <Property Name="StrikeOut" Type="int" />
+    <Property Name="BaseOnBall" Type="int" />
+    <Property Name="HitByPitch" Type="int" />
+    <Property Name="SacrificeHit" Type="int" />
+    <Property Name="SacrificeFly" Type="int" />
+    <Property Name="StolenBase" Type="int" />
+    <Property Name="CaughtStealing" Type="int" />
+    <Property Name="DoublePlay" Type="int" />
+    <Property Name="Error" Type="int" />
+    <Property Name="PassedBall" Type="int" />
+    <Property Name="TBAWRIS" Type="nvarchar" MaxLength="8" />
+    <Property Name="OnBase" Type="nvarchar" MaxLength="8" />
+    <Property Name="Slugging" Type="nvarchar" MaxLength="8" />
+    <Property Name="Ops" Type="nvarchar" MaxLength="8" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HittingStats3Years">
+    <Key>
+      <PropertyRef Name="HittingStats3YearsId" />
+    </Key>
+    <Property Name="HittingStats3YearsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HittingStats3YearsTeamsId" Type="bigint" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="NameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="NameL" Type="nvarchar" MaxLength="64" />
+    <Property Name="Pos" Type="smallint" />
+    <Property Name="DataF" Type="smallint" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HittingStats3YearsInfo">
+    <Key>
+      <PropertyRef Name="HittingStats3YearsInfoId" />
+    </Key>
+    <Property Name="HittingStats3YearsInfoId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HittingStats3YearsId" Type="bigint" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="TeamID" Type="int" Nullable="false" />
+    <Property Name="TeamS" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamES" Type="nvarchar" MaxLength="64" />
+    <Property Name="AVG" Type="nvarchar" MaxLength="8" />
+    <Property Name="G" Type="int" />
+    <Property Name="AB" Type="int" />
+    <Property Name="R" Type="int" />
+    <Property Name="H" Type="int" />
+    <Property Name="HR" Type="int" />
+    <Property Name="RBI" Type="int" />
+    <Property Name="SO" Type="int" />
+    <Property Name="BB" Type="int" />
+    <Property Name="HBP" Type="int" />
+    <Property Name="SH" Type="int" />
+    <Property Name="SF" Type="int" />
+    <Property Name="SB" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HittingStats3YearsTeams">
+    <Key>
+      <PropertyRef Name="HittingStats3YearsTeamsId" />
+    </Key>
+    <Property Name="HittingStats3YearsTeamsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamID" Type="int" Nullable="false" />
+    <Property Name="Team" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamS" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamE" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamES" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamInitial" Type="nvarchar" MaxLength="64" />
+    <Property Name="SendDate" Type="int" />
+    <Property Name="PlayerC" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HittingStats5thGame">
+    <Key>
+      <PropertyRef Name="HittingStats5thGameId" />
+    </Key>
+    <Property Name="HittingStats5thGameId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HittingStats5thGameHeaderId" Type="bigint" Nullable="false" />
+    <Property Name="TeamCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="PlayerCD" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="Num" Type="nvarchar" MaxLength="4" />
+    <Property Name="BattingAverage" Type="nvarchar" MaxLength="8" />
+    <Property Name="PlateAppearance" Type="int" />
+    <Property Name="AtBat" Type="int" />
+    <Property Name="Hit" Type="int" />
+    <Property Name="Homerun" Type="int" />
+    <Property Name="RunsBattingIn" Type="int" />
+    <Property Name="StrikeOut" Type="int" />
+    <Property Name="BaseOnBall" Type="int" />
+    <Property Name="HitByPitch" Type="int" />
+    <Property Name="SacrificeHit" Type="int" />
+    <Property Name="SacrificeFly" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HittingStats5thGameHeader">
+    <Key>
+      <PropertyRef Name="HittingStats5thGameHeaderId" />
+    </Key>
+    <Property Name="HittingStats5thGameHeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameAssortment" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="4" />
+    <Property Name="HomeTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="VisitorTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="TeamCD" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HittingStats6thGame">
+    <Key>
+      <PropertyRef Name="HittingStats6thGameId" />
+    </Key>
+    <Property Name="HittingStats6thGameId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HittingStats6thGameHeaderId" Type="bigint" Nullable="false" />
+    <Property Name="TeamCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="PlayerCD" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="Num" Type="nvarchar" MaxLength="4" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HittingStats6thGameHeader">
+    <Key>
+      <PropertyRef Name="HittingStats6thGameHeaderId" />
+    </Key>
+    <Property Name="HittingStats6thGameHeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameAssortment" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="4" />
+    <Property Name="HomeTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="VisitorTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="TeamCD" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HittingStats6thGameInfo">
+    <Key>
+      <PropertyRef Name="HittingStats6thGameInfoId" />
+    </Key>
+    <Property Name="HittingStats6thGameInfoId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HittingStats6thGameId" Type="bigint" Nullable="false" />
+    <Property Name="TeamsOpponentCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeamsOpponent" Type="nvarchar" MaxLength="64" />
+    <Property Name="Round" Type="int" />
+    <Property Name="GameDate" Type="int" />
+    <Property Name="PlateAppearance" Type="int" />
+    <Property Name="AtBat" Type="int" />
+    <Property Name="Run" Type="int" />
+    <Property Name="Hit" Type="int" />
+    <Property Name="Homerun" Type="int" />
+    <Property Name="RunsBattingIn" Type="int" />
+    <Property Name="GWRBI" Type="int" />
+    <Property Name="StrikeOut" Type="int" />
+    <Property Name="BaseOnBall" Type="int" />
+    <Property Name="HitByPitch" Type="int" />
+    <Property Name="BatingResult1" Type="nvarchar" MaxLength="8" />
+    <Property Name="BatingResult2" Type="nvarchar" MaxLength="8" />
+    <Property Name="BatingResult3" Type="nvarchar" MaxLength="8" />
+    <Property Name="BatingResult4" Type="nvarchar" MaxLength="8" />
+    <Property Name="BatingResult5" Type="nvarchar" MaxLength="8" />
+    <Property Name="BatingResult6" Type="nvarchar" MaxLength="8" />
+    <Property Name="BatingResult7" Type="nvarchar" MaxLength="8" />
+    <Property Name="BatingResult8" Type="nvarchar" MaxLength="8" />
+    <Property Name="BatingResult9" Type="nvarchar" MaxLength="8" />
+    <Property Name="BatingResult10" Type="nvarchar" MaxLength="8" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HittingStatsHeader">
+    <Key>
+      <PropertyRef Name="HittingStatsHeaderId" />
+    </Key>
+    <Property Name="HittingStatsHeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameAssortment" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="4" />
+    <Property Name="HomeTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="VisitorTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="TeamCD" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HittingStatsScoringPosition">
+    <Key>
+      <PropertyRef Name="HittingStatsScoringPositionId" />
+    </Key>
+    <Property Name="HittingStatsScoringPositionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HittingStatsScoringPositionHeaderId" Type="bigint" Nullable="false" />
+    <Property Name="TeamCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="PlayerCD" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="Num" Type="nvarchar" MaxLength="4" />
+    <Property Name="BattingAverage" Type="nvarchar" MaxLength="8" />
+    <Property Name="PlateAppearance" Type="int" />
+    <Property Name="AtBat" Type="int" />
+    <Property Name="Hit" Type="int" />
+    <Property Name="Homerun" Type="int" />
+    <Property Name="RunsBattingIn" Type="int" />
+    <Property Name="StrikeOut" Type="int" />
+    <Property Name="BaseOnBall" Type="int" />
+    <Property Name="HitByPitch" Type="int" />
+    <Property Name="SacrificeHit" Type="int" />
+    <Property Name="SacrificeFly" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HittingStatsScoringPositionHeader">
+    <Key>
+      <PropertyRef Name="HittingStatsScoringPositionHeaderId" />
+    </Key>
+    <Property Name="HittingStatsScoringPositionHeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameAssortment" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="4" />
+    <Property Name="HomeTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="VisitorTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="TeamCD" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HittingStatsTeamDifference">
+    <Key>
+      <PropertyRef Name="HittingStatsTeamDifferenceId" />
+    </Key>
+    <Property Name="HittingStatsTeamDifferenceId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HittingStatsTeamDifferenceHeaderId" Type="bigint" Nullable="false" />
+    <Property Name="TeamCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="PlayerCD" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="Num" Type="nvarchar" MaxLength="4" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HittingStatsTeamDifferenceHeader">
+    <Key>
+      <PropertyRef Name="HittingStatsTeamDifferenceHeaderId" />
+    </Key>
+    <Property Name="HittingStatsTeamDifferenceHeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameAssortment" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="4" />
+    <Property Name="HomeTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="VisitorTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="TeamCD" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HittingStatsTeamDifferenceInfo">
+    <Key>
+      <PropertyRef Name="HittingStatsTeamDifferenceInfoId" />
+    </Key>
+    <Property Name="HittingStatsTeamDifferenceInfoId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HittingStatsTeamDifferenceId" Type="bigint" Nullable="false" />
+    <Property Name="TeamsOpponentCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeamsOpponent" Type="nvarchar" MaxLength="64" />
+    <Property Name="BattingAverage" Type="nvarchar" MaxLength="8" />
+    <Property Name="Game" Type="int" />
+    <Property Name="PlateAppearance" Type="int" />
+    <Property Name="AtBat" Type="int" />
+    <Property Name="Hit" Type="int" />
+    <Property Name="Double" Type="int" />
+    <Property Name="Triple" Type="int" />
+    <Property Name="Homerun" Type="int" />
+    <Property Name="RunsBattingIn" Type="int" />
+    <Property Name="StrikeOut" Type="int" />
+    <Property Name="BaseOnBall" Type="int" />
+    <Property Name="HitByPitch" Type="int" />
+    <Property Name="SacrificeHit" Type="int" />
+    <Property Name="SacrificeFly" Type="int" />
+    <Property Name="StolenBase" Type="int" />
+    <Property Name="DoublePlay" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HomerunBest10">
+    <Key>
+      <PropertyRef Name="HomerunBest10Id" />
+    </Key>
+    <Property Name="HomerunBest10Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HomerunBest10HeaderId" Type="bigint" Nullable="false" />
+    <Property Name="Ranking" Type="int" Nullable="false" />
+    <Property Name="PlayerCD" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="Num" Type="nvarchar" MaxLength="4" />
+    <Property Name="TeamCD" Type="int" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamInitial" Type="nvarchar" MaxLength="8" />
+    <Property Name="HomeRun" Type="int" />
+    <Property Name="AtBat" Type="int" />
+    <Property Name="HomerunPace" Type="nvarchar" MaxLength="16" />
+    <Property Name="BattingAverage" Type="nvarchar" MaxLength="8" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HomerunBest10Header">
+    <Key>
+      <PropertyRef Name="HomerunBest10HeaderId" />
+    </Key>
+    <Property Name="HomerunBest10HeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameAssortment" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="4" />
+    <Property Name="HomeTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="VisitorTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="League" Type="nvarchar" MaxLength="4" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HomerunInfoGL">
+    <Key>
+      <PropertyRef Name="HomerunInfoGLId" />
+    </Key>
+    <Property Name="HomerunInfoGLId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameLiveGLId" Type="bigint" Nullable="false" />
+    <Property Name="HV" Type="smallint" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HomerunInfoRGI">
+    <Key>
+      <PropertyRef Name="HomerunInfoRGIId" />
+    </Key>
+    <Property Name="HomerunInfoRGIId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RealGameInfoRootRGIId" Type="bigint" Nullable="false" />
+    <Property Name="TeamCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="PlayerCD" Type="int" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="TotalHomerun" Type="int" />
+    <Property Name="runsbattedin" Type="int" />
+    <Property Name="MatterInning" Type="int" />
+    <Property Name="PitchersOpponentCD" Type="int" />
+    <Property Name="ShortNamePitchersOpponent" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="InningScoreInfoCO">
+    <Key>
+      <PropertyRef Name="InningScoreInfoCOId" />
+    </Key>
+    <Property Name="InningScoreInfoCOId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamInfoCOId" Type="bigint" Nullable="false" />
+    <Property Name="Inning" Type="int" Nullable="false" />
+    <Property Name="Score" Type="int" />
+    <Property Name="Xflag" Type="smallint" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="LosePitcherGL">
+    <Key>
+      <PropertyRef Name="LosePitcherGLId" />
+    </Key>
+    <Property Name="LosePitcherGLId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameEndInfoGLId" Type="bigint" Nullable="false" />
+    <Property Name="PlayerID" Type="int" Nullable="false" />
+    <Property Name="BackNumber" Type="nvarchar" MaxLength="8" />
+    <Property Name="PlayerNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="PlayerNameL" Type="nvarchar" MaxLength="64" />
+    <Property Name="Games" Type="int" />
+    <Property Name="Win" Type="int" />
+    <Property Name="Lose" Type="int" />
+    <Property Name="Save" Type="int" />
+    <Property Name="TeamID" Type="int" />
+    <Property Name="TeamS" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamES" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="LosingPitcherRGI">
+    <Key>
+      <PropertyRef Name="LosingPitcherRGIId" />
+    </Key>
+    <Property Name="LosingPitcherRGIId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameResultInfoRGIId" Type="bigint" Nullable="false" />
+    <Property Name="PlayerCD" Type="int" Nullable="false" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="TotalWon" Type="int" />
+    <Property Name="TotalLost" Type="int" />
+    <Property Name="TotalSave" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ManagerInfoST">
+    <Key>
+      <PropertyRef Name="ManagerInfoSTId" />
+    </Key>
+    <Property Name="ManagerInfoSTId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StartingGameSTId" Type="bigint" Nullable="false" />
+    <Property Name="HomeManagerID" Type="int" Nullable="false" />
+    <Property Name="HomeManagerNumber" Type="nvarchar" MaxLength="8" />
+    <Property Name="HomeManagerNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="HomeManagerNameL" Type="nvarchar" MaxLength="64" />
+    <Property Name="VisitorManagerID" Type="int" />
+    <Property Name="VisitorManagerNumber" Type="nvarchar" MaxLength="8" />
+    <Property Name="VisitorManagerNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="VisitorManagerNameL" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MasterTransfersNpb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="No" Type="nvarchar" MaxLength="16" />
+    <Property Name="FunctionName" Type="nvarchar" MaxLength="64" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="64" />
+    <Property Name="FilePathServer" Type="nvarchar" MaxLength="64" />
+    <Property Name="Schema" Type="nvarchar" MaxLength="16" />
+    <Property Name="SuffixTables" Type="nvarchar" MaxLength="16" />
+    <Property Name="IgnoreTables" Type="nvarchar" MaxLength="64" />
+    <Property Name="QuerySqlDelete" Type="nvarchar(max)" />
+    <Property Name="HasCustomHeader" Type="smallint" />
+    <Property Name="HasSubFolder" Type="smallint" />
+    <Property Name="Description" Type="nvarchar" MaxLength="512" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MonthGroupSS">
+    <Key>
+      <PropertyRef Name="MonthGroupSSId" />
+    </Key>
+    <Property Name="MonthGroupSSId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SeasonScheduleSSId" Type="bigint" Nullable="false" />
+    <Property Name="No" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MonthGroupSSN">
+    <Key>
+      <PropertyRef Name="MonthGroupSSNId" />
+    </Key>
+    <Property Name="MonthGroupSSNId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="No" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="NoteInfoGL">
+    <Key>
+      <PropertyRef Name="NoteInfoGLId" />
+    </Key>
+    <Property Name="NoteInfoGLId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameLiveGLId" Type="bigint" Nullable="false" />
+    <Property Name="Type" Type="smallint" Nullable="false" />
+    <Property Name="HV" Type="smallint" Nullable="false" />
+    <Property Name="Inning" Type="int" Nullable="false" />
+    <Property Name="PlayerID" Type="int" Nullable="false" />
+    <Property Name="BackNumber" Type="nvarchar" MaxLength="8" />
+    <Property Name="PlayerNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="PlayerNameL" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamID" Type="int" />
+    <Property Name="TeamS" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamES" Type="nvarchar" MaxLength="64" />
+    <Property Name="HostTeamID" Type="int" />
+    <Property Name="HostTeamS" Type="nvarchar" MaxLength="64" />
+    <Property Name="HostTeamES" Type="nvarchar" MaxLength="64" />
+    <Property Name="VsPlayerID" Type="int" />
+    <Property Name="VsBackNumber" Type="nvarchar" MaxLength="8" />
+    <Property Name="VsPlayerNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="VsPlayerNameL" Type="nvarchar" MaxLength="64" />
+    <Property Name="VsTeamID" Type="int" />
+    <Property Name="VsTeamS" Type="nvarchar" MaxLength="64" />
+    <Property Name="VsTeamES" Type="nvarchar" MaxLength="64" />
+    <Property Name="VsHostTeamID" Type="int" />
+    <Property Name="VsHostTeamS" Type="nvarchar" MaxLength="64" />
+    <Property Name="VsHostTeamES" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="OfficialStatsHeaderNpb">
+    <Key>
+      <PropertyRef Name="OfficialStatsHeaderNpbId" />
+    </Key>
+    <Property Name="OfficialStatsHeaderNpbId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameAssortment" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="4" />
+    <Property Name="HomeTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="VisitorTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="League" Type="nvarchar" MaxLength="4" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="OfficialStatsNpb">
+    <Key>
+      <PropertyRef Name="OfficialStatsNpbId" />
+    </Key>
+    <Property Name="OfficialStatsNpbId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OfficialStatsHeaderNpbId" Type="bigint" Nullable="false" />
+    <Property Name="Ranking" Type="int" Nullable="false" />
+    <Property Name="TeamCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="Game" Type="int" />
+    <Property Name="Win" Type="int" />
+    <Property Name="Lose" Type="int" />
+    <Property Name="Draw" Type="int" />
+    <Property Name="WinningPercentage" Type="nvarchar" MaxLength="8" />
+    <Property Name="GameBehind" Type="nvarchar" MaxLength="8" />
+    <Property Name="Run" Type="int" />
+    <Property Name="PointLost" Type="int" />
+    <Property Name="Homerun" Type="int" />
+    <Property Name="StolenBase" Type="int" />
+    <Property Name="BattingAverage" Type="nvarchar" MaxLength="8" />
+    <Property Name="EarnedRunAverage" Type="nvarchar" MaxLength="8" />
+    <Property Name="RestGame" Type="int" />
+    <Property Name="WinnerMagic" Type="int" />
+    <Property Name="POLastRanking" Type="int" />
+    <Property Name="RankShiftF" Type="smallint" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PersonInfo">
+    <Key>
+      <PropertyRef Name="PersonInfoId" />
+    </Key>
+    <Property Name="PersonInfoId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DirectoryId" Type="bigint" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="StaffKind" Type="smallint" Nullable="false" />
+    <Property Name="StaffTitle" Type="nvarchar" MaxLength="255" />
+    <Property Name="PositionType" Type="smallint" />
+    <Property Name="BackNumber" Type="nvarchar" MaxLength="8" />
+    <Property Name="PlayerName" Type="nvarchar" MaxLength="64" />
+    <Property Name="PlayerNameK" Type="nvarchar" MaxLength="64" />
+    <Property Name="DelivName" Type="nvarchar" MaxLength="64" />
+    <Property Name="DelivFirstName" Type="nvarchar" MaxLength="64" />
+    <Property Name="DelivLastName" Type="nvarchar" MaxLength="64" />
+    <Property Name="DelivFirstNameK" Type="nvarchar" MaxLength="64" />
+    <Property Name="DelivLastNameK" Type="nvarchar" MaxLength="64" />
+    <Property Name="Birthday" Type="int" />
+    <Property Name="Height" Type="int" />
+    <Property Name="Weight" Type="int" />
+    <Property Name="PitchingArm" Type="smallint" />
+    <Property Name="BattingType" Type="smallint" />
+    <Property Name="Hometown" Type="nvarchar" MaxLength="64" />
+    <Property Name="Age" Type="int" />
+    <Property Name="Blood" Type="nvarchar" MaxLength="8" />
+    <Property Name="Career" Type="nvarchar" MaxLength="255" />
+    <Property Name="ProTotal" Type="int" />
+    <Property Name="DraftYear" Type="int" />
+    <Property Name="DraftNo" Type="nvarchar" MaxLength="64" />
+    <Property Name="Prize" Type="nvarchar" MaxLength="255" />
+    <Property Name="DSComment" Type="nvarchar" MaxLength="255" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PitcherGL">
+    <Key>
+      <PropertyRef Name="PitcherGLId" />
+    </Key>
+    <Property Name="PitcherGLId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReliefInfoGLId" Type="bigint" Nullable="false" />
+    <Property Name="No" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Num" Type="nvarchar" MaxLength="8" />
+    <Property Name="NameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="NameL" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamID" Type="int" />
+    <Property Name="TeamS" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamES" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PitcherInfoRGI">
+    <Key>
+      <PropertyRef Name="PitcherInfoRGIId" />
+    </Key>
+    <Property Name="PitcherInfoRGIId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RealGameInfoRootRGIId" Type="bigint" Nullable="false" />
+    <Property Name="HomeVisitor" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="TeamCD" Type="int" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="PitcherCD" Type="int" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PitchingStats">
+    <Key>
+      <PropertyRef Name="PitchingStatsId" />
+    </Key>
+    <Property Name="PitchingStatsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PitchingStatsHeaderId" Type="bigint" Nullable="false" />
+    <Property Name="TeamCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="PlayerCD" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="Num" Type="nvarchar" MaxLength="4" />
+    <Property Name="EarnedRunAverage" Type="nvarchar" MaxLength="64" />
+    <Property Name="Game" Type="int" />
+    <Property Name="CompleteGame" Type="int" />
+    <Property Name="Finished" Type="int" />
+    <Property Name="Started" Type="int" />
+    <Property Name="Extension" Type="int" />
+    <Property Name="Shutout" Type="int" />
+    <Property Name="NoBaseOnBall" Type="int" />
+    <Property Name="Win" Type="int" />
+    <Property Name="Lost" Type="int" />
+    <Property Name="Save" Type="int" />
+    <Property Name="Hold" Type="int" />
+    <Property Name="HoldPoint" Type="int" />
+    <Property Name="Batmen" Type="int" />
+    <Property Name="InningsPitched" Type="int" />
+    <Property Name="InningsPitched3rd" Type="int" />
+    <Property Name="Hit" Type="int" />
+    <Property Name="HomeRunHitAgainst" Type="int" />
+    <Property Name="Strikeout" Type="int" />
+    <Property Name="BasesOnBall" Type="int" />
+    <Property Name="HitBastsmen" Type="int" />
+    <Property Name="WildPitch" Type="int" />
+    <Property Name="Balk" Type="int" />
+    <Property Name="WinningPercentage" Type="nvarchar" MaxLength="8" />
+    <Property Name="StrikeoutPercentage" Type="nvarchar" MaxLength="64" />
+    <Property Name="PointLost" Type="int" />
+    <Property Name="EarnedRun" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PitchingStats3Years">
+    <Key>
+      <PropertyRef Name="PitchingStats3YearsId" />
+    </Key>
+    <Property Name="PitchingStats3YearsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PitchingStats3YearsTeamsId" Type="bigint" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="NameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="NameL" Type="nvarchar" MaxLength="64" />
+    <Property Name="Pos" Type="smallint" />
+    <Property Name="DataF" Type="smallint" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PitchingStats3YearsInfo">
+    <Key>
+      <PropertyRef Name="PitchingStats3YearsInfoId" />
+    </Key>
+    <Property Name="PitchingStats3YearsInfoId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PitchingStats3YearsId" Type="bigint" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="TeamID" Type="int" Nullable="false" />
+    <Property Name="TeamS" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamES" Type="nvarchar" MaxLength="64" />
+    <Property Name="ERA" Type="nvarchar" MaxLength="8" />
+    <Property Name="G" Type="int" />
+    <Property Name="W" Type="int" />
+    <Property Name="L" Type="int" />
+    <Property Name="S" Type="int" />
+    <Property Name="HLD" Type="int" />
+    <Property Name="HP" Type="int" />
+    <Property Name="IP" Type="int" />
+    <Property Name="IP3" Type="int" />
+    <Property Name="H" Type="int" />
+    <Property Name="HR" Type="int" />
+    <Property Name="SO" Type="int" />
+    <Property Name="BB" Type="int" />
+    <Property Name="HBP" Type="int" />
+    <Property Name="ER" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PitchingStats3YearsTeams">
+    <Key>
+      <PropertyRef Name="PitchingStats3YearsTeamsId" />
+    </Key>
+    <Property Name="PitchingStats3YearsTeamsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamID" Type="int" Nullable="false" />
+    <Property Name="Team" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamS" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamE" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamES" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamInitial" Type="nvarchar" MaxLength="64" />
+    <Property Name="SendDate" Type="int" />
+    <Property Name="PlayerC" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PitchingStats6thGame">
+    <Key>
+      <PropertyRef Name="PitchingStats6thGameId" />
+    </Key>
+    <Property Name="PitchingStats6thGameId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PitchingStats6thGameHeaderId" Type="bigint" Nullable="false" />
+    <Property Name="TeamCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="PlayerCD" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="Num" Type="nvarchar" MaxLength="4" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PitchingStats6thGameHeader">
+    <Key>
+      <PropertyRef Name="PitchingStats6thGameHeaderId" />
+    </Key>
+    <Property Name="PitchingStats6thGameHeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameAssortment" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="4" />
+    <Property Name="HomeTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="VisitorTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="TeamCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PitchingStats6thGameInfo">
+    <Key>
+      <PropertyRef Name="PitchingStats6thGameInfoId" />
+    </Key>
+    <Property Name="PitchingStats6thGameInfoId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PitchingStats6thGameId" Type="bigint" Nullable="false" />
+    <Property Name="TeamsOpponentCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeamsOpponent" Type="nvarchar" MaxLength="64" />
+    <Property Name="Round" Type="int" />
+    <Property Name="GameDate" Type="int" />
+    <Property Name="MoundCD" Type="int" />
+    <Property Name="MoundRankingCD" Type="int" />
+    <Property Name="PitchingResult" Type="int" />
+    <Property Name="Batmen" Type="int" />
+    <Property Name="InningsPitched" Type="int" />
+    <Property Name="InningsPitched3rd" Type="nvarchar" MaxLength="8" />
+    <Property Name="Hit" Type="int" />
+    <Property Name="HomeRunHitAgainst" Type="int" />
+    <Property Name="Strikeout" Type="int" />
+    <Property Name="BasesOnBall" Type="int" />
+    <Property Name="HitBastsmen" Type="int" />
+    <Property Name="WildPitch" Type="int" />
+    <Property Name="Balk" Type="int" />
+    <Property Name="TotalPitch" Type="int" />
+    <Property Name="PointLost" Type="int" />
+    <Property Name="EarnedRun" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PitchingStatsHeader">
+    <Key>
+      <PropertyRef Name="PitchingStatsHeaderId" />
+    </Key>
+    <Property Name="PitchingStatsHeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameAssortment" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="4" />
+    <Property Name="HomeTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="VisitorTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="TeamCD" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PitchingStatsTeamsOpponent">
+    <Key>
+      <PropertyRef Name="PitchingStatsTeamsOpponentId" />
+    </Key>
+    <Property Name="PitchingStatsTeamsOpponentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PitchingStatsTeamsOpponentHeaderId" Type="bigint" Nullable="false" />
+    <Property Name="TeamCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="PlayerCD" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="Num" Type="nvarchar" MaxLength="4" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PitchingStatsTeamsOpponentHeader">
+    <Key>
+      <PropertyRef Name="PitchingStatsTeamsOpponentHeaderId" />
+    </Key>
+    <Property Name="PitchingStatsTeamsOpponentHeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameAssortment" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="4" />
+    <Property Name="HomeTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="VisitorTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="TeamCD" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PitchingStatsTeamsOpponentInfo">
+    <Key>
+      <PropertyRef Name="PitchingStatsTeamsOpponentInfoId" />
+    </Key>
+    <Property Name="PitchingStatsTeamsOpponentInfoId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PitchingStatsTeamsOpponentId" Type="bigint" Nullable="false" />
+    <Property Name="TeamsOpponentCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeamsOpponent" Type="nvarchar" MaxLength="64" />
+    <Property Name="EarnedRunAverage" Type="nvarchar" MaxLength="64" />
+    <Property Name="Game" Type="int" />
+    <Property Name="CompleteGame" Type="int" />
+    <Property Name="Shutout" Type="int" />
+    <Property Name="NoBaseOnBall" Type="int" />
+    <Property Name="Win" Type="int" />
+    <Property Name="Lost" Type="int" />
+    <Property Name="Save" Type="int" />
+    <Property Name="Hold" Type="int" />
+    <Property Name="HoldPoint" Type="int" />
+    <Property Name="Batmen" Type="int" />
+    <Property Name="InningsPitched" Type="int" />
+    <Property Name="InningsPitched3rd" Type="int" />
+    <Property Name="Hit" Type="int" />
+    <Property Name="HomeRunHitAgainst" Type="int" />
+    <Property Name="Strikeout" Type="int" />
+    <Property Name="BasesOnBall" Type="int" />
+    <Property Name="HitBastsmen" Type="int" />
+    <Property Name="WildPitch" Type="int" />
+    <Property Name="Balk" Type="int" />
+    <Property Name="WinningPercentage" Type="nvarchar" MaxLength="8" />
+    <Property Name="StrikeoutPercentage" Type="nvarchar" MaxLength="64" />
+    <Property Name="PointLost" Type="int" />
+    <Property Name="EarnedRun" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PlayerGL">
+    <Key>
+      <PropertyRef Name="PlayerGLId" />
+    </Key>
+    <Property Name="PlayerGLId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HomerunInfoGLId" Type="bigint" Nullable="false" />
+    <Property Name="No" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Num" Type="nvarchar" MaxLength="8" />
+    <Property Name="NameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="NameL" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamID" Type="int" />
+    <Property Name="TeamS" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamES" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PlayerInfoGO">
+    <Key>
+      <PropertyRef Name="PlayerInfoGOId" />
+    </Key>
+    <Property Name="PlayerInfoGOId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamInfoGOId" Type="bigint" Nullable="false" />
+    <Property Name="BatNo" Type="smallint" Nullable="false" />
+    <Property Name="Position" Type="smallint" Nullable="false" />
+    <Property Name="PlayerID" Type="int" Nullable="false" />
+    <Property Name="BackNumber" Type="nvarchar" MaxLength="8" />
+    <Property Name="PlayerNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="PlayerNameL" Type="nvarchar" MaxLength="64" />
+    <Property Name="PitchingArm" Type="smallint" />
+    <Property Name="BattingType" Type="smallint" />
+    <Property Name="Avg" Type="nvarchar" MaxLength="8" />
+    <Property Name="Hr" Type="int" />
+    <Property Name="Rbi" Type="int" />
+    <Property Name="Condition" Type="smallint" />
+    <Property Name="TeamID" Type="int" />
+    <Property Name="TeamS" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamES" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PlayerInfoMST">
+    <Key>
+      <PropertyRef Name="PlayerInfoMSTId" />
+    </Key>
+    <Property Name="PlayerInfoMSTId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlayerInfoMSTHeaderId" Type="bigint" Nullable="false" />
+    <Property Name="PlayerCD" Type="int" Nullable="false" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="Player" Type="nvarchar" MaxLength="64" />
+    <Property Name="UniformNO" Type="nvarchar" MaxLength="4" />
+    <Property Name="PitchField" Type="int" />
+    <Property Name="PitcherSide" Type="nvarchar" MaxLength="4" />
+    <Property Name="BatterSide" Type="nvarchar" MaxLength="4" />
+    <Property Name="SmartStart" Type="int" />
+    <Property Name="SmartEnd" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PlayerInfoMSTHeader">
+    <Key>
+      <PropertyRef Name="PlayerInfoMSTHeaderId" />
+    </Key>
+    <Property Name="PlayerInfoMSTHeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamCD" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PlayerInfoST">
+    <Key>
+      <PropertyRef Name="PlayerInfoSTId" />
+    </Key>
+    <Property Name="PlayerInfoSTId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamInfoSTId" Type="bigint" Nullable="false" />
+    <Property Name="StartBatNo" Type="smallint" Nullable="false" />
+    <Property Name="StartPosition" Type="smallint" Nullable="false" />
+    <Property Name="PositionType" Type="smallint" Nullable="false" />
+    <Property Name="PlayerID" Type="int" Nullable="false" />
+    <Property Name="BackNumber" Type="nvarchar" MaxLength="8" />
+    <Property Name="PlayerNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="PlayerNameL" Type="nvarchar" MaxLength="64" />
+    <Property Name="PitchingArm" Type="smallint" />
+    <Property Name="BattingType" Type="smallint" />
+    <Property Name="GameF" Type="smallint" />
+    <Property Name="Avg" Type="nvarchar" MaxLength="8" />
+    <Property Name="Hr" Type="int" />
+    <Property Name="Rbi" Type="int" />
+    <Property Name="Era" Type="nvarchar" MaxLength="8" />
+    <Property Name="TeamID" Type="int" />
+    <Property Name="TeamS" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamES" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RealGameInfoRootRGI">
+    <Key>
+      <PropertyRef Name="RealGameInfoRootRGIId" />
+    </Key>
+    <Property Name="RealGameInfoRootRGIId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FixedDistribute" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="ControlNO" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="Created" Type="nvarchar" MaxLength="16" />
+    <Property Name="GameAssortment" Type="int" />
+    <Property Name="Season" Type="int" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="8" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ReliefInfoGL">
+    <Key>
+      <PropertyRef Name="ReliefInfoGLId" />
+    </Key>
+    <Property Name="ReliefInfoGLId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameLiveGLId" Type="bigint" Nullable="false" />
+    <Property Name="HV" Type="smallint" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RunBattedInBest10">
+    <Key>
+      <PropertyRef Name="RunBattedInBest10Id" />
+    </Key>
+    <Property Name="RunBattedInBest10Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RunBattedInBest10HeaderId" Type="bigint" Nullable="false" />
+    <Property Name="Ranking" Type="int" Nullable="false" />
+    <Property Name="PlayerCD" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="Num" Type="nvarchar" MaxLength="4" />
+    <Property Name="TeamCD" Type="int" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamInitial" Type="nvarchar" MaxLength="8" />
+    <Property Name="RunsBattingIn" Type="int" />
+    <Property Name="AtBat" Type="int" />
+    <Property Name="BattingAverage" Type="nvarchar" MaxLength="8" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RunBattedInBest10Header">
+    <Key>
+      <PropertyRef Name="RunBattedInBest10HeaderId" />
+    </Key>
+    <Property Name="RunBattedInBest10HeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameAssortment" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="4" />
+    <Property Name="HomeTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="VisitorTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="League" Type="nvarchar" MaxLength="4" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RunInfoRGI">
+    <Key>
+      <PropertyRef Name="RunInfoRGIId" />
+    </Key>
+    <Property Name="RunInfoRGIId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScoreRGIId" Type="bigint" Nullable="false" />
+    <Property Name="Inning" Type="int" Nullable="false" />
+    <Property Name="Run" Type="int" />
+    <Property Name="NothingInning" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SaveBest10">
+    <Key>
+      <PropertyRef Name="SaveBest10Id" />
+    </Key>
+    <Property Name="SaveBest10Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaveBest10HeaderId" Type="bigint" Nullable="false" />
+    <Property Name="Ranking" Type="int" Nullable="false" />
+    <Property Name="PlayerCD" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="Num" Type="nvarchar" MaxLength="4" />
+    <Property Name="TeamCD" Type="int" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamInitial" Type="nvarchar" MaxLength="8" />
+    <Property Name="Save" Type="int" />
+    <Property Name="GamePitched" Type="int" />
+    <Property Name="EarnedRunAverage" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SaveBest10Header">
+    <Key>
+      <PropertyRef Name="SaveBest10HeaderId" />
+    </Key>
+    <Property Name="SaveBest10HeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameAssortment" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="4" />
+    <Property Name="HomeTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="VisitorTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="League" Type="nvarchar" MaxLength="4" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SavePitcherGL">
+    <Key>
+      <PropertyRef Name="SavePitcherGLId" />
+    </Key>
+    <Property Name="SavePitcherGLId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameEndInfoGLId" Type="bigint" Nullable="false" />
+    <Property Name="PlayerID" Type="int" Nullable="false" />
+    <Property Name="BackNumber" Type="nvarchar" MaxLength="8" />
+    <Property Name="PlayerNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="PlayerNameL" Type="nvarchar" MaxLength="64" />
+    <Property Name="Games" Type="int" />
+    <Property Name="Win" Type="int" />
+    <Property Name="Lose" Type="int" />
+    <Property Name="Save" Type="int" />
+    <Property Name="TeamID" Type="int" />
+    <Property Name="TeamS" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamES" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SavingPitcherRGI">
+    <Key>
+      <PropertyRef Name="SavingPitcherRGIId" />
+    </Key>
+    <Property Name="SavingPitcherRGIId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameResultInfoRGIId" Type="bigint" Nullable="false" />
+    <Property Name="PlayerCD" Type="int" Nullable="false" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="TotalWon" Type="int" />
+    <Property Name="TotalLost" Type="int" />
+    <Property Name="TotalSave" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ScoreGL">
+    <Key>
+      <PropertyRef Name="ScoreGLId" />
+    </Key>
+    <Property Name="ScoreGLId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamGLId" Type="bigint" Nullable="false" />
+    <Property Name="Inn" Type="int" Nullable="false" />
+    <Property Name="TB" Type="smallint" Nullable="false" />
+    <Property Name="R" Type="nvarchar" MaxLength="8" />
+    <Property Name="H" Type="int" />
+    <Property Name="BB" Type="int" />
+    <Property Name="ColCount" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ScoreGTE">
+    <Key>
+      <PropertyRef Name="ScoreGTEId" />
+    </Key>
+    <Property Name="ScoreGTEId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamInfoGTEId" Type="bigint" Nullable="false" />
+    <Property Name="Score" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="Inn" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ScoreGTS">
+    <Key>
+      <PropertyRef Name="ScoreGTSId" />
+    </Key>
+    <Property Name="ScoreGTSId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamInfoGTSId" Type="bigint" Nullable="false" />
+    <Property Name="Score" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="Inn" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ScoreInfoGL">
+    <Key>
+      <PropertyRef Name="ScoreInfoGLId" />
+    </Key>
+    <Property Name="ScoreInfoGLId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameLiveGLId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ScoreRGI">
+    <Key>
+      <PropertyRef Name="ScoreRGIId" />
+    </Key>
+    <Property Name="ScoreRGIId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RealGameInfoRootRGIId" Type="bigint" Nullable="false" />
+    <Property Name="HomeVisitor" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="TeamCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="TotalScore" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="SeasonScheduleSS">
+    <Key>
+      <PropertyRef Name="SeasonScheduleSSId" />
+    </Key>
+    <Property Name="SeasonScheduleSSId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameTypeID" Type="int" Nullable="false" />
+    <Property Name="GameTypeName" Type="nvarchar" MaxLength="64" />
+    <Property Name="TotalGameC" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StartingGameST">
+    <Key>
+      <PropertyRef Name="StartingGameSTId" />
+    </Key>
+    <Property Name="StartingGameSTId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameID" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TeamGL">
+    <Key>
+      <PropertyRef Name="TeamGLId" />
+    </Key>
+    <Property Name="TeamGLId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScoreInfoGLId" Type="bigint" Nullable="false" />
+    <Property Name="HV" Type="smallint" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" />
+    <Property Name="NameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="NameE" Type="nvarchar" MaxLength="64" />
+    <Property Name="NameES" Type="nvarchar" MaxLength="64" />
+    <Property Name="NameInitial" Type="nvarchar" MaxLength="64" />
+    <Property Name="R" Type="int" />
+    <Property Name="PA" Type="int" />
+    <Property Name="H" Type="int" />
+    <Property Name="BB" Type="int" />
+    <Property Name="SB" Type="int" />
+    <Property Name="E" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TeamIconNpb">
+    <Key>
+      <PropertyRef Name="TeamCD" />
+    </Key>
+    <Property Name="TeamCD" Type="int" Nullable="false" />
+    <Property Name="TeamIcon" Type="varchar" MaxLength="255" />
+    <Property Name="SortOrd" Type="int" Nullable="false" />
+    <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TeamInfoCO">
+    <Key>
+      <PropertyRef Name="TeamInfoCOId" />
+    </Key>
+    <Property Name="TeamInfoCOId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameInfoCOId" Type="bigint" Nullable="false" />
+    <Property Name="HomeVisitor" Type="smallint" Nullable="false" />
+    <Property Name="TeamID" Type="int" Nullable="false" />
+    <Property Name="TeamName" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamNameE" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamNameES" Type="nvarchar" MaxLength="64" />
+    <Property Name="TotalScore" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TeamInfoGO">
+    <Key>
+      <PropertyRef Name="TeamInfoGOId" />
+    </Key>
+    <Property Name="TeamInfoGOId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameOrderGOId" Type="bigint" Nullable="false" />
+    <Property Name="HV" Type="smallint" Nullable="false" />
+    <Property Name="TeamID" Type="int" Nullable="false" />
+    <Property Name="TeamName" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamNameE" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamNameES" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamNameInitial" Type="nvarchar" MaxLength="8" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TeamInfoGTE">
+    <Key>
+      <PropertyRef Name="TeamInfoGTEId" />
+    </Key>
+    <Property Name="TeamInfoGTEId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameInfoGTEId" Type="bigint" Nullable="false" />
+    <Property Name="HV" Type="smallint" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="NameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="NameES" Type="nvarchar" MaxLength="64" />
+    <Property Name="R" Type="int" />
+    <Property Name="H" Type="int" />
+    <Property Name="E" Type="int" />
+    <Property Name="Relief" Type="nvarchar" MaxLength="255" />
+    <Property Name="Homerun" Type="nvarchar" MaxLength="1024" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TeamInfoGTS">
+    <Key>
+      <PropertyRef Name="TeamInfoGTSId" />
+    </Key>
+    <Property Name="TeamInfoGTSId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameInfoGTSId" Type="bigint" Nullable="false" />
+    <Property Name="HV" Type="smallint" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="NameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="NameES" Type="nvarchar" MaxLength="64" />
+    <Property Name="R" Type="int" />
+    <Property Name="H" Type="int" />
+    <Property Name="E" Type="int" />
+    <Property Name="Relief" Type="nvarchar" MaxLength="255" />
+    <Property Name="Homerun" Type="nvarchar" MaxLength="1024" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TeamInfoMST">
+    <Key>
+      <PropertyRef Name="TeamInfoMSTId" />
+    </Key>
+    <Property Name="TeamInfoMSTId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamCD" Type="int" Nullable="false" />
+    <Property Name="LocalID" Type="int" />
+    <Property Name="LocalName" Type="nvarchar" MaxLength="64" />
+    <Property Name="DistrictID" Type="int" />
+    <Property Name="DistrictName" Type="nvarchar" MaxLength="64" />
+    <Property Name="LeagueID" Type="int" />
+    <Property Name="League" Type="nvarchar" MaxLength="64" />
+    <Property Name="LeagueK" Type="nvarchar" MaxLength="64" />
+    <Property Name="ShortNameLeague" Type="nvarchar" MaxLength="64" />
+    <Property Name="LeagueE" Type="nvarchar" MaxLength="64" />
+    <Property Name="LeagueES" Type="nvarchar" MaxLength="64" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="Team" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamK" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamE" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamES" Type="nvarchar" MaxLength="64" />
+    <Property Name="OnceNameTeam" Type="nvarchar" MaxLength="8" />
+    <Property Name="SmartStart" Type="int" />
+    <Property Name="SmartEnd" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TeamInfoPSP">
+    <Key>
+      <PropertyRef Name="TeamInfoPSPId" />
+    </Key>
+    <Property Name="TeamInfoPSPId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameInfoPSPId" Type="bigint" Nullable="false" />
+    <Property Name="HV" Type="smallint" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" />
+    <Property Name="NameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="Initial" Type="nvarchar" MaxLength="64" />
+    <Property Name="MainID" Type="int" />
+    <Property Name="MainNameE" Type="nvarchar" MaxLength="64" />
+    <Property Name="MainNameES" Type="nvarchar" MaxLength="64" />
+    <Property Name="PredictionF" Type="smallint" />
+    <Property Name="PitcherID" Type="int" />
+    <Property Name="PitcherName" Type="nvarchar" MaxLength="64" />
+    <Property Name="PitcherNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="PitcherNum" Type="nvarchar" MaxLength="8" />
+    <Property Name="PitcherArm" Type="smallint" />
+    <Property Name="IntervalDate" Type="int" />
+    <Property Name="GamePitched" Type="int" />
+    <Property Name="GameStarted" Type="int" />
+    <Property Name="Wins" Type="int" />
+    <Property Name="Losses" Type="int" />
+    <Property Name="Saves" Type="int" />
+    <Property Name="Era" Type="nvarchar" MaxLength="8" />
+    <Property Name="VsGamePitched" Type="int" />
+    <Property Name="VsGameStarted" Type="int" />
+    <Property Name="VsWins" Type="int" />
+    <Property Name="VsLosses" Type="int" />
+    <Property Name="VsSaves" Type="int" />
+    <Property Name="VsEra" Type="nvarchar" MaxLength="8" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TeamInfoST">
+    <Key>
+      <PropertyRef Name="TeamInfoSTId" />
+    </Key>
+    <Property Name="TeamInfoSTId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StartingGameSTId" Type="bigint" Nullable="false" />
+    <Property Name="HV" Type="smallint" Nullable="false" />
+    <Property Name="TeamID" Type="int" Nullable="false" />
+    <Property Name="TeamName" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamNameE" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamNameES" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamNameInitial" Type="nvarchar" MaxLength="8" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TeamStats10thGame">
+    <Key>
+      <PropertyRef Name="TeamStats10thGameId" />
+    </Key>
+    <Property Name="TeamStats10thGameId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamStats10thGameHeaderId" Type="bigint" Nullable="false" />
+    <Property Name="GameDate" Type="int" Nullable="false" />
+    <Property Name="TeamsOpponentCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeamsOpponent" Type="nvarchar" MaxLength="64" />
+    <Property Name="Round" Type="int" />
+    <Property Name="StadiumCD" Type="int" />
+    <Property Name="Stadium" Type="nvarchar" MaxLength="64" />
+    <Property Name="Score" Type="nvarchar" MaxLength="8" />
+    <Property Name="GameResult" Type="nvarchar" MaxLength="4" />
+    <Property Name="GamesStartedCD" Type="int" />
+    <Property Name="ShortNameGamesStart" Type="nvarchar" MaxLength="64" />
+    <Property Name="ResponsibilityPitcherCD" Type="nvarchar" MaxLength="64" />
+    <Property Name="ShortNameResponsibilityPitcher" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TeamStats10thGameHeader">
+    <Key>
+      <PropertyRef Name="TeamStats10thGameHeaderId" />
+    </Key>
+    <Property Name="TeamStats10thGameHeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameAssortment" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="4" />
+    <Property Name="HomeTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="VisitorTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="TeamCD" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TeamStatsCardDifference">
+    <Key>
+      <PropertyRef Name="TeamStatsCardDifferenceId" />
+    </Key>
+    <Property Name="TeamStatsCardDifferenceId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamStatsCardDifferenceHeaderId" Type="bigint" Nullable="false" />
+    <Property Name="TeamCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TeamStatsCardDifferenceHeader">
+    <Key>
+      <PropertyRef Name="TeamStatsCardDifferenceHeaderId" />
+    </Key>
+    <Property Name="TeamStatsCardDifferenceHeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameAssortment" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="4" />
+    <Property Name="HomeTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="VisitorTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="League" Type="nvarchar" MaxLength="4" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TeamStatsCardDifferenceInfo">
+    <Key>
+      <PropertyRef Name="TeamStatsCardDifferenceInfoId" />
+    </Key>
+    <Property Name="TeamStatsCardDifferenceInfoId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamStatsCardDifferenceId" Type="bigint" Nullable="false" />
+    <Property Name="AnotherLeagueF" Type="int" Nullable="false" />
+    <Property Name="TeamsOpponentCD" Type="int" Nullable="false" />
+    <Property Name="ShortNameTeamsOpponent" Type="nvarchar" MaxLength="64" />
+    <Property Name="Win" Type="int" />
+    <Property Name="Lose" Type="int" />
+    <Property Name="Draw" Type="int" />
+    <Property Name="Game" Type="int" />
+    <Property Name="Run" Type="int" />
+    <Property Name="PointLost" Type="int" />
+    <Property Name="Hit" Type="int" />
+    <Property Name="Homerun" Type="int" />
+    <Property Name="StrikeOut" Type="int" />
+    <Property Name="BaseOnBall" Type="int" />
+    <Property Name="HitByPitch" Type="int" />
+    <Property Name="DoublePlay" Type="int" />
+    <Property Name="StolenBase" Type="int" />
+    <Property Name="Error" Type="int" />
+    <Property Name="BattingAverage" Type="nvarchar" MaxLength="8" />
+    <Property Name="EarnedRunAverage" Type="nvarchar" MaxLength="8" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TextGTE">
+    <Key>
+      <PropertyRef Name="TextGTEId" />
+    </Key>
+    <Property Name="TextGTEId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BatGTEId" Type="bigint" Nullable="false" />
+    <Property Name="Text" Type="nvarchar" MaxLength="512" />
+    <Property Name="No" Type="int" />
+    <Property Name="Seq" Type="int" />
+    <Property Name="F" Type="smallint" />
+    <Property Name="Sec" Type="smallint" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TextGTS">
+    <Key>
+      <PropertyRef Name="TextGTSId" />
+    </Key>
+    <Property Name="TextGTSId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BatGTSId" Type="bigint" Nullable="false" />
+    <Property Name="Text" Type="nvarchar" MaxLength="512" />
+    <Property Name="No" Type="int" />
+    <Property Name="Seq" Type="int" />
+    <Property Name="F" Type="smallint" />
+    <Property Name="Sec" Type="smallint" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TextInfoGTE">
+    <Key>
+      <PropertyRef Name="TextInfoGTEId" />
+    </Key>
+    <Property Name="TextInfoGTEId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameInfoGTEId" Type="bigint" Nullable="false" />
+    <Property Name="ID" Type="smallint" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TextInfoGTS">
+    <Key>
+      <PropertyRef Name="TextInfoGTSId" />
+    </Key>
+    <Property Name="TextInfoGTSId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameInfoGTSId" Type="bigint" Nullable="false" />
+    <Property Name="ID" Type="smallint" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UnpireInfoST">
+    <Key>
+      <PropertyRef Name="UnpireInfoSTId" />
+    </Key>
+    <Property Name="UnpireInfoSTId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StartingGameSTId" Type="bigint" Nullable="false" />
+    <Property Name="Chief" Type="nvarchar" MaxLength="64" />
+    <Property Name="First" Type="nvarchar" MaxLength="64" />
+    <Property Name="Second" Type="nvarchar" MaxLength="64" />
+    <Property Name="Third" Type="nvarchar" MaxLength="64" />
+    <Property Name="Left" Type="nvarchar" MaxLength="64" />
+    <Property Name="Right" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="VsPitcherGL">
+    <Key>
+      <PropertyRef Name="VsPitcherGLId" />
+    </Key>
+    <Property Name="VsPitcherGLId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DetailsGLId" Type="bigint" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Num" Type="nvarchar" MaxLength="8" />
+    <Property Name="NameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="NameL" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="WinBest10">
+    <Key>
+      <PropertyRef Name="WinBest10Id" />
+    </Key>
+    <Property Name="WinBest10Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WinBest10HeaderId" Type="bigint" Nullable="false" />
+    <Property Name="Ranking" Type="int" Nullable="false" />
+    <Property Name="PlayerCD" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="64" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="Num" Type="nvarchar" MaxLength="4" />
+    <Property Name="TeamCD" Type="int" />
+    <Property Name="ShortNameTeam" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamInitial" Type="nvarchar" MaxLength="8" />
+    <Property Name="Win" Type="int" />
+    <Property Name="GamePitched" Type="int" />
+    <Property Name="EarnedRunAverage" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="WinBest10Header">
+    <Key>
+      <PropertyRef Name="WinBest10HeaderId" />
+    </Key>
+    <Property Name="WinBest10HeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="GameAssortment" Type="int" Nullable="false" />
+    <Property Name="Season" Type="nvarchar" MaxLength="4" />
+    <Property Name="HomeTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="VisitorTeam" Type="nvarchar" MaxLength="4" />
+    <Property Name="Matchday" Type="int" />
+    <Property Name="GameCD" Type="nvarchar" MaxLength="4" />
+    <Property Name="League" Type="nvarchar" MaxLength="4" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="WinningPitcherRGI">
+    <Key>
+      <PropertyRef Name="WinningPitcherRGIId" />
+    </Key>
+    <Property Name="WinningPitcherRGIId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameResultInfoRGIId" Type="bigint" Nullable="false" />
+    <Property Name="PlayerCD" Type="int" Nullable="false" />
+    <Property Name="ShortNamePlayer" Type="nvarchar" MaxLength="64" />
+    <Property Name="TotalWon" Type="int" />
+    <Property Name="TotalLost" Type="int" />
+    <Property Name="TotalSave" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="WinPitcherGL">
+    <Key>
+      <PropertyRef Name="WinPitcherGLId" />
+    </Key>
+    <Property Name="WinPitcherGLId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameEndInfoGLId" Type="bigint" Nullable="false" />
+    <Property Name="PlayerID" Type="int" Nullable="false" />
+    <Property Name="BackNumber" Type="nvarchar" MaxLength="8" />
+    <Property Name="PlayerNameS" Type="nvarchar" MaxLength="64" />
+    <Property Name="PlayerNameL" Type="nvarchar" MaxLength="64" />
+    <Property Name="Games" Type="int" />
+    <Property Name="Win" Type="int" />
+    <Property Name="Lose" Type="int" />
+    <Property Name="Save" Type="int" />
+    <Property Name="TeamID" Type="int" />
+    <Property Name="TeamS" Type="nvarchar" MaxLength="64" />
+    <Property Name="TeamES" Type="nvarchar" MaxLength="64" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="NpbModelStoreContainer">
+    <EntitySet Name="BatGTE" EntityType="Self.BatGTE" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="BatGTS" EntityType="Self.BatGTS" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="BattingAverageBest10" EntityType="Self.BattingAverageBest10" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="BattingAverageBest10Header" EntityType="Self.BattingAverageBest10Header" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="CatcherGL" EntityType="Self.CatcherGL" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="CommentGameCO" EntityType="Self.CommentGameCO" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="DefenceLocationMST" EntityType="Self.DefenceLocationMST" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="DetailsGL" EntityType="Self.DetailsGL" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="Directory" EntityType="Self.Directory" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="DSMEPInfoCO" EntityType="Self.DSMEPInfoCO" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="EarnedRunAverageBest10" EntityType="Self.EarnedRunAverageBest10" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="EarnedRunAverageBest10Header" EntityType="Self.EarnedRunAverageBest10Header" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="ExhibitionGameStats" EntityType="Self.ExhibitionGameStats" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="ExhibitionGameStatsHeader" EntityType="Self.ExhibitionGameStatsHeader" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="GameClassMST" EntityType="Self.GameClassMST" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="GameEndInfoGL" EntityType="Self.GameEndInfoGL" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="GameEndInfoGTE" EntityType="Self.GameEndInfoGTE" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="GameEndInfoGTS" EntityType="Self.GameEndInfoGTS" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="GameInfoCO" EntityType="Self.GameInfoCO" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="GameInfoGL" EntityType="Self.GameInfoGL" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="GameInfoGTE" EntityType="Self.GameInfoGTE" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="GameInfoGTS" EntityType="Self.GameInfoGTS" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="GameInfoPSP" EntityType="Self.GameInfoPSP" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="GameInfoRGI" EntityType="Self.GameInfoRGI" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="GameInfoSS" EntityType="Self.GameInfoSS" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="GameInfoSSN" EntityType="Self.GameInfoSSN" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="GameLiveGL" EntityType="Self.GameLiveGL" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="GameOrderGO" EntityType="Self.GameOrderGO" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="GameResultInfoRGI" EntityType="Self.GameResultInfoRGI" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="GWRBIPlayerGL" EntityType="Self.GWRBIPlayerGL" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="GWRBIRGI" EntityType="Self.GWRBIRGI" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HittingStats" EntityType="Self.HittingStats" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HittingStats3Years" EntityType="Self.HittingStats3Years" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HittingStats3YearsInfo" EntityType="Self.HittingStats3YearsInfo" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HittingStats3YearsTeams" EntityType="Self.HittingStats3YearsTeams" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HittingStats5thGame" EntityType="Self.HittingStats5thGame" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HittingStats5thGameHeader" EntityType="Self.HittingStats5thGameHeader" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HittingStats6thGame" EntityType="Self.HittingStats6thGame" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HittingStats6thGameHeader" EntityType="Self.HittingStats6thGameHeader" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HittingStats6thGameInfo" EntityType="Self.HittingStats6thGameInfo" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HittingStatsHeader" EntityType="Self.HittingStatsHeader" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HittingStatsScoringPosition" EntityType="Self.HittingStatsScoringPosition" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HittingStatsScoringPositionHeader" EntityType="Self.HittingStatsScoringPositionHeader" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HittingStatsTeamDifference" EntityType="Self.HittingStatsTeamDifference" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HittingStatsTeamDifferenceHeader" EntityType="Self.HittingStatsTeamDifferenceHeader" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HittingStatsTeamDifferenceInfo" EntityType="Self.HittingStatsTeamDifferenceInfo" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HomerunBest10" EntityType="Self.HomerunBest10" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HomerunBest10Header" EntityType="Self.HomerunBest10Header" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HomerunInfoGL" EntityType="Self.HomerunInfoGL" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="HomerunInfoRGI" EntityType="Self.HomerunInfoRGI" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="InningScoreInfoCO" EntityType="Self.InningScoreInfoCO" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="LosePitcherGL" EntityType="Self.LosePitcherGL" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="LosingPitcherRGI" EntityType="Self.LosingPitcherRGI" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="ManagerInfoST" EntityType="Self.ManagerInfoST" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="MasterTransfersNpb" EntityType="Self.MasterTransfersNpb" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="MonthGroupSS" EntityType="Self.MonthGroupSS" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="MonthGroupSSN" EntityType="Self.MonthGroupSSN" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="NoteInfoGL" EntityType="Self.NoteInfoGL" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="OfficialStatsHeaderNpb" EntityType="Self.OfficialStatsHeaderNpb" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="OfficialStatsNpb" EntityType="Self.OfficialStatsNpb" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PersonInfo" EntityType="Self.PersonInfo" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PitcherGL" EntityType="Self.PitcherGL" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PitcherInfoRGI" EntityType="Self.PitcherInfoRGI" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PitchingStats" EntityType="Self.PitchingStats" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PitchingStats3Years" EntityType="Self.PitchingStats3Years" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PitchingStats3YearsInfo" EntityType="Self.PitchingStats3YearsInfo" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PitchingStats3YearsTeams" EntityType="Self.PitchingStats3YearsTeams" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PitchingStats6thGame" EntityType="Self.PitchingStats6thGame" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PitchingStats6thGameHeader" EntityType="Self.PitchingStats6thGameHeader" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PitchingStats6thGameInfo" EntityType="Self.PitchingStats6thGameInfo" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PitchingStatsHeader" EntityType="Self.PitchingStatsHeader" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PitchingStatsTeamsOpponent" EntityType="Self.PitchingStatsTeamsOpponent" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PitchingStatsTeamsOpponentHeader" EntityType="Self.PitchingStatsTeamsOpponentHeader" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PitchingStatsTeamsOpponentInfo" EntityType="Self.PitchingStatsTeamsOpponentInfo" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PlayerGL" EntityType="Self.PlayerGL" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PlayerInfoGO" EntityType="Self.PlayerInfoGO" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PlayerInfoMST" EntityType="Self.PlayerInfoMST" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PlayerInfoMSTHeader" EntityType="Self.PlayerInfoMSTHeader" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="PlayerInfoST" EntityType="Self.PlayerInfoST" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="RealGameInfoRootRGI" EntityType="Self.RealGameInfoRootRGI" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="ReliefInfoGL" EntityType="Self.ReliefInfoGL" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="RunBattedInBest10" EntityType="Self.RunBattedInBest10" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="RunBattedInBest10Header" EntityType="Self.RunBattedInBest10Header" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="RunInfoRGI" EntityType="Self.RunInfoRGI" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="SaveBest10" EntityType="Self.SaveBest10" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="SaveBest10Header" EntityType="Self.SaveBest10Header" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="SavePitcherGL" EntityType="Self.SavePitcherGL" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="SavingPitcherRGI" EntityType="Self.SavingPitcherRGI" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="ScoreGL" EntityType="Self.ScoreGL" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="ScoreGTE" EntityType="Self.ScoreGTE" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="ScoreGTS" EntityType="Self.ScoreGTS" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="ScoreInfoGL" EntityType="Self.ScoreInfoGL" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="ScoreRGI" EntityType="Self.ScoreRGI" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="SeasonScheduleSS" EntityType="Self.SeasonScheduleSS" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="StartingGameST" EntityType="Self.StartingGameST" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="TeamGL" EntityType="Self.TeamGL" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="TeamIconNpb" EntityType="Self.TeamIconNpb" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="TeamInfoCO" EntityType="Self.TeamInfoCO" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="TeamInfoGO" EntityType="Self.TeamInfoGO" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="TeamInfoGTE" EntityType="Self.TeamInfoGTE" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="TeamInfoGTS" EntityType="Self.TeamInfoGTS" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="TeamInfoMST" EntityType="Self.TeamInfoMST" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="TeamInfoPSP" EntityType="Self.TeamInfoPSP" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="TeamInfoST" EntityType="Self.TeamInfoST" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="TeamStats10thGame" EntityType="Self.TeamStats10thGame" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="TeamStats10thGameHeader" EntityType="Self.TeamStats10thGameHeader" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="TeamStatsCardDifference" EntityType="Self.TeamStatsCardDifference" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="TeamStatsCardDifferenceHeader" EntityType="Self.TeamStatsCardDifferenceHeader" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="TeamStatsCardDifferenceInfo" EntityType="Self.TeamStatsCardDifferenceInfo" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="TextGTE" EntityType="Self.TextGTE" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="TextGTS" EntityType="Self.TextGTS" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="TextInfoGTE" EntityType="Self.TextInfoGTE" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="TextInfoGTS" EntityType="Self.TextInfoGTS" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="UnpireInfoST" EntityType="Self.UnpireInfoST" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="VsPitcherGL" EntityType="Self.VsPitcherGL" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="WinBest10" EntityType="Self.WinBest10" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="WinBest10Header" EntityType="Self.WinBest10Header" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="WinningPitcherRGI" EntityType="Self.WinningPitcherRGI" Schema="Npb" store:Type="Tables" />
+    <EntitySet Name="WinPitcherGL" EntityType="Self.WinPitcherGL" Schema="Npb" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

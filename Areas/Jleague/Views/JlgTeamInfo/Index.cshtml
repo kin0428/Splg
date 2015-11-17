@@ -1,0 +1,73 @@
+﻿@{
+    // Namespace	: Splg.Areas.Jleague
+    // Controller   : JlgTeamInfo
+    // FileName		: Index.cshtml
+    // Developer	: Nguyen Ho Long Hai
+    // Update date  : 2015-04-02
+    // Html No      : 10-2-5 && 10_3_5
+    int jType = Convert.ToInt32(ViewBag.JType);
+    string title = string.Empty;
+    string jleague = string.Empty;
+    switch (jType)
+    {
+        case 1:
+            title = "J1";
+            jleague = "j1";
+            ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J1_GI;
+            ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J1_GI;
+            break;
+        case 2:
+            title = "J2";
+            jleague = "j2";
+            ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J2_GI;
+            ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J2_GI;
+            break;
+    }
+
+    ViewBag.Title = string.Format("{0}チーム - Jリーグ", title);
+    Layout = "~/Views/Shared/_JlgContentsLayout.cshtml";
+}
+@using Splg.Areas.Jleague;
+@using Splg.Areas.Jleague.Models.ViewModel.InfosModel;
+@model IEnumerable<Splg.Areas.Jleague.Models.ViewModel.JlgTeamInfoViewModel>
+    <div class="jblock_01 clear">
+        <h2 class="jtitle">チーム情報</h2>
+        <ul class="jlist">
+            @if (Model != null && Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+                    var teamName = item.TeamName;
+                    var teamIcon = item.TeamIcon;
+                    <li>
+                        <div><img class="resimg" src="@Url.Content(@teamIcon)" alt="@teamName" /></div>
+                        <dl>
+                            <dt>@teamName</dt>
+                            <dd>
+                                <a href="/jleague/@jleague/teams/@item.TeamID/">チームトップ</a>|<a href="/jleague/@jleague/teams/@item.TeamID/schedule">日程・結果</a><br>
+                                <a href="/jleague/@jleague/teams/@item.TeamID/stats/">対戦成績</a>|<a href="/jleague/@jleague/teams/@item.TeamID/memberlist/">選手</a>|<a href="/jleague/@jleague/teams/@item.TeamID/news">ニュース</a>
+                            </dd>
+                        </dl>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+    <!--Right Content-->
+    @section JlgPage{
+
+        @*Html.Action("ShowJlgRightRecentNews", "JlgRightRecentNews", new { area = "Jleague" })*@
+
+        @if (ViewBag.JleagueMenu == 2)
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_J1, jType = 1 })
+        }
+        else if (ViewBag.JleagueMenu == 3)
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_J2, jType = 2 })
+        }
+        else
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_NABISCO, jType = ViewBag.JType })
+        }
+    }

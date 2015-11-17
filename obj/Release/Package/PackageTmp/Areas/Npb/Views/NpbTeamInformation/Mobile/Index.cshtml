@@ -1,0 +1,55 @@
+﻿@{
+    //Author : Huynh
+    //FileName : Mobile Index.cshtml (8-5)
+}
+
+@model IEnumerable<Splg.Areas.Npb.Models.ViewModel.NpbTeamInfoViewModel>
+@using Splg.Areas.Npb;
+@{
+    ViewBag.Title = "チーム情報";
+    ViewBag.Name = Constants.NPBTEAMINFO;
+    Layout = "~/Views/Shared/Mobile/_NpbLayout.cshtml";
+}
+@if (Model.Any())
+{
+    var lstSeLeague = Model.Where(x => x.TeamInfoMST.LeagueID == (int)NpbConstants.GameAssortment.Se);
+    var lstPaLeague = Model.Where(x => x.TeamInfoMST.LeagueID == (int)NpbConstants.GameAssortment.Pa);
+    <section class="block_2 clear">
+        @if (lstSeLeague.Any())
+        {
+        <h3 class="subtitle3">チーム情報　セリーグ</h3>
+        <ul class="team-list">
+            @foreach (var item in lstSeLeague.OrderBy(x => x.SortOrd))
+            {
+                <li>
+                    <p>
+                        <a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamInfoMST.TeamCD }, null)">
+                            <img src="@Url.Content(@item.TeamIcon)" alt=@item.TeamInfoMST.Team />
+                        </a>
+                    </p>
+                    <div>@Html.ActionLink(@item.TeamInfoMST.Team, "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamInfoMST.TeamCD }, null)</div>
+                </li>
+            }
+        </ul>
+        }
+    </section>
+    <section class="block_2 clear">
+        @if (lstPaLeague.Any())
+        {
+        <h3 class="subtitle3">チーム情報　パリーグ</h3>
+        <ul class="team-list">
+            @foreach (var item in lstPaLeague.OrderBy(x => x.SortOrd))
+            {
+                <li>
+                    <p>
+                        <a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamInfoMST.TeamCD }, null)">
+                            <img src="@Url.Content(@item.TeamIcon)" alt=@item.TeamInfoMST.Team />
+                        </a>
+                    </p>
+                    <div>@Html.ActionLink(@item.TeamInfoMST.Team, "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamInfoMST.TeamCD }, null)</div>
+                </li>
+            }
+        </ul>
+        }
+    </section>
+}

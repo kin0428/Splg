@@ -1,0 +1,85 @@
+﻿@model Splg.Areas.Jleague.Models.ViewModel.JlgResultViewModel
+@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: _JleagueGameInfosResult.cshtml
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-04-17
+    // Html No      : 10-2-3 ; 10-3-3    
+} 
+
+@{
+    var theLastSeasonId = 0;    //データに存在する最後のシーズンID
+    string seasonDefaultStyle = null;
+}
+
+@if (Model != null && Model.JlgResultGameInfos != null && Model.JlgResultGameInfos.Any())
+{
+    var teamInfo = Model.JlgResultTeamInfo;
+    if (teamInfo != null)
+   {       
+        <dl class="jinfo">
+            <dt><img class="resimg" src="@Url.Content(teamInfo.TeamIcon ?? Constants.IMAGE_DEFAULT)" alt="logo" /> </dt>
+            <dd>@teamInfo.TeamName<span>の戦績</span></dd>
+        </dl>
+   }
+
+    <!--
+        SeasonID	SeasonName	SeasonNameS
+        1	シーズン（通算）	通算
+        2	ファーストステージ	1stステージ
+        3	セカンドステージ	2ndステージ
+    -->
+
+    if (ViewBag.JType == 1)
+    {
+        seasonDefaultStyle = "display:none;";
+        var tab2class = String.Empty;
+        var tab3class = String.Empty;
+        if (Model.CurrentSeasonID == 2)
+        {
+            tab2class = "active";
+        }
+        else
+        {
+            tab3class = "active";
+        }
+        <ul class="block_04_3_l3 clear">
+            <li id="tab-2" class="@tab2class"><a href="javascript:void(0);">1stステージ</a></li>
+            <li id="tab-3" class="@tab3class"><a href="javascript:void(0);">2ndステージ</a></li>
+            @*<li id="tab-1"><a href="javascript:void(0);">通年</a></li>*@
+        </ul>
+    }
+
+    foreach (var item in Model.JlgResultGameInfos)
+    {
+        if (item.SeasonID != 1)
+        {
+            theLastSeasonId = (int)item.SeasonID;
+        }
+
+        var seasonClass = "season-" + item.SeasonID;
+
+        var sSec = string.Format("{0}{1}{2}", "第", item.Sec.ToString(), "節");
+        var sIcon = item.GameResult == "W" ? "~/Content/img/jleague/icon01.png" : item.GameResult == "L" ? "~/Content/img/jleague/icon02.png" : item.GameResult == "D" ? "~/Content/img/jleague/icon03.png" : "";
+        var sText = item.GameResult == "W" ? string.Format("{0}{1}{2}", "で", teamInfo.TeamName, "が勝ちました") : item.GameResult == "L" ? string.Format("{0}{1}{2}", "で", teamInfo.TeamName, "が負けました") : item.GameResult == "D" ? "で引分けになりました" : "";
+        <dl class="jrow @seasonClass" style="@seasonDefaultStyle">
+            <dt>@sSec<span>@item.StadiumNameS</span></dt>
+            <dd>
+                <span class="fs14">VS</span>
+                <div><a href="@string.Format("/jleague/j{0}/teams/{1}/", ViewBag.JleagueMenu == 2 ? "1" : ViewBag.JleagueMenu == 3 ? "2" : "", teamInfo.TeamID == item.FirstTeamID ? item.SecondTeamID : item.FirstTeamID)"><img class="resimg" src="@Url.Content(teamInfo.TeamID == item.FirstTeamID ? item.SecondTeamIcon : item.FirstTeamIcon ?? Constants.IMAGE_DEFAULT)" alt="logo" /></a> </div>
+                <p>
+                    <a class="fs14" href="@string.Format("/jleague/j{0}/teams/{1}/", ViewBag.JleagueMenu == 2 ? "1" : ViewBag.JleagueMenu == 3 ? "2" : "", teamInfo.TeamID == item.FirstTeamID ? item.SecondTeamID : item.FirstTeamID)">@(teamInfo.TeamID == item.FirstTeamID ? item.SecondTeamName : item.FirstTeamName)</a>
+                    <a class="fs24" href="@string.Format("/jleague/game/{1}", ViewBag.JleagueMenu == 2 ? "1" : ViewBag.JleagueMenu == 3 ? "2" : "", item.GameID)"><span class="fi">@item.Score</span> - <span class="fi">@item.Lost</span></a>
+                    @sText
+                </p>
+                <span><img class="resimg" src="@Url.Content(sIcon ?? Constants.IMAGE_DEFAULT)" alt="" /></span>
+            </dd>
+        </dl>
+    }
+}
+
+<div class="ready_box" style="display:none;">
+    <div>
+        <h3>戦績情報はありません。</h3>
+    </div>
+</div>

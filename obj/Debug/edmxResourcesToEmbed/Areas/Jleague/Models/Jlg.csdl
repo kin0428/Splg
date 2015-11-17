@@ -1,0 +1,1734 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JlgModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BenchInfoLP">
+    <Key>
+      <PropertyRef Name="BenchInfoLPId" />
+    </Key>
+    <Property Name="BenchInfoLPId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlayerReportLPId" Type="Int32" Nullable="false" />
+    <Property Name="HV" Type="Int16" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="CategoryGT">
+    <Key>
+      <PropertyRef Name="CategoryGTId" />
+    </Key>
+    <Property Name="CategoryGTId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameKindTeamGTId" Type="Int32" Nullable="false" />
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SeasonID" Type="Int32" />
+    <Property Name="SeasonName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamC" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ChangeInfoLP">
+    <Key>
+      <PropertyRef Name="ChangeInfoLPId" />
+    </Key>
+    <Property Name="ChangeInfoLPId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlayerReportLPId" Type="Int32" Nullable="false" />
+    <Property Name="HV" Type="Int16" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="CommentInfo">
+    <Key>
+      <PropertyRef Name="CommentInfoId" />
+    </Key>
+    <Property Name="CommentInfoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CommentReportId" Type="Int32" Nullable="false" />
+    <Property Name="StateID" Type="Int32" Nullable="false" />
+    <Property Name="StateName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Half" Type="Int32" />
+    <Property Name="Comment" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="CommentReport">
+    <Key>
+      <PropertyRef Name="CommentReportId" />
+    </Key>
+    <Property Name="CommentReportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameID" Type="Int32" Nullable="false" />
+    <Property Name="GameDate" Type="Int32" />
+    <Property Name="GameKindID" Type="Int32" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SeasonID" Type="Int32" />
+    <Property Name="SeasonName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="DirectoryDA">
+    <Key>
+      <PropertyRef Name="DirectoryDAId" />
+    </Key>
+    <Property Name="DirectoryDAId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SendDate" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamNameE" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamNameES" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerC" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="DirectoryDI">
+    <Key>
+      <PropertyRef Name="DirectoryDIId" />
+    </Key>
+    <Property Name="DirectoryDIId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SendDate" Type="Int32" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamNameE" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamNameES" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerC" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="GainInfoLG">
+    <Key>
+      <PropertyRef Name="GainInfoLGId" />
+    </Key>
+    <Property Name="GainInfoLGId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameReportLGId" Type="Int32" Nullable="false" />
+    <Property Name="HV" Type="Int16" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="GameCategory">
+    <Key>
+      <PropertyRef Name="GameCategoryId" />
+    </Key>
+    <Property Name="GameCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameScheduleId" Type="Int32" Nullable="false" />
+    <Property Name="SeasonID" Type="Int32" Nullable="false" />
+    <Property Name="SeasonName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="GameC" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="GameCategoryHE">
+    <Key>
+      <PropertyRef Name="GameCategoryHEId" />
+    </Key>
+    <Property Name="GameCategoryHEId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamScheduleReportHEId" Type="Int32" Nullable="false" />
+    <Property Name="SeasonID" Type="Int32" Nullable="false" />
+    <Property Name="SeasonName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="GameC" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="GameCategoryMR">
+    <Key>
+      <PropertyRef Name="GameCategoryMRId" />
+    </Key>
+    <Property Name="GameCategoryMRId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SecGameRecordReportMRId" Type="Int32" Nullable="false" />
+    <Property Name="SeasonID" Type="Int32" Nullable="false" />
+    <Property Name="SeasonName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="GameEndInfoLG">
+    <Key>
+      <PropertyRef Name="GameEndInfoLGId" />
+    </Key>
+    <Property Name="GameEndInfoLGId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameReportLGId" Type="Int32" Nullable="false" />
+    <Property Name="Condition" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Surface" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Weather" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Wind" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Temperature" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Spectators" Type="Int32" />
+    <Property Name="Humidity" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="GameInfoMR">
+    <Key>
+      <PropertyRef Name="GameInfoMRId" />
+    </Key>
+    <Property Name="GameInfoMRId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameCategoryMRId" Type="Int32" Nullable="false" />
+    <Property Name="Sec" Type="Int32" Nullable="false" />
+    <Property Name="GameID" Type="Int32" />
+    <Property Name="HV" Type="Int16" />
+    <Property Name="ID" Type="Int32" />
+    <Property Name="NameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="StadiumID" Type="Int32" />
+    <Property Name="StadiumNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="GameResult" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Score" Type="Int32" />
+    <Property Name="Lost" Type="Int32" />
+    <Property Name="Condition" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Surface" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Weather" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Wind" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Temperature" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Spectators" Type="Int32" />
+    <Property Name="Humidity" Type="Int32" />
+    <Property Name="Event" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="GameKindInfo">
+    <Key>
+      <PropertyRef Name="GameKindInfoId" />
+    </Key>
+    <Property Name="GameKindInfoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameKindMSTId" Type="Int32" Nullable="false" />
+    <Property Name="GameKindNo" Type="Int32" Nullable="false" />
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="GameKindNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="GameKindNameE" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="GameKindNameES" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="GameKindMST">
+    <Key>
+      <PropertyRef Name="GameKindMSTId" />
+    </Key>
+    <Property Name="GameKindMSTId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SendDate" Type="Int32" />
+    <Property Name="GameKindC" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="GameKindTeamGT">
+    <Key>
+      <PropertyRef Name="GameKindTeamGTId" />
+    </Key>
+    <Property Name="GameKindTeamGTId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SendDate" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="GameReportLG">
+    <Key>
+      <PropertyRef Name="GameReportLGId" />
+    </Key>
+    <Property Name="GameReportLGId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameID" Type="Int32" Nullable="false" />
+    <Property Name="GameDate" Type="Int32" Nullable="false" />
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SeasonID" Type="Int32" />
+    <Property Name="SeasonName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="StartTime" Type="Int32" />
+    <Property Name="StadiumID" Type="Int32" />
+    <Property Name="StadiumName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="DayNight" Type="Int16" />
+    <Property Name="StateID" Type="Int32" />
+    <Property Name="StateName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Time" Type="Int32" />
+    <Property Name="Half" Type="Int32" />
+    <Property Name="SituationID" Type="Int32" />
+    <Property Name="SituationName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Referee" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Linesman1" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Linesman2" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Fourth" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="HalfEndF" Type="Int16" />
+    <Property Name="GameFixF" Type="Int16" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="GameSchedule">
+    <Key>
+      <PropertyRef Name="GameScheduleId" />
+    </Key>
+    <Property Name="GameScheduleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SendDate" Type="Int32" Nullable="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="GameStateLG">
+    <Key>
+      <PropertyRef Name="GameStateLGId" />
+    </Key>
+    <Property Name="GameStateLGId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamInfoLGId" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Score" Type="Int32" />
+    <Property Name="PK" Type="Int32" />
+    <Property Name="GK" Type="Int32" />
+    <Property Name="Shoot" Type="Int32" />
+    <Property Name="FK" Type="Int32" />
+    <Property Name="Yellow" Type="Int32" />
+    <Property Name="Red" Type="Int32" />
+    <Property Name="CK" Type="Int32" />
+    <Property Name="ShootGoal" Type="Int32" />
+    <Property Name="Offside" Type="Int32" />
+    <Property Name="Gain" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="GoalInfoLG">
+    <Key>
+      <PropertyRef Name="GoalInfoLGId" />
+    </Key>
+    <Property Name="GoalInfoLGId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameReportLGId" Type="Int32" Nullable="false" />
+    <Property Name="No" Type="Int32" Nullable="false" />
+    <Property Name="StateID" Type="Int32" Nullable="false" />
+    <Property Name="StateName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Time" Type="Int32" />
+    <Property Name="Half" Type="Int32" />
+    <Property Name="TeamID" Type="Int32" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="GPlayerID" Type="Int32" />
+    <Property Name="GPlayerName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="GPlayerNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="GPlayerUni" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Body" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Operation" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="APlayerID" Type="Int32" />
+    <Property Name="APlayerName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="APlayerNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="APlayerUni" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="AssistKind" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="OwnGoalF" Type="Int16" />
+    <Property Name="ScoreTeamID" Type="Int32" />
+    <Property Name="ScoreTeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="LeagueInfo">
+    <Key>
+      <PropertyRef Name="LeagueInfoId" />
+    </Key>
+    <Property Name="LeagueInfoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LeagueMSTId" Type="Int32" Nullable="false" />
+    <Property Name="LeagueNo" Type="Int32" Nullable="false" />
+    <Property Name="LeagueID" Type="Int32" Nullable="false" />
+    <Property Name="LeagueName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="LeagueNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="LeagueNameE" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="LeagueNameES" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="NationalityNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="LeagueMST">
+    <Key>
+      <PropertyRef Name="LeagueMSTId" />
+    </Key>
+    <Property Name="LeagueMSTId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SendDate" Type="Int32" />
+    <Property Name="LeagueC" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="MasterTransfersJlg">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="No" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="FunctionName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="FileName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="FilePathServer" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Schema" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="SuffixTables" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="IgnoreTables" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="QuerySqlDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HasCustomHeader" Type="Int16" />
+    <Property Name="HasSubFolder" Type="Int16" />
+    <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="NowOrderInfoLP">
+    <Key>
+      <PropertyRef Name="NowOrderInfoLPId" />
+    </Key>
+    <Property Name="NowOrderInfoLPId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlayerReportLPId" Type="Int32" Nullable="false" />
+    <Property Name="HV" Type="Int16" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PKInfoLG">
+    <Key>
+      <PropertyRef Name="PKInfoLGId" />
+    </Key>
+    <Property Name="PKInfoLGId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameReportLGId" Type="Int32" Nullable="false" />
+    <Property Name="HV" Type="Int16" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PlayerInfoDA">
+    <Key>
+      <PropertyRef Name="PlayerInfoDAId" />
+    </Key>
+    <Property Name="PlayerInfoDAId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DirectoryDAId" Type="Int32" Nullable="false" />
+    <Property Name="PlayerNo" Type="Int32" Nullable="false" />
+    <Property Name="PlayerID" Type="Int32" Nullable="false" />
+    <Property Name="PlayerName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Class" Type="Int32" />
+    <Property Name="FirstDate" Type="Int32" />
+    <Property Name="Acap" Type="Int32" />
+    <Property Name="Agoal" Type="Int32" />
+    <Property Name="Speed" Type="Int32" />
+    <Property Name="Physical" Type="Int32" />
+    <Property Name="Technic" Type="Int32" />
+    <Property Name="Mental" Type="Int32" />
+    <Property Name="Tactics" Type="Int32" />
+    <Property Name="Comment" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PlayerInfoDI">
+    <Key>
+      <PropertyRef Name="PlayerInfoDIId" />
+    </Key>
+    <Property Name="PlayerInfoDIId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DirectoryDIId" Type="Int32" Nullable="false" />
+    <Property Name="PlayerNo" Type="Int32" Nullable="false" />
+    <Property Name="PlayerID" Type="Int32" Nullable="false" />
+    <Property Name="RealName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="RealNameK" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerNameKS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerNameE" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerNameES" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="UniformNO" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Class" Type="Int32" />
+    <Property Name="NewcomerFlag" Type="Int16" />
+    <Property Name="HomeTown" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Blood" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Height" Type="Int32" />
+    <Property Name="Weight" Type="Int32" />
+    <Property Name="Birthday" Type="Int32" />
+    <Property Name="Career" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IndividualTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerTeamHistory" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PlayerInfoLPBE">
+    <Key>
+      <PropertyRef Name="PlayerInfoLPBEId" />
+    </Key>
+    <Property Name="PlayerInfoLPBEId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BenchInfoLPId" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="NameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Uni" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Pos" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="Int32" />
+    <Property Name="Yellow" Type="Int32" />
+    <Property Name="TeamID" Type="Int32" />
+    <Property Name="TeamS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Goal" Type="Int32" />
+    <Property Name="Card" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PlayerInfoLPCH">
+    <Key>
+      <PropertyRef Name="PlayerInfoLPCHId" />
+    </Key>
+    <Property Name="PlayerInfoLPCHId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChangeInfoLPId" Type="Int32" Nullable="false" />
+    <Property Name="StateID" Type="Int32" Nullable="false" />
+    <Property Name="StateName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Time" Type="Int32" />
+    <Property Name="Half" Type="Int32" />
+    <Property Name="ExitF" Type="Int16" />
+    <Property Name="InID" Type="Int32" />
+    <Property Name="InName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="InNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="InUni" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="InPos" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="OutID" Type="Int32" />
+    <Property Name="OutName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="OutNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="OutUni" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="OutPos" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PlayerInfoLPNO">
+    <Key>
+      <PropertyRef Name="PlayerInfoLPNOId" />
+    </Key>
+    <Property Name="PlayerInfoLPNOId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NowOrderInfoLPId" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="NameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Uni" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Pos" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="Int32" />
+    <Property Name="Yellow" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PlayerInfoLPST">
+    <Key>
+      <PropertyRef Name="PlayerInfoLPSTId" />
+    </Key>
+    <Property Name="PlayerInfoLPSTId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StartingInfoLPId" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="NameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Uni" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Pos" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="No" Type="Int32" />
+    <Property Name="Type" Type="Int32" />
+    <Property Name="Yellow" Type="Int32" />
+    <Property Name="TeamID" Type="Int32" />
+    <Property Name="TeamS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Goal" Type="Int32" />
+    <Property Name="Card" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PlayerInfoPL">
+    <Key>
+      <PropertyRef Name="PlayerInfoPLId" />
+    </Key>
+    <Property Name="PlayerInfoPLId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlayerMSTPLId" Type="Int32" Nullable="false" />
+    <Property Name="PlayerNo" Type="Int32" Nullable="false" />
+    <Property Name="PlayerID" Type="Int32" Nullable="false" />
+    <Property Name="PlayerName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerNameE" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerNameES" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="UniformNo" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="NationalityName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="NationalityNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="NationalityNameE" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="NationalityNameES" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="RegisterF" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PlayerInfoPS">
+    <Key>
+      <PropertyRef Name="PlayerInfoPSId" />
+    </Key>
+    <Property Name="PlayerInfoPSId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlayerStatsReportPSId" Type="Int32" Nullable="false" />
+    <Property Name="PlayerID" Type="Int32" Nullable="false" />
+    <Property Name="PlayerName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Game" Type="Int32" />
+    <Property Name="StartG" Type="Int32" />
+    <Property Name="FullG" Type="Int32" />
+    <Property Name="ChangeG" Type="Int32" />
+    <Property Name="Time" Type="Int32" />
+    <Property Name="Goal" Type="Int32" />
+    <Property Name="GoalFK" Type="Int32" />
+    <Property Name="GoalPK" Type="Int32" />
+    <Property Name="GoalCK" Type="Int32" />
+    <Property Name="GoalRight" Type="Int32" />
+    <Property Name="GoalLeft" Type="Int32" />
+    <Property Name="GoalHead" Type="Int32" />
+    <Property Name="GoalOther" Type="Int32" />
+    <Property Name="Shoot" Type="Int32" />
+    <Property Name="Assist" Type="Int32" />
+    <Property Name="Yellow" Type="Int32" />
+    <Property Name="Red" Type="Int32" />
+    <Property Name="Lose" Type="Int32" />
+    <Property Name="SufferShoot" Type="Int32" />
+    <Property Name="Win" Type="Int32" />
+    <Property Name="Lost" Type="Int32" />
+    <Property Name="Draw" Type="Int32" />
+    <Property Name="TotalGame" Type="Int32" />
+    <Property Name="TotalTime" Type="Int32" />
+    <Property Name="TotalGoal" Type="Int32" />
+    <Property Name="TotalLose" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PlayerInfoRE">
+    <Key>
+      <PropertyRef Name="PlayerInfoREId" />
+    </Key>
+    <Property Name="PlayerInfoREId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamInfoREId" Type="Int32" Nullable="false" />
+    <Property Name="PlayerID" Type="Int32" Nullable="false" />
+    <Property Name="PlayerName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="StateID" Type="Int32" />
+    <Property Name="StateName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Time" Type="Int32" />
+    <Property Name="Half" Type="Int32" />
+    <Property Name="OwnGoalF" Type="Int16" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PlayerLG">
+    <Key>
+      <PropertyRef Name="PlayerLGId" />
+    </Key>
+    <Property Name="PlayerLGId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PKInfoLGId" Type="Int32" Nullable="false" />
+    <Property Name="No" Type="Int32" Nullable="false" />
+    <Property Name="PlayerID" Type="Int32" Nullable="false" />
+    <Property Name="PlayerName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerUni" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="SuccessF" Type="Int16" />
+    <Property Name="Sign" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PlayerMSTPL">
+    <Key>
+      <PropertyRef Name="PlayerMSTPLId" />
+    </Key>
+    <Property Name="PlayerMSTPLId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SendDate" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamNameE" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamNameES" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerC" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PlayerReportLP">
+    <Key>
+      <PropertyRef Name="PlayerReportLPId" />
+    </Key>
+    <Property Name="PlayerReportLPId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameID" Type="Int32" Nullable="false" />
+    <Property Name="GameDate" Type="Int32" Nullable="false" />
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SeasonID" Type="Int32" />
+    <Property Name="SeasonName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="StadiumID" Type="Int32" />
+    <Property Name="StadiumNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="HomeTeamID" Type="Int32" />
+    <Property Name="HomeTeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="AwayTeamID" Type="Int32" />
+    <Property Name="AwayTeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PlayerStatsReportPS">
+    <Key>
+      <PropertyRef Name="PlayerStatsReportPSId" />
+    </Key>
+    <Property Name="PlayerStatsReportPSId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="SendDate" Type="Int32" Nullable="false" />
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="RankGoalReportRG">
+    <Key>
+      <PropertyRef Name="RankGoalReportRGId" />
+    </Key>
+    <Property Name="RankGoalReportRGId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="SendDate" Type="Int32" Nullable="false" />
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="RankInfoRG">
+    <Key>
+      <PropertyRef Name="RankInfoRGId" />
+    </Key>
+    <Property Name="RankInfoRGId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RankGoalReportRGId" Type="Int32" Nullable="false" />
+    <Property Name="Ranking" Type="Int32" Nullable="false" />
+    <Property Name="PlayerID" Type="Int32" Nullable="false" />
+    <Property Name="PlayerName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamID" Type="Int32" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Goal" Type="Int32" />
+    <Property Name="GoalFK" Type="Int32" />
+    <Property Name="GoalPK" Type="Int32" />
+    <Property Name="GoalCK" Type="Int32" />
+    <Property Name="GoalRight" Type="Int32" />
+    <Property Name="GoalLeft" Type="Int32" />
+    <Property Name="GoalHead" Type="Int32" />
+    <Property Name="GoalOther" Type="Int32" />
+    <Property Name="Shoot" Type="Int32" />
+    <Property Name="Game" Type="Int32" />
+    <Property Name="Time" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="RankInfoRT">
+    <Key>
+      <PropertyRef Name="RankInfoRTId" />
+    </Key>
+    <Property Name="RankInfoRTId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RankReportRTId" Type="Int32" Nullable="false" />
+    <Property Name="Ranking" Type="Int32" Nullable="false" />
+    <Property Name="Replace" Type="Int32" Nullable="false" />
+    <Property Name="GroupID" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamID" Type="Int32" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Game" Type="Int32" />
+    <Property Name="Point" Type="Int32" />
+    <Property Name="Win" Type="Int32" />
+    <Property Name="Win90" Type="Int32" />
+    <Property Name="WinEX" Type="Int32" />
+    <Property Name="WinPK" Type="Int32" />
+    <Property Name="Lose" Type="Int32" />
+    <Property Name="Lose90" Type="Int32" />
+    <Property Name="LoseEX" Type="Int32" />
+    <Property Name="LosePK" Type="Int32" />
+    <Property Name="Draw" Type="Int32" />
+    <Property Name="Score" Type="Int32" />
+    <Property Name="Lost" Type="Int32" />
+    <Property Name="Differ" Type="Int32" />
+    <Property Name="PromotionF" Type="Int32" />
+    <Property Name="PlayoffF" Type="Int32" />
+    <Property Name="DemotionF2" Type="Int32" />
+    <Property Name="PromotionF2" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="RankReportRT">
+    <Key>
+      <PropertyRef Name="RankReportRTId" />
+    </Key>
+    <Property Name="RankReportRTId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameDate" Type="Int32" Nullable="false" />
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SeasonID" Type="Int32" />
+    <Property Name="SeasonName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamC" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="RecapReportRE">
+    <Key>
+      <PropertyRef Name="RecapReportREId" />
+    </Key>
+    <Property Name="RecapReportREId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameID" Type="Int32" Nullable="false" />
+    <Property Name="GameDate" Type="Int32" />
+    <Property Name="GameKindID" Type="Int32" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SeasonID" Type="Int32" />
+    <Property Name="SeasonName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="StadiumID" Type="Int32" />
+    <Property Name="StadiumNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="StartTime" Type="Int32" />
+    <Property Name="EndTime" Type="Int32" />
+    <Property Name="Attendance" Type="Int32" />
+    <Property Name="GameRecap" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ResultInfoHE">
+    <Key>
+      <PropertyRef Name="ResultInfoHEId" />
+    </Key>
+    <Property Name="ResultInfoHEId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ScheduleInfoHEId" Type="Int32" Nullable="false" />
+    <Property Name="GameDate" Type="Int32" Nullable="false" />
+    <Property Name="HomeTeamID" Type="Int32" Nullable="false" />
+    <Property Name="HomeTeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="AwayTeamID" Type="Int32" />
+    <Property Name="AwayTeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="StadiumID" Type="Int32" />
+    <Property Name="StadiumNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="HomeScore" Type="Int32" />
+    <Property Name="HomePKScore" Type="Int32" />
+    <Property Name="AwayScore" Type="Int32" />
+    <Property Name="AwayPKScore" Type="Int32" />
+    <Property Name="GameResult" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ResultInfoSS">
+    <Key>
+      <PropertyRef Name="ResultInfoSSId" />
+    </Key>
+    <Property Name="ResultInfoSSId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamSeasonReportSSId" Type="Int32" Nullable="false" />
+    <Property Name="SeasonNo" Type="Int16" Nullable="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SeasonID" Type="Int32" />
+    <Property Name="SeasonName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Game" Type="Int32" />
+    <Property Name="Point" Type="Int32" />
+    <Property Name="Win" Type="Int32" />
+    <Property Name="Win90" Type="Int32" />
+    <Property Name="WinEX" Type="Int32" />
+    <Property Name="WinPK" Type="Int32" />
+    <Property Name="Lose" Type="Int32" />
+    <Property Name="Lose90" Type="Int32" />
+    <Property Name="LoseEX" Type="Int32" />
+    <Property Name="LosePK" Type="Int32" />
+    <Property Name="Draw" Type="Int32" />
+    <Property Name="Score" Type="Int32" />
+    <Property Name="Lost" Type="Int32" />
+    <Property Name="Differ" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ResultInfoT5">
+    <Key>
+      <PropertyRef Name="ResultInfoT5Id" />
+    </Key>
+    <Property Name="ResultInfoT5Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Team5thGameReportT5Id" Type="Int32" Nullable="false" />
+    <Property Name="GameDate" Type="Int32" Nullable="false" />
+    <Property Name="HV" Type="Int16" />
+    <Property Name="ID" Type="Int32" />
+    <Property Name="NameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="StadiumID" Type="Int32" />
+    <Property Name="StadiumNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Score" Type="Int32" />
+    <Property Name="PKScore" Type="Int32" />
+    <Property Name="Lose" Type="Int32" />
+    <Property Name="PKLose" Type="Int32" />
+    <Property Name="GameResult" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ResultInfoTC">
+    <Key>
+      <PropertyRef Name="ResultInfoTCId" />
+    </Key>
+    <Property Name="ResultInfoTCId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamInfoTCId" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="NameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Game" Type="Int32" />
+    <Property Name="Win" Type="Int32" />
+    <Property Name="Lose" Type="Int32" />
+    <Property Name="Draw" Type="Int32" />
+    <Property Name="Score" Type="Int32" />
+    <Property Name="Lost" Type="Int32" />
+    <Property Name="Shoot" Type="Int32" />
+    <Property Name="Assist" Type="Int32" />
+    <Property Name="FKD" Type="Int32" />
+    <Property Name="FKI" Type="Int32" />
+    <Property Name="CK" Type="Int32" />
+    <Property Name="SufferShoot" Type="Int32" />
+    <Property Name="Offside" Type="Int32" />
+    <Property Name="Yellow" Type="Int32" />
+    <Property Name="Red" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ScheduleInfo">
+    <Key>
+      <PropertyRef Name="ScheduleInfoId" />
+    </Key>
+    <Property Name="ScheduleInfoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameCategoryId" Type="Int32" Nullable="false" />
+    <Property Name="ScheduleNO" Type="Int32" Nullable="false" />
+    <Property Name="GameID" Type="Int32" Nullable="false" />
+    <Property Name="GameDate" Type="Int32" />
+    <Property Name="GameTime" Type="Int32" />
+    <Property Name="LocalDate" Type="Int32" />
+    <Property Name="LocalTime" Type="Int32" />
+    <Property Name="OccasionNo" Type="Int32" />
+    <Property Name="Round" Type="Int32" />
+    <Property Name="RoundName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="GroupID" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Subject" Type="Int16" />
+    <Property Name="DayNight" Type="Int16" />
+    <Property Name="StadiumID" Type="Int32" />
+    <Property Name="StadiumName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="StadiumNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Site" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="HomeTeamID" Type="Int32" />
+    <Property Name="HomeTeamName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="HomeTeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="HomeTeamNameE" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="HomeTeamNameES" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="AwayTeamID" Type="Int32" />
+    <Property Name="AwayTeamName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="AwayTeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="AwayTeamNameE" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="AwayTeamNameES" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ScheduleInfoHE">
+    <Key>
+      <PropertyRef Name="ScheduleInfoHEId" />
+    </Key>
+    <Property Name="ScheduleInfoHEId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameCategoryHEId" Type="Int32" Nullable="false" />
+    <Property Name="ScheduleNO" Type="Int32" Nullable="false" />
+    <Property Name="GameID" Type="Int32" Nullable="false" />
+    <Property Name="HomeTeamID" Type="Int32" />
+    <Property Name="HomeTeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="AwayTeamID" Type="Int32" />
+    <Property Name="AwayTeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Game" Type="Int32" />
+    <Property Name="HomeWin" Type="Int32" />
+    <Property Name="HomeWin90" Type="Int32" />
+    <Property Name="HomeWinEX" Type="Int32" />
+    <Property Name="HomeWinPK" Type="Int32" />
+    <Property Name="HomeScore" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="AwayWin" Type="Int32" />
+    <Property Name="AwayWin90" Type="Int32" />
+    <Property Name="AwayWinEX" Type="Int32" />
+    <Property Name="AwayWinPK" Type="Int32" />
+    <Property Name="AwayScore" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Draw" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ScorePlayerT5">
+    <Key>
+      <PropertyRef Name="ScorePlayerT5Id" />
+    </Key>
+    <Property Name="ScorePlayerT5Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ResultInfoT5Id" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerID" Type="Int32" />
+    <Property Name="PlayerName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="StateID" Type="Int32" />
+    <Property Name="StateName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Time" Type="Int32" />
+    <Property Name="Half" Type="Int32" />
+    <Property Name="OwnGoalF" Type="Int16" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="SeasonInfo">
+    <Key>
+      <PropertyRef Name="SeasonInfoId" />
+    </Key>
+    <Property Name="SeasonInfoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SeasonMSTId" Type="Int32" Nullable="false" />
+    <Property Name="SeasonNo" Type="Int32" Nullable="false" />
+    <Property Name="SeasonID" Type="Int32" Nullable="false" />
+    <Property Name="SeasonName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SeasonNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SeasonNameE" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SeasonNameES" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="SeasonMST">
+    <Key>
+      <PropertyRef Name="SeasonMSTId" />
+    </Key>
+    <Property Name="SeasonMSTId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SendDate" Type="Int32" />
+    <Property Name="SeasonC" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="SecGameRecordReportMR">
+    <Key>
+      <PropertyRef Name="SecGameRecordReportMRId" />
+    </Key>
+    <Property Name="SecGameRecordReportMRId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="SendDate" Type="Int32" />
+    <Property Name="GameKindID" Type="Int32" />
+    <Property Name="TeamID" Type="Int32" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Game" Type="Int32" />
+    <Property Name="Win" Type="Int32" />
+    <Property Name="Lose" Type="Int32" />
+    <Property Name="Draw" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="StartingInfoLP">
+    <Key>
+      <PropertyRef Name="StartingInfoLPId" />
+    </Key>
+    <Property Name="StartingInfoLPId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlayerReportLPId" Type="Int32" Nullable="false" />
+    <Property Name="HV" Type="Int16" Nullable="false" />
+    <Property Name="FormationID" Type="Int32" />
+    <Property Name="FormationName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Team5thGameReportT5">
+    <Key>
+      <PropertyRef Name="Team5thGameReportT5Id" />
+    </Key>
+    <Property Name="Team5thGameReportT5Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="SendDate" Type="Int32" Nullable="false" />
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamID" Type="Int32" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamCardReportTC">
+    <Key>
+      <PropertyRef Name="TeamCardReportTCId" />
+    </Key>
+    <Property Name="TeamCardReportTCId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="SendDate" Type="Int32" Nullable="false" />
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamInfoGT">
+    <Key>
+      <PropertyRef Name="TeamInfoGTId" />
+    </Key>
+    <Property Name="TeamInfoGTId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryGTId" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="GroupID" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamInfoLG">
+    <Key>
+      <PropertyRef Name="TeamInfoLGId" />
+    </Key>
+    <Property Name="TeamInfoLGId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameReportLGId" Type="Int32" Nullable="false" />
+    <Property Name="HV" Type="Int16" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="NameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Director" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PostName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="BeforePoint" Type="Int32" />
+    <Property Name="AfterPoint" Type="Int32" />
+    <Property Name="FormationID" Type="Int32" />
+    <Property Name="FormationName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Score" Type="Int32" />
+    <Property Name="PKBScore" Type="Int32" />
+    <Property Name="PKScore" Type="Int32" />
+    <Property Name="PK" Type="Int32" />
+    <Property Name="GK" Type="Int32" />
+    <Property Name="Shoot" Type="Int32" />
+    <Property Name="Assist" Type="Int32" />
+    <Property Name="FKD" Type="Int32" />
+    <Property Name="FKI" Type="Int32" />
+    <Property Name="CK" Type="Int32" />
+    <Property Name="Yellow" Type="Int32" />
+    <Property Name="Red" Type="Int32" />
+    <Property Name="ShootGoal" Type="Int32" />
+    <Property Name="Offside" Type="Int32" />
+    <Property Name="Gain" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamInfoRE">
+    <Key>
+      <PropertyRef Name="TeamInfoREId" />
+    </Key>
+    <Property Name="TeamInfoREId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RecapReportREId" Type="Int32" Nullable="false" />
+    <Property Name="HV" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Score" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamInfoTC">
+    <Key>
+      <PropertyRef Name="TeamInfoTCId" />
+    </Key>
+    <Property Name="TeamInfoTCId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamCardReportTCId" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamInfoTE">
+    <Key>
+      <PropertyRef Name="TeamInfoTEId" />
+    </Key>
+    <Property Name="TeamInfoTEId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamMSTTEId" Type="Int32" Nullable="false" />
+    <Property Name="TeamNo" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamNameE" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="TeamNameES" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="TeamNameK" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="TeamNameKS" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Post" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="HomeStadiumID" Type="Int32" />
+    <Property Name="HomeStadiumName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="HomeStadiumAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Color" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Founded" Type="Int32" />
+    <Property Name="Formation" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="IndividualTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamInfoTS">
+    <Key>
+      <PropertyRef Name="TeamInfoTSId" />
+    </Key>
+    <Property Name="TeamInfoTSId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamStatsReportTSId" Type="Int32" Nullable="false" />
+    <Property Name="Game" Type="Int32" />
+    <Property Name="Win" Type="Int32" />
+    <Property Name="Lose" Type="Int32" />
+    <Property Name="Draw" Type="Int32" />
+    <Property Name="Score" Type="Int32" />
+    <Property Name="Lost" Type="Int32" />
+    <Property Name="Point" Type="Int32" />
+    <Property Name="Shoot" Type="Int32" />
+    <Property Name="Assist" Type="Int32" />
+    <Property Name="FKD" Type="Int32" />
+    <Property Name="FKI" Type="Int32" />
+    <Property Name="CK" Type="Int32" />
+    <Property Name="SufferShoot" Type="Int32" />
+    <Property Name="Offside" Type="Int32" />
+    <Property Name="Yellow" Type="Int32" />
+    <Property Name="Red" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamMSTTE">
+    <Key>
+      <PropertyRef Name="TeamMSTTEId" />
+    </Key>
+    <Property Name="TeamMSTTEId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SendDate" Type="Int32" />
+    <Property Name="TeamC" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamScheduleReportHE">
+    <Key>
+      <PropertyRef Name="TeamScheduleReportHEId" />
+    </Key>
+    <Property Name="TeamScheduleReportHEId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="SendDate" Type="Int32" />
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamSeasonReportSS">
+    <Key>
+      <PropertyRef Name="TeamSeasonReportSSId" />
+    </Key>
+    <Property Name="TeamSeasonReportSSId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SendDate" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SeasonC" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamStatsReportTS">
+    <Key>
+      <PropertyRef Name="TeamStatsReportTSId" />
+    </Key>
+    <Property Name="TeamStatsReportTSId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="SendDate" Type="Int32" />
+    <Property Name="GameKindID" Type="Int32" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamID" Type="Int32" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TimeInfoLG">
+    <Key>
+      <PropertyRef Name="TimeInfoLGId" />
+    </Key>
+    <Property Name="TimeInfoLGId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GainInfoLGId" Type="Int32" Nullable="false" />
+    <Property Name="Time" Type="Int32" Nullable="false" />
+    <Property Name="Gain" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="WarningInfoLG">
+    <Key>
+      <PropertyRef Name="WarningInfoLGId" />
+    </Key>
+    <Property Name="WarningInfoLGId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameReportLGId" Type="Int32" Nullable="false" />
+    <Property Name="No" Type="Int32" Nullable="false" />
+    <Property Name="StateID" Type="Int32" Nullable="false" />
+    <Property Name="StateName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Time" Type="Int32" />
+    <Property Name="Half" Type="Int32" />
+    <Property Name="TeamID" Type="Int32" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerID" Type="Int32" />
+    <Property Name="PlayerName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerUni" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Divide" Type="Int16" />
+    <Property Name="SecondF" Type="Int16" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BenchInfoLP" EntityType="Self.BenchInfoLP" />
+    <EntitySet Name="CategoryGT" EntityType="Self.CategoryGT" />
+    <EntitySet Name="ChangeInfoLP" EntityType="Self.ChangeInfoLP" />
+    <EntitySet Name="CommentInfo" EntityType="Self.CommentInfo" />
+    <EntitySet Name="CommentReport" EntityType="Self.CommentReport" />
+    <EntitySet Name="DirectoryDA" EntityType="Self.DirectoryDA" />
+    <EntitySet Name="DirectoryDI" EntityType="Self.DirectoryDI" />
+    <EntitySet Name="GainInfoLG" EntityType="Self.GainInfoLG" />
+    <EntitySet Name="GameCategory" EntityType="Self.GameCategory" />
+    <EntitySet Name="GameCategoryHE" EntityType="Self.GameCategoryHE" />
+    <EntitySet Name="GameCategoryMR" EntityType="Self.GameCategoryMR" />
+    <EntitySet Name="GameEndInfoLG" EntityType="Self.GameEndInfoLG" />
+    <EntitySet Name="GameInfoMR" EntityType="Self.GameInfoMR" />
+    <EntitySet Name="GameKindInfo" EntityType="Self.GameKindInfo" />
+    <EntitySet Name="GameKindMST" EntityType="Self.GameKindMST" />
+    <EntitySet Name="GameKindTeamGT" EntityType="Self.GameKindTeamGT" />
+    <EntitySet Name="GameReportLG" EntityType="Self.GameReportLG" />
+    <EntitySet Name="GameSchedule" EntityType="Self.GameSchedule" />
+    <EntitySet Name="GameStateLG" EntityType="Self.GameStateLG" />
+    <EntitySet Name="GoalInfoLG" EntityType="Self.GoalInfoLG" />
+    <EntitySet Name="LeagueInfo" EntityType="Self.LeagueInfo" />
+    <EntitySet Name="LeagueMST" EntityType="Self.LeagueMST" />
+    <EntitySet Name="MasterTransfersJlg" EntityType="Self.MasterTransfersJlg" />
+    <EntitySet Name="NowOrderInfoLP" EntityType="Self.NowOrderInfoLP" />
+    <EntitySet Name="PKInfoLG" EntityType="Self.PKInfoLG" />
+    <EntitySet Name="PlayerInfoDA" EntityType="Self.PlayerInfoDA" />
+    <EntitySet Name="PlayerInfoDI" EntityType="Self.PlayerInfoDI" />
+    <EntitySet Name="PlayerInfoLPBE" EntityType="Self.PlayerInfoLPBE" />
+    <EntitySet Name="PlayerInfoLPCH" EntityType="Self.PlayerInfoLPCH" />
+    <EntitySet Name="PlayerInfoLPNO" EntityType="Self.PlayerInfoLPNO" />
+    <EntitySet Name="PlayerInfoLPST" EntityType="Self.PlayerInfoLPST" />
+    <EntitySet Name="PlayerInfoPL" EntityType="Self.PlayerInfoPL" />
+    <EntitySet Name="PlayerInfoPS" EntityType="Self.PlayerInfoPS" />
+    <EntitySet Name="PlayerInfoRE" EntityType="Self.PlayerInfoRE" />
+    <EntitySet Name="PlayerLG" EntityType="Self.PlayerLG" />
+    <EntitySet Name="PlayerMSTPL" EntityType="Self.PlayerMSTPL" />
+    <EntitySet Name="PlayerReportLP" EntityType="Self.PlayerReportLP" />
+    <EntitySet Name="PlayerStatsReportPS" EntityType="Self.PlayerStatsReportPS" />
+    <EntitySet Name="RankGoalReportRG" EntityType="Self.RankGoalReportRG" />
+    <EntitySet Name="RankInfoRG" EntityType="Self.RankInfoRG" />
+    <EntitySet Name="RankInfoRT" EntityType="Self.RankInfoRT" />
+    <EntitySet Name="RankReportRT" EntityType="Self.RankReportRT" />
+    <EntitySet Name="RecapReportRE" EntityType="Self.RecapReportRE" />
+    <EntitySet Name="ResultInfoHE" EntityType="Self.ResultInfoHE" />
+    <EntitySet Name="ResultInfoSS" EntityType="Self.ResultInfoSS" />
+    <EntitySet Name="ResultInfoT5" EntityType="Self.ResultInfoT5" />
+    <EntitySet Name="ResultInfoTC" EntityType="Self.ResultInfoTC" />
+    <EntitySet Name="ScheduleInfo" EntityType="Self.ScheduleInfo" />
+    <EntitySet Name="ScheduleInfoHE" EntityType="Self.ScheduleInfoHE" />
+    <EntitySet Name="ScorePlayerT5" EntityType="Self.ScorePlayerT5" />
+    <EntitySet Name="SeasonInfo" EntityType="Self.SeasonInfo" />
+    <EntitySet Name="SeasonMST" EntityType="Self.SeasonMST" />
+    <EntitySet Name="SecGameRecordReportMR" EntityType="Self.SecGameRecordReportMR" />
+    <EntitySet Name="StartingInfoLP" EntityType="Self.StartingInfoLP" />
+    <EntitySet Name="Team5thGameReportT5" EntityType="Self.Team5thGameReportT5" />
+    <EntitySet Name="TeamCardReportTC" EntityType="Self.TeamCardReportTC" />
+    <EntitySet Name="TeamInfoGT" EntityType="Self.TeamInfoGT" />
+    <EntitySet Name="TeamInfoLG" EntityType="Self.TeamInfoLG" />
+    <EntitySet Name="TeamInfoRE" EntityType="Self.TeamInfoRE" />
+    <EntitySet Name="TeamInfoTC" EntityType="Self.TeamInfoTC" />
+    <EntitySet Name="TeamInfoTE" EntityType="Self.TeamInfoTE" />
+    <EntitySet Name="TeamInfoTS" EntityType="Self.TeamInfoTS" />
+    <EntitySet Name="TeamMSTTE" EntityType="Self.TeamMSTTE" />
+    <EntitySet Name="TeamScheduleReportHE" EntityType="Self.TeamScheduleReportHE" />
+    <EntitySet Name="TeamSeasonReportSS" EntityType="Self.TeamSeasonReportSS" />
+    <EntitySet Name="TeamStatsReportTS" EntityType="Self.TeamStatsReportTS" />
+    <EntitySet Name="TimeInfoLG" EntityType="Self.TimeInfoLG" />
+    <EntitySet Name="WarningInfoLG" EntityType="Self.WarningInfoLG" />
+    <EntitySet Name="TeamIconJlg" EntityType="JlgModel.TeamIconJlg" />
+    <EntitySet Name="PlayerLS" EntityType="JlgModel.PlayerLS" />
+    <EntitySet Name="StatsReportLS" EntityType="JlgModel.StatsReportLS" />
+    <EntitySet Name="TeamInfoLS" EntityType="JlgModel.TeamInfoLS" />
+    <EntitySet Name="FormationInfo" EntityType="JlgModel.FormationInfo" />
+    <EntitySet Name="FormationReportLF" EntityType="JlgModel.FormationReportLF" />
+    <EntitySet Name="GameInfoSR" EntityType="JlgModel.GameInfoSR" />
+    <EntitySet Name="InjulyReportIR" EntityType="JlgModel.InjulyReportIR" />
+    <EntitySet Name="PlayerCBP" EntityType="JlgModel.PlayerCBP" />
+    <EntitySet Name="PlayerInfoIR" EntityType="JlgModel.PlayerInfoIR" />
+    <EntitySet Name="PlayerInfoLF" EntityType="JlgModel.PlayerInfoLF" />
+    <EntitySet Name="ResultInfoTH" EntityType="JlgModel.ResultInfoTH" />
+    <EntitySet Name="ResultInfoTT" EntityType="JlgModel.ResultInfoTT" />
+    <EntitySet Name="SuspendReportSR" EntityType="JlgModel.SuspendReportSR" />
+    <EntitySet Name="SuspensionInfoSR" EntityType="JlgModel.SuspensionInfoSR" />
+    <EntitySet Name="TeamCBP" EntityType="JlgModel.TeamCBP" />
+    <EntitySet Name="TeamGameStutz" EntityType="JlgModel.TeamGameStutz" />
+    <EntitySet Name="TeamHAReportTH" EntityType="JlgModel.TeamHAReportTH" />
+    <EntitySet Name="TeamInfoIR" EntityType="JlgModel.TeamInfoIR" />
+    <EntitySet Name="TeamInfoLF" EntityType="JlgModel.TeamInfoLF" />
+    <EntitySet Name="TeamInfoTH" EntityType="JlgModel.TeamInfoTH" />
+    <EntitySet Name="TeamInfoTT" EntityType="JlgModel.TeamInfoTT" />
+    <EntitySet Name="TeamSeasonStutz" EntityType="JlgModel.TeamSeasonStutz" />
+    <EntitySet Name="TeamTimeReportTT" EntityType="JlgModel.TeamTimeReportTT" />
+  </EntityContainer>
+  <EntityType Name="TeamIconJlg">
+    <Key>
+      <PropertyRef Name="TeamCD" />
+    </Key>
+    <Property Name="TeamCD" Type="Int32" Nullable="false" />
+    <Property Name="TeamIcon" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="SortOrd" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PlayerLS">
+    <Key>
+      <PropertyRef Name="PlayerLSId" />
+    </Key>
+    <Property Name="PlayerLSId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamInfoLSId" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="NameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Uni" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Pos" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="StartF" Type="Int32" />
+    <Property Name="Score" Type="Int32" />
+    <Property Name="FKScore" Type="Int32" />
+    <Property Name="PKScore" Type="Int32" />
+    <Property Name="OwnGoal" Type="Int32" />
+    <Property Name="Shoot" Type="Int32" />
+    <Property Name="Assist" Type="Int32" />
+    <Property Name="Lost" Type="Int32" />
+    <Property Name="SufferShoot" Type="Int32" />
+    <Property Name="Yellow" Type="Int32" />
+    <Property Name="Red" Type="Int32" />
+    <Property Name="Time" Type="Int32" />
+    <Property Name="SeasonGame" Type="Int32" />
+    <Property Name="SeasonTime" Type="Int32" />
+    <Property Name="SeasonScore" Type="Int32" />
+    <Property Name="SeasonLost" Type="Int32" />
+    <Property Name="ShootGoal" Type="Int32" />
+    <Property Name="Pass" Type="Int32" />
+    <Property Name="Foul" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="StatsReportLS">
+    <Key>
+      <PropertyRef Name="StatsReportLSId" />
+    </Key>
+    <Property Name="StatsReportLSId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameID" Type="Int32" Nullable="false" />
+    <Property Name="GameDate" Type="Int32" Nullable="false" />
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SeasonID" Type="Int32" Nullable="false" />
+    <Property Name="SeasonName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="StartTime" Type="Int32" />
+    <Property Name="StadiumID" Type="Int32" />
+    <Property Name="StadiumNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="DayNight" Type="Int16" />
+    <Property Name="StateID" Type="Int32" />
+    <Property Name="StateName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Time" Type="Int32" />
+    <Property Name="Half" Type="Int32" />
+    <Property Name="SituationID" Type="Int32" />
+    <Property Name="SituationName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="GameFixF" Type="Int16" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamInfoLS">
+    <Key>
+      <PropertyRef Name="TeamInfoLSId" />
+    </Key>
+    <Property Name="TeamInfoLSId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatsReportLSId" Type="Int32" Nullable="false" />
+    <Property Name="HV" Type="Int16" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="NameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="FormationInfo">
+    <Key>
+      <PropertyRef Name="FormationInfoId" />
+    </Key>
+    <Property Name="FormationInfoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameID" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="FormationID" Type="Int32" Nullable="false" />
+    <Property Name="FormationName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerID" Type="Int32" Nullable="false" />
+    <Property Name="PlayerName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerUniformNo" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerPosition" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="X" Type="Int32" Nullable="false" />
+    <Property Name="Y" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="FormationReportLF">
+    <Key>
+      <PropertyRef Name="FormationReportLFId" />
+    </Key>
+    <Property Name="FormationReportLFId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameID" Type="Int32" Nullable="false" />
+    <Property Name="GameDate" Type="Int32" Nullable="false" />
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SeasonID" Type="Int32" Nullable="false" />
+    <Property Name="SeasonName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="GameInfoSR">
+    <Key>
+      <PropertyRef Name="GameInfoSRId" />
+    </Key>
+    <Property Name="GameInfoSRId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SuspensionInfoSRId" Type="Int32" Nullable="false" />
+    <Property Name="Sec" Type="Int32" Nullable="false" />
+    <Property Name="GameID" Type="Int32" Nullable="false" />
+    <Property Name="GameDate" Type="Int32" Nullable="false" />
+    <Property Name="GameName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="InjulyReportIR">
+    <Key>
+      <PropertyRef Name="InjulyReportIRId" />
+    </Key>
+    <Property Name="InjulyReportIRId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SendDate" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PlayerCBP">
+    <Key>
+      <PropertyRef Name="PlayerID" />
+    </Key>
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerID" Type="Int32" Nullable="false" />
+    <Property Name="PlayerName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="OfficialPlayingTime" Type="Int32" Nullable="false" />
+    <Property Name="ActualPlayingTime" Type="Int32" Nullable="false" />
+    <Property Name="PlayingGameCount" Type="Int32" Nullable="false" />
+    <Property Name="StartingGameCount" Type="Int32" Nullable="false" />
+    <Property Name="ShootCBP" Type="Double" Nullable="false" />
+    <Property Name="PassCBP" Type="Double" Nullable="false" />
+    <Property Name="CrossCBP" Type="Double" Nullable="false" />
+    <Property Name="DribbleCBP" Type="Double" Nullable="false" />
+    <Property Name="AttackCBP" Type="Double" Nullable="false" />
+    <Property Name="DefenseCBP" Type="Double" Nullable="false" />
+    <Property Name="SaveCBP" Type="Double" Nullable="false" />
+    <Property Name="ShootCBPAverage" Type="Double" Nullable="false" />
+    <Property Name="PassCBPAverage" Type="Double" Nullable="false" />
+    <Property Name="CrossCBPAverage" Type="Double" Nullable="false" />
+    <Property Name="DribbleCBPAverage" Type="Double" Nullable="false" />
+    <Property Name="AttackCBPAverage" Type="Double" Nullable="false" />
+    <Property Name="DefenseCBPAverage" Type="Double" Nullable="false" />
+    <Property Name="SaveCBPAverage" Type="Double" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PlayerInfoIR">
+    <Key>
+      <PropertyRef Name="PlayerInfoIRId" />
+    </Key>
+    <Property Name="PlayerInfoIRId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamInfoIRId" Type="Int32" Nullable="false" />
+    <Property Name="PlayerID" Type="Int32" Nullable="false" />
+    <Property Name="PlayerName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerNameS" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Pos" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateDate" Type="Int32" Nullable="false" />
+    <Property Name="PartName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PartNameDetails" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="InjulyDate" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="InjulyRank" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PlayerInfoLF">
+    <Key>
+      <PropertyRef Name="PlayerInfoLFId" />
+    </Key>
+    <Property Name="PlayerInfoLFId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamInfoLFId" Type="Int32" Nullable="false" />
+    <Property Name="P1ID" Type="Int32" Nullable="false" />
+    <Property Name="P1Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P1Uni" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P1Pos" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P1X" Type="Int32" Nullable="false" />
+    <Property Name="P1Y" Type="Int32" Nullable="false" />
+    <Property Name="P2ID" Type="Int32" Nullable="false" />
+    <Property Name="P2Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P2Uni" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P2Pos" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P2X" Type="Int32" Nullable="false" />
+    <Property Name="P2Y" Type="Int32" Nullable="false" />
+    <Property Name="P3ID" Type="Int32" Nullable="false" />
+    <Property Name="P3Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P3Uni" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P3Pos" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P3X" Type="Int32" Nullable="false" />
+    <Property Name="P3Y" Type="Int32" Nullable="false" />
+    <Property Name="P4ID" Type="Int32" Nullable="false" />
+    <Property Name="P4Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P4Uni" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P4Pos" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P4X" Type="Int32" Nullable="false" />
+    <Property Name="P4Y" Type="Int32" Nullable="false" />
+    <Property Name="P5ID" Type="Int32" Nullable="false" />
+    <Property Name="P5Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P5Uni" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P5Pos" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P5X" Type="Int32" Nullable="false" />
+    <Property Name="P5Y" Type="Int32" Nullable="false" />
+    <Property Name="P6ID" Type="Int32" Nullable="false" />
+    <Property Name="P6Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P6Uni" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P6Pos" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P6X" Type="Int32" Nullable="false" />
+    <Property Name="P6Y" Type="Int32" Nullable="false" />
+    <Property Name="P7ID" Type="Int32" Nullable="false" />
+    <Property Name="P7Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P7Uni" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P7Pos" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P7X" Type="Int32" Nullable="false" />
+    <Property Name="P7Y" Type="Int32" Nullable="false" />
+    <Property Name="P8ID" Type="Int32" Nullable="false" />
+    <Property Name="P8Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P8Uni" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P8Pos" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P8X" Type="Int32" Nullable="false" />
+    <Property Name="P8Y" Type="Int32" Nullable="false" />
+    <Property Name="P9ID" Type="Int32" Nullable="false" />
+    <Property Name="P9Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P9Uni" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P9Pos" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P9X" Type="Int32" Nullable="false" />
+    <Property Name="P9Y" Type="Int32" Nullable="false" />
+    <Property Name="P10ID" Type="Int32" Nullable="false" />
+    <Property Name="P10Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P10Uni" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P10Pos" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P10X" Type="Int32" Nullable="false" />
+    <Property Name="P10Y" Type="Int32" Nullable="false" />
+    <Property Name="P11ID" Type="Int32" Nullable="false" />
+    <Property Name="P11Name" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P11Uni" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P11Pos" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="P11X" Type="Int32" Nullable="false" />
+    <Property Name="P11Y" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ResultInfoTH">
+    <Key>
+      <PropertyRef Name="ResultInfoTHId" />
+    </Key>
+    <Property Name="ResultInfoTHId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamInfoTHId" Type="Int32" Nullable="false" />
+    <Property Name="HV" Type="Int16" Nullable="false" />
+    <Property Name="Game" Type="Int32" Nullable="false" />
+    <Property Name="Point" Type="Int32" Nullable="false" />
+    <Property Name="Win" Type="Int32" Nullable="false" />
+    <Property Name="Win90" Type="Int32" />
+    <Property Name="WinEX" Type="Int32" />
+    <Property Name="WinPK" Type="Int32" />
+    <Property Name="Lose" Type="Int32" Nullable="false" />
+    <Property Name="Lose90" Type="Int32" />
+    <Property Name="LoseEX" Type="Int32" />
+    <Property Name="LosePK" Type="Int32" />
+    <Property Name="Draw" Type="Int32" Nullable="false" />
+    <Property Name="Score" Type="Int32" Nullable="false" />
+    <Property Name="Lost" Type="Int32" Nullable="false" />
+    <Property Name="Differ" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ResultInfoTT">
+    <Key>
+      <PropertyRef Name="ResultInfoTTId" />
+    </Key>
+    <Property Name="ResultInfoTTId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamInfoTTId" Type="Int32" Nullable="false" />
+    <Property Name="TimeDivision" Type="Int32" Nullable="false" />
+    <Property Name="StateID" Type="Int32" Nullable="false" />
+    <Property Name="StateName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="Goal" Type="Int32" Nullable="false" />
+    <Property Name="Lost" Type="Int32" Nullable="false" />
+    <Property Name="Shoot" Type="Int32" Nullable="false" />
+    <Property Name="Assist" Type="Int32" />
+    <Property Name="FKD" Type="Int32" Nullable="false" />
+    <Property Name="FKI" Type="Int32" Nullable="false" />
+    <Property Name="CK" Type="Int32" Nullable="false" />
+    <Property Name="SufferShoot" Type="Int32" Nullable="false" />
+    <Property Name="Offside" Type="Int32" Nullable="false" />
+    <Property Name="Yellow" Type="Int32" Nullable="false" />
+    <Property Name="Red" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="SuspendReportSR">
+    <Key>
+      <PropertyRef Name="SuspendReportSRId" />
+    </Key>
+    <Property Name="SuspendReportSRId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SendDate" Type="Int32" Nullable="false" />
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="SuspendC" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="SuspensionInfoSR">
+    <Key>
+      <PropertyRef Name="SuspensionInfoSRId" />
+    </Key>
+    <Property Name="SuspensionInfoSRId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SuspendReportSRId" Type="Int32" Nullable="false" />
+    <Property Name="No" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerID" Type="Int32" Nullable="false" />
+    <Property Name="PlayerName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="PlayerNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="GamesC" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamCBP">
+    <Key>
+      <PropertyRef Name="TeamID" />
+    </Key>
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="GameCount" Type="Int32" Nullable="false" />
+    <Property Name="ShootCBP" Type="Double" Nullable="false" />
+    <Property Name="PassCBP" Type="Double" Nullable="false" />
+    <Property Name="CrossCBP" Type="Double" Nullable="false" />
+    <Property Name="DribbleCBP" Type="Double" Nullable="false" />
+    <Property Name="AttackCBP" Type="Double" Nullable="false" />
+    <Property Name="DefenseCBP" Type="Double" Nullable="false" />
+    <Property Name="SaveCBP" Type="Double" Nullable="false" />
+    <Property Name="ShootCBPAverage" Type="Double" Nullable="false" />
+    <Property Name="PassCBPAverage" Type="Double" Nullable="false" />
+    <Property Name="CrossCBPAverage" Type="Double" Nullable="false" />
+    <Property Name="DribbleCBPAverage" Type="Double" Nullable="false" />
+    <Property Name="AttackCBPAverage" Type="Double" Nullable="false" />
+    <Property Name="DefenseCBPAverage" Type="Double" Nullable="false" />
+    <Property Name="SaveCBPAverage" Type="Double" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamGameStutz">
+    <Key>
+      <PropertyRef Name="GameID" />
+      <PropertyRef Name="TeamID" />
+    </Key>
+    <Property Name="GameID" Type="Int32" Nullable="false" />
+    <Property Name="GameDate" Type="Int32" Nullable="false" />
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="OccasionNo" Type="Int32" Nullable="false" />
+    <Property Name="HomeAwayClass" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="OpponentTeamID" Type="Int32" Nullable="false" />
+    <Property Name="OpponentTeamName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="GameResultID" Type="Int32" Nullable="false" />
+    <Property Name="PlayCount" Type="Int32" Nullable="false" />
+    <Property Name="GoalCount" Type="Int32" Nullable="false" />
+    <Property Name="OGCount" Type="Int32" Nullable="false" />
+    <Property Name="ShootCount" Type="Int32" Nullable="false" />
+    <Property Name="WithinShootCount" Type="Int32" Nullable="false" />
+    <Property Name="PossessionRatio" Type="Double" Nullable="false" />
+    <Property Name="PassCount" Type="Int32" Nullable="false" />
+    <Property Name="CrossCount" Type="Int32" Nullable="false" />
+    <Property Name="LeftSideCrossCount" Type="Int32" Nullable="false" />
+    <Property Name="RightSideCrossCount" Type="Int32" Nullable="false" />
+    <Property Name="DribbleCount" Type="Int32" Nullable="false" />
+    <Property Name="TackleCount" Type="Int32" Nullable="false" />
+    <Property Name="ClearCount" Type="Int32" Nullable="false" />
+    <Property Name="InterceptCount" Type="Int32" Nullable="false" />
+    <Property Name="FoulCount" Type="Int32" Nullable="false" />
+    <Property Name="C30mLineCount" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamHAReportTH">
+    <Key>
+      <PropertyRef Name="TeamHAReportTHId" />
+    </Key>
+    <Property Name="TeamHAReportTHId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="SendDate" Type="Int32" Nullable="false" />
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamInfoIR">
+    <Key>
+      <PropertyRef Name="TeamInfoIRId" />
+    </Key>
+    <Property Name="TeamInfoIRId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InjulyReportIRId" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamInfoLF">
+    <Key>
+      <PropertyRef Name="TeamInfoLFId" />
+    </Key>
+    <Property Name="TeamInfoLFId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FormationReportLFId" Type="Int32" Nullable="false" />
+    <Property Name="HV" Type="Int16" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="NameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="FormationID" Type="Int32" Nullable="false" />
+    <Property Name="FormationName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamInfoTH">
+    <Key>
+      <PropertyRef Name="TeamInfoTHId" />
+    </Key>
+    <Property Name="TeamInfoTHId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamHAReportTHId" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamInfoTT">
+    <Key>
+      <PropertyRef Name="TeamInfoTTId" />
+    </Key>
+    <Property Name="TeamInfoTTId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamTimeReportTTId" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamNameS" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamSeasonStutz">
+    <Key>
+      <PropertyRef Name="TeamID" />
+    </Key>
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="TotalScore" Type="Int32" Nullable="false" />
+    <Property Name="GoalCount" Type="Int32" Nullable="false" />
+    <Property Name="PKGoalCount" Type="Int32" Nullable="false" />
+    <Property Name="SetPlayDirectGoalCount" Type="Int32" Nullable="false" />
+    <Property Name="SetPlayGoalCount" Type="Int32" Nullable="false" />
+    <Property Name="CrossGoalCount" Type="Int32" Nullable="false" />
+    <Property Name="ThroughPassGoalCount" Type="Int32" Nullable="false" />
+    <Property Name="ShortPassGoalCount" Type="Int32" Nullable="false" />
+    <Property Name="LongPassGoalCount" Type="Int32" Nullable="false" />
+    <Property Name="DribbleGoalCount" Type="Int32" Nullable="false" />
+    <Property Name="LooseBallGoalCount" Type="Int32" Nullable="false" />
+    <Property Name="OtherGoalCount" Type="Int32" Nullable="false" />
+    <Property Name="ShootCount" Type="Int32" Nullable="false" />
+    <Property Name="WithinShootCount" Type="Int32" Nullable="false" />
+    <Property Name="ShootDecisionRatio" Type="Double" Nullable="false" />
+    <Property Name="ShootWithinRatio" Type="Double" Nullable="false" />
+    <Property Name="PossessionRatio" Type="Double" Nullable="false" />
+    <Property Name="PassCount" Type="Int32" Nullable="false" />
+    <Property Name="PassSuccessCount" Type="Int32" Nullable="false" />
+    <Property Name="PassSuccessRatio" Type="Double" Nullable="false" />
+    <Property Name="ShortPassCount" Type="Int32" Nullable="false" />
+    <Property Name="ShortPassRatio" Type="Double" Nullable="false" />
+    <Property Name="MiddlePassCount" Type="Int32" Nullable="false" />
+    <Property Name="MiddlePassRatio" Type="Double" Nullable="false" />
+    <Property Name="LongPassCount" Type="Int32" Nullable="false" />
+    <Property Name="LongPassRatio" Type="Double" Nullable="false" />
+    <Property Name="FrontPassCount" Type="Int32" Nullable="false" />
+    <Property Name="FrontPassRatio" Type="Double" Nullable="false" />
+    <Property Name="RightSidePassCount" Type="Int32" Nullable="false" />
+    <Property Name="RightSidePassRatio" Type="Double" Nullable="false" />
+    <Property Name="BackwardPassCount" Type="Int32" Nullable="false" />
+    <Property Name="BackwardPassRatio" Type="Double" Nullable="false" />
+    <Property Name="LeftSidePassCount" Type="Int32" Nullable="false" />
+    <Property Name="LeftSidePassRatio" Type="Double" Nullable="false" />
+    <Property Name="CrossCount" Type="Int32" Nullable="false" />
+    <Property Name="LeftSideCrossCount" Type="Int32" Nullable="false" />
+    <Property Name="RightSideCrossCount" Type="Int32" Nullable="false" />
+    <Property Name="TackleCount" Type="Int32" Nullable="false" />
+    <Property Name="ClearCount" Type="Int32" Nullable="false" />
+    <Property Name="InterceptCount" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TeamTimeReportTT">
+    <Key>
+      <PropertyRef Name="TeamTimeReportTTId" />
+    </Key>
+    <Property Name="TeamTimeReportTTId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="SendDate" Type="Int32" Nullable="false" />
+    <Property Name="GameKindID" Type="Int32" Nullable="false" />
+    <Property Name="GameKindName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>

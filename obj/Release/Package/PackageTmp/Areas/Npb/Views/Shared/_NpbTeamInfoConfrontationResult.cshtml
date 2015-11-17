@@ -1,0 +1,107 @@
+﻿@model Splg.Areas.Npb.Models.ViewModel.NpbTeamInfoConfrontationResultViewModel
+@using Splg;
+@using Splg.Areas.Npb.Models.ViewModel.InfosModel;
+@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: _NpbTeamInfoConfrontationResult.cshtml
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-03-19
+    // Html No      : 8-5-3
+    NpbTeamInfoConfrontationResultInfos teamsOpponent = new NpbTeamInfoConfrontationResultInfos();
+    if (Model.TeamsOpponent != null)
+    {
+        teamsOpponent = Model.TeamsOpponent;
+    }
+} 
+@*----Row 1: TeamStatsCardDifferenceInfos----*@    
+ <div class="yak_list clear">   
+    @if (Model.TeamStatsCardDifferenceInfos != null && Model.TeamStatsCardDifferenceInfos.Any())
+    {
+        <div class="yak_title">
+            <h3>対戦成績 <span>対</span>@teamsOpponent.ShortNameTeam</h3>            
+        </div>
+        foreach (var item in Model.TeamStatsCardDifferenceInfos)
+        {
+            decimal battingValue = 0;
+            decimal earnedValue = 0;
+            <ul>
+                <li>
+                    <p class="left fs14">試合数</p>
+                    <p class="right fs18 bold">@item.Game</p>
+                </li>
+                <li>
+                    <p class="left fs14">勝利</p>
+                    <p class="right fs18 bold ">@item.Win</p>
+                </li>
+                <li>
+                    <p class="left fs14">敗戦</p>
+                    <p class="right fs18 bold  ">@item.Lose</p>
+                </li>
+                <li>
+                    <p class="left fs14">引分</p>
+                    <p class="right fs18 bold ">@item.Draw</p>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <p class="left fs14">得点</p>
+                    <p class="right fs18 bold ">@item.Run</p>
+                </li>
+                <li>
+                    <p class="left fs14">失点</p>
+                    <p class="right fs18 bold ">@item.PointLost</p>
+                </li>
+                <li>
+                    <p class="left fs14">安打</p>
+                    <p class="right fs18 bold ">@item.Hit</p>
+                </li>
+                <li>
+                    <p class="left fs14">本塁打</p>
+                    <p class="right fs18 bold ">@item.Homerun</p>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <p class="left fs14">三振</p>
+                    <p class="right fs18 bold ">@item.StrikeOut</p>
+                </li>
+                <li>
+                    <p class="left fs14">四球</p>
+                    <p class="right fs18 bold ">@item.BaseOnBall</p>
+                </li>
+                <li>
+                    <p class="left fs14">死球</p>
+                    <p class="right fs18 bold ">@item.HitByPitch</p>
+                </li>
+                <li>
+                    <p class="left fs14">併殺打</p>
+                    <p class="right fs18 bold ">@item.DoublePlay</p>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <p class="left fs14">盗塁</p>
+                    <p class="right fs18 bold ">@item.StolenBase</p>
+                </li>
+                <li>
+                    <p class="left fs14">失策</p>
+                    <p class="right fs18 bold ">@item.Error</p>
+                </li>
+                <li>
+                    <p class="left fs14">打率</p>
+                    <p class="right fs18 bold">@(decimal.TryParse(item.BattingAverage, out battingValue) == true ? Math.Round(battingValue, 3, MidpointRounding.ToEven).ToString(".000") : ".000")</p>
+                </li>
+                <li>
+                    <p class="left fs14">防御率</p>
+                    <p class="right fs18 bold">@(decimal.TryParse(item.EarnedRunAverage, out earnedValue) == true ? Math.Round(earnedValue, 2, MidpointRounding.ToEven).ToString("0.00") : "0.00")</p>
+                </li>
+            </ul>
+        }
+    }
+</div>
+<div id="resultAjaxGameInfos"></div>
+<div id="resultDefaultGameInfos">
+    @Html.Partial("~/Areas/Npb/Views/Shared/_NpbTeamInfoResultGameInfos.cshtml", Model)
+</div>
+
+      

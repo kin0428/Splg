@@ -1,0 +1,53 @@
+﻿@model Splg.Models.Game.ViewModel.PointInfoViewModel
+@using Splg;
+@using Splg.Models.Game.ViewModel;
+@using Splg.Models.Game.InfoModel;
+@using Splg.Areas.Npb.Models;
+@using Splg.Areas.Mlb.Models;
+@using Splg.Areas.Jleague.Models;
+@using Splg.Core.Constant;
+
+<div id="warningPopup" class="pop_outside" style="display:none;">
+    <div class="pop_block_warning">
+        <a id="closePopup" class="pop_exit" href="#"><img src="~/Content/img/tmp/close.png" alt="exit" /></a>
+        <h1 class="pop_title">Warning</h1>
+        <div class="pop_bl01">
+            <p id="textPopup" class="fs14"></p>
+        </div>
+    </div>
+</div>
+@{
+    var memberID = string.Empty;
+    if (Session["CurrentUser"] != null)
+    {
+        memberID = Session["CurrentUser"].ToString();
+    }
+}
+@if (Model != null)
+{
+    if (Model.PointInfoModel != null)
+    {
+        <div class="side_block06 side_link06 mtop" id="pointPrediction" data-member="@memberID">
+            <a href="@Url.RouteUrl(RouteNameConst.MyPageToday)">
+                <p class="side_text01"><span class="organge">現在の所持ポイント</span></p>
+                <p class="side_text02">詳細を見る≫</p>
+                <h2 class="side_text03">
+                    <span id="PossessionPoint">@string.Format("{0:n0}", Model.PointInfoModel.PossesionPoint) </span>pt
+                </h2>
+                <!--    <p>昨日の結果</p>
+                <div class="side_text06"><p>＋1,000pt <span class="pink_clor fs14">↑</span>／102位 </p><p> (32位 RANK UP<span class="pink_clor">↑</span>)</span></p></div> -->
+            </a>
+        </div>
+
+        //予想済試合予定リスト
+        if (Model.ExpectationInfoModels != null && Model.ExpectationInfoModels.Any())
+        {
+            var dayGroup = Model.ExpectationInfoModels.GroupBy(m => m.GameDate.Date).ToList();
+
+            foreach (var item in dayGroup)
+            {
+                @Html.Action("ShowExpectedGameSchedules", "RightContent", new { area = "", model = Model.ExpectationInfoModels.Where(m => m.GameDate.Date == item.Key).ToList(),targetDate = item.Key,  memberId = memberID })
+            }            
+        }
+    }
+}

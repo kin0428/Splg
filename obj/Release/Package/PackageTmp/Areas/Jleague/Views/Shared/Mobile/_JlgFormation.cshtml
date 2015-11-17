@@ -1,0 +1,17 @@
+﻿<div class="socData socFormation">
+    <h2 class="socData-hdg">
+        @(Model.FormationChartDto.StartingTypeForDisplay)フォーメーション
+    </h2>
+
+    <p class="socFormation-team">
+        <img src="@Url.Content(Model.awayTeamSpec.TeamIconUrl)" alt="@Model.awayTeamSpec.TeamName" class="socData-hdgIcon">@Model.awayTeamSpec.TeamName
+    </p>
+
+    <div id="FormationData" class="socFormation-image">
+        @Html.Action("ShowFormationChart", "Chart", new { area = "", formationChartDto = Model.FormationChartDto })
+    </div>
+
+    <p class="socFormation-team">
+        <img src="@Url.Content(Model.homeTeamSpec.TeamIconUrl)" alt="@Model.homeTeamSpec.TeamName" class="socData-hdgIcon">@Model.homeTeamSpec.TeamName
+    </p>
+</div>

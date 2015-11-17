@@ -1,0 +1,118 @@
+﻿@{
+    // Developer	: Nojima
+    // Html No      : 3-4-1
+}
+@using Splg.Areas.MyPage.Models.ViewModel;
+@model Splg.Areas.MyPage.Models.ViewModel.MyPageGroupDetailsViewModel
+@{
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.GROUP_DETAILS;
+    Layout = "~/Areas/MyPage/Views/MyPageGroupDetails/Mobile/_MyPageLayout.cshtml";
+}
+<link rel="stylesheet" href="~/Mobile/Content/bxslider.css" type="text/css" />
+@*<script src="~/Mobile/Scripts/common.js"></script>
+    <script src="~/Mobile/Scripts/jquery.js"></script>*@
+<script src="~/Areas/MyPage/Scripts/Views/highcharts.js"></script>
+<script src="~/Mobile/Scripts/jquery.bxslider.js"></script>
+@*<script src="~/Mobile/Scripts/respond.js"></script>*@
+
+<script src="~/Areas/MyPage/Scripts/Mobile/3-4-1.js"></script>
+<script src="~/Scripts/Home.js"></script>
+
+@{
+    var group_name = Model.GroupInfo.GroupName;
+    var group_member_num = Model.GroupInfo.NumberOfMember;
+    var group_other_num = Model.GroupInfo.NumberOfOther;
+    var group_id = Model.GroupInfo.GroupId;
+    var this_year = Model.ThisYear;
+    var this_month = Model.ThisMonth;
+    var yearmonth = this_year.ToString() + "年" + this_month.ToString() + "月";
+    int i;
+
+}
+
+@if (Model != null && group_id > 0)
+{
+    <section class="block_8">
+        <div class="block_8_2">
+            <h2 class="my-title fs15" id="@(group_id)-@(this_year)-@(this_month)">@(group_name)</h2>
+            <div class="mem-list">
+                <ul class="bxslider">
+                    @foreach (var profile in Model.GroupInfo.GroupMembers)
+                    {
+                        if (string.IsNullOrEmpty(profile.ProfileImg) == false)
+                        {
+                            <li><a href="@(profile.userURL)"><img class="circle" src="@(profile.ProfileImg)" alt="" /></a></li>
+                        }
+                    }
+                </ul>
+            </div>
+            <p class="tright fs8"><a href="/mypage/group/@Model.GroupInfo.GroupId/edit/">グループを編集する</a></p>
+        </div>
+        <div class="block_8_2">
+            <nav class="my-panel">
+                <a href="#" class="prev" id="prev_month">前の月</a>
+                <h4 id="mypagetopreportmonth">@yearmonth</h4>
+                <a href="#" class="next" id="next_month">次の月</a>
+            </nav>
+            <ul class="my-list1" id="PointRanking">
+                @{i = 1; var orange = "orange";}
+                @foreach (var mem in Model.GroupInfo.GroupMembers)
+                {
+                    <li>
+                        <p class="num fs24 @orange">@i</p>
+                        <div><img class="circle" src=@mem.ProfileImg alt="" /></div>
+                        <dl>
+                            <dt><a href=@mem.userURL>@mem.Nickname</a></dt>
+                            <dd><span class="fs15">@mem.FormattedRankingPoints</span> pt</dd>
+                        </dl>
+                    </li>
+                    orange = ""; i++;
+                }
+            </ul>
+            <div class="space20"> </div>
+            <h3 class="my-title">メンバーのStats</h3>
+            @*<div id="container"></div>*@
+            <div class="block_8_2">
+                @{ i = 1; }
+                @foreach (var mem in Model.GroupInfo.GroupMembers)
+                {
+                    var id_name = "correct_percentage_bar_" + i.ToString();
+                    var id_text_name = "correct_percentage_bar_text_" + i.ToString();
+                    var member_url = mem.userURL;
+                    var member_image = mem.ProfileImg;
+                    i++;
+                    <dd>
+                        <div class="dialog" id="@id_name" style="width: 0%;">
+                            <a href="@member_url"><img class="circle stats" src="@member_image" alt=""></a>
+                            <span id="@id_text_name" class="num fs30"></span>%
+                        </div>
+                    </dd>
+                }
+            </div>
+        </div>
+    </section>
+    <h2 class="subtitle1">@Utils.GetMonthAndDayOfWeek(DateTime.Now)の試合</h2>
+    <section class="block_2">
+        <input type="hidden" id="Page" name="Page" value="1" data-gamedate="@DateTime.Now.ToShortDateString().Replace("/", "" )" />
+        <div id="npbGameInfo">
+            @Html.Action("ShowGameInfo", "MyPageGroupDetails", new { type = 1, gameDate = DateTime.Now.ToShortDateString().Replace("/", ""), group_id })
+        </div>
+
+    </section>
+}
+else
+{
+
+    <section class="block_8"></section>
+    <section class="block_8"></section>
+    <section class="block_8">
+        <div class="block_8_1">
+            <article class="my-info">
+                <h2>
+                    このグループは削除されました。<br />
+                    <a href="/mypage/">マイページトップへ</a>
+                </h2>
+            </article>
+        </div>
+    </section>
+}

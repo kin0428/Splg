@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+
+    <mvcSiteMapNode title="HOME" controller="" action="Index" area="" cssClassName="menu-home">
+
+        <mvcSiteMapNode title="あなたの試合予想" controller="Expectedlist" action="Index" area="MyPage" cssClassName="menu-exp" isMemberOnly="true"/>
+
+        <mvcSiteMapNode title="プロ野球" controller="NpbTop" action="Index" area="Npb" cssClassName="menu-bb">
+            <mvcSiteMapNode title="プロ野球トップ" controller="NpbTop" action="Index" area="Npb"/>
+            <mvcSiteMapNode title="日程・結果" controller="NpbScheduleResult" action="Index" area="Npb"/>
+            <mvcSiteMapNode title="順位表" controller="NpbOrder" action="Index" area="Npb"/>
+            <mvcSiteMapNode title="個人成績" controller="NpbPersonalResult" action="Index" area="Npb"/>
+            <mvcSiteMapNode title="チーム成績" controller="NpbTeamInformation" action="Index" area="Npb"/>
+            <mvcSiteMapNode title="ニュース" controller="NpbNewsList" action="Index" area="Npb"/>
+        </mvcSiteMapNode>
+
+        <mvcSiteMapNode title="MLB" controller="MlbTop" action="Index" area="Mlb" cssClassName="menu-mlb">
+            <mvcSiteMapNode title="MLBTOP" controller="MlbTop" action="Index" area="Mlb"/>
+            <mvcSiteMapNode title="日程・結果" controller="MlbScheduleResult" action="Index" area="Mlb"/>
+            <mvcSiteMapNode title="順位表" controller="MlbOrder" action="Index" area="Mlb"/>
+            <mvcSiteMapNode title="チーム成績" controller="MlbTeamInformation" action="Index" area="Mlb"/>
+            <mvcSiteMapNode title="ニュース" controller="MlbNewsList" action="Index" area="Mlb"/>
+        </mvcSiteMapNode>
+
+        <mvcSiteMapNode title="サッカー" controller="JlgTop" action="Index" area="Jleague" cssClassName="menu-soc">
+            <mvcSiteMapNode title="Jリーグトップ" controller="JlgTop" action="Index" area="Jleague"/>
+            <mvcSiteMapNode title="J1" controller="JlgTop" action="Index" area="Jleague"/>
+            <mvcSiteMapNode title="J2" controller="JlgTop" action="Index" area="Jleague"/>
+            <mvcSiteMapNode title="ナビスコカップ" controller="JlgTop" action="NabiscoTop" area="Jleague"/>
+        </mvcSiteMapNode>
+
+        <mvcSiteMapNode title="プレゼントに応募" controller="PrizeTop" action="Index" area="Prize" cssClassName="menu-prz">
+        </mvcSiteMapNode>
+        
+        <mvcSiteMapNode title="スポログの遊び方" controller="Support" action="Howto" area="" cssClassName="menu-how">
+        </mvcSiteMapNode>
+        
+    </mvcSiteMapNode>
+
+</mvcSiteMap>

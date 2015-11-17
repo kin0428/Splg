@@ -1,0 +1,87 @@
+﻿@{
+    // FileName : Splg\Areas\Jleague\Views\Shared\Mobile\_JlgPointEdit.cshtml
+}
+
+@model Splg.Models.Game.ViewModel.GameInfoViewModel
+@using Splg.Areas.Npb.Models;
+
+@if (Model != null)
+{
+    var gameInfo = Model;
+    var expectationInfo = Model.ExpectationInfo;
+
+    var strTimeRemain = Utils.CalculateTimeRemainDisplayString(gameInfo.GameDate, gameInfo.Time);
+    DateTime gameTime = DateTime.ParseExact(gameInfo.Time, "HHmm", null);
+    var strGameTime = gameTime.ToString("HH:mm");
+    DateTime gameDate = DateTime.ParseExact(gameInfo.GameDate.ToString(), "yyyyMMdd", null);
+    var strDateTime = Utils.GetMonthAndDayOfWeek(gameDate) + " " + strGameTime;
+    var totalPointInWeek = NpbCommon.GetPossessionPointByPointID(expectationInfo.PointID);
+    var divisionPoint = expectationInfo.ExpectPoint / 100;
+    var strText = string.Empty;
+    var reloadUrl = expectationInfo.ReloadUrl;
+    var reloadArea = expectationInfo.ReloadArea;
+
+    <div>
+
+        <section class="main_block main_block_popup">
+
+            <dl class="panel-time">
+                <dt>予想締切<span>@strTimeRemain</span></dt>
+                <dd>@strDateTime</dd>
+            </dl>
+
+            <div class="panel-group">
+                <div class="clear">
+                    <article class="panel-col1">
+                        <figure></figure>
+                        <p class="blue fs14">@gameInfo.HomeTeamNameS</p>
+                    </article>
+                    <article class="panel-col4">
+                        <span class="gray fs16 fi">VS</span>
+                    </article>
+                    <article class="panel-col1">
+                        <figure></figure>
+                        <p class="blue fs14">@gameInfo.VisitorTeamNameS</p>
+                    </article>
+                </div>
+            </div>
+
+            <div class="panel-edit">
+                @{var format = "{0}の勝ちを予想する";}
+                @if (expectationInfo.BetSelectID == 1)
+                {
+                    strText = string.Format(format, gameInfo.HomeTeamNameS);
+                }
+                else if (expectationInfo.BetSelectID == 2)
+                {
+                    strText = string.Format(format, gameInfo.VisitorTeamNameS);
+                }
+                else
+                {
+                    strText = "引き分けを予想する";
+                }
+                <p class="e01">@strText</p>
+                <p class="e02"><span class="fs24">x </span><span class="fs30 fi">@expectationInfo.Odds</span></p>
+            </div>
+
+            <div class="panel-edit1">
+                <p>
+                    <span class="fs8">現在の所得ポイント </span>
+                    <strong><span class="fs16" id="totalPoint">@totalPointInWeek</span>pt</strong>
+                </p>
+                <p><span class="fs8">使用する予想ポイント</span></p>
+                <p><input id="inputPoint" class="box70 pointBetMobile" type="text" name="point" maxlength="5" max="10000" value="@divisionPoint" data-old="@expectationInfo.ExpectPoint" data-expectpoint="@StringProtector.Protect(expectationInfo.ExpectPointID.ToString())" data-point="@StringProtector.Protect(expectationInfo.PointID.ToString())">00 pt</p>
+            </div>
+
+            <p class="my-btn02" data-reloadurl="@reloadUrl" data-reloadarea="@reloadArea">保存する</p>
+            <div class="space"></div>
+
+            @*todo 表示/非表示の切り替え*@
+            <p class="panel-btnCancelAAA" data-sport="@Constants.JLG_SPORT_ID" data-id="@gameInfo.GameID.ToString()" data-old="@expectationInfo.ExpectPoint" data-expectpoint="@StringProtector.Protect(expectationInfo.ExpectPointID.ToString())" data-point="@StringProtector.Protect(expectationInfo.PointID.ToString())" data-url="@reloadUrl" data-reloadarea="@reloadArea">予想を削除する</p>
+        
+        </section>
+
+    </div>
+}
+
+

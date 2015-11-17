@@ -1,0 +1,268 @@
+﻿@{
+    //Author : Nojima
+    //FileName : Index.cshtml (8-6)
+    //Created Date : 2015/04/28
+}
+@model Splg.Areas.Jleague.Models.ViewModel.JlgGameInfoViewModel
+@using Splg.Areas.Jleague.Models;
+@using Splg;
+@using Splg.Areas.Jleague;
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Name = Constants.JLG_GAME_INFO;
+    ViewBag.pageNo = Constants.JLG_GAME_INFO;
+    Layout = "~/Views/Shared/_JlgLayoutTop.cshtml";
+
+    int gameID = 0;
+    int gameStatus = 0;
+}
+<script src="~/Areas/Jleague/Scripts/10-5.js"></script>
+@if (Model != null)
+{
+    gameID = Model.GameID;
+    gameStatus = Model.GameStatus;
+
+    <script type="text/javascript">
+    var interval = null;
+    function AutoLoad()
+    {
+        var status = "";
+        var isChange = "";
+        var gameID = '@gameID';
+        $.ajax({
+            type: "POST",
+            url: '/jleague/JlgGameInformation/GetGameStatusByGameID',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify({ gameID: gameID }),
+            async: false,
+            success: function (result) {
+                if (result != null) {
+                    var list = result;
+                    $.each(list, function (index, item) {
+                        if(index == 0)
+                        {
+                            isChange = item;
+                        }
+                        else
+                        {
+                            status = item;
+                        }
+                    });
+                }
+            },
+        });
+        if(isChange == "True")
+        {
+            //Status change -> load 2 div : npbGameInfoPlayerInfo, npbRightGames.
+
+            var linkUrl = '@Url.Action("ShowGameInfoPlayerInfo", "JlgGameInformation", new { area = "Jleague", gameID = @gameID }, null)';
+            $('#jlgGameInfoPlayerInfo').load(linkUrl);
+            var linkUrlGame = '@Url.Action("ShowGameInRightContent", "JlgGameInformation", new { area = "Jleague", gameID = @gameID }, null)';
+            $('#jlgRightGames').load(linkUrlGame);
+
+            //If status : 試合後, stop update div : jlgGameInfoPlayerInfo.
+            if(status == "2")
+            {
+                //alert("Remove interval");
+                clearInterval(interval);
+            }
+        }
+        else
+        {
+            //If status : 試合後, not update div : jlgGameInfoPlayerInfo.
+            if(status == "2")
+            {
+                //alert("Remove interval");
+                clearInterval(interval);
+            }
+        }
+    };
+
+    $(function () {
+        interval = setInterval(AutoLoad, 15000);
+    });
+    </script>
+
+
+    if (Model.GameStatus != null)
+    {
+        <input type="hidden" id="Page" name="Page" value="4" data-gameid="@gameID" />
+        <div id="jlgGameInfoPlayerInfo">
+            @Html.Action("ShowGameInfoPlayerInfo", "JlgGameInformation", new { area = "Jleague", gameID = @gameID, viewModel = Model })
+        </div>
+    }
+
+        <!-- 試合データ -->
+    if (@gameStatus > 1 && Model.GameEndInfo != null)
+    {
+        <div class="block_04">
+            <h3 class="mytitle02">試合データ</h3>
+            <div class="row">
+                <dl class="jevt_tbl02">
+                    <dt>観客数</dt>
+                    <dd>@Model.GameEndInfo.Spectators</dd>
+                    <dt>芝状態</dt>
+                    <dd>@Model.GameEndInfo.Condition</dd>
+                    <dt>天候</dt>
+                    <dd>@Model.GameEndInfo.Weather</dd>
+                </dl>
+                <dl class="jevt_tbl02">
+                    <dt>気温</dt>
+                    <dd>@Model.GameEndInfo.Temperature</dd>
+                    <dt>湿度</dt>
+                    <dd>@Model.GameEndInfo.Humidity</dd>
+                    <dt>風</dt>
+                    <dd>@Model.GameEndInfo.Wind</dd>
+                </dl>
+                <dl class="jevt_tbl02">
+                    <dt>主審</dt>
+                    <dd>@Model.GameEndInfo.Referee</dd>
+                    <dt>副審</dt>
+                    <dd>@Model.GameEndInfo.Linesman1</dd>
+                    <dt>副審</dt>
+                    <dd>@Model.GameEndInfo.Linesman2</dd>
+                </dl>
+            </div>
+        </div>
+
+    }
+
+        <!-- フォローユーザーの予想 -->
+    <div class="evt_block02">
+        <h3 class="mytitle02">フォローユーザーの予想</h3>
+        @{
+
+    int betWinCount = Model.FollowMembersBetToWin == null ? 0 : Model.FollowMembersBetToWin.Count();
+    int betDrawCount = Model.FollowMembersBetToDraw == null ? 0 : Model.FollowMembersBetToDraw.Count();
+    int betLoseCount = Model.FollowMembersBetToLose == null ? 0 : Model.FollowMembersBetToLose.Count();
+
+    <p class="evt_bl02_1">ホームの勝ち<span class="fs14">@betWinCount</span>人が予想</p>
+            <ul class="evt_bl02_2">
+                @{
+
+    for (int i = 0; i < Math.Min(betWinCount, 6); i++)
+    {
+        var m = Model.FollowMembersBetToWin[i];
+        <li><a href="/user/@m.MemberId"><img class="resimg circle" src="@m.ProfileImg" alt="" /></a></li>
+    }
+
+    if (betWinCount > 6)
+    {
+        <li class="count_num02"><span>+@(betWinCount - 6)</span></li>
+    }
+                }
+            </ul>
+
+            <p class="evt_bl02_1">引き分け<span class="fs14">@betDrawCount</span>人が予想</p>
+            <ul class="evt_bl02_2">
+                @{
+
+    for (int i = 0; i < Math.Min(betDrawCount, 6); i++)
+    {
+        var m = Model.FollowMembersBetToDraw[i];
+        <li><a href="/user/@m.MemberId"><img class="resimg circle" src="@m.ProfileImg" alt="" /></a></li>
+    }
+
+    if (betDrawCount > 6)
+    {
+        <li class="count_num02"><span>+@(betDrawCount - 6)</span></li>
+    }
+                }
+            </ul>
+
+            <p class="evt_bl02_1">ビジターの勝ち<span class="fs14">@betLoseCount</span>人が予想</p>
+            <ul class="evt_bl02_2">
+                @{
+
+    for (int i = 0; i < Math.Min(betLoseCount, 6); i++)
+    {
+        var m = Model.FollowMembersBetToLose[i];
+        <li><a href="/user/@m.MemberId"><img class="resimg circle" src="@m.ProfileImg" alt="" /></a></li>
+    }
+
+    if (betLoseCount > 6)
+    {
+        <li class="count_num02"><span>+@(betLoseCount - 6)</span></li>
+    }
+                }
+            </ul>
+        }
+    </div>
+
+
+
+    <div class="space"> </div>
+
+        <!-- この試合の投稿記事 -->
+
+    int postCount = 0;
+    if (Model.PostedInfos != null && Model.PostedInfos.Any())
+    {
+        postCount = Model.PostedInfos.Count();
+    }
+
+    <div class="evt_block01">
+        <div class="cat_stitle">
+            <h3>この試合の投稿記事</h3>
+
+            @if (false)   //未実装
+            {
+                //  if (postCount > 5)
+                <p><a href="/user_article/1/sport/">この試合の記事をもっと読む</a></p>
+            }
+        </div>
+        <ul class="evt_list01">
+            @if (postCount > 0)
+            {
+                var posts = Model.PostedInfos.Take(5);
+                foreach (var post in posts)
+                {
+                    string postContent = string.Format("{0}&nbsp;&nbsp;&nbsp;{1}投稿", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                    <li>
+                        <a href="/user/@post.MemberId/"><img src="@post.ProfileImg" alt="icon" /></a>
+                        <a class="bold" href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a>
+                        <br />
+                        @Html.Raw(postContent)
+                    </li>
+                }
+            }
+        </ul>
+
+        <p class="edit_btn02">
+            <!--<a href="@*@Url.RouteUrl("5_4_by_match", new { newsClassID = Constants.NEWSCLASSID_GAME, sportID = Constants.JLG_SPORT_ID, gameID =  @gameID })*@"><span class=" icon"> </span>この試合の記事を書きませんか？</a>-->
+        </p>
+
+    </div>
+
+
+    <div class="space"> </div>
+    @Html.Action("ShowJlgNewsTopViews", "JlgRightContent", new { area = "Jleague" })
+
+    @Html.Action("ShowJlgRecentNews", "JlgRightContent", new { area = "Jleague", type = Constants.JLG_GAME_INFO, teamID = Model.ScheduleInfo.HomeTeamID, homeVisitor = "1" })
+
+    @Html.Action("ShowJlgRecentNews", "JlgRightContent", new { area = "Jleague", type = Constants.JLG_GAME_INFO, teamID = Model.ScheduleInfo.AwayTeamID, homeVisitor = "2" })
+
+
+    <div class="evt_block05">
+        <input type="hidden" id="Page3" name="Page3" value="5" data-gamedate="@Model.GameDateManaged" />
+        <h3 class="subtitle03">次の試合を予想してみよう</h3>
+        <div id="jlgGameInfoNextDate">
+            @Html.Action("ShowGameInfo", "JlgTop", new { area = "Jleague", type = 5, teamID = @Model.HomeTeamID, occasionNo = (@Model.OccasionNo + 1) })
+        </div>
+    </div>
+
+}
+<!--Right Content-->
+@section JlgPage{
+        @Html.Action("ShowJlgRightRecentNews", "JlgRightRecentNews", new { area = "Jleague" })
+        
+        @*if (ViewBag.JleagueMenu == 2)
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_J1, jType = 1 })
+        }
+        else if (ViewBag.JleagueMenu == 3)
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_J2, jType = 2 })
+        }*@
+}

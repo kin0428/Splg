@@ -1,0 +1,51 @@
+﻿@{
+    //Author : Nojima
+    //FileName : _JlgGameInfoHeader.cshtml
+    //Created Date : 2015/08/24
+}
+@using Splg
+@using Splg.Areas.Jleague
+@using Splg.Areas.Jleague.Models.ViewModel.InfosModel;
+@model JlgGameInfos
+
+@{
+
+
+}
+
+@if (Model.GameStatus > 1) { 
+
+    <div class="expOthers">
+        <p class="expOthers-hdg"><img src="/html/Mobile/Content/img/jleague/hdg_expothers.png" alt="みんなの予想"></p>
+        <p class="expOthers-listHdg">ホームの勝ち</p>
+        <p class="expOthers-count"><span>@Model.BetHomeMembers.Count()</span>人</p>
+        <div class="mem-list">
+            <ul class="bxslider">
+                @foreach (var profile in Model.BetHomeMembers)
+                {
+                    <li><a href="/user/@(profile.MemberId)"><img class="circle" src=@(profile.ProfileImg) alt="" /></a></li>
+                }
+            </ul>
+        </div>
+        <p class="expOthers-listHdg">引き分け</p>
+        <p class="expOthers-count"><span>@Model.BetDrawMembers.Count()</span>人</p>
+        <div class="mem-list">
+            <ul class="bxslider">
+                @foreach (var profile in Model.BetDrawMembers)
+                {
+                    <li><a href="/user/@(profile.MemberId)"><img class="circle" src=@(profile.ProfileImg) alt="" /></a></li>
+                }
+            </ul>
+        </div>
+        <p class="expOthers-listHdg">アウェイの勝ち</p>
+        <p class="expOthers-count"><span>@Model.BetAwayMembers.Count()</span>人</p>
+        <div class="mem-list">
+            <ul class="bxslider">
+                @foreach (var profile in Model.BetAwayMembers)
+                {
+                    <li><a href="/user/@(profile.MemberId)"><img class="circle" src=@(profile.ProfileImg) alt="" /></a></li>
+                }
+            </ul>
+        </div>
+    </div>
+}

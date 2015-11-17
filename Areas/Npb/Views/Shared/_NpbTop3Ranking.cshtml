@@ -1,0 +1,118 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : _NpbTop3Ranking.cshtml
+    //Created Date : 2015/03/04
+}
+@model Splg.Areas.Npb.Models.ViewModel.Top3RankingViewModel
+                    
+@if(Model != null)
+{ 
+    @*----Show セ・リーグ順位----*@
+    if (Model.SeLeague != null)
+    {
+        if (Model.SeLeague.Any())
+        {
+            <div class="side_board">
+                <table cellpadding="0" cellspacing="0" summary="順位表">
+                    <col width="48%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <thead>
+                        <tr>
+                            <th><b>セ・リーグ順位</b></th>
+                            <th>勝</th>
+                            <th>敗</th>
+                            <th>引</th>
+                            <th>差</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.SeLeague)
+                        {
+                            <tr>
+                                @if (@item.Ranking > 1)
+                                {
+                                    <th><span class="fi bold">@item.Ranking</span>@Html.ActionLink(@item.ShortNameTeam, "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamCD }, null)</th>
+                                }
+                                else
+                                {
+                                    <th><span class="organge fi bold">@item.Ranking</span>@Html.ActionLink(@item.ShortNameTeam, "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamCD }, null)</th>
+                                }
+                                <td class="fi bold">@item.Win</td>
+                                <td class="fi bold">@item.Lose</td>
+                                <td class="fi bold">@item.Draw</td>
+                                <td class="fi bold">@item.GameBehind</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+    @*----Show パ・リーグ順位----*@
+    if(Model.PaLeague != null)
+    { 
+        if (Model.PaLeague.Any())
+        {
+            <div class="space20"></div>
+            <div class="side_board">
+                <table cellpadding="0" cellspacing="0" summary="順位表">
+                    <col width="48%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <thead>
+                        <tr>
+                            <th><b>パ・リーグ順位</b></th>
+                            <th>勝</th>
+                            <th>敗</th>
+                            <th>引</th>
+                            <th>差</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.PaLeague)
+                        {
+                            <tr>
+                                @if (@item.Ranking > 1)
+                                {
+                                    <th><span class="fi">@item.Ranking</span>@Html.ActionLink(@item.ShortNameTeam, "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamCD }, null)</th>
+                                }
+                                else
+                                {
+                                    <th><span class="organge fi">@item.Ranking</span>@Html.ActionLink(@item.ShortNameTeam, "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamCD }, null)</th>
+                                }
+                                <td class="fi bold">@item.Win</td>
+                                <td class="fi bold">@item.Lose</td>
+                                <td class="fi bold">@item.Draw</td>
+                                @if (@item.Ranking == 1)
+                                {
+                                    int gBehind;
+                                    bool isNumeric = int.TryParse(@item.GameBehind, out gBehind);
+                                    if (@item.GameBehind.Contains("-") || isNumeric)
+                                    {
+                                        <td class="fi bold">@item.GameBehind</td>
+                                    }
+                                    else
+                                    {
+                                        <td><span class="fs14 organge fi bold">@item.GameBehind</span></td>
+                                    }
+                                }
+                                else
+                                {
+                                    <td class="fi bold">@item.GameBehind</td>
+                                }
+                       
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+}

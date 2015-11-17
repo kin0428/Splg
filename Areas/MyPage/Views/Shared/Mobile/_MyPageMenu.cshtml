@@ -1,0 +1,41 @@
+﻿@{
+    // Namespace	: Splg.Areas.MyPage.Models.ViewModel
+    // FileName		: _MyPageMenu.cshtml
+    // Device       :  Mobile
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-04-04
+}
+<!-- path -->
+<ul class="block-path">
+    <li>
+        <a class="active" href="javascript:void(0)">マイページ</a>
+        <ul>
+            @*マイページ: 3-1 *@
+            <li><a href="@Url.Action("Index", "MyPageTop", new { area = "MyPage" }, null)">マイページトップ</a></li>
+
+            @*予想リスト: 3-2 *@
+            <li><a href="@Url.Action("Index", "MyPageExpectedList", new { area = "MyPage" }, null)">予想リスト</a></li>
+
+            @*投稿記事: 3-3 *@
+            <li><a href="@Url.Action("Index", "MyPageArticle", new { area = "MyPage" }, null)">投稿記事</a></li>
+
+            @*グループリスト: 3-4 *@
+            <li><a href="@Url.Action("Index", "MyPageGroupList", new { area = "MyPage" }, null)">グループリスト</a></li>
+
+            @*フォローリスト: 3-5*@
+            <li><a href="@Url.Action("Index", "MyPageFollowing", new { area = "MyPage" }, null)">フォローリスト</a></li>
+
+            @*フォロワーリスト : 3-6 *@
+            <li><a href="@Url.Action("Index", "MyPageFollowers", new { area = "MyPage" }, null)">フォロワーリスト</a></li>
+
+            @*設定 : 3-7 *@
+            <li><a href="@Url.Action("Index", "MyPageSetting", new { area = "MyPage" }, null)">設定</a></li>
+
+            @*お知らせ : 3-8 *@
+            <li><a href="@Url.Action("Index", "MyPageNotice", new { area = "MyPage" }, null)">お知らせ</a></li>
+
+            @*ユーザー検索 : 3-9 *@
+            <li><a href="@Url.Action("Index", "UserSearch", new { area = "MyPage" }, null)">ユーザー検索</a></li>
+        </ul>
+      </li>
+</ul>

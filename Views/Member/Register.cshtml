@@ -1,0 +1,110 @@
+﻿@model Splg.Models.ViewModel.MemberRegistViewModel
+@{
+    ViewBag.Title = "会員登録(無料)";
+}
+<div class="bottom">
+    <div class="mem_block01 clear">
+        <div class="mem_b1_1">
+            <h2>スポログにユーザー登録(無料)する</h2>
+            <ul>
+                <li><span>STEP 1<br />入力</span></li>
+                <li>STEP 2<br />確認</li>
+                <li>STEP 3<br />メール送信</li>
+                <li>STEP 4<br />登録完了</li>
+            </ul>
+        </div>
+        <h3 class="mem_title01">SNSのアカウントなら登録が簡単！</h3>
+        <ul class="mem_b1_2 clear">
+            <li><a href="@Url.Action("TwitterLogin","Member")"><img src="~/Content/img/tmp/m_btn01.png" alt="Twitterから登録する" /></a></li>
+            <li><a href="@Url.Action("FacebookLogin","Member")"><img src="~/Content/img/tmp/m_btn02.png" alt="Facebookから登録する" /></a></li>
+            <li><a href="@Url.Action("GoogleLogin", "Member")"><img src="~/Content/img/tmp/m_btn03.png" alt="Google+から登録する" /></a></li>
+        </ul>
+        <div class="mem_b1_3">
+            <h3 class="mem_title01">ログインに必要な情報だけを入力して登録！</h3>
+            @using (Html.BeginForm("Register", "Member", FormMethod.Post, new { @id = "registerForm", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <span id="error" style="color:red"></span>
+                <dl class="clear">
+                    <dt>メールアドレス</dt>
+                    <dd>
+                        @Html.TextBoxFor(model => model.Email, new { @class = "mem470", autofocus = "autofocus", @id = "emailAddr" })
+                        <p>
+                            <span id="warningEmail">メールアドレスはログインに使用します</span> @Html.ValidationMessageFor(model => model.Email, String.Empty, new { @class = "red" })
+                        </p>
+
+                    </dd>
+                    <dt>パスワード</dt>
+                    <dd>
+                        @Html.PasswordFor(model => model.Password, new { @class = "mem470", @id = "password" })
+                        <p>
+                            <span id="warningPass">６文字以上入力してください</span> @Html.ValidationMessageFor(model => model.Password, String.Empty, new { @class = "red" })
+                        </p>
+
+                    </dd>
+                    <dt>パスワード(確認)</dt>
+                    <dd>
+                        @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "mem470", @id = "passwordConfirm" })
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword, String.Empty, new { @class = "red" })
+                    </dd>
+                    <dt></dt>
+                    <dd>
+                        <ul>
+                            <li>
+                                @Html.CheckBoxFor(model => model.RememberMe, new { @checked = "checked" })
+                                <label for="name01-0">このブラウザでログインを保持する</label>
+                            </li>
+                            <li>
+                                @Html.CheckBoxFor(model => model.ReceiveEmail, new { @checked = "checked" })
+                                <label for="name01-1">スポログからのお知らせをメールで受け取る</label>
+                            </li>
+                        </ul>
+                    </dd>
+                </dl>
+                <p class="fs14">
+                    <a href="/support/rules">スポログ利用規約</a>に同意の上、「同意して確認画面に進む」ボタンを押してください。
+                </p>
+                <p class="board_link">
+                    <input class="send_mail" type="submit" value="同意して確認画面に進む" />
+                </p>
+            }
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#registerForm").submit(function (event) {
+
+            var _emailError = $('span[data-valmsg-for="Email"]').length;
+            if (_emailError > 0) {
+                $("#warningEmail").empty();
+            }
+            var _passError = $('span[data-valmsg-for="Password"]').length;
+            if (_passError > 0) {
+                $("#warningPass").empty();
+            }
+        });
+
+        $("#emailAddr").change(function () {
+
+            var _emailError = $('span[data-valmsg-for="Email"]').length;
+            if (_emailError > 0) {
+                $("#warningEmail").empty();
+            }
+        });
+
+        $("#password").change(function () {
+
+            var _passError = $('span[data-valmsg-for="Password"]').length;
+            if (_passError > 0) {
+                $("#warningPass").empty();
+            }
+        });
+    });
+</script>

@@ -1,0 +1,172 @@
+﻿@{
+    //Author : Noji
+    //FileName : _MlbRecentNews.cshtml
+    //Created Date : 2015/04/24
+}
+
+@model IEnumerable<Splg.Models.News.ViewModel.NewsInfoViewModel>
+@using Splg;
+
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        var firstNews = Model.FirstOrDefault();
+        var imageSports = Utils.GetNewsImageLocation(firstNews.Content ?? Constants.IMAGE_DEFAULT);
+        var dateJP = Utils.ParseLocalDateToShortJapanDate(firstNews.DeliveryDate);
+        var classBlock_1 = string.Empty;
+        var classBlock_2 = string.Empty;
+        var classBlockList = string.Empty;
+        var classDiv = string.Empty;
+        if (@ViewBag.Name != null)
+        {
+            if (@ViewBag.Name == Constants.MLB_TOP_INDEX)
+            {
+                classDiv = "block_03";
+            }
+            else if (@ViewBag.Name == Constants.MLB_GAME_INFORMATION)
+            {
+                classDiv = "evt_block04";
+            }
+            else if (@ViewBag.Name == Constants.MLB_TEAMINFO_TEAMTOP)
+            {
+                classDiv = "row";
+            }
+
+            //For page 8-5-8, 8-5-9
+            //if (@ViewBag.Name == Constants.NPBTEAMINFOPITCHER || @ViewBag.Name == Constants.NPBTEAMINFOBATCHER)
+            //{
+            //    classBlock_1 = "block_06_1";
+            //    classBlock_2 = "block_06_2";
+            //}
+            //For page 8-1, 8-5-1, 8-6
+            //else
+            //{
+                classBlock_1 = "block_03_1";
+                classBlock_2 = "block_03_2";
+            //}
+
+            var nameType = string.Empty;
+            var nameLink = string.Empty;
+            classBlockList = "block_list01";
+
+            <div class="@classDiv">
+                <!--For page 8-1, 8-5-1-->
+                @if (@ViewBag.Name == Constants.MLB_TOP_INDEX || @ViewBag.Name == Constants.MLB_TEAMINFO_TEAMTOP)
+                {
+                    if (@ViewBag.Name == Constants.MLB_TOP_INDEX)
+                    {
+                        nameType = Constants.NEWSHEADER_1_MLB;
+                        nameLink = Constants.NEWSLINK_1_MLB + "の" + Constants.NEWSLINK_2 + Constants.NEWSLINK_3;
+                    }
+                    else
+                    {
+                        nameType = Constants.NEWSHEADER_2;
+                        nameLink = Constants.NEWSLINK_2 + Constants.NEWSLINK_COMMON;
+                    }
+                    <div class="cat_title">
+                        <h3>@nameType</h3>
+                        <p>@Html.ActionLink(@nameLink, "Index", "MlbNewsList", new { area = "Mlb" }, null)</p>
+                    </div>
+                }
+                @*//For page 8-5-8, 8-5-9
+                else if (@ViewBag.Name == Constants.NPBTEAMINFOPITCHER || @ViewBag.Name == Constants.NPBTEAMINFOBATCHER)
+                {
+                    nameType = @ViewBag.TeamName + " " + " " + Constants.NEWSHEADER_2;
+                    nameLink = Constants.NEWSLINK_2 + Constants.NEWSLINK_COMMON;
+                    <div class="cat_title">
+                        <h3>@nameType</h3>
+                        <p>@Html.ActionLink(@nameLink, "Index", "NpbNewsList", new { area = "Npb" }, null)</p>
+                    </div>
+                }*@
+                else
+                {
+                    if (@ViewBag.HomeVisitor == "1")
+                    {
+                        nameType = Constants.NEWSHEADER_3;
+                    }
+                    else
+                    {
+                        nameType = Constants.NEWSHEADER_4;
+                    }
+                    nameLink = Constants.NEWSLINK_3;
+                    <div class="cat_title">
+                        <h3>@nameType</h3>
+                        <p>@Html.ActionLink(@nameLink, "Index", "MlbNewsList", new { area = "Mlb" }, null)</p>
+                    </div>
+                }
+
+                <!--Each page have each link to link page 7-1-->
+                @{
+                var routeValues = new RouteValueDictionary();
+                routeValues.Add("area", string.Empty);
+                routeValues.Add("topic", Constants.MLB_TOPIC_NAME);
+                routeValues.Add("newsItemID", @firstNews.NewsItemID);
+                routeValues.Add("sportID", Constants.MLB_SPORT_ID);
+                }
+                @if (@ViewBag.Name == Constants.MLB_TEAMINFO_TEAMTOP @*|| @ViewBag.Name == Constants.NPBTEAMINFOBATCHER || @ViewBag.Name == Constants.NPBTEAMINFOPITCHER*@)
+                {
+                    routeValues.Add("uniqueID", Constants.NEWS_DEFAULT_PARAMETER);
+                    routeValues.Add("teamID", (ViewBag.teamID ?? Constants.NEWS_DEFAULT_PARAMETER));
+                }
+                @if (@ViewBag.Name == Constants.MLB_GAME_INFORMATION)
+                {
+                    routeValues.Add("uniqueID", @ViewBag.GameID);
+                    routeValues.Add("teamID", (ViewBag.teamID ?? Constants.NEWS_DEFAULT_PARAMETER));
+                }
+                @if (!string.IsNullOrEmpty(firstNews.Content))
+                {
+                    <div class="@classBlock_1">
+                        <a href="@Url.Action("Index", "NewsArticleCommon", @routeValues, null)">
+                            <img class='resimg' src="@Url.Content(@imageSports)" alt='' />
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    //Using default image if not image.
+                    var defaultImg = Constants.IMAGE_DIRECTORY + Constants.IMAGE_DEFAULT;
+                    <div class="@classBlock_1">
+                        <a href="@Url.Action("Index", "NewsArticleCommon", @routeValues, null)">
+                            <img class="resimg" src=@Url.Content(@defaultImg) alt='' />
+                        </a>
+                    </div>
+                }
+
+                <div class="@classBlock_2">
+                    <!--For page 8-1, 8-5-1, 8-5-8, 8-5-9, 8-6-->
+                    <h3 class="subtitle02">@Html.ActionLink(@firstNews.Headline, "Index", "NewsArticleCommon", @routeValues, null)</h3>
+                    <h4>@firstNews.SentFrom  @dateJP</h4>
+                    <p>@Utils.ShortenString(firstNews.newstext, 50)</p>
+                </div>
+                <ul class="@classBlockList">
+                    @foreach (var item in Model.Skip(1))
+                    {
+                        var routeValuesItems = new RouteValueDictionary();
+                        routeValuesItems.Add("area", string.Empty);
+                        routeValuesItems.Add("topic", Constants.MLB_TOPIC_NAME);
+                        routeValuesItems.Add("newsItemID", @item.NewsItemID);
+                        routeValuesItems.Add("sportID", Constants.MLB_SPORT_ID);
+                        if (@ViewBag.Name == Constants.MLB_TEAMINFO_TEAMTOP @*|| ViewBag.Name == Constants.NPBTEAMINFOBATCHER || @ViewBag.Name == Constants.NPBTEAMINFOPITCHER*@)
+                        {
+                            routeValuesItems.Add("uniqueID", Constants.NEWS_DEFAULT_PARAMETER);
+                            routeValuesItems.Add("teamID", (ViewBag.teamID ?? Constants.NEWS_DEFAULT_PARAMETER));
+                        }
+                        else if (@ViewBag.Name == Constants.MLB_GAME_INFORMATION)
+                        {
+                            routeValuesItems.Add("uniqueID", (@ViewBag.GameID ?? Constants.NEWS_DEFAULT_PARAMETER));
+                            routeValuesItems.Add("teamID", (ViewBag.teamID ?? Constants.NEWS_DEFAULT_PARAMETER));
+                        }
+
+                        var formattedDay = Utils.ParseLocalDateToShortJapanDate(@item.DeliveryDate);
+                        <li>
+                            @Html.ActionLink(@item.Headline, "Index", "NewsArticleCommon", @routeValuesItems, null)
+                            <span>@item.SentFrom @formattedDay</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+    }
+}
+

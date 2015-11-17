@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "記事作成（完了画面）";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<Splg.Models.News.ViewModel.PostedInfoViewModel>
+
+<p class="block_path02">
+    <a href="/"><span class="icon gui_icon"> </span></a>
+    > <a href="/user_article/">投稿記事トップ</a>
+    > 記事の投稿完了
+</p>
+<ul class="block_nav">
+    <li><a class="active" href="/user_article/">投稿記事トップ</a></li>
+    <li><a href="/user_article/1/sport/">プロ野球</a></li>
+    <li><a href="/user_article/2/sport/">Jリーグ</a></li>
+    <li><a href="/user_article/3/sport/">MLB</a></li>
+</ul>
+<div class="block_06">
+    <h2 class="mytitle">記事の投稿完了</h2>
+    <div class="block_05_2">
+        <h5>
+            <span class="icon cat_title02"> </span>
+            <span class="fs16 bold">記事を投稿しました</span><br />
+            <span class="fs14">盛り上がること間違いなし！ タイムリーに、SNSへ投稿しよう！</span>
+        </h5>
+        @Html.Partial("~/Views/Shared/_ShareContentSocial.cshtml")
+    </div>
+    @if (Model != null && Model.Any())
+    {
+        <h3 class="mytitle02">投稿記事</h3>
+        foreach (var item in Model)
+        {
+            var memberImage = Constants.IMAGE_DEFAULT;
+            if (!string.IsNullOrEmpty(item.ProfileImg))
+            {
+                memberImage = item.ProfileImg;
+            }
+            string postContent = Splg.Controllers.PostedController.GetPostContent(item);
+            <div class="row">
+                <div class="block_06_1">
+                    <a href="/user/@item.MemberId/"><img src="@Url.Content(memberImage)" class="resimg" alt="" /></a>
+                </div>
+                <div class="block_06_2">
+                    <dl>
+                        <dt><a class="bold" href="/user_article/@item.TopicID/@item.ContributeId/">@item.Title</a></dt>
+                        <dd>
+                            @postContent
+                            <span class="right"><strong>@item.Views</strong> views</span>
+                            <br />
+                            @item.Nickname &nbsp; &nbsp; @item.ContributeDate.Value.ToString("MM/dd HH:mm")
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <h3 class="mytitle02">記事がありません</h3>
+    }
+    <p class="board_link">@Html.ActionLink("投稿記事トップへ", "Index", "UserArticle", null, null)</p>
+</div>

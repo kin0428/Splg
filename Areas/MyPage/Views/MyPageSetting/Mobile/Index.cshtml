@@ -1,0 +1,300 @@
+﻿@{
+    // Developer	: endo
+    // Html No      : 3-7
+}
+@using Splg.Areas.MyPage.Models.ViewModel;
+@model Splg.Areas.MyPage.Models.ViewModel.MyPageSettingViewModel
+@{
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.SETTING_INDEX;
+    Layout = "~/Views/Shared/Mobile/_MyPageLayout.cshtml";
+}
+@* Profile image preview*@
+<link rel="stylesheet" href="~/Areas/MyPage/Css/vendor/jquery.fileupload.css">
+<script src="~/Areas/MyPage/Scripts/vendor/jquery.ui.widget.js"></script>
+<script src="~/Areas/MyPage/Scripts/vendor/jquery.iframe-transport.js"></script>
+<script src="~/Areas/MyPage/Scripts/vendor/jquery.fileupload.js"></script>
+@* Profile image preview*@
+<script src="~/Scripts/Home.js"></script>
+<script src="~/Areas/MyPage/Scripts/Mobile/3-7.js"></script>
+@{
+
+    MyPageSettingViewModel.MemberSettingInfoModel MemberSettingInfo = Model.MemberSettingInfo.FirstOrDefault();
+    MyPageSettingViewModel.SendMailConditionInfoModel SendMailInfo = Model.SendMailInfo.FirstOrDefault();
+    int iSelectedYear = 0;
+    int iSelectedMonth = 0;
+    var checkstart = "";
+    var checkend = "";
+
+    if (SendMailInfo.MailSendAtStart != 0) { checkstart = "checked = \"checked\""; }
+    if (SendMailInfo.MailSendAtEnd != 0) { checkend = "checked = \"checked\""; }
+
+    string profileIMage = MemberSettingInfo.ProfileImg;
+    if (!(profileIMage.ToLower().IndexOf("http") >= 0))
+    {
+        profileIMage = @Url.Content(profileIMage);
+    }
+}
+
+@if (Model != null)
+{
+    <section class="block_6">
+        <h2 class="subtitle2">設定</h2>
+        <div class="block_8_2">
+            <p class="subtitle">アカウント名の変更</p>
+            <p class="tcenter"><input class="ip80" type="text" value="@MemberSettingInfo.Nickname" name="nickname" id="nickname" /></p>
+            <p class="subtitle1">プロフィール画像を変更する</p>
+            <article class="my-group">
+                <figure>
+                    <img id="ProfileImg" src="@profileIMage" alt="@MemberSettingInfo.Nickname" />
+                </figure>
+                <div>
+                    <p class="my-btn03 tcenter fileinput-button">
+                        <a>画像を選択</a>
+                        <input id="fileupload" type="file" name="files[]" accept="image/*">
+                    </p>
+                </div>
+            </article>
+            <dl class="my-frm">
+                <dt>性別を選択</dt>
+                <dd>
+                    <select class="sl80" name="gender">
+                        @if (MemberSettingInfo.GenderCheckedMale == "checked")
+                        {
+                            <option value="1" selected="selected">男性</option>
+                            <option value="2">女性</option>
+                        }
+                        else
+                        {
+                            <option value="1">男性</option>
+                            <option value="2" selected="selected">女性</option>
+                        }
+                    </select>
+                </dd>
+                <dt>生年月日を選択</dt>
+                <dd>
+                    <p>
+                        <select class="sl75" name="year">
+                            @{
+                        int year;
+                        for (year = 1910; year < 2016; year++)
+                        {
+                            var selected_id = "";
+                            if (year == MemberSettingInfo.BirthdayYear)
+                            {
+                                selected_id = "selected=\"selected\" id=\"SelectedYear_" + year + "\"";
+                                iSelectedYear = year;
+                            }
+                            <option value="@year" @selected_id>@year</option>
+                        }
+                            }
+                        </select>
+                        年
+                    </p>
+                    <p>
+                        <select class="sl75" name="month">
+                            @{
+                        int month;
+                        var digit2_month = "";
+                        for (month = 1; month <= 12; month++)
+                        {
+                            var selected_id = "";
+                            digit2_month = ("0" + month).Substring(1);
+                            if (month == MemberSettingInfo.BirthdayMonth)
+                            {
+                                selected_id = "selected=\"selected\" id=\"SelectedMonth_" + month + "\"";
+                                <option value="@digit2_month" selected="selected" id="SelectedMonth_@month">@digit2_month</option>
+                                iSelectedMonth = month;
+                            }
+                            <option value="@digit2_month" @selected_id>@digit2_month</option>
+                        }
+                            }
+                        </select>
+                        月
+                    </p>
+                    <p>
+                        <select class="sl75" name="day">
+                            @{
+                        int day;
+                        var digit2_day = "";
+                        int days = 31;
+                        if (iSelectedYear > 0 && iSelectedMonth > 0)
+                        {
+                            DateTime dt = Convert.ToDateTime(iSelectedYear + "/" + iSelectedMonth + "/01");
+                            dt = dt.AddMonths(1).AddDays(-1);
+                            days = dt.Day;
+                        }
+                        for (day = 1; day <= days; day++)
+                        {
+                            var selected_id = "";
+                            digit2_day = ("0" + day).Substring(1);
+                            if (day == MemberSettingInfo.BirthdayDay)
+                            {
+                                selected_id = "selected=\"selected\" id=\"SelectedDay_" + day + "\"";
+                            }
+                            <option value="@digit2_day" @selected_id>@digit2_day</option>
+                        }
+                            }
+                        </select>
+                        日
+                    </p>
+                </dd>
+                <dt>出身地を選択</dt>
+                <dd>
+                    <p>
+                        <select class="s180" name="出身地">
+                            @{
+    foreach (var pre in Model.PrefecturesInfo)
+    {
+        var selected_id = "";
+        if (pre.PrefecturesID == MemberSettingInfo.PrefecturesID)
+        {
+            selected_id = "selected=\"selected\" id=\"" + pre.PrefecturesID + "\"";
+        }
+        <option value="@pre.PrefecturesID" @selected_id>@pre.PrefecturesName</option>
+    }
+                            }
+                        </select>
+                    </p>
+                </dd>
+                <dt>好きなスポーツを選択</dt>
+                <dd>
+                    <ul class="frm_list01">
+                        @{
+    foreach (var spi in Model.SportsInfo)
+    {
+        var exist = false;
+        var checked_id = "";
+        foreach (var lp in MemberSettingInfo.LikeSportsID)
+        {
+            if (spi.SportsID == lp)
+            {
+                exist = true;
+                break;
+            }
+        }
+        if (exist == true)
+        {
+            checked_id = "checked = \"checked\"";
+        }
+        <li><input type="checkbox" value=@spi.SportsName name="好きなスポーツ" id="@spi.SportsID" @checked_id /><label for="likesport_@spi.SportsID">@spi.SportsName</label></li>
+    }
+                        }
+                    </ul>
+                </dd>
+                <dt>好きなチームを選択</dt>
+                <dd>
+                    @foreach (var spi in Model.SportsInfo)
+                    {
+                        if (spi.Teams != null)
+                        {
+                            if (spi.Teams.Count > 0)
+                            {
+                                <div class="frm_list02">
+                                    <a href="#">@(spi.SportsName)から選択する<span class="icon"> </span></a>
+                                    <ul>
+                                        @foreach (var t in spi.Teams)
+                                        {
+                                            var exist = false;
+                                            var checked_id = "";
+                                            foreach (var lt in MemberSettingInfo.LikeTeam)
+                                            {
+                                                if (spi.SportsID == lt.SportsID && t.TeamID == lt.TeamID)
+                                                {
+                                                    exist = true;
+                                                    break;
+                                                }
+                                            }
+                                            if (exist == true)
+                                            {
+                                                checked_id = "checked = \"checked\"";
+                                            }
+                                            <li>
+                                                <input type="checkbox" value=@t.TeamName name="好きなチーム" id="@(spi.SportsID +"-" + t.TeamID)" @checked_id />
+                                                <label for="name02_0">@t.TeamName</label>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                        }
+                    }
+                </dd>
+
+            </dl>
+            <p class="my-btn02"><a id="save_settings" href="#"><font color="white">保存する</font></a></p>
+        </div>
+    </section>
+
+    <section class="block_6">
+        <h2 class="subtitle2">メール設定変更</h2>
+        <div class="block_8_2">
+            <dl class="my-frm">
+                <dt>予想した試合</dt>
+                <dd>
+                    <input type="checkbox" value="予想した試合が開始したら受け取る" name="予想した試合" id="name01_14" @checkstart />
+                    <label for="name01_14">予想した試合が開始したら受け取る</label>
+                </dd>
+                <dd>
+                    <input type="checkbox" value="予想した試合が終了したら受け取る" name="予想した試合" id="name01_15" @checkend />
+                    <label for="name01_15">予想した試合が終了したら受け取る</label>
+                </dd>
+
+            </dl>
+            <p class="my-btn02"><a id="save_mailsetting" href="#"><font color="white">保存する</font></a></p>
+        </div>
+    </section>
+
+    <section class="block_6">
+        <h2 class="subtitle2">ログイン情報</h2>
+        <div class="block_8_2">
+            <dl class="my-frm">
+                <dt>メールアドレス</dt>
+                <dd>
+                    @Model.MemberSettingInfo.FirstOrDefault().Mail
+                </dd>
+            </dl>
+            <div style="text-align:center">
+                <a href="/mypage/setting/address/">変更する</a>
+            </div>
+        </div>
+        <div class="block_8_2">
+            @{
+
+    var userInfo = Session["UserInfo"] as Splg.Models.ViewModel.MemberRegistViewModel;
+            }
+            @if (userInfo != null && userInfo.IsSNS)
+            {
+                <dl class="my-frm">
+                    <dt>SNS連携</dt>
+                    <dd>
+                        @userInfo.SNSName でログイン中
+                    </dd>
+                </dl>
+                <div style="text-align:center">
+                    <a href="/mypage/setting/address/">変更する</a>
+                </div>
+            }
+            else
+            {
+                <dl class="my-frm">
+                    <dt>パスワード</dt>
+                    <dd>
+                        ＊＊＊＊＊＊＊＊
+                    </dd>
+                </dl>
+                <div style="text-align:center">
+                    <a href="/mypage/setting/password/">変更する</a>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="block_6">
+        <h2 class="subtitle2">退会</h2>
+        <div style="text-align:center">
+            <a href="/mypage/setting/deleteaccount/">アカウントを削除する</a>
+        </div>
+    </section>
+
+
+}

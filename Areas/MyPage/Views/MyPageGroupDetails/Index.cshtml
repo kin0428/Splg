@@ -1,0 +1,185 @@
+﻿@{
+    //Author : Nojima
+    //FileName : Index.cshtml (3-4-1)
+    //Created Date : 2015/04/12
+}
+
+@using Splg.Areas.MyPage.Models.ViewModel;
+@model Splg.Areas.MyPage.Models.ViewModel.MyPageGroupDetailsViewModel
+
+@{
+    ViewBag.Title = "グループページ";
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.GROUP_DETAILS;
+    Layout = "~/Areas/MyPage/Views/MyPageGroupDetails/_MyPageLayout.cshtml";
+}
+<script src="~/Scripts/jquery.shorten.1.0.js"></script>
+<script src="~/Scripts/splgCommon.js"></script>
+
+<script src="~/Areas/MyPage/Scripts/Views/highcharts.js"></script>
+<script src="~/Areas/MyPage/Scripts/Views/3-4-1.js"></script>
+<script src="~/Areas/MyPage/Scripts/Views/MyPageGroupDetails/common.js"></script>
+
+<style>
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        z-index: 100;
+        background: rgba(0,0,0,0.7);
+    }
+</style>
+<!--News Top View-->
+@{
+
+    var group_name = Model.GroupInfo.GroupName;
+    var group_member_num = Model.GroupInfo.NumberOfMember;
+    var group_other_num = Model.GroupInfo.NumberOfOther;
+    var group_id = Model.GroupInfo.GroupId;
+    var this_year = Model.ThisYear;
+    var this_month = Model.ThisMonth;
+    int i;
+}
+
+@if (Model != null && group_id > 0)
+{
+    <div class="block_04">
+        <h2 class="mytitle" id="@(group_id)-@(this_year)-@(this_month)">@(group_name)(@(group_member_num)名)</h2>
+        <p class="edit_btn"><a href="/mypage/group/@Model.GroupInfo.GroupId/edit/"><span class="icon"></span>グループを編集する</a></p>
+        <div class="block_04_6">
+            <ul class="block_04_6_l2">
+                <li>
+                    <p><a class="leavegroup" id=@group_id href="#">メンバーから抜ける</a></p>
+                    <dl>
+                        <dt><span class="blue"></span><br /><span>@(group_member_num)名</span></dt>
+                        <dd>
+                            @foreach (var profile in Model.GroupInfo.GroupMembers)
+                            {
+                                if (string.IsNullOrEmpty(profile.ProfileImg) == false)
+                                {<a href="@profile.userURL"><img class="resimg circle" src=@(profile.ProfileImg) alt="@profile.Nickname" /></a>}
+                            }
+                            @if (group_other_num > 0)
+                            {
+                                <span class="count_num">+@(group_other_num)</span>
+                            }
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <ul class="block_04_3_l1 clear">
+            <li class="active"><a href="#">@this_year<span class="arrow yarrow"> </span></a></li>
+        </ul>
+        <div class="space"> </div>
+        <p class="j_rank bold" id="SelectMonthRanking">
+            @for (i = 0; i < 12; i++)
+            {
+                var sep = " /";
+                if (i == 11) { sep = ""; }
+                <a @Model.MonthListClassRanking[i] id="@(group_id)-@(this_year)-@(i+1)" href="#"><span class="fs20">@(i + 1)</span>月</a>@sep
+            }
+        </p>
+        <div class="space"> </div>
+        <div id="PointRanking">
+            @foreach (var mem in Model.GroupInfo.GroupMembers)
+            {
+                var member_expect = (mem.FormattedLastExpectedPointDate == null ? "" : "最終予想 " + mem.FormattedLastExpectedPointDate);
+                <div class="sub_list_row">
+                    <h4>
+                        <img class="circle resimg" src=@mem.ProfileImg alt="" />
+                        <span class="fs14 blue"><a href=@mem.userURL>@mem.Nickname  </a></span>
+                        <span class="fs14">@mem.FormattedDisplayPoints pt  </span>
+                        <span class="fs10 gray2">@member_expect</span>
+                    </h4>
+                </div>
+            }
+        </div>
+        <div class="space"> </div>
+        <ul class="block_04_3_l1 clear">
+            <li class="active"><a href="#">@this_year<span class="arrow yarrow"> </span></a></li>
+        </ul>
+        <div class="space"> </div>
+        <p class="j_rank bold" id="SelectMonthCorrect">
+            @for (i = 0; i < 12; i++)
+            {
+                var sep = " /";
+                if (i == 11) { sep = ""; }
+                <a @Model.MonthListClassRanking[i] id="@(group_id)-@(this_year)-@(i+1)" href="#"><span class="fs20">@(i + 1)</span>月</a>@sep
+            }
+        </p>
+        <div class="space"> </div>
+        <h3 class="mytitle02">的中率</h3>
+        <div id="container" style="position:relative"></div>
+    </div>
+    <div class="block_04">
+        <div class="board_control clear">
+            <span class="board_prev blue">前の試合</span>
+            <h3 id="gameDate">
+                @Utils.GetMonthAndDayOfWeek(DateTime.Now) の試合
+            </h3>
+            <span class="board_next blue">次の試合</span>
+        </div>
+        <input type="hidden" id="Page" name="Page" value="1" data-gamedate="@DateTime.Now.ToShortDateString().Replace("/", "" )" />
+        <h3>プロ野球</h3>
+        <div id="npbGameInfo">
+            @Html.Action("ShowGameInfo", "MyPageGroupDetails", new { type = 1, gameDate = DateTime.Now.ToShortDateString().Replace("/", ""), group_id = group_id, sports_id = Constants.NPB_SPORT_ID })
+        </div>
+        <h3>ＭＬＢ</h3>
+        <div id="mlbGameInfo">
+            @Html.Action("ShowGameInfo", "MyPageGroupDetails", new { type = 1, gameDate = DateTime.Now.ToShortDateString().Replace("/", ""), group_id = group_id, sports_id = Constants.MLB_SPORT_ID })
+        </div>
+        <h3>Ｊリーグ</h3>
+        <div id="jlgGameInfo">
+            @Html.Action("ShowGameInfo", "MyPageGroupDetails", new { type = 1, gameDate = DateTime.Now.ToShortDateString().Replace("/", ""), group_id = group_id, sports_id = Constants.JLG_SPORT_ID })
+        </div>
+        <div class="board_control">
+            <span class="board_prev blue">前の試合</span>
+            <span class="board_next blue">次の試合</span>
+        </div>
+
+        <div class="cat_stitle">
+            <h3>新着の投稿記事</h3>
+            <p><a href="/user_article/1/sport/">投稿記事をもっと読む</a></p>
+        </div>
+        <ul class="evt_list01">
+            @foreach (var post in Model.NpbPostedList.Take(5))
+            {
+                string postContent = string.Format("{0}&nbsp;&nbsp;&nbsp;{1}投稿", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                <li>
+                    <a href="/user/@post.MemberId/"><img src="@post.ProfileImg" alt="icon" /></a>
+                    <a class="bold" href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a>
+                    <br />
+                    @Html.Raw(postContent)
+                </li>
+            }
+        </ul>
+        <p class="tright"><a href="/user_article/1/sport/">もっと見る≫</a></p>
+    </div>
+
+}
+else
+{
+    <div class="block_04">
+        <div class="ready_box">
+            <div>
+                <h3>
+                    このグループは削除されました。<br />
+                    <a href="/mypage/">マイページトップへ</a>
+                </h3>
+            </div>
+        </div>
+    </div>
+}
+<!--Right Content-->
+@section MyPagePage{
+    @if (Model != null && Model.GroupInfo != null && Model.GroupInfo.MemberId > 0)
+    {
+        <h3 class="mem_title01">グループリスト</h3>
+        @Html.Action("ShowGroupList", "MyPageRightContent", new { area = "MyPage", memberId = @Model.GroupInfo.MemberId })
+        <p class="tright"><a href="/mypage/group/">≫もっと見る</a></p>
+        <h3 class="mem_title01">フォローランキング</h3>
+        @Html.Action("ShowFollowPointRankings", "MyPageRightContent", new { area = "MyPage", memberId = @Model.GroupInfo.MemberId })
+        <p class="tright"><a href="/mypage/following/">≫もっと見る</a></p>
+    }
+}
+
+

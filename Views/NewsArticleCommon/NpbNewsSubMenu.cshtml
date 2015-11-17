@@ -1,0 +1,80 @@
+﻿@{
+    //Dev : Sy Huynh
+    //FileName : NpbNewsSubMenu.cshtml
+    //Created Date : 2015/04/09
+}
+
+@{
+    var url = Context.Request.Path;
+    string[] subUrls = url.Split('/');
+    List<string> subUrlList = new List<string>();
+    for (int i = 0; i < subUrls.Count(); i++)
+    {
+        if (!string.IsNullOrEmpty(subUrls[i]))
+        {
+            subUrlList.Add(subUrls[i]);
+        }
+    }
+    List<string> menuLinkList = new List<string>();
+    List<string> menuNameList = new List<string>();
+
+    // no league, no team
+    int teamID = 0;
+    int gameID = 0;
+    
+    int secondMenuActive = 7;
+    int subUrlCount = subUrlList.Count();
+
+    menuNameList.Add("プロ野球");
+    menuLinkList.Add("/" + Constants.NPB_TOPIC_NAME + "/");
+
+    string newsLink = "/" + Constants.NPB_TOPIC_NAME + "/news/";
+    if (subUrlCount >= 3 && subUrlList.ElementAt(1).ToLower().Equals("news") && Convert.ToString(ViewBag.pageNO).Equals("7-1"))
+    {
+        if (ViewBag.teamID != null && Int32.TryParse(ViewBag.teamID, out teamID))
+        {
+            menuNameList.Add("チーム一覧");
+            menuLinkList.Add("/" + Constants.NPB_TOPIC_NAME + "/teams/");
+            secondMenuActive = 5;
+            string teamName = Utils.GetTeamNameById(Constants.NPB_SPORT_ID, teamID);
+            menuNameList.Add(teamName);
+            menuLinkList.Add(string.Format("/" + Constants.NPB_TOPIC_NAME + "/teams/{0}/", teamID));
+
+            newsLink = string.Format("/" + Constants.NPB_TOPIC_NAME + "/teams/{0}/news", teamID);
+        }
+        else
+        {
+            if (ViewBag.uniqueID != null && Int32.TryParse(ViewBag.uniqueID, out gameID))
+            {
+                // uniqueID = gameID => 8-6
+                menuNameList.Add(Utils.GetGameNameById(Constants.NPB_SPORT_ID, gameID));
+                menuLinkList.Add(string.Format("/" + Constants.NPB_TOPIC_NAME + "/game/{0}/", gameID));
+
+                //secondMenu = string.Empty;
+            }
+        }
+        menuNameList.Add("ニュース");
+        menuLinkList.Add(newsLink);
+        menuNameList.Add(Utils.GetNewsTitleById(Convert.ToInt64(ViewBag.newsItemID ?? 0)));
+        menuLinkList.Add("#");
+    }
+}
+<p class="block_path02">
+    <a class="icon gui_icon" href="/"></a>
+    @for (int j = 0; j < menuNameList.Count() - 1; j++)
+    {
+        @:> <a href="@menuLinkList.ElementAt(j)">@menuNameList.ElementAt(j)</a>
+    }
+    > @menuNameList.ElementAt(menuNameList.Count() - 1)
+</p>
+@if (secondMenuActive > 0)
+{
+    <ul class="block_nav">
+        <li><a class="@(secondMenuActive == 1 ? "active" : "")" href="/npb/">プロ野球トップ</a></li>
+        <li><a class="@(secondMenuActive == 2 ? "active" : "")" href="/npb/schedule/">日程・結果</a></li>
+        <li><a class="@(secondMenuActive == 3 ? "active" : "")" href="/npb/standings/">順位表</a></li>
+        <li><a class="@(secondMenuActive == 4 ? "active" : "")" href="/npb/stats/">個人成績</a></li>
+        <li><a class="@(secondMenuActive == 5 ? "active" : "")" href="/npb/teams/">チーム情報</a></li>
+        <li><a class="@(secondMenuActive == 7 ? "active" : "")" href="/npb/news/">ニュース</a></li>
+    </ul>
+}

@@ -1,0 +1,3144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+このファイルは、Web プロジェクトの発行/パッケージ処理で使用されます。この MSBuild ファイルを編集することによって、
+この処理の動作をカスタマイズできます。詳細については、http://go.microsoft.com/fwlink/?LinkID=208121 を参照してください。
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\SplgVn\workspace</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="51Degrees.config">
+      <publishTime>09/08/2015 14:41:45</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Japanese.resx">
+      <publishTime>09/08/2015 14:41:45</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Models/Jlg.edmx.diagram">
+      <publishTime>09/25/2015 14:53:02</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Scripts/10-1.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Scripts/10-2-3.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Scripts/10-2-5-1.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Scripts/10-2.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Scripts/10-5.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Scripts/Mobile/10-1.js">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Scripts/Mobile/10-2-2.js">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Scripts/Mobile/10-2-3.js">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Scripts/Mobile/10-2-5-2.js">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Scripts/Mobile/10-2.js">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Scripts/Mobile/10-5-2.js">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Scripts/Mobile/common.predicate.popup.soccer.js">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Scripts/Mobile/common.predicate.soccer.js">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Scripts/Mobile/common.soccer.js">
+      <publishTime>09/25/2015 14:53:03</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Scripts/Views/10-2-5-1.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Scripts/Views/10-5.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Scripts/Views/JlgResult/all.js">
+      <publishTime>06/19/2015 23:14:46</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgGameInformation/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgGameInformation/Mobile/Index.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgJOrder/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgJOrder/JlgNabiscoOrder.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgJOrder/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgJOrder/Mobile/JlgNabiscoOrder.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgNews/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgNews/JlgNabiscoNews.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgNews/JlgNews.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgNews/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgNews/Mobile/JlgNabiscoNews.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgNews/Mobile/JlgNews.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgNews/Mobile/TeamInfoNews.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgNews/TeamInfoNews.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgPersonalAchieve/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgPersonalAchieve/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgResult/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgResult/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgScheduleResult/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgScheduleResult/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgScheduleResult/Mobile/Nabisco.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgScheduleResult/Nabisco.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgTeamInfo/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgTeamInfo/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgTeamInfoConfrontationResult/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgTeamInfoConfrontationResult/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgTeamInfoPlayer/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgTeamInfoPlayer/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgTeamInfoPlayerDetail/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgTeamInfoPlayerDetail/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgTeamInfoScheduleResult/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgTeamInfoScheduleResult/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgTeamInfoTop/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgTeamInfoTop/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgTop/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgTop/JTop.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgTop/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgTop/Mobile/JTop.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgTop/Mobile/NabiscoTop.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/JlgTop/NabiscoTop.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/JleagueMenu.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/JleagueSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/JleagueTeamMenu.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/JlgHeaderSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_EmptyRelatedArticleItem.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JleagueGameInfosResult.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JleagueMenu.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JleagueNewsTopView.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JleagueRecentNews.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgFormation.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgGameCard.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgGameCardExpOthers.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgGameCardHeader.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgGameCritique.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgGameInfo.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgGameRecords.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgGameTexts.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgInjuredMembers.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgNextGames.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgPersonInfo.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgPointEdit.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgRecentGameResults.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgRecentMatches.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgRelatedArticles.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgStartingAttack.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgStartingDefense.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgStartingMembers.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgStartingMembersPlayInfo.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgStartingMembersPre.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgStats.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgSuspendedMembers.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgTeamInfoMenu.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgTeamTrendsAtBar.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_JlgTeamTrendsAtPie.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/Mobile/_RelatedArticleItem.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/_J1ScheduleAndResultMenu.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/_J2ScheduleAndResultMenu.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/_JleagueGameInfosResult.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/_JleagueNewsTopView.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/_JleagueRecentNews.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/_JleagueRightRecentNews.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/_JlgGameCard.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/_JlgGameInfo.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/_JlgGameInfoPlayerInfo.cshtml">
+      <publishTime>09/25/2015 14:53:03</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/_JlgNextGames.cshtml">
+      <publishTime>09/25/2015 14:53:03</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/_JlgPersonInfo.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/_JlgRightStanding.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/_JlgTop3Ranking.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/Shared/_NabiscoScheduleAndResultMenu.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Jleague/Views/web.config">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Models/Mlb.edmx.diagram">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Scripts/9-1.js">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Scripts/9-2.js">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Scripts/9-5-1.js">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Scripts/Mobile/9-1.js">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Scripts/Mobile/9-2.js">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Scripts/Mobile/9-5-2.js">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Scripts/Mobile/9-5.js">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbGameInformation/Index.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbGameInformation/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbNewsList/Index.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbNewsList/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbOrder/Index.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbOrder/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbScheduleResult/Index.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbScheduleResult/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbTeamInfoConfrontationResult/Index.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbTeamInfoDailyResult/Index.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbTeamInfoDailyResult/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbTeamInfoNews/Index.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbTeamInfoNews/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbTeamInformation/Index.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbTeamInformation/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbTeamInfoTeamTop/Index.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbTeamInfoTeamTop/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbTop/Index.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/MlbTop/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/Shared/MlbHeaderSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/Shared/Mobile/MlbSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/Shared/Mobile/_MlbGameInfo.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/Shared/Mobile/_MlbGameInfoPlayerInfo.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/Shared/Mobile/_MlbLayout.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/Shared/Mobile/_MlbNewsTopView.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/Shared/Mobile/_MlbRecentNews.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/Shared/Mobile/_MlbTeamInfoMenu.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/Shared/_MlbGameInfo.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/Shared/_MlbGameInfoPlayerInfo.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/Shared/_MlbLayout.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/Shared/_MlbNewsTopView.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/Shared/_MlbRecentNews.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/Shared/_MlbRightRecentNews.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/Shared/_MlbTeamInfoMenu.cshtml">
+      <publishTime>09/08/2015 14:41:49</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/Shared/_MlbTop3Ranking.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/Shared/_NpbRightGames.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Mlb/Views/web.config">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Css/vendor/jquery.fileupload.css">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Mobile/3-1.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Mobile/3-10.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Mobile/3-2.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Mobile/3-3.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Mobile/3-4-1.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Mobile/3-4-2.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Mobile/3-4-3.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Mobile/3-4.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Mobile/3-5.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Mobile/3-6.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Mobile/3-7-1.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Mobile/3-7-2.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Mobile/3-7.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Mobile/3-8.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Mobile/3-9.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Mobile/follow_unfolllow.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/vendor/ElementQueries.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/vendor/jquery.fileupload.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/vendor/jquery.iframe-transport.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/vendor/jquery.ui.widget.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/vendor/ResizeSensor.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/3-1.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/3-10.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/3-2.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/3-3.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/3-4-1.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/3-4-2.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/3-4-3.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/3-4.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/3-5.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/3-6.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/3-7-1.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/3-7-2.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/3-7-3.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/3-7.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/3-8.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/3-9.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/follow_unfolllow.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/highcharts.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Scripts/Views/MyPageGroupDetails/common.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageArticle/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageArticle/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageExpectedList/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageExpectedList/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageFollowers/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageFollowers/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageFollowing/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageFollowing/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageGroupDetails/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageGroupDetails/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageGroupDetails/Mobile/_MyPageLayout.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageGroupDetails/Mobile/_NpbGameInfo.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageGroupDetails/_MyPageLayout.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageGroupDetails/_NpbGameInfo.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageGroupEdit/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageGroupEdit/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageGroupList/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageGroupList/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageGroupNew/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageGroupNew/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageNotice/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageNotice/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageRecentExpectedList/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageRecentExpectedList/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageSetting/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageSetting/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageSettingAddress/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageSettingAddress/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageSettingDeleteAccount/done.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageSettingDeleteAccount/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageSettingDeleteAccount/Mobile/done.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageSettingDeleteAccount/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageSettingPassword/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageSettingPassword/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageTop/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/MyPageTop/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/Shared/Mobile/_MyPageExpectedListInfo.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/Shared/Mobile/_MyPageMenu.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/Shared/Mobile/_MyPagePointEdit.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/Shared/MyPageHeaderSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/Shared/_FollowRankings.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/Shared/_MyPageExpectedListInfo.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/Shared/_MyPageRecentExpectedListInfo.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/Shared/_MyPageRightGroupRanking.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/UserSearch/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/UserSearch/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/MyPage/Views/web.config">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/Npb/Models/Npb.edmx.diagram">
+      <publishTime>09/08/2015 14:41:45</publishTime>
+    </File>
+    <File Include="Areas/Npb/Scripts/8-1.js">
+      <publishTime>09/08/2015 14:41:45</publishTime>
+    </File>
+    <File Include="Areas/Npb/Scripts/8-2.js">
+      <publishTime>09/08/2015 14:41:45</publishTime>
+    </File>
+    <File Include="Areas/Npb/Scripts/8-6.js">
+      <publishTime>09/08/2015 14:41:45</publishTime>
+    </File>
+    <File Include="Areas/Npb/Scripts/Mobile/8-1.js">
+      <publishTime>09/08/2015 14:41:45</publishTime>
+    </File>
+    <File Include="Areas/Npb/Scripts/Mobile/8-2.js">
+      <publishTime>09/08/2015 14:41:45</publishTime>
+    </File>
+    <File Include="Areas/Npb/Scripts/Mobile/8-5-2.js">
+      <publishTime>09/08/2015 14:41:45</publishTime>
+    </File>
+    <File Include="Areas/Npb/Scripts/Views/NpbTeamInfoConfrontationResult/all.js">
+      <publishTime>09/08/2015 14:41:45</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbGameInformation/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbGameInformation/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbNewsList/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbNewsList/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbOrder/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbOrder/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbPersonalResult/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbPersonalResult/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbScheduleResult/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbScheduleResult/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbTeamInfoConfrontationResult/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbTeamInfoConfrontationResult/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbTeamInfoDailyResult/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbTeamInfoDailyResult/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbTeamInfoHittingDetail/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbTeamInfoHittingDetail/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbTeamInfoNews/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbTeamInfoNews/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbTeamInfoPitcherDetail/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbTeamInfoPitcherDetail/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbTeamInfoPlayer/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbTeamInfoPlayer/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbTeamInformation/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbTeamInformation/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbTeamInfoTeamTop/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbTeamInfoTeamTop/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbTop/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/NpbTop/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/Mobile/_NpbBattingResult.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/Mobile/_NpbGameInfo.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/Mobile/_NpbGameInfoPlayerInfo.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/Mobile/_NpbMenu.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/Mobile/_NpbNewsTopView.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/Mobile/_NpbPersonInfo.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/Mobile/_NpbPointEdit.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/Mobile/_NpbRecentNews.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/Mobile/_NpbTeamInfoCatcherFielder.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/Mobile/_NpbTeamInfoConfrontationResult.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/Mobile/_NpbTeamInfoDirectorStaff.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/Mobile/_NpbTeamInfoMenu.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/Mobile/_NpbTeamInfoPitcher.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/Mobile/_NpbTeamInfoResultGameInfos.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/NpbHeaderSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/_Layout.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/_NpbBattingResult.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/_NpbGameInfo.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/_NpbGameInfoPlayerInfo.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/_NpbNewsTopView.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/_NpbPersonInfo.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/_NpbRecentNews.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/_NpbRightGames.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/_NpbRightRecentNews.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/_NpbTeamInfoCatcherFielder.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/_NpbTeamInfoConfrontationResult.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/_NpbTeamInfoDirectorStaff.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/_NpbTeamInfoMenu.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/_NpbTeamInfoPitcher.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/_NpbTeamInfoResultGameInfos.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/Shared/_NpbTop3Ranking.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/web.config">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Npb/Views/_ViewStart.cshtml">
+      <publishTime>09/08/2015 14:41:46</publishTime>
+    </File>
+    <File Include="Areas/Prize/Models/Prize.edmx.diagram">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/Prize/Scripts/Mobile/6-2.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/Prize/Scripts/Views/6-2.js">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/Prize/Views/PrizeGood/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/Prize/Views/PrizeGood/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/Prize/Views/PrizeTop/Index.cshtml">
+      <publishTime>09/25/2015 14:53:02</publishTime>
+    </File>
+    <File Include="Areas/Prize/Views/PrizeTop/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Prize/Views/Shared/Mobile/PrizeSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Prize/Views/Shared/Mobile/RallyGoodsRemarks.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Prize/Views/Shared/Mobile/RallyGoodsRemarksLink.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Prize/Views/Shared/Mobile/RallyGoodsRemarksText.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Prize/Views/Shared/Mobile/RallyGoodsThumbnail.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Prize/Views/Shared/Mobile/RallyNotFound.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Prize/Views/Shared/PrizeSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/Prize/Views/Shared/RallyGoodsRemarks.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Prize/Views/Shared/RallyGoodsRemarksLink.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Prize/Views/Shared/RallyGoodsRemarksText.cshtml">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/Prize/Views/Shared/RallyGoodsThumbnail.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Prize/Views/Shared/RallyHistories.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Prize/Views/Shared/RallyNotFound.cshtml">
+      <publishTime>09/08/2015 14:41:48</publishTime>
+    </File>
+    <File Include="Areas/Prize/Views/web.config">
+      <publishTime>09/08/2015 14:41:47</publishTime>
+    </File>
+    <File Include="Areas/User/Scripts/Mobile/4-1.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Scripts/Mobile/4-2.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Scripts/Mobile/4-3.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Scripts/Mobile/4-4.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Scripts/Mobile/4-5.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Scripts/Mobile/follow_unfolllow.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Scripts/Views/4-1.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Scripts/Views/4-2.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Scripts/Views/4-3.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Scripts/Views/4-4.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Scripts/Views/4-5.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Scripts/Views/follow_unfolllow.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Scripts/Views/highcharts.js">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Views/Shared/Mobile/_UserMenu.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Views/Shared/UserHeaderSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Views/Shared/_Layout.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Views/UserArticle/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Views/UserArticle/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Views/UserExpectedList/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Views/UserExpectedList/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Views/UserFollowers/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Views/UserFollowers/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Views/UserFollowing/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Views/UserFollowing/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Views/UserTop/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Views/UserTop/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Views/web.config">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Areas/User/Views/_ViewStart.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>09/08/2015 14:42:56</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>09/08/2015 14:42:29</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>09/08/2015 14:42:29</publishTime>
+    </File>
+    <File Include="bin/Facebook.dll">
+      <publishTime>09/08/2015 14:42:16</publishTime>
+    </File>
+    <File Include="bin/FiftyOne.Foundation.dll">
+      <publishTime>09/08/2015 14:43:00</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.Auth.dll">
+      <publishTime>09/08/2015 14:43:13</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.Auth.Mvc4.dll">
+      <publishTime>09/08/2015 14:42:38</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.Auth.PlatformServices.dll">
+      <publishTime>09/08/2015 14:43:13</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.Core.dll">
+      <publishTime>09/08/2015 14:43:04</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.dll">
+      <publishTime>09/08/2015 14:42:54</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.Drive.v2.dll">
+      <publishTime>09/08/2015 14:43:05</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.PlatformServices.dll">
+      <publishTime>09/08/2015 14:42:55</publishTime>
+    </File>
+    <File Include="bin/Google.Apis.Plus.v1.dll">
+      <publishTime>09/08/2015 14:42:55</publishTime>
+    </File>
+    <File Include="bin/Hammock.dll">
+      <publishTime>09/08/2015 14:43:04</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>09/08/2015 14:42:56</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>09/08/2015 14:42:56</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>09/08/2015 14:42:18</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Google.dll">
+      <publishTime>09/08/2015 14:43:04</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Threading.Tasks.dll">
+      <publishTime>09/08/2015 14:43:03</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Threading.Tasks.Extensions.Desktop.dll">
+      <publishTime>09/08/2015 14:43:03</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Threading.Tasks.Extensions.dll">
+      <publishTime>09/08/2015 14:43:03</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>09/08/2015 14:42:22</publishTime>
+    </File>
+    <File Include="bin/MvcSiteMapProvider.dll">
+      <publishTime>09/25/2015 14:36:29</publishTime>
+    </File>
+    <File Include="bin/MvcSiteMapProvider.WebActivator.dll">
+      <publishTime>09/25/2015 14:36:28</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>09/08/2015 14:42:19</publishTime>
+    </File>
+    <File Include="bin/NLog.config">
+      <publishTime>09/08/2015 14:41:54</publishTime>
+    </File>
+    <File Include="bin/NLog.dll">
+      <publishTime>09/25/2015 14:36:32</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>09/08/2015 14:42:51</publishTime>
+    </File>
+    <File Include="bin/PagedList.dll">
+      <publishTime>09/08/2015 14:43:03</publishTime>
+    </File>
+    <File Include="bin/PagedList.Mvc.dll">
+      <publishTime>09/08/2015 14:43:04</publishTime>
+    </File>
+    <File Include="bin/RazorGenerator.Mvc.dll">
+      <publishTime>09/08/2015 14:43:02</publishTime>
+    </File>
+    <File Include="bin/Splg.dll">
+      <publishTime>09/25/2015 14:54:11</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Extensions.dll">
+      <publishTime>09/08/2015 14:42:39</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Primitives.dll">
+      <publishTime>09/08/2015 14:42:39</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>09/08/2015 14:42:27</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>09/08/2015 14:42:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>09/08/2015 14:43:04</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>09/08/2015 14:42:27</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>09/08/2015 14:42:27</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>09/08/2015 14:42:27</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>09/08/2015 14:42:27</publishTime>
+    </File>
+    <File Include="bin/TweetSharp.dll">
+      <publishTime>09/08/2015 14:43:04</publishTime>
+    </File>
+    <File Include="bin/WebActivatorEx.dll">
+      <publishTime>09/08/2015 14:42:57</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>09/08/2015 14:42:50</publishTime>
+    </File>
+    <File Include="bin/Zlib.Portable.dll">
+      <publishTime>09/08/2015 14:42:56</publishTime>
+    </File>
+    <File Include="Content/base.css">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/bxslider.css">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/adward/201508/600_245_01.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/adward/201508/600_245_02.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/adward/201508/600_245_noimage.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/adward/201508/karadafit_600_400.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/adward/201508/prize_20150601_01.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/adward/201508/prize_20150601_02.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/adward/201508/prize_noimage.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/adward/201508/prize_top_08.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/adward/banner01.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/adward/bg01.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/adward/bg02.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/adward/bg03.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/adward/image01.png">
+      <publishTime>06/19/2015 23:15:13</publishTime>
+    </File>
+    <File Include="Content/images/adward/image02.png">
+      <publishTime>06/19/2015 23:15:13</publishTime>
+    </File>
+    <File Include="Content/images/adward/prizeTop.png">
+      <publishTime>09/25/2015 15:27:53</publishTime>
+    </File>
+    <File Include="Content/images/adward/prize_20150601_01.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/adward/prize_20150601_02.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/adward/prize_20150601_top.png">
+      <publishTime>06/19/2015 23:15:13</publishTime>
+    </File>
+    <File Include="Content/images/animated-overlay.gif">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/ui-bg_flat_0_aaaaaa_40x100.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/ui-bg_flat_75_ffffff_40x100.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/ui-bg_glass_55_fbf9ee_1x400.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/ui-bg_glass_75_dadada_1x400.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/ui-bg_glass_75_e6e6e6_1x400.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/ui-bg_glass_95_fef1ec_1x400.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/ui-icons_222222_256x240.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/ui-icons_2e83ff_256x240.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/ui-icons_454545_256x240.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/ui-icons_888888_256x240.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/images/ui-icons_cd0a0a_256x240.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/img/adward/banner01.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/adward/bg01.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/adward/bg02.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/adward/bg03.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/adward/image01.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/adward/image02.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/favicon.ico">
+      <publishTime>09/08/2015 14:42:03</publishTime>
+    </File>
+    <File Include="Content/img/jleague/flag1.png">
+      <publishTime>09/08/2015 14:42:03</publishTime>
+    </File>
+    <File Include="Content/img/jleague/flag2.png">
+      <publishTime>09/08/2015 14:42:03</publishTime>
+    </File>
+    <File Include="Content/img/jleague/flag3.png">
+      <publishTime>09/08/2015 14:42:01</publishTime>
+    </File>
+    <File Include="Content/img/jleague/flag4.png">
+      <publishTime>09/08/2015 14:42:01</publishTime>
+    </File>
+    <File Include="Content/img/jleague/flag5.png">
+      <publishTime>09/08/2015 14:42:01</publishTime>
+    </File>
+    <File Include="Content/img/jleague/flag6.png">
+      <publishTime>09/08/2015 14:42:01</publishTime>
+    </File>
+    <File Include="Content/img/jleague/i-card.png">
+      <publishTime>09/08/2015 14:42:01</publishTime>
+    </File>
+    <File Include="Content/img/jleague/i-goal.png">
+      <publishTime>09/08/2015 14:42:03</publishTime>
+    </File>
+    <File Include="Content/img/jleague/i-in.png">
+      <publishTime>09/08/2015 14:42:01</publishTime>
+    </File>
+    <File Include="Content/img/jleague/i-out.png">
+      <publishTime>09/08/2015 14:42:01</publishTime>
+    </File>
+    <File Include="Content/img/jleague/i-rcard.png">
+      <publishTime>09/08/2015 14:42:03</publishTime>
+    </File>
+    <File Include="Content/img/jleague/i-ycard.png">
+      <publishTime>09/08/2015 14:42:03</publishTime>
+    </File>
+    <File Include="Content/img/jleague/icon01.png">
+      <publishTime>09/08/2015 14:42:03</publishTime>
+    </File>
+    <File Include="Content/img/jleague/icon02.png">
+      <publishTime>09/08/2015 14:42:03</publishTime>
+    </File>
+    <File Include="Content/img/jleague/icon03.png">
+      <publishTime>09/08/2015 14:42:03</publishTime>
+    </File>
+    <File Include="Content/img/jleague/icon04.png">
+      <publishTime>09/08/2015 14:42:01</publishTime>
+    </File>
+    <File Include="Content/img/jleague/image.jpg">
+      <publishTime>09/08/2015 14:42:03</publishTime>
+    </File>
+    <File Include="Content/img/jleague/line.png">
+      <publishTime>09/08/2015 14:42:03</publishTime>
+    </File>
+    <File Include="Content/img/jleague/line1.png">
+      <publishTime>09/08/2015 14:42:03</publishTime>
+    </File>
+    <File Include="Content/img/jleague/logo01.png">
+      <publishTime>09/08/2015 14:42:01</publishTime>
+    </File>
+    <File Include="Content/img/jleague/logo02.png">
+      <publishTime>09/08/2015 14:42:01</publishTime>
+    </File>
+    <File Include="Content/img/jleague/logo03.png">
+      <publishTime>09/08/2015 14:42:03</publishTime>
+    </File>
+    <File Include="Content/img/jleague/logo04.png">
+      <publishTime>09/08/2015 14:42:03</publishTime>
+    </File>
+    <File Include="Content/img/jleague/logo05.png">
+      <publishTime>09/08/2015 14:42:03</publishTime>
+    </File>
+    <File Include="Content/img/jleague/logo06.png">
+      <publishTime>09/08/2015 14:42:03</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_120.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_121.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_122.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_123.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_124.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_126.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_127.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_128.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_129.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_130.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_131.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_132.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_133.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_134.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_135.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_136.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_150.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_176.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_193.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_199.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_207.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_238.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_269.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_270.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_276.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_294.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_296.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_30103.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_30116.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_30148.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_30302.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_30303.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_30305.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_30313.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_30314.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_30526.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_30528.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_30531.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_30536.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Jleague/TeamCD_86.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_1.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_10.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_11.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_12.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_13.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_14.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_15.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_16.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_17.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_18.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_19.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_2.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_20.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_21.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_22.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_23.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_24.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_25.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_26.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_27.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_28.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_29.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_3.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_30.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_4.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_5.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_6.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_7.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_8.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Mlb/TeamCD_9.png">
+      <publishTime>09/08/2015 14:41:57</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Npb/TeamCD_1.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Npb/TeamCD_11.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Npb/TeamCD_12.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Npb/TeamCD_2.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Npb/TeamCD_3.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Npb/TeamCD_376.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Npb/TeamCD_4.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Npb/TeamCD_5.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Npb/TeamCD_6.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Npb/TeamCD_7.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Npb/TeamCD_8.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/img/TeamIcon/Npb/TeamCD_9.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/img/tmp/ad_bg.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/arrow.jpg">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/arrow.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/arrow_down.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/arrow_mid.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/arrow_up.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/bg03.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/btn-next.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/btn-prev.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/btn.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/btn01.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/btn02.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/btn03.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/btn04.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/btn05.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/char_l.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/char_r.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/char_race.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/close.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/dummy.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/dummy_2.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/faq-icon-on.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/faq-icon.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/faq-title.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/fnav_bg.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/f_logo.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/f_logo_sb.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/f_social.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/gplus.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/icon.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/icon_hover.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/line.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/line1.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/line_arrow.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/line_on.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/loading.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/logo.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/logo_sb.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/logo_sb02.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/mail_note.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/mail_note01.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/mail_note02.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/mail_note04.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/mail_note05.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/mem.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/m_btn01.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/m_btn02.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/m_btn03.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/m_btn04.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/m_btn05.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/m_btn06.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/new_img01.jpg">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/new_img02.jpg">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/num01.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/num02.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/num_arr.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/pankuzu.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/prize_20150601_01.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/prize_20150601_02.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/prize_bannner_PC.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/prize_bannner_SP.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/prize_noimage.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/p_btn01.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/p_btn02.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/p_btn03.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/reg-btn01.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/reg-btn02.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/reg-btn03.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/reg-note.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/search.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/side_icon01.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/side_img01.jpg">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/side_img02.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/s_btn01.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/s_btn02.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/s_btn03.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/s_btn04.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tmp_char01.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tmp_char02.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tmp_char03.png">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tmp_img01.jpg">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tmp_logo01.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tmp_logo02.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tmp_logo03.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tmp_logo04.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tmp_logo05.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tmp_logo06.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tmp_logo07.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tmp_logo08.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tmp_logo09.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tutorial_01_01_pc.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tutorial_01_02_pc.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tutorial_01_sp.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tutorial_02_sp.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tutorial_03_01_pc.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tutorial_03_sp.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tutorial_07_pc.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/tmp/tutorial_07_sp.gif">
+      <publishTime>09/08/2015 14:41:58</publishTime>
+    </File>
+    <File Include="Content/img/top/img01.jpg">
+      <publishTime>09/08/2015 14:42:00</publishTime>
+    </File>
+    <File Include="Content/img/top/img02.jpg">
+      <publishTime>09/08/2015 14:42:00</publishTime>
+    </File>
+    <File Include="Content/img/top/img03.jpg">
+      <publishTime>09/08/2015 14:42:00</publishTime>
+    </File>
+    <File Include="Content/img/top/img04.jpg">
+      <publishTime>09/08/2015 14:42:00</publishTime>
+    </File>
+    <File Include="Content/img/top/img05.jpg">
+      <publishTime>09/08/2015 14:42:00</publishTime>
+    </File>
+    <File Include="Content/img/top/img06.jpg">
+      <publishTime>09/08/2015 14:42:00</publishTime>
+    </File>
+    <File Include="Content/img/top/img07.png">
+      <publishTime>09/08/2015 14:42:00</publishTime>
+    </File>
+    <File Include="Content/img/top/img08.jpg">
+      <publishTime>09/08/2015 14:42:00</publishTime>
+    </File>
+    <File Include="Content/img/top/sb_img01.jpg">
+      <publishTime>09/08/2015 14:42:00</publishTime>
+    </File>
+    <File Include="Content/img/top/sb_img02.jpg">
+      <publishTime>09/08/2015 14:42:00</publishTime>
+    </File>
+    <File Include="Content/img/topics/image01.jpg">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/topics/image02.jpg">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/topics/line.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/topics/logo01.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/topics/logo02.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/topics/logo03.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/topics/logo04.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/topics/logo05.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/topics/logo06.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/topics/logo07.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/topics/logo08.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/topics/logo09.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/topics/logo10.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/topics/logo11.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/topics/logo12.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/topics/text-bg.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/topics/text-shadow.png">
+      <publishTime>09/08/2015 14:41:59</publishTime>
+    </File>
+    <File Include="Content/img/upload/contribution/dummy_2.png">
+      <publishTime>09/08/2015 14:42:00</publishTime>
+    </File>
+    <File Include="Content/img/upload/member/DefaultProfilePicture.png">
+      <publishTime>09/08/2015 14:42:00</publishTime>
+    </File>
+    <File Include="Content/img/upload/prize/prize_img.png">
+      <publishTime>07/16/2015 18:46:56</publishTime>
+    </File>
+    <File Include="Content/jquery-ui-dialog.css">
+      <publishTime>09/08/2015 14:42:03</publishTime>
+    </File>
+    <File Include="Content/jquery-ui.css">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/News/PN_UTF8/photo/default.png">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/PagedList.css">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/toastr.css">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/toastr.less">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/toastr.min.css">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Content/toastr.scss">
+      <publishTime>09/08/2015 14:41:56</publishTime>
+    </File>
+    <File Include="Core/Models/Flotr2/ScriptTemplete/BarChartScriptTemplete.txt">
+      <publishTime>09/08/2015 14:41:54</publishTime>
+    </File>
+    <File Include="Core/Models/Flotr2/ScriptTemplete/BubbleChartScriptTemplete.txt">
+      <publishTime>09/08/2015 14:41:54</publishTime>
+    </File>
+    <File Include="Core/Models/Flotr2/ScriptTemplete/FormationChartScriptTemplete.txt">
+      <publishTime>09/25/2015 14:53:05</publishTime>
+    </File>
+    <File Include="Core/Models/Flotr2/ScriptTemplete/Parts/FormationBubblesTemplete.txt">
+      <publishTime>09/08/2015 14:41:54</publishTime>
+    </File>
+    <File Include="Core/Models/Flotr2/ScriptTemplete/Parts/FormationLabelFormatterFunction.txt">
+      <publishTime>09/08/2015 14:41:54</publishTime>
+    </File>
+    <File Include="Core/Models/Flotr2/ScriptTemplete/Parts/FormationMarkersTemplete.txt">
+      <publishTime>09/25/2015 14:53:05</publishTime>
+    </File>
+    <File Include="Core/Models/Flotr2/ScriptTemplete/Parts/FormationSharedTemplete.txt">
+      <publishTime>09/25/2015 14:53:05</publishTime>
+    </File>
+    <File Include="Core/Models/Flotr2/ScriptTemplete/Parts/FormationTrackFormatterFunction.txt">
+      <publishTime>09/08/2015 14:41:54</publishTime>
+    </File>
+    <File Include="Core/Models/Flotr2/ScriptTemplete/Parts/PieChartDataSourceTemplete.txt">
+      <publishTime>09/08/2015 14:41:54</publishTime>
+    </File>
+    <File Include="Core/Models/Flotr2/ScriptTemplete/PieChartScriptTemplete.txt">
+      <publishTime>09/25/2015 14:53:05</publishTime>
+    </File>
+    <File Include="Core/Models/Logging/LogTemplete/ApplicationErrorLogTemplete.txt">
+      <publishTime>09/08/2015 14:41:54</publishTime>
+    </File>
+    <File Include="Core/Models/Logging/LogTemplete/ExceptionLogTemplete.txt">
+      <publishTime>09/08/2015 14:41:54</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>09/08/2015 14:41:45</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>09/08/2015 14:41:45</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>09/08/2015 14:41:45</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>09/08/2015 14:41:45</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>09/08/2015 14:41:54</publishTime>
+    </File>
+    <File Include="MailTemplate/AddressChangeConfirm.html">
+      <publishTime>09/08/2015 14:41:52</publishTime>
+    </File>
+    <File Include="MailTemplate/ContactTemp.html">
+      <publishTime>09/08/2015 14:41:52</publishTime>
+    </File>
+    <File Include="MailTemplate/ForgotPassword.html">
+      <publishTime>09/08/2015 14:41:52</publishTime>
+    </File>
+    <File Include="MailTemplate/RegistConfirm.html">
+      <publishTime>09/08/2015 14:41:52</publishTime>
+    </File>
+    <File Include="Mobile/Content/bxslider.css">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/chart.css">
+      <publishTime>09/25/2015 14:53:06</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/favicon.ico">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/bg_lastmatches_vs.png">
+      <publishTime>09/25/2015 14:53:09</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/bg_lastresults_draw.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/bg_lastresults_lose.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/bg_lastresults_win.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/bg_modalexp_vs.png">
+      <publishTime>09/25/2015 14:53:09</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/bg_panel.jpg">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/bg_panel_notice.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/bg_panel_notice_left.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/bg_panel_notice_right.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/bg_resulthit.png">
+      <publishTime>09/25/2015 14:53:09</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/hdg_article.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/hdg_expothers.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/hdg_formation.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/hdg_interpret.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/hdg_lastmatches.png">
+      <publishTime>09/25/2015 14:53:09</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/hdg_lastresults.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/hdg_matchdata.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/hdg_nextseason.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/hdg_profile.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/hdg_ptchance.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/hdg_starters.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/hdg_stats.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/hdg_textrpt.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/icon01.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/icon02.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/icon03.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/icon04.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/icon07.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/icon08.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/icon09.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/image.jpg">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/img_formation_default.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/img_formation_default_2.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/i_card.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/i_rcard.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/i_ycard.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/line.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/logo.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/logo01.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/logo02.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/mk_arr_expothers.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/mk_check_txtrpt.png">
+      <publishTime>09/25/2015 14:53:09</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/mk_reply_txtrpt.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/mk_socpanelscore_vs.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/mk_socstpower_df.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/mk_socstpower_of.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/serif_panel_lead.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/jleague/status_icons.png">
+      <publishTime>09/25/2015 14:53:08</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/ad-next.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/bar.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/bg02.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/bg_selectarr.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/bg_select_goal.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/btn-bg01.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/btn-next.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/btn-prev.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/close.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/faq-icon-on.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/faq-icon.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/faq-title.gif">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/flogo.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/foot-bg.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/icon01.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/icon02.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/icon03.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/icon04.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/icon05.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/icon06.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/icon07.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/icon08.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/icon09.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/icon10.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/icon11.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/icon12.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/icon13.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/icon13a.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/icon14.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/icon15.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/ico_header_login.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/ico_header_menu.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/ico_header_news.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/ico_login_fb.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/ico_login_gp.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/ico_login_tw.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/ico_menu_bb.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/ico_menu_exp.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/ico_menu_fb.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/ico_menu_home.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/ico_menu_how.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/ico_menu_logout.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/ico_menu_mlb.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/ico_menu_prz.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/ico_menu_soc.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/ico_menu_tw.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/image.jpg">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/image1.jpg">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/image2.jpg">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/image3.jpg">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/image4.jpg">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/line-down.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/log-default.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/log-icon01.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/log-icon02.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/log-icon03.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/logo-mini.jpg">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/logo.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/logo_header_spolog.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/mem.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/mk_arr_topnotice.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/mk_article.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/mk_catpathlist.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/mk_check.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/mk_header_search_off.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/mk_header_search_on.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/mk_modal_close.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/path-arrow01.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/path-arrow02.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/pic_user.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/reg-btn01.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/reg-btn02.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/reg-btn03.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/reg-note.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/reg-note01.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/search.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/serif_panel_lead.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/serif_pointboard.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/sp_catpath.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/sp_search.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/team01.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/team02.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/team03.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/team04.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/team05.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/team06.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/team07.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/team08.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/team09.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/team10.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/team11.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/team12.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/text-bg.png">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/img/tmp/ttl_catpath_soc.png">
+      <publishTime>09/25/2015 14:53:07</publishTime>
+    </File>
+    <File Include="Mobile/Content/normalize.css">
+      <publishTime>09/08/2015 14:41:55</publishTime>
+    </File>
+    <File Include="Mobile/Content/slick.css">
+      <publishTime>09/25/2015 14:53:09</publishTime>
+    </File>
+    <File Include="Mobile/Content/slidebars.css">
+      <publishTime>09/25/2015 14:53:06</publishTime>
+    </File>
+    <File Include="Mobile/Content/soccer_gameinfo.css">
+      <publishTime>09/25/2015 14:53:06</publishTime>
+    </File>
+    <File Include="Mobile/Content/sports.css">
+      <publishTime>09/25/2015 14:53:06</publishTime>
+    </File>
+    <File Include="Mobile/Content/style.css">
+      <publishTime>09/25/2015 14:53:06</publishTime>
+    </File>
+    <File Include="Mobile/Scripts/common.js">
+      <publishTime>09/25/2015 14:53:06</publishTime>
+    </File>
+    <File Include="Mobile/Scripts/common_modal.js">
+      <publishTime>09/25/2015 14:53:06</publishTime>
+    </File>
+    <File Include="Mobile/Scripts/detectmobile.js">
+      <publishTime>09/08/2015 14:41:54</publishTime>
+    </File>
+    <File Include="Mobile/Scripts/jquery.bxslider.js">
+      <publishTime>09/08/2015 14:41:54</publishTime>
+    </File>
+    <File Include="Mobile/Scripts/jquery.bxslider_soc.js">
+      <publishTime>09/08/2015 14:41:54</publishTime>
+    </File>
+    <File Include="Mobile/Scripts/jquery.cslide.js">
+      <publishTime>09/08/2015 14:41:54</publishTime>
+    </File>
+    <File Include="Mobile/Scripts/jquery.js">
+      <publishTime>09/08/2015 14:41:54</publishTime>
+    </File>
+    <File Include="Mobile/Scripts/respond.js">
+      <publishTime>09/08/2015 14:41:54</publishTime>
+    </File>
+    <File Include="Mobile/Scripts/slidebars.js">
+      <publishTime>09/25/2015 14:53:06</publishTime>
+    </File>
+    <File Include="Mobile/Scripts/soccer_gameinfo.js">
+      <publishTime>09/25/2015 14:53:06</publishTime>
+    </File>
+    <File Include="Mobile/Scripts/tutorials.js">
+      <publishTime>09/08/2015 14:41:54</publishTime>
+    </File>
+    <File Include="Models/Com.edmx.diagram">
+      <publishTime>09/08/2015 14:41:44</publishTime>
+    </File>
+    <File Include="Mvc.sitemap">
+      <publishTime>09/25/2015 14:53:05</publishTime>
+    </File>
+    <File Include="NLog.config">
+      <publishTime>09/08/2015 14:41:54</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Scripts/autoNumeric-2.0.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/common.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/cookie.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/datepicker-ja.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/flotr2.min.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/Home.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.map">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui.min.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/jquery.bxslider.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/jquery.cslide.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/jquery.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/jquery.shorten.1.0.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/line_library.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/linq.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/linq.min.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/preview_image.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/respond.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/respond.min.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/section2.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/splgCommon.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/toastr.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/toastr.min.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/tutorials.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/user_article.js">
+      <publishTime>09/08/2015 14:41:53</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>09/25/2015 14:53:05</publishTime>
+    </File>
+    <File Include="Views/Chart/Mobile/_Flotr2Chart.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Views/Home/GoogleCse.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Home/Mobile/GoogleCse.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Home/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/ChangeEMailSuccess.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/ChangePassword.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/Delete.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/DeleteComplete.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/ForgotConfirmEmail.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/ForgotPassword.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/Login.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/Logout.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/LogoutComplete.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/Mobile/ChangeEMailSuccess.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/Mobile/ChangePassword.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/Mobile/Delete.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/Mobile/DeleteComplete.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/Mobile/ForgotConfirmEmail.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/Mobile/ForgotPassword.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/Mobile/Login.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/Mobile/Logout.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/Mobile/LogoutComplete.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/Mobile/Register.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/Mobile/RegisterReview.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/Mobile/RegisterSuccess.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/Mobile/SocialNetworkInfo.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/Register.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/RegisterConfirmEmail.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/RegisterReview.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/RegisterSuccess.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/SocialNetworkInfo.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Member/TokenTimeOut.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/NewsArticleCommon/Index.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/NewsArticleCommon/JlgNewsSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/NewsArticleCommon/MlbNewsSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/NewsArticleCommon/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/NewsArticleCommon/NpbNewsSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/NewsArticleCommon/TeamSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/DisplayTemplates/CanonicalHelperModel.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/DisplayTemplates/MenuHelperModel.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/DisplayTemplates/MetaRobotsHelperModel.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/DisplayTemplates/SiteMapHelperModel.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/DisplayTemplates/SiteMapNodeModel.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/DisplayTemplates/SiteMapNodeModelList.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/DisplayTemplates/SiteMapPathHelperModel.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/DisplayTemplates/SiteMapTitleHelperModel.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/DisplayTemplates/TopMenuHelperModel.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Error404.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Error410.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/ExpectedGameSchedules.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/ExpextedGameCardAtBefore.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/ExpextedGameCardAtDuring.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/GoogleAnalytics.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/HomeCommon.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/HomeHeaderSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/JlgCommon.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/JlgSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/MainFooterMenu.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/MainMenu.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/MemberLayout.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/MlbCommon.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/MlbSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/Error410.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/GoogleAnalytics.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/HeaderMenu.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/MainFooterMenu.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/Popmenu.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/PopupLoginBox.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/TutorialPopup.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/_ArticlesLayout.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/_JleagueLayout.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/_JlgLayout.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/_Layout.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/_MlbLayout.cshtml">
+      <publishTime>09/25/2015 14:53:04</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/_MyPageLayout.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/_NextPrevMonth.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/_NextPrevMonthDay.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/_NextPrevOccasion.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/_NpbLayout.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/_PointAlert.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/_PrizeLayout.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/_ShareContentSocial.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Mobile/_UserLayout.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/MyPageCommon.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/MyPageSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/NpbCommon.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/NpbSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/PointRankings.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/PopupLoginBox.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/PrizeCommon.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/PrizeSubMenu.cshtml">
+      <publishTime>06/19/2015 23:14:51</publishTime>
+    </File>
+    <File Include="Views/Shared/SubMember.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/UserCommon.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/UserSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/_ExpectedPointInfo.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/_JlgContentsLayout.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/_JlgLayoutJleague.cshtml">
+      <publishTime>06/19/2015 23:14:52</publishTime>
+    </File>
+    <File Include="Views/Shared/_JlgLayoutTop.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/_MlbLayout.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/_MyPageLayout.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/_NpbLayout.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/_PrizeLayout.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/_SearchEngine.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/_ShareContentSocial.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/_UserLayout.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Support/Contact.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Support/Faq.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Support/Howto.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Support/Mobile/Contact.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Support/Mobile/Faq.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Support/Mobile/Howto.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Support/Mobile/Rules.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Support/Rules.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/UserArticle/AddNewArticle.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/UserArticle/ArticleSubMenu.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/UserArticle/CompletePostArticle.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/UserArticle/ConfirmUserArticle.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/UserArticle/EditNewUserArticle.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/UserArticle/Index.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/UserArticle/Mobile/AddNewArticle.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/UserArticle/Mobile/CompletePostArticle.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/UserArticle/Mobile/ConfirmUserArticle.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/UserArticle/Mobile/EditNewUserArticle.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/UserArticle/Mobile/Index.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/UserArticle/Mobile/ViewArticleDetail.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/UserArticle/Mobile/_QuotContent.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/UserArticle/ViewArticleDetail.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/UserArticle/_QuotContent.cshtml">
+      <publishTime>09/08/2015 14:41:51</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>09/08/2015 14:41:50</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>09/08/2015 14:41:52</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

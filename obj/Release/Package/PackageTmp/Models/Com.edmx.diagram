@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6570edae44764fe8a2146b6189dad968" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="ComModel.BriefNews" Width="1.5" PointX="0.875" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.CampaignInfo" Width="1.5" PointX="3.375" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.Contribution" Width="1.5" PointX="5.375" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.ContributionQuotOrg" Width="2" PointX="15.375" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.CurrentDayPerExpectTargetTotalPoint" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.Deviation" Width="1.5" PointX="7.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.EntryHistory" Width="1.5" PointX="5.375" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.ExpectTarget" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.FollowList" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.GroupMember" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.Groups" Width="1.5" PointX="9.5" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.ItpcSubject" Width="1.5" PointX="7.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.ItpcSubjectMaster" Width="1.5" PointX="14.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.LikeSports" Width="1.5" PointX="7.625" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.LikeTeam" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.LoginHistory" Width="1.5" PointX="11.125" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.MailDeliverCond" Width="1.5" PointX="9.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.MonthlyResults" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.NewsGenre" Width="1.5" PointX="2.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.NewsGenreMaster" Width="1.5" PointX="12.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.NewsHistory" Width="1.5" PointX="4.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.NoticeInfo" Width="1.5" PointX="14.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.PageInfo" Width="1.5" PointX="14.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.PhotoNews" Width="1.5" PointX="16.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.PointHistory" Width="1.5" PointX="2.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.PointRanking" Width="1.5" PointX="4.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.PopularTopicsAggregate" Width="1.5" PointX="6.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.PrefectureMaster" Width="1.5" PointX="8.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.Prize" Width="1.5" PointX="16.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.QuotTopic" Width="1.5" PointX="16.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.SeasonTotalResults" Width="1.5" PointX="11.625" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.SNSShareHistory" Width="1.5" PointX="10.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.SportsMaster" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.SystemParamater" Width="1.5" PointX="4.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.TokenAcInfo" Width="1.5" PointX="6.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.TokenControl" Width="1.5" PointX="20.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.TotalDailyReport" Width="1.5" PointX="12.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.TotalMemberReport" Width="1.5" PointX="20.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.TotalMonthlyReport" Width="1.5" PointX="14.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.TotalWeeklyReport" Width="1.5" PointX="16.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.WeekResults" Width="1.5" PointX="20.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.SportsStandardDeviation" Width="1.5" PointX="9.375" PointY="22.75" />
+        <EntityTypeShape EntityType="ComModel.BetClassMaster" Width="1.5" PointX="21.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ComModel.BackOfficeAccount" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ComModel.ExpectPoint" Width="1.5" PointX="11.375" PointY="14.75" />
+        <EntityTypeShape EntityType="ComModel.Member" Width="2" PointX="22.375" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComModel.NewsReading" Width="1.5" PointX="7.375" PointY="14.75" />
+        <EntityTypeShape EntityType="ComModel.NewsTopic" Width="1.5" PointX="21.375" PointY="10.75" />
+        <EntityTypeShape EntityType="ComModel.TopicMaster" Width="1.5" PointX="23.375" PointY="10.75" />
+        <EntityTypeShape EntityType="ComModel.OddsInfo" Width="1.5" PointX="23.375" PointY="14.75" />
+        <EntityTypeShape EntityType="ComModel.PayOffPoints" Width="1.5" PointX="23.375" PointY="18.75" />
+        <EntityTypeShape EntityType="ComModel.Point" Width="1.5" PointX="3.375" PointY="24.75" />
+        <EntityTypeShape EntityType="ComModel.NewsClassMaster" Width="1.5" PointX="0.75" PointY="22.75" />
+        <EntityTypeShape EntityType="ComModel.BetSelectMaster" Width="1.5" PointX="19.375" PointY="22.75" />
+        <EntityTypeShape EntityType="ComModel.MailDeliverCondMaster" Width="1.5" PointX="23.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ComModel.SnsCorpInformation" Width="1.5" PointX="23.375" PointY="6.75" />
+        <EntityTypeShape EntityType="ComModel.NewsReadingSumView" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ComModel.ContributionReading" Width="1.5" PointX="24.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ComModel.SnsAuthInformation" Width="1.5" PointX="13.25" PointY="7.875" />
+        <EntityTypeShape EntityType="ComModel.NoticeDeliverySubject" Width="1.5" PointX="16.75" PointY="5.875" />
+        <EntityTypeShape EntityType="ComModel.PointBulkTemporal" Width="1.5" PointX="5.375" PointY="24.75" />
+        <EntityTypeShape EntityType="ComModel.UnitBrowser" Width="1.5" PointX="25.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ComModel.AppActionLog" Width="1.5" PointX="10.375" PointY="9.75" />
+        <EntityTypeShape EntityType="ComModel.NoticePopupDisplayHistory" Width="1.5" PointX="25.375" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,16 @@
+﻿@model Splg.Areas.Jleague.Models.JlgScheduleResultViewModel
+
+@{
+    //ファーストシーズン、セカンドシーズン用Div
+    <div id="J2Season">
+        <p class="j_rank">
+            @for (int i = 1; i <= Model.MaxOccasionNo; i++)
+            {
+                <a id="season_@i" href="javascript:void(0);" class="@Model.IsActiveOccasionNoInJ1SeasonTab(i)">
+                    第<span class="fs18">@i</span>節
+                </a>
+                <span>  /</span>
+            }
+        </p>
+    </div>
+}

@@ -1,0 +1,62 @@
+﻿@{
+    //  Developer	: Tran Sy Huynh
+}
+@using System.Web.Mvc;
+@using System.Web.Mvc.Ajax;
+@using System.Web.Mvc.Html;
+@using System.Web.Optimization;
+@using System.Web.Routing;
+@using Splg;
+@using Splg.Areas.Jleague;
+@using Splg.Areas.Jleague.Models.ViewModel;
+@using Splg.Areas.Jleague.Models.ViewModel.InfosModel;
+@model JlgTopViewModel
+
+@{
+    ViewBag.Title = "10-4-1";
+    Layout = "~/Views/Shared/_JlgContentsLayout.cshtml";
+    var jName = Splg.Areas.Jleague.JlgConstants.JLG_NB_SDL;
+
+    }
+<script src="~/Areas/Jleague/Scripts/10-1.js"></script>
+@if (Model != null)
+{
+    <div class="evt_block05">
+        <div class="board_control clear">
+        <span class="board_prev blue">前の試合を見る</span>
+            <h3 id="gameDate">@Utils.GetMonthAndDayOfWeek(DateTime.Now) の試合</h3>
+            <span class="board_next blue">次の試合を見る</span>
+        </div>
+        <input type="hidden" id="Page" name="Page" value="1" data-gamedate="@DateTime.Now.ToShortDateString().Replace("/", "" )" />
+        <div id="jlgGameInfo">
+            @Html.Action("ShowGameInfo", "JlgTop", new { area = "Jleague", type = 1, gameDate = DateTime.Now.ToShortDateString().Replace("/", ""), leagueType = 4 })
+        </div>
+        <div class="board_control">
+            <span class="board_prev blue">前の試合を見る</span>
+            <span class="board_next blue">次の試合を見る</span>
+        </div>
+        @if (Model.TopRecentPost != null && Model.TopRecentPost.Any())
+        {
+			<div class="cat_stitle">
+				<h3>@jName 投稿記事</h3>
+				<p><a href="/user_article/2/sport/">投稿記事をもっと読む</a></p>
+			</div>
+            <ul class="evt_list01">
+                @foreach (var post in Model.TopRecentPost.Take(3))
+                {
+                    string postContent = string.Format("{0}&nbsp;&nbsp;&nbsp;{1}投稿", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                    <li>
+						<a href="/user/@post.MemberId/"><img src="@post.ProfileImg" alt="icon" /></a>
+						<a class="bold" href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a>
+                        <br />
+						@Html.Raw(postContent)
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+}
+@section JlgPage{
+
+<div class="side_cal" id="calendar"></div>
+}

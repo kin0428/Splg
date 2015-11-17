@@ -1,0 +1,534 @@
+/*------------------------------------
+		CONTENTS INDEX
+------------------------------------*/
+/**
+ * CONTENTS INDEX....You're reading it.
+ * style.css - reset
+ * common
+ * navi
+ * top item
+ * topic path
+ * soccer panel
+ * soccer date - common
+ * soccer date - tab1
+ * soccer date - tab2
+ * soccer date - tab3
+ */
+
+/*------------------------------------
+		common
+------------------------------------*/
+body { font-size: 81.2%; }
+
+/*------------------------------------
+		style.css - reset
+------------------------------------*/
+.content {
+	color: #333;
+}
+.panel-col5 {
+	width: 30%;
+    display: inline-block;
+}
+.tabs-list li a {
+	margin-bottom: 0;
+	padding: 5px 0;
+}
+.tabs-list .active a {
+	padding: 5px 0;
+}
+.fs8 {
+    font-size: .9em;
+}
+
+/*------------------------------------
+		header
+------------------------------------*/
+.reg-link {
+    background: url(/Mobile/Content/img/tmp/log-default.png) no-repeat 50% 50%;
+    background-size: 30px;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/*------------------------------------
+		navi
+------------------------------------*/
+.navbox {
+	width: 75%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+	padding: 0;
+    overflow: hidden;
+	box-shadow: 5px 0 10px 0px rgba(0,0,0,0.3);
+}
+
+/*------------------------------------
+		top item
+------------------------------------*/
+/* top notice */
+.topNotice {
+	width: 100%;
+	display: block;
+	color: #333;
+	line-height: 3em;
+	text-align: center;
+	background-color: #fff;
+	border: 1px solid #ccc;
+}
+.topNotice-strong {
+	display: inline-block;
+	font-size: 1.5em;
+	margin: 5px 5px 0;
+}
+
+/* tab */
+.tabs-list-socGame li a {
+	min-height: 65px;
+	padding: 5px 0; 
+	margin-bottom: 0;
+	font-size: .9em;
+    line-height: 1.5em;
+}
+.tab-content {
+	margin-bottom: 10px;
+	padding-top: 10px;
+}
+
+/*------------------------------------
+		topic path
+------------------------------------*/
+.topic-path {
+	position: relative;
+	margin: 0;
+    padding: 0;
+	background-color: #eee;
+}
+.topic-path a {
+	padding: 10px;
+	line-height: initial;
+	background: url(img/tmp/icon07.png) no-repeat 95% 50%;
+	border-bottom: 1px solid #3399cc;
+	background-color: #eee;
+}
+.topic-path > p > a {
+	line-height: inherit;
+	background-position: 95% 50%;
+	background-size: 26px 24px;
+}
+.topic-path-opened {
+    margin: 0;
+    padding: 0;
+    z-index: 100;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    height: 100%;
+    background-color: #ccc;
+    width: 100%;
+}
+.topic_sub1 {
+	position: absolute;
+	z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+/*------------------------------------
+		soccer panel
+------------------------------------*/
+.socPanel {
+	width: 100%;
+	margin-bottom: 20px;
+	background-color: #eee;
+}
+.socPanel-header {
+	position: relative;
+	width: 100%;
+	margin-bottom: 5px;
+	background: #062a4e url(/Mobile/Content/img/tmp/bg_panel_soc.jpg) no-repeat 50%;
+	background-size: cover;
+    color: #fff;
+	background-color: #0b559e;
+}
+.socPanel-header a {
+	color: #fff;
+}
+.socPanel-notice {
+	width: 100%;
+	margin: 0 5px 5px 5px;
+	text-align: center;
+}
+.socPanel-limit {
+	color: #f00;	
+	text-align: center;
+}
+.socPanel-teamIcon {
+	display: block;
+	width: 40%;
+	max-width: 60px;
+	vertical-align: middle;
+}
+.socPanel-home,
+.socPanel-away {
+	display: inline-block;
+	width: 45%;
+}
+.socPanel-home {
+	text-align: right;
+}
+.socPanel-away {
+	float: right;
+}
+.socPanel-vs {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    margin: auto;
+    right: 0;
+	width: 5%;
+	display: inline-block;
+	color: #ff0;
+	text-align: center;
+}
+.socPanel-rank {
+	display: block;
+}
+.socPanel-name {
+	display: block;
+}
+.socPanel-home .socPanel-teamIcon { float: right; }
+.socPanel-away .socPanel-teamIcon { float: left; }
+.socPanel-teamInfo {
+	width: 60%;
+	float: left;
+}
+.panel-group {
+	padding: 0 5px 10px;
+}
+.socPanel-graph {
+	width: 90%;
+	margin: 0 auto 10px;
+	padding: 5px;
+	color: #fff;
+	font-size: 1.2em;
+	text-align: center;
+	background-color: #aaa;
+}
+.socRecentGame {
+	margin-bottom: 20px;
+}
+.socRecentGame-hdg {
+    margin-bottom: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+.socRecentGame .socPanel-header {
+	border-bottom: 2px solid #fff;
+}
+
+/*------------------------------------
+		soccer date - common
+------------------------------------*/
+.socData {
+	width: 100%;
+	margin-bottom: 40px;
+}
+.socData-hdg {
+	width: 100%;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+	font-weight: bold;
+	border-bottom: 1px solid #ccc;
+}
+.socData-tab {
+	padding: 0 10px;
+}
+.socData-tab2 {
+	margin-bottom: 10px;
+}
+.socData-tab2 li {
+	width: 50%;
+	border-width: 1px 1px 0 0;
+	border-style: solid;
+	border-color: #ccc;
+}
+.socData-tab2 li:last-child {
+	border-width: 1px 0 0 0;
+}
+
+/*------------------------------------
+		soccer date - tab1
+------------------------------------*/
+/* point chance */
+.socData-teamIcon {
+	width: 40%;
+	max-width: 60px;
+	vertical-align: middle;
+}
+.socPtChance-hdg {
+	width: 50%;
+	float: left;
+	margin-bottom: 5px;
+	text-align: center;
+}
+.socPtChance-listTtl {
+	width: 20%;
+	float: left;
+	text-align: center;
+	line-height: 2em;
+}
+.socPtChanceHome-list {
+	text-align: right;
+}
+.socPtChance-home,
+.socPtChance-away {
+	width: 40%;
+	float: left;
+	margin-bottom: 15px;
+}
+.socPtChanceBtn-save {
+	width: 80%;
+	clear: left;
+	margin: 0 auto 10px;
+    font-size: 1.2em;
+	line-height: 2em;
+	text-align: center;
+	background-color: #aaa;
+	border: 1px solid #999;
+	border-bottom: 4px solid #999;
+	border-radius: 20px;
+}
+.socPtChanceBtn-save a {
+	color: #fff;
+}
+
+/* last five matches */
+.socLastMatches-hdg {
+	width: 40%;
+	float: left;
+	margin-bottom: 5px;
+	text-align: center;
+}
+.socLastMatches-vs {
+	width: 20%;
+	line-height: 5em;
+}
+.socLastMatches-sum li {
+	width: 33.3%;
+	float: left;
+	margin-bottom: 5px;
+    text-align: center;
+}
+.socLastMatches-log {
+	width: 100%;
+	font-size: 1.1em;
+}
+.socLastMatches-log li {
+	width: 100%;
+	display: inline-block;
+	background-color: #eee;
+	border-bottom: 1px solid #fff;
+}
+.socLastMatches-log a {
+	display: block;
+}
+.socLastMatches-log span {
+	display: inline-block;
+	padding: 10px 10px 10px 0;
+}
+.socLastMatches-log span:nth-child(1) {
+	width: 35%;
+	padding-left: 10px;
+}
+.socLastMatches-log span:nth-child(2) { width: 20%; }
+.socLastMatches-log span:nth-child(3) { width: 20%; }
+.socLastMatches-log span:nth-child(4) { width: 20%; }
+
+/* last results */
+.lastResults-graph {
+	width: 80px;
+    height: 80px;
+	margin: 0 auto 10px;
+	padding-top: 32px;
+	color: #fff;
+	text-align: center;
+	background-color: #aaa;
+	border-radius: 50%;
+}
+.lastResults-sum {
+	margin-bottom: 10px;
+	text-align: center;
+}
+.lastResults-sum tr {
+	border-bottom: 1px solid #ccc;
+}
+.lastResults-sum th {
+	width: 30%;
+}
+.lastResultsHome-match,
+.lastResultsAway-match {
+	width: 50%;
+	float: left;
+	text-align: center;
+}
+
+/* property */
+.socProp-list {
+	width: 100%;
+	margin-bottom: 30px;
+	text-align: center;
+}
+.socProp-list tr {
+	border-bottom: 1px solid #ccc;
+}
+.socProp-list td:nth-child(1),
+.socProp-list td:nth-child(3) {
+	width: 25%;
+	font-size: 1.2em;
+}
+.socProp-list td:nth-child(2) {
+	width: 50%;
+	padding: 5px 0;
+}
+.socProp-graph {
+	color: #fff;
+	text-align: center;
+	background-color: #aaa;
+}
+.socProp-diag {}
+.socProp-hdg {
+	width: 100%;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+}
+.socProp-hdg .current {
+	color: #e67f00;
+}
+
+/* article */
+.socArticle {
+	margin-bottom: 10px;
+}
+.socData-hdgIcon {
+	width: 40px;
+	margin-right: 5px;
+	vertical-align: middle;
+}
+.socArticle-list {
+	margin-bottom: 20px;
+}
+.socArticle-list li {
+	border-bottom: 1px solid #ccc;
+}
+.socArticle-list a {
+	display: block;
+	width: 100%;
+	padding: 5px 0;
+	color: #333;
+}
+.socArticle-ttl {
+	display: block;
+	font-weight: bold;
+}
+
+/* link list */
+.socDataLink {
+	border-top: 1px solid #ccc;
+}
+.socDataLink li {
+	border-bottom: 1px solid #ccc;
+}
+.socDataLink a {
+	width: 100%;
+	display: block;
+	padding: 15px;
+	color: #333;
+	text-align: center;
+}
+
+/*------------------------------------
+		soccer date - tab2
+------------------------------------*/
+.socDataTab-formation {
+	margin: 0 auto;
+	color: #999;
+	font-size: 1.5em;
+}
+.active .socDataTab-formation {
+	color: #f00;
+}
+
+/* starting member */
+.socStarters-subHdg {
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+.socStarters-skills {
+	margin-bottom: 5px;
+	font-size: .9em;
+	text-align: right;
+}
+.socStarters-skills a {
+	color: #333;
+}
+.socStarters-skills .active {
+	color: #3399cc;
+}
+.socStartersList {
+	margin-bottom: 10px;
+}
+.socStartersList td:last-child {
+	width: 40%;
+    color: #fff;
+    text-align: center;
+    background-color: #aaa;
+}
+.socStarters-notSts dt,
+.socStarters-notSts dd {
+	width: 50%;
+	float: left;
+}
+
+/* formation */
+.socFormation-image {
+	width: 90%;
+	height: 240px;
+	margin: 0 auto;
+    color: #fff;
+	font-size: 1.6em;
+    line-height: 12em;
+    text-align: center;
+    background-color: #aaa;
+}
+
+.socFormation-team {
+	width: 100%;
+	margin: 10px auto;
+	text-align: center;
+	font-weight: bold;
+}
+
+/*------------------------------------
+		soccer date - tab3
+------------------------------------*/
+.socRptSwitch,
+.socRptTeam {
+	margin-bottom: 5px;
+	text-align: right;
+}
+
+
+
+
+
+
+

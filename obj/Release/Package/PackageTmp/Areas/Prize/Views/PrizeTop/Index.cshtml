@@ -1,0 +1,65 @@
+﻿@using Splg.Areas.Prize.Models.ViewModel;
+@using Splg.Core.Services;
+
+@model Splg.Areas.Prize.Models.ViewModel.PrizeTopViewModel
+
+@{
+    ViewBag.Title = "懸賞TOP";
+    ViewBag.PageNo = Splg.Areas.Prize.PrizrConstants.PRIZE_TOP_INDEX;
+    Layout = "~/Views/Shared/_PrizeLayout.cshtml";
+}
+
+<div>
+    <p class="block_path02">
+        <span class="icon gui_icon"> </span>
+        > 懸賞トップ
+    </p>
+    @Html.Partial("PrizeSubMenu")
+    <div class="adw_block01 clear">
+        <h2 class="adw_banner">
+            <img src="@Model.RallyViewModel.ImageUrl" alt="@Model.RallyViewModel.RallyName" />
+        </h2>
+        <div class="adw_bl01_1">
+            <h3 class="mem_title01">スポログ懸賞　概要</h3>
+            <p class="mrgin_bt10">
+                @Html.Raw(Html.Encode(Model.RallyViewModel.Description).Replace("\n", "<br />"))
+                <span class="red">※ご応募頂いたポイントの取り消しはできませんので予めご了承ください。</span>
+            </p>
+            <p>みなさんのご参加を心よりお待ちしております！</p>
+        </div>
+    </div>
+    <div class="adw_block01 clear">
+        <h3 class="mytitle">@Model.RallyViewModel.RallyName　賞品</h3>
+        @if (UserService.IsLogined(Session) == true)
+        {
+        <p class="organge fs14">懸賞応募可能ポイント　@Html.DisplayFor(m => Model.AvailablePoint)Pt</p>
+        }
+        <p class="adw_note">
+            応募期間 @Html.DisplayFor(m => Model.RallyViewModel.EntryStartDate) ～ @Html.DisplayFor(m => Model.RallyViewModel.EntryEndDate)
+        </p>
+        <ul class="adw_group">
+            @Html.Partial("RallyGoodsThumbnail",Model)
+        </ul>
+        <div class="block_8_2">
+        <p> 1. Amazon.co.jpは、本プロモーション・調査・プログラム・キャンペーンのスポンサーではありません。</p>
+        <p> 2. Amazon、Amazon.co.jp およびそのロゴはAmazon.com, Inc. またはその関連会社の商標です。</p>
+        </div>
+        @*<div class="adw_date">
+            <p>過去の懸賞</p>
+            
+            @if (Model.RallyHistories != null && Model.RallyHistories.Any())
+            {
+                var yearGroup = Model.RallyHistories.GroupBy(m => m.EntryStartDate.Year).ToList();
+
+                foreach (var item in yearGroup)
+                {
+                @Html.Partial("RallyHistories", Model.RallyHistories.Where(m => m.EntryStartDate.Year == item.Key).ToList())
+                }
+            }
+        </div>*@
+    </div>
+    <!-- InstanceEndEditable -->
+</div>
+@section PrizePage{
+    @Html.Action("ShowPointRankings", "RightContent", new { area = "" })
+}

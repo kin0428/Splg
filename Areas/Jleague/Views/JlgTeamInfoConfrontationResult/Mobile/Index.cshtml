@@ -1,0 +1,75 @@
+﻿@{
+    // Namespace	: Splg.Areas.Jleague
+    // Controller   : JlgTeamInfo
+    // FileName		: Index.cshtml
+    // Developer	: Nojimai
+    // Update date  : 2015-05-06
+    // Html No      : 10-2-5 && 10_3_5(mobile)
+    int jType = Convert.ToInt32(ViewBag.JType);
+    string league = string.Empty;
+    if (ViewBag.JType == 1)
+    {
+        league = "J1";
+        ViewBag.Title = "チーム情報　対戦成績";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J1_T_RST;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J1_T_RST;
+    }
+    else
+    {
+        league = "J2";
+        ViewBag.Title = "チーム情報　対戦成績";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J2_T_RST;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J2_T_RST;
+    }
+    Layout = "~/Views/Shared/Mobile/_JlgLayout.cshtml";
+}
+@model List<Splg.Areas.Jleague.Models.ViewModel.JlgTeamInfoConfrontationResultViewModel>
+
+<!-- path -->
+@Html.Partial("~/Areas/Jleague/Views/Shared/Mobile/_JlgTeamInfoMenu.cshtml")
+<section class='block_2'>
+    <h2 class='subtitle2'>@league @ViewBag.TeamName 対戦成績</h2>
+    <ul class='team-list'>
+        @if (Model != null )
+        {
+            foreach (var item in Model) { 
+					<section class="block_0 clear">
+						<h2 class="subtitle2">対戦チーム　<a href="/j1/teams/@item.TeamID/">@item.TeamName</a></h2>
+						<article class="block_8_2">
+							<div class="jtbl01">
+								<h3>対戦成績</h3>
+								<div class="jrow02">
+									<p class="j01">得点</p>
+									<p class="j02 num">@item.Score</p>
+								</div>
+								<div class="jrow02">
+									<p class="j01">試合数</p>
+									<p class="j02 num">@item.Game</p>
+								</div>
+								<div class="jrow02">
+									<p class="j01">勝数</p>
+									<p class="j02 num">@item.Win</p>
+								</div>
+								<div class="jrow02">
+									<p class="j01">得点</p>
+									<p class="j02 num">@item.Score</p>
+								</div>
+								<div class="jrow02">
+									<p class="j01">引分数</p>
+									<p class="j02 num">@item.Draw</p>
+								</div>
+								<div class="jrow02">
+									<p class="j01">失点</p>
+									<p class="j02 num">@item.Lost</p>
+								</div>
+							</div>
+						</article>						
+					</section>
+                     }
+        }
+    </ul>
+</section>
+
+
+
+

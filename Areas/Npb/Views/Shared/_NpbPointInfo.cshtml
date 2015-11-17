@@ -1,0 +1,224 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : _NpbPointInfo.cshtml (Use for main _NpbLayout.cshtml)
+    //Created Date : 2015/04/08
+}
+
+@model IEnumerable<Splg.Models.Game.ViewModel.PointInfoViewModel>
+@using Splg;
+@using Splg.Models.Game.ViewModel;
+@using Splg.Areas.Npb.Models;
+@using Splg.Areas.Mlb.Models;
+@using Splg.Areas.Jleague.Models;
+
+<div id="warningPopup" class="pop_outside" style="display:none;">
+    <div class="pop_block_warning">
+        <a id="closePopup" class="pop_exit" href="#"><img src="~/Content/img/tmp/close.png" alt="exit" /></a>
+        <h1 class="pop_title">Warning</h1>
+        <div class="pop_bl01">
+            <p id="textPopup" class="fs14"></p>
+        </div>
+    </div>
+</div>
+
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        var memberID = string.Empty;
+        if (Session["CurrentUser"] != null)
+        {
+            memberID = Session["CurrentUser"].ToString();
+        }
+        var lstGroup = Model.OrderBy(m => m.PointID).GroupBy(m => m.PointID);
+        var firstGroup = lstGroup.FirstOrDefault();
+        var divID = 0;
+        <div class="side_block02" id="pointPrediction" data-member="@memberID">
+            @foreach (var groupWeek in lstGroup)
+            {
+                var firstInGroup = groupWeek.FirstOrDefault();
+                var totalPointInWeek = NpbCommon.GetPossionPointByPointID(firstInGroup.PointID);
+                if (groupWeek.Key.Equals(firstGroup.Key))
+                {
+                    var strWeek = firstInGroup.GiveTargetMonth + "月" + @groupWeek.FirstOrDefault().GiveTargetWeek + "周目";
+                    <div class="cat_stitle">
+                        <h3>@strWeek</h3>
+                        <p><a href="@Url.Action("Index", "MyPageExpectedList", new { area = "mypage" }, null)">予想リストをもっと見る</a></p>
+                    </div>
+                }
+                else
+                {
+                    <div class="cat_stitle">
+                        <h3>来週予想した試合</h3>
+                    </div>
+                }
+                <div class="row">
+                    <p class="side_date"><span class="fs14">現在の所持ポイント</span></p>
+                    <p class="side_date_p organge"><span id="Point_@firstInGroup.BetStartDate.ToShortDateString().Replace("/","")" class="fs18 bold">@string.Format("{0:n0}", totalPointInWeek)</span> pt</p>
+                </div>
+                foreach (var item in groupWeek.OrderBy(m => m.StartScheduleDate))
+                {
+                    divID++;
+                    if (item.GameID != 0)
+                    {
+                        var point = Math.Round(item.ExpectPoint * item.Odds);
+                        var gameDate = string.Empty;
+                        var gameTime = string.Empty;
+                        var teamBetSelect = string.Empty;
+                        var status = 0;
+                        var classStatus = string.Empty;
+                        var classChild1 = string.Empty;
+                        var divisionPoint = item.ExpectPoint / 100;
+                        GameInfoViewModel gameInfo = new GameInfoViewModel();
+                        var strLinkGame = string.Empty;
+                        var strContrlType = string.Empty;
+                        var strAreaType = string.Empty;
+                        var sportName = string.Empty;
+                        //Each item belong to another sport, need get info different.
+                        switch (item.SportID)
+                        {
+                            case Constants.NPB_SPORT_ID:
+                                gameInfo = NpbCommon.GetGameInfoByGameID(Constants.NPB_SPORT_ID, item.GameID.Value);
+                                status = NpbCommon.GetStatusForPointByGameID(item.GameID.Value);
+                                sportName = "プロ野球";
+                                strAreaType = "Npb";
+                                strContrlType = "NpbGameInformation";                          
+                                break;
+                            case Constants.MLB_SPORT_ID:
+                                gameInfo = NpbCommon.GetGameInfoByGameID(Constants.MLB_SPORT_ID, item.GameID.Value);
+                                status = MlbCommon.GetStatusMatch(item.GameID.Value, memberID);                               
+                                sportName = "MLB";
+                                strAreaType = "Mlb";
+                                strContrlType = "MlbGameInformation";    
+                                break;
+                            case Constants.JLG_SPORT_ID:
+                                gameInfo = NpbCommon.GetGameInfoByGameID(Constants.JLG_SPORT_ID, item.GameID.Value);
+                                status = JlgCommon.GetStatusMatch(item.GameID.Value, memberID);                               
+                                sportName = "Jリーグ";
+                                strAreaType = "Jleague";
+                                strContrlType = "JlgGameInformation";    
+                                break;
+                            default:
+                                break;
+                        }
+
+                        //Format date and time for game.
+                        var tmp = DateTime.ParseExact(gameInfo.Time, "HHmm", null);
+                        gameTime = tmp.ToString("HH:mm");
+                        gameDate = Utils.ParseToJapanDate(false, gameInfo.GameDate.ToString());
+
+                        switch (item.SportID)
+                        {
+                            case Constants.NPB_SPORT_ID:
+                                if (status == 0)
+                                {
+                                    classStatus = "side_b2";
+                                    classChild1 = "side_b2_1";
+                                    strLinkGame = gameInfo.HomeTeamName + " vs " + gameInfo.VisitorTeamName;
+                                }
+                                else
+                                {
+                                    ScoreGameInfo lstScoreHome = NpbCommon.GetTeamInfoGTSByGameIDTeamID(gameInfo.GameID, gameInfo.HomeTeamID);
+                                    ScoreGameInfo lstScoreVisitor = NpbCommon.GetTeamInfoGTSByGameIDTeamID(gameInfo.GameID, gameInfo.VisitorTeamID);
+                                    classStatus = "side_b1";
+                                    classChild1 = "side_b1_1";
+                                    strLinkGame = gameInfo.HomeTeamName + " " + lstScoreHome.R + " - " + lstScoreVisitor.R + " " + gameInfo.VisitorTeamName;
+                                }
+                                break;
+                            case Constants.MLB_SPORT_ID:
+                                if (status == 2 || status == 3)
+                                {
+                                    classStatus = "side_b2";
+                                    classChild1 = "side_b2_1";
+                                    strLinkGame = gameInfo.HomeTeamName + " vs " + gameInfo.VisitorTeamName;
+                                }
+                                else if(status >= 6 && status <= 9)
+                                {
+                                    ScoreGameInfo lstScoreHome =  MlbCommon.GetTeamInfoGTSByGameIDTeamIDHome(gameInfo.GameID, gameInfo.HomeTeamID);
+                                    ScoreGameInfo lstScoreVisitor = MlbCommon.GetTeamInfoGTSByGameIDTeamIDVisitor(gameInfo.GameID, gameInfo.VisitorTeamID);
+                                    classStatus = "side_b1";
+                                    classChild1 = "side_b1_1";
+                                    strLinkGame = gameInfo.HomeTeamName + " " + lstScoreHome.R + " - " + lstScoreVisitor.R + " " + gameInfo.VisitorTeamName;
+                                }
+                                else
+                                {
+                                    classStatus = "side_b1";
+                                    classChild1 = "side_b1_1";
+                                    strLinkGame = gameInfo.HomeTeamName + " vs " + gameInfo.VisitorTeamName;
+                                }
+                                break;
+                            case Constants.JLG_SPORT_ID:
+                                if (status == 2 || status == 3)
+                                {
+                                    classStatus = "side_b2";
+                                    classChild1 = "side_b2_1";
+                                    strLinkGame = gameInfo.HomeTeamName + " vs " + gameInfo.VisitorTeamName;
+                                }
+                                else if (status >= 6 && status <= 9)
+                                {
+                                    ScoreGameInfo lstScoreHome = JlgCommon.GetTeamInfoGTSByGameIDTeamID(gameInfo.GameID, gameInfo.HomeTeamID);
+                                    ScoreGameInfo lstScoreVisitor = JlgCommon.GetTeamInfoGTSByGameIDTeamID(gameInfo.GameID, gameInfo.VisitorTeamID);
+                                    classStatus = "side_b1";
+                                    classChild1 = "side_b1_1";
+                                    strLinkGame = gameInfo.HomeTeamName + " " + lstScoreHome.R + " - " + lstScoreVisitor.R + " " + gameInfo.VisitorTeamName;
+                                }
+                                else
+                                {
+                                    classStatus = "side_b1";
+                                    classChild1 = "side_b1_1";
+                                    strLinkGame = gameInfo.HomeTeamName + " vs " + gameInfo.VisitorTeamName;
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+
+                        <div class="@classStatus" id="@divID">
+                            <div>
+                                <p class="fs11">@sportName @gameDate @gameTime </p>
+                                <p class="@classChild1"><a href="@Url.Action("Index", @strContrlType, new { area = @strAreaType, gameID = @item.GameID }, null)">@strLinkGame</a></p>
+                                @if ((item.SportID == Constants.NPB_SPORT_ID && status == 0) || ((item.SportID == Constants.MLB_SPORT_ID || item.SportID == Constants.JLG_SPORT_ID) && status == 2 || status == 3))
+                                {
+                                    <span class="side_b1_li blue" data-sport="@item.SportID" data-gameid="@item.GameID" data-date="@item.BetStartDate.ToShortDateString().Replace("/","")" data-expectpoint="@StringProtector.Protect(@item.ExpectPointID.ToString())" data-point="@StringProtector.Protect(@item.PointID.ToString())">取り消す</span>
+                                    <span class="icon side_b2_2"> </span>
+                                }
+                                else
+                                {
+                                    <span class="icon side_b1_2"> </span>
+                                    <span class="icon side_b1_3"> </span>
+                                }
+
+                                @if (item.BetSelectID == 1)
+                                {
+                                    teamBetSelect = @gameInfo.HomeTeamName;
+                                }
+                                else if (item.BetSelectID == 2)
+                                {
+                                    teamBetSelect = @gameInfo.VisitorTeamName;
+                                }
+                                else
+                                {
+                                    teamBetSelect = "引き分け";
+                                }
+                                <p class="fs14">@teamBetSelect</p>
+                                @if ((item.SportID == Constants.NPB_SPORT_ID && status == 0) || ((item.SportID == Constants.MLB_SPORT_ID || item.SportID == Constants.JLG_SPORT_ID) && status == 2 || status == 3))
+                                {
+                                    <p class="tmp">
+                                        <input maxlength="3" data-sport="@item.SportID" data-gameid="@item.GameID" value="@divisionPoint" data-odd="@item.Odds" data-old="@item.ExpectPoint" data-expectpoint="@StringProtector.Protect(@item.ExpectPointID.ToString())" data-point="@StringProtector.Protect(@item.PointID.ToString())" name="sprice" data-date="@item.BetStartDate.ToShortDateString().Replace("/","")" class="pointBet">
+                                        <span class="fs18 bold"> 00</span>pt
+                                        <span class="fs14">x</span> @item.Odds
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p><span class="fs18">@item.ExpectPoint</span> pt <span class="fs14">x</span> @item.Odds</p>
+                                }
+                            </div>
+                            <p>予想が的中すると <span class="pointWin">@point</span> pt を得られます</p>
+                        </div>
+                    }
+                }
+            }
+        </div>
+    }
+}

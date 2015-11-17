@@ -1,0 +1,103 @@
+﻿@using Splg.Areas.Jleague;
+@using Splg.Areas.Jleague.Models.ViewModel.InfosModel;
+@using Splg.Areas.Jleague;
+@model List<Splg.Areas.Jleague.Models.ViewModel.JlgTeamInfoConfrontationResultViewModel>
+@{
+    if (ViewBag.JType == 1)
+    {
+        ViewBag.Title = "チーム情報　対戦成績";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J1_T_RST;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J1_T_RST;
+    }
+    else
+    {
+        ViewBag.Title = "チーム情報　対戦成績";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J2_T_RST;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J2_T_RST;
+    }
+    Layout = "~/Views/Shared/_JlgContentsLayout.cshtml";
+}
+<script src="~/Areas/Jlg/Scripts/10-2-5-3.js"></script>
+
+<div class="jblock_01">
+    @Html.Partial("~/Areas/Jleague/Views/Shared/JleagueTeamMenu.cshtml")
+    <div class="space"></div>
+    @if (Model != null)
+    {
+
+        <div class="clear">
+            <table class="jtbl01" cellpadding="0" cellspacing="0" summary="content1">
+                <col width="56%" />
+                <col width="8%" />
+                <col width="7%" />
+                <col width="7%" />
+                <col width="8%" />
+                <col width="7%" />
+                <col width="7%" />
+
+                <tr>
+                    <th class="tleft">対戦相手</th>
+                    <th>試合数</th>
+                    <th>勝数</th>
+                    <th>負数</th>
+                    <th>分数</th>
+                    <th>得点</th>
+                    <th>失点</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+
+                    var balance = item.Score - item.Lost;
+                    <tr>
+                        <td>
+                            <div class="jteam">
+                                <div><img class="resimg" src="@Url.Content(item.TeamIcon)" alt="" /></div>
+                                <p><a href="/jleague/j1/teams/@item.TeamID/">@item.TeamName</a></p>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="num fs18 fi">@item.Game</span>
+                        </td>
+                        <td>
+                            <span class="num fs18 fi">@item.Win</span>
+                        </td>
+                        <td>
+                            <span class="num fs18 fi">@item.Lose</span>
+                        </td>
+                        <td>
+                            <span class="num fs18 fi">@item.Draw</span>
+                        </td>
+                        <td>
+                            <span class="num fs18 fi">@item.Score</span>
+                        </td>
+                        <td>
+                            <span class="num fs18 fi">@item.Lost</span>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+
+    }
+</div>
+<!--Right Content-->
+@section JlgPage{
+    <div class="cat_stitle">
+
+        @*Html.Action("ShowJlgRightRecentNews", "JlgRightRecentNews", new { area = "Jleague" })*@
+        
+        @if (ViewBag.JleagueMenu == 2)
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_J1, jType = 1 })
+        }
+        else if (ViewBag.JleagueMenu == 3)
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_J2, jType = 2 })
+        }
+        else 
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_NABISCO, jType = ViewBag.JType })
+        }
+    </div>
+}

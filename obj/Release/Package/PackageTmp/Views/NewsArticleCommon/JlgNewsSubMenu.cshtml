@@ -1,0 +1,155 @@
+﻿@{
+    //Dev : Sy Huynh
+    //FileName : JlgSubMenu.cshtml
+    //Created Date : 2015/04/09
+}
+
+@{
+    var url = Context.Request.Path;
+    string[] subUrls = url.Split('/');
+    List<string> subUrlList = new List<string>();
+    for (int i = 0; i < subUrls.Count(); i++)
+    {
+        if (!string.IsNullOrEmpty(subUrls[i]))
+        {
+            subUrlList.Add(subUrls[i]);
+        }
+    }
+    List<string> menuLinkList = new List<string>();
+    List<string> menuNameList = new List<string>();
+
+    // no league, no team
+    int jtype = 0;
+    int jlgType = 0;
+    int menu1Active = 0;
+    int menu2Active = 0;
+    int subUrlCount = subUrlList.Count();
+
+    menuNameList.Add("Ｊリーグ");
+    menuLinkList.Add("/" + Constants.JLG_TOPIC_NAME + "/");
+
+    if (subUrlCount >= 3 && subUrlList.ElementAt(1).ToLower().Equals("news") && Convert.ToString(ViewBag.pageNO).Equals("7-1"))
+    {
+        int leagueID = 0;
+        int teamID = 0;
+        if (ViewBag.uniqueID != null && Int32.TryParse(ViewBag.uniqueID, out leagueID))
+        {
+            // only league
+            jtype = 1;
+            if (ViewBag.teamID != null && Int32.TryParse(ViewBag.teamID, out teamID))
+            {
+                // league and team
+                jtype = 2;
+            }
+        }
+        else
+        {
+            if (ViewBag.teamID != null && Int32.TryParse(ViewBag.teamID, out teamID))
+            {
+                // only team
+                jtype = 3;
+            }
+        }
+        switch (jtype)
+        {
+            case 0:
+                menu1Active = 1;
+                menuLinkList.Add("/" + Constants.JLG_TOPIC_NAME + "/news/");
+                break;
+            case 1:
+                switch (leagueID)
+                {
+                    case 2:
+                        jlgType = 1;
+                        menu1Active = 2;
+                        menu2Active = 7;
+                        menuNameList.Add("Ｊ１");
+                        menuLinkList.Add("/" + Constants.JLG_TOPIC_NAME + "/j1/");
+                        menuLinkList.Add("/" + Constants.JLG_TOPIC_NAME + "/j1/news/");
+                        break;
+                    case 6:
+                        jlgType = 2;
+                        menu1Active = 3;
+                        menu2Active = 7;
+                        menuNameList.Add("Ｊ２");
+                        menuLinkList.Add("/" + Constants.JLG_TOPIC_NAME + "/j2/");
+                        menuLinkList.Add("/" + Constants.JLG_TOPIC_NAME + "/j2/news/");
+                        break;
+                    case 4:
+                        jlgType = 3;
+                        menu1Active = 4;
+                        menuNameList.Add("ナビスコＣ");
+                        menuLinkList.Add("/" + Constants.JLG_TOPIC_NAME + "/jleaguecup/");
+                        menuLinkList.Add("/" + Constants.JLG_TOPIC_NAME + "/jleaguecup/news/");
+                        break;
+                    default:
+                        menu1Active = 5;
+
+                        menuNameList.Add(Utils.GetGameNameById(Constants.JLG_SPORT_ID, leagueID));
+                        menuLinkList.Add(string.Format("/" + Constants.JLG_TOPIC_NAME + "/game/{0}/", leagueID));
+                        menuLinkList.Add("/" + Constants.JLG_TOPIC_NAME + "/news/");
+                        break;
+                }
+                break;
+            case 2:
+            case 3:
+                if (leagueID == 2)
+                {
+                    jlgType = 1;
+                    menu1Active = 2;
+                    menu2Active = 6;
+                    menuNameList.Add("Ｊ１");
+                    menuLinkList.Add("/" + Constants.JLG_TOPIC_NAME + "/j1/");
+
+                    menuNameList.Add(Utils.GetTeamNameById(Constants.JLG_SPORT_ID, teamID));
+                    menuLinkList.Add(string.Format("/" + Constants.JLG_TOPIC_NAME + "/j1/teams/{0}/", teamID));
+
+                    menuLinkList.Add(string.Format("/" + Constants.JLG_TOPIC_NAME + "/j1/teams/{0}/news/", teamID));
+                }
+                else
+                {
+                    jlgType = 2;
+                    menu1Active = 3;
+                    menu2Active = 6;
+                    menuNameList.Add("Ｊ２");
+                    menuLinkList.Add("/" + Constants.JLG_TOPIC_NAME + "/j2/");
+
+                    menuNameList.Add(Utils.GetTeamNameById(Constants.JLG_SPORT_ID, teamID));
+                    menuLinkList.Add(string.Format("/" + Constants.JLG_TOPIC_NAME + "/j2/teams/{0}/", teamID));
+
+                    menuLinkList.Add(string.Format("/" + Constants.JLG_TOPIC_NAME + "/j2/teams/{0}/news/", teamID));
+                }
+                break;
+        }
+        menuNameList.Add("ニュース");
+        menuNameList.Add(Utils.GetNewsTitleById(Convert.ToInt64(ViewBag.newsItemID ?? 0)));
+        menuLinkList.Add("#");
+    }
+}
+<p class="block_path02">
+    <a class="icon gui_icon" href="/"></a>
+    @for (int j = 0; j < menuNameList.Count() - 1; j++)
+    {
+        @:> <a href="@menuLinkList.ElementAt(j)">@menuNameList.ElementAt(j)</a>
+    }
+    > @menuNameList.ElementAt(menuNameList.Count() - 1)
+</p>
+<ul class="league_path">
+    <li class="@(menu1Active == 1 ? "active" : "")"><a href="/jleague/">Jリーグトップ</a></li>
+    <li class="@(menu1Active == 2 ? "active" : "")"><a href="/jleague/j1/">J1</a></li>
+    <li class="@(menu1Active == 3 ? "active" : "")"><a href="/jleague/j2/">J2</a></li>
+    <li class="@(menu1Active == 4 ? "active" : "")"><a href="/jleague/jleaguecup/">ナビスコC</a></li>
+    <li class="@(menu1Active == 5 ? "active" : "")"><a href="/jleague/news/">ニュース</a></li>
+</ul>
+@if (menu2Active > 0)
+{
+    <ul class="block_nav">
+        <li><a class="@(menu2Active == 1 ? "active" : "")" href="@( jlgType == 1 ? "/jleague/j1/" : "/jleague/j2/")">@( jlgType == 1 ? "J1トップ" : "J2トップ")</a></li>
+        <li><a class="@(menu2Active == 2 ? "active" : "")" href="@( jlgType == 1 ? "/jleague/j1/schedule/" : "/jleague/j2/schedule/")">日程・結果</a></li>
+        <li><a class="@(menu2Active == 3 ? "active" : "")" href="@( jlgType == 1 ? "/jleague/j1/standings/" : "/jleague/j2/standings/")">順位表</a></li>
+        <li><a class="@(menu2Active == 4 ? "active" : "")" href="@( jlgType == 1 ? "/jleague/j1/matrix/" : "/jleague/j2/matrix/")">戦績表</a></li>
+        <li><a class="@(menu2Active == 5 ? "active" : "")" href="@( jlgType == 1 ? "/jleague/j1/stats/" : "/jleague/j2/stats/")">個人成績</a></li>
+        <li><a class="@(menu2Active == 6 ? "active" : "")" href="@( jlgType == 1 ? "/jleague/j1/teams/" : "/jleague/j2/teams/")">チーム情報</a></li>
+        <li><a class="@(menu2Active == 7 ? "active" : "")" href="@( jlgType == 1 ? "/jleague/j1/news/" : "/jleague/j2/news/")">ニュース</a></li>
+    </ul>
+}

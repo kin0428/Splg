@@ -1,0 +1,74 @@
+﻿@model Splg.Models.UserArticle.ViewModel.UserArticleInfoViewModel
+
+@{
+    Layout = "~/Views/Shared/Mobile/_Layout.cshtml";
+}
+@if (Model != null)
+{
+    <section class="block_9">
+        <h2 class="subtitle2">作成内容の確認</h2>
+        @Html.Partial("_QuotContent", Model)
+        <section class="block_9">
+            @if (Model.HasImageLink) { 
+            <figure><img src="@Url.Content(@Model.ImageLink)" alt="news" /></figure>
+            }
+            <dl class="cmt_title">
+                <dt>@Model.Title</dt>
+                <dd>@Model.Nickname  @Utils.ParseLocalDateToShortJapanDate(Model.ContributeDate)</dd>
+            </dl>
+            <article class="cmt_content">
+                <p style="white-space: pre-line;">@Model.Body</p>
+            </article>
+            <ul class="rel-topic">
+                <li>関連トピック</li>
+                @if (Model.RelatedTopicList != null && Model.RelatedTopicList.Any())
+                {
+                    foreach (var item in Model.RelatedTopicList)
+                    {
+                        <li><a href="/user_article/@item.TopicId/topic/">@item.TopicName</a></li>
+                    }
+                }
+            </ul>
+            <div class="space20"> </div>
+            @using (Html.BeginForm("CompleteAddNewArticle", "UserArticle", FormMethod.Post, new { @id = "postCompleteForm" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.ContributeId)
+                @Html.HiddenFor(model => model.Status)
+                @Html.HiddenFor(model => model.NewsClassId)
+                @Html.HiddenFor(model => model.QuoteUniqueId1)
+                @Html.HiddenFor(model => model.QuoteUniqueId2)
+                @Html.HiddenFor(model => model.QuoteUniqueId3)
+                @Html.HiddenFor(model => model.Title)
+                @Html.HiddenFor(model => model.Nickname)
+                @Html.HiddenFor(model => model.ContributeDate)
+                @Html.HiddenFor(model => model.ImageLink)
+                @Html.HiddenFor(model => model.Body)
+                @Html.HiddenFor(model => model.DataURL)
+                @Html.HiddenFor(model => model.ImageName)
+                @Html.HiddenFor(model => model.OldImageLink)
+                <p class="sig-submit"><a href="javascript:void(0);" onclick="document.getElementById('postCompleteForm').submit();">投稿する</a></p>
+            }
+            @using (Html.BeginForm("EditNewUserArticle", "UserArticle", FormMethod.Post, new { @id = "postEditForm" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.ContributeId)
+                @Html.HiddenFor(model => model.Status)
+                @Html.HiddenFor(model => model.NewsClassId)
+                @Html.HiddenFor(model => model.QuoteUniqueId1)
+                @Html.HiddenFor(model => model.QuoteUniqueId2)
+                @Html.HiddenFor(model => model.QuoteUniqueId3)
+                @Html.HiddenFor(model => model.Title)
+                @Html.HiddenFor(model => model.Nickname)
+                @Html.HiddenFor(model => model.ContributeDate)
+                <input id="ImageLink" name="ImageLink" value="@Model.ImageLink" type="hidden" />
+                //@Html.HiddenFor(model => model.ImageLink)
+                @Html.HiddenFor(model => model.Body)
+                @Html.HiddenFor(model => model.DataURL)
+                @Html.HiddenFor(model => model.ImageName)
+                @Html.HiddenFor(model => model.OldImageLink)
+                <p class="sig-submit"><a href="javascript:void(0);" onclick="document.getElementById('postEditForm').submit();">修正する</a></p>
+            }
+        </section>
+    </section>
+}

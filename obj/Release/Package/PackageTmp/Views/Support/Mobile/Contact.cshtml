@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "お問い合わせ(ご意見・ご要望)";
+    Layout = "~/Views/Shared/Mobile/_Layout.cshtml";
+}
+@model Splg.Models.ViewModel.ContactViewModel
+<section class="sitemap">
+    <h2 class="rule_title">お問い合わせ</h2>
+    @if (ViewBag.Contact == Constants.EMAIL_SEND)
+    {
+        <p>@Resources.Japanese.messSendEmailSucess</p>
+        <p class="sig-note">
+            <img src="~/Content/img/tmp/reg-note.png" alt="メールの確認はお早めに！" />
+        </p>
+    }
+    else
+    {
+        using (Html.BeginForm())
+        {
+            @Html.ValidationSummary()
+            <h3 class="fs24 cont_p01">お問い合わせの前に</h3>
+            <p class="cont_p01 fs14">お問い合わせの前に、お客様から多く寄せられているお問い合わせの内容を「よくあるご質問」に掲載しています。<br>「よくあるご質問」をご確認上、お問い合わせをお願いいたします。</p>
+            <div class="space20"></div>
+            <p class="board_link" style="text-align:center">
+                <a href="/support/faq">よくあるご質問(FAQ)へ</a>
+            </p>
+            <div class="space20"></div>
+            <h3 class="fs24 cont_p01">お問い合わせ</h3>
+            <p class="cont_p01 fs14">ご意見・ご要望や、お困りのことがございましたら、以下問い合わせフォームよりご連絡ください。</p>
+            <p class="cont_p01 fs14">
+                ※注意事項<br />
+                ・お問い合わせ内容によりましては、ご返信までお時間をいただく場合がございますので、予めご了承ください。<br />
+                ・お問い合わせの返信は@*<a href="mailto:spolog@cc.mediano-ltd.co.jp" target="_blank">*@【spolog@cc.mediano-ltd.co.jp】@*</a>*@より送信させて頂いております。上記メールアドレスよりメールを受信出来ますよう設定のご確認を行ってください。
+            </p>
+            <dl class="cmt_frm">
+                @if (Session["CurrentUser"] == null)
+                {
+                    <dt>Email：</dt>
+                    <dd>
+                        @Html.TextBoxFor(m => m.EmailTo, new { @class = "cmt_input" })
+                        <br />
+                        @Html.ValidationMessageFor(model => model.EmailTo, String.Empty, new { @class = "red" })
+                    </dd>
+                }
+                else
+                {
+                    @Html.HiddenFor(m => m.EmailTo)
+                }
+                <dt>件名：</dt>
+                <dd>
+                    @Html.TextBoxFor(m => m.Title, new { @class = "cmt_input" })
+                </dd>
+                <dt>本文：</dt>
+                <dd>
+                    @Html.TextAreaFor(m => m.Content, new { @class = "cmt_area" })
+                    <br>
+                    @Html.ValidationMessageFor(model => model.Content, String.Empty, new { @class = "red" })
+                </dd>
+                @Html.HiddenFor(m => m.DisplayMemberId)
+                @Html.HiddenFor(m => m.Nickname)
+                @Html.HiddenFor(m => m.UserLoad)
+            </dl>
+            <p class="sig-submit">
+                <input class="send_mail" type="submit" value="確認画面へ" />
+            </p>
+        }
+    }
+</section>

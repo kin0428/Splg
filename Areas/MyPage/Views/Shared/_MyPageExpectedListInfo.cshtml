@@ -1,0 +1,112 @@
+﻿@{
+    //Author : Nojima
+    //FileName :_MyPageExpectedListInfo.cshtml
+    //Created Date :2015/5/1
+}
+@{
+    int odds;
+    int point;
+}
+@if (Model != null)
+{
+        <table cellpadding="0" cellspacing="0" summary="panel">
+            <col width="17%" />
+            <col width="36%" />
+            <col width="23%" />
+            <col width="24%" />
+            <thead>
+                <tr class="block_04_5_r1">
+                    <th>日程</th>
+                    <th>試合</th>
+                    <th>予想チーム</th>
+                    <th>予想ポイント</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    point = (int)(@item.Points / 100);
+                    odds = (int)(@item.Odds * 100);
+                    <tr class="block_04_5_r2" id="Tr1ExpectCancelGameID-@item.SportsID-@item.GameID-@odds">
+
+                        @if (item.GameStatus == 6 || item.GameStatus == 7)
+                        {
+                            //試合中（試合情報パネルと違い、試合終了は含まない）
+                            <td><span class="panel_note02">@item.GameDateTime</span></td>
+                        }
+                        else
+                        {
+                            <td class="fs10">@item.GameDateTime</td>
+                        }
+                        <td><a href="@item.Url" target="_blank">@item.GameName</a></td>
+                        @if (item.GameStatus <= 5)
+                        {
+                            //試合中より前（開始前）
+                            <td>@item.TeamName</td>
+                        }
+                        else if (item.GameStatus == 6 || item.GameStatus == 7)
+                        {
+                            //6=試合中、ベットなし 7=試合中、ベットあり
+                            <td class="green">@item.TeamName</td>
+                        }
+                        else
+                        {
+                            if (item.BetWin)
+                            {
+
+                                <td class="organge">@item.TeamName</td>
+                            }
+                            else
+                            {
+                                <td>@item.TeamName</td>
+                            }
+                        }
+                        <td>
+                            @if (item.GameStatus == 1)
+                            {
+                                //1 ベット不可
+                                <span class="fs14 bold"></span>
+                            }
+                            else if (item.GameStatus == 2 || item.GameStatus == 3)
+                            {
+                                //2=5分前以前、ベットなし  3=5分前以前、ベットあり
+                                <input type="text" class="expect_point" id="ExpectPoint-@item.SportsID-@item.GameID-@odds"
+                                       value="@point" data-bedpoint="@point" name="pprice" /><span class="fs14 bold">00 pt</span>
+                            }
+                            else
+                            {
+                                <span class="fs14 bold">@item.Points pt</span>
+                            }
+                        </td>
+                    </tr>
+                    <tr class="block_04_5_r3" id="Tr2ExpectCancelGameID-@item.SportsID-@item.GameID-@odds">
+                        <td colspan="4">
+                            <a href="/user_article/new/5/@item.SportsID/@item.GameID"><span class="icon edit"> </span>記事を作成する</a>
+                            @if (item.GameStatus == 8 || item.GameStatus == 9)
+                            {
+                                //8=試合終了、ベットなし 9=試合終了、ベットあり
+                                if (item.BetWin)
+                                {
+                                    <span class="panel_note03">WIN</span>
+                                }
+                                else
+                                {
+                                    <span class="panel_note04">LOSE</span>
+                                }
+                            }
+                            @if (item.GameStatus == 2 || item.GameStatus == 3)   //試合前 ベット可
+                            {
+                                //2=5分前以前、ベットなし  3=5分前以前、ベットあり
+                                <a class="expect_cancel" id="ExpectCancelGameID-@item.SportsID-@item.GameID-@odds" href="#">
+                                    <span class="icon remove" id="@item.GameID"> </span>予想をやめる
+                                </a>
+                            }
+                            <span class="panel_note01" id="ExpectCommentGameID-@item.SportsID-@item.GameID">@item.Comment</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+}
+

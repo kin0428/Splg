@@ -1,0 +1,1167 @@
+@charset "utf-8";
+/*------------------------------------
+		CONTENTS INDEX
+------------------------------------*/
+/**
+ * CONTENTS INDEX....You're reading it.
+ * default display
+ * common
+ * soccer panel
+ * modal expected
+ * expectations of others
+ * carousel plugin "slick"
+ * soccer date - common
+ * soccer date - tab1
+ * soccer date - tab2
+ * soccer date - tab3
+ * Media Queries
+ */
+
+/*------------------------------------
+		default display
+------------------------------------*/
+#socGoalsForHome,
+#socGoalsAgainstHome,
+#socTimeGoalsForHome,
+#socTimeGoalsAgainstHome,
+#socPassSuccessHome,
+#socPassDistanceHome,
+#socGoalsForAway,
+#socGoalsAgainstAway,
+#socTimeGoalsForAway,
+#socTimeGoalsAgainstAway,
+#socPassSuccessAway,
+#socPassDistanceAway,
+#socStartersTabHome,
+#socStartersTabAway,
+.socStPowerTab-of,
+.socStPowerTab-df {
+	display: none;
+}
+.stTabActive,
+.graphActive {
+	display: block!important;
+}
+
+/*------------------------------------
+		common
+------------------------------------*/
+.panel-group {
+    display: table;
+	margin-bottom: 20px;
+    padding: 0 5px;
+    font-weight: normal;
+}
+.panel-group > div{
+    display: table-cell;
+    width: 33.3%;
+	padding: 0 5px;
+}
+.panel-group .fs8 {
+	font-size: 1.154em;
+	margin-bottom: 5px;
+}
+.panel-col5 > .fs18 { margin-bottom: 10px; }
+.panel-col5 > .fs18 > span:nth-child(1) { font-size: 1.385em; }
+.panel-col5 > .fs18 > span:nth-child(2) {
+	font-size: 1.462em;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.disable { background-color: #999; }
+.gray1 { color: #999; }
+
+/* compare table */
+.tblCompare {
+	border: 1px solid #999;
+}
+.tblCompare tr:first-child th {
+    padding: 2px 5px 0;
+    border: 0;
+}
+.tblCompare th {
+	font-weight: normal;
+	background-color: #d9d9d9;
+	border: 1px solid #999;
+}
+.tblCompare th:nth-child(1),
+.tblCompare th:nth-child(3) {
+	width: 28%;
+}
+.tblCompare th:nth-child(2) {
+	width: 44%;
+}
+.tblCompare td {
+	padding: 15px;
+	font-size: 1.308em;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	border: 1px solid #999;
+}
+.tblCompare td:nth-child(1) {
+	text-align: right;
+}
+.tblCompare-home { text-align: right; }
+.tblCompare-away { text-align: left; }
+.tblCompare-home > p,
+.tblCompare-away > p {
+	display: table-cell;
+	width: 50%;
+	vertical-align: middle;
+}
+
+
+/*------------------------------------
+		soccer panel
+------------------------------------*/
+.socPanel {
+	margin-bottom: 25px;
+	background-color: #fff;
+}
+
+/* panel header */
+.socPanel-header {
+	position: relative;
+	padding-bottom: 1px;
+	margin-bottom: 10px;
+    color: #fff;
+	text-align: center;
+	background: #062a4e url(/Mobile/Content/img/jleague/bg_panel.jpg) no-repeat 50% 50%;
+	background-size: cover;
+}
+.socPanel-date {
+	margin-bottom: 3.6%;
+	color: #121212;
+	text-align: center;
+	position: relative;
+	display: inline-block;
+	height: 25px;
+	padding: 3px 1px;
+	background-color: rgba(255, 255, 255, 0.6);
+	text-shadow: 2px 2px 2px rgba(0,0,0,0.1);
+}
+.socPanel-date:before,
+.socPanel-date:after {
+    position: absolute;
+	top: 0;
+    width: 25px;
+    height: 25px;
+	content:"";
+	background: url(/Mobile/Content/img/jleague/bg_panel_notice_left.png) no-repeat 0 0;
+    background-size: 100%;
+}
+.socPanel-date:before {
+	left: -25px;
+}
+.socPanel-date:after {
+	right: -25px;
+	background-image: url(/Mobile/Content/img/jleague/bg_panel_notice_right.png);
+}
+
+/* inside panel belt */
+.socPanel-belt {
+	display: table;
+	min-height: 80px;
+	margin-bottom: 1px;
+	padding: 5px 0;
+	width: 100%;
+	background-color: rgba(40, 40, 40, 0.6);
+}
+.socPanelHome,
+.socPanelAway,
+.socPanelScore {
+	display: table-cell;
+	width: 30.6%;
+	vertical-align: middle;
+}
+.socPanelHome { text-align: right; }
+.socPanelAway { text-align: left; }
+.socPanelScore { width: 38.8%; }
+.socPanel-teamIcon {
+	width: 62.1%;
+	vertical-align: middle;
+}
+
+/* socPanelScore pattern */
+.socPanel-vs > img {
+	width: 40px;
+	vertical-align: middle;
+}
+.socPanelScore > div {
+	width: 1%;
+	display: table-cell;
+    vertical-align: middle;
+}
+.socPanelScore-result > span {
+	display: block;
+	font-size: 0.923em;
+	margin-bottom: 5px;
+}
+.socPanelScore-result > span:last-child {
+	margin-bottom: 0;
+}
+.socPanelScore-home,
+.socPanelScore-away {
+	font-size: 2.462em;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* under panel belt */
+.socPanel-rank,
+.socPanel-name {
+	display: block;
+	padding: 0 5px;
+}
+.socPanelAway-teamInfo {
+	margin-bottom: 5px;
+}
+.socPanelHome-info,
+.socPanelAway-info {
+	width: 50%;
+	text-align: center;
+	float: left;
+}
+.socPanelHome-info { padding-right: 8%; }
+.socPanelAway-info { padding-left: 8%; }
+
+.socPanel-note {
+	margin-bottom: 10px;
+	color: #f00;	
+	text-align: center;
+}
+.socPanelResult {
+	margin: 15px 10px 20px;
+	text-align: center;
+}
+.socPanelResult > a {
+	display: block;
+	margin-bottom: 15px;
+}
+.socPanelResult-hit {
+	margin-bottom: 20px;
+	padding: 15px 15% 0;
+	min-height: 112.5px;
+    word-break: break-all;
+	background: url(/Mobile/Content/img/jleague/bg_resulthit.png) no-repeat 50% 100%;
+	background-size: 100%;
+}
+.socPanelResult-hit > .socPanel-note { margin-bottom: 10px; }
+.socPanelResult-point { padding-bottom: 30px; }
+.socPanelResult-point > span {
+	margin-right: 10px;
+	font-size: 2.308em;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.socPanelResult-miss {
+	margin-bottom: 20px;
+	font-size: 1.154em;
+}
+
+/* expected button */
+.panel-btn1 {
+	position: inherit;
+	margin: 0;
+	padding: 15px 0;
+	font-size: 1.385em;
+}
+
+/* items expected button */
+.socPanel-item {
+	margin: 0 10px 25px;
+}
+.socPanel-lead {
+	position: relative;
+	margin: 25px 0 15px;;
+	padding: 13px 0;
+	color: #00cc33;
+	text-align: center;
+	border-radius: 5px;
+	background-color: #ebfef0;
+	border: 1px solid #00cc33;
+	clear: both;
+}
+.socPanel-lead:after {
+	content: url(/Mobile/Content/img/jleague/serif_panel_lead.png);
+	position: absolute;
+	top: -30px;
+	right: 0;
+	-webkit-transform: scale(.5);
+	transform: scale(.5);
+}
+.socPanel-lead > span { font-size: 1.154em; }
+
+.socPanel-lead-home:after { left: -67%; }
+.socPanel-lead-draw:after { left: 0; }
+.socPanel-lead-away:after { right: 14.8%; }
+
+.socPanel-editExp {
+	color: #3399cc;
+	text-align: right;
+	text-decoration: underline;
+}
+
+
+/*------------------------------------
+		modal expected
+------------------------------------*/
+.modalExpGame > .socHdgMini-home > p,
+.modalExpGame > .socHdgMini-away > p {
+	width: 55%;
+	font-size: 1.154em;
+}
+.socModalExp > p {
+	margin-left: -10px;
+	font-size: 1.077em;
+}
+.socModalExp-limit { color: #ff0101; }
+.modalExpGame {
+	margin: 18px 0;
+	background: url(/Mobile/Content/img/jleague/bg_modalexp_vs.png) no-repeat 50% 45%;
+	background-size: 7%;
+}
+.socModalExpLead {
+	display: table;
+	width: 100%;
+	margin-bottom: 20px;
+	color: #00cc33;
+	font-size: 1.154em;
+}
+.socModalExpLead > p {
+	display: table-cell;
+ 	vertical-align: bottom;
+}
+.socModalExpLead-team {
+	width: 67%;
+	text-align: right;
+}
+.socModalExpLead-team > span {
+	text-align: left;
+	display: block;
+}
+.socModalExpLead-point {
+	width: 33%;
+	font-size: 1.538em;
+	text-align: right;
+}
+.socModalExpLead-point > span {
+	margin-left: 5px;
+	font-size: 1.500em;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.socModalExpPoint {
+	margin-bottom: 25px;
+}
+.socModalExpPoint dt:nth-child(1) {
+	display: table-cell;
+	width: 50%;
+	margin-bottom: 10px;
+	padding-right: 5px; 
+}
+.socModalExpPoint dd:nth-child(2) {
+	display: table-cell;
+	padding: 0 5px 10px 0;
+}
+.socModalExpPoint dt:nth-child(3) {
+	float: left;
+}
+.socModalExpPoint dd > span {
+	margin-right: 5px;
+	font-size: 1.538em;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.socModalExp-point {
+	width: 81%;
+	padding: 5px 10px;
+	text-align: right;
+	vertical-align: bottom;
+	font-size: 2.308em;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	-webkit-appearance: none;
+	border: 1px solid #999;
+	border-radius: 0;
+}
+
+/* delete exp */
+.socModalExpDel {
+	margin: -10px;
+}
+.socModalExpDel > .modalTxt {
+	font-size: 1.154em;
+}
+.socModalExpDel-select {
+	display: -webkit-flex;
+	display: flex;
+}
+.socModalExpDel-select li {
+    width: 50%;
+    margin-right: 11%;
+	margin-bottom: 0;
+}
+.socModalExpDel-select li:nth-child(2) {
+    margin-right: 0;
+}
+
+
+/*------------------------------------
+		expectations of others
+------------------------------------*/
+.expOthers-set {
+	position: relative;
+	overflow: hidden;
+}
+.expOthers {
+    width: 100%;
+    margin: 0 auto 10px;
+    padding: 10px;
+    background-color: #fff;
+}
+.expOthers-listHdg {
+	display: inline-block;
+	margin-bottom: 10px;
+	font-size: 1.154em;
+}
+.expOthers-count {
+	display: inline-block;
+	color: #00cc33;
+	font-size: .923em;
+}
+.expOthers-count span {
+	font-size: 1.417em;
+}
+.expOthers-list {
+	width: 90%;
+	margin-bottom: 15px;
+/*	white-space: nowrap;*/
+}
+.expOthers-list li {
+	margin-right: 5px;
+	display: inline-block;
+}
+.expOthers-list li > a > img {
+	border-radius: 50%;
+	background-color: #ddd;
+}
+
+
+/*------------------------------------
+		carousel plugin "slick"
+------------------------------------*/
+.slick-next {
+	position: absolute;
+	width: 10%;
+	background: url(/Mobile/Content/img/jleague/mk_arr_expothers.png) no-repeat 98% 50%;
+	background-size: 50%;
+	top: 0;
+	bottom: 0;
+	right: -10%;
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+
+/*------------------------------------
+		soccer date - common
+------------------------------------*/
+.socData {
+/*
+	width: 100%;
+	margin: 0 auto 30px;
+*/
+	margin-bottom: 30px;
+	clear: both;
+	overflow: hidden;
+}
+.socData-hdg {
+	padding: 5px;
+	margin-bottom: 10px;
+	font-size: 1.385em;
+	font-weight: normal;
+	border-left: 5px solid #0b559e;
+	border-bottom: 1px solid #0b559e;
+}
+.socDateInner {
+	padding: 10px;
+}
+.socData-caption {
+	margin-bottom: 10px;
+}
+.socData-txt span {
+	color: #f00;
+}
+.socData-hdgIcon {
+	width: 10%;
+	margin-right: 5px;
+	vertical-align: middle;
+}
+
+/* heading - mini */
+.socHdgMini-home,
+.socHdgMini-away {
+	float: left;
+	display: table;
+	width: 46%;
+	margin-bottom: 5px;
+}
+.socHdgMini-home > img {
+    display: table-cell;
+}
+.socHdgMini-home > p,
+.socHdgMini-away > p {
+    display: table-cell;
+	width: 70%;
+	padding: 0 5px;
+	font-size: .9em;
+	line-height: 120%;
+	text-align: center;
+    vertical-align: middle;
+}
+.socHdgMini-away,
+.socHdgMini-away > img {
+	float: right;
+}
+
+/* heading - mini - left justification */
+.socHdgMini-left {
+	display: table;
+	margin-bottom: 5px;
+}
+.socHdgMini-left > img {
+    display: table-cell;
+}
+.socHdgMini-left > p {
+    display: table-cell;
+	width: 85%;
+	padding-left: 10px;
+	font-size: 1.077em;
+    vertical-align: middle;
+}
+
+
+/*------------------------------------
+		soccer date - tab1
+------------------------------------*/
+/* last five matches */
+.socLastMatches-vs {
+	background: url(/Mobile/Content/img/jleague/bg_lastmatches_vs.png) no-repeat 50% 50%;
+	background-size: 8%;
+}
+.socLastMatches-log {
+	clear: both;
+}
+.socLastMatches-log tr:nth-child(even) {
+	background-color: #d9d9d9;
+}
+.socLastMatches-log td {
+	font-size: 1.1em;
+	padding: 3.7% 0;
+	color: #333;
+	text-align: center;
+}
+.socLastMatches-log .totalScore td {
+	font-size: 1.2em;
+    text-align: center;
+	vertical-align: middle;
+	padding-top: 0;
+}
+.socLastMatches-log .totalScore > td > span {
+	padding-right: 2px;
+	font-size: 1.6em;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.socLastMatches-log .totalScore .scoreHome {
+	width: 15.4%;
+}
+.socLastMatches-log .totalScore .scoreDraw {
+	width: 24%;
+	font-size: .9em;
+}
+.socLastMatches-log .totalScore .scoreDraw span {
+	width: 22%;
+	font-size: .9em;
+	font-family: "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ","Meiryo","Verdana","MS P Gothic","ＭＳ Ｐゴシック",sans-serif;
+}
+.socLastMatches-log .totalScore .scoreAway {
+	width: 39%;
+	text-align: left;
+}
+.socLastMatches-log .gameDate {
+	width: 23.3%;
+	padding-right: 0.3%;
+	font-size: .7em;
+	text-align: right;
+}
+.socLastMatches-log td:nth-child(2) {
+	text-align: right;
+}
+.socLastMatches-log td:nth-child(3) {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.socLastMatches-log td:nth-child(4) {
+	text-align: left;
+}
+
+/* last results */
+.socLastResults-home,
+.socLastResults-away {
+    float: left;
+    width: 46%;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.socLastResults-home {
+	margin-right: 8%;
+}
+.socLastResults-home > img,
+.socLastResults-away > img {
+	width: 61%;
+}
+.socLastResults-home > p,
+.socLastResults-away > p {
+	font-size: .9em;
+}
+.socLastResSum {
+	clear: both;
+	margin-bottom: 10px;
+	text-align: center;
+}
+.socLastResSum tr {
+	font-size: 1.6em;
+	border-bottom: 1px solid #999;
+}
+.socLastResSum tr:nth-child(1) {
+	font-size: 2.5em;
+}
+.socLastResSum th,
+.socLastResSum td {
+	padding: 10px 0 5px;
+}
+.socLastResSum th {
+	width: 30%;
+}
+.socLastResSum th:nth-child(2) {
+	width: 20%;
+	vertical-align: middle;
+}
+.socLastResSum td {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.socLastResSum .score-left {
+	padding-left: 6%;
+}
+.socLastResSum .score-right {
+	padding-right: 6%;
+}
+.socLastResMatch-home,
+.socLastResMatch-away {
+	float: left;
+	width: 46%;
+	text-align: center;
+}
+.socLastResMatch-away {
+	float: right;
+}
+.socLastResMatch-home td,
+.socLastResMatch-away td {
+	width: 33.3%;
+}
+.socLastResMatch-home .score{
+	width: 33.4%;
+}
+.socLastResMatch-away .score{
+	width: 33.4%;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* property */
+.socPropRate {
+	margin-bottom: 43px;
+}
+.socPropPattern {
+	position: relative;
+	padding-top: 30px;
+	border-top: 1px solid #999;
+}
+.socPropPattern-hdg {
+	position: absolute;
+	width: 100%;
+    top: -21px;
+}
+.socPropPt-pulldpwn {
+    padding-right: 35px;
+	width: initial;
+    background-position: 93%;
+}
+.socPropPattern-graph:not(:last-child) {
+	margin-bottom: 25px;
+}
+
+/* article */
+.socArticle {
+	margin-bottom: 10px;
+}
+.socArticle-list {
+	margin: 0 10px 20px;
+}
+.socArticle-list > li {
+	border-bottom: 1px solid #999;
+}
+.socArticle-list > li > a {
+	display: table-cell;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: #333;
+    vertical-align: top;
+}
+.socArticle-icon {
+    padding-right: 10px;
+}
+.socArticle-icon > img {
+    width: 30px;
+    height: auto;
+}
+.socArticle-ttl {
+	color: #3399cc;
+	font-size: 1.154em;
+}
+.socArticle-info {
+	display: block;
+}
+.socArticle-listNote {
+	margin: 20px 10px;
+	padding: 25px;
+	font-size: 1.154em;
+	text-align: center;
+	background-color: #eee;
+}
+
+/* link list */
+.socDataLink {
+	margin: 0 10px 10px;
+	border-top: 1px solid #999;
+}
+.socDataLink li {
+	border-bottom: 1px solid #999;
+}
+.socDataLink a {
+	width: 100%;
+	display: block;
+	padding: 15px;
+	color: #3399cc;
+	text-align: center;
+}
+
+/*------------------------------------
+		soccer date - tab2
+------------------------------------*/
+.socStartersSwitch > li {
+	position: relative;
+	float: left;
+	width: 49%;
+	margin-bottom: 20px;
+	text-align: center;
+	margin-right: 3px;
+	-webkit-tap-highlight-color: transparent;
+	tap-highlight-color: transparent;
+}
+.socStartersSwitch > li:last-child {
+	margin-right: 0;
+}
+.socStartersSwitch-panel {
+	margin-bottom: 10px;
+	padding: 15px 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.socStartersSwitch-teamIcon {
+	width: 49%;
+	margin-bottom: 10px;
+}
+.socStartersSwitch-system {
+	margin: 10px auto 0;
+	font-size: 1.9em;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.socStartersSwitch > .active:after {
+	content: "";
+	position: absolute;
+	bottom: -18px;
+    left: 0;
+    right: 0;
+	width: 0;
+	height: 0;
+    margin: auto;
+	border-style: solid;
+	border-width: 14px 7.5px 0 7.5px;
+	border-color: #005aae transparent transparent transparent;
+}
+.socStartersSwitch > .active { border-bottom: 4px solid #005aae; }
+.active > .socStartersSwitch-panel { background-color: #d9d9d9; }
+.active > .socStartersSwitch-panel > .socStartersSwitch-system { color: #0257a5; }
+
+.socStPowerSwitch {
+	z-index: 1;
+	position: absolute;
+	width: 36%;
+	margin-bottom: 15px;
+}
+.socStPowerSwitch li {
+	float: left;
+	display: block;
+	width: 50%;
+	padding: 0 5px;
+	text-align: center;
+	line-height: 2.308em;
+	-webkit-tap-highlight-color: transparent;
+	tap-highlight-color: transparent;
+}
+.socStPowerSwitch > .active { color: #fff; }
+.socStPowerSwitch-of {
+	background-color: #f00;
+    border: 1px solid #999;
+    border-right: 0;
+	border-radius: 5px 0 0 5px;
+}
+.socStPowerSwitch-df {
+	background-color: #0054ff;
+	border: 1px solid #999;
+    border-left: 0;
+	border-radius: 0 5px 5px 0;
+}
+.socStPowerSwitch li:not(.active) {
+	background-color: #fff;
+}
+.socStPowerTab {
+    margin-bottom: 15px;
+    position: relative;
+    padding-top: 40px;
+	overflow: hidden;
+}
+.socStPowerHdg {
+    position: absolute;
+    top: 7px;
+    left: 45%;
+	font-size: 1.154em;
+}
+.socTxtColor-of { color: #f00; } /* offense */
+.socTxtColor-df { color: #0054ff; } /* defense */
+
+
+/* starting member */
+.socStarters-subHdg {
+	margin: 10px 0;
+	font-size: 1.154em;
+	clear: both;
+}
+.socStPowerTab-of .socStartersList:nth-child(even) {
+	background-color: #ffe6e6;
+}
+.socStPowerTab-df .socStartersList:nth-child(even) {
+	background-color: #e3ecfe;
+}
+.startingMemberStarters .socStartersList:nth-child(even) {
+	background-color: #eeeeee;
+}
+.subMemberStarters .socStartersList:nth-child(even) {
+	background-color: #eeeeee;
+}
+.startingMemberStarters .socStarters-subHdg {
+	margin: 10px 0 5px 0;
+}
+.subMemberStarters .socStarters-subHdg {
+	margin: 20px 0 5px 0;
+}
+.socStartersList {
+	clear: both;
+	overflow: hidden;
+}
+.socStartersList a,
+.socStartersList-sub a{
+	text-decoration: underline;
+}
+.socStartersList dt,
+.socStartersList dd {
+	display: table-cell;
+	padding: 1.4% 0 1.4% 1.4%;
+}
+.socStartersList dt {
+	float: left;
+	width: 50%;
+}
+.socStartersList dd {
+	float: left;
+	width: 50%;
+	padding-right: 1.4%;
+}
+.socStartersList img {
+	width: 14px;
+	margin-right: 2px;
+	vertical-align: middle;
+}
+.socStartersList img:last-child {
+	margin-right: 4px;
+}
+.socStartersList-name > span:nth-child(1),
+.socStartersList-name > span:nth-child(2) {
+    display: inline-block;
+    width: 13%;
+    padding-right: 1px;
+}
+.socStartersList-name > span:nth-child(3) {
+    display: inline-block;
+    float: right;
+    width: 70%;
+}
+.socStartersList-status li {
+	display: inline-block;
+}
+.socStartersList > li span {
+	display: inline;
+	vertical-align: top;
+}
+li.socStartersList-goal {
+	display: block;
+}
+.socStarsIcon {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	vertical-align: middle;
+	background: url(/Mobile/Content/img/jleague/status_icons.png) no-repeat 0 100%;
+	background-size: 15px;
+}
+.socStarsIcon-goal { background-position: 0 0; }
+.socStarsIcon-arrIn { background-position: 0 -30px; }
+.socStarsIcon-arrOut { background-position: 0 -60px; }
+.socStarsIcon-cardYel { background-position: 0 -90px; }
+.socStarsIcon-cardRed { background-position: 0 -120px; }
+.socStarsIcon-cardRedYel { background-position: 0 -150px; }
+ 
+.socStartersList-sub {
+	clear: both;
+}
+.socStartersList-sub dt,
+.socStartersList-sub dd {
+	display: block;
+}
+.socStartersList-sub dt {
+	font-size: 1.154em;
+	margin: 7.2% 0 1% 0;
+}
+.socStartersList-sub dd {
+	padding: 1.4% 0 1.4% 1.4%;
+}
+.socStartersList-sub dd:nth-child(even) {
+	background-color: #eeeeee;
+}
+.socStartersList-sub span {
+	margin-right: 1px;
+}
+.socStartersList-bar,
+.socStartersList-count {
+	display: table-cell;
+}
+.socStartersList-bar {
+	word-break: break-all;
+}
+
+/* formation */
+.socFormation-image {
+	width: 70%;
+	min-height: 56%;
+	margin: 0 auto;
+}
+.socFormation-team {
+	margin: 10px auto;
+	text-align: center;
+}
+
+/* interpret */
+.socInterpret-txt {
+	padding: 0 10px;
+}
+
+/* match data */
+.socMatchDataList {
+	border: 1px solid #999;
+}
+.socMatchDataList th,
+.socMatchDataList td {
+	padding: 4%;
+	border: 1px solid #999;
+}
+.socMatchDataList th {
+	width: 35%;
+	font-weight: normal;
+	text-align: left;
+	background-color: #d9d9d9;
+}
+
+/* next season */
+.socNextSeason {
+	margin-bottom: 0;
+}
+.socNextSeasonList li {
+	display: table;
+	width: 100%;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #999;
+}
+.socNextSeasonList li:last-child {
+	margin-bottom: 0;
+	padding-bottom: 0;
+	border-bottom: 0;
+}
+.socNextSeasonList a:nth-child(3n) {
+	text-align: right;
+}
+.socNextSeasonList a {
+	display: table-cell;
+}
+.socNextSeasonList a:nth-child(2n) {
+	width: 28%;
+	text-align: center;
+}
+.socNextSeason-teamIcon,
+.socNextSeasonList-team,
+.socNextSeasonList-game {
+	display: inline;
+    vertical-align: middle;
+}
+.socNextSeason-teamIcon { width: 57%; }
+.socNextSeasonList-team { color: #333; }
+.socNextSeasonList-game {
+	font-size: 1.154em;
+	text-decoration: underline;
+}
+.socNextSeasonList-game > span {
+	display: block;
+	font-size: 1.2em;
+}
+
+
+/*------------------------------------
+		soccer date - tab3
+------------------------------------*/
+/* 後日実装予定
+.socRptSwitch,
+.socRptLoad {
+	display: inline-block;
+	margin-bottom: 20px;
+}
+.socRptSwitch {
+	width: 54.5%;
+	margin-right: 15px;
+}
+.socRptSwitch-pulldown {
+	background-position: 92% 50%;
+}
+.socRptSwitch-pulldown option {
+	transform: scale(0.8);
+}
+*/
+.socRptLoad {
+	position: relative;
+	margin-bottom: 20px;
+}
+.socRptLoad > input {
+	position: absolute;
+    top: 0;
+    opacity: 0;
+    width: 100%;  
+    height: 100%;
+	margin-right: 0;
+	-webkit-tap-highlight-color: transparent;
+	tap-highlight-color: transparent;
+}
+.socRptLoad > input[type="checkbox"] + label {
+    display: block;
+    padding: 1px 0 0 27px;
+    background: url(/Mobile/Content/img/tmp/mk_check.png) no-repeat left top;
+	background-size: 20px;
+}
+.socRptLoad > input[type="checkbox"]:checked + label {
+    background-position: left bottom;
+}
+
+/* timeline */
+.socRptTimeline > li {
+	min-height: 40px;
+	margin-bottom: 10px;
+}
+.socRptTimeline > li:last-child {
+	margin-bottom: 0;
+}
+.socRptTl-mark,
+.socRptTl-com {
+	display: table-cell;
+}
+.socRptTl-mark {
+    min-width: 80px;
+}
+.socRptTl-teamIco,
+.socRptTl-time {
+	float: left;
+	margin-right: 5px;
+	text-align: center;
+}
+.socRptTl-teamIco {
+	width: 30px;
+	height: auto;
+	padding-top: 2.5px;
+}
+.socRptTl-time {
+	position: relative;
+	width: 35px;
+	height: 35px;
+	padding: 9px 3px 6px 0px;
+	color: #fff;
+	background-color: #0b559e;
+	-webkit-border-radius: 17.5px;
+    border-radius: 17.5px;
+}
+.socRptTl-com {
+	padding-top: 8px;
+	font-size: 1.154em;
+	vertical-align: top;
+}
+.socRptTl-time:after {
+	content: "";
+	position: absolute;
+	width: 1px;
+	height: 2000%;
+	background-color: #999;
+	top: 35px;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+.socRptTl-point {
+	background-color: #ffc600;
+}
+.socRptTl-beforeStart:after {
+	background-color: #fff;
+}
+
+
+/*------------------------------------
+		Media Queries
+------------------------------------*/
+@media screen and (max-width: 320px) {
+	/* font size smaller */
+	.fsMini,
+	.fsMini p,
+	.tblCompare .fsMini {
+		font-size: .923em;
+	}
+	
+	/* panel */
+	.panel-group .fs8 {
+		font-size: .923em;
+	}
+	
+	/* tab2 */
+	.socNextSeason-teamIcon { width: 53%; }
+	
+	/* tab3 */
+	.socRptSwitch { width: 62.5%; }
+}

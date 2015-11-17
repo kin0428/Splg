@@ -1,0 +1,126 @@
+﻿@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: JleagueMenu.cshtml
+    // Device       :  PC
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-04-09
+}
+
+@*
+<p class="block_path02">
+   @if (ViewBag.JleagueMenu != null && ViewBag.JleagueSubMenu == null)
+   {
+       if (ViewBag.JleagueMenu == 1)
+        {
+            <a href="@Url.Action("Index", "Home", new { area = string.Empty }, null)" class="icon gui_icon"></a>   
+            @(">Jリーグ")          
+        }
+        else
+        {  
+             <a href="@Url.Action("Index", "Home", new { area = string.Empty }, null)" class="icon gui_icon"></a>
+             <a  href="@Url.Action("Index", "JlgTop", new { area = "Jleague" }, null)">>JリーグTOP</a>       
+             @(ViewBag.JleagueMenu == 2 ? ">J1" : ViewBag.JleagueMenu == 3 ? ">J2" : ViewBag.JleagueMenu == 4 ? ">ナビスコC" : ViewBag.JleagueMenu == 5?">ニュース":"")          
+        }
+    }
+   else
+   {
+        if (ViewBag.JleagueMenu == 1)
+        {
+            <a href="@Url.Action("Index", "Home", new { area = string.Empty }, null)" class="icon gui_icon"></a>   
+            @(">Jリーグ")       
+        }
+        else
+        {  
+           
+             <a href="@Url.Action("Index", "Home", new { area = string.Empty }, null)" class="icon gui_icon"></a>
+             <a  href="@Url.Action("Index", "JlgTop", new { area = "Jleague" }, null)">>JリーグTOP</a>
+            if (ViewBag.JleagueMenu == 2)
+            {            
+                if (ViewBag.JleagueSubMenu == 1)
+                {
+                       @(">J1")     
+                }
+                else
+                {
+                    <a href="/jleague/j1">>J1</a>
+                }
+            }
+            else if (ViewBag.JleagueMenu == 3)
+            {
+                if (ViewBag.JleagueSubMenu == 1)
+                {
+                        @(">J2")  
+                }
+                else
+                {
+                    <a href="/jleague/j2">>J2</a>
+                }
+            }
+            else if (ViewBag.JleagueMenu ==4)
+            {
+                if (ViewBag.JleagueSubMenu == 1)
+                {
+                     @(">ナビスコC")
+                }
+                else
+                {
+                    <a href="/jleague/jleaguecup">>ナビスコC</a>
+                }                     
+            }
+            else if (ViewBag.JleagueMenu == 5)
+            {
+                  @(">ニュース")
+            }
+
+            
+            if (ViewBag.JleagueTeamMenu == null || ViewBag.JleagueTeamMenu == 1)
+            {
+                if (ViewBag.JleagueMenu == 2)
+                {
+                       @(ViewBag.JleagueSubMenu == 2 ? ">日程・結果" : ViewBag.JleagueSubMenu == 3 ? ">順位表" : ViewBag.JleagueSubMenu == 4 ? ">戦績表" : ViewBag.JleagueSubMenu == 5 ? ">個人成績" : ViewBag.JleagueSubMenu == 6 ? ">チーム一覧" : ViewBag.JleagueSubMenu == 7 ? ">ニュース":"")   
+                }
+                else if (ViewBag.JleagueMenu == 3)
+                {
+                       @(ViewBag.JleagueSubMenu == 2 ? ">日程・結果" : ViewBag.JleagueSubMenu == 3 ? ">順位表" : ViewBag.JleagueSubMenu == 4 ? ">戦績表" : ViewBag.JleagueSubMenu == 5 ? ">個人成績" : ViewBag.JleagueSubMenu == 6 ? ">チーム一覧" : ViewBag.JleagueSubMenu == 7 ? ">ニュース":"")   
+                }
+                else if (ViewBag.JleagueMenu == 4)
+                {
+                       @(ViewBag.JleagueSubMenu == 2 ? ">日程・結果" : ViewBag.JleagueSubMenu == 3 ? ">順位表" : ViewBag.JleagueSubMenu == 4 ? ">大会概要" : ViewBag.JleagueSubMenu == 5 ? ">ニュース" :"")   
+                }  
+            }                          
+            else 
+            {               
+                if (ViewBag.JleagueMenu == 2)
+                {
+                     <a href="/jleague/j1/teams">>チーム情報</a>
+                      @(ViewBag.JleagueTeamMenu == 2 ? ">成績・結果" : ViewBag.JleagueTeamMenu == 3 ? ">対戦成績" : ViewBag.JleagueTeamMenu == 4 ? ">投手" : ViewBag.JleagueTeamMenu == 5 ? ">ニュース" : "")   
+                }
+                else if(ViewBag.JleagueMenu == 3)
+                {
+                    <a href="/jleague/j2/teams">>チーム情報</a>
+                      @(ViewBag.JleagueTeamMenu == 2 ? ">成績・結果" : ViewBag.JleagueTeamMenu == 3 ? ">対戦成績" : ViewBag.JleagueTeamMenu == 4 ? ">投手" : ViewBag.JleagueTeamMenu == 5 ? ">ニュース" : "")   
+                }   
+                else if(ViewBag.JleagueMenu == 4)
+                {
+                   <a href="/jleague/jleaguecup">>ナビスコC</a>                
+                }                        
+              
+             }
+         }      
+     }  
+</p>
+*@
+
+<ul class="league_path"> 
+    @*画面設計書 (JリーグTOP画面）: 10-1 *@
+    <li class=@(ViewBag.JleagueMenu == 1 ? "active" : "")>@Html.ActionLink("Jリーグトップ", "Index", "JlgTop", new { area = "Jleague" }, null)</li>
+    @*画面設計書 (J1TOP画面）: 10-2 *@
+    <li class=@(ViewBag.JleagueMenu == 2 ? "active" : "")><a href="/jleague/j1">J1</a></li>
+    @*画面設計書 (J2TOP画面）: 10-3 *@
+    <li class=@(ViewBag.JleagueMenu == 3 ? "active" : "")><a href="/jleague/j2">J2</a></li>
+    @*画面設計書 (ナビスコCTOP画面）: 10-4 *@
+    <li class=@(ViewBag.JleagueMenu == 4 ? "active" : "")>@Html.ActionLink("ナビスコC", "NabiscoTop", "JlgTop", new { area = "Jleague" }, null)</li>
+    @*画面設計書 (ニュースリスト(Jリーグ)画面）: 10-6*@
+    <li class=@(ViewBag.JleagueMenu == 5 ? "active" : "")>@Html.ActionLink("ニュース", "Index", "JlgNews", new { area = "Jleague" }, null)</li>
+</ul>
+

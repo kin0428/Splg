@@ -1,0 +1,78 @@
+﻿@{
+    // Developer	: Nojima
+    // Html No      : 3-8
+}
+@using Splg.Areas.MyPage.Models.ViewModel;
+@using Splg.Areas.MyPage.Models.InfoModel;
+@model MyPageNoticeViewModel
+
+@{
+    ViewBag.Title = "お知らせ";
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.NOTICE_INDEX;
+    Layout = "~/Views/Shared/Mobile/_MyPageLayout.cshtml";
+}
+
+<script src="~/Scripts/Home.js"></script>
+<script src="~/Areas/MyPage/Scripts/Mobile/3-8.js"></script>
+
+@{
+
+    int managementNoticeCount = 0;  //運営からのお知らせ表示数
+    if (Model.ManagementNotices != null)
+    {
+        managementNoticeCount = System.Math.Min(Model.ManagementNotices.Count(), MyPageNoticeViewModel.MANAGEMENT_NOTICE_INITIAL_SIZE);
+    }
+
+    int userNoticeCount = 0;  //○○さんへのお知らせ表示数
+    if (Model.UserNotices != null)
+    {
+        userNoticeCount = System.Math.Min(Model.UserNotices.Count(), MyPageNoticeViewModel.USER_NOTICE_INITIAL_SIZE);
+    }
+}
+
+<section class="block_6">
+
+    @*
+	<h2 class="subtitle2">お知らせ</h2>
+    <div class="block_8_2" id="managementNoticeLines">
+        <h3>運営からのお知らせ</h3>
+
+        @if (Model.ManagementNotices != null)
+        {
+            foreach (NoticeInfoForMyPage n in Model.ManagementNotices)
+            {
+                <article class="mail-rows">
+                    <p><a href="@n.TransitionsURL">@n.Title</a></p>
+                    <p class="fs8"><strong>@n.FormattedDeliveryTime</strong></p>
+                </article>
+            }
+        }
+
+    </div>
+@{
+    string displayGetMoreManagementNoticeButton = (managementNoticeCount < Model.ManagementNoticeTotalCount) ? "" : "display:none";
+    <p class="my-btn04" style="float: right;@displayGetMoreManagementNoticeButton"><a id="submitManagementNotice" data-managementnoticecount="@managementNoticeCount">もっと見る</a></p>
+}
+
+*@
+
+    <div class="block_8_2" id="userNoticeLines">
+        <h3>@Model.Nickname さんへのお知らせ</h3>
+        @*
+        @if (Model.UserNotices != null)
+        {
+            foreach (NoticeInfoForMyPage n in Model.UserNotices)
+            {
+                <article class="mail-rows">
+                    <p><a class="usernoticeload0" href="@n.TransitionsURL" data-noticedeliverysubjectid="@n.NoticeDeliverySubjectId">@n.Title</a></p>
+                    <p class="fs8"><strong>@n.FormattedDeliveryTime</strong></p>
+                </article>
+            }
+        }
+            *@
+    </div>
+@{
+    <p class="my-btn04" style="float: right;"><a id="submitUserNotice" data-usernoticecount="@userNoticeCount">もっと見る</a></p>
+}
+</section>
+

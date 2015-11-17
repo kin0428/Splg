@@ -1,0 +1,256 @@
+﻿@{
+    //Author : Nojima
+    //FileName : _NpbTop3Ranking.cshtml
+    //Created Date : 2015/04/24
+}
+@model Splg.Areas.Mlb.Models.ViewModels.MlbTop3RankingViewModel
+
+@if (Model != null)
+{
+    @*----Show アメリカン・リーグ順位----*@
+    @*----Show 東地区順位----*@
+    <div class="side_board">
+@if (Model.AmericanEast != null && Model.AmericanEast.Any())
+        {
+    <table cellpadding="0" cellspacing="0" summary="順位表">
+        <colgroup>
+            <col width="48%" />
+            <col width="13%" />
+            <col width="13%" />
+            <col width="13%" />
+        </colgroup>
+    <thead>
+        <tr>
+            <th>ア・リーグ 東地区</th>
+            <th>勝</th>
+            <th>敗</th>
+            <th>差</th>
+        </tr>
+    </thead>
+    <tbody>      
+            @foreach (var item in Model.AmericanEast)
+            {
+                <tr>
+                    @if (@item.Ranking > 1)
+                    {
+                        <th><span class="fi">@item.Ranking</span><a href="/mlb/teams/@item.TeamID">@item.TeamName</a></th>
+                    }
+                    else
+                    {
+                        <th><span class="organge fi">@item.Ranking</span><a href="/mlb/teams/@item.TeamID">@item.TeamName</a></th>
+                    }
+                    <td class="fi">@item.Win</td>
+                    <td class="fi">@item.Lose</td>
+                    <td class="fi">@item.GameBehind</td>
+                </tr>
+            }
+     
+    </tbody>
+</table>
+        }
+</div>
+    @*----Show 中地区順位----*@
+    <div class="side_board">
+@if (Model.AmericanCenteral != null && Model.AmericanCenteral.Any())
+        {
+        <table cellpadding="0" cellspacing="0" summary="順位表">
+            <colgroup>
+                <col width="48%" />
+                <col width="13%" />
+                <col width="13%" />
+                <col width="13%" />
+            </colgroup>
+    <thead>
+        <tr>
+            <th>ア・リーグ 中地区</th>
+            <th>勝</th>
+            <th>敗</th>
+            <th>差</th>
+        </tr>
+    </thead>
+    <tbody>      
+            @foreach (var item in Model.AmericanCenteral)
+            {
+                <tr>
+                    @if (@item.Ranking > 1)
+                    {
+                        <th><span class="fi">@item.Ranking</span><a href="/mlb/teams/@item.TeamID">@item.TeamName</a></th>
+                    }
+                    else
+                    {
+                        <th><span class="organge fi">@item.Ranking</span><a href="/mlb/teams/@item.TeamID">@item.TeamName</a></th>
+                    }
+                    <td class="fi">@item.Win</td>
+                    <td class="fi">@item.Lose</td>
+                    <td class="fi">@item.GameBehind</td>
+                </tr>
+            }
+       
+
+    </tbody>
+          
+</table>
+        }
+    </div>
+    @*----Show 西地区順位----*@
+    <div class="side_board">
+@if (Model.AmericanWest != null && Model.AmericanWest.Any())
+        {
+        <table cellpadding="0" cellspacing="0" summary="順位表">
+            <colgroup>
+                <col width="48%" />
+                <col width="13%" />
+                <col width="13%" />
+                <col width="13%" />
+            </colgroup>
+    <thead>
+        <tr>
+            <th>ア・リーグ 西地区</th>
+            <th>勝</th>
+            <th>敗</th>
+            <th>差</th>
+        </tr>
+    </thead>
+    <tbody>       
+            @foreach (var item in Model.AmericanWest)
+            {
+                <tr>
+                    @if (@item.Ranking > 1)
+                    {
+                        <th><span class="fi">@item.Ranking</span><a href="/mlb/teams/@item.TeamID">@item.TeamName</a></th>
+                    }
+                    else
+                    {
+                        <th><span class="organge fi">@item.Ranking</span><a href="/mlb/teams/@item.TeamID">@item.TeamName</a></th>
+                    }
+                    <td class="fi">@item.Win</td>
+                    <td class="fi">@item.Lose</td>
+                    <td class="fi">@item.GameBehind</td>
+                </tr>
+            }
+    </tbody>
+</table>
+        }
+    </div>
+    @*----Show ナショナル・リーグ順位----*@
+    @*----Show 東地区順位----*@
+    <div class="side_board">
+@if (Model.NationalEast != null && Model.NationalEast.Any())
+        {
+        <table cellpadding="0" cellspacing="0" summary="順位表">
+            <colgroup>
+                <col width="48%" />
+                <col width="13%" />
+                <col width="13%" />
+                <col width="13%" /></colgroup>
+    <thead>
+        <tr>
+            <th>ナ・リーグ 東地区</th>
+            <th>勝</th>
+            <th>敗</th>
+            <th>差</th>
+        </tr>
+    </thead>
+    <tbody>      
+            @foreach (var item in Model.NationalEast)
+            {
+                <tr>
+                    @if (@item.Ranking > 1)
+                    {
+                        <th><span class="fi">@item.Ranking</span><a href="/mlb/teams/@item.TeamID">@item.TeamName</a></th>
+                    }
+                    else
+                    {
+                        <th><span class="organge fi">@item.Ranking</span><a href="/mlb/teams/@item.TeamID">@item.TeamName</a></th>
+                    }
+                    <td class="fi">@item.Win</td>
+                    <td class="fi">@item.Lose</td>
+                    <td class="fi">@item.GameBehind</td>
+                </tr>
+            }
+    </tbody>
+</table>
+        }
+    </div>
+    @*----Show 中地区順位----*@
+    <div class="side_board">
+@if (Model.NationalCenteral != null && Model.NationalCenteral.Any())
+        {
+        <table cellpadding="0" cellspacing="0" summary="順位表">
+            <colgroup>
+                <col width="48%" />
+                <col width="13%" />
+                <col width="13%" />
+                <col width="13%" />
+            </colgroup>
+    <thead>
+        <tr>
+            <th>ナ・リーグ 中地区</th>
+            <th>勝</th>
+            <th>敗</th>
+            <th>差</th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (var item in Model.NationalCenteral)
+            {
+                <tr>
+                    @if (@item.Ranking > 1)
+                    {
+                        <th><span class="fi">@item.Ranking</span><a href="/mlb/teams/@item.TeamID">@item.TeamName</a></th>
+                    }
+                    else
+                    {
+                        <th><span class="organge fi">@item.Ranking</span><a href="/mlb/teams/@item.TeamID">@item.TeamName</a></th>
+                    }
+                    <td class="fi">@item.Win</td>
+                    <td class="fi">@item.Lose</td>
+                    <td class="fi">@item.GameBehind</td>
+                </tr>
+            }
+      
+    </tbody>
+</table>
+        }
+    </div>
+    @*----Show 西地区順位----*@
+    <div class="side_board">
+@if (Model.NationalWest != null && Model.NationalWest.Any())
+        {
+        <table cellpadding="0" cellspacing="0" summary="順位表">
+            <colgroup>
+                <col width="48%" />
+                <col width="13%" />
+                <col width="13%" />
+                <col width="13%" />
+            </colgroup>
+    <thead>
+        <tr>
+            <th>ナ・リーグ 西地区</th>
+            <th>勝</th>
+            <th>敗</th>
+            <th>差</th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (var item in Model.NationalWest)
+            {
+                <tr>
+                    @if (@item.Ranking > 1)
+                    {
+                        <th><span class="fi">@item.Ranking</span><a href="/mlb/teams/@item.TeamID">@item.TeamName</a></th>
+                    }
+                    else
+                    {
+                        <th><span class="organge fi">@item.Ranking</span><a href="/mlb/teams/@item.TeamID">@item.TeamName</a></th>
+                    }
+                    <td class="fi">@item.Win</td>
+                    <td class="fi">@item.Lose</td>
+                    <td class="fi">@item.GameBehind</td>
+                </tr>
+            }
+    </tbody>
+</table>
+        }
+    </div>
+}

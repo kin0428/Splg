@@ -1,0 +1,48 @@
+﻿@model Splg.Models.ViewModel.MemberRegistViewModel
+@{
+    ViewBag.Title = "会員登録 - 確認";
+    Layout = "~/Views/Shared/Mobile/_Layout.cshtml";
+}
+<ul class="block-path1">
+    <li>
+        <p><strong>STEP<span class="fs15">1</span></strong></p>
+        <p class="fs8">登録</p>
+        <span> </span>
+    </li>
+    <li class="active">
+        <p><strong>STEP<span class="fs15">2</span></strong></p>
+        <p class="fs8">確認</p>
+        <span> </span>
+    </li>
+    <li>
+        <p><strong>STEP<span class="fs15">3</span></strong></p>
+        <p class="fs8">メール送信</p>
+        <span> </span>
+    </li>
+    <li>
+        <p><strong>STEP<span class="fs15">4</span></strong></p>
+        <p class="fs8">完了</p>
+        <span> </span>
+    </li>
+</ul>
+<section class="block_7">
+    <h3 class="sigtitle">スポログにユーザー登録(無料)する</h3>
+    <p>入力内容を確認し、仮登録を行ってください。本登録に必要なURLを、入力したメールアドレス宛に送信します。</p>
+    <div class="sig-frm01">
+        <dl>
+            <dt>メールアドレス</dt>
+            <dd class="fs15">@Html.Raw(Model.Email)</dd>
+            <dt>お知らせメール</dt>
+            <dd class="fs15">@( Model.ReceiveEmail ? "受け取る" : "受け取らない")</dd>
+        </dl>
+    @using (Html.BeginForm("RegisterReview", "Member", FormMethod.Post, new { @id = "sendMailForActivation", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <p class="sig-submit">
+            <a href="javascript:void();" onclick="document.getElementById('sendMailForActivation').submit();">同意して確認画面に進む</a>
+        </p>
+    }
+        <p class="sig-txt"><a href="@Url.Action("Register","Member")">入力した内容を修正する</a></p>
+    </div>
+</section>
+

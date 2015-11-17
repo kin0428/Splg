@@ -1,0 +1,163 @@
+﻿@{
+    // Developer	: Nojima
+    // Html No      : 4-3
+}
+@*
+    @using Splg.Areas.User.Models.ViewModel;
+    @using Splg.Areas.User.Models.InfoModel;
+    @model UserArticleViewModel
+    @{
+        ViewBag.PageNo = Splg.Areas.User.UserConstant.ARTICLE_INDEX;
+        Layout = "~/Views/Shared/Mobile/_UserLayout.cshtml";
+    }
+    <script src="~/Scripts/Home.js"></script>
+    <script src="~/Areas/MyPage/Scripts/Mobile/3-9.js"></script>
+
+    <section class="block_2">
+        <h2 class="subtitle2">@Model.Nickname 投稿記事</h2>
+        <ul class="news_list1">
+
+    @{
+        int totalCount = Model.TotalCount;
+        int viewingCount = 0;
+        if (Model.Contributions != null)
+        {
+            viewingCount = System.Math.Min(Model.Contributions.Count(), UserArticleViewModel.INITIAL_SIZE);
+        }
+    }
+
+    @{string oldDate = null;}
+
+    @if (Model.Contributions != null)
+    {
+        foreach (ContributionForUser c in Model.Contributions)
+        {
+            string formattedModifiedDateTime = null;
+            if (c.ModifiedDate != null)
+            {
+                formattedModifiedDateTime = c.FormattedModifiedDateTime + " 更新";
+            }
+
+            //日付タイトル
+            string newDate = null;
+
+            if (c.ContributeDate != null)
+            {
+                newDate = c.FormattedContributeDate;
+
+                if (newDate != oldDate)
+                {
+                    <h4>@c.FormattedContributeDate</h4>
+                }
+            }
+
+        //記事行
+        <li>
+            <h4><a href="/user_article/0/@c.ContributeId">@c.Title</a></h4>
+            <p>@c.TopicTitles<br><span>@c.FormattedContributeDateTime 投稿</span></p>
+        </li>
+
+            oldDate = newDate;
+        }
+
+    }
+
+
+    @{
+        string displayGetMoreButton = (viewingCount < totalCount) ? "" : "display:none";
+    <div class="space20"> </div>
+        <nav class="news-control" style="float: right;@displayGetMoreButton">
+            <a id="GetMoreArticlesButton" data-memberid="@Model.MemberId" data-lastheaderdate="@oldDate" data-articlecount="@viewingCount">投稿記事をもっと見る<span class="icon"> </span></a>
+        </nav>
+    }
+
+
+    </section>
+
+    }
+*@
+@model Splg.Models.UserArticle.ViewModel.UserArticleMonthListViewModel
+@using PagedList.Mvc;
+@{
+    ViewBag.PageNo = Splg.Areas.User.UserConstant.ARTICLE_INDEX;
+    Layout = "~/Views/Shared/Mobile/_UserLayout.cshtml";
+}
+<script src="~/Scripts/Home.js"></script>
+<script src="~/Areas/MyPage/Scripts/Mobile/3-9.js"></script>
+
+<section class="block_2">
+    <h2 class="subtitle2">@ViewBag.Nickname 投稿記事</h2>
+    @if (Model != null)
+    {
+        string yearFormat = string.Format("{0}年", @Model.Year);
+        <nav class="news-panel">
+            @if (Model.YearList.Contains(Model.Year - 1))
+            {
+                int preYear = Model.Year - 1;
+                <a href="/user/@ViewBag.MemberId/article/?year=@preYear" class="prev">前の年</a>
+            }
+            <h4>@yearFormat</h4>
+            @if (Model.YearList.Contains(Model.Year + 1))
+            {
+                int nextYear = Model.Year + 1;
+                <a href="/user/@ViewBag.MemberId/article/?year=@nextYear" class="next">次の年</a>
+            }
+        </nav>
+        if (Model.MonthList.Any())
+        {
+            <div class="news-box">
+                <select name="category" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+                    @for (int m = 1; m <= 12; m++)
+                    {
+                        if (Model.MonthList.Contains(m))
+                        {
+                            string monthFormat = string.Format("{0}月", m);
+                            <option @(m == Convert.ToInt32(ViewBag.PostMonth) ? "selected" : "") value="/user/@ViewBag.MemberId/article/?year=@Model.Year&month=@m">@monthFormat</option>
+                        }
+                    }
+                </select>
+            </div>
+        }
+        <ul class="news_list1">
+            @foreach (var item in Model.PostList)
+            {
+                string postContent = Splg.Controllers.PostedController.GetPostContent(item);
+                <li>
+                    <h4><a href="/user_article/@item.TopicID/@item.ContributeId/">@item.Title</a></h4>
+                    @if (!string.IsNullOrEmpty(postContent))
+                    {
+                        <p>@postContent</p>
+                    }
+                    @if (item.ContributeDate != null)
+                    {
+                        <p>
+                            @if (item.ModifiedDate != null)
+                            {
+                                var dateDisplaied = string.Format("{0}投稿 - {1}更新", item.ContributeDate.Value.ToString("MM/dd HH:mm"), item.ModifiedDate.Value.ToString("MM/dd HH:mm"));
+                                @dateDisplaied
+                            }
+                            else
+                            {
+                                var dateDisplaied = string.Format("{0}投稿", item.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                                @dateDisplaied
+                            }
+                        </p>
+                    }
+                </li>
+            }
+        </ul>
+        <div class="space20"> </div>
+        <nav class="news-control">
+            @if (Model.PostList.PageNumber > 1)
+            {
+                var nextPage = Model.PostList.PageNumber - 1;
+                <a class="prev" href="/user/@ViewBag.MemberId/article/?page=@nextPage&year=@Model.Year&month=@ViewBag.PostMonth">前のページ</a>
+            }
+            @if (Model.PostList.PageNumber < Model.PostList.PageCount)
+            {
+                var nextPage = Model.PostList.PageNumber + 1;
+                <a class="next" href="/user/@ViewBag.MemberId/article/?page=@nextPage&year=@Model.Year&month=@ViewBag.PostMonth">次のページ</a>
+            }
+        </nav>
+    }
+</section>

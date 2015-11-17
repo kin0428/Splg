@@ -1,0 +1,283 @@
+﻿@{
+    //  Developer(game) : ENDO
+    //FileName : Index.cshtml (10-1)
+    //UPdate Date : 2015/04/26
+}
+@using System.Web.Mvc;
+@using System.Web.Mvc.Ajax;
+@using System.Web.Mvc.Html;
+@using System.Web.Optimization;
+@using System.Web.Routing;
+@using Splg;
+@using Splg.Areas.Jleague;
+@using Splg.Areas.Jleague.Models.ViewModel;
+@using Splg.Areas.Jleague.Models.ViewModel.InfosModel;
+@model JlgTopViewModel
+@{
+    ViewBag.Title = "J1";
+    Layout = "~/Views/Shared/_JlgContentsLayout.cshtml";
+    var jName = Splg.Areas.Jleague.JlgConstants.JLG_LEAGUE_NAME_J1;
+    ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_TOP_J1;
+    ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_TOP_J1;
+    if (ViewBag.JType == 2)
+    {
+        jName = Splg.Areas.Jleague.JlgConstants.JLG_LEAGUE_NAME_J2;
+        ViewBag.Title = "J2TOP";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_TOP_J2;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_TOP_J2;
+    }
+}
+<script src="~/Areas/Jleague/Scripts/10-1.js"></script>
+@if (Model != null)
+{
+    if (Model.TopMostViewNews != null && Model.TopMostViewNews.Any())
+    {
+        //Get first row to define another format.
+        var firstNews = @Model.TopMostViewNews.FirstOrDefault();
+        var imageSports = Utils.GetNewsImageLocation(firstNews.Content ?? Constants.IMAGE_DEFAULT);
+        <div class="block_01">
+            <div class="cat_title">
+                <h3>@jName ピックアップニュース</h3>
+            </div>
+            <div class="row">
+                <div class="block_03_1">
+                    <a href="@Url.Action("Index", "NewsArticleCommon", new { area = string.Empty, topic = JlgConstants.JLG_TOPIC_NAME, newsItemID = firstNews.NewsItemID, sportID = JlgConstants.JLG_SPORT_ID, uniqueID = (ViewBag.JType == 1 ? JlgConstants.JLG_GAMEKIND_J1 : JlgConstants.JLG_GAMEKIND_J2), teamID = Constants.NEWS_DEFAULT_PARAMETER }, null)">
+                        <img src="@Url.Content(@imageSports)" class="resimg" alt="" />
+                    </a>
+                </div>
+                <div class="block_03_2">
+                    @if (firstNews != null)
+                    {
+                        <h3 class="subtitle02">@Html.ActionLink(string.Format("{0} {1}", firstNews.Headline, firstNews.SubHeadline), "Index", "NewsArticleCommon", new { area = string.Empty, topic = JlgConstants.JLG_TOPIC_NAME, newsItemID = firstNews.NewsItemID, sportID = JlgConstants.JLG_SPORT_ID, uniqueID = (ViewBag.JType == 1 ? JlgConstants.JLG_GAMEKIND_J1 : JlgConstants.JLG_GAMEKIND_J2), teamID = Constants.NEWS_DEFAULT_PARAMETER }, null)</h3>
+                        <h4>@firstNews.SentFrom  @Utils.ParseLocalDateToShortJapanDate(firstNews.DeliveryDate)</h4>
+                        <p>@Utils.ShortenString(firstNews.newstext, 50)</p>
+                    }
+                </div>
+                <ul class="block_list01">
+                    @foreach (var news in Model.TopMostViewNews.Skip(1))
+                    {
+                        <li>@Html.ActionLink(string.Format("{0} {1}", news.Headline, news.SubHeadline), "Index", "NewsArticleCommon", new { area = string.Empty, topic = JlgConstants.JLG_TOPIC_NAME, newsItemID = news.NewsItemID, sportID = JlgConstants.JLG_SPORT_ID, uniqueID = (ViewBag.JType == 1 ? JlgConstants.JLG_GAMEKIND_J1 : JlgConstants.JLG_GAMEKIND_J2), teamID = Constants.NEWS_DEFAULT_PARAMETER }, null)<span>@news.SentFrom  @Utils.ParseLocalDateToShortJapanDate(news.DeliveryDate)</span></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+    <div class="evt_block05">
+        <div class="board_control clear">
+            <span class="board_prev blue">前の試合を見る</span>
+            <h3 id="gameDate">@Utils.GetMonthAndDayOfWeek(Model.JlgDispGameDate) の試合</h3>
+            <span class="board_next blue">次の試合を見る</span>
+        </div>
+        <input type="hidden" id="Page" name="Page" value="1" data-gamedate="@Model.JlgGameDate" data-firstgamedate="@Model.JlgFirstGameDate" data-lastgamedate="@Model.JlgLastGameDate" />
+        <div id="jlgGameInfo">
+            @Html.Action("ShowGameInfo", "JlgTop", new { area = "Jleague", type = 1, gameDate = Model.JlgGameDate, leagueType = ViewBag.JType == 2 ? 2 : 1 })
+        </div>
+        <div class="board_control">
+            <span class="board_prev blue">前の試合を見る</span>
+            <span class="board_next blue">次の試合を見る</span>
+        </div>
+        <div class="space20"></div>
+        <div class="evt_block06">
+            @if (Model.TopRecentPost != null && Model.TopRecentPost.Any())
+            {
+                <div class="cat_stitle">
+                    <h3>@jName 投稿記事</h3>
+                    <p><a href="/user_article/2/sport/">投稿記事をもっと読む</a></p>
+                </div>
+                <ul class="evt_list01">
+                    @foreach (var post in Model.TopRecentPost.Take(3))
+                    {
+                        string postContent = string.Format("{0}&nbsp;&nbsp;&nbsp;{1}投稿", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                        <li>
+                            <a href="/user/@post.MemberId/"><img src="@post.ProfileImg" alt="icon" /></a>
+                            <a class="bold" href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a>
+                            <br />
+                            @Html.Raw(postContent)
+                        </li>
+                    }
+                </ul>
+            }
+            @if (Model.TopRecentNews != null && Model.TopRecentNews.Any())
+            {
+                //Get first row to define another format.
+                var firstNews = @Model.TopRecentNews.FirstOrDefault();
+                var imageSports = Utils.GetNewsImageLocation(firstNews.Content ?? Constants.IMAGE_DEFAULT);
+                <div class="cat_title">
+                    <h3>@jName　新着ニュース</h3>
+                </div>
+                <div class="row">
+                    <div class="block_06_1">
+                        <a href="@Url.Action("Index", "NewsArticleCommon", new { area = "", topic = JlgConstants.JLG_TOPIC_NAME, newsItemID = firstNews.NewsItemID, sportID = JlgConstants.JLG_SPORT_ID, uniqueID = (ViewBag.JType == 1 ? JlgConstants.JLG_GAMEKIND_J1 : JlgConstants.JLG_GAMEKIND_J2), teamID = Constants.NEWS_DEFAULT_PARAMETER }, null)">
+                            <img src="@Url.Content(@imageSports)" class="resimg" alt="" />
+                        </a>
+                    </div>
+                    <div class="block_06_2">
+                        <h3 class="subtitle02">@Html.ActionLink(string.Format("{0} {1}", firstNews.Headline, firstNews.SubHeadline), "Index", "NewsArticleCommon", new { area = "", topic = JlgConstants.JLG_TOPIC_NAME, newsItemID = firstNews.NewsItemID, sportID = JlgConstants.JLG_SPORT_ID, uniqueID = (ViewBag.JType == 1 ? JlgConstants.JLG_GAMEKIND_J1 : JlgConstants.JLG_GAMEKIND_J2), teamID = Constants.NEWS_DEFAULT_PARAMETER }, null)</h3>
+                        <h4>@firstNews.SentFrom  @Utils.ParseLocalDateToShortJapanDate(firstNews.DeliveryDate)</h4>
+                        <p>@Utils.ShortenString(firstNews.newstext, 50)</p>
+                    </div>
+                    <ul class="block_list01">
+                        @foreach (var news in Model.TopRecentNews.Skip(1))
+                        {
+                            <li>@Html.ActionLink(string.Format("{0} {1}", news.Headline, news.SubHeadline), "Index", "NewsArticleCommon", new { area = "", topic = JlgConstants.JLG_TOPIC_NAME, newsItemID = news.NewsItemID, sportID = JlgConstants.JLG_SPORT_ID, uniqueID = (ViewBag.JType == 1 ? JlgConstants.JLG_GAMEKIND_J1 : JlgConstants.JLG_GAMEKIND_J2), teamID = Constants.NEWS_DEFAULT_PARAMETER }, null)<span>@news.SentFrom  @Utils.ParseLocalDateToShortJapanDate(news.DeliveryDate)</span></li>
+                        }
+                    </ul>
+                    <p class="tright">@Html.RouteLink("≫ もっと見る", (ViewBag.JType == 1 ? "Jleague_10_2_6" : "Jleague_10_3_6"), null)</p>
+                </div>
+            }
+        </div>
+        <div class="evt_block06">
+            @if (Model != null)
+            {
+                if (Model.TopExpectationsDeviation != null && Model.TopExpectationsDeviation.Any())
+                {
+                    <div class="list_team">
+                        <div class="list_note clear">
+                            <h4>@jName 期待度ランキング</h4>
+                            <p>期待度偏差値とは…総予想ポイント数の偏差値</p>
+                        </div>
+                        <table cellpadding="0" cellspacing="0" summary="listteam">
+                            <col width="9%" />
+                            <col width="55%" />
+                            <col width="15%" />
+                            <col width="21%" />
+                            <thead>
+                                <tr>
+                                    <th>順位</th>
+                                    <th>ホーム</th>
+                                    <th>期待度偏差値</th>
+                                    <th>リーグ順位</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                    var intRanking = 1;
+                                }
+                                @foreach (var item in Model.TopExpectationsDeviation)
+                                {
+                                    var leagueRank = string.Format("{0} {1}位", item.LeagueNameS, item.Ranking);
+                                    <tr>
+                                        @if (intRanking == 1)
+                                        {
+                                            <td><span class="list_num organge fi">@intRanking</span></td>
+                                        }
+                                        else
+                                        {
+                                            <td><span class="list_num fi">@intRanking</span></td>
+                                        }
+                                        <td>
+                                            <p class="list_img">
+                                                <img class="resimg" src=@Url.Content(@item.TeamIcon ?? Constants.IMAGE_DEFAULT) alt=@item.TeamName />
+                                            </p>
+                                            <p class="list_name">
+                                                @if (item.GameKindID == 2)
+                                                {
+                                                    <a class="fs18 bold" href="/jleague/j1/teams/@item.TeamID/">@item.TeamName</a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="fs18 bold" href="/jleague/j2/teams/@item.TeamID/">@item.TeamName</a>
+                                                }
+                                            </p>
+                                        </td>
+                                        @if (intRanking == 1)
+                                        {
+                                            <td><span class="list_score organge fi">@item.DeviationValue.ToString(Constants.REMOVE_ZEROS)</span></td>
+                                        }
+                                        else
+                                        {
+                                            <td><span class="list_score fi">@item.DeviationValue.ToString(Constants.REMOVE_ZEROS)</span></td>
+                                        }
+                                        <td>@leagueRank</td>
+                                    </tr>
+                                        intRanking++;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                if (Model.TopBetrayalDeviation != null && Model.TopBetrayalDeviation.Any())
+                {
+                    <div class="list_team">
+                        <div class="list_note clear">
+                            <h4>@jName 裏切度ランキング</h4>
+                            <p>裏切度偏差値とは・・・負けた試合の総予想ポイント数の偏差値</p>
+                        </div>
+                        <table cellpadding="0" cellspacing="0" summary="listteam">
+                            <col width="9%" />
+                            <col width="55%" />
+                            <col width="15%" />
+                            <col width="21%" />
+                            <thead>
+                                <tr>
+                                    <th>順位</th>
+                                    <th>ホーム</th>
+                                    <th>期待度偏差値</th>
+                                    <th>リーグ順位</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                    var intRanking = 1;
+                                }
+                                @foreach (var item in Model.TopBetrayalDeviation)
+                                {
+                                    var leagueRank = string.Format("{0} {1}位", item.LeagueNameS, item.Ranking);
+                                    <tr>
+                                        @if (intRanking == 1)
+                                        {
+                                            <td><span class="list_num organge fi">@intRanking</span></td>
+                                        }
+                                        else
+                                        {
+                                            <td><span class="list_num fi">@intRanking</span></td>
+                                        }
+                                        <td>
+                                            <p class="list_img">
+                                                <img class="resimg" src=@Url.Content(@item.TeamIcon ?? Constants.IMAGE_DEFAULT) alt=@item.TeamName />
+                                            </p>
+                                            <p class="list_name">
+                                                @if (item.GameKindID == 2)
+                                                {
+                                                    <a class="fs18 bold" href="/jleague/j1/teams/@item.TeamID/">@item.TeamName</a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="fs18 bold" href="/jleague/j2/teams/@item.TeamID/">@item.TeamName</a>
+                                                }
+                                            </p>
+                                        </td>
+                                        @if (intRanking == 1)
+                                        {
+                                            <td><span class="list_score organge fi">@item.DeviationValue.ToString(Constants.REMOVE_ZEROS)</span></td>
+                                        }
+                                        else
+                                        {
+                                            <td><span class="list_score fi">@item.DeviationValue.ToString(Constants.REMOVE_ZEROS)</span></td>
+                                        }
+                                        <td>@leagueRank</td>
+                                    </tr>
+                                        intRanking++;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+}
+<!--Right Content-->
+@section JlgPage{
+    <div class="cat_stitle">
+        
+        @if (ViewBag.JleagueMenu == 2)
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_J1, jType = 1 })
+        }
+        else if (ViewBag.JleagueMenu == 3)
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_J2, jType = 2 })
+        }
+    </div>
+}

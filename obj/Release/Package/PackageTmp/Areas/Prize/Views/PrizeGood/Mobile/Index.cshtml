@@ -1,0 +1,115 @@
+﻿@{
+    //Author : Nojima
+    //FileName : Index.cshtml (6-2)
+    //Created Date : 2015/7/7
+}
+
+@using Splg.Areas.Prize.Models.ViewModel;
+@using Splg.Core.Constant;
+@model Splg.Areas.Prize.Models.ViewModel.PrizeGoodViewModel
+
+@{
+    ViewBag.Title = "懸賞　賞品詳細";
+    ViewBag.PageNo = Splg.Areas.Prize.PrizrConstants.PRIZE_TOP_INDEX;
+    Layout = "~/Views/Shared/Mobile/_PrizeLayout.cshtml";
+    string entryMethodtext = String.Empty;
+    string buttonClass = string.Empty;
+    if (Model.RallyGoods.EntryMethod == (short)PrizeConst.EntryMethod.Draw)
+    {
+        entryMethodtext = "に応募";
+        buttonClass = "DrawButton";
+    }
+    else
+    {
+        entryMethodtext = "と交換";
+        buttonClass = "BuyButton";
+    }
+}
+
+<script src="~/Areas/Prize/Scripts/Mobile/6-2.js"></script>
+
+<section class="block_1 clear">
+    <div class="block_8_2">
+        <div class="prize_img1">
+            <img src="@Model.RallyGoods.FullImageUrl" alt="@Model.RallyGoods.GoodName" />
+            <div>@Html.DisplayFor(m => Model.RallyGoods.WinVolumeView)</div>
+        </div>
+        <h3 class="prize_name">@Model.RallyGoods.GoodName</h3>
+        @if (@Model.RallyGoods.GoodSubName != null)
+        {
+            <h4>@Model.RallyGoods.GoodSubName</h4>
+        }
+        <p>@Html.Raw(Html.Encode(Model.RallyGoods.Description).Replace("\n", "<br />"))</p>
+        @if(@Model.RallyGoods.RallyGoodId == 7)
+        {
+            <br/><p><a href="http://www.baseball-lab.jp/column/entry/216/" target="_blank">製品に関する情報はこちら（外部リンク）</a></p>
+        }
+        
+        <p class="prize_cost">
+            ーロ<span>@Model.RallyGoods.Points</span>ptで賞品<span>@entryMethodtext</span>できます。
+        </p>
+        <p class="prize_cost1">@Model.DispEntryCount</p>
+        <p class="prize-btn01 tcenter @buttonClass"><a class="adw_pop1" href="#">この賞品<span>@entryMethodtext</span>する</a></p>
+    </div>
+    @Html.Partial("RallyGoodsRemarks", Model)
+</section>
+    <!-- ポップアップ -->
+<div class="adw_overlay"> </div>
+<div class="adw_popcontent adw_popup1">
+    <p class="close_popup adw_pclose btn_close"><img src="/Content/img/tmp/close.png" alt="exit" /></p>
+    <div class="pop_croll">
+        <h2 class="add_pop_title tcenter">
+            応募できません
+        </h2>
+        <p class="add_pagr01" id="errMsg">懸賞応募可能ポイントが足りないため、応募できません。</p>
+    </div>
+    <p class="prize_link adw_pclose btn_close"><a href="#">閉じる</a></p>
+</div>
+<div class="adw_popcontent adw_popup2a">
+    <p class="close_popup adw_pclose btn_close"><img src="/Content/img/tmp/close.png" alt="exit" /></p>
+    <div class="pop_croll">
+        <h2 class="add_pop_title tcenter">
+            応募口数入力
+        </h2>
+        <p class="add_pagr01">@Model.RallyGoods.GoodName<br>1口：<span id="entryCost">@Model.RallyGoods.Points</span>ptに応募します。</p>
+        <p class="add_pagr01">応募口数を入力してください。<br><span class="organge">懸賞応募可能ポイント：<span id="availablePoint">@Model.AvailablePoint</span>pt</p>
+        <p class="add_pagr01" style="text-align: center;">応募口数<input id="inputEntryCount" data-entrycost="@Model.RallyGoods.Points" data-entrymethod="@Model.RallyGoods.EntryMethod" data-availablepoint="@Model.AvailablePoint" type="text" value="1" name="応募数" class="adw_txtedit"> 口
+</div>
+    <p class="prize_link adw_step1 adw_pclose"><a href="#">確認</a></p>
+    <div class="space"> </div>
+    <p class="prize_link adw_cancel adw_pclose"><a href="#">キャンセル</a></p>
+</div>
+<div class="adw_popcontent adw_popup2b">
+    <p class="close_popup adw_pclose btn_close"><img src="/Content/img/tmp/close.png" alt="exit" /></p>
+    <div class="pop_croll">
+        <h2 class="add_pop_title tcenter">
+            確認
+        </h2>
+        <p class="add_pagr01">@Model.RallyGoods.GoodName<br>に応募します。よろしいでしょうか？</p>
+        <p class="add_pagr01 organge">応募口数：<span id="entryCount">2</span>口<br>応募ポイント：<span id="entryPoint">2000</span><br>懸賞応募可能ポイント残り：<span id="afterAvailablePoint">2340</span> pt</p>
+    </div>
+    <p class="prize_link adw_step2 adw_pclose"><a href="#">応募する</a></p>
+    <div class="space"> </div>
+    <p class="prize_link adw_cancel adw_pclose"><a href="#">キャンセル</a></p>
+</div>
+<div class="adw_popcontent adw_popup2c">
+    <p class="close_popup adw_pclose btn_close"><img src="/Content/img/tmp/close.png" alt="exit" /></p>
+    <div class="pop_croll">
+        <h2 class="add_pop_title tcenter">
+            応募完了
+        </h2>
+        <p class="add_pagr01">@Model.RallyGoods.GoodName<br>に応募完了いたしました。</p>
+        <p class="add_pagr01">【当選者への通知に関して】<br></p>
+        <p class="add_pagr01">ご登録いただいているメールアドレスへもご当選のご案内をお送りいたしますので、「迷惑メール受信拒否設定」などをされている場合は、「spolog.jp」ドメインの許可設定をして頂きますようお願いいたします。</p>
+        <p class="add_pagr01">※通知時期は、応募締切りの翌月中旬頃を予定しております。</p>
+    </div>
+    <p class="prize_link adw_pclose btn_close"><a href="#">閉じる</a></p>
+</div>
+<div class="adw_popcontent adw_popup_cancel">
+    <p class="close_popup adw_pclose btn_close"><img src="/Content/img/tmp/close.png" alt="exit" /></p>
+    <h2 class="add_pop_title tcenter">
+        キャンセル
+    </h2>
+    <p class="add_pagr01">応募をキャンセルしました。</p>
+    <p class="prize_link adw_pclose btn_close"><a href="#">閉じる</a></p>
+</div>

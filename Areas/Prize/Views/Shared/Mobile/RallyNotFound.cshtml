@@ -1,0 +1,25 @@
+﻿@using Splg.Areas.Prize.Models.ViewModel;
+@using Splg.Core.Services;
+
+@{
+    ViewBag.Title = "懸賞TOP";
+    ViewBag.PageNo = Splg.Areas.Prize.PrizrConstants.PRIZE_TOP_INDEX;
+    Layout = "~/Views/Shared/Mobile/_PrizeLayout.cshtml";
+}
+
+@Html.Partial("PrizeSubMenu")
+<section class="block_9">
+    <div class="prize_img1">
+        <img src="~/Content/images/adward/201508/600_245_noimage.png" />
+    </div>
+    <h3 class="mem_title01">スポログ懸賞 準備中</h3>
+    <div class="prize_content">
+        <p>
+            現在、次回のスポログ懸賞を準備中です。
+        </p>
+        <p class="mrgin_bt10">
+            詳しい内容は、準備が整い次第ご案内致しますので、今しばらくお待ち下さい。
+        </p>
+    </div>
+</section>
+

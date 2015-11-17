@@ -1,0 +1,92 @@
+﻿@{
+    //Author : Huynh Thi Phuong Cuc
+    //FileName : _NpbPointEdit.cshtml
+    //Modified Date : 2015/05/05
+}
+
+@model Splg.Models.Game.InfoModel.ExpectationInfoModel
+@using Splg.Models.Game.ViewModel;
+@using Splg.Areas.Npb.Models;
+
+@if (Model != null)
+{
+    GameInfoViewModel gameInfo = new GameInfoViewModel();
+    if(ViewBag.SportID == Constants.NPB_SPORT_ID)
+    {
+        gameInfo = NpbCommon.GetGameInfoByGameID(Constants.NPB_SPORT_ID, Model.GameID.Value);
+    }
+    else if(ViewBag.SportID == Constants.JLG_SPORT_ID)
+    {
+        gameInfo = NpbCommon.GetGameInfoByGameID(Constants.JLG_SPORT_ID, Model.GameID.Value);
+    }
+    else if(ViewBag.SportID == Constants.MLB_SPORT_ID)
+    {
+        gameInfo = NpbCommon.GetGameInfoByGameID(Constants.MLB_SPORT_ID, Model.GameID.Value);
+    }
+    else
+    {
+        //Another sport.
+    }
+    var strTimeRemain = Utils.CalculateTimeRemainDisplayString(gameInfo.GameDate, gameInfo.Time);
+    DateTime gameTime = DateTime.ParseExact(gameInfo.Time, "HHmm", null);
+    var strGameTime = gameTime.ToString("HH:mm");
+    DateTime gameDate = DateTime.ParseExact(gameInfo.GameDate.ToString(), "yyyyMMdd", null);
+    var strDateTime = Utils.GetMonthAndDayOfWeek(gameDate) + " " + strGameTime;
+    var totalPointInWeek = NpbCommon.GetPossessionPointByPointID(Model.PointID);
+    var divisionPoint = Model.ExpectPoint / 100;
+    var strText = string.Empty;
+    var reloadUrl = Model.ReloadUrl;
+    var reloadarea = Model.ReloadArea;
+    
+    <div>
+        <section class="main_block main_block_popup">           
+            <dl class="panel-time">
+                <dt>予想締切<span>@strTimeRemain</span></dt>
+                <dd>@strDateTime</dd>
+            </dl>
+            <div class="panel-group">
+                <div class="clear">
+                    <article class="panel-col1">
+                        <figure></figure>
+                        <p class="blue fs14">@gameInfo.HomeTeamNameS</p>
+                    </article>
+                    <article class="panel-col4">
+                        <span class="gray fs16 fi">VS</span>
+                    </article>
+                    <article class="panel-col1">
+                        <figure></figure>
+                        <p class="blue fs14">@gameInfo.VisitorTeamNameS</p>
+                    </article>
+                </div>
+            </div>
+            <div class="panel-edit">
+                @if (Model.BetSelectID == 1)
+                {
+                    strText = "ホームの勝ちを予想する";
+                }
+                else if (Model.BetSelectID == 2)
+                {
+                    strText = "ビジターの勝ちを予想する";
+                }
+                else
+                {
+                    strText = "引き分けを予想する";
+                }
+                <p class="e01">@strText</p>
+                <p class="e02"><span class="fs24">x </span><span class="fs30 fi">@Model.Odds</span></p>
+            </div>
+            <div class="panel-edit1">
+                <p>
+                    <span class="fs8">現在の所得ポイント </span>
+                    <strong><span class="fs16" id="totalPoint">@totalPointInWeek</span>pt</strong>
+                </p>
+                <p><span class="fs8">使用する予想ポイント</span></p>
+                <p><input id="inputPoint" class="box70 pointBetMobile" type="text" name="point" maxlength="5" max="10000" value="@divisionPoint" data-old="@Model.ExpectPoint" data-expectpoint="@StringProtector.Protect(@Model.ExpectPointID.ToString())" data-point="@StringProtector.Protect(@Model.PointID.ToString())">00 pt</p>
+            </div>
+            <p class="my-btn02" data-reloadurl="@reloadUrl" data-reloadarea="@reloadarea">保存する</p>
+            <div class="space"></div>
+        </section>       
+    </div>
+}
+
+

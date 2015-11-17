@@ -1,0 +1,31 @@
+﻿@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: _NpbTeamInfoMenu.cshtml
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-03-20 
+}
+@if (@ViewBag.TeamID != null)
+{    
+    <ul class="team_menu clear">        
+        @*画面設計書 (チーム情報チームトップ（プロ野球）画面）: 8-5-1 *@
+        <li class=@(ViewBag.TeamInfoMenuTabActive == 1 ? "active" : "")>@Html.ActionLink("チーム情報トップ", "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @ViewBag.TeamID }, null)</li>    
+        @*画面設計書 (チーム情報日程・結果(プロ野球）画面）: 8-5-2 *@
+        <li class=@(ViewBag.TeamInfoMenuTabActive == 2 ? "active" : "")>@Html.ActionLink("日程・結果", "Index", "NpbTeamInfoDailyResult", new { area = "Npb", teamID = @ViewBag.TeamID }, null)</li>
+
+        @*画面設計書 (チーム情報対戦成績(プロ野球）画面）: 8-5-3 *@
+        <li class=@(ViewBag.TeamInfoMenuTabActive == 3 ? "active" : "")>@Html.ActionLink("対戦成績", "Index", "NpbTeamInfoConfrontationResult", new { area = "Npb", teamID = @ViewBag.TeamID }, null)</li>
+
+        @*画面設計書 (チーム情報投手（プロ野球）画面）: 8-5-4 *@
+        <li class=@(ViewBag.TeamInfoMenuTabActive == 4 ? "active" : "")>@Html.ActionLink("投手", "Index", "NpbTeamInfoPlayer", new { area = "Npb", teamID = @ViewBag.TeamID, typeID = 1 }, null)</li>
+
+        @*画面設計書 (チーム情報捕手・野手（プロ野球）画面）: 8-5-5*@
+        <li class=@(ViewBag.TeamInfoMenuTabActive == 5 ? "active" : "")>@Html.ActionLink("捕手・野手", "Index", "NpbTeamInfoPlayer", new { area = "Npb", teamID = @ViewBag.TeamID, typeID = 2 }, null)</li>
+
+        @*画面設計書 (チーム情報監督・スタッフ(プロ野球)画面) : 8-5-6 *@
+        <li class=@(ViewBag.TeamInfoMenuTabActive == 6 ? "active" : "")>@Html.ActionLink("監督・スタッフ", "Index", "NpbTeamInfoPlayer", new { area = "Npb", teamID = @ViewBag.TeamID, typeID = 3 }, null)</li>
+
+        @*画面設計書 (チーム情報ニュース(プロ野球)画面） : 8-5-7 *@
+        <li class=@(ViewBag.TeamInfoMenuTabActive == 7 ? "active" : "")>@Html.ActionLink("ニュース", "Index", "NpbTeamInfoNews", new { area = "Npb", teamId = @ViewBag.TeamID }, null)</li>
+    </ul>
+}
+

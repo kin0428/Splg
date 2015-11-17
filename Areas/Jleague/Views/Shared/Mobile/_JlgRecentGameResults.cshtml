@@ -1,0 +1,59 @@
+﻿@model Splg.Areas.Jleague.Models.ViewModel.JlgRecentGameResultsViewModel
+
+<div class="socData socLastResults">
+    <h2 class="socData-hdg">直近の試合結果</h2>
+    <div class="socLastResults-home socLastMatchesHome-hdg">
+        <img src="@Url.Content(Model.HomeTeamSpec.TeamIconUrl)" alt="@Model.HomeTeamSpec.TeamName">
+        <p>@Model.HomeTeamSpec.TeamName</p>
+    </div>
+    <div class="socLastResults-away socLastMatchesAway-hdg">
+        <img src="@Url.Content(Model.AwayTeamSpec.TeamIconUrl)" alt="@Model.AwayTeamSpec.TeamName">
+        <p>@Model.AwayTeamSpec.TeamName</p>
+    </div>
+
+    <table class="socLastResSum">
+        <tbody>
+            <tr>
+                <td class="score-left">@Html.DisplayFor(m => Model.HomeRecentGameResultCounts.WinCount)</td>
+                <th><img src="/Mobile/Content/img/jleague/bg_lastresults_win.png" alt="勝ち"></th>
+                <td class="score-right">@Html.DisplayFor(m => Model.AwayRecentGameResultCounts.WinCount)</td>
+            </tr>
+            <tr>
+                <td class="score-left">@Html.DisplayFor(m => Model.HomeRecentGameResultCounts.LoseCount)</td>
+                <th><img src="/Mobile/Content/img/jleague/bg_lastresults_lose.png" alt="負け"></th>
+                <td class="score-right">@Html.DisplayFor(m => Model.AwayRecentGameResultCounts.LoseCount)</td>
+            </tr>
+            <tr>
+                <td class="score-left">@Html.DisplayFor(m => Model.HomeRecentGameResultCounts.DrawCount)</td>
+                <th><img src="/Mobile/Content/img/jleague/bg_lastresults_draw.png" alt="引き分け"></th>
+                <td class="score-right">@Html.DisplayFor(m => Model.AwayRecentGameResultCounts.DrawCount)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="socLastResMatch-home tableStriped">
+        <tbody>
+            @foreach (var item in Model.HomeRecentGameResults)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => item.HomeTeamShortName)</td>
+                    <td>@Html.DisplayFor(m => item.HomeScore) - @Html.DisplayFor(m => item.AwayScore)</td>
+                    <td>@Html.DisplayFor(m => item.AwayTeamShortName)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="socLastResMatch-away tableStriped">
+        <tbody>
+            @foreach (var item in Model.AwayRecentGameResults)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => item.HomeTeamShortName)</td>
+                    <td>@Html.DisplayFor(m => item.HomeScore) - @Html.DisplayFor(m => item.AwayScore)</td>
+                    <td>@Html.DisplayFor(m => item.AwayTeamShortName)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

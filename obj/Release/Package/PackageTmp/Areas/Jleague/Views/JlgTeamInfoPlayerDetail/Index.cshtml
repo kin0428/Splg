@@ -1,0 +1,224 @@
+﻿@{
+    // Namespace	: Splg.Areas.Jleague.Models.ViewModel
+    // FileName		: Index.cshtml
+    // Developer	: e-concier
+    // Update date  : 2015-05-01
+    // Html No      : 10-2-5-6    
+}
+
+@using Splg;
+@using Splg.Areas.Jleague;
+@using Splg.Areas.Jleague.Models.ViewModel;
+@using Splg.Areas.Jleague.Models.ViewModel.InfosModel;
+@model JlgTeamInfoPlayerDetailViewModel
+@{
+    
+    if (ViewBag.JType == 1)
+    {
+        ViewBag.Title = "チーム情報　選手詳細";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J1_T_PYRDTL;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J1_T_PYRDTL;
+    }
+    else
+    {
+        ViewBag.Title = "チーム情報　選手詳細";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J2_T_PYRDTL;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J2_T_PYRDTL;
+    }
+    Layout = "~/Views/Shared/_JlgContentsLayout.cshtml";
+}
+<link href="~/Content/bxslider.css" rel="stylesheet" />
+<script type="text/javascript" src="~/Scripts/jquery.cslide.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#cslide-slides-int1").cslide();
+        $("#cslide-slides-int2").cslide();
+        $("#cslide-slides-int3").cslide();
+    });
+</script>
+
+<div class="jblock_01">
+    <!--Sub Menu-->
+        @Html.Partial("~/Areas/Jleague/Views/Shared/JleagueTeamMenu.cshtml")
+        <!--Person Info-->
+        @Html.Action("ShowPersonInfo", "JlgRightContent", new { area = "Jleague", teamID = @ViewBag.TeamID, playerID = @ViewBag.PlayerID })
+        @if (Model != null && Model.PlayerInfoYear != null)
+        {
+
+            <div class="space"> </div>
+            <h4>@string.Format("{0}シーズン成績（{1}）", Model.PlayerInfoYear.PlayerStatsReportPS.Year, ViewBag.TeamName)</h4>
+            <div class="row">
+                <dl class="feed_row">
+                    <dt>得点</dt>
+                    <dd><span class="fi">@Model.PlayerInfoYear.PlayerInfoPS.Goal</span></dd>
+                </dl>
+                <dl class="feed_row">
+                    <dt>PK</dt>
+                    <dd><span class="fi">@Model.PlayerInfoYear.PlayerInfoPS.GoalPK</span></dd>
+                </dl>
+                <dl class="feed_row">
+                    <dt>シュート</dt>
+                    <dd><span class="fi">@Model.PlayerInfoYear.PlayerInfoPS.Shoot</span></dd>
+                </dl>
+            </div>
+            <div class="row">
+                <dl class="feed_row">
+                    <dt>警告</dt>
+                    <dd><span class="fi">@Model.PlayerInfoYear.PlayerInfoPS.Yellow</span></dd>
+                </dl>
+                <dl class="feed_row">
+                    <dt>退場</dt>
+                    <dd><span class="fi">@Model.PlayerInfoYear.PlayerInfoPS.Red</span></dd>
+                </dl>
+                <dl class="feed_row">
+                    <dt>試合数</dt>
+                    <dd><span class="fi">@Model.PlayerInfoYear.PlayerInfoPS.Game</span></dd>
+                </dl>
+            </div>
+            <div class="row">
+                <dl class="feed_row">
+                    <dt>出場時間</dt>
+                    <dd><span class="fi">@string.Format("{0}分", Model.PlayerInfoYear.PlayerInfoPS.Time)</span></dd>
+                </dl>
+                <dl class="feed_row">
+                    <dt>シュート決定率</dt>
+                    <dd><span class="fi">@String.Format("{0:0.0000}％", System.Math.Round((double)(Model.PlayerInfoYear.PlayerInfoPS.Shoot > 0 ? 100 * Model.PlayerInfoYear.PlayerInfoPS.Goal / Model.PlayerInfoYear.PlayerInfoPS.Shoot : 0), 4, MidpointRounding.AwayFromZero))</span></dd>
+                </dl>
+                <dl class="feed_row">
+                    <dt>９０分平均得点</dt>
+                    <dd><span class="fi">@String.Format("{0:0.0000}点", System.Math.Round((double)(Model.PlayerInfoYear.PlayerInfoPS.Time > 0 ? 90 * Model.PlayerInfoYear.PlayerInfoPS.Goal / Model.PlayerInfoYear.PlayerInfoPS.Time : 0), 4, MidpointRounding.AwayFromZero))</span></dd>
+                </dl>
+            </div>
+        }
+
+        <div class="space20"> </div>
+        <h4>通算成績</h4>
+        @if (Model != null && Model.PlayerSum != null)
+        {
+            <div class="row">
+                <dl class="feed_row">
+                    <dt>試合数</dt>
+                    <dd><span class="fi">@Model.PlayerSum.Game</span></dd>
+                </dl>
+                <dl class="feed_row">
+                    <dt>得点</dt>
+                    <dd><span class="fi">@Model.PlayerSum.Goal</span></dd>
+                </dl>
+            </div>
+        }
+        @if (Model != null && Model.PlayerInfoYear != null)
+        {
+
+            <div class="space20"></div>
+            <h4 class="mem_title01">@string.Format("{0}シーズン各節の成績（{1}）  ([S]:スタメン出場)", Model.PlayerInfoYear.PlayerStatsReportPS.Year, ViewBag.TeamName)</h4>
+            if (Model.PlayerInfoOccasion != null && Model.PlayerInfoOccasion.Any())
+            {
+                <div class="clear">
+                    <table class="jtbl02" cellpadding="0" cellspacing="0" summary="content1">
+                        <col width="13%" />
+                        <col width="22%" />
+                        <col width="13%" />
+                        <col width="13%" />
+                        <col width="13%" />
+                        <col width="13%" />
+                        <col width="13%" />
+                        <thead valign="top">
+                            <tr>
+                                <th>節</th>
+                                <th>出場時間</th>
+                                <th>得点</th>
+                                <th>PK得点</th>
+                                <th>シュート</th>
+                                <th>警告</th>
+                                <th>退場</th>
+                            </tr>
+                        </thead>
+                        <tbody valign="top">
+                            @{
+                int OccasionNoMax = 0;
+                foreach (var item in Model.PlayerInfoOccasion)
+                {
+                    OccasionNoMax = (int)@item.OccasionNo;
+                }
+
+                var i = 1;
+                foreach (var item in Model.PlayerInfoOccasion)
+                {
+                    for (; i < @item.OccasionNo; i++)
+                    {
+                        <tr>
+                            <td><span class="fi">@i</span></td>
+                            <td><span class="fi">0分</span></td>
+                            <td><span class="fi">0</span></td>
+                            <td><span class="fi">0</span></td>
+                            <td><span class="fi">0</span></td>
+                            <td><span class="fi">0</span></td>
+                            <td><span class="fi">0</span></td>
+                        </tr>
+                    }
+                    <tr>
+                        <td><span class="fi">@item.OccasionNo</span></td>
+                        <td><span class="fi">@string.Format("{0}分　{1}", item.Time, item.StartF == 1 ? "[S]" : "")</span></td>
+                        <td><span class="fi">@item.Score</span></td>
+                        <td><span class="fi">@item.PKScore</span></td>
+                        <td><span class="fi">@item.Shoot</span></td>
+                        <td><span class="fi">@item.Yellow</span></td>
+                        <td><span class="fi">@item.Red</span></td>
+                    </tr>
+                    i = 1 + (int)@item.OccasionNo;
+                }
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            }
+        }
+
+        <div class="space20"> </div>
+        <!--Post Info-->
+        @if (Model.TeamPostedInfoList != null && Model.TeamPostedInfoList.Any())
+        {
+            <div class="cat_stitle">
+                <h3>@ViewBag.TeamName 投稿記事</h3>
+                <p><a href="/user_article/1/sport/">投稿記事をもっと読む</a></p>
+            </div>
+            <ul class="evt_list01">
+                @foreach (var post in Model.TeamPostedInfoList.Take(3))
+                {
+                    string postContent = string.Format("{0}&nbsp;&nbsp;&nbsp;{1}投稿", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                    <li>
+                        <a href="/user/@post.MemberId/"><img src="@post.ProfileImg" alt="icon" /></a>
+                        <a class="bold" href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a>
+                        <br />
+                        @Html.Raw(postContent)
+                    </li>
+                }
+            </ul>
+        }
+        <div class="space20"></div>
+        <!--News Player Info-->
+        @Html.Action("ShowJlgRecentNews", "JlgRightContent", new { area = "Jleague", type = @ViewBag.Name, teamID = @ViewBag.TeamID })
+    </div>
+
+<!--Right Content-->
+@section JlgPage{
+    <div class="cat_stitle">
+
+        @*Html.Action("ShowJlgRightRecentNews", "JlgRightRecentNews", new { area = "Jleague" })*@
+        
+        @if (ViewBag.JleagueMenu == 2)
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_J1, jType = 1 })
+        }
+        else if (ViewBag.JleagueMenu == 3)
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_J2, jType = 2 })
+        }
+        else 
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_NABISCO, jType = ViewBag.JType })
+        }
+    </div>
+}

@@ -1,0 +1,85 @@
+﻿@{
+    // Developer	: Endo
+    // Html No      : 3-10
+}
+@using Splg.Areas.MyPage.Models.ViewModel;
+@model Splg.Areas.MyPage.Models.ViewModel.MyPageRecentExpectedListViewModel
+@{
+    ViewBag.Title = "予想結果";
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.RECENT_EXPECTEDLIST_INDEX;
+    Layout = "~/Views/Shared/Mobile/_MyPageLayout.cshtml";
+}
+<script src="~/Scripts/jquery.shorten.1.0.js"></script>
+<script src="~/Areas/MyPage/Scripts/Mobile/3-10.js"></script>
+<script src="~/Scripts/Home.js"></script>
+<script src="~/Scripts/cookie.js"></script>
+
+<!--Popup-->
+<div class="outside_overclay">
+    <div class="tutorial_popup">
+        <p class="close_popup popclose"><img src="img/tmp/close.png" alt="exit" /></p>
+        <h2 class="add_pop_title" id="popTitleSp">
+            スポログとは？
+        </h2>
+        <div class="add_image" id="imgTutorial01">
+            <img src="~/Content/img/tmp/tutorial_01_sp.gif" alt="">
+        </div>
+        <p class="add_pagr01" id="contentSp01">
+        </p>
+        <p class="add_pagr01" id="contentSp02"></p>
+        <p class="sig-submit" id="nextPopupSp"><a href="javascript:;">ポイントを貯めると？</a></p>
+    </div>
+</div>
+<!--Popup--> 
+
+@if (Model != null)
+{
+    <section class="block_8" id="PosessionPoint">
+        @if (Session["CurrentUser"] != null)
+        {
+            @Html.Action("ShowPointAlert", "Home", new { area = "" })
+        }
+        <div class="ad_row03">
+            <h2 class="fs14">あなたの試合予想</h2>
+        </div>    
+    </section>
+    <div class="block_3">
+        <ul class="tabs-list indtab01 clear">
+            <li id="yesterday" style="width:50%"><a href="#group02">@Html.DisplayFor(m => Model.Yesterday)の試合</a></li>
+            <li id="today" class="active" style="width:50%"><a href="#group01">@Html.DisplayFor(m => Model.Today)の試合</a></li>
+        </ul>
+        <div id="group02" class="tab-flag" style="display:none">
+            @if (Model.GameInfoYdy.Count() > 0)
+            {
+                @Html.Partial("~/Areas/MyPage/Views/Shared/Mobile/_MyPageExpectedListInfo.cshtml", Model.GameInfoYdy)
+            }
+            else
+            { 
+                <div class="ad_inner">
+                    <div class="add_nohit">
+                        <h3 class="tcenter fs18">予想している試合はありません。</h3>
+                    </div>
+                    <p class="sig-submit">@Html.ActionLink("サイトトップへ", "Index", "Home", new { area = string.Empty }, null)</p>
+                </div>
+            }
+        </div>
+        <div id="group01" class="tab-flag" style="display:block">
+            @if (Model.GameInfoTdy.Count() > 0)
+            {
+                @Html.Partial("~/Areas/MyPage/Views/Shared/Mobile/_MyPageExpectedListInfo.cshtml", Model.GameInfoTdy)
+            }
+            else
+            {
+                <div class="ad_inner">
+                    <div class="add_nohit">
+                        <h3 class="tcenter fs18">予想している試合はありません。</h3>
+                    </div>
+                    <p class="sig-submit">@Html.ActionLink("サイトトップへ", "Index", "Home", new { area = string.Empty }, null)</p>
+                </div>
+            }
+        </div>
+        <div class="ad_morelink">
+            <a href="@Url.Action("Index", "MyPageExpectedList", new { area = "MyPage" }, null)">全ての試合予想を見る >></a>
+        </div>
+    </div>
+}

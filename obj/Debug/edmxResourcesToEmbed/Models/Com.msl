@@ -1,0 +1,936 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ComModelStoreContainer" CdmEntityContainer="ComEntities">
+    <EntitySetMapping Name="BriefNews">
+      <EntityTypeMapping TypeName="ComModel.BriefNews">
+        <MappingFragment StoreEntitySet="BriefNews">
+          <ScalarProperty Name="NewsItemID" ColumnName="NewsItemID" />
+          <ScalarProperty Name="DateFolderName" ColumnName="DateFolderName" />
+          <ScalarProperty Name="Filename" ColumnName="Filename" />
+          <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+          <ScalarProperty Name="CarryLimitDate" ColumnName="CarryLimitDate" />
+          <ScalarProperty Name="RevisionID" ColumnName="RevisionID" />
+          <ScalarProperty Name="Update" ColumnName="Update" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Headline" ColumnName="Headline" />
+          <ScalarProperty Name="SubHeadline" ColumnName="SubHeadline" />
+          <ScalarProperty Name="newstext" ColumnName="newstext" />
+          <ScalarProperty Name="SentFrom" ColumnName="SentFrom" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CampaignInfo">
+      <EntityTypeMapping TypeName="ComModel.CampaignInfo">
+        <MappingFragment StoreEntitySet="CampaignInfo">
+          <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+          <ScalarProperty Name="CampaignTitle" ColumnName="CampaignTitle" />
+          <ScalarProperty Name="CampaignClass" ColumnName="CampaignClass" />
+          <ScalarProperty Name="Condition" ColumnName="Condition" />
+          <ScalarProperty Name="Points" ColumnName="Points" />
+          <ScalarProperty Name="GiveTime" ColumnName="GiveTime" />
+          <ScalarProperty Name="CampaignStartTime" ColumnName="CampaignStartTime" />
+          <ScalarProperty Name="CampaignEndTime" ColumnName="CampaignEndTime" />
+          <ScalarProperty Name="CreatedAccountId" ColumnName="CreatedAccountId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contribution">
+      <EntityTypeMapping TypeName="ComModel.Contribution">
+        <MappingFragment StoreEntitySet="Contribution">
+          <ScalarProperty Name="ContributeId" ColumnName="ContributeId" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="ContributedPicture" ColumnName="ContributedPicture" />
+          <ScalarProperty Name="ContributeDate" ColumnName="ContributeDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContributionQuotOrg">
+      <EntityTypeMapping TypeName="ComModel.ContributionQuotOrg">
+        <MappingFragment StoreEntitySet="ContributionQuotOrg">
+          <ScalarProperty Name="ContributeId" ColumnName="ContributeId" />
+          <ScalarProperty Name="NewsClassId" ColumnName="NewsClassId" />
+          <ScalarProperty Name="QuoteUniqueId1" ColumnName="QuoteUniqueId1" />
+          <ScalarProperty Name="QuoteUniqueId2" ColumnName="QuoteUniqueId2" />
+          <ScalarProperty Name="QuoteUniqueId3" ColumnName="QuoteUniqueId3" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CurrentDayPerExpectTargetTotalPoint">
+      <EntityTypeMapping TypeName="ComModel.CurrentDayPerExpectTargetTotalPoint">
+        <MappingFragment StoreEntitySet="CurrentDayPerExpectTargetTotalPoint">
+          <ScalarProperty Name="ExpectTargetID" ColumnName="ExpectTargetID" />
+          <ScalarProperty Name="TotalPoint" ColumnName="TotalPoint" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Deviation">
+      <EntityTypeMapping TypeName="ComModel.Deviation">
+        <MappingFragment StoreEntitySet="Deviation">
+          <ScalarProperty Name="StartYear" ColumnName="StartYear" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Week" ColumnName="Week" />
+          <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+          <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+          <ScalarProperty Name="ClassClass" ColumnName="ClassClass" />
+          <ScalarProperty Name="ExpectationsDeviation" ColumnName="ExpectationsDeviation" />
+          <ScalarProperty Name="BetrayalDeviation" ColumnName="BetrayalDeviation" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EntryHistory">
+      <EntityTypeMapping TypeName="ComModel.EntryHistory">
+        <MappingFragment StoreEntitySet="EntryHistory">
+          <ScalarProperty Name="EntryHistoryId" ColumnName="EntryHistoryId" />
+          <ScalarProperty Name="PayOffPointsId" ColumnName="PayOffPointsId" />
+          <ScalarProperty Name="PrizeId" ColumnName="PrizeId" />
+          <ScalarProperty Name="EntryPoint" ColumnName="EntryPoint" />
+          <ScalarProperty Name="EntryHistoryTime" ColumnName="EntryHistoryTime" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExpectTarget">
+      <EntityTypeMapping TypeName="ComModel.ExpectTarget">
+        <MappingFragment StoreEntitySet="ExpectTarget">
+          <ScalarProperty Name="ExpectTargetID" ColumnName="ExpectTargetID" />
+          <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+          <ScalarProperty Name="ClassClass" ColumnName="ClassClass" />
+          <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="StartScheduleDate" ColumnName="StartScheduleDate" />
+          <ScalarProperty Name="FixBetSelectID" ColumnName="FixBetSelectID" />
+          <ScalarProperty Name="FixDate" ColumnName="FixDate" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FollowList">
+      <EntityTypeMapping TypeName="ComModel.FollowList">
+        <MappingFragment StoreEntitySet="FollowList">
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="FollowerMemberID" ColumnName="FollowerMemberID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupMember">
+      <EntityTypeMapping TypeName="ComModel.GroupMember">
+        <MappingFragment StoreEntitySet="GroupMember">
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="ComModel.Groups">
+        <MappingFragment StoreEntitySet="Groups">
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItpcSubject">
+      <EntityTypeMapping TypeName="ComModel.ItpcSubject">
+        <MappingFragment StoreEntitySet="ItpcSubject">
+          <ScalarProperty Name="NewsItemID" ColumnName="NewsItemID" />
+          <ScalarProperty Name="IptcSubjectCode" ColumnName="IptcSubjectCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItpcSubjectMaster">
+      <EntityTypeMapping TypeName="ComModel.ItpcSubjectMaster">
+        <MappingFragment StoreEntitySet="ItpcSubjectMaster">
+          <ScalarProperty Name="IptcSubjectCode" ColumnName="IptcSubjectCode" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="SubjectMatter" ColumnName="SubjectMatter" />
+          <ScalarProperty Name="SubjectDetail" ColumnName="SubjectDetail" />
+          <ScalarProperty Name="SubjectJp" ColumnName="SubjectJp" />
+          <ScalarProperty Name="SubjectMatterJp" ColumnName="SubjectMatterJp" />
+          <ScalarProperty Name="SubjectDetailJp" ColumnName="SubjectDetailJp" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LikeSports">
+      <EntityTypeMapping TypeName="ComModel.LikeSports">
+        <MappingFragment StoreEntitySet="LikeSports">
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LikeTeam">
+      <EntityTypeMapping TypeName="ComModel.LikeTeam">
+        <MappingFragment StoreEntitySet="LikeTeam">
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoginHistory">
+      <EntityTypeMapping TypeName="ComModel.LoginHistory">
+        <MappingFragment StoreEntitySet="LoginHistory">
+          <ScalarProperty Name="LoginHistoryId" ColumnName="LoginHistoryId" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MailDeliverCond">
+      <EntityTypeMapping TypeName="ComModel.MailDeliverCond">
+        <MappingFragment StoreEntitySet="MailDeliverCond">
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="MailDelivCondID" ColumnName="MailDelivCondID" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MonthlyResults">
+      <EntityTypeMapping TypeName="ComModel.MonthlyResults">
+        <MappingFragment StoreEntitySet="MonthlyResults">
+          <ScalarProperty Name="ReleVantYear" ColumnName="ReleVantYear" />
+          <ScalarProperty Name="ReleVantMonth" ColumnName="ReleVantMonth" />
+          <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="ExpectNumber" ColumnName="ExpectNumber" />
+          <ScalarProperty Name="CorrectPercent" ColumnName="CorrectPercent" />
+          <ScalarProperty Name="CorrectPoint" ColumnName="CorrectPoint" />
+          <ScalarProperty Name="CalculationDate" ColumnName="CalculationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsGenre">
+      <EntityTypeMapping TypeName="ComModel.NewsGenre">
+        <MappingFragment StoreEntitySet="NewsGenre">
+          <ScalarProperty Name="NewsItemID" ColumnName="NewsItemID" />
+          <ScalarProperty Name="LargeCategory" ColumnName="LargeCategory" />
+          <ScalarProperty Name="SmallCategory" ColumnName="SmallCategory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsGenreMaster">
+      <EntityTypeMapping TypeName="ComModel.NewsGenreMaster">
+        <MappingFragment StoreEntitySet="NewsGenreMaster">
+          <ScalarProperty Name="LargeCategory" ColumnName="LargeCategory" />
+          <ScalarProperty Name="SmallCategory" ColumnName="SmallCategory" />
+          <ScalarProperty Name="LargeCategoryJp" ColumnName="LargeCategoryJp" />
+          <ScalarProperty Name="SmallCategoryJp" ColumnName="SmallCategoryJp" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsHistory">
+      <EntityTypeMapping TypeName="ComModel.NewsHistory">
+        <MappingFragment StoreEntitySet="NewsHistory">
+          <ScalarProperty Name="DateFolderName" ColumnName="DateFolderName" />
+          <ScalarProperty Name="Filename" ColumnName="Filename" />
+          <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NoticeInfo">
+      <EntityTypeMapping TypeName="ComModel.NoticeInfo">
+        <MappingFragment StoreEntitySet="NoticeInfo">
+          <ScalarProperty Name="NoticeBody" ColumnName="NoticeBody" />
+          <ScalarProperty Name="MailDelivCondID" ColumnName="MailDelivCondID" />
+          <ScalarProperty Name="NoticeId" ColumnName="NoticeId" />
+          <ScalarProperty Name="NoticeClass" ColumnName="NoticeClass" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="DeliveryTime" ColumnName="DeliveryTime" />
+          <ScalarProperty Name="NoticeDisplayEndTime" ColumnName="NoticeDisplayEndTime" />
+          <ScalarProperty Name="TransitionsURL" ColumnName="TransitionsURL" />
+          <ScalarProperty Name="MailCC" ColumnName="MailCC" />
+          <ScalarProperty Name="MailBCC" ColumnName="MailBCC" />
+          <ScalarProperty Name="MailSendStatus" ColumnName="MailSendStatus" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PageInfo">
+      <EntityTypeMapping TypeName="ComModel.PageInfo">
+        <MappingFragment StoreEntitySet="PageInfo">
+          <ScalarProperty Name="PageNo" ColumnName="PageNo" />
+          <ScalarProperty Name="PageName" ColumnName="PageName" />
+          <ScalarProperty Name="MemberStatus" ColumnName="MemberStatus" />
+          <ScalarProperty Name="Url1" ColumnName="Url1" />
+          <ScalarProperty Name="Url2" ColumnName="Url2" />
+          <ScalarProperty Name="Url3" ColumnName="Url3" />
+          <ScalarProperty Name="Url4" ColumnName="Url4" />
+          <ScalarProperty Name="Url5" ColumnName="Url5" />
+          <ScalarProperty Name="Url6" ColumnName="Url6" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+          <ScalarProperty Name="CanAutomatic" ColumnName="CanAutomatic" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhotoNews">
+      <EntityTypeMapping TypeName="ComModel.PhotoNews">
+        <MappingFragment StoreEntitySet="PhotoNews">
+          <ScalarProperty Name="NewsItemID" ColumnName="NewsItemID" />
+          <ScalarProperty Name="Duid" ColumnName="Duid" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PointHistory">
+      <EntityTypeMapping TypeName="ComModel.PointHistory">
+        <MappingFragment StoreEntitySet="PointHistory">
+          <ScalarProperty Name="HistoryClass" ColumnName="HistoryClass" />
+          <ScalarProperty Name="PontHistoryId" ColumnName="PontHistoryId" />
+          <ScalarProperty Name="PointId" ColumnName="PointId" />
+          <ScalarProperty Name="ExpectPointId" ColumnName="ExpectPointId" />
+          <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+          <ScalarProperty Name="PointClass" ColumnName="PointClass" />
+          <ScalarProperty Name="Points" ColumnName="Points" />
+          <ScalarProperty Name="AdjustmentClass" ColumnName="AdjustmentClass" />
+          <ScalarProperty Name="OperationClass" ColumnName="OperationClass" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PointRanking">
+      <EntityTypeMapping TypeName="ComModel.PointRanking">
+        <MappingFragment StoreEntitySet="PointRanking">
+          <ScalarProperty Name="ReleVantYear" ColumnName="ReleVantYear" />
+          <ScalarProperty Name="ReleVantMonth" ColumnName="ReleVantMonth" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="PayOffPoints" ColumnName="PayOffPoints" />
+          <ScalarProperty Name="CalculationDate" ColumnName="CalculationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PopularTopicsAggregate">
+      <EntityTypeMapping TypeName="ComModel.PopularTopicsAggregate">
+        <MappingFragment StoreEntitySet="PopularTopicsAggregate">
+          <ScalarProperty Name="TargetDate" ColumnName="TargetDate" />
+          <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+          <ScalarProperty Name="NewsClassID" ColumnName="NewsClassID" />
+          <ScalarProperty Name="Views" ColumnName="Views" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PrefectureMaster">
+      <EntityTypeMapping TypeName="ComModel.PrefectureMaster">
+        <MappingFragment StoreEntitySet="PrefectureMaster">
+          <ScalarProperty Name="PrefecturesID" ColumnName="PrefecturesID" />
+          <ScalarProperty Name="PrefecturesName" ColumnName="PrefecturesName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prize">
+      <EntityTypeMapping TypeName="ComModel.Prize">
+        <MappingFragment StoreEntitySet="Prize">
+          <ScalarProperty Name="PrizeID" ColumnName="PrizeID" />
+          <ScalarProperty Name="PrizeName" ColumnName="PrizeName" />
+          <ScalarProperty Name="PrizeImg" ColumnName="PrizeImg" />
+          <ScalarProperty Name="PrizeDescription" ColumnName="PrizeDescription" />
+          <ScalarProperty Name="PrizePoints" ColumnName="PrizePoints" />
+          <ScalarProperty Name="PrizeMethod" ColumnName="PrizeMethod" />
+          <ScalarProperty Name="EntryStartTime" ColumnName="EntryStartTime" />
+          <ScalarProperty Name="EntryEndTime" ColumnName="EntryEndTime" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuotTopic">
+      <EntityTypeMapping TypeName="ComModel.QuotTopic">
+        <MappingFragment StoreEntitySet="QuotTopic">
+          <ScalarProperty Name="ContributeID" ColumnName="ContributeID" />
+          <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SeasonTotalResults">
+      <EntityTypeMapping TypeName="ComModel.SeasonTotalResults">
+        <MappingFragment StoreEntitySet="SeasonTotalResults">
+          <ScalarProperty Name="StartYear" ColumnName="StartYear" />
+          <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="ExpectNumber" ColumnName="ExpectNumber" />
+          <ScalarProperty Name="CorrectPercent" ColumnName="CorrectPercent" />
+          <ScalarProperty Name="CorrectPoint" ColumnName="CorrectPoint" />
+          <ScalarProperty Name="LastTotalDate" ColumnName="LastTotalDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SNSShareHistory">
+      <EntityTypeMapping TypeName="ComModel.SNSShareHistory">
+        <MappingFragment StoreEntitySet="SNSShareHistory">
+          <ScalarProperty Name="SNSShareHistoryId" ColumnName="SNSShareHistoryId" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="SnsID" ColumnName="SnsID" />
+          <ScalarProperty Name="ContributeId" ColumnName="ContributeId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SportsMaster">
+      <EntityTypeMapping TypeName="ComModel.SportsMaster">
+        <MappingFragment StoreEntitySet="SportsMaster">
+          <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+          <ScalarProperty Name="SportsName" ColumnName="SportsName" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemParamater">
+      <EntityTypeMapping TypeName="ComModel.SystemParamater">
+        <MappingFragment StoreEntitySet="SystemParamater">
+          <ScalarProperty Name="Scode" ColumnName="Scode" />
+          <ScalarProperty Name="Spara" ColumnName="Spara" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TokenAcInfo">
+      <EntityTypeMapping TypeName="ComModel.TokenAcInfo">
+        <MappingFragment StoreEntitySet="TokenAcInfo">
+          <ScalarProperty Name="TokenID" ColumnName="TokenID" />
+          <ScalarProperty Name="TokenValue" ColumnName="TokenValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TokenControl">
+      <EntityTypeMapping TypeName="ComModel.TokenControl">
+        <MappingFragment StoreEntitySet="TokenControl">
+          <ScalarProperty Name="TokenID" ColumnName="TokenID" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="TokenClass" ColumnName="TokenClass" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TotalDailyReport">
+      <EntityTypeMapping TypeName="ComModel.TotalDailyReport">
+        <MappingFragment StoreEntitySet="TotalDailyReport">
+          <ScalarProperty Name="TotalTargetTime" ColumnName="TotalTargetTime" />
+          <ScalarProperty Name="SportsId" ColumnName="SportsId" />
+          <ScalarProperty Name="TotalTargetYear" ColumnName="TotalTargetYear" />
+          <ScalarProperty Name="TotalTargetMonth" ColumnName="TotalTargetMonth" />
+          <ScalarProperty Name="TotalTargetDay" ColumnName="TotalTargetDay" />
+          <ScalarProperty Name="GameCount" ColumnName="GameCount" />
+          <ScalarProperty Name="ExpectCount" ColumnName="ExpectCount" />
+          <ScalarProperty Name="FirstExpectCount" ColumnName="FirstExpectCount" />
+          <ScalarProperty Name="ContinueExpectCount" ColumnName="ContinueExpectCount" />
+          <ScalarProperty Name="PerExpectCount" ColumnName="PerExpectCount" />
+          <ScalarProperty Name="UuExpectCount" ColumnName="UuExpectCount" />
+          <ScalarProperty Name="WriteCount" ColumnName="WriteCount" />
+          <ScalarProperty Name="WriteUuCount" ColumnName="WriteUuCount" />
+          <ScalarProperty Name="UuWriteCount" ColumnName="UuWriteCount" />
+          <ScalarProperty Name="GroundTotalWirte" ColumnName="GroundTotalWirte" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TotalMemberReport">
+      <EntityTypeMapping TypeName="ComModel.TotalMemberReport">
+        <MappingFragment StoreEntitySet="TotalMemberReport">
+          <ScalarProperty Name="TotalTargetTime" ColumnName="TotalTargetTime" />
+          <ScalarProperty Name="SportsId" ColumnName="SportsId" />
+          <ScalarProperty Name="TotalTargetYear" ColumnName="TotalTargetYear" />
+          <ScalarProperty Name="TotalTargetMonth" ColumnName="TotalTargetMonth" />
+          <ScalarProperty Name="TotalTargetDay" ColumnName="TotalTargetDay" />
+          <ScalarProperty Name="TotalTargetWeek" ColumnName="TotalTargetWeek" />
+          <ScalarProperty Name="MemberCount" ColumnName="MemberCount" />
+          <ScalarProperty Name="ExitCount" ColumnName="ExitCount" />
+          <ScalarProperty Name="GroundTotalMember" ColumnName="GroundTotalMember" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TotalMonthlyReport">
+      <EntityTypeMapping TypeName="ComModel.TotalMonthlyReport">
+        <MappingFragment StoreEntitySet="TotalMonthlyReport">
+          <ScalarProperty Name="SportsId" ColumnName="SportsId" />
+          <ScalarProperty Name="TotalTargetYear" ColumnName="TotalTargetYear" />
+          <ScalarProperty Name="TotalTargetMonth" ColumnName="TotalTargetMonth" />
+          <ScalarProperty Name="GameCount" ColumnName="GameCount" />
+          <ScalarProperty Name="ExpectCount" ColumnName="ExpectCount" />
+          <ScalarProperty Name="FirstExpectCount" ColumnName="FirstExpectCount" />
+          <ScalarProperty Name="ContinueExpectCount" ColumnName="ContinueExpectCount" />
+          <ScalarProperty Name="PerExpectCount" ColumnName="PerExpectCount" />
+          <ScalarProperty Name="UuExpectCount" ColumnName="UuExpectCount" />
+          <ScalarProperty Name="WriteCount" ColumnName="WriteCount" />
+          <ScalarProperty Name="WriteUuCount" ColumnName="WriteUuCount" />
+          <ScalarProperty Name="UuWriteCount" ColumnName="UuWriteCount" />
+          <ScalarProperty Name="GroundTotalWirte" ColumnName="GroundTotalWirte" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TotalWeeklyReport">
+      <EntityTypeMapping TypeName="ComModel.TotalWeeklyReport">
+        <MappingFragment StoreEntitySet="TotalWeeklyReport">
+          <ScalarProperty Name="SportsId" ColumnName="SportsId" />
+          <ScalarProperty Name="TotalTargetYear" ColumnName="TotalTargetYear" />
+          <ScalarProperty Name="TotalTargetMonth" ColumnName="TotalTargetMonth" />
+          <ScalarProperty Name="TotalTargetWeek" ColumnName="TotalTargetWeek" />
+          <ScalarProperty Name="GameCount" ColumnName="GameCount" />
+          <ScalarProperty Name="ExpectCount" ColumnName="ExpectCount" />
+          <ScalarProperty Name="FirstExpectCount" ColumnName="FirstExpectCount" />
+          <ScalarProperty Name="ContinueExpectCount" ColumnName="ContinueExpectCount" />
+          <ScalarProperty Name="PerExpectCount" ColumnName="PerExpectCount" />
+          <ScalarProperty Name="UuExpectCount" ColumnName="UuExpectCount" />
+          <ScalarProperty Name="WriteCount" ColumnName="WriteCount" />
+          <ScalarProperty Name="WriteUuCount" ColumnName="WriteUuCount" />
+          <ScalarProperty Name="UuWriteCount" ColumnName="UuWriteCount" />
+          <ScalarProperty Name="GroundTotalWirte" ColumnName="GroundTotalWirte" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WeekResults">
+      <EntityTypeMapping TypeName="ComModel.WeekResults">
+        <MappingFragment StoreEntitySet="WeekResults">
+          <ScalarProperty Name="RelevantYear" ColumnName="RelevantYear" />
+          <ScalarProperty Name="RelevantMonth" ColumnName="RelevantMonth" />
+          <ScalarProperty Name="RelevantWeek" ColumnName="RelevantWeek" />
+          <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="ExpectNumber" ColumnName="ExpectNumber" />
+          <ScalarProperty Name="CorrectPercent" ColumnName="CorrectPercent" />
+          <ScalarProperty Name="CorrectPoint" ColumnName="CorrectPoint" />
+          <ScalarProperty Name="CalculationDate" ColumnName="CalculationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SportsStandardDeviation">
+      <EntityTypeMapping TypeName="ComModel.SportsStandardDeviation">
+        <MappingFragment StoreEntitySet="SportsStandardDeviation">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="BetrayalStandardDeviation" ColumnName="BetrayalStandardDeviation" />
+          <ScalarProperty Name="BetrayalVariance" ColumnName="BetrayalVariance" />
+          <ScalarProperty Name="BetrayalAverage" ColumnName="BetrayalAverage" />
+          <ScalarProperty Name="ExpectationsStandardDeviation" ColumnName="ExpectationsStandardDeviation" />
+          <ScalarProperty Name="ExpectationsVariance" ColumnName="ExpectationsVariance" />
+          <ScalarProperty Name="ExpectationsAverage" ColumnName="ExpectationsAverage" />
+          <ScalarProperty Name="ClassClass" ColumnName="ClassClass" />
+          <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+          <ScalarProperty Name="StartYear" ColumnName="StartYear" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BetClassMaster">
+      <EntityTypeMapping TypeName="ComModel.BetClassMaster">
+        <MappingFragment StoreEntitySet="BetClassMaster">
+          <ScalarProperty Name="BetClassName" ColumnName="BetClassName" />
+          <ScalarProperty Name="GameClassCD" ColumnName="GameClassCD" />
+          <ScalarProperty Name="SportsID" ColumnName="SportsID" />
+          <ScalarProperty Name="BetClassID" ColumnName="BetClassID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BackOfficeAccount">
+      <EntityTypeMapping TypeName="ComModel.BackOfficeAccount">
+        <MappingFragment StoreEntitySet="BackOfficeAccount">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedAccountId" ColumnName="CreatedAccountId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="PasswordLastUpdateTime" ColumnName="PasswordLastUpdateTime" />
+          <ScalarProperty Name="PasswordExpireDate" ColumnName="PasswordExpireDate" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExpectPoint">
+      <EntityTypeMapping TypeName="ComModel.ExpectPoint">
+        <MappingFragment StoreEntitySet="ExpectPoint">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="SituationStatus" ColumnName="SituationStatus" />
+          <ScalarProperty Name="VorD" ColumnName="VorD" />
+          <ScalarProperty Name="BetSelectID" ColumnName="BetSelectID" />
+          <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+          <ScalarProperty Name="ClassClass" ColumnName="ClassClass" />
+          <ScalarProperty Name="AcquisitionPoint" ColumnName="AcquisitionPoint" />
+          <ScalarProperty Name="ExpectPoint1" ColumnName="ExpectPoint" />
+          <ScalarProperty Name="PointID" ColumnName="PointID" />
+          <ScalarProperty Name="ExpectTargetID" ColumnName="ExpectTargetID" />
+          <ScalarProperty Name="ExpectPointID" ColumnName="ExpectPointID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Member">
+      <EntityTypeMapping TypeName="ComModel.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="CompelExitTime" ColumnName="CompelExitTime" />
+          <ScalarProperty Name="ExitTime" ColumnName="ExitTime" />
+          <ScalarProperty Name="RegistTime" ColumnName="RegistTime" />
+          <ScalarProperty Name="InterimRegistTime" ColumnName="InterimRegistTime" />
+          <ScalarProperty Name="LoginKeepFlg" ColumnName="LoginKeepFlg" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="PrefecturesId" ColumnName="PrefecturesId" />
+          <ScalarProperty Name="BirthdayDay" ColumnName="BirthdayDay" />
+          <ScalarProperty Name="BirthdayMonth" ColumnName="BirthdayMonth" />
+          <ScalarProperty Name="BirthdayYear" ColumnName="BirthdayYear" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="ProfileImg" ColumnName="ProfileImg" />
+          <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+          <ScalarProperty Name="DisplayMemberId" ColumnName="DisplayMemberId" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsReading">
+      <EntityTypeMapping TypeName="ComModel.NewsReading">
+        <MappingFragment StoreEntitySet="NewsReading">
+          <ScalarProperty Name="NewsReadingID" ColumnName="NewsReadingID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="NewsItemID" ColumnName="NewsItemID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsTopic">
+      <EntityTypeMapping TypeName="ComModel.NewsTopic">
+        <MappingFragment StoreEntitySet="NewsTopic">
+          <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+          <ScalarProperty Name="NewsItemID" ColumnName="NewsItemID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TopicMaster">
+      <EntityTypeMapping TypeName="ComModel.TopicMaster">
+        <MappingFragment StoreEntitySet="TopicMaster">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="JumpUrl" ColumnName="JumpUrl" />
+          <ScalarProperty Name="TopicName" ColumnName="TopicName" />
+          <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+          <ScalarProperty Name="ClassificationType" ColumnName="ClassificationType" />
+          <ScalarProperty Name="SportID" ColumnName="SportID" />
+          <ScalarProperty Name="TopicID" ColumnName="TopicID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OddsInfo">
+      <EntityTypeMapping TypeName="ComModel.OddsInfo">
+        <MappingFragment StoreEntitySet="OddsInfo">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="FixDate" ColumnName="FixDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Odds" ColumnName="Odds" />
+          <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+          <ScalarProperty Name="ClassificationType" ColumnName="ClassificationType" />
+          <ScalarProperty Name="SportID" ColumnName="SportID" />
+          <ScalarProperty Name="BetSelectMasterID" ColumnName="BetSelectMasterID" />
+          <ScalarProperty Name="ExpectTargetID" ColumnName="ExpectTargetID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayOffPoints">
+      <EntityTypeMapping TypeName="ComModel.PayOffPoints">
+        <MappingFragment StoreEntitySet="PayOffPoints">
+          <ScalarProperty Name="EntryEndTime" ColumnName="EntryEndTime" />
+          <ScalarProperty Name="EntryStartTime" ColumnName="EntryStartTime" />
+          <ScalarProperty Name="PayOffFinishTime" ColumnName="PayOffFinishTime" />
+          <ScalarProperty Name="EntryEnablePoints" ColumnName="EntryEnablePoints" />
+          <ScalarProperty Name="EntryPoints" ColumnName="EntryPoints" />
+          <ScalarProperty Name="PayOffPoints1" ColumnName="PayOffPoints" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="PayOffPointsId" ColumnName="PayOffPointsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Point">
+      <EntityTypeMapping TypeName="ComModel.Point">
+        <MappingFragment StoreEntitySet="Point">
+          <ScalarProperty Name="GiveTargetMonth" ColumnName="GiveTargetMonth" />
+          <ScalarProperty Name="GiveTargetYear" ColumnName="GiveTargetYear" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="PayOffTime" ColumnName="PayOffTime" />
+          <ScalarProperty Name="PayOffPoints" ColumnName="PayOffPoints" />
+          <ScalarProperty Name="PayOffFlg" ColumnName="PayOffFlg" />
+          <ScalarProperty Name="PayOffPointsId" ColumnName="PayOffPointsId" />
+          <ScalarProperty Name="BetEndDate" ColumnName="BetEndDate" />
+          <ScalarProperty Name="BetStartDate" ColumnName="BetStartDate" />
+          <ScalarProperty Name="GiveTargetWeek" ColumnName="GiveTargetWeek" />
+          <ScalarProperty Name="GivingDate" ColumnName="GivingDate" />
+          <ScalarProperty Name="PossesionPoint" ColumnName="PossesionPoint" />
+          <ScalarProperty Name="FundsPoint" ColumnName="FundsPoint" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="PointID" ColumnName="PointID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsClassMaster">
+      <EntityTypeMapping TypeName="ComModel.NewsClassMaster">
+        <MappingFragment StoreEntitySet="NewsClassMaster">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="NewsClassName" ColumnName="NewsClassName" />
+          <ScalarProperty Name="NewsClassId" ColumnName="NewsClassId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BetSelectMaster">
+      <EntityTypeMapping TypeName="ComModel.BetSelectMaster">
+        <MappingFragment StoreEntitySet="BetSelectMaster">
+          <ScalarProperty Name="ModifiedDate_" ColumnName="ModifiedDate " />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="BetSelectName" ColumnName="BetSelectName" />
+          <ScalarProperty Name="BetClassID" ColumnName="BetClassID" />
+          <ScalarProperty Name="BetSelectID" ColumnName="BetSelectID" />
+          <ScalarProperty Name="BetSelectMasterID" ColumnName="BetSelectMasterID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MailDeliverCondMaster">
+      <EntityTypeMapping TypeName="ComModel.MailDeliverCondMaster">
+        <MappingFragment StoreEntitySet="MailDeliverCondMaster">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="MailDelivCondision" ColumnName="MailDelivCondision" />
+          <ScalarProperty Name="MailDelivCondID" ColumnName="MailDelivCondID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SnsCorpInformation">
+      <EntityTypeMapping TypeName="ComModel.SnsCorpInformation">
+        <MappingFragment StoreEntitySet="SnsCorpInformation">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="SecretKey" ColumnName="SecretKey" />
+          <ScalarProperty Name="AccessKey" ColumnName="AccessKey" />
+          <ScalarProperty Name="SnsName" ColumnName="SnsName" />
+          <ScalarProperty Name="SnsID" ColumnName="SnsID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsReadingSumView">
+      <EntityTypeMapping TypeName="ComModel.NewsReadingSumView">
+        <MappingFragment StoreEntitySet="NewsReadingSumView">
+          <ScalarProperty Name="View" ColumnName="View" />
+          <ScalarProperty Name="NewsItemID" ColumnName="NewsItemID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContributionReading">
+      <EntityTypeMapping TypeName="ComModel.ContributionReading">
+        <MappingFragment StoreEntitySet="ContributionReading">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ContributeId" ColumnName="ContributeId" />
+          <ScalarProperty Name="ContributionReadingId" ColumnName="ContributionReadingId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SnsAuthInformation">
+      <EntityTypeMapping TypeName="ComModel.SnsAuthInformation">
+        <MappingFragment StoreEntitySet="SnsAuthInformation">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+          <ScalarProperty Name="SecretKey" ColumnName="SecretKey" />
+          <ScalarProperty Name="AccessKey" ColumnName="AccessKey" />
+          <ScalarProperty Name="SnsMemberID" ColumnName="SnsMemberID" />
+          <ScalarProperty Name="SnsID" ColumnName="SnsID" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NoticeDeliverySubject">
+      <EntityTypeMapping TypeName="ComModel.NoticeDeliverySubject">
+        <MappingFragment StoreEntitySet="NoticeDeliverySubject">
+          <ScalarProperty Name="UniqueID3" ColumnName="UniqueID3" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="NoticeDeliveryStatus" ColumnName="NoticeDeliveryStatus" />
+          <ScalarProperty Name="AlreadyReadFlg" ColumnName="AlreadyReadFlg" />
+          <ScalarProperty Name="UniqueID2" ColumnName="UniqueID2" />
+          <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+          <ScalarProperty Name="ClassClass" ColumnName="ClassClass" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="NoticeId" ColumnName="NoticeId" />
+          <ScalarProperty Name="NoticeDeliverySubjectId" ColumnName="NoticeDeliverySubjectId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PointBulkTemporal">
+      <EntityTypeMapping TypeName="ComModel.PointBulkTemporal">
+        <MappingFragment StoreEntitySet="PointBulkTemporal">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="DisposalFlg" ColumnName="DisposalFlg" />
+          <ScalarProperty Name="Points" ColumnName="Points" />
+          <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+          <ScalarProperty Name="GivingDate" ColumnName="GivingDate" />
+          <ScalarProperty Name="GiveTargetWeek" ColumnName="GiveTargetWeek" />
+          <ScalarProperty Name="GiveTargetMonth" ColumnName="GiveTargetMonth" />
+          <ScalarProperty Name="GiveTargetYear" ColumnName="GiveTargetYear" />
+          <ScalarProperty Name="PointClass" ColumnName="PointClass" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="PointBulkID" ColumnName="PointBulkID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnitBrowser">
+      <EntityTypeMapping TypeName="ComModel.UnitBrowser">
+        <MappingFragment StoreEntitySet="UnitBrowser">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+          <ScalarProperty Name="CookieGuid" ColumnName="CookieGuid" />
+          <ScalarProperty Name="BrowserType" ColumnName="BrowserType" />
+          <ScalarProperty Name="BrowserID" ColumnName="BrowserID" />
+          <ScalarProperty Name="UnitBrowserId" ColumnName="UnitBrowserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PossesionPointRanking">
+      <EntityTypeMapping TypeName="ComModel.PossesionPointRanking">
+        <MappingFragment StoreEntitySet="PossesionPointRanking">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="TargetRanking" ColumnName="TargetRanking" />
+          <ScalarProperty Name="TargetPossesionPoint" ColumnName="TargetPossesionPoint" />
+          <ScalarProperty Name="TargetDate" ColumnName="TargetDate" />
+          <ScalarProperty Name="PossesionPointRankingID" ColumnName="PossesionPointRankingID" />
+          <ScalarProperty Name="UpDownRanking" ColumnName="UpDownRanking" />
+          <ScalarProperty Name="UpDownPoint" ColumnName="UpDownPoint" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppActionLog">
+      <EntityTypeMapping TypeName="ComModel.AppActionLog">
+        <MappingFragment StoreEntitySet="AppActionLog">
+          <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="UrlReferrer" ColumnName="UrlReferrer" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+          <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NoticePopupDisplayHistory">
+      <EntityTypeMapping TypeName="ComModel.NoticePopupDisplayHistory">
+        <MappingFragment StoreEntitySet="NoticePopupDisplayHistory">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="NoticeTime" ColumnName="NoticeTime" />
+          <ScalarProperty Name="AlreadyReadFlg" ColumnName="AlreadyReadFlg" />
+          <ScalarProperty Name="UniqueID2" ColumnName="UniqueID2" />
+          <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+          <ScalarProperty Name="ClassClass" ColumnName="ClassClass" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="NoticePopupDisplayHistoryId" ColumnName="NoticePopupDisplayHistoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,176 @@
+﻿@{
+    //Author : Huynh Thi Phuong Cuc
+    //FileName : _NpbPointEdit.cshtml
+    //Modified Date : 2015/05/05
+}
+<div class="ad_inner">
+    @if (Model != null)
+    {
+        // 試合リスト表示
+        int odds;
+        foreach (var item in Model)
+        {
+            // game_status
+            // １・・試合2週間以上前 ベット不可、２/３・・試合前 ベット可、４/５・・試合開始5分前～試合開始　ベット不可
+            // ６/７・・試合中　ベット不可、８/９・・試合終了後、１０・・試合中止
+            int? gameStatus = (int?)item.GameStatus;
+            odds = (int)(item.Odds * 100);
+            //賭けているチーム名（に変わる表現）
+            long getPoint = (long)(item.Odds * item.Points);
+            DateTime gameTime = DateTime.ParseExact(item.usingTime, "HHmm", null);
+            var GameTime = gameTime.ToString("HH:mm");
+          
+            <div class="panel-time  clear">
+                @switch (gameStatus)      //4/5試合5分前～試合開始 6/7;試合中
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        var strTimeRemain = Utils.CalculateTimeRemainDisplayString(@item.usingDate, @item.usingTime);
+                        <div>予想締切 @strTimeRemain</div>
+                        break;
+                    case 4:
+                    case 5:
+                    <div>予想受付終了</div>
+                        break;
+                    case 6:
+                    case 7:
+                    <div class="bg01"><span class="orange">@item.GameDateTime</span></div>
+                        break;
+                    case 8:
+                    case 9:
+                    <div class="bg01">試合終了</div>
+                        break;
+                    default:
+                    <div class="bg01">試合中止</div>
+                        break;
+                }
+            </div>
+            <div class="panel-group blue">
+                <div class="clear">
+                    <div class="panel-col1 fs15">@item.HomeTeamS</div>
+                    <div class="panel-col4">
+                        @switch (gameStatus)      // 1;試合中 2:終了
+                        {
+                            case 0:
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 4:
+                            case 5:
+                                <p>
+                                    試合開始
+                                    <br>
+                                    <strong class="fs24">@GameTime</strong>
+                                </p>
+                                break;
+                            case 6:
+                            case 7:
+                                string Inning;
+                                if (item.SportsID == 1)
+                                {
+                                    Inning = item.Inning + item.BottomTop;
+                                }
+                                else
+                                {
+                                    Inning = "試合中";
+                                }
+                                <p>
+                                    @Inning
+                                    <br>
+                                    <span class="col01 fs36">@item.HomeScore</span>
+                                    <span class="col02 fs30">-</span>
+                                    <span class="col01 fs36">@item.VisitorScore</span>
+                                </p>
+                                break;
+                            case 8:
+                            case 9:
+                            <p>
+                                試合終了
+                                <br>
+                                <span class="col01 fs36">@item.HomeScore</span>
+                                <span class="col02 fs30">-</span>
+                                <span class="col01 fs36">@item.VisitorScore</span>
+                            </p>
+                                break;
+                            default:
+                            <p>
+                                試合中止
+                            </p>
+                                break;
+                        }
+                    </div>
+                    <div class="panel-col1 fs15">@item.VisitorTeamS</div>
+                </div>
+                @switch (gameStatus)      // 1;試合中 2:終了
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        <p class="clear ad_point01">
+                            <input class="ad_txt black tright my-ip01" type="text" id="ExpectPoint-@item.SportsID-@item.GameID-@odds" value="@item.Points" data-bedpoint="@item.Points" name="予想"> pt
+                            <span class="fs8 pdl15">@item.ExpectionResult に予想</span>
+                            <span class="pdl15"> x @item.Odds</span>
+                        </p>
+                        <p class="my-link2">的中すると @getPoint Ptになります。</p>
+                        if (item.ArticleDispFlg)
+                        {
+                            <p class="my-link3"><a href="/user_article/new/5/@item.SportsID/@item.GameID">この予想に関する記事を作成する</a></p>
+                        }
+                        <p class="my-link4"><a id="ExpectCancelGameID-@item.SportsID-@item.GameID-@odds" data-gamedivblockid="@item.GameID" href="#">予想を削除する</a></p>
+                        break;
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                    <p class="clear fs8 ftcenter ad_point01">
+                        @item.Points pt <span class="pdl15"> @item.ExpectionResult に予想 </span><span class="pdl15"> x @item.Odds</span>
+                    </p>
+                    <p class="my-link2">的中すると @getPoint Ptになります。</p>
+                    <p class="my-link1"><a href="@item.Url">詳細を見る</a></p>
+                        break;
+                    case 8:
+                    case 9:
+                        if (item.BetWin)
+                        {
+                            <dl class="clear ad_point02">
+                                <dd class="bg01">
+                                    <span class="fs8 pdl15">@item.Points pt</span>
+                                    <span class="fs8 pdl15">@item.ExpectionResult に予想</span>
+                                    <span class="fs8 pdl15"> x @item.Odds</span>
+                                </dd>
+                            </dl>
+                            <p class="clear my-link2">的中したので @getPoint Ptを獲得しました！</p>
+                            if (item.ArticleDispFlg)
+                            {
+                                <p class="my-link3"><a href="/user_article/new/5/@item.SportsID/@item.GameID">この予想に関する記事を作成する</a></p>
+                            }
+                        }
+                        else
+                        {
+                            <dl class="clear ad_point02">
+                                <dd>
+                                    <span class="fs8 pdl15">@item.Points pt</span>
+                                    <span class="fs8 pdl15">@item.ExpectionResult に予想</span>
+                                    <span class="fs8 pdl15"> x @item.Odds</span>
+                                </dd>
+                            </dl>
+                            <p class="clear my-link5">的中しませんでした。</p>
+                            if (item.ArticleDispFlg)
+                            {
+                                <p class="my-link3"><a href="/user_article/new/5/@item.SportsID/@item.GameID">この予想に関する記事を作成する</a></p>
+                            }
+                        }
+                        break;
+                    default:
+                    <p class="my-col03"> </p>
+                        break;
+                }
+
+            </div>
+        }
+    }
+</div>
+

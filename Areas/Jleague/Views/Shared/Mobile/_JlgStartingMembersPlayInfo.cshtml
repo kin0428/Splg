@@ -1,0 +1,43 @@
+﻿@foreach (var m in Model)
+{
+    <dl class="socStartersList">
+        <dt class="socStartersList-name">
+            <span>@m.Pos</span>
+            <span>@m.Uni</span>
+            <span><a href="@Url.Content("/jleague/players/" + m.ID + "/")">@m.Name</a></span>
+        </dt>
+        <dd>
+            <ul class="socStartersList-status">
+                @if (m.InTime(m.ID).Length > 0)
+                {
+                    <li>
+                        <span class="socStarsIcon socStarsIcon-arrIn"></span>
+                        <span>in @m.InTime(m.ID)</span>
+                    </li>
+                }
+                @if (m.GoalTime(m.ID).Length > 0)
+                {
+                    <li>
+                        <span class="socStarsIcon socStarsIcon-goal"></span>
+                        <span>goal @m.GoalTime(m.ID)</span>
+                    </li>
+                }
+                @if (m.CardTime(m.ID).Length > 0)
+                {
+                    <li>
+                        <span class="socStarsIcon @m.CssClassCardType(m.ID)"></span>
+                        <span>@m.CardTime(m.ID)</span>
+                    </li>
+                }
+                @if (m.OutTime(m.ID).Length > 0)
+                {
+                    <li>
+                        <span class="socStarsIcon socStarsIcon-arrOut"></span>
+                        <span>out @m.OutTime(m.ID)</span>
+                    </li>
+                }
+            </ul>
+        </dd>
+    </dl>
+}
+

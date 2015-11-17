@@ -1,0 +1,24 @@
+﻿@{
+    // Namespace	: Splg.Areas.Mlb.Models.ViewModel
+    // FileName		: Index.cshtml
+    // Developer	: Nojima
+    // Update date  : 20150427
+    // Html No      : 9-2 Mobile
+
+    ViewBag.Title = "日程・結果（MLB）";
+    ViewBag.Name = Splg.Areas.Mlb.MlbConstants.MLB_SCHEDULE_RESULT;
+    Layout = "~/Views/Shared/Mobile/_MlbLayout.cshtml";
+}
+<script src="~/Areas/Mlb/Scripts/Mobile/9-2.js"></script>
+@Html.Partial("~/Areas/Mlb/Views/Shared/Mobile/_MlbTeamInfoMenu.cshtml")
+@Html.Partial("~/Views/Shared/Mobile/_NextPrevMonthDay.cshtml")
+<div id="npbGameInfoWeek">
+    @{
+
+        var now = DateTime.Now;
+        var month = now.Month < 10 ? "0" + now.Month.ToString() : now.Month.ToString();
+        var day = now.Day < 10 ? "0" + now.Day.ToString() : now.Day.ToString();
+        var currentDate = string.Format("{0}{1}{2}", now.Year, month, "01");
+    }
+    @Html.Action("ShowGameInfo", "MlbTop", new { area = "Mlb", type = 2, startDate = currentDate, endDate = currentDate })
+</div>

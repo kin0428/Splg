@@ -1,0 +1,166 @@
+﻿@{
+    //Author : Nojima
+    //FileName : _JlgGameInfoHeader.cshtml
+    //Created Date : 2015/08/24
+}
+@using Splg
+@using Splg.Areas.Jleague
+@using Splg.Areas.Jleague.Models.ViewModel.InfosModel;
+@model JlgGameInfos
+
+@{
+    long memberId = -1;
+    if (Session["CurrentUser"] != null)
+    {
+        memberId = Convert.ToInt64(Session["CurrentUser"].ToString());
+    }
+
+    var gameStatus = Model.GameStatus;
+
+    string strGameLeague = Model.LeagueNameS;
+    string strGameLeagueAndOccasionNo = strGameLeague + " " + Model.OccasionNo + "節";
+    string strGameDate = Utils.ConvertStrToShortUSDatetime(Model.GameDate.ToString());
+
+
+    int time;
+    var gameTime = DateTime.MaxValue;
+    string strGameTime = "開始時間未定";
+    if (int.TryParse(Model.Time, out time))
+    {
+        gameTime = DateTime.ParseExact(time.ToString().PadLeft(4, '0'), "HHmm", null);
+        strGameTime = gameTime.ToString("HH:mm");
+    }
+    else
+    {
+        Model.Time = "2359";
+    }
+
+}
+
+<dl class="panel-time clear">
+    <dd>@strGameLeagueAndOccasionNo @strGameDate @strGameTime</dd>
+</dl>
+
+@*
+    チーム情報表示
+        //試合ステータス
+    ///  0: 試合情報なし？         1: 受付前
+    ///  2: 5分前以前、ベットなし  3: 5分前以前、ベットあり
+    ///  4: 5分前以降、ベットなし  5: 5分前以降、ベットあり
+    ///  6: 試合中、ベットなし     7: 試合中、ベットあり
+    ///  8: 試合終了、ベットなし   9: 試合終了、ベットあり
+    /// 10: 試合中止
+    *@
+<div class="panel-group">
+
+    <div class="clear">
+        <!-- ホームチーム -->
+        <article class="panel-col1">
+            @strGameLeague @Model.HomeTeamRanking 位
+            <figure>
+                <a href="@Url.Action("Index", "JlgTeamInfoTop", new {area = "Jleague", teamID = Model.HomeTeamID}, null)">
+                    <img src="@Model.HomeTeamIcon.Replace("~", "")" alt="" />
+                </a>
+            </figure>
+            <p class="blue fs14">
+                <a href="@Url.Action("Index", "JlgTeamInfoTop", new {area = "Jleague", teamID = Model.HomeTeamID}, null)">
+                    @Model.HomeTeamNameS
+                </a>
+            </p>
+        </article>
+
+        @if (gameStatus == 0 || gameStatus == 1 || gameStatus == 2 || gameStatus == 3 || gameStatus == 4 || gameStatus == 5)
+        {
+            // 試合開始前
+            <article class="panel-col4">
+
+                <div class="gray">
+
+                    <div class="col03">
+                        <span class="fs8">過去の勝敗</span><br>
+                        <span>@Model.HomeTeamWin</span>勝
+                    </div>
+                    <div class="col03">
+                        <span class="fs18">vs</span>
+                    </div>
+                    <div class="col03">
+                        <span class="fs8">過去の勝敗</span><br>
+                        <span>@Model.AwayTeamWin</span>勝
+                    </div>
+
+                </div>
+
+            </article>
+        }
+        else if (gameStatus == 6 || gameStatus == 7 || gameStatus == 8 || gameStatus == 9)
+        {
+            // 試合中、試合終了
+
+            string halfLabel = "";
+            string firstHafStyle = "";
+            string secondHafStyle = "";
+            string finalStyle = "";
+
+            if (Model.StateID == 1)
+            {
+                halfLabel = "前半" + Model.Half + "分";
+            }
+            else if (Model.HalfEndF != 1)
+            {
+                halfLabel = "後半" + Model.Half + "分";
+            }
+            else
+            {
+                halfLabel = "終了";
+            }
+            
+            <article class="panel-col4">
+                <div class="col03">
+                    <span class="fs8">@Model.HomeScore</span>
+                </div>
+                <div class="col03">
+                    <p class="board_score">
+                        @halfLabel
+                    </p>
+                    <p class="board_score">
+                        <span class="bscore @firstHafStyle">@Model.HomeFirstHalfScore</span>
+                        <span class="pnote @firstHafStyle">　－　</span>
+                        <span class="bscore @firstHafStyle">@Model.AwayFirstHalfScore</span>
+                    </p>
+                    <p class="board_score">
+                        <span class="bscore  @secondHafStyle">@Model.HomeSecondHalfScore</span>
+                        <span class="pnote @secondHafStyle">　－　</span>
+                        <span class="bscore  @secondHafStyle">@Model.AwaySecondHalfScore</span>
+                    </p>
+                </div>
+                <div class="col03">
+                    <span class="fs8">@Model.AwayScore</span>
+                </div>
+
+            </article>
+        }
+        else if (gameStatus == 10)
+        {
+            // 試合中止
+            <article class="panel-col4">
+                <span class="blue fs18">試合中止</span>
+            </article>
+        }
+        
+        <!-- アウエイチーム -->
+        <article class="panel-col1">
+            @strGameLeague @Model.AwayTeamRanking 位
+            <figure>
+                <a href="@Url.Action("Index", "JlgTeamInfoTop", new {area = "Jleague", teamID = Model.AwayTeamID}, null)">
+                    <img src="@Model.AwayTeamIcon.Replace("~", "")" alt="" />
+                </a>
+            </figure>
+            <p class="fs14">
+                <a href="@Url.Action("Index", "JlgTeamInfoTop", new { area = "Jleague", teamID = Model.AwayTeamID }, null)">
+                    @Model.AwayTeamNameS
+                </a>
+            </p>
+        </article>
+
+    </div>
+</div>

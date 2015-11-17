@@ -1,0 +1,30 @@
+﻿@{
+    // Namespace	: Splg.Areas.User.Models.ViewModel
+    // FileName		: _UserMenu.cshtml
+    // Device       :  Mobile
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-04-04
+}
+<!-- path -->
+<ul class="block-path">
+    <li>
+        <a class="active" href="javascript:void(0)">他ユーザーのページ</a>
+        <ul>
+            @*他ユーザーのページ: 4-1 *@
+            <li><a href="@Url.Action("Index", "UserTop", new { area = "User" }, null)">他ユーザーのページトップ</a></li>
+
+            @*他ユーザー　予想リスト: 4-2 *@
+            <li><a href="@Url.Action("Index", "UserExpectedList", new { area = "User" }, null)">予想リスト</a></li>
+
+            @*他ユーザー　投稿記事: 4-3 *@
+            <li><a href="@Url.Action("Index", "UserArticle", new { area = "User" }, null)">投稿記事</a></li>
+
+            @*他ユーザー　フォローリスト: 4-4*@
+            <li><a href="@Url.Action("Index", "UserFollowing", new { area = "User" }, null)">フォローリスト</a></li>
+
+            @*他ユーザー　フォロワーリスト : 4-5 *@
+            <li><a href="@Url.Action("Index", "UserFollowers", new { area = "User" }, null)">フォロワーリスト</a></li>
+
+        </ul>
+      </li>
+</ul>

@@ -1,0 +1,2934 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4DBAE515-D2C0-4360-AB72-A672D283B5A8}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Splg</RootNamespace>
+    <AssemblyName>Splg</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>
+    </IISExpressUseClassicPipelineMode>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>false</IncludeIisSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook">
+      <HintPath>..\packages\Facebook.6.8.0\lib\net45\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="FiftyOne.Foundation">
+      <HintPath>..\packages\51Degrees.mobi.3.1.10.2\lib\NET40\FiftyOne.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis, Version=1.9.1.12395, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Google.Apis.1.9.1\lib\net40\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.9.1.12395, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Google.Apis.Auth.1.9.1\lib\net40\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.Mvc4, Version=1.9.1.12400, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Google.Apis.Auth.Mvc.1.9.1\lib\net40\Google.Apis.Auth.Mvc4.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.9.1.12399, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Google.Apis.Auth.1.9.1\lib\net40\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.9.1.12394, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Google.Apis.Core.1.9.1\lib\portable-net40+sl50+win+wpa81+wp80\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Drive.v2">
+      <HintPath>..\packages\Google.Apis.Drive.v2.1.9.0.1680\lib\portable-net40+sl50+win+wpa81+wp80\Google.Apis.Drive.v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.9.1.12397, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Google.Apis.1.9.1\lib\net40\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Plus.v1, Version=1.9.0.219, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Google.Apis.Plus.v1.1.9.0.2190\lib\portable-net40+sl50+win+wpa81+wp80\Google.Apis.Plus.v1.dll</HintPath>
+    </Reference>
+    <Reference Include="Hammock, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\TweetSharp-Unofficial.2.3.1.2\lib\4.0\Hammock.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcSiteMapProvider">
+      <HintPath>..\packages\MvcSiteMapProvider.MVC5.Core.4.6.18\lib\net45\MvcSiteMapProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcSiteMapProvider.WebActivator">
+      <HintPath>..\packages\MvcSiteMapProvider.MVC5.4.6.18\lib\net45\MvcSiteMapProvider.WebActivator.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.4.0.1\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorGenerator.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RazorGenerator.Mvc.2.2.3\lib\net40\RazorGenerator.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=__MvcPagesVersion__, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="TweetSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\TweetSharp-Unofficial.2.3.1.2\lib\4.0\TweetSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebActivatorEx.2.0.3\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Zlib.Portable, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Zlib.Portable.1.10.0\lib\portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid\Zlib.Portable.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Areas\Jleague\Models\Dto\JlgFormationInfo.cs" />
+    <Compile Include="Areas\Jleague\Models\Dto\GoalIndex.cs" />
+    <Compile Include="Areas\Jleague\Models\Dto\GoalTimeZone.cs" />
+    <Compile Include="Areas\Jleague\Models\Dto\JlgGameStats.cs" />
+    <Compile Include="Areas\Jleague\Models\Dto\JlgGoalInfo.cs" />
+    <Compile Include="Areas\Jleague\Models\Dto\IJlgRecentResults.cs" />
+    <Compile Include="Areas\Jleague\Models\Dto\JlgRecentGameResult.cs" />
+    <Compile Include="Areas\Jleague\Models\Dto\JlgGameResultCounts.cs" />
+    <Compile Include="Areas\Jleague\Models\Dto\JlgRecentMatches.cs" />
+    <Compile Include="Areas\Jleague\Models\Dto\JlgStartingsInGame.cs" />
+    <Compile Include="Areas\Jleague\Models\Dto\JlgTeamSpec.cs" />
+    <Compile Include="Areas\Jleague\Models\Dto\JlgTeamTrendsAtBar.cs" />
+    <Compile Include="Areas\Jleague\Models\Dto\PassIndex.cs" />
+    <Compile Include="Areas\Jleague\Models\Dto\RelatedArticle.cs" />
+    <Compile Include="Areas\Jleague\Models\Dto\RelatedArticles.cs" />
+    <Compile Include="Areas\Jleague\Models\Dto\TeamStats.cs" />
+    <Compile Include="Areas\Jleague\Models\FormationInfo.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\FormationReportLF.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\GameInfoSR.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\InjulyReportIR.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\PlayerCBP.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\PlayerInfoIR.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\PlayerInfoLF.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\ResultInfoTH.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\ResultInfoTT.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\SuspendReportSR.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\SuspensionInfoSR.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamCBP.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamGameStats.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamHAReportTH.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamInfoIR.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamInfoLF.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamInfoTH.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamInfoTT.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamSeasonStats.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamTimeReportTT.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgPlayerGameDetailInfoModel.cs" />
+    <Compile Include="Areas\Jleague\Models\Dto\JlgGameText.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgRecentGameResultsViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgRecentMatchesViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgRelatedArticlesViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgTeamTrendsAtBarViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgTeamTrendsAtPieViewModel.cs" />
+    <Compile Include="Areas\Mlb\Models\ViewModels\GameInfoViewModelForMLB.cs" />
+    <Compile Include="Areas\MyPage\Controllers\MyPageRecentExpectedListController.cs" />
+    <Compile Include="Areas\MyPage\Controllers\MyPageSettingDeleteAccountController.cs" />
+    <Compile Include="Areas\MyPage\Models\InfoModel\MyExpectedListViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\MyPage\Models\InfoModel\MyPageGroupMemberModel.cs" />
+    <Compile Include="Areas\MyPage\Models\InfoModel\MyPageGroupModel.cs" />
+    <Compile Include="Areas\MyPage\Models\ViewModel\MyPageRecentExpectedListViewModel.cs" />
+    <Compile Include="Areas\MyPage\Models\ViewModel\MyPageSettingDeleteAccountViewModel.cs" />
+    <Compile Include="Areas\MyPage\Service\MyPageFollowingService.cs" />
+    <Compile Include="Areas\MyPage\Service\MyPageGroupDetailsService.cs" />
+    <Compile Include="Areas\MyPage\Service\MyPageGroupEditService.cs" />
+    <Compile Include="Areas\MyPage\Service\MyPageGroupNewService.cs" />
+    <Compile Include="Areas\MyPage\Service\UserSearchService.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\GameInfoViewModelForNBP.cs" />
+    <Compile Include="Areas\Prize\Controllers\PrizeGoodController.cs" />
+    <Compile Include="Areas\Prize\Models\EntryHistories.cs">
+      <DependentUpon>Prize.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Prize\Models\GoodsSpec.cs">
+      <DependentUpon>Prize.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Prize\Models\Prize.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Prize.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Prize\Models\Prize.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Prize.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Prize\Models\Prize.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Prize.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Prize\Models\Rallies.cs">
+      <DependentUpon>Prize.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Prize\Models\RallyGoods.cs">
+      <DependentUpon>Prize.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Prize\Models\RallyGoodsRemarks.cs">
+      <DependentUpon>Prize.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Prize\Models\RallyGoodsRemarksLink.cs">
+      <DependentUpon>Prize.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Prize\Models\RallyGoodsRemarksText.cs">
+      <DependentUpon>Prize.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Prize\Models\ViewModel\PrizeGoodViewModel.cs" />
+    <Compile Include="Areas\Prize\Models\ViewModel\RallyGoodRemarksLinkViewModel.cs" />
+    <Compile Include="Areas\Prize\Models\ViewModel\RallyGoodRemarksTextViewModel.cs" />
+    <Compile Include="Areas\Prize\Models\ViewModel\RallyGoodRemarksViewModel.cs" />
+    <Compile Include="Areas\Prize\Models\ViewModel\RallyViewModel.cs" />
+    <Compile Include="Areas\Prize\Models\ViewModel\RallyGoodViewModel.cs" />
+    <Compile Include="Areas\User\Service\UserFollowersService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\User\Service\UserFollowingService.cs" />
+    <Compile Include="Controllers\ChartController.cs" />
+    <Compile Include="Core\Attributes\AppActionLogFilterAttribute.cs" />
+    <Compile Include="Core\Constant\AnnotationFormatConst.cs" />
+    <Compile Include="Core\Constant\AnnotationMessageConst.cs" />
+    <Compile Include="Core\Constant\BetConst.cs" />
+    <Compile Include="Core\Constant\ControllerLoggingConst.cs" />
+    <Compile Include="Core\Constant\ExtendConst.cs" />
+    <Compile Include="Core\Constant\Flotr2Const.cs" />
+    <Compile Include="Core\Constant\JlgChartConst.cs" />
+    <Compile Include="Core\Constant\NewsConst.cs" />
+    <Compile Include="Core\Extend\IntExtend.cs" />
+    <Compile Include="Core\Extend\StringExtend.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\FormationChart\FormationChartContainer.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\FormationChart\FormationChartDto.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\FormationChart\FormationChartProperties.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\FormationChart\FormationDataSource.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\Shared\Properties\Bubble.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\Shared\Properties\Marker.cs" />
+    <Compile Include="Core\Models\Flotr2\ScriptParameter\ContainerParameterKey.cs" />
+    <Compile Include="Core\Models\Flotr2\ScriptParameter\FunctionParameterKey.cs" />
+    <Compile Include="Core\Models\Flotr2\ScriptParameter\PropertiesParameterKey.cs" />
+    <Compile Include="Core\Constant\JlgConst.cs" />
+    <Compile Include="Core\Constant\PrizeConst.cs" />
+    <Compile Include="Core\Constant\RouteNameConst.cs" />
+    <Compile Include="Core\Constant\UserArticleConst.cs" />
+    <Compile Include="Core\Constant\WriteLogFileConst.cs" />
+    <Compile Include="Core\Extend\DateTimeExtend.cs" />
+    <Compile Include="Areas\MyPage\Service\MyPageFollowersService.cs" />
+    <Compile Include="Core\Extend\ExceptionExtend.cs" />
+    <Compile Include="Core\Extend\ObjectExtend.cs" />
+    <Compile Include="Core\Extend\UriExtend.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\PieChart\PieChartDto.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\Shared\AbstractChartContainer.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\Shared\ChartContainerSettings.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\Shared\ChartResult.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\Shared\IChartDto.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\Shared\Properties\Grid.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\Shared\Properties\IAxis.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\Shared\IChartDataSource.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\Shared\ChartProperties.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\PieChart\PieChartContainer.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\PieChart\PieDataSource.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\Shared\Properties\Legend.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\Shared\Properties\Mouse.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\Shared\Properties\Pie.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\Shared\Properties\XAxis.cs" />
+    <Compile Include="Core\Models\Flotr2\Dto\Shared\Properties\YAxis.cs" />
+    <Compile Include="Core\Models\Flotr2\Resources\Flotr2ScriptPartsResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Flotr2ScriptPartsResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Models\Flotr2\Resources\Flotr2ScriptResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Flotr2ScriptResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Models\Logging\Dto\ExceptionLogModel.cs" />
+    <Compile Include="Core\Models\Logging\LoggingDao.cs" />
+    <Compile Include="Core\Models\Logging\Resources\LoggingResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoggingResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Providers\ControllerLoggingProvider.cs" />
+    <Compile Include="Core\Providers\Flotr2ChartProvider.cs" />
+    <Compile Include="Core\Services\AbstractChartService.cs" />
+    <Compile Include="Core\Services\AppActionLogService.cs" />
+    <Compile Include="Core\Services\BarChartService.cs" />
+    <Compile Include="Core\Services\BubbleChartService.cs" />
+    <Compile Include="Core\Services\ExceptionLogService.cs" />
+    <Compile Include="Core\Services\FormationChartService.cs" />
+    <Compile Include="Core\Services\IFlotr2ChartService.cs" />
+    <Compile Include="Core\Services\ILoggingService.cs" />
+    <Compile Include="Core\resources\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Core\Services\PieChartService.cs" />
+    <Compile Include="Core\Services\UserService.cs" />
+    <Compile Include="Core\Services\WriteLogFileService.cs" />
+    <Compile Include="Models\AppActionLog.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Game\InfoModel\ExpectationInfoModel.cs" />
+    <Compile Include="Models\Game\InfoModel\GameInfoModel.cs" />
+    <Compile Include="Models\Game\InfoModel\GameOddsInfo.cs" />
+    <Compile Include="Models\Game\InfoModel\GamePointInfoModel.cs" />
+    <Compile Include="Models\Game\ViewModel\ExpectedGameSchedule.cs" />
+    <Compile Include="Models\Game\ViewModel\ExpectedGameSchedulesViewModel.cs" />
+    <Compile Include="Models\Members\InfoModel\MemberModel.cs" />
+    <Compile Include="Models\NoticePopupDisplayHistory.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Point\InfoModel\PointInfoModel.cs" />
+    <Compile Include="Models\PossesionPointRanking.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Game\ExpectInfoService.cs" />
+    <Compile Include="Services\Game\IGameService.cs" />
+    <Compile Include="Services\Game\JlgChartService.cs" />
+    <Compile Include="Services\Game\PredictService.cs" />
+    <Compile Include="Services\Members\NoticeService.cs" />
+    <Compile Include="Services\Game\OddsService.cs" />
+    <Compile Include="Services\Game\JlgService.cs" />
+    <Compile Include="Services\Group\GroupService.cs" />
+    <Compile Include="Services\Members\GroupInfoService.cs" />
+    <Compile Include="Services\Members\FollowInfoService.cs" />
+    <Compile Include="Services\Point\PointInfoService.cs" />
+    <Compile Include="Services\Point\PointRankingService.cs" />
+    <Compile Include="Services\Prize\RallyService.cs" />
+    <Compile Include="Services\System\SystemDatetimeService.cs" />
+    <Compile Include="Utilities\MyCookie.cs" />
+    <Compile Include="Areas\Jleague\Controllers\JlgJOrderController.cs" />
+    <Compile Include="Areas\Jleague\Controllers\JlgNewsController.cs" />
+    <Compile Include="Areas\Jleague\Controllers\JlgPersonalAchieveController.cs" />
+    <Compile Include="Areas\Jleague\Controllers\JlgResultController.cs" />
+    <Compile Include="Areas\Jleague\Controllers\JlgRightOrderController.cs" />
+    <Compile Include="Areas\Jleague\Controllers\JlgRightRecentNewsController.cs" />
+    <Compile Include="Areas\Jleague\Controllers\JlgScheduleResultController.cs" />
+    <Compile Include="Areas\Jleague\Controllers\JlgTeamInfoConfrontationResultController.cs" />
+    <Compile Include="Areas\Jleague\Controllers\JlgTeamInfoController.cs" />
+    <Compile Include="Areas\Jleague\Controllers\JlgTeamInfoPlayerController.cs" />
+    <Compile Include="Areas\Jleague\Controllers\JlgTeamInfoPlayerDetailController.cs" />
+    <Compile Include="Areas\Jleague\Controllers\JlgTeamInfoScheduleResultController.cs" />
+    <Compile Include="Areas\Jleague\Controllers\JlgTeamInfoTopController.cs" />
+    <Compile Include="Areas\Jleague\Controllers\JlgTopController.cs" />
+    <Compile Include="Areas\Jleague\Controllers\JlgRightContentController.cs" />
+    <Compile Include="Areas\Jleague\Controllers\JlgGameInformationController.cs" />
+    <Compile Include="Areas\Jleague\JlgCommon.cs" />
+    <Compile Include="Areas\Jleague\JlgConstants.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\BenchInfoLP.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\CategoryGT.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\ChangeInfoLP.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\CommentInfo.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\CommentReport.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\DirectoryDA.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\DirectoryDI.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\GainInfoLG.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\GameCategory.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\GameCategoryHE.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\GameCategoryMR.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\GameEndInfoLG.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\GameInfoMR.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\GameKindInfo.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\GameKindMST.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\GameKindTeamGT.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\GameReportLG.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\GameSchedule.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\GameStateLG.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\GoalInfoLG.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\Jlg.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Jlg.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\Jlg.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\Jlg.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Jlg.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\LeagueInfo.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\LeagueMST.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\MasterTransfersJlg.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\NowOrderInfoLP.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\PKInfoLG.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\PlayerInfoDA.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\PlayerInfoDI.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\PlayerInfoLPBE.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\PlayerInfoLPCH.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\PlayerInfoLPNO.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\PlayerInfoLPST.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\PlayerInfoPL.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\PlayerInfoPS.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\PlayerInfoRE.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\PlayerLG.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\PlayerLS.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\PlayerMSTPL.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\PlayerReportLP.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\PlayerStatsReportPS.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\RankGoalReportRG.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\RankInfoRG.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\RankInfoRT.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\RankReportRT.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\RecapReportRE.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\ResultInfoHE.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\ResultInfoSS.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\ResultInfoT5.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\ResultInfoTC.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\ScheduleInfo.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\ScheduleInfoHE.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\ScorePlayerT5.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\SeasonInfo.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\SeasonMST.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\SecGameRecordReportMR.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\StartingInfoLP.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\StatsReportLS.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\Team5thGameReportT5.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamCardReportTC.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamIconJlg.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamInfoGT.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamInfoLG.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamInfoLS.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamInfoRE.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamInfoTC.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamInfoTE.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamInfoTS.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamMSTTE.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamScheduleReportHE.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamSeasonReportSS.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TeamStatsReportTS.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\TimeInfoLG.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgGameEndInfoModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgGameEndScroreInfoModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgGameInfoModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgLast5GamesModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgOfficialStatsModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgPast5GamesModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgPKInfoModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgPlayerGameInfoModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgRankInfoRTModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgRecapModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgScoreDetailsModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgTeamInfoPlayerInfos.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgTeamInfos.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgGameInfos.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgPersonInfoModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgTeamInfoPSPModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgPlayerInfoGOModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgPlayerInfoStModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgGameInfoSSNModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgPersonInfoViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgPlayerInfoOccasion.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgPlayerInfoSum.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgPlayerInfoYear.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgResultViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgTeamInfoTop.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\InfosModel\JlgPersonalAchieveInfos.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgScheduleResultViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgTeamInfoConfrontationResultViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgTeamInfoPlayerDetailViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgTeamInfoPlayerViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgTeamInfoTopViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgJ12OrderViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgJNewsViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgPersonalAchieveViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgTeamExpectedRankingViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgTeamInfoScheduleResultViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgTeamInfoViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgTeamNewsViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgTop3RankingViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgTopViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\JlgGameInfoViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\ViewModel\ScheduleResultViewModel.cs" />
+    <Compile Include="Areas\Jleague\Models\WarningInfoLG.cs">
+      <DependentUpon>Jlg.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Mlb\Controllers\MlbGameInformationController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Controllers\MlbNewsListController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Controllers\MlbOrderController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Controllers\MlbRightContentController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Controllers\MlbScheduleResultController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Controllers\MlbTeamInfoConfrontationResultController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Controllers\MlbTeamInfoDailyResultController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Controllers\MlbTeamInfoNewsController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Controllers\MlbTeamInformationController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Controllers\MlbTeamInfoTeamTopController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Controllers\MlbTopController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\MlbAreaRegistration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\MlbCommon.cs">
+      <SubType>Code</SubType>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Areas\Mlb\MlbConstants.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\DailySchedule.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\DailyScheduleHeader.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\DayGroup.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\DivGroupMlb.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\JapanesePlayers.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\LeagueGroupMlb.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\MasterTransfersMlb.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\Mlb.Context.cs">
+      <DependentUpon>Mlb.Context.tt</DependentUpon>
+      <SubType>Code</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\Mlb.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\Mlb.Designer.cs">
+      <DependentUpon>Mlb.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\MonthGroup.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\OfficialStatsHeaderMlb.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\OfficialStatsMlb.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\RealGameInfo.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\RealGameInfoHeader.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\SeasonSchedule.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\SeasonScheduleHeader.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\StatLast5Years.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\TeamIconMlb.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\TeamInfo.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\TeamInfoMSTHeader.cs">
+      <DependentUpon>Mlb.tt</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\InfosModel\MlbDivisionGroupModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\InfosModel\MlbGameInfos.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\InfosModel\MlbGameInfoSSNModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\InfosModel\MlbPlayerInfoGOModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\InfosModel\MlbPlayerInfoStModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\InfosModel\MlbTeamInfoPSPModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\MlbGameInformationViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\MlbGameInfoSSNModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\MlbNewsListViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\MlbOrderViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\MlbRightContentViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\MlbScheduleResultViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\MlbTeamInfoConfrontationResultViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\MlbTeamInfoDailyResultViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\MlbTeamInfoNewsViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\MlbTeamInformationViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\MlbTeamInfoTeamTopViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\MlbTop3RankingViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Models\ViewModels\MlbTopViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Mlb\Utilities\MlbUtils.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\MyPage\Controllers\MyPageGroupDetailsController.cs" />
+    <Compile Include="Areas\MyPage\Controllers\MyPageGroupEditController.cs" />
+    <Compile Include="Areas\MyPage\Controllers\MyPageGroupListController.cs" />
+    <Compile Include="Areas\MyPage\Controllers\MyPageRightContentController.cs" />
+    <Compile Include="Areas\MyPage\Models\InfoModel\ContributionForMyPage.cs" />
+    <Compile Include="Areas\MyPage\Models\InfoModel\MyPageJsonResultModel.cs" />
+    <Compile Include="Areas\MyPage\Models\InfoModel\UserSearchMemberForMyPage.cs" />
+    <Compile Include="Areas\MyPage\Models\InfoModel\FollowerMemberForMyPage.cs" />
+    <Compile Include="Areas\MyPage\Models\InfoModel\FollowingMemberForMyPage.cs" />
+    <Compile Include="Areas\MyPage\Models\InfoModel\NoticeInfoForMyPage.cs" />
+    <Compile Include="Areas\MyPage\Models\ViewModel\MyPageArticleViewModel.cs" />
+    <Compile Include="Areas\MyPage\Models\ViewModel\MyPageExpectedListViewModel.cs" />
+    <Compile Include="Areas\MyPage\Models\ViewModel\MyPageFollowersViewModel.cs" />
+    <Compile Include="Areas\MyPage\Models\ViewModel\MyPageFollowingViewModel.cs" />
+    <Compile Include="Areas\MyPage\Models\ViewModel\MyPageGroupDetailsViewModel.cs" />
+    <Compile Include="Areas\MyPage\Models\ViewModel\MyPageGroupListViewModel.cs" />
+    <Compile Include="Areas\MyPage\Models\ViewModel\MyPageGroupEditViewModel.cs" />
+    <Compile Include="Areas\MyPage\Models\ViewModel\MyPageGroupNewViewModel.cs" />
+    <Compile Include="Areas\MyPage\Models\ViewModel\MyPageNoticeViewModel.cs" />
+    <Compile Include="Areas\MyPage\Models\ViewModel\MyPageRightViewModel.cs" />
+    <Compile Include="Areas\MyPage\Models\ViewModel\MyPageSettingAddressViewModel.cs" />
+    <Compile Include="Areas\MyPage\Models\ViewModel\MyPageSettingPasswordViewModel.cs" />
+    <Compile Include="Areas\MyPage\Models\ViewModel\MyPageSettingViewModel.cs" />
+    <Compile Include="Areas\MyPage\Models\ViewModel\MyPageTopViewModel.cs" />
+    <Compile Include="Areas\MyPage\Models\ViewModel\UserSearchViewModel.cs" />
+    <Compile Include="Areas\MyPage\MyPageAreaRegistration.cs" />
+    <Compile Include="Areas\MyPage\Controllers\MyPageArticleController.cs" />
+    <Compile Include="Areas\MyPage\MyPageCommon.cs" />
+    <Compile Include="Areas\MyPage\MyPageConstant.cs" />
+    <Compile Include="Areas\MyPage\Controllers\MyPageTopController.cs" />
+    <Compile Include="Areas\MyPage\Controllers\MyPageExpectedListController.cs" />
+    <Compile Include="Areas\MyPage\Controllers\MyPageFollowersController.cs" />
+    <Compile Include="Areas\MyPage\Controllers\MyPageFollowingController.cs" />
+    <Compile Include="Areas\MyPage\Controllers\MyPageGroupNewController.cs" />
+    <Compile Include="Areas\MyPage\Controllers\MyPageNoticeController.cs" />
+    <Compile Include="Areas\MyPage\Controllers\MyPageSettingAddressController.cs" />
+    <Compile Include="Areas\MyPage\Controllers\MyPageSettingController.cs" />
+    <Compile Include="Areas\MyPage\Controllers\MyPageSettingPasswordController.cs" />
+    <Compile Include="Areas\MyPage\Controllers\UserSearchController.cs" />
+    <Compile Include="Areas\Npb\Controllers\NpbGameInformationController.cs" />
+    <Compile Include="Areas\Npb\Controllers\NpbNewsListController.cs" />
+    <Compile Include="Areas\Npb\Controllers\NpbTeamInfoDailyResultController.cs" />
+    <Compile Include="Areas\Npb\Controllers\NpbTeamInfoHittingDetailController.cs" />
+    <Compile Include="Areas\Npb\Controllers\NpbTeamInfoConfrontationResultController.cs" />
+    <Compile Include="Areas\Npb\Controllers\NpbTeamInfoNewsController.cs" />
+    <Compile Include="Areas\Npb\Controllers\NpbOrderController.cs" />
+    <Compile Include="Areas\Npb\Controllers\NpbPersonalResultController.cs" />
+    <Compile Include="Areas\Npb\Controllers\NpbRightContentController.cs" />
+    <Compile Include="Areas\Npb\Controllers\NpbTeamInfoPitcherDetailController.cs" />
+    <Compile Include="Areas\Npb\Controllers\NpbTeamInfoPlayerController.cs" />
+    <Compile Include="Areas\Npb\Controllers\NpbTeamInformationController.cs" />
+    <Compile Include="Areas\Npb\Controllers\NpbTeamInfoTeamTopController.cs" />
+    <Compile Include="Areas\Npb\Controllers\NpbTopController.cs" />
+    <Compile Include="Areas\Npb\Controllers\NpbScheduleResultController.cs" />
+    <Compile Include="Areas\Npb\Models\BatGTE.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\BatGTS.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\BattingAverageBest10.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\BattingAverageBest10Header.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\CatcherGL.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\CommentGameCO.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\DefenceLocationMST.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\DetailsGL.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\Directory.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\DSMEPInfoCO.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\EarnedRunAverageBest10.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\EarnedRunAverageBest10Header.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\ExhibitionGameStats.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\ExhibitionGameStatsHeader.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\GameClassMST.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\GameEndInfoGL.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\GameEndInfoGTE.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\GameEndInfoGTS.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\GameInfoCO.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\GameInfoGL.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\GameInfoGTE.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\GameInfoGTS.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\GameInfoPSP.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\GameInfoRGI.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\GameInfoSS.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\GameInfoSSN.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\GameLiveGL.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\GameOrderGO.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\GameResultInfoRGI.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\GWRBIPlayerGL.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\GWRBIRGI.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HittingStats.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HittingStats3Years.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HittingStats3YearsInfo.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HittingStats3YearsTeams.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HittingStats5thGame.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HittingStats5thGameHeader.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HittingStats6thGame.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HittingStats6thGameHeader.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HittingStats6thGameInfo.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HittingStatsHeader.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HittingStatsScoringPosition.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HittingStatsScoringPositionHeader.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HittingStatsTeamDifference.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HittingStatsTeamDifferenceHeader.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HittingStatsTeamDifferenceInfo.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HomerunBest10.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HomerunBest10Header.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HomerunInfoGL.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\HomerunInfoRGI.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\InningScoreInfoCO.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\LosePitcherGL.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\LosingPitcherRGI.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\ManagerInfoST.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\MasterTransfersNpb.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\MonthGroupSS.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\MonthGroupSSN.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\NoteInfoGL.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\Npb.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Npb.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\Npb.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\Npb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Npb.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\NpbCommon.cs" />
+    <Compile Include="Areas\Npb\Models\OfficialStatsHeaderNpb.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\OfficialStatsNpb.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PersonInfo.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PitcherGL.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PitcherInfoRGI.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PitchingStats.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PitchingStats3Years.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PitchingStats3YearsInfo.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PitchingStats3YearsTeams.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PitchingStats6thGame.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PitchingStats6thGameHeader.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PitchingStats6thGameInfo.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PitchingStatsHeader.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PitchingStatsTeamsOpponent.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PitchingStatsTeamsOpponentHeader.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PitchingStatsTeamsOpponentInfo.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PlayerGL.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PlayerInfoGO.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PlayerInfoMST.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PlayerInfoMSTHeader.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\PlayerInfoST.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\RealGameInfoRootRGI.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\ReliefInfoGL.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\RunBattedInBest10.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\RunBattedInBest10Header.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\RunInfoRGI.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\SaveBest10.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\SaveBest10Header.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\SavePitcherGL.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\SavingPitcherRGI.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\ScoreGL.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\ScoreGTE.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\ScoreGTS.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\ScoreInfoGL.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\ScoreRGI.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\SeasonScheduleSS.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\StartingGameST.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\TeamGL.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\TeamIconNpb.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\TeamInfoCO.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\TeamInfoGO.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\TeamInfoGTE.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\TeamInfoGTS.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\TeamInfoMST.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\TeamInfoPSP.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\TeamInfoST.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\TeamStats10thGame.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\TeamStats10thGameHeader.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\TeamStatsCardDifference.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\TeamStatsCardDifferenceHeader.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\TeamStatsCardDifferenceInfo.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\TextGTE.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\TextGTS.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\TextInfoGTE.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\TextInfoGTS.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\UnpireInfoST.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\ViewModel\NpbHittingStats6thGameInfoViewModel.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\NpbHittingStatsConditionStanding.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\NpbTopViewModel.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\InfosModel\NpbPersonalResultInfos.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\InfosModel\NpbTeamInfoConfrontationResultInfos.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\InfosModel\NpbTeamInfoPlayerInfos.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\NpbPersonInfoViewModel.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\NpbPitchingStats6thGameInfoViewModel.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\NpbScheduleResultViewModel.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\NpbTeamInfoHittingDetailModelView.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\NpbTeamInfoPitcherDetailViewModel.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\NpbTeamInfoPlayerViewModel.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\NpbTeamInfoViewModel.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\NpbGameInfoViewModel.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\NpbOrderViewModel.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\NpbPersonalResultViewModel.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\NpbPitchingStatsInfoViewModel.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\NpbTeamInfoDailyResultViewModel.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\NpbTeamInfoConfrontationResultViewModel.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\NpbTeamNewsViewModel.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\NpbTeamTopInfoViewModel.cs" />
+    <Compile Include="Areas\Npb\Models\ViewModel\Top3RankingViewModel.cs" />
+    <Compile Include="Areas\Jleague\JlgAreaRegistration.cs" />
+    <Compile Include="Areas\Npb\Models\VsPitcherGL.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\WinBest10.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\WinBest10Header.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\WinningPitcherRGI.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\Models\WinPitcherGL.cs">
+      <DependentUpon>Npb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Npb\NpbAreaRegistration.cs" />
+    <Compile Include="Areas\Npb\NpbConstants.cs" />
+    <Compile Include="Areas\Prize\Controllers\PrizeTopController.cs" />
+    <Compile Include="Areas\Prize\Models\ViewModel\PrizeTopViewModel.cs" />
+    <Compile Include="Areas\Prize\PrizeAreaRegistration.cs" />
+    <Compile Include="Areas\Prize\PrizeCommon.cs" />
+    <Compile Include="Areas\Prize\PrizrConstants.cs" />
+    <Compile Include="Areas\User\Controllers\UserArticleController.cs" />
+    <Compile Include="Areas\User\Controllers\UserTopController.cs" />
+    <Compile Include="Areas\User\Controllers\UserExpectedlistController.cs" />
+    <Compile Include="Areas\User\Controllers\UserFollowersController.cs" />
+    <Compile Include="Areas\User\Controllers\UserFollowingController.cs" />
+    <Compile Include="Areas\User\Models\InfoModel\ContributionForUser.cs" />
+    <Compile Include="Areas\User\Models\InfoModel\FollowerMemberForUser.cs" />
+    <Compile Include="Areas\User\Models\InfoModel\FollowingMemberForUser.cs" />
+    <Compile Include="Areas\User\Models\InfoModel\NoticeInfoForUser.cs" />
+    <Compile Include="Areas\User\Models\ViewModel\UserArticleViewModel.cs" />
+    <Compile Include="Areas\User\Models\ViewModel\UserExpectedListViewModel.cs" />
+    <Compile Include="Areas\User\Models\ViewModel\UserFollowersViewModel.cs" />
+    <Compile Include="Areas\User\Models\ViewModel\UserFollowingViewModel.cs" />
+    <Compile Include="Areas\User\Models\ViewModel\UserTopViewModel.cs" />
+    <Compile Include="Areas\User\UserCommon.cs" />
+    <Compile Include="Areas\User\UserConstant.cs" />
+    <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="Controllers\AppAuthFlowMetadata.cs" />
+    <Compile Include="Controllers\AuthCallbackController.cs" />
+    <Compile Include="Controllers\ErrorPageController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\NewsArticleCommonController.cs" />
+    <Compile Include="Controllers\Posted2Controller.cs" />
+    <Compile Include="Controllers\PostedController.cs" />
+    <Compile Include="Controllers\RightContentController.cs" />
+    <Compile Include="Controllers\SupportController.cs" />
+    <Compile Include="Controllers\UserArticleController.cs" />
+    <Compile Include="Models\BackOfficeAccount.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BetClassMaster.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BetSelectMaster.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BriefNews.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CampaignInfo.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Com.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Com.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Com.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Com.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Com.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Contribution.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ContributionQuotOrg.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ContributionReading.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CurrentDayPerExpectTargetTotalPoint.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Deviation.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EntryHistory.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ExpectPoint.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ExpectTarget.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FollowList.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Game\ViewModel\GameInfoViewModel.cs" />
+    <Compile Include="Models\Game\ViewModel\PointInfoViewModel.cs" />
+    <Compile Include="Models\GroupMember.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Groups.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ItpcSubject.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ItpcSubjectMaster.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LikeSports.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LikeTeam.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoginHistory.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MailDeliverCond.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MailDeliverCondMaster.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Member.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ComCommon.cs" />
+    <Compile Include="Models\PointBulkTemporal.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UnitBrowser.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserArticle\ViewModel\UserArticleMonthListViewModel.cs" />
+    <Compile Include="Models\ViewModel\ChangePassViewModel.cs" />
+    <Compile Include="Models\ViewModel\ForgotPassViewModel.cs" />
+    <Compile Include="Models\ViewModel\LoginViewModel.cs" />
+    <Compile Include="Models\ViewModel\MemberRegistViewModel.cs" />
+    <Compile Include="Models\MonthlyResults.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewsClassMaster.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewsGenre.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewsGenreMaster.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewsHistory.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewsReading.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewsReadingSumView.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewsTopic.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ViewModel\ContactViewModel.cs" />
+    <Compile Include="Models\ViewModel\PointRankingViewModel.cs" />
+    <Compile Include="Models\ViewModel\HomeContentLeagueViewModel.cs" />
+    <Compile Include="Models\ViewModel\HomeGameInfoViewModel.cs" />
+    <Compile Include="Models\ViewModel\HomeRecentMatchViewModel.cs" />
+    <Compile Include="Models\ViewModel\HomeRightContentViewModel.cs" />
+    <Compile Include="Models\ViewModel\HomeViewModel.cs" />
+    <Compile Include="Models\News\ViewModel\NewsInfoViewModel.cs" />
+    <Compile Include="Models\News\ViewModel\NewsTopicViewModel.cs" />
+    <Compile Include="Models\News\ViewModel\PostedInfoViewModel.cs" />
+    <Compile Include="Models\NoticeDeliverySubject.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NoticeInfo.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OddsInfo.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PageInfo.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PayOffPoints.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PhotoNews.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Point.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PointHistory.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PointRanking.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PopularTopicsAggregate.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PrefectureMaster.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Prize.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QuotTopic.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SeasonTotalResults.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SnsAuthInformation.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SnsCorpInformation.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SNSShareHistory.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SportsMaster.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SportsStandardDeviation.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SystemParamater.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TokenAcInfo.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TokenControl.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TopicMaster.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TotalDailyReport.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TotalMemberReport.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TotalMonthlyReport.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TotalWeeklyReport.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserArticle\ViewModel\UserArticleViewModel.cs" />
+    <Compile Include="Models\UserArticle\ViewModel\UserNewArticleViewModel.cs" />
+    <Compile Include="Models\WeekResults.cs">
+      <DependentUpon>Com.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\CustomMobileViewEngine.cs" />
+    <Compile Include="Utilities\Constants.cs" />
+    <Compile Include="Utilities\EmailSender.cs" />
+    <Compile Include="Core\Attributes\ErrorLoggerAttribute.cs" />
+    <Compile Include="Utilities\FileDataStore.cs" />
+    <Compile Include="Utilities\NoCacheAttribute.cs" />
+    <Compile Include="Utilities\StringProtector.cs" />
+    <Compile Include="Utilities\Utils.cs" />
+    <Compile Include="App_GlobalResources\Japanese.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Japanese.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Jleague\Scripts\10-1.js" />
+    <Content Include="Areas\Jleague\Scripts\10-2-3.js" />
+    <Content Include="Areas\Jleague\Scripts\10-2.js" />
+    <Content Include="Areas\Jleague\Scripts\10-5.js" />
+    <Content Include="Areas\Jleague\Scripts\10-2-5-1.js" />
+    <Content Include="Areas\Jleague\Scripts\Mobile\10-2-2.js" />
+    <Content Include="Areas\Jleague\Scripts\Mobile\10-2-3.js" />
+    <Content Include="Areas\Jleague\Scripts\Mobile\10-2-5-2.js" />
+    <Content Include="Areas\Jleague\Scripts\Views\10-5.js" />
+    <Content Include="Areas\Jleague\Scripts\Mobile\10-1.js" />
+    <Content Include="Areas\Jleague\Scripts\Mobile\10-2.js" />
+    <Content Include="Areas\Jleague\Scripts\Mobile\10-5-2.js" />
+    <Content Include="Areas\Jleague\Scripts\Views\10-2-5-1.js" />
+    <Content Include="Areas\Mlb\Models\Mlb.Context.tt">
+      <DependentUpon>Mlb.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Mlb.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\Mlb\Models\Mlb.edmx.diagram">
+      <DependentUpon>Mlb.edmx</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Mlb\Models\Mlb.tt">
+      <DependentUpon>Mlb.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Mlb.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\Mlb\Scripts\9-1.js" />
+    <Content Include="Areas\Mlb\Scripts\9-2.js" />
+    <Content Include="Areas\Mlb\Scripts\9-5-1.js" />
+    <Content Include="Areas\Mlb\Scripts\Mobile\9-5-2.js" />
+    <Content Include="Areas\Mlb\Scripts\Mobile\9-2.js" />
+    <Content Include="Areas\Mlb\Scripts\Mobile\9-1.js" />
+    <Content Include="Areas\Mlb\Scripts\Mobile\9-5.js" />
+    <Content Include="Areas\Mlb\Views\MlbGameInformation\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\MlbNewsList\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\MlbNewsList\Mobile\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\MlbOrder\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\MlbOrder\Mobile\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\MlbScheduleResult\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\MlbTeamInfoConfrontationResult\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\MlbTeamInfoDailyResult\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\MlbTeamInfoNews\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\MlbTeamInfoNews\Mobile\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\MlbTeamInformation\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\MlbTeamInformation\Mobile\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\MlbTeamInfoTeamTop\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\MlbTeamInfoTeamTop\Mobile\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\MlbTop\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\MlbTop\Mobile\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\Shared\MlbHeaderSubMenu.cshtml" />
+    <Content Include="Areas\Mlb\Views\Shared\Mobile\_MlbGameInfoPlayerInfo.cshtml" />
+    <Content Include="Areas\Mlb\Views\Shared\Mobile\_MlbNewsTopView.cshtml" />
+    <Content Include="Areas\Mlb\Views\Shared\_MlbGameInfo.cshtml" />
+    <Content Include="Areas\Mlb\Views\Shared\_MlbGameInfoPlayerInfo.cshtml" />
+    <Content Include="Areas\Mlb\Views\Shared\_MlbLayout.cshtml" />
+    <Content Include="Areas\Mlb\Views\Shared\_MlbNewsTopView.cshtml" />
+    <Content Include="Areas\Mlb\Views\Shared\_MlbRecentNews.cshtml" />
+    <Content Include="Areas\Mlb\Views\Shared\_MlbTeamInfoMenu.cshtml" />
+    <Content Include="Areas\Mlb\Views\Shared\_MlbTop3Ranking.cshtml" />
+    <Content Include="Areas\Mlb\Views\Shared\_NpbRightGames.cshtml" />
+    <Content Include="Areas\Mlb\Views\web.config" />
+    <Content Include="Areas\MyPage\Css\vendor\jquery.fileupload.css" />
+    <Content Include="Areas\MyPage\Scripts\Mobile\3-1.js" />
+    <Content Include="Areas\MyPage\Scripts\Mobile\3-10.js" />
+    <Content Include="Areas\MyPage\Scripts\Mobile\3-2.js" />
+    <Content Include="Areas\MyPage\Scripts\Mobile\3-3.js" />
+    <Content Include="Areas\MyPage\Scripts\Mobile\3-4-1.js" />
+    <Content Include="Areas\MyPage\Scripts\Mobile\3-4-2.js" />
+    <Content Include="Areas\MyPage\Scripts\Mobile\3-4-3.js" />
+    <Content Include="Areas\MyPage\Scripts\Mobile\3-5.js" />
+    <Content Include="Areas\MyPage\Scripts\Mobile\3-6.js" />
+    <Content Include="Areas\MyPage\Scripts\Mobile\3-7-1.js" />
+    <Content Include="Areas\MyPage\Scripts\Mobile\3-7-2.js" />
+    <Content Include="Areas\MyPage\Scripts\Mobile\3-7.js" />
+    <Content Include="Areas\MyPage\Scripts\Mobile\3-8.js" />
+    <Content Include="Areas\MyPage\Scripts\Mobile\3-9.js" />
+    <Content Include="Areas\MyPage\Scripts\Mobile\3-4.js" />
+    <Content Include="Areas\MyPage\Scripts\Mobile\follow_unfolllow.js" />
+    <Content Include="Areas\MyPage\Scripts\vendor\ElementQueries.js" />
+    <Content Include="Areas\MyPage\Scripts\vendor\jquery.fileupload.js" />
+    <Content Include="Areas\MyPage\Scripts\vendor\jquery.iframe-transport.js" />
+    <Content Include="Areas\MyPage\Scripts\vendor\jquery.ui.widget.js" />
+    <Content Include="Areas\MyPage\Scripts\vendor\ResizeSensor.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\3-10.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\3-4-1.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\3-4-2.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\3-4-3.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\3-7-3.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\3-7-2.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\3-7-1.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\3-1.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\3-2.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\3-6.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\3-5.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\3-3.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\3-7.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\follow_unfolllow.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\3-8.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\3-9.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\3-4.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\highcharts.js" />
+    <Content Include="Areas\MyPage\Scripts\Views\MyPageGroupDetails\common.js" />
+    <Content Include="Areas\Npb\Scripts\8-1.js" />
+    <Content Include="Areas\Npb\Scripts\8-2.js" />
+    <Content Include="Areas\Npb\Scripts\Mobile\8-1.js" />
+    <Content Include="Areas\Npb\Scripts\Mobile\8-2.js" />
+    <Content Include="Areas\Npb\Scripts\Mobile\8-5-2.js" />
+    <Content Include="Areas\Npb\Scripts\Views\NpbTeamInfoConfrontationResult\all.js" />
+    <Content Include="Areas\Npb\Views\Shared\Mobile\_NpbGameInfo.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Prize\Scripts\Mobile\6-2.js" />
+    <Content Include="Areas\Prize\Scripts\Views\6-2.js" />
+    <Content Include="Areas\User\Scripts\Mobile\4-1.js" />
+    <Content Include="Areas\User\Scripts\Mobile\4-2.js" />
+    <Content Include="Areas\User\Scripts\Mobile\4-3.js" />
+    <Content Include="Areas\User\Scripts\Mobile\4-4.js" />
+    <Content Include="Areas\User\Scripts\Mobile\4-5.js" />
+    <Content Include="Areas\User\Scripts\Mobile\follow_unfolllow.js" />
+    <Content Include="Areas\User\Scripts\Views\4-1.js" />
+    <Content Include="Areas\User\Scripts\Views\4-2.js" />
+    <Content Include="Areas\User\Scripts\Views\4-5.js" />
+    <Content Include="Areas\User\Scripts\Views\4-4.js" />
+    <Content Include="Areas\User\Scripts\Views\4-3.js" />
+    <Content Include="Areas\User\Scripts\Views\follow_unfolllow.js" />
+    <Content Include="Areas\User\Scripts\Views\highcharts.js" />
+    <Content Include="Areas\User\Views\UserExpectedList\Mobile\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Content\base.css" />
+    <Content Include="Content\bxslider.css" />
+    <Content Include="Content\images\adward\201508\600_245_02.png" />
+    <Content Include="Content\images\adward\201508\600_245_01.png" />
+    <Content Include="Content\images\adward\201508\600_245_noimage.png" />
+    <Content Include="Content\images\adward\201508\karadafit_600_400.png" />
+    <Content Include="Content\images\adward\201508\prize_20150601_01.png" />
+    <Content Include="Content\images\adward\201508\prize_20150601_02.png" />
+    <Content Include="Content\images\adward\201508\prize_noimage.png" />
+    <Content Include="Content\images\adward\201508\prize_top_08.png" />
+    <Content Include="Content\images\adward\banner01.png" />
+    <Content Include="Content\images\adward\bg01.png" />
+    <Content Include="Content\images\adward\bg02.png" />
+    <Content Include="Content\images\adward\bg03.png" />
+    <Content Include="Content\images\adward\prize_20150601_01.png" />
+    <Content Include="Content\images\adward\prize_20150601_02.png" />
+    <Content Include="Content\images\adward\prizeTop.png" />
+    <Content Include="Content\images\animated-overlay.gif" />
+    <Content Include="Content\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\img\adward\banner01.png" />
+    <Content Include="Content\img\adward\bg01.png" />
+    <Content Include="Content\img\adward\bg02.png" />
+    <Content Include="Content\img\adward\bg03.png" />
+    <Content Include="Content\img\adward\image01.png" />
+    <Content Include="Content\img\adward\image02.png" />
+    <Content Include="Content\img\favicon.ico" />
+    <Content Include="Content\img\jleague\flag1.png" />
+    <Content Include="Content\img\jleague\flag2.png" />
+    <Content Include="Content\img\jleague\flag3.png" />
+    <Content Include="Content\img\jleague\flag4.png" />
+    <Content Include="Content\img\jleague\flag5.png" />
+    <Content Include="Content\img\jleague\flag6.png" />
+    <Content Include="Content\img\jleague\i-card.png" />
+    <Content Include="Content\img\jleague\i-ycard.png" />
+    <Content Include="Content\img\jleague\i-rcard.png" />
+    <Content Include="Content\img\jleague\i-goal.png" />
+    <Content Include="Content\img\jleague\i-in.png" />
+    <Content Include="Content\img\jleague\i-out.png" />
+    <Content Include="Content\img\jleague\icon01.png" />
+    <Content Include="Content\img\jleague\icon02.png" />
+    <Content Include="Content\img\jleague\icon03.png" />
+    <Content Include="Content\img\jleague\icon04.png" />
+    <Content Include="Content\img\jleague\image.jpg" />
+    <Content Include="Content\img\jleague\line.png" />
+    <Content Include="Content\img\jleague\line1.png" />
+    <Content Include="Content\img\jleague\logo01.png" />
+    <Content Include="Content\img\jleague\logo02.png" />
+    <Content Include="Content\img\jleague\logo03.png" />
+    <Content Include="Content\img\jleague\logo04.png" />
+    <Content Include="Content\img\jleague\logo05.png" />
+    <Content Include="Content\img\jleague\logo06.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_120.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_121.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_122.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_123.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_124.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_126.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_127.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_128.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_129.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_130.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_131.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_132.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_133.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_134.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_135.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_136.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_150.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_176.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_193.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_199.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_207.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_238.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_269.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_270.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_276.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_294.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_296.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_30103.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_30116.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_30148.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_30302.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_30303.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_30305.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_30313.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_30314.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_30526.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_30528.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_30531.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_30536.png" />
+    <Content Include="Content\img\TeamIcon\Jleague\TeamCD_86.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_1.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_10.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_11.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_12.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_13.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_14.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_15.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_16.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_17.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_18.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_19.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_2.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_20.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_21.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_22.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_23.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_24.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_25.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_26.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_27.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_28.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_29.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_3.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_30.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_4.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_5.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_6.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_7.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_8.png" />
+    <Content Include="Content\img\TeamIcon\Mlb\TeamCD_9.png" />
+    <Content Include="Content\img\TeamIcon\Npb\TeamCD_1.png" />
+    <Content Include="Content\img\TeamIcon\Npb\TeamCD_11.png" />
+    <Content Include="Content\img\TeamIcon\Npb\TeamCD_12.png" />
+    <Content Include="Content\img\TeamIcon\Npb\TeamCD_2.png" />
+    <Content Include="Content\img\TeamIcon\Npb\TeamCD_3.png" />
+    <Content Include="Content\img\TeamIcon\Npb\TeamCD_376.png" />
+    <Content Include="Content\img\TeamIcon\Npb\TeamCD_4.png" />
+    <Content Include="Content\img\TeamIcon\Npb\TeamCD_5.png" />
+    <Content Include="Content\img\TeamIcon\Npb\TeamCD_6.png" />
+    <Content Include="Content\img\TeamIcon\Npb\TeamCD_7.png" />
+    <Content Include="Content\img\TeamIcon\Npb\TeamCD_8.png" />
+    <Content Include="Content\img\TeamIcon\Npb\TeamCD_9.png" />
+    <Content Include="Content\img\tmp\ad_bg.png" />
+    <Content Include="Content\img\tmp\arrow.jpg" />
+    <Content Include="Content\img\tmp\arrow.png" />
+    <Content Include="Content\img\tmp\arrow_down.png" />
+    <Content Include="Content\img\tmp\arrow_mid.png" />
+    <Content Include="Content\img\tmp\arrow_up.png" />
+    <Content Include="Content\img\tmp\bg03.png" />
+    <Content Include="Content\img\tmp\btn-next.png" />
+    <Content Include="Content\img\tmp\btn-prev.png" />
+    <Content Include="Content\img\tmp\btn.png" />
+    <Content Include="Content\img\tmp\btn01.png" />
+    <Content Include="Content\img\tmp\btn02.png" />
+    <Content Include="Content\img\tmp\btn03.png" />
+    <Content Include="Content\img\tmp\btn04.png" />
+    <Content Include="Content\img\tmp\btn05.png" />
+    <Content Include="Content\img\tmp\char_l.png" />
+    <Content Include="Content\img\tmp\char_r.png" />
+    <Content Include="Content\img\tmp\char_race.png" />
+    <Content Include="Content\img\tmp\close.png" />
+    <Content Include="Content\img\tmp\dummy.png" />
+    <Content Include="Content\img\tmp\dummy_2.png" />
+    <Content Include="Content\img\tmp\faq-icon-on.png" />
+    <Content Include="Content\img\tmp\faq-icon.png" />
+    <Content Include="Content\img\tmp\faq-title.gif" />
+    <Content Include="Content\img\tmp\fnav_bg.png" />
+    <Content Include="Content\img\tmp\f_logo.png" />
+    <Content Include="Content\img\tmp\f_logo_sb.png" />
+    <Content Include="Content\img\tmp\f_social.png" />
+    <Content Include="Content\img\tmp\gplus.png" />
+    <Content Include="Content\img\tmp\icon.png" />
+    <Content Include="Content\img\tmp\icon_hover.png" />
+    <Content Include="Content\img\tmp\line.png" />
+    <Content Include="Content\img\tmp\line1.png" />
+    <Content Include="Content\img\tmp\line_arrow.png" />
+    <Content Include="Content\img\tmp\line_on.png" />
+    <Content Include="Content\img\tmp\loading.gif" />
+    <Content Include="Content\img\tmp\logo.png" />
+    <Content Include="Content\img\tmp\logo_sb.png" />
+    <Content Include="Content\img\tmp\logo_sb02.png" />
+    <Content Include="Content\img\tmp\mail_note.png" />
+    <Content Include="Content\img\tmp\mail_note01.png" />
+    <Content Include="Content\img\tmp\mail_note02.png" />
+    <Content Include="Content\img\tmp\mail_note04.png" />
+    <Content Include="Content\img\tmp\mail_note05.png" />
+    <Content Include="Content\img\tmp\mem.png" />
+    <Content Include="Content\img\tmp\m_btn01.png" />
+    <Content Include="Content\img\tmp\m_btn02.png" />
+    <Content Include="Content\img\tmp\m_btn03.png" />
+    <Content Include="Content\img\tmp\m_btn04.png" />
+    <Content Include="Content\img\tmp\m_btn05.png" />
+    <Content Include="Content\img\tmp\m_btn06.png" />
+    <Content Include="Content\img\tmp\new_img01.jpg" />
+    <Content Include="Content\img\tmp\new_img02.jpg" />
+    <Content Include="Content\img\tmp\num01.png" />
+    <Content Include="Content\img\tmp\num02.png" />
+    <Content Include="Content\img\tmp\num_arr.png" />
+    <Content Include="Content\img\tmp\pankuzu.png" />
+    <Content Include="Content\img\tmp\prize_20150601_01.png" />
+    <Content Include="Content\img\tmp\prize_20150601_02.png" />
+    <Content Include="Content\img\tmp\prize_bannner_PC.png" />
+    <Content Include="Content\img\tmp\prize_bannner_SP.png" />
+    <Content Include="Content\img\tmp\prize_noimage.png" />
+    <Content Include="Content\img\tmp\p_btn01.png" />
+    <Content Include="Content\img\tmp\p_btn02.png" />
+    <Content Include="Content\img\tmp\p_btn03.png" />
+    <Content Include="Content\img\tmp\reg-btn01.png" />
+    <Content Include="Content\img\tmp\reg-btn02.png" />
+    <Content Include="Content\img\tmp\reg-btn03.png" />
+    <Content Include="Content\img\tmp\reg-note.png" />
+    <Content Include="Content\img\tmp\search.png" />
+    <Content Include="Content\img\tmp\side_icon01.png" />
+    <Content Include="Content\img\tmp\side_img01.jpg" />
+    <Content Include="Content\img\tmp\side_img02.png" />
+    <Content Include="Content\img\tmp\s_btn01.png" />
+    <Content Include="Content\img\tmp\s_btn02.png" />
+    <Content Include="Content\img\tmp\s_btn03.png" />
+    <Content Include="Content\img\tmp\s_btn04.png" />
+    <Content Include="Content\img\tmp\tmp_char01.png" />
+    <Content Include="Content\img\tmp\tmp_char02.png" />
+    <Content Include="Content\img\tmp\tmp_char03.png" />
+    <Content Include="Content\img\tmp\tmp_img01.jpg" />
+    <Content Include="Content\img\tmp\tmp_logo01.gif" />
+    <Content Include="Content\img\tmp\tmp_logo02.gif" />
+    <Content Include="Content\img\tmp\tmp_logo03.gif" />
+    <Content Include="Content\img\tmp\tmp_logo04.gif" />
+    <Content Include="Content\img\tmp\tmp_logo05.gif" />
+    <Content Include="Content\img\tmp\tmp_logo06.gif" />
+    <Content Include="Content\img\tmp\tmp_logo07.gif" />
+    <Content Include="Content\img\tmp\tmp_logo08.gif" />
+    <Content Include="Content\img\tmp\tmp_logo09.gif" />
+    <Content Include="Content\img\tmp\tutorial_01_01_pc.gif" />
+    <Content Include="Content\img\tmp\tutorial_01_02_pc.gif" />
+    <Content Include="Content\img\tmp\tutorial_01_sp.gif" />
+    <Content Include="Content\img\tmp\tutorial_02_sp.gif" />
+    <Content Include="Content\img\tmp\tutorial_03_01_pc.gif" />
+    <Content Include="Content\img\tmp\tutorial_03_sp.gif" />
+    <Content Include="Content\img\tmp\tutorial_07_pc.gif" />
+    <Content Include="Content\img\tmp\tutorial_07_sp.gif" />
+    <Content Include="Content\img\topics\image01.jpg" />
+    <Content Include="Content\img\topics\image02.jpg" />
+    <Content Include="Content\img\topics\line.png" />
+    <Content Include="Content\img\topics\logo01.png" />
+    <Content Include="Content\img\topics\logo02.png" />
+    <Content Include="Content\img\topics\logo03.png" />
+    <Content Include="Content\img\topics\logo04.png" />
+    <Content Include="Content\img\topics\logo05.png" />
+    <Content Include="Content\img\topics\logo06.png" />
+    <Content Include="Content\img\topics\logo07.png" />
+    <Content Include="Content\img\topics\logo08.png" />
+    <Content Include="Content\img\topics\logo09.png" />
+    <Content Include="Content\img\topics\logo10.png" />
+    <Content Include="Content\img\topics\logo11.png" />
+    <Content Include="Content\img\topics\logo12.png" />
+    <Content Include="Content\img\topics\text-bg.png" />
+    <Content Include="Content\img\topics\text-shadow.png" />
+    <Content Include="Content\img\top\img01.jpg" />
+    <Content Include="Content\img\top\img02.jpg" />
+    <Content Include="Content\img\top\img03.jpg" />
+    <Content Include="Content\img\top\img04.jpg" />
+    <Content Include="Content\img\top\img05.jpg" />
+    <Content Include="Content\img\top\img06.jpg" />
+    <Content Include="Content\img\top\img07.png" />
+    <Content Include="Content\img\top\img08.jpg" />
+    <Content Include="Content\img\top\sb_img01.jpg" />
+    <Content Include="Content\img\top\sb_img02.jpg" />
+    <Content Include="Content\img\upload\contribution\dummy_2.png" />
+    <Content Include="Content\img\upload\member\DefaultProfilePicture.png" />
+    <Content Include="Content\jquery-ui-dialog.css" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\News\PN_UTF8\photo\default.png" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="Core\Models\Flotr2\ScriptTemplete\BarChartScriptTemplete.txt" />
+    <Content Include="Core\Models\Flotr2\ScriptTemplete\BubbleChartScriptTemplete.txt" />
+    <Content Include="Core\Models\Flotr2\ScriptTemplete\FormationChartScriptTemplete.txt" />
+    <Content Include="Core\Models\Flotr2\ScriptTemplete\Parts\FormationBubblesTemplete.txt" />
+    <Content Include="Core\Models\Flotr2\ScriptTemplete\Parts\FormationLabelFormatterFunction.txt" />
+    <Content Include="Core\Models\Flotr2\ScriptTemplete\Parts\FormationMarkersTemplete.txt" />
+    <Content Include="Core\Models\Flotr2\ScriptTemplete\Parts\FormationSharedTemplete.txt" />
+    <Content Include="Core\Models\Flotr2\ScriptTemplete\Parts\FormationTrackFormatterFunction.txt" />
+    <Content Include="Core\Models\Flotr2\ScriptTemplete\Parts\PieChartDataSourceTemplete.txt" />
+    <Content Include="Core\Models\Flotr2\ScriptTemplete\PieChartScriptTemplete.txt" />
+    <Content Include="Core\Models\Logging\LogTemplete\ApplicationErrorLogTemplete.txt" />
+    <Content Include="Core\Models\Logging\LogTemplete\ExceptionLogTemplete.txt" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="51Degrees.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Npb\Views\web.config" />
+    <Content Include="Areas\Npb\Views\NpbScheduleResult\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbPersonalResult\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbTop\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\_NpbTop3Ranking.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbOrder\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\_NpbRecentNews.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbTeamInformation\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbTeamInfoTeamTop\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbTeamInfoConfrontationResult\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbGameInformation\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbTeamInfoNews\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbNewsList\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\_NpbTeamInfoConfrontationResult.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbTeamInfoPlayer\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbTeamInfoPitcherDetail\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\_NpbPersonInfo.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\_NpbTeamInfoCatcherFielder.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\_NpbTeamInfoDirectorStaff.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\_NpbTeamInfoPitcher.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\_NpbBattingResult.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbTeamInfoHittingDetail\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\_NpbTeamInfoMenu.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\_NpbGameInfoPlayerInfo.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\_NpbRightRecentNews.cshtml" />
+    <Content Include="MailTemplate\ContactTemp.html" />
+    <Content Include="MailTemplate\ForgotPassword.html" />
+    <Content Include="MailTemplate\AddressChangeConfirm.html" />
+    <Content Include="Mobile\Content\bxslider.css" />
+    <Content Include="Mobile\Content\chart.css" />
+    <Content Include="Mobile\Content\img\favicon.ico" />
+    <Content Include="Mobile\Content\img\jleague\bg_lastmatches_vs.png" />
+    <Content Include="Mobile\Content\img\jleague\bg_lastresults_draw.png" />
+    <Content Include="Mobile\Content\img\jleague\bg_lastresults_lose.png" />
+    <Content Include="Mobile\Content\img\jleague\bg_lastresults_win.png" />
+    <Content Include="Mobile\Content\img\jleague\bg_modalexp_vs.png" />
+    <Content Include="Mobile\Content\img\jleague\bg_panel.jpg" />
+    <Content Include="Mobile\Content\img\jleague\bg_panel_notice.png" />
+    <Content Include="Mobile\Content\img\jleague\bg_panel_notice_left.png" />
+    <Content Include="Mobile\Content\img\jleague\bg_panel_notice_right.png" />
+    <Content Include="Mobile\Content\img\jleague\bg_resulthit.png" />
+    <Content Include="Mobile\Content\img\jleague\hdg_article.png" />
+    <Content Include="Mobile\Content\img\jleague\hdg_expothers.png" />
+    <Content Include="Mobile\Content\img\jleague\hdg_formation.png" />
+    <Content Include="Mobile\Content\img\jleague\hdg_interpret.png" />
+    <Content Include="Mobile\Content\img\jleague\hdg_lastmatches.png" />
+    <Content Include="Mobile\Content\img\jleague\hdg_lastresults.png" />
+    <Content Include="Mobile\Content\img\jleague\hdg_matchdata.png" />
+    <Content Include="Mobile\Content\img\jleague\hdg_nextseason.png" />
+    <Content Include="Mobile\Content\img\jleague\hdg_profile.png" />
+    <Content Include="Mobile\Content\img\jleague\hdg_ptchance.png" />
+    <Content Include="Mobile\Content\img\jleague\hdg_starters.png" />
+    <Content Include="Mobile\Content\img\jleague\hdg_stats.png" />
+    <Content Include="Mobile\Content\img\jleague\hdg_textrpt.png" />
+    <Content Include="Mobile\Content\img\jleague\img_formation_default.png" />
+    <Content Include="Mobile\Content\img\jleague\img_formation_default_2.png" />
+    <Content Include="Mobile\Content\img\jleague\i_card.png" />
+    <Content Include="Mobile\Content\img\jleague\i_rcard.png" />
+    <Content Include="Mobile\Content\img\jleague\i_ycard.png" />
+    <Content Include="Mobile\Content\img\jleague\mk_arr_expothers.png" />
+    <Content Include="Mobile\Content\img\jleague\mk_check_txtrpt.png" />
+    <Content Include="Mobile\Content\img\jleague\mk_reply_txtrpt.png" />
+    <Content Include="Mobile\Content\img\jleague\mk_socpanelscore_vs.png" />
+    <Content Include="Mobile\Content\img\jleague\mk_socstpower_df.png" />
+    <Content Include="Mobile\Content\img\jleague\mk_socstpower_of.png" />
+    <Content Include="Mobile\Content\img\jleague\serif_panel_lead.png" />
+    <Content Include="Mobile\Content\img\jleague\status_icons.png" />
+    <Content Include="Mobile\Content\img\tmp\ad-next.png" />
+    <Content Include="Mobile\Content\img\tmp\bg02.png" />
+    <Content Include="Mobile\Content\img\tmp\bg_selectarr.png" />
+    <Content Include="Mobile\Content\img\tmp\bg_select_goal.png" />
+    <Content Include="Mobile\Content\img\tmp\close.png" />
+    <Content Include="Mobile\Content\img\tmp\faq-icon-on.png" />
+    <Content Include="Mobile\Content\img\tmp\faq-icon.png" />
+    <Content Include="Mobile\Content\img\tmp\faq-title.gif" />
+    <Content Include="Mobile\Content\img\tmp\icon13a.png" />
+    <Content Include="Mobile\Content\img\tmp\ico_header_login.png" />
+    <Content Include="Mobile\Content\img\tmp\ico_header_menu.png" />
+    <Content Include="Mobile\Content\img\tmp\ico_header_news.png" />
+    <Content Include="Mobile\Content\img\tmp\ico_login_fb.png" />
+    <Content Include="Mobile\Content\img\tmp\ico_login_gp.png" />
+    <Content Include="Mobile\Content\img\tmp\ico_login_tw.png" />
+    <Content Include="Mobile\Content\img\tmp\ico_menu_bb.png" />
+    <Content Include="Mobile\Content\img\tmp\ico_menu_exp.png" />
+    <Content Include="Mobile\Content\img\tmp\ico_menu_fb.png" />
+    <Content Include="Mobile\Content\img\tmp\ico_menu_home.png" />
+    <Content Include="Mobile\Content\img\tmp\ico_menu_how.png" />
+    <Content Include="Mobile\Content\img\tmp\ico_menu_logout.png" />
+    <Content Include="Mobile\Content\img\tmp\ico_menu_mlb.png" />
+    <Content Include="Mobile\Content\img\tmp\ico_menu_prz.png" />
+    <Content Include="Mobile\Content\img\tmp\ico_menu_soc.png" />
+    <Content Include="Mobile\Content\img\tmp\ico_menu_tw.png" />
+    <Content Include="Mobile\Content\img\tmp\log-default.png" />
+    <Content Include="Mobile\Content\img\tmp\log-icon01.png" />
+    <Content Include="Mobile\Content\img\tmp\log-icon02.png" />
+    <Content Include="Mobile\Content\img\tmp\log-icon03.png" />
+    <Content Include="Mobile\Content\img\tmp\logo-mini.jpg" />
+    <Content Include="Mobile\Content\img\tmp\logo_header_spolog.png" />
+    <Content Include="Mobile\Content\img\tmp\mk_arr_topnotice.png" />
+    <Content Include="Mobile\Content\img\tmp\mk_article.png" />
+    <Content Include="Mobile\Content\img\tmp\mk_catpathlist.png" />
+    <Content Include="Mobile\Content\img\tmp\mk_check.png" />
+    <Content Include="Mobile\Content\img\tmp\mk_header_search_off.png" />
+    <Content Include="Mobile\Content\img\tmp\mk_header_search_on.png" />
+    <Content Include="Mobile\Content\img\tmp\mk_modal_close.png" />
+    <Content Include="Mobile\Content\img\tmp\pic_user.png" />
+    <Content Include="Mobile\Content\img\tmp\search.png" />
+    <Content Include="Mobile\Content\img\tmp\serif_panel_lead.png" />
+    <Content Include="Mobile\Content\img\tmp\serif_pointboard.png" />
+    <Content Include="Mobile\Content\img\tmp\sp_catpath.png" />
+    <Content Include="Mobile\Content\img\tmp\sp_search.png" />
+    <Content Include="Mobile\Content\img\tmp\ttl_catpath_soc.png" />
+    <Content Include="Mobile\Content\normalize.css" />
+    <Content Include="Mobile\Content\slick.css" />
+    <Content Include="Mobile\Content\slidebars.css" />
+    <Content Include="Mobile\Content\soccer_gameinfo.css" />
+    <Content Include="Mobile\Content\sports.css" />
+    <Content Include="Mobile\Content\style.css" />
+    <Content Include="Mobile\Content\img\jleague\icon01.png" />
+    <Content Include="Mobile\Content\img\jleague\icon02.png" />
+    <Content Include="Mobile\Content\img\jleague\icon03.png" />
+    <Content Include="Mobile\Content\img\jleague\icon04.png" />
+    <Content Include="Mobile\Content\img\jleague\icon07.png" />
+    <Content Include="Mobile\Content\img\jleague\icon08.png" />
+    <Content Include="Mobile\Content\img\jleague\icon09.png" />
+    <Content Include="Mobile\Content\img\jleague\image.jpg" />
+    <Content Include="Mobile\Content\img\jleague\line.png" />
+    <Content Include="Mobile\Content\img\jleague\logo.png" />
+    <Content Include="Mobile\Content\img\jleague\logo01.png" />
+    <Content Include="Mobile\Content\img\jleague\logo02.png" />
+    <Content Include="Mobile\Content\img\tmp\bar.png" />
+    <Content Include="Mobile\Content\img\tmp\btn-bg01.png" />
+    <Content Include="Mobile\Content\img\tmp\btn-next.png" />
+    <Content Include="Mobile\Content\img\tmp\btn-prev.png" />
+    <Content Include="Mobile\Content\img\tmp\flogo.png" />
+    <Content Include="Mobile\Content\img\tmp\foot-bg.png" />
+    <Content Include="Mobile\Content\img\tmp\icon01.png" />
+    <Content Include="Mobile\Content\img\tmp\icon02.png" />
+    <Content Include="Mobile\Content\img\tmp\icon03.png" />
+    <Content Include="Mobile\Content\img\tmp\icon04.png" />
+    <Content Include="Mobile\Content\img\tmp\icon05.png" />
+    <Content Include="Mobile\Content\img\tmp\icon06.png" />
+    <Content Include="Mobile\Content\img\tmp\icon07.png" />
+    <Content Include="Mobile\Content\img\tmp\icon08.png" />
+    <Content Include="Mobile\Content\img\tmp\icon09.png" />
+    <Content Include="Mobile\Content\img\tmp\icon10.png" />
+    <Content Include="Mobile\Content\img\tmp\icon11.png" />
+    <Content Include="Mobile\Content\img\tmp\icon12.png" />
+    <Content Include="Mobile\Content\img\tmp\icon13.png" />
+    <Content Include="Mobile\Content\img\tmp\icon14.png" />
+    <Content Include="Mobile\Content\img\tmp\icon15.png" />
+    <Content Include="Mobile\Content\img\tmp\image.jpg" />
+    <Content Include="Mobile\Content\img\tmp\image1.jpg" />
+    <Content Include="Mobile\Content\img\tmp\image2.jpg" />
+    <Content Include="Mobile\Content\img\tmp\image3.jpg" />
+    <Content Include="Mobile\Content\img\tmp\image4.jpg" />
+    <Content Include="Mobile\Content\img\tmp\line-down.png" />
+    <Content Include="Mobile\Content\img\tmp\logo.png" />
+    <Content Include="Mobile\Content\img\tmp\mem.png" />
+    <Content Include="Mobile\Content\img\tmp\path-arrow01.png" />
+    <Content Include="Mobile\Content\img\tmp\path-arrow02.png" />
+    <Content Include="Mobile\Content\img\tmp\reg-btn01.png" />
+    <Content Include="Mobile\Content\img\tmp\reg-btn02.png" />
+    <Content Include="Mobile\Content\img\tmp\reg-btn03.png" />
+    <Content Include="Mobile\Content\img\tmp\reg-note.png" />
+    <Content Include="Mobile\Content\img\tmp\reg-note01.png" />
+    <Content Include="Mobile\Content\img\tmp\team01.png" />
+    <Content Include="Mobile\Content\img\tmp\team02.png" />
+    <Content Include="Mobile\Content\img\tmp\team03.png" />
+    <Content Include="Mobile\Content\img\tmp\team04.png" />
+    <Content Include="Mobile\Content\img\tmp\team05.png" />
+    <Content Include="Mobile\Content\img\tmp\team06.png" />
+    <Content Include="Mobile\Content\img\tmp\team07.png" />
+    <Content Include="Mobile\Content\img\tmp\team08.png" />
+    <Content Include="Mobile\Content\img\tmp\team09.png" />
+    <Content Include="Mobile\Content\img\tmp\team10.png" />
+    <Content Include="Mobile\Content\img\tmp\team11.png" />
+    <Content Include="Mobile\Content\img\tmp\team12.png" />
+    <Content Include="Mobile\Content\img\tmp\text-bg.png" />
+    <Content Include="Areas\Jleague\Scripts\Mobile\common.predicate.popup.soccer.js" />
+    <Content Include="Areas\Jleague\Scripts\Mobile\common.predicate.soccer.js" />
+    <Content Include="Areas\Jleague\Scripts\Mobile\common.soccer.js" />
+    <Content Include="Mobile\Scripts\common.js" />
+    <Content Include="Mobile\Scripts\common_modal.js" />
+    <Content Include="Mobile\Scripts\detectmobile.js" />
+    <Content Include="Mobile\Scripts\jquery.bxslider_soc.js" />
+    <Content Include="Mobile\Scripts\slidebars.js" />
+    <Content Include="Mobile\Scripts\soccer_gameinfo.js" />
+    <Content Include="Mobile\Scripts\tutorials.js" />
+    <Content Include="Mobile\Scripts\jquery.bxslider.js" />
+    <Content Include="Mobile\Scripts\jquery.cslide.js" />
+    <Content Include="Mobile\Scripts\jquery.js" />
+    <Content Include="Mobile\Scripts\respond.js" />
+    <Content Include="Areas\Npb\Scripts\8-6.js" />
+    <Content Include="Scripts\autoNumeric-2.0.js" />
+    <Content Include="Scripts\cookie.js" />
+    <Content Include="Scripts\datepicker-ja.js" />
+    <Content Include="Scripts\flotr2.min.js" />
+    <Content Include="Scripts\Home.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.cslide.js" />
+    <Content Include="Scripts\line_library.js" />
+    <Content Include="Mvc.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgGameCard.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgGameCardHeader.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\_JlgGameCard.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgGameCardExpOthers.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\_JlgGameCard.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgRecentMatches.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgRecentGameResults.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgTeamTrendsAtBar.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgRelatedArticles.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgStartingMembers.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgFormation.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgStats.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgGameCritique.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgNextGames.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgGameRecords.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgTeamTrendsAtPie.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\_JlgNextGames.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgGameTexts.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgStartingMembersPre.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgInjuredMembers.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgSuspendedMembers.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgStartingAttack.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgStartingDefense.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_RelatedArticleItem.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_EmptyRelatedArticleItem.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgStartingMembersPlayInfo.cshtml" />
+    <None Include="MvcSiteMapSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Scripts\linq-vsdoc.js" />
+    <Content Include="Scripts\linq.js" />
+    <Content Include="Scripts\linq.min.js" />
+    <Content Include="Scripts\preview_image.js" />
+    <Content Include="Scripts\section2.js" />
+    <Content Include="MailTemplate\RegistConfirm.html" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\tutorials.js" />
+    <Content Include="Scripts\user_article.js" />
+    <Content Include="Views\Shared\_JlgLayoutTop.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgResult\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\web.config" />
+    <Content Include="Areas\Jleague\Views\JlgTop\Index.cshtml" />
+    <EntityDeploy Include="Areas\Mlb\Models\Mlb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Mlb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="Models\Com.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Com.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Com.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Com.edmx</DependentUpon>
+      <LastGenOutput>Com.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Com.edmx.diagram">
+      <DependentUpon>Com.edmx</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Models\Com.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Com.edmx</DependentUpon>
+      <LastGenOutput>Com.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Areas\Jleague\Models\Jlg.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Jlg.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Areas\Jleague\Models\Jlg.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Jlg.edmx</DependentUpon>
+      <LastGenOutput>Jlg.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\Jleague\Models\Jlg.edmx.diagram">
+      <DependentUpon>Jlg.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Jleague\Models\Jlg.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Jlg.edmx</DependentUpon>
+      <LastGenOutput>Jlg.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Areas\Npb\Models\Npb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Npb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Areas\Npb\Models\Npb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Npb.edmx</DependentUpon>
+      <LastGenOutput>Npb.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\Npb\Models\Npb.edmx.diagram">
+      <DependentUpon>Npb.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Npb\Models\Npb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Npb.edmx</DependentUpon>
+      <LastGenOutput>Npb.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\Npb\Views\NpbTeamInfoDailyResult\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\_NpbNewsTopView.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\_NpbTeamInfoResultGameInfos.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgJOrder\JlgNabiscoOrder.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgNews\TeamInfoNews.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgNews\JlgNews.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgNews\JlgNabiscoNews.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\_JlgRightStanding.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgTeamInfo\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgTop\JTop.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgTop\NabiscoTop.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgJOrder\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgNews\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\_NpbGameInfo.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Npb\Views\Shared\_NpbRightGames.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgTeamInfoScheduleResult\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgTeamInfoTop\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbPersonalResult\Mobile\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbTeamInfoPlayer\Mobile\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\Mobile\_NpbTeamInfoDirectorStaff.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbTop\Mobile\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\Mobile\_NpbMenu.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgTeamInfo\Mobile\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbScheduleResult\Mobile\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbTeamInfoDailyResult\Mobile\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbTeamInfoNews\Mobile\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbNewsList\Mobile\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbTeamInfoPitcherDetail\Mobile\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbTeamInfoHittingDetail\Mobile\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\Mobile\_NpbPersonInfo.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\Mobile\_NpbBattingResult.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\Mobile\_NpbTeamInfoCatcherFielder.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\Mobile\_NpbTeamInfoMenu.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\Mobile\_NpbTeamInfoPitcher.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbOrder\Mobile\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Jleague\Views\JlgJOrder\Mobile\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgJOrder\Mobile\JlgNabiscoOrder.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgNews\Mobile\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgNews\Mobile\JlgNabiscoNews.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgNews\Mobile\JlgNews.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgNews\Mobile\TeamInfoNews.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbTeamInfoConfrontationResult\Mobile\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\Mobile\_NpbTeamInfoResultGameInfos.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\Mobile\_NpbTeamInfoConfrontationResult.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\JleagueMenu.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\JleagueSubMenu.cshtml" />
+    <Content Include="Areas\Npb\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\NpbHeaderSubMenu.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\JlgHeaderSubMenu.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\Mobile\_NpbNewsTopView.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\Mobile\_NpbRecentNews.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbTeamInformation\Mobile\Index.cshtml" />
+    <Content Include="Areas\User\Views\web.config" />
+    <Content Include="Areas\User\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\User\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\MyPage\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Prize\Views\web.config" />
+    <Content Include="Areas\MyPage\Views\MyPageTop\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\Shared\MyPageHeaderSubMenu.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageArticle\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageExpectedList\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageFollowers\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageFollowing\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageGroupList\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageNotice\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageSetting\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageSettingAddress\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageSettingPassword\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\UserSearch\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageGroupNew\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbTeamInfoTeamTop\Mobile\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgPersonalAchieve\Index.cshtml" />
+    <Content Include="Areas\Npb\Views\NpbGameInformation\Mobile\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageGroupDetails\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageGroupEdit\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\JleagueTeamMenu.cshtml" />
+    <Content Include="Areas\User\Views\UserArticle\Index.cshtml" />
+    <Content Include="Areas\User\Views\UserFollowers\Index.cshtml" />
+    <Content Include="Areas\User\Views\UserFollowing\Index.cshtml" />
+    <Content Include="Areas\User\Views\Shared\UserHeaderSubMenu.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\Mobile\_NpbGameInfoPlayerInfo.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\User\Views\UserTop\Index.cshtml" />
+    <Content Include="Areas\User\Views\UserExpectedList\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageTop\Mobile\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\Shared\Mobile\_MyPageMenu.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageSettingPassword\Mobile\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageSettingAddress\Mobile\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageSetting\Mobile\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageNotice\Mobile\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageGroupNew\Mobile\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageGroupList\Mobile\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageGroupEdit\Mobile\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageGroupDetails\Mobile\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageFollowing\Mobile\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageFollowers\Mobile\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageExpectedList\Mobile\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageArticle\Mobile\Index.cshtml" />
+    <Content Include="Areas\User\Views\UserArticle\Mobile\Index.cshtml" />
+    <Content Include="Areas\User\Views\UserFollowers\Mobile\Index.cshtml" />
+    <Content Include="Areas\User\Views\UserFollowing\Mobile\Index.cshtml" />
+    <Content Include="Areas\User\Views\UserTop\Mobile\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\UserSearch\Mobile\Index.cshtml" />
+    <Content Include="Areas\User\Views\Shared\Mobile\_UserMenu.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\_JleagueGameInfosResult.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgPersonalAchieve\Mobile\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgResult\Mobile\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JleagueMenu.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JleagueGameInfosResult.cshtml" />
+    <Content Include="Areas\Mlb\Views\Shared\Mobile\MlbSubMenu.cshtml" />
+    <Content Include="Areas\Mlb\Views\Shared\Mobile\_MlbLayout.cshtml" />
+    <Content Include="Areas\Mlb\Views\Shared\Mobile\_MlbRecentNews.cshtml" />
+    <Content Include="Areas\Mlb\Views\Shared\Mobile\_MlbTeamInfoMenu.cshtml" />
+    <Content Include="Areas\Mlb\Views\MlbScheduleResult\Mobile\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\Shared\Mobile\_MlbGameInfo.cshtml" />
+    <Content Include="Areas\Mlb\Views\MlbTeamInfoDailyResult\Mobile\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\MlbGameInformation\Mobile\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgTop\Mobile\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\_JlgTop3Ranking.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\_JlgGameInfo.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JleagueNewsTopView.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\_JleagueNewsTopView.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JleagueRecentNews.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgGameInfo.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgGameInformation\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgGameInformation\Mobile\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\_JlgGameInfoPlayerInfo.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgTeamInfoPlayer\Index.cshtml" />
+    <Content Include="Areas\Mlb\Views\Shared\_MlbRightRecentNews.cshtml" />
+    <Content Include="Areas\MyPage\Views\Shared\_MyPageRightGroupRanking.cshtml" />
+    <Content Include="Areas\MyPage\Views\Shared\_FollowRankings.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgTop\Mobile\JTop.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgTop\Mobile\NabiscoTop.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgTeamInfoPlayerDetail\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\_JlgPersonInfo.cshtml" />
+    <Content Include="Areas\Npb\Views\Shared\Mobile\_NpbPointEdit.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgTeamInfoTop\Mobile\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgTeamInfoMenu.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgScheduleResult\Mobile\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgScheduleResult\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Jleague\Views\JlgTeamInfoConfrontationResult\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgTeamInfoConfrontationResult\Mobile\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgTeamInfoPlayer\Mobile\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgTeamInfoPlayerDetail\Mobile\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgPersonInfo.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageGroupDetails\_NpbGameInfo.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageGroupDetails\Mobile\_NpbGameInfo.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageGroupDetails\_MyPageLayout.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageGroupDetails\Mobile\_MyPageLayout.cshtml" />
+    <Content Include="Areas\MyPage\Views\Shared\Mobile\_MyPagePointEdit.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\Mobile\_JlgPointEdit.cshtml" />
+    <Content Include="Areas\Prize\Views\PrizeTop\Index.cshtml" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
+    <Content Include="Areas\Prize\Views\PrizeTop\Mobile\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageSettingDeleteAccount\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageSettingDeleteAccount\Mobile\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageSettingDeleteAccount\done.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageSettingDeleteAccount\Mobile\done.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgTeamInfoScheduleResult\Mobile\Index.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgScheduleResult\Mobile\Nabisco.cshtml" />
+    <Content Include="Areas\Jleague\Views\JlgScheduleResult\Nabisco.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\_JleagueRightRecentNews.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\_JleagueRecentNews.cshtml" />
+    <Content Include="Views\Shared\Mobile\_PointAlert.cshtml" />
+    <Content Include="Areas\MyPage\Views\Shared\Mobile\_MyPageExpectedListInfo.cshtml" />
+    <Content Include="Areas\MyPage\Views\Shared\_MyPageExpectedListInfo.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageRecentExpectedList\Index.cshtml" />
+    <Content Include="Areas\MyPage\Views\MyPageRecentExpectedList\Mobile\Index.cshtml" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\MyPage\Views\Shared\_MyPageRecentExpectedListInfo.cshtml" />
+    <Content Include="Areas\Prize\Views\PrizeGood\Index.cshtml" />
+    <Content Include="Areas\Prize\Views\PrizeGood\Mobile\Index.cshtml" />
+    <Content Include="Areas\Prize\Views\Shared\RallyGoodsThumbnail.cshtml" />
+    <EntityDeploy Include="Areas\Prize\Models\Prize.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Prize.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Areas\Prize\Models\Prize.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Prize.edmx</DependentUpon>
+      <LastGenOutput>Prize.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\Prize\Models\Prize.edmx.diagram">
+      <DependentUpon>Prize.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Prize\Models\Prize.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Prize.edmx</DependentUpon>
+      <LastGenOutput>Prize.cs</LastGenOutput>
+    </Content>
+    <Content Include="Areas\Prize\Views\Shared\RallyHistories.cshtml" />
+    <Content Include="Areas\Prize\Views\Shared\Mobile\RallyGoodsThumbnail.cshtml" />
+    <Content Include="Areas\Prize\Views\Shared\PrizeSubMenu.cshtml" />
+    <Content Include="Areas\Prize\Views\Shared\Mobile\PrizeSubMenu.cshtml" />
+    <Content Include="Areas\Prize\Views\Shared\RallyGoodsRemarksLink.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Prize\Views\Shared\RallyGoodsRemarks.cshtml" />
+    <Content Include="Areas\Prize\Views\Shared\RallyGoodsRemarksText.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Prize\Views\Shared\Mobile\RallyGoodsRemarks.cshtml" />
+    <Content Include="Areas\Prize\Views\Shared\Mobile\RallyGoodsRemarksLink.cshtml" />
+    <Content Include="Areas\Prize\Views\Shared\Mobile\RallyGoodsRemarksText.cshtml" />
+    <Content Include="Areas\Prize\Views\Shared\RallyNotFound.cshtml" />
+    <Content Include="Areas\Prize\Views\Shared\Mobile\RallyNotFound.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\_J1ScheduleAndResultMenu.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\_J2ScheduleAndResultMenu.cshtml" />
+    <Content Include="Areas\Jleague\Views\Shared\_NabiscoScheduleAndResultMenu.cshtml" />
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\Splg.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\common.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.bxslider.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.shorten.1.0.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\splgCommon.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Shared\JlgCommon.cshtml" />
+    <Content Include="Views\Shared\MemberLayout.cshtml" />
+    <Content Include="Views\Shared\_NpbLayout.cshtml" />
+    <Content Include="Views\NewsArticleCommon\Index.cshtml" />
+    <Content Include="Views\Member\Delete.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Member\DeleteComplete.cshtml" />
+    <Content Include="Views\Member\Login.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Member\Logout.cshtml" />
+    <Content Include="Views\Member\LogoutComplete.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Member\Register.cshtml" />
+    <Content Include="Views\Member\RegisterConfirmEmail.cshtml" />
+    <Content Include="Views\Member\RegisterReview.cshtml" />
+    <Content Include="Views\Member\RegisterSuccess.cshtml" />
+    <Content Include="Views\UserArticle\Index.cshtml" />
+    <Content Include="Views\Shared\NpbSubMenu.cshtml" />
+    <Content Include="Views\UserArticle\AddNewArticle.cshtml" />
+    <Content Include="Views\UserArticle\EditNewUserArticle.cshtml" />
+    <Content Include="Views\Shared\_JlgContentsLayout.cshtml" />
+    <Content Include="Views\UserArticle\ViewArticleDetail.cshtml" />
+    <Content Include="Views\UserArticle\ConfirmUserArticle.cshtml" />
+    <Content Include="Views\Shared\_SearchEngine.cshtml" />
+    <Content Include="Views\Shared\PointRankings.cshtml" />
+    <Content Include="Views\Shared\Mobile\_Layout.cshtml" />
+    <Content Include="Views\Shared\Mobile\_NpbLayout.cshtml" />
+    <Content Include="Views\Shared\Mobile\_NextPrevMonth.cshtml" />
+    <Content Include="Views\Shared\PopupLoginBox.cshtml" />
+    <Content Include="Views\Shared\Mobile\Popmenu.cshtml" />
+    <Content Include="Views\Home\Mobile\Index.cshtml" />
+    <Content Include="Views\NewsArticleCommon\Mobile\Index.cshtml" />
+    <Content Include="Views\Member\TokenTimeOut.cshtml" />
+    <Content Include="Views\Member\SocialNetworkInfo.cshtml" />
+    <Content Include="Views\NewsArticleCommon\JlgNewsSubMenu.cshtml" />
+    <Content Include="Views\Shared\Mobile\_NextPrevMonthDay.cshtml" />
+    <Content Include="Views\Shared\MainMenu.cshtml" />
+    <Content Include="Views\Shared\SubMember.cshtml" />
+    <Content Include="Views\Shared\MainFooterMenu.cshtml" />
+    <Content Include="Views\Shared\NpbCommon.cshtml" />
+    <Content Include="Views\Shared\Mobile\MainFooterMenu.cshtml" />
+    <Content Include="Views\Shared\HomeCommon.cshtml" />
+    <Content Include="Views\Shared\HomeHeaderSubMenu.cshtml" />
+    <Content Include="Views\NewsArticleCommon\TeamSubMenu.cshtml" />
+    <Content Include="Views\NewsArticleCommon\NpbNewsSubMenu.cshtml" />
+    <Content Include="Views\Member\ForgotPassword.cshtml" />
+    <Content Include="Views\Member\ForgotConfirmEmail.cshtml" />
+    <Content Include="Views\Member\ChangePassword.cshtml" />
+    <Content Include="Views\Member\Mobile\Logout.cshtml" />
+    <Content Include="Views\Member\Mobile\LogoutComplete.cshtml" />
+    <Content Include="Views\Member\Mobile\Delete.cshtml" />
+    <Content Include="Views\Member\Mobile\DeleteComplete.cshtml" />
+    <Content Include="Views\Member\Mobile\Login.cshtml" />
+    <Content Include="Views\Member\Mobile\ForgotConfirmEmail.cshtml" />
+    <Content Include="Views\Member\Mobile\ForgotPassword.cshtml" />
+    <Content Include="Views\Member\Mobile\ChangePassword.cshtml" />
+    <Content Include="Views\Member\Mobile\Register.cshtml" />
+    <Content Include="Views\Member\Mobile\RegisterReview.cshtml" />
+    <Content Include="Views\Member\Mobile\RegisterSuccess.cshtml" />
+    <Content Include="Views\Shared\MyPageCommon.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\MyPageSubMenu.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\_MyPageLayout.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\_PrizeLayout.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\UserSubMenu.cshtml" />
+    <Content Include="Views\Shared\UserCommon.cshtml" />
+    <Content Include="Views\Shared\PrizeCommon.cshtml" />
+    <Content Include="Views\Home\GoogleCse.cshtml" />
+    <Content Include="Views\Shared\_UserLayout.cshtml" />
+    <Content Include="Views\Shared\Mobile\_MyPageLayout.cshtml" />
+    <Content Include="Views\Shared\Mobile\_UserLayout.cshtml" />
+    <Content Include="Views\Shared\Mobile\_PrizeLayout.cshtml" />
+    <Content Include="Views\Home\Mobile\GoogleCse.cshtml" />
+    <Content Include="Views\UserArticle\CompletePostArticle.cshtml" />
+    <Content Include="Views\Support\Contact.cshtml" />
+    <Content Include="Views\Support\Rules.cshtml" />
+    <Content Include="Views\UserArticle\Mobile\Index.cshtml" />
+    <Content Include="Views\Support\Mobile\Rules.cshtml" />
+    <Content Include="Views\Shared\Mobile\_ArticlesLayout.cshtml" />
+    <Content Include="Views\UserArticle\Mobile\ViewArticleDetail.cshtml" />
+    <Content Include="Views\Shared\_ShareContentSocial.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\Mobile\_ShareContentSocial.cshtml" />
+    <Content Include="Views\Support\Faq.cshtml" />
+    <Content Include="Views\Support\Howto.cshtml" />
+    <Content Include="Views\Support\Mobile\Faq.cshtml" />
+    <Content Include="Views\Support\Mobile\Howto.cshtml" />
+    <Content Include="Views\Support\Mobile\Contact.cshtml" />
+    <Content Include="Views\Shared\Mobile\_MlbLayout.cshtml" />
+    <Content Include="Views\Shared\Mobile\_JleagueLayout.cshtml" />
+    <Content Include="Views\Shared\_MlbLayout.cshtml" />
+    <Content Include="Views\Shared\MlbSubMenu.cshtml" />
+    <Content Include="Views\Shared\MlbCommon.cshtml" />
+    <Content Include="Views\UserArticle\_QuotContent.cshtml" />
+    <Content Include="Views\Shared\Mobile\_JlgLayout.cshtml" />
+    <Content Include="Views\Shared\Mobile\_NextPrevOccasion.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Shared\Mobile\HeaderMenu.cshtml" />
+    <Content Include="Views\Shared\Mobile\PopupLoginBox.cshtml" />
+    <Content Include="Views\UserArticle\Mobile\AddNewArticle.cshtml" />
+    <Content Include="Views\UserArticle\Mobile\EditNewUserArticle.cshtml" />
+    <Content Include="Views\UserArticle\Mobile\ConfirmUserArticle.cshtml" />
+    <Content Include="Views\UserArticle\Mobile\CompletePostArticle.cshtml" />
+    <Content Include="Views\UserArticle\Mobile\_QuotContent.cshtml" />
+    <Content Include="Views\Member\Mobile\SocialNetworkInfo.cshtml" />
+    <Content Include="Views\Shared\JlgSubMenu.cshtml" />
+    <Content Include="Views\Shared\GoogleAnalytics.cshtml" />
+    <Content Include="Views\Shared\Mobile\Error410.cshtml" />
+    <Content Include="Views\Shared\Error410.cshtml" />
+    <Content Include="Views\Shared\Mobile\GoogleAnalytics.cshtml" />
+    <Content Include="Views\UserArticle\ArticleSubMenu.cshtml" />
+    <Content Include="Views\NewsArticleCommon\MlbNewsSubMenu.cshtml" />
+    <Content Include="Views\Member\ChangeEMailSuccess.cshtml" />
+    <Content Include="Views\Member\Mobile\ChangeEMailSuccess.cshtml" />
+    <Content Include="Views\Shared\_ExpectedPointInfo.cshtml" />
+    <Content Include="Views\Shared\Error404.cshtml" />
+    <Content Include="Views\Shared\ExpectedGameSchedules.cshtml" />
+    <Content Include="Views\Shared\ExpextedGameCardAtDuring.cshtml" />
+    <Content Include="Views\Shared\ExpextedGameCardAtBefore.cshtml" />
+    <Content Include="Views\Chart\Mobile\_Flotr2Chart.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\TopMenuHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MetaRobotsHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
+    <Content Include="Views\Shared\Mobile\TutorialPopup.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Code\" />
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Jleague\Views\JlgRightOrder\" />
+    <Folder Include="Areas\Mlb\Scripts\Views\" />
+    <Folder Include="Areas\Mlb\Views\MlbTeamInfoConfrontationResult\Mobile\" />
+    <Folder Include="Areas\MyPage\Scripts\MyPageLayout\" />
+    <Folder Include="Areas\MyPage\Scripts\Views\NpbTeamInfoConfrontationResult\" />
+    <Folder Include="Areas\Npb\Service\" />
+    <Folder Include="Areas\User\Views\UserRightContent\" />
+    <Folder Include="Content\News\MN_UTF8\" />
+    <Folder Include="Content\uploads\" />
+    <Folder Include="Models\PageLayout\" />
+    <Folder Include="Repository\" />
+    <Folder Include="Views\ErrorPage\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Japanese.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Japanese.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Core\Models\Flotr2\Resources\Flotr2ScriptPartsResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Flotr2ScriptPartsResource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Models\Flotr2\Resources\Flotr2ScriptResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Flotr2ScriptResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Models\Logging\Resources\LoggingResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoggingResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\resources\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>3504</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:44300/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>https://localhost:44300</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

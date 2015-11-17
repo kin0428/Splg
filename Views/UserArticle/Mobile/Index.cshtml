@@ -1,0 +1,95 @@
+﻿@model Splg.Models.UserArticle.ViewModel.UserArticleMonthListViewModel
+@using PagedList.Mvc;
+@using Splg;
+@using Splg.Models;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    Layout = "~/Views/Shared/Mobile/_Layout.cshtml";
+
+    string link = "user_article";
+    if (ViewBag.SportID != null)
+    {
+        if (ViewBag.SportID == 0)
+        {
+            link = string.Format("user_article/{0}/topic", ViewBag.TopicID);
+        }
+        else
+        {
+            int sportID = Convert.ToInt32(ViewBag.SportID);
+            link = string.Format("user_article/{0}/sport", sportID);
+        }
+    }
+}
+
+<!-- path -->
+<section class="block_0 clear">
+    <h2 class="subtitle3">フォローしたユーザーの投稿記事</h2>
+    @if (Model != null)
+    {
+        string yearFormat = string.Format("{0}年",@Model.Year);
+        <nav class="news-panel">
+            @if (Model.YearList.Contains(Model.Year - 1))
+            {
+                int preYear = Model.Year - 1;
+                <a href="/@link/?year=@preYear" class="prev">前の年</a>
+            }
+            <h4>@yearFormat</h4>
+            @if (Model.YearList.Contains(Model.Year + 1))
+            {
+                int nextYear = Model.Year + 1;
+                <a href="/@link/?year=@nextYear" class="next">次の年</a>
+            }
+        </nav>
+        if (Model.MonthList.Any())
+        {
+            <div class="news-box">
+                <select name="category" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+                    @for (int m = 1; m <= 12; m++)
+                    {
+                        if (Model.MonthList.Contains(m))
+                        {
+                            string monthFormat = string.Format("{0}月", m);
+                            <option @(m == Convert.ToInt32(ViewBag.PostMonth) ? "selected" : "") value="/@link/?year=@Model.Year&month=@m">@monthFormat</option>
+                        }
+                    }
+                </select>
+            </div>
+        }
+        <div class="block_3_1">
+            @foreach (var item in Model.PostList)
+            {
+                var memberImage = Constants.IMG_DEFAULT_PROFILE;
+                if (!string.IsNullOrEmpty(item.ProfileImg))
+                {
+                    memberImage = item.ProfileImg;
+                }
+                string postContent = Splg.Controllers.PostedController.GetPostContent(item);
+                <article>
+                    <figure><a href="/user/@item.MemberId/"><img src="@Url.Content(memberImage)" alt="" /></a></figure>
+                    <div>
+                        <h3><a href="/user_article/@item.TopicID/@item.ContributeId/">@item.Title</a></h3>
+                        @if(!string.IsNullOrEmpty(postContent))
+                        {
+                            <p>@postContent</p>
+                        }
+                        <p><figure><a href="/user/@item.MemberId/">@item.Nickname</a> &nbsp; &nbsp; @item.ContributeDate.Value.ToString("MM/dd HH:mm") &nbsp; &nbsp; <strong>@item.Views</strong> views</p>
+                    </div>
+                </article>
+            }
+        </div>
+    }
+    <div class="space20"> </div>
+    <nav class="news-control">
+        @if (Model.PostList.PageNumber > 1)
+        {
+            var nextPage = Model.PostList.PageNumber - 1;
+            <a class="prev" href="/@link/?page=@nextPage&year=@Model.Year&month=@ViewBag.PostMonth">前のページ</a>
+        }
+        @if (Model.PostList.PageNumber < Model.PostList.PageCount)
+        {
+            var nextPage = Model.PostList.PageNumber + 1;
+            <a class="next" href="/@link/?page=@nextPage&year=@Model.Year&month=@ViewBag.PostMonth">次のページ</a>
+        }
+    </nav>
+</section>
+

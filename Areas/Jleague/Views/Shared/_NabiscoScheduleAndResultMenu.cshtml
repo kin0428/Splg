@@ -1,0 +1,53 @@
+﻿@model Splg.Areas.Jleague.Models.JlgScheduleResultViewModel
+
+@{
+<ul class="block_04_3_l3 clear">
+        <li id="1st" class="@Model.IsActiveTabMenu(4)"><a href="javascript:void(0);">予選リーグ</a></li>
+        <li id="final" class="disable">決勝トーナメント</li>
+</ul>
+<div id="finals" style="display:none">
+    <p class="j_rank">
+        @if (Model.ScheduleInfoNb != null && Model.ScheduleInfoNb.Any())
+        {
+            foreach (var item in Model.ScheduleInfoNb)
+            {
+                if (item.finalOccasion == Model.OccasionNo)
+                {
+                    <a id="2nd_@item.finalOccasion" href="javascript:void(0);" class="active">
+                        @item.finalRoundName
+                    </a>
+                }
+                else
+                {
+                    <a id="2nd_@item.finalOccasion" href="javascript:void(0);">
+                        @item.finalRoundName
+                    </a>
+                }
+                <span>  /</span>
+            }
+        }
+    </p>
+</div>
+//節用Div
+<div id="NabiscoSeasons">
+    <p class="j_rank">
+        @for (int i = 1; i <= Model.MaxOccasionNo; i++)
+        {
+            if (i == Model.OccasionNo)
+            {
+                <a id="season_@i" href="javascript:void(0);" class="active">
+                    第<span class="fs18">@i</span>節
+                </a>
+            }
+            else
+            {
+                <a id="season_@i" href="javascript:void(0);">
+                    第<span class="fs18">@i</span>節
+                </a>
+            }
+            <span>  /</span>
+
+        }
+    </p>
+</div>
+}

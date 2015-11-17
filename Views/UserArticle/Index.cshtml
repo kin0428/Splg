@@ -1,0 +1,160 @@
+﻿@model Splg.Models.UserArticle.ViewModel.UserArticleMonthListViewModel
+@using PagedList.Mvc;
+@using Splg;
+@using Splg.Models;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string link = "user_article";
+}
+
+<p class="block_path02">
+    <a href="/"><span class="icon gui_icon"> </span></a>
+    @if (ViewBag.SportID == null)
+    {
+        @:> 投稿記事トップ
+    }
+    else
+    {
+        if (ViewBag.SportID == 0)
+        {
+            link = string.Format("user_article/{0}/topic",ViewBag.TopicID);
+            @:> 投稿記事トップ
+        }
+        else
+        {
+            int sportID = Convert.ToInt32(ViewBag.SportID);
+            link = string.Format("user_article/{0}/sport", sportID);
+            @:> <a href="/user_article/">投稿記事トップ</a>
+	        switch (sportID)
+            {
+                case 1:
+                    @:> プロ野球
+                    break;
+                case 2:
+                @:> Jリーグ
+                    break;
+                case 3:
+                @:> MLB
+                    break;
+                case 4:
+                @:> 海外サッカー
+                    break;
+            }
+        }
+    }
+    
+</p>
+<ul class="block_nav">
+    <li><a class="@( ViewBag.SportID == null || ViewBag.SportID == 0 ? "active" : "")" href="/user_article/">投稿記事トップ</a></li>
+    <li><a class="@( ViewBag.SportID != null && ViewBag.SportID == 1 ? "active" : "")" href="/user_article/1/sport/">プロ野球</a></li>
+    <li><a class="@( ViewBag.SportID != null && ViewBag.SportID == 2 ? "active" : "")" href="/user_article/2/sport/">Jリーグ</a></li>
+    <li><a class="@( ViewBag.SportID != null && ViewBag.SportID == 3 ? "active" : "")" href="/user_article/3/sport/">MLB</a></li>
+</ul>
+@if (Model != null)
+{
+    <div class="block_06">
+        <p class="j_rank bold">
+            @if (Model.YearList.Contains(Model.Year - 1))
+            {
+                int preYear = Model.Year - 1;
+                <a href="/@link/?year=@preYear"><span class="fs20">≪</span>&nbsp;</a>
+            }
+            <a class="active"><span class="fs20">@Model.Year</span>年&nbsp;</a>
+            @if (Model.YearList.Contains(Model.Year + 1))
+            {
+                int nextYear = Model.Year + 1;
+                <a href="/@link/?year=@nextYear"><span class="fs20">≫</span>&nbsp;</a>
+            }
+            &nbsp;
+            @for (int m = 1; m <= 12; m++)
+            {
+                if (Model.MonthList.Contains(m))
+                {
+                    if (m == ViewBag.PostMonth)
+                    {
+                        <a class="active"><span class="fs20">@m</span>月&nbsp;</a>
+                    }
+                    else
+                    {
+                        <a href="/@link/?year=@Model.Year&month=@m"><span class="fs20">@m</span>月&nbsp;</a>
+                    }
+                }
+                else
+                {
+                    <span class="gray fs20">@m</span><span class="gray">月</span>
+                }
+            }
+        </p>
+        <div class="space"> </div>
+        @if (Model.PostList.Any())
+        {
+            DateTime dayCount = Model.PostList.FirstOrDefault().ContributeDate.Value;
+
+            <h3 class="mytitle">フォローしたユーザーの投稿記事</h3>
+            <div class="space"> </div>
+            <h4 class="mytitle01">@dayCount.Month.ToString()/@dayCount.Day.ToString() (@Utils.GetWeekDayToJapanTime(dayCount))</h4>
+            foreach (var item in Model.PostList)
+            {
+                if (item.ContributeDate != null && dayCount.Date.CompareTo(item.ContributeDate.Value.Date) != 0)
+                {
+                    dayCount = item.ContributeDate.Value;
+                    <h4 class="mytitle01">@dayCount.Month.ToString()/@dayCount.Day.ToString() (@Utils.GetWeekDayToJapanTime(dayCount))</h4>
+                }
+                var memberImage = Constants.IMG_DEFAULT_PROFILE;
+                if (!string.IsNullOrEmpty(item.ProfileImg))
+                {
+                    memberImage = item.ProfileImg;
+                }
+                string postContent = Splg.Controllers.PostedController.GetPostContent(item);
+                <div class="row">
+                    <div class="block_06_1">
+                        <a href="/user/@item.MemberId/"><img src="@Url.Content(memberImage)" class="resimg" alt="" /></a>
+                    </div>
+                    <div class="block_06_2">
+                        <dl>
+                            <dt><a class="bold" href="/user_article/@item.TopicID/@item.ContributeId/">@item.Title</a></dt>
+                            <dd>
+                                @postContent
+                                <span class="right"><strong>@item.Views</strong> views</span>
+                                <br />
+                                <a href="/user/@item.MemberId/">@item.Nickname</a> &nbsp; &nbsp; @item.ContributeDate.Value.ToString("MM/dd HH:mm")
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <h3 class="mytitle">記事がありません</h3>
+        }
+        <div class="board_control">
+            @if (Model.PostList.PageNumber > 1)
+            {
+                var nextPage = Model.PostList.PageNumber - 1;
+                <a class="board_prev" href="/@link/?page=@nextPage&year=@Model.Year&month=@ViewBag.PostMonth">≪前のページ</a>
+            }
+            @if (Model.PostList.PageNumber < Model.PostList.PageCount)
+            {
+                var nextPage = Model.PostList.PageNumber + 1;
+                <a class="board_next" href="/@link/?page=@nextPage&year=@Model.Year&month=@ViewBag.PostMonth">次のページ≫</a>
+            }
+        </div>
+    </div>
+    @section HomePage{
+        @if (Model.MostViewTopicList != null && Model.MostViewTopicList.Any())
+        {
+            <div class="side_popular">
+                <h3 class="mem_title01">人気のトピック</h3>
+                <ul>
+                    @foreach (var item in Model.MostViewTopicList)
+                    {
+                        <li><a href="/user_article/@item.TopicID/topic/">@item.TopicName</a></li>
+                    }
+                </ul>
+            </div>
+        }
+    }
+}

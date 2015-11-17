@@ -1,0 +1,37 @@
+﻿@{
+    // Developer	: Nojima
+    // Html No      : 3-9
+}
+@using Splg.Areas.MyPage.Models.ViewModel;
+@model UserSearchViewModel
+@{
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.USERSEARCH_INDEX;
+    Layout = "~/Views/Shared/Mobile/_MyPageLayout.cshtml";
+}
+<script src="~/Scripts/Home.js"></script>
+<script src="~/Areas/MyPage/Scripts/Mobile/follow_unfolllow.js"></script>
+<script src="~/Areas/MyPage/Scripts/Mobile/3-9.js"></script>
+
+
+@if (Model != null)
+{
+    <section class="block_9">
+        <p class="search">
+            <input type="text" value="" name="ip02" id="iname" />
+            <span class="search-btn" id="submit"><img src="/content/img/tmp/search.png" alt="search"></span>
+        </p>
+        <h3 class="subtitle1">検索結果（<span id="totalFoundCount">@Model.TotalCount</span>人）</h3>
+        @{
+    int totalCount = Model.TotalCount;
+    int viewingCount = 0;   //表示後の件数
+    if (Model.UserSearchMembers != null)
+    {
+        viewingCount = Math.Min(Model.UserSearchMembers.Count(), UserSearchViewModel.INITIAL_SIZE);
+    }
+        }
+        <ul class="my-list" id="lines" data-usersearckeyword="" data-usersearchcount="0">
+        </ul>
+        @{string displayGetMoreButton = (viewingCount < totalCount) ? "" : "display:none";}
+        <p id="GetMoreUsersButton" class="my-btn02" data-usersearchcount="@viewingCount" style="@displayGetMoreButton"><a href="#">もっと見る</a></p>
+    </section>
+}

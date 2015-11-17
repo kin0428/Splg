@@ -1,0 +1,192 @@
+﻿@{
+    //Dev : Sy Huynh
+    //FileName : _NpbSubMenu.cshtml
+    //Created Date : 2015/03/12
+
+}
+@using Splg.Areas.Npb.Models;
+@{
+    var url = Context.Request.Path;
+    string[] subUrls = url.Split('/');
+    List<string> subUrlList = new List<string>();
+    for (int i = 0; i < subUrls.Count(); i++)
+    {
+        if (!string.IsNullOrEmpty(subUrls[i]))
+        {
+            subUrlList.Add(subUrls[i]);
+        }
+    }
+    List<string> menuLinkList = new List<string>();
+    List<string> menuNameList = new List<string>();
+    string secondMenu = string.Empty;
+    int secondMenuActive = 0;
+    int subUrlCount = subUrlList.Count();
+
+    if (subUrlList.First().ToLower().Equals("npb"))
+    {
+        secondMenu = "npb";
+        menuLinkList.Add("プロ野球");
+        menuNameList.Add("/" + Constants.NPB_TOPIC_NAME + "/");
+        secondMenuActive = 1;
+        if (subUrlCount > 1)
+        {
+            subUrlList.RemoveAt(0);
+            subUrlCount = subUrlCount - 1;
+            switch (subUrlList.First().ToLower())
+            {
+                case "schedule":
+                    menuLinkList.Add("日程・結果");
+                    menuNameList.Add("/" + Constants.NPB_TOPIC_NAME + "/schedule/");
+                    secondMenuActive = 2;
+                    break;
+                case "standings":
+                    menuLinkList.Add("順位表");
+                    menuNameList.Add("/" + Constants.NPB_TOPIC_NAME + "/standings/");
+                    secondMenuActive = 3;
+                    break;
+                case "stats":
+                    menuLinkList.Add("個人成績");
+                    menuNameList.Add("/" + Constants.NPB_TOPIC_NAME + "/stats/");
+                    secondMenuActive = 4;
+                    break;
+                case "teams":
+                    if (subUrlCount > 1)
+                    {
+                        subUrlList.RemoveAt(0);
+                        subUrlCount = subUrlCount - 1;
+                        if (subUrlCount >= 1)
+                        {
+                            // get team name
+                            int urlTeamId = 0;
+                            string menuTeam = "チーム情報トップ";
+                            if (subUrlList.Count() > 0)
+                            {
+                                if (Int32.TryParse(subUrlList.First(), out urlTeamId))
+                                {
+                                    menuTeam = Utils.GetTeamNameById(Constants.NPB_SPORT_ID, urlTeamId);
+                                }
+                                menuLinkList.Add(menuTeam);
+                                menuNameList.Add("/" + Constants.NPB_TOPIC_NAME + "/teams/" + subUrlList.First());
+                            }
+                            //8-5-1
+                            if (subUrlCount > 1)
+                            {
+                                subUrlList.RemoveAt(0);
+                                subUrlCount = subUrlCount - 1;
+                                switch (subUrlList.First().ToLower())
+                                {
+                                    case "schedule":
+                                        menuLinkList.Add("成績・結果");
+                                        break;
+                                    case "stats":
+                                        menuLinkList.Add("対戦成績");
+                                        break;
+                                    case "memberlist":
+                                        if (subUrlCount > 1)
+                                        {
+                                            switch(subUrlList.ElementAt(1))
+                                            {
+                                                case "1":
+                                                    menuLinkList.Add("投手");
+                                                    break;
+                                                case "2":
+                                                    menuLinkList.Add("捕手・野手");
+                                                    break;
+                                                case "3":
+                                                    menuLinkList.Add("監督・スタッフ");
+                                                    break;
+                                            }
+                                        }
+                                        break;
+                                    case "news":
+                                        menuLinkList.Add("ニュース");
+                                        break;
+                                }
+                                menuNameList.Add("#");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        menuLinkList.Add("チーム一覧");
+                        menuNameList.Add("/" + Constants.NPB_TOPIC_NAME + "/teams/");
+                    }
+                    secondMenuActive = 5;
+                    break;
+                case "players":
+                    if(subUrlList.Count > 2)
+                    {
+                        int urlTeamId = 0;
+                        string menuTeam = "チーム情報トップ";
+                        if (Int32.TryParse(subUrlList.ElementAt(1), out urlTeamId))
+                        {
+                            menuTeam = Utils.GetTeamNameById(Constants.NPB_SPORT_ID, urlTeamId);
+                            menuLinkList.Add(menuTeam);
+                            menuNameList.Add("/" + Constants.NPB_TOPIC_NAME + "/teams/" + subUrlList[1]);
+                        }
+                        int urlPlayerId = 0;
+                        if (Int32.TryParse(subUrlList.ElementAt(2), out urlPlayerId))
+                        {
+                            NpbEntities npb = new NpbEntities();
+                            var playerName = (from t in npb.PlayerInfoMST
+                                              where t.PlayerCD == urlPlayerId
+                                              select t).FirstOrDefault();
+                            if (playerName != null)
+                            {
+                                menuLinkList.Add(playerName.Player);
+                                menuNameList.Add("#");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        menuLinkList.Add("チーム情報");
+                        menuNameList.Add("/" + Constants.NPB_TOPIC_NAME + "/teams/");
+                        menuLinkList.Add("投手選手詳細");
+                        menuNameList.Add("#");
+                    }
+                    secondMenuActive = 5;
+                    break;
+                case "game":
+                    secondMenu = string.Empty;
+                    int urlGameId = 0;
+                    subUrlList.RemoveAt(0);
+                    string menuGame = "試合";
+                    if (subUrlList.Count() > 0)
+                    {
+                        if(Int32.TryParse(subUrlList.First(), out urlGameId))
+                        {
+                            menuGame = Utils.GetGameNameById(Constants.NPB_SPORT_ID, urlGameId);
+                        }
+                    }
+                    menuLinkList.Add(menuGame); 
+                    menuNameList.Add("#");
+                    break;
+                case "news":
+                    secondMenuActive = 7;
+                    menuLinkList.Add("ニュース");
+                    menuNameList.Add("/" + Constants.NPB_TOPIC_NAME + "/news/");
+                    break;
+            }
+        }
+    }
+}
+<p class="block_path02">
+    <a class="icon gui_icon" href="/"></a>
+    @for (int j = 0; j < menuLinkList.Count() - 1; j++ )
+    {
+        @:> <a href="@menuNameList.ElementAt(j)">@menuLinkList.ElementAt(j)</a>
+    }
+    > @menuLinkList.ElementAt(menuLinkList.Count() - 1)
+</p>
+@if (secondMenu.Equals("npb"))
+{
+    <ul class="block_nav">
+        <li><a class="@(secondMenuActive == 1 ? "active" : "")" href="/npb/">プロ野球トップ</a></li>
+        <li><a class="@(secondMenuActive == 2 ? "active" : "")" href="/npb/schedule/">日程・結果</a></li>
+        <li><a class="@(secondMenuActive == 3 ? "active" : "")" href="/npb/standings/">順位表</a></li>
+        <li><a class="@(secondMenuActive == 4 ? "active" : "")" href="/npb/stats/">個人成績</a></li>
+        <li><a class="@(secondMenuActive == 5 ? "active" : "")" href="/npb/teams/">チーム情報</a></li>
+        <li><a class="@(secondMenuActive == 7 ? "active" : "")" href="/npb/news/">ニュース</a></li>
+    </ul>
+}

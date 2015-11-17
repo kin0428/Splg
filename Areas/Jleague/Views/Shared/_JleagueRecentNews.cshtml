@@ -1,0 +1,171 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : _JlgRecentNews.cshtml
+    //Created Date : 2015/02/25
+}
+
+@model IEnumerable<Splg.Models.News.ViewModel.NewsInfoViewModel>
+@using Splg;
+
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        var firstNews = Model.FirstOrDefault();
+        var imageSports = Utils.GetNewsImageLocation(firstNews.Content ?? Constants.IMAGE_DEFAULT);
+        var dateJP = Utils.ParseLocalDateToShortJapanDate(firstNews.DeliveryDate);
+        var classBlock_1 = string.Empty;
+        var classBlock_2 = string.Empty;
+        var classBlockList = string.Empty;
+        var classDiv = string.Empty;
+        if (@ViewBag.Name != null)
+        {
+            if (@ViewBag.Name == Constants.JLG_TOP_INDEX)
+            {
+                classDiv = "block_03";
+            }
+            else if (@ViewBag.Name == Constants.JLG_GAME_INFO)
+            {
+                classDiv = "evt_block04";
+            }
+            else if (@ViewBag.Name == Constants.JLG_J1_T_TOP || @ViewBag.Name == Constants.JLG_J2_T_TOP)
+            {
+                classDiv = "row";
+            }
+
+            //For page 8-5-8, 8-5-9
+            if (@ViewBag.Name == Constants.JLG_J1_T_PYR || @ViewBag.Name == Constants.JLG_J2_T_PYR)
+            {
+                classBlock_1 = "block_06_1";
+                classBlock_2 = "block_06_2";
+            }
+            //For page 8-1, 8-5-1, 8-6
+            else
+            {
+                classBlock_1 = "block_03_1";
+                classBlock_2 = "block_03_2";
+            }
+
+            var nameType = string.Empty;
+            var nameLink = string.Empty;
+            classBlockList = "block_list01";
+
+            <div class="@classDiv">
+                <!--For page 8-1, 8-5-1-->
+                @if (@ViewBag.Name == Constants.JLG_TOP_INDEX || @ViewBag.Name == Constants.JLG_J1_T_TOP || @ViewBag.Name == Constants.JLG_J2_T_TOP)
+                {
+                    if (@ViewBag.Name == Constants.JLG_TOP_INDEX)
+                    {
+                        nameType = Constants.NEWSHEADER_1_Jleague;
+                        nameLink = Constants.NEWSLINK_1_Jleague + "の" + Constants.NEWSLINK_2 + Constants.NEWSLINK_3;
+                    }
+                    else
+                    {
+                        nameType = Constants.NEWSHEADER_2;
+                        nameLink = Constants.NEWSLINK_2 + Constants.NEWSLINK_COMMON;
+                    }
+                    <div class="cat_title">
+                        <h3>@nameType</h3>
+                        <p>@Html.ActionLink(@nameLink, "Index", "JlgNews", new { area = "Jleague" }, null)</p>
+                    </div>
+                }
+                //For page 8-5-8, 8-5-9
+                else if (@ViewBag.Name == Constants.JLG_J1_T_PYR || @ViewBag.Name == Constants.JLG_J2_T_PYR)
+                {
+                    nameType = @ViewBag.TeamName + " " + " " + Constants.NEWSHEADER_2;
+                    nameLink = Constants.NEWSLINK_2 + Constants.NEWSLINK_COMMON;
+                    <div class="cat_title">
+                        <h3>@nameType</h3>
+                        <p>@Html.ActionLink(@nameLink, "Index", "JlgNews", new { area = "Jleague" }, null)</p>
+                    </div>
+                }
+                else
+                {
+                    if (@ViewBag.HomeVisitor == "1")
+                    {
+                        nameType = Constants.NEWSHEADER_3;
+                    }
+                    else
+                    {
+                        nameType = Constants.NEWSHEADER_4_Jleague;
+                    }
+                    nameLink = Constants.NEWSLINK_3;
+                    <div class="cat_title">
+                        <h3>@nameType</h3>
+                        <p>@Html.ActionLink(@nameLink, "Index", "JlgNews", new { area = "Jleague" }, null)</p>
+                    </div>
+                }
+
+                <!--Each page have each link to link page 7-1-->
+                @{
+                var routeValues = new RouteValueDictionary();
+                routeValues.Add("area", string.Empty);
+                routeValues.Add("topic", Constants.JLG_TOPIC_NAME);
+                routeValues.Add("newsItemID", @firstNews.NewsItemID);
+                routeValues.Add("sportID", Constants.JLG_SPORT_ID);
+                }
+                @if (@ViewBag.Name == Constants.JLG_TOP_INDEX || @ViewBag.Name == Constants.JLG_J1_T_TOP || @ViewBag.Name == Constants.JLG_J2_T_TOP)
+                {
+                    routeValues.Add("uniqueID", Constants.NEWS_DEFAULT_PARAMETER);
+                    routeValues.Add("teamID", (ViewBag.teamID ?? Constants.NEWS_DEFAULT_PARAMETER));
+                }
+                else if (@ViewBag.Name == Constants.JLG_GAME_INFO)
+                {
+                    routeValues.Add("uniqueID", @ViewBag.GameID);
+                    routeValues.Add("teamID", (ViewBag.teamID ?? Constants.NEWS_DEFAULT_PARAMETER));
+                }
+                @if (!string.IsNullOrEmpty(firstNews.Content))
+                {
+                    <div class="@classBlock_1">
+                        <a href="@Url.Action("Index", "NewsArticleCommon", @routeValues, null)">
+                            <img class='resimg' src="@Url.Content(@imageSports)" alt='' />
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    //Using default image if not image.
+                    var defaultImg = Constants.IMAGE_DIRECTORY + Constants.IMAGE_DEFAULT;
+                    <div class="@classBlock_1">
+                        <a href="@Url.Action("Index", "NewsArticleCommon", @routeValues, null)">
+                            <img class="resimg" src=@Url.Content(@defaultImg) alt='' />
+                        </a>
+                    </div>
+                }
+
+                <div class="@classBlock_2">
+                    <!--For page 8-1, 8-5-1, 8-5-8, 8-5-9, 8-6-->
+                    <h3 class="subtitle02">@Html.ActionLink(string.Format("{0} {1}", @firstNews.Headline, @firstNews.SubHeadline), "Index", "NewsArticleCommon", @routeValues, null)</h3>
+                    <h4>@firstNews.SentFrom  @dateJP</h4>
+                    <p>@Utils.ShortenString(firstNews.newstext, 50)</p>
+                </div>
+                <ul class="@classBlockList">
+                    @foreach (var item in Model.Skip(1))
+                    {
+                        var routeValuesItems = new RouteValueDictionary();
+                        routeValuesItems.Add("area", string.Empty);
+                        routeValuesItems.Add("topic", Constants.JLG_TOPIC_NAME);
+                        routeValuesItems.Add("newsItemID", @item.NewsItemID);
+                        routeValuesItems.Add("sportID", Constants.JLG_SPORT_ID);
+                        if (@ViewBag.Name == Constants.JLG_TOP_INDEX || @ViewBag.Name == Constants.JLG_J1_T_TOP || @ViewBag.Name == Constants.JLG_J2_T_TOP || @ViewBag.Name == Constants.JLG_TOP_J1 || @ViewBag.Name == Constants.JLG_TOP_J2 )
+                        {
+                                routeValuesItems.Add("uniqueID", Constants.NEWS_DEFAULT_PARAMETER);
+                                routeValuesItems.Add("teamID", (ViewBag.teamID ?? Constants.NEWS_DEFAULT_PARAMETER));
+                        } else if (@ViewBag.Name == Constants.JLG_GAME_INFO){
+                                routeValuesItems.Add("uniqueID", (@ViewBag.GameID ?? Constants.NEWS_DEFAULT_PARAMETER));
+                                routeValuesItems.Add("teamID", (ViewBag.teamID ?? Constants.NEWS_DEFAULT_PARAMETER));
+                           
+                        }
+
+                        var formattedDay = Utils.ParseLocalDateToShortJapanDate(@item.DeliveryDate);
+                        <li>
+                            @Html.ActionLink(string.Format("{0} {1}", @item.Headline, @item.SubHeadline), "Index", "NewsArticleCommon", @routeValuesItems, null)
+                            <span>@item.SentFrom @formattedDay</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+    }
+}
+

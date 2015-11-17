@@ -1,0 +1,82 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : _NpbPersonInfo.cshtml (Used in 8-5-8, 8-5-9)
+    //Created Date : 2015/03/12
+}
+
+@model Splg.Areas.Npb.Models.ViewModel.NpbPersonInfoViewModel
+@using Splg;
+
+<!--Person Info-->
+@if (Model != null)
+{
+    var positionName = Utils.GetPositionName(Model.PersonInfo.PositionType);   
+    <h3 class="subtitle4"><span class="fs24">@Model.PersonInfo.BackNumber @Model.PersonInfo.PlayerName </span><span class="fs14">@positionName</span></h3>
+    if (!Request.Url.AbsoluteUri.Contains("user_article"))
+    {
+        <p class="evt_edit_btn fs14">
+            <a href="@Url.RouteUrl("5-4", new { newsClassID = 3, quoteUniqueId1 = Constants.NPB_SPORT_ID, quoteUniqueId2 = @Model.TeamID, quoteUniqueId3 = @Model.PersonInfo.ID })">記事作成</a>
+        </p>
+    }
+    <div class="team-image">
+        <img src="@Url.Content(@Model.TeamIcon ?? Constants.IMAGE_DEFAULT)" alt="" />
+    </div>
+    <ul class="team-list">
+        <li>
+            <h4 class="left">身長 / 体重</h4>
+            @{
+                var heightAndWeight = Model.PersonInfo.Height + "cm/" + Model.PersonInfo.Weight + "kg";
+            }
+            <span class="right">@heightAndWeight</span>
+        </li>
+        <li>
+            <h4 class="left">生年月日</h4>
+            @{
+                var birthDay = Utils.ParseToJapanDate(true, @Model.PersonInfo.Birthday.ToString());
+                birthDay = birthDay + "(" + @Model.PersonInfo.Age + "歳" + ")";
+            }
+            <span class="right">@birthDay</span>
+        </li>
+        <li>
+            <h4 class="left">出身地</h4>
+            <span class="right">@Model.PersonInfo.Hometown</span>
+        </li>
+        <li>
+            <h4 class="left">血液型</h4>
+            <span class="right">@string.Concat(@Model.PersonInfo.Blood, "型")</span>
+        </li>
+        @{
+            var pitching = Utils.GetPitchingArmName(@Model.PersonInfo.PitchingArm.Value);
+            var batting = Utils.GetBattingTypeName(@Model.PersonInfo.BattingType.Value);
+        }
+        <li>
+            <h4 class="left">投打</h4>
+            <span class="right">@pitching @batting</span>
+        </li>
+        @{
+            if (Model.PersonInfo.DraftYear.Value != 0)
+            {
+                <li>
+                    <h4 class="left">ドラフト年(順位)</h4>
+                    <span class="right">@string.Concat(@Model.PersonInfo.DraftYear, "年", "(", @Model.PersonInfo.DraftNo, ")")</span>
+                </li>
+            }
+        }
+        <li>
+            <h4 class="left">プロ通算年</h4>
+            <span class="right">@string.Concat(@Model.PersonInfo.ProTotal, "年")</span>
+        </li>     
+        <li>
+            <h4 class="left">経歴</h4>
+            <span class="right">@Model.PersonInfo.Career</span>
+        </li>
+        <li>
+            <h4 class="left">主な個人タイトル</h4>
+            <span class="right">@Model.PersonInfo.Prize</span>
+        </li>
+    </ul>
+    <div class="team-detail">
+        <article>@Model.PersonInfo.DSComment</article>
+    </div>
+}
+

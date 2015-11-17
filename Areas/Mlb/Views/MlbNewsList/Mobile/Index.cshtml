@@ -1,0 +1,72 @@
+﻿@{
+    //Author : e-concier
+    //FileName : Index.cshtml (9-8)
+    //Created Date : 2015/04/20
+}
+@using PagedList.Mvc;
+@using Splg;
+@model Splg.Areas.Mlb.Models.ViewModels.MlbNewsListViewModel
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Name = Splg.Areas.Mlb.MlbConstants.MLB_NEWS_LIST;
+    Layout = "~/Views/Shared/Mobile/_MlbLayout.cshtml";
+}
+
+<script src="~/Areas/Mlb/Scripts/Mobile/9-8.js"></script>
+
+<!-- path -->
+@{
+    <section class="block_0 clear">
+        @*<h3 class="subtitle3">チーム名で絞り込み</h3>*@
+
+        @using (Html.BeginForm("Index",
+                            "MlbNewsList",
+                            FormMethod.Get))
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = "全て", Value = string.Empty, Selected = (ViewBag.teamId == string.Empty) });
+            foreach (var team in Model.TeamList)
+            {
+                items.Add(new SelectListItem { Text = team.TeamName, Value = Convert.ToString(team.TeamID), Selected = (ViewBag.teamId == string.Empty) ? false : (team.TeamID == Convert.ToInt32(ViewBag.teamId)) });
+            }
+
+            @*<div class="news-box">
+                @Html.DropDownList("strTeamId", items, new { onchange = @"form.submit();" })
+            </div>*@
+        }
+
+        @if (Model.TeamNewsList != null && Model.TeamNewsList.Count() > 0)
+        {
+            foreach (var item in Model.TeamNewsList)
+            {
+                var imageLocation = Utils.GetNewsImageLocation(item.Content ?? Constants.IMAGE_DEFAULT);
+                <div class="block_3_1">
+                    <article>
+                        <figure><img class="resimg" src="@Url.Content(imageLocation)" alt="" /></figure>
+                        <div>
+                            <h3><a href="#">@Html.RouteLink(item.Headline, "7_1", new { areas = string.Empty, topic = Constants.MLB_TOPIC_NAME, newsItemID = item.NewsItemID, sportID = Constants.MLB_SPORT_ID })</a></h3>
+                            <p>@item.SentFrom - @item.DeliveryDate.ToString("yyyy/MM/dd hh:mm")</p>
+                        </div>
+                    </article>
+                </div>
+            }
+        }
+
+
+        <div class="space20"> </div>
+        <nav class="news-control">
+            @if (Model.TeamNewsList.PageNumber > 1)
+            {
+                var nextPage = Model.TeamNewsList.PageNumber - 1;
+                <a href="?page=@nextPage&strTeamId=@ViewBag.teamI" class="prev">≪前のページ</a>
+            }
+            @if (Model.TeamNewsList.PageNumber < Model.TeamNewsList.PageCount)
+            {
+                var nextPage = Model.TeamNewsList.PageNumber + 1;
+                <a class="board_next"style="float:right"  href="?page=@nextPage&strTeamId=@ViewBag.teamId">次のページ≫</a>
+            }
+        </nav>
+    </section>
+
+}
+

@@ -1,0 +1,51 @@
+﻿@model Splg.Areas.Jleague.Models.JlgScheduleResultViewModel
+
+@{
+    //Tab
+    <ul class="block_04_3_l3 clear">
+            <li id="1st" class="@Model.IsActiveTabMenu(2)"><a href="javascript:void(0);">1stステージ</a></li>
+            <li id="2nd" class="@Model.IsActiveTabMenu(3)"><a href="javascript:void(0);">2ndステージ</a></li>
+            <li id="all" class="@Model.IsActiveTabMenu(1)"><a href="javascript:void(0);">通年</a></li>
+    </ul>
+
+    //通年用Div
+    <div id="J1AllSeason" style="display:none">
+        <h3>1stステージ</h3>
+        <div id="1stseason">
+            <p class="j_rank">
+                @for (var i = 1; i <= Model.MaxOccasionNo; i++)
+                {
+                    <a id="1st_@i" href="javascript:void(0);" class="@Model.IsActiveOccasionNoInJ1AllTab(i, 2)">
+                        第<span class="fs18">@i</span>節
+                    </a>
+                    <span>  /</span>
+                }
+            </p>
+        </div>
+        <h3>2ndステージ</h3>
+        <div id="2ndseason">
+            <p class="j_rank">
+                @for (var i = 1; i <= Model.MaxOccasionNo; i++)
+                {
+                    <a id="2nd_@i" href="javascript:void(0);" class="@Model.IsActiveOccasionNoInJ1AllTab(i, 3)">
+                        第<span class="fs18">@i</span>節
+                    </a>
+                    <span>  /</span>
+                }
+            </p>
+        </div>
+    </div>
+
+    //ファーストシーズン、セカンドシーズン用Div
+    <div id="J1Seasons">
+        <p class="j_rank">
+            @for (int i = 1; i <= Model.MaxOccasionNo; i++)
+            {
+                <a id="season_@i" href="javascript:void(0);" class="@Model.IsActiveOccasionNoInJ1SeasonTab(i)">
+                    第<span class="fs18">@i</span>節
+                </a>
+                <span>  /</span>
+            }
+        </p>
+    </div>
+}

@@ -1,0 +1,53 @@
+﻿@using Splg.Areas.Jleague;
+@using Splg.Areas.Jleague.Models;
+@using Splg.Areas.Jleague.Models.ViewModel;
+@using Splg.Core.Constant;
+@model JlgScheduleResultViewModel
+
+@{
+    ViewBag.Title = Model.PageTitle;
+    ViewBag.Name = Model.PageName;
+    ViewBag.JleagueMenu = Model.JLeagueMenu;
+    ViewBag.JleagueSubMenu = Model.JLeagueSubMenu;
+    Layout = "~/Views/Shared/_JlgContentsLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/datepicker-ja.js"></script>
+<script src="~/Areas/Jleague/Scripts/10-2.js"></script>
+
+<div class="jblock_01">
+    <h2 class="jtitle">
+        @Model.GameKindName 日程・結果
+    </h2>
+    @Html.Action("ShowScheduleAndResultMenu", "JlgScheduleResult", new { jlgScheduleResultViewModel = Model})
+    </div>
+<div class="evt_block05">
+    <div class="board_control clear">
+        <span class="board_prev blue">前節を見る</span>
+        <h3 id="gameDate">第<span id="occasion"> @Model.OccasionNo </span>節の試合</h3>
+        <span class="board_next blue">次節を見る</span>
+    </div>
+    @{
+        var leaguetype = ViewBag.JType == 2 ? 2 : 1;
+    }
+    <input type="hidden" id="Page" name="Page" value="1" data-jlgscheduleresult="true" data-occasion="@Model.OccasionNo" data-maxoccasionno="@Model.MaxOccasionNo" data-leaguetype="@leaguetype" data-seasonid="@Model.SeasonId" />
+    <div id="jlgGameInfo">
+        @Html.Action("ShowGameInfo", "JlgTop", new { area = "Jleague", type = 2, occasionNo = @Model.OccasionNo, round = 0, leagueType = @Model.JType, seasonId = @Model.SeasonId })
+    </div>
+    <div class="board_control">
+        <span class="board_prev blue">前節を見る</span>
+        <span class="board_next blue">次節を見る</span>
+    </div>
+    <div class="space20"></div>
+</div>
+
+<!--Jlg News-->
+@Html.Action("ShowJlgRecentNews", "JlgRightContent", new { area = "Jleague", type = @ViewBag.Name })
+<!--Right Content-->
+@section JlgPage{
+    <div class="side_cal" id="calendar">
+        @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = Model.GameKind, jType = Model.JType })
+    </div>       
+}

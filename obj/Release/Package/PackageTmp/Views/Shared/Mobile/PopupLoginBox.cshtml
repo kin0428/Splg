@@ -1,0 +1,129 @@
+﻿@model Splg.Models.ViewModel.LoginViewModel
+<!-- Login Popup -->
+<div class="overlay">
+    <div class="login_popup modalPrelogin">
+        @*<h3 class="sigtitle">ログイン</h3>*@
+        <p class="modalTxt">予想機能やコミュニティ機能を使用するには、スポログのアカウントが必要です。</p>
+        <div class="space20"> </div>
+        <div class="sig-frm">
+            @using (Html.BeginForm("LoginApp", "Member", FormMethod.Post, new { @id = "loginFormApp", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <p style="text-align:center">
+                    @Html.ValidationMessageFor(model => model.ErrorLogin, String.Empty, new { @class = "red" })
+                </p>
+                <dl>
+                    <dt>メールアドレス</dt>
+                    <dd>
+                        @Html.TextBoxFor(model => model.Email, new { @class = "", autofocus = "autofocus", @id = "emailAddr" })
+                        @Html.ValidationMessageFor(model => model.Email, String.Empty, new { @class = "red" })
+                    </dd>
+                    <dt>パスワード</dt>
+                    <dd>
+                        @Html.PasswordFor(model => model.Password, new { @class = "ip100", @id = "password" })
+                        @Html.ValidationMessageFor(model => model.Password, String.Empty, new { @class = "red" })
+                    </dd>
+                </dl>
+                <p class="sig-submit">
+                    <input class="" type="submit" value="ログイン" />
+                </p>
+                <p class="sig-txt">
+                    <a href="@Url.Action("ForgotPassword", "Member", new { Area = string.Empty }, null)">パスワードを忘れてしまった</a>
+                </p>
+                <ul class="sig-log">
+                    <li>
+                        <a href="@Url.Action("TwitterLogin", "Member", new { Area = string.Empty }, null)">
+                            <img src="~/Mobile/Content/img/tmp/log-icon02.png" alt="twitter">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("FacebookLogin", "Member", new { Area = string.Empty }, null)">
+                            <img src="~/Mobile/Content/img/tmp/log-icon01.png" alt="facebook">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("GoogleLogin", "Member", new { Area = string.Empty }, null)">
+                            <img src="~/Mobile/Content/img/tmp/log-icon03.png" alt="gplus">
+                        </a>
+                    </li>
+                </ul>
+                <p class="sig-submit02">
+                    <a href="@Url.Action("Register", "Member", new { Area = string.Empty }, null)">ユーザー登録(無料)</a>
+                </p>
+            }
+        </div>
+        <p id="close" class="close_popup">close</p>
+    </div>
+</div>
+<!-- Login Popup -->
+<!--Popup Point Edit-->
+<div id="PointEdit" class="overlay_point">
+    @Html.Action("EditPointInMobile", "NpbRightContent", new { area = "Npb", gameID = (int?)null, expectTargetID = string.Empty, betSelectID = 0, memberID = string.Empty, teamID = 0 })
+</div>
+@Html.Hidden("txtMemberId", Session["CurrentUser"])
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script lang="text/javascript">
+    var IsLoginClick = true;
+    //user_article/new click
+    $(".panel-link2 a, .edit_btn02 a").live("click", function () {
+        IsLoginClick = false;
+    });
+
+    //button close click
+    $("#close").click(function () {
+        $('span[data-valmsg-for="Email"]').text('');
+        $('span[data-valmsg-for="Password"]').text('');
+        $('span[data-valmsg-for="ErrorLogin"]').text('');
+        IsLoginClick = true;
+    });
+
+    $("#loginFormApp").live("submit", function (event) {
+        event.preventDefault();
+        var form = $(this);
+        $.ajax({
+            url: '@Url.Action("LoginApp", "Member", new { Area = string.Empty }, null)',
+            type: "POST",
+            data: form.serialize(),
+            success: function (data) {
+
+                if (data !== null && data != "success") {
+                    $('span[data-valmsg-for="Email"]').text('');
+                    $('span[data-valmsg-for="Password"]').text('');
+                    $('span[data-valmsg-for="ErrorLogin"]').text('');
+                    if (data.length > 0) {
+                        for (var i = 0; i < data.length; i++) {
+
+                            switch (data[i].Key) {
+                                case "Email":
+                                    $('span[data-valmsg-for="Email"]').text(data[i].Value);
+                                    break;
+                                case "Password":
+                                    $('span[data-valmsg-for="Password"]').text(data[i].Value);
+                                    break;
+                                case "ErrorLogin":
+                                    $('span[data-valmsg-for="ErrorLogin"]').text(data[i].Value);
+                                    break;
+                            }
+                        }
+                    }
+                }
+                else {
+                    var url = window.location.href;
+                    if (window.location.href.indexOf("logout") > -1) {
+                        url = '/';
+                    }
+                    var href = $('.panel-link2 a, .edit_btn02 a').attr('href');
+                    if (typeof href !== 'undefined' && !IsLoginClick) {
+                        url = href;
+                    }
+                    window.location.reload();
+                    window.location.href = url;
+                    $(".overlay").hide();
+                }
+            },
+
+        });
+    });
+</script>

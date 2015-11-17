@@ -1,0 +1,46 @@
+﻿@using Splg;
+@using Splg.Areas.Npb.Models.ViewModel.InfosModel;
+@model Splg.Areas.Npb.Models.ViewModel.NpbTeamInfoConfrontationResultViewModel
+@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: Index.cshtml
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-03-19
+    // Html No      : 8-5-3   
+    Layout = "~/Views/Shared/Mobile/_NpbLayout.cshtml";
+    NpbTeamInfoConfrontationResultInfos teamInfo = new NpbTeamInfoConfrontationResultInfos();
+    if (Model.TeamInfo != null)
+    {
+        teamInfo = Model.TeamInfo;
+    }
+}
+@section scripts
+{
+    <script src="~/Areas/Npb/Scripts/Views/NpbTeamInfoConfrontationResult/all.js"></script>
+    <script src="~/Areas/Npb/Scripts/Mobile/8-2.js"></script>
+}
+<script>
+    function cboSelected() {
+        var teamsOpponentCD = document.getElementById("cboTeamInfos").value;
+        GetResultGameInfos('@teamInfo.TeamCD',teamsOpponentCD);
+    }
+</script>
+@Html.Partial("~/Areas/Npb/Views/Shared/Mobile/_NpbTeamInfoMenu.cshtml")
+<!-- path -->
+<section class="block_2 clear">
+    <div class="news-box">
+        @if (Model.TeamInfoMSTs != null && Model.TeamInfoMSTs.Any())
+        {
+            var teams = new SelectList(Model.TeamInfoMSTs, "TeamCD", "ShortNameTeam",Model.TeamsOpponent.TeamCD);
+            @Html.DropDownList("cboTeamInfos", teams, new { onchange = "cboSelected()" })       
+               
+        }
+        </div>
+        <div id="resultAjax"></div>
+        <div id="resultDefault">
+            @Html.Partial("~/Areas/Npb/Views/Shared/Mobile/_NpbTeamInfoConfrontationResult.cshtml", Model)
+        </div>
+        <!--Right Content-->
+        @section NpbPage{
+        }
+</section>

@@ -1,0 +1,9 @@
+      {
+        data : @Data,
+        markers : {
+          show: @MarkersIsVisible,
+          relative: @MarkersIsRelative,
+          fontSize: @MarkersFontSize,
+          labelFormatter : @MarkersLabelFormatter
+  		}
+	  }

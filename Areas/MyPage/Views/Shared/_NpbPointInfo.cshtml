@@ -1,0 +1,93 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : _NpbPointInfo.cshtml (Use for main _NpbLayout.cshtml)
+    //Created Date : 2015/04/08
+}
+
+@model IEnumerable<Splg.Models.Game.ViewModel.PointInfoViewModel>
+@using Splg;
+@using Splg.Models.Game.ViewModel;
+@using Splg.Areas.Npb.Models;
+
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        var lstGroup = Model.OrderBy(m => m.PointID).GroupBy(m => m.PointID);
+        var firstGroup = lstGroup.FirstOrDefault();
+        var divID = 0;
+        <div class="side_block02" id="pointPrediction">             
+            @foreach (var groupWeek in lstGroup)
+            {
+                var firstInGroup = groupWeek.FirstOrDefault();
+                var totalPointInWeek = NpbCommon.GetPossionPointByPointID(firstInGroup.PointID);
+                if (groupWeek.Key.Equals(firstGroup.Key))
+                {
+                    var strWeek = firstInGroup.GiveTargetMonth + "月" + @groupWeek.FirstOrDefault().GiveTargetWeek + "周目";
+                    <div class="cat_stitle">
+                        <h3>@strWeek</h3>
+                        <p><a href="#">右カラムmore</a></p>
+                    </div>
+                }           
+                else
+                {
+                    <div class="cat_stitle">
+                        <h3>来週予想した試合</h3>
+                    </div>
+                }
+                <div class="row">
+                    <p class="side_date"><span class="fs14">現在の所持ポイント</span></p>
+                    <p class="side_date_p organge"><span id="Point_@firstInGroup.BetStartDate.ToShortDateString().Replace("/","")" class="fs18 bold">@totalPointInWeek</span> pt</p>
+                </div>
+                foreach (var item in groupWeek.OrderBy(m => m.ExpectPointID))
+                {        
+                    divID++;             
+                    if (item.GameID != 0)
+                    {
+                        GameInfoViewModel gameInfo = NpbCommon.GetGameInfoByGameID(Constants.NPB_SPORT_ID, item.GameID.Value);
+                        var point = Math.Round(item.ExpectPoint * item.Odds);
+                        var tmp = DateTime.ParseExact(gameInfo.Time, "HHmm", null);
+                        var gameTime = tmp.ToString("HH:mm");
+                        var teamBetSelect = string.Empty;
+                        var status = NpbCommon.GetStatusMatch(item.GameID.ToString());
+                        var classStatus = string.Empty;
+                        var divisionPoint = item.ExpectPoint / 100;
+                        if (status == 0)
+                        {
+                            classStatus = "side_b2";
+                        }
+                        else
+                        {
+                            classStatus = "side_b1";
+                        }
+                        <div class="@classStatus" id="@divID">
+                            <div>
+                                <p class="fs11">プロ野球  @Utils.ParseToJapanDate(false, gameInfo.GameDate.ToString()) @gameTime </p>
+                                <p class="side_b2_1">@gameInfo.HomeTeamName vs @gameInfo.VisitorTeamName</p>
+                                <span class="side_b1_li blue" data-gameid="@item.GameID" data-date="@item.BetStartDate.ToShortDateString().Replace("/","")" data-expectpoint="@StringProtector.Protect(@item.ExpectPointID.ToString())" data-point="@StringProtector.Protect(@item.PointID.ToString())">取り消す</span>
+                                <span class="icon side_b2_2"> </span>
+                                @if (item.BetSelectID == 1)
+                                {
+                                    teamBetSelect = gameInfo.HomeTeamName;
+                                }
+                                else if (item.BetSelectID == 2)
+                                {
+                                    teamBetSelect = @gameInfo.VisitorTeamName;
+                                }
+                                else
+                                {
+                                    teamBetSelect = "引き分け";
+                                }
+                                <p class="fs14">@teamBetSelect</p>
+                                <p class="tmp"><input maxlength="3" value="@divisionPoint" data-odd="@item.Odds" data-old="@item.ExpectPoint" data-expectpoint="@StringProtector.Protect(@item.ExpectPointID.ToString())" data-point="@StringProtector.Protect(@item.PointID.ToString())" name="sprice" data-date="@item.BetStartDate.ToShortDateString().Replace("/","")" class="pointBet">
+                                <span class="fs18 bold"> 00</span>pt 
+                                <span class="fs14">x</span> @item.Odds</p>
+                            </div>
+                            <p>予想が的中すると <span class="pointWin">@point</span> pt を得られます</p>
+                        </div>
+                    }
+                }
+            }          
+        </div>
+    }
+}

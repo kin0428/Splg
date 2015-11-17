@@ -1,0 +1,49 @@
+﻿@{
+    // Namespace	: Splg.Areas.Jleague
+    // Controller   : 
+    // FileName		: Index.cshtml
+    // Developer	: Nguyen Ho Long Hai
+    // Update date  : 2015-05-20
+    // Html No      : 10-2-5-2 && 10-3-5-2(mobile)
+    int jType = Convert.ToInt32(ViewBag.JType);
+    string title = string.Empty;
+    string h2text = string.Empty;
+    string jleague = string.Empty;
+    switch (jType)
+    {
+        case 1:
+            title = "チーム情報　日程・結果（J1）";
+            jleague = "j1";
+            h2text = "J1チーム一覧";
+            ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J1_GI;
+            ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J1_GI;
+            break;
+        case 2:
+            title = "チーム情報　日程・結果（J2）";
+            jleague = "j2";
+            h2text = "J2チーム一覧";
+            ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J2_GI;
+            ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J2_GI;
+            break;
+    }
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/Mobile/_JlgLayout.cshtml";
+}
+<script src="~/Areas/Jleague/Scripts/Mobile/10-2-5-2.js"></script>
+@Html.Partial("~/Areas/Jleague/Views/Shared/Mobile/_JlgTeamInfoMenu.cshtml")
+<section class="block_0 clear">
+    <h3 class="subtitle3">@string.Format("{0} 日程・結果", ViewBag.HomeTeamName)</h3>
+    <nav class="news-panel">
+        <a href="#" class="prev">前の月</a>
+        <h4 id="h4MonthYear">@string.Format("{0}年 {1}月", DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString())</h4>
+        <a href="#" class="next">次の月</a>
+    </nav>
+    <div class="news-box">
+        <select name="category" id="ddl_day"></select>
+    </div>
+</section>
+<input type="hidden" id="txtTeamId" value="@ViewBag.TeamId">
+<div id="jlgGameInfo">
+    @*@Html.Hidden("Page", 3)*@
+    @Html.Action("ShowGameInfo", "JlgTop", new { area = "Jleague", type = 0, gameDate = DateTime.Now.ToShortDateString().Replace("/", ""), teamID = @ViewBag.TeamId })
+</div>

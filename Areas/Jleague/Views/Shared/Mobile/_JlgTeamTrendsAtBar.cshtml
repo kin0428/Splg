@@ -1,0 +1,61 @@
+﻿@model  Splg.Areas.Jleague.Models.ViewModel.JlgTeamTrendsAtBarViewModel
+<table class="tblCompare socPropRate">
+    <tbody>
+        <tr>
+            <th class="tblCompare-home fsMini">
+                <p><img src="@Url.Content(Model.HomeTeamSpec.TeamIconUrl)" alt="@Html.DisplayFor(m => @Model.HomeTeamSpec.TeamName)"></p>
+                <p>@Html.DisplayFor(m => Model.HomeTeamSpec.TeamShortName)</p>
+            </th>
+            <th></th>
+            <th class="tblCompare-away fsMini">
+                <p>@Html.DisplayFor(m => Model.AwayTeamSpec.TeamShortName)</p>
+                <p><img src="@Url.Content(Model.AwayTeamSpec.TeamIconUrl)" alt="@Html.DisplayFor(m => @Model.AwayTeamSpec.TeamName)"></p>
+            </th>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(m => Model.HomeTeamTrendsAtBar.HomeWinCount)</td>
+            <th>ホーム勝利数</th>
+            <td>@Html.DisplayFor(m => Model.AwayTeamTrendsAtBar.HomeWinCount)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(m => Model.HomeTeamTrendsAtBar.AwayWinCount)</td>
+            <th>アウェイ勝利数</th>
+            <td>@Html.DisplayFor(m => Model.AwayTeamTrendsAtBar.AwayWinCount)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(m => Model.HomeTeamTrendsAtBar.PossessionAverage)</td>
+            <th>平均ポゼッション率</th>
+            <td>@Html.DisplayFor(m => Model.AwayTeamTrendsAtBar.PossessionAverage)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(m => Model.HomeTeamTrendsAtBar.LeftCrossCount)</td>
+            <th>左クロス数</th>
+            <td>@Html.DisplayFor(m => Model.AwayTeamTrendsAtBar.LeftCrossCount)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(m => Model.HomeTeamTrendsAtBar.RightCrossCount)</td>
+            <th>右クロス数</th>
+            <td>@Html.DisplayFor(m => Model.AwayTeamTrendsAtBar.RightCrossCount)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(m => Model.HomeTeamTrendsAtBar.InterceptCount)</td>
+            <th>ボール奪取数</th>
+            <td>@Html.DisplayFor(m => Model.AwayTeamTrendsAtBar.InterceptCount)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(m => Model.HomeTeamTrendsAtBar.NationalExperiencedCount)</td>
+            <th>代表経験者</th>
+            <td>@Html.DisplayFor(m => Model.AwayTeamTrendsAtBar.NationalExperiencedCount)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(m => Model.HomeTeamTrendsAtBar.AgeAverage)</td>
+            <th>平均年齢</th>
+            <td>@Html.DisplayFor(m => Model.AwayTeamTrendsAtBar.AgeAverage)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(m => Model.HomeTeamTrendsAtBar.BodyHeightAverage)</td>
+            <th>平均身長</th>
+            <td>@Html.DisplayFor(m => Model.AwayTeamTrendsAtBar.BodyHeightAverage)</td>
+        </tr>
+    </tbody>
+</table>

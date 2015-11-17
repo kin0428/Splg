@@ -1,0 +1,80 @@
+﻿@{
+    // Namespace	: Splg.Areas.Jleague.Models.ViewModel
+    // FileName		: Index.cshtml
+    // Device       : Mobile
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-04-24
+    // Html No      : 10-2-3 : 10-3-3
+}
+@{      
+    if (ViewBag.JType == 1)
+    {
+        ViewBag.Title = "戦績表";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J1_MAT;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J1_MAT;
+    }
+    else
+    {
+        ViewBag.Title = "戦績表";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J2_MAT;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J2_MAT;
+    }
+    Layout = "~/Views/Shared/Mobile/_JleagueLayout.cshtml";           
+         
+}
+@model Splg.Areas.Jleague.Models.ViewModel.JlgResultViewModel	
+
+@section scripts
+{
+    <script src="~/Areas/Jleague/Scripts/Mobile/10-2-3.js"></script>
+}
+<section class="block_2 clear">
+    <div class="select-box clear">
+        <div class="left">チーム選択  </div>
+        <div class="left">
+            @if (Model != null && Model.JlgResultTeamInfos != null && Model.JlgResultTeamInfos.Any())
+            {
+                var teams = new SelectList(Model.JlgResultTeamInfos, "TeamID", "TeamName");
+                @Html.DropDownList("cboTeamInfos", teams)
+            }
+        </div>
+    </div>
+    @if (ViewBag.JType == 1)
+    {
+        string IsSel_val2 = string.Empty;
+        string IsSel_val3 = string.Empty;
+        if (Model.CurrentSeasonID == 2)
+        {
+            IsSel_val2 = "selected";
+        }
+        else
+        {
+            IsSel_val3 = "selected";
+        }
+        
+        <div class="select-box clear" >
+            <div class=" left">シーズン選択</div>
+            <div class="left">
+                <select id="Seasons">
+                    <option @IsSel_val2 value="2">1stステージ</option>
+                    <option @IsSel_val3 value="3">2ndステージ</option>
+                </select>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div style="display:none">
+            <div class=" left">シーズン選択</div>
+            <div class="left">
+                <select id="Seasons">
+                    <option selected value="1">通年</option>
+                </select>
+            </div>
+        </div>
+
+    }
+    <div id="resultDefault">
+        @Html.Partial("~/Areas/Jleague/Views/Shared/Mobile/_JleagueGameInfosResult.cshtml", Model)
+    </div>
+</section>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Splg.Models.News.ViewModel.NewsInfoViewModel>
+
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        var firstNews = Model.FirstOrDefault();
+        var routeValues = new RouteValueDictionary();
+        routeValues.Add("area", string.Empty);
+        routeValues.Add("topic", Constants.MLB_TOPIC_NAME);
+        routeValues.Add("newsItemID", @firstNews.NewsItemID);
+        routeValues.Add("sportID", Constants.MLB_SPORT_ID);
+        var imageSports = Utils.GetNewsImageLocation(firstNews.Content ?? Constants.IMAGE_DEFAULT);
+        <section class="block_1">
+            @* アクセス数1位のものを出力  *@
+            <article class="news_block">
+                <div class="news_image">
+                    <a href="@Url.Action("Index", "NewsArticleCommon", @routeValues, null)">
+                        <img class="resimg" src="@Url.Content(@imageSports)" alt="" /></a>
+                </div>
+                <div class="news_detail">
+                    <h2>NEWS TOPICS</h2>
+                    <h3>@Html.ActionLink(@firstNews.Headline, "Index", "NewsArticleCommon", @routeValues, null)
+                    @firstNews.SentFrom &nbsp; @string.Format("{0} views", firstNews.TotalViews)</h3>
+                    <p>@Utils.ShortenString(firstNews.newstext, 50)</p>
+                </div>
+            </article>
+            @* アクセス数2位～4位のものを出力  *@
+            <ul class="news_list1">
+                @foreach (var item in Model.Skip(1))
+                {
+                    var routeValuesItems = new RouteValueDictionary();
+                    routeValuesItems.Add("area", string.Empty);
+                    routeValuesItems.Add("topic", Constants.MLB_TOPIC_NAME);
+                    routeValuesItems.Add("newsItemID", @item.NewsItemID);
+                    routeValuesItems.Add("sportID", Constants.MLB_SPORT_ID);
+                    <li>
+                        <h4>@Html.ActionLink(@item.Headline, "Index", "NewsArticleCommon", @routeValuesItems, null)</h4>
+                        <p>@item.SentFrom <strong>@item.TotalViews</strong> views</p>
+                    </li>
+                }
+            </ul>
+</section>
+    }
+}
+
+

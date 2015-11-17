@@ -1,0 +1,74 @@
+﻿@*
+    * Developer	: Tran Sy Huynh
+    *
+*@
+
+@model PagedList.IPagedList<Splg.Models.News.ViewModel.NewsInfoViewModel>
+@using PagedList.Mvc;
+@using Splg;
+@using Splg.Areas.Jleague;
+@{
+    ViewBag.Title = "ナビスコC ニュースリスト";
+    ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_NB_NEWSLIST;
+    ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_NB_NEWSLIST;
+    Layout = "~/Views/Shared/_JlgContentsLayout.cshtml";
+  }
+<div class="jblock_01">
+    <h2 class="jtitle">ナビスコカップ　ニュース</h2>
+    @if (Model != null && Model.Count() > 0)
+    {
+        DateTime dayCount = Model.FirstOrDefault().DeliveryDate;
+        var ulBegin = "<ul class='news_list'>";
+        var ulEnd = "</ul>";
+        <h3 class="news_title fi"> @dayCount.ToString("MM/dd") (@Utils.GetWeekDayToJapanTime(dayCount)) </h3>
+        @Html.Raw(ulBegin)
+        foreach (var item in Model)
+        {
+            var imageLocation = Utils.GetNewsImageLocation(item.Content ?? Constants.IMAGE_DEFAULT);
+            if (dayCount.Date.CompareTo(item.DeliveryDate.Date) != 0)
+            {
+                dayCount = item.DeliveryDate;
+                @Html.Raw(ulEnd)
+                <h3 class="news_title"> @dayCount.ToString("MM/dd") (@Utils.GetWeekDayToJapanTime(dayCount)) </h3>
+                @Html.Raw(ulBegin)
+            }
+            <li>
+                <p><img class="resimg" src="@Url.Content(imageLocation)" alt="" /></p>
+                <div>
+                    <h4>@Html.RouteLink(string.Format("{0} {1}", item.Headline, item.SubHeadline), "7_1", new { areas = string.Empty, topic = JlgConstants.JLG_TOPIC_NAME, newsItemID = item.NewsItemID, sportID = JlgConstants.JLG_SPORT_ID, uniqueID = JlgConstants.JLG_GAMEKIND_NABISCO, teamID = Constants.NEWS_DEFAULT_PARAMETER })</h4>
+
+                    <p>@Utils.ShortenString(item.newstext, 50)</p>
+                    <p class="gray">@item.SentFrom - @item.DeliveryDate.ToString("MM/dd HH:mm")</p>
+                </div>
+            </li>
+        }
+        @Html.Raw(ulEnd)
+        <div class="board_control">
+            @if (Model.PageNumber > 1)
+            {
+                var nextPage = Model.PageNumber - 1;
+                <a class="board_prev" href="?page=@nextPage">≪前のページ</a>
+            }
+            else
+            {
+                <a class="board_prev">≪前のページ</a>
+            }
+            @if (Model.PageNumber < Model.PageCount)
+            {
+                var nextPage = Model.PageNumber + 1;
+                <a class="board_next" href="?page=@nextPage">次のページ≫</a>
+            }
+            else
+            {
+                <a class="board_next">次のページ≫</a>
+            }
+        </div>
+    }
+</div>
+<!--Right Content-->
+@section JlgPage{
+    <div class="cat_stitle">
+        
+
+    </div>
+}

@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "アカウント削除";
+    Layout = "~/Views/Shared/Mobile/_Layout.cshtml";
+}
+<section class="block_7">
+    @using (Html.BeginForm("Delete", "Member", FormMethod.Post, new {@id="deleteForm", role = "form"}))
+    {
+    <h3 class="sigtitle">スポログのアカウントを削除しますか？</h3>
+    <p>アカウントを削除するとお客様のデータが全て削除されます。一度削除するとデータは復旧できません。</p>
+    <p>それでもよろしいでしょうか？</p>
+    <ul class="sig-conf">
+        <li><a href="javascript:void();" onclick="document.getElementById('deleteForm').submit();">削除する</a></li>
+        <li><a href="@Url.Action("Index","Home")">いいえ</a></li>
+    </ul>
+    }
+</section>
+

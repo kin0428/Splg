@@ -1,0 +1,50 @@
+﻿@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: JleagueSubMenu.cshtml
+    // Device       : PC
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-04-10
+    ///                  Menu sub jleague
+    /// ViewBag.JleagueSubMenu : Using choice sub Jleague
+    /// ViewBag.JleagueSubMenu = 1 => Jleague Home Jリーグトップ : 10_2; 10_3
+    /// ViewBag.JleagueSubMenu = 2 => Jleague 日程・結果 10_2_1 ; 10_3_1
+    /// ViewBag.JleagueSubMenu = 3 => Jleague 順位表: 10-2_2 ; 10_3_2
+    /// ViewBag.JleagueSubMenu = 4 => Jleague 戦績表: 10_2_3 ; 10_3_3
+    /// ViewBag.JleagueSubMenu = 5 => Jleague 個人成績: 10_2_4 ; 10_3_4
+    /// ViewBag.JleagueSubMenu = 6 => Jleague チーム情報: 10-2_5 ; 10_3_5
+    /// ViewBag.JleagueSubMenu = 7 => Jleague チーム情報: 10-2_6 ; 10_3_6
+    /// 
+    
+}
+<ul class="block_nav">
+    
+    @if (ViewBag.JleagueMenu == 2)
+    {
+        <li class=@(ViewBag.JleagueSubMenu == 1 ? "active" : "")><a href="/jleague/j1">Jリーグトップ</a></li>    
+        <li class=@(ViewBag.JleagueSubMenu == 2 ? "active" : "")><a href="/jleague/j1/schedule">日程・結果</a></li>       
+        <li class=@(ViewBag.JleagueSubMenu == 3 ? "active" : "")><a href="/jleague/j1/standings">順位表</a></li>   
+        <li class=@(ViewBag.JleagueSubMenu == 4 ? "active" : "")><a href="/jleague/j1/matrix">戦績表</a></li> 
+        <li class=@(ViewBag.JleagueSubMenu == 5 ? "active" : "")><a href="/jleague/j1/stats">個人成績</a></li>        
+        <li class=@(ViewBag.JleagueSubMenu == 6 ? "active" : "")><a href="/jleague/j1/teams">チーム一覧</a></li>
+        <li class=@(ViewBag.JleagueSubMenu == 7 ? "active" : "")><a href="/jleague/j1/news">ニュース</a></li>
+    }
+    else if (ViewBag.JleagueMenu == 3)
+    {
+        <li class=@(ViewBag.JleagueSubMenu == 1 ? "active" : "")><a href="/jleague/j2">Jリーグトップ</a></li>      
+        <li class=@(ViewBag.JleagueSubMenu == 2 ? "active" : "")><a href="/jleague/j2/schedule">日程・結果</a></li>  
+        <li class=@(ViewBag.JleagueSubMenu == 3 ? "active" : "")><a href="/jleague/j2/standings">順位表</a></li>   
+        <li class=@(ViewBag.JleagueSubMenu == 4 ? "active" : "")><a href="/jleague/j2/matrix">戦績表</a></li> 
+        <li class=@(ViewBag.JleagueSubMenu == 5 ? "active" : "")><a href="/jleague/j2/stats">個人成績</a></li>   
+        <li class=@(ViewBag.JleagueSubMenu == 6 ? "active" : "")><a href="/jleague/j2/teams">チーム一覧</a></li>     
+        <li class=@(ViewBag.JleagueSubMenu == 7 ? "active" : "")><a href="/jleague/j2/news">ニュース</a></li>
+    }
+    else if (ViewBag.JleagueMenu == 4)
+    {
+        <li class=@(ViewBag.JleagueSubMenu == 1 ? "active" : "")><a href="/jleague/jleaguecup">ナビスコCトップ</a></li>
+        <li class=@(ViewBag.JleagueSubMenu == 2 ? "active" : "")><a href="/jleague/jleaguecup/schedule">日程・結果</a></li>
+        <li class=@(ViewBag.JleagueSubMenu == 3 ? "active" : "")><a href="/jleague/jleaguecup/standings">順位表</a></li>
+        @*<li class=@(ViewBag.JleagueSubMenu == 4 ? "active" : "")><a href="#">大会概要</a></li>*@
+        @*<li class=@(ViewBag.JleagueSubMenu == 5 ? "active" : "")><a href="/jleague/jleaguecup/news">ニュース</a></li>*@
+    }
+    
+</ul>        

@@ -1,0 +1,17 @@
+﻿@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: MainMenu.cshtml
+    // Device       : PC
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-04-09
+}
+<ul class="navbox">   
+    <li class=@(ViewBag.MainMenu != null && "Home".Equals(@ViewBag.MainMenu) ? "active" : "")>@Html.ActionLink("HOME", "Index", "Home", new { area = string.Empty }, null)</li>
+    <li class=@(ViewBag.MainMenu != null && "Npb".Equals(@ViewBag.MainMenu) ? "active" : "")>@Html.ActionLink("プロ野球", "Index", "NpbTop", new { area = "Npb" }, null)</li>
+    <li class=@(ViewBag.MainMenu != null && "Mlb".Equals(@ViewBag.MainMenu) ? "active" : "")>@Html.ActionLink("MLB", "Index", "MlbTop", new { area = "Mlb" }, null)</li>
+    <li class=@(ViewBag.MainMenu != null && "Jlg".Equals(@ViewBag.MainMenu) ? "active" : "")>@Html.ActionLink("Jリーグ", "Index", "JlgTop", new { area = "Jleague" }, null)</li>
+    @* <li class=@(ViewBag.MainMenu != null && "Ws".Equals(@ViewBag.MainMenu) ? "active" : "")>@Html.ActionLink("海外サッカー", "Index", "WsTop", new { area = "Ws" }, null)</li>*@
+    <li class=@(ViewBag.MainMenu != null && "User".Equals(@ViewBag.MainMenu) ? "active" : "")>@Html.ActionLink("投稿記事", "Index", "UserArticle", new { area = string.Empty }, null)</li>
+    <li class=@(ViewBag.MainMenu != null && "Prize".Equals(@ViewBag.MainMenu) ? "active" : "")>@Html.ActionLink("賞品に応募", "Index", "PrizeTop", new { area = "Prize" }, null)</li>
+    <li class=@(ViewBag.MainMenu != null && "Howto".Equals(@ViewBag.MainMenu) ? "active" : "")>@Html.ActionLink("スポログの遊び方", "Howto", "Support", new { area = string.Empty }, null)</li>
+</ul>

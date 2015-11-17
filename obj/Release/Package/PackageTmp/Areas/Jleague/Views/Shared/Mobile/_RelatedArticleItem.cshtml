@@ -1,0 +1,33 @@
+﻿@model  Splg.Areas.Jleague.Models.Dto.RelatedArticles
+@using Splg.Core.Constant;
+@using Splg.Areas.Jleague;
+
+<ul class="socArticle-list">
+    @foreach (var item in Model.Items)
+    {
+        <li>
+            @if (item.ArticleKind == JlgConst.ArticleKind.News)
+            {
+                    <!--ニュース-->
+
+                <img src="@Url.Content(@item.IconsUrl)" alt="">
+
+                <a href="@Url.RouteUrl(item.ArticleRouteName, new {topic = JlgConstants.JLG_TOPIC_NAME, newsItemID = item.Key, sportID = JlgConstants.JLG_SPORT_ID, uniqueID = (int)Model.JLeagueType })">
+                    <span class="socArticle-ttl">@item.Title</span>
+                    <span class="socArticle-info">配信元：@item.ArticleOwner @Html.DisplayFor(m => item.PublishedDate)</span>
+                </a>
+            }
+            else
+            {
+                <!--投稿記事-->
+                <a class="socArticle-icon" href="@Url.RouteUrl(item.IconsRouteName, new {memberId  = item.OwnersMemberId})">
+                    <img src="@Url.Content(@item.IconsUrl)" alt="">
+                </a>
+                <a href="@Url.RouteUrl(item.ArticleRouteName, new {newsClassID = item.TopicId, contributeID = item.Key})">
+                    <span class="socArticle-ttl">@item.Title</span>
+                    <span class="socArticle-info">投稿者：@item.ArticleOwner @Html.DisplayFor(m => item.PublishedDate)</span>
+                </a>
+            }
+        </li>
+    }
+</ul>

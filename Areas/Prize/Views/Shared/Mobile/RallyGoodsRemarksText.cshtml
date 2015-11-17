@@ -1,0 +1,5 @@
+﻿@foreach (var item in Model)
+{
+    <h4 class="fs14">@item.Title</h4>
+    <p class="prize_text">@Html.Raw(Html.Encode(item.Contents).Replace("\n", "<br />"))</p>
+}

@@ -1,0 +1,45 @@
+﻿@{
+    //Namespace  : Splg
+    //Controller :
+    //FileName   : _SearchEngine.cshtml
+    //Developer  : Nguyen Ho Long Hai
+    //create date : 20150415
+    //Html no:partial view
+    //function : search data google
+}
+@using Splg;
+@using Splg.Models;
+<script>
+    (function () {
+        var cx = '016621866823064850046:jnhwpyrjq3i';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+            '//www.google.com/cse/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+    })();
+</script>
+<div class="sbox">
+    <gcse:searchbox-only></gcse:searchbox-only>
+    @{
+        string imgUrl = @"~/Content/img/upload/member/DefaultProfilePicture.png";
+        if (Session["CurrentUser"] != null)
+        {
+            ComEntities com = new ComEntities();
+            Int64 memberID = Convert.ToInt64(Session["CurrentUser"]);
+            imgUrl = com.Member.SingleOrDefault(m => m.MemberId == memberID).ProfileImg;
+            var unreadNotice = Splg.Utils.GetNumberOfUnreadNotice(Convert.ToInt32(memberID));           
+            string sbg = unreadNotice == 0 ? "gplus_bg01" : "gplus";                 
+            <a href="/mypage/notice/"><span id="unreadnoticecount" class="@sbg">@unreadNotice</span></a>
+            <a class="menu02" href="javascript:void(0);"><img src="@Url.Content(imgUrl)" alt="" /></a>
+        }
+        else
+        {
+            <a class="log_link log_link_required" href="javascript:void(0)"><span class="icon"> </span>ログイン</a>
+            <a class="reg_link" href="/signup/">ユーザー登録(無料)</a>
+        }
+    }
+</div>
+

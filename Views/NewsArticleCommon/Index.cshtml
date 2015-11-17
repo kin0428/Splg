@@ -1,0 +1,132 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : Index.cshtml
+    //Created Date : 2015/03/04
+    //
+    //Updated Date: 2015/03/06
+    //Apdated dev: Sy Huynh
+}
+
+@model Splg.Models.News.ViewModel.NewsTopicViewModel
+@using Splg;
+
+@{
+    int sportType = Convert.ToInt32(ViewBag.sportID);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    switch (sportType)
+    {
+        case Constants.NPB_SPORT_ID:
+            @Html.Partial("NpbNewsSubMenu");
+                                           break;
+        case Constants.JLG_SPORT_ID:
+        @Html.Partial("JlgNewsSubMenu");
+                                       break;
+        case Constants.MLB_SPORT_ID:
+        @Html.Partial("MlbNewsSubMenu");
+                                       break;
+    }
+}
+<div class="block_01">
+    @if (ViewBag.teamID != null)
+    {
+        @Html.Partial("TeamSubMenu");
+    }
+    @if (Model.NewsDisplayed != null)
+    {
+        var dateJP = Utils.ParseLocalDateToShortJapanDate(Model.NewsDisplayed.DeliveryDate);
+        var imageLocation = string.Empty;
+
+        <div class="block_06_4">
+            <h4><span class="bold">@Model.NewsDisplayed.Headline @Model.NewsDisplayed.SubHeadline</span></h4>
+            <h4><span class="gray2 fs14">@Model.NewsDisplayed.SentFrom @dateJP</span></h4>
+            @if (!string.IsNullOrEmpty(Model.NewsDisplayed.Content))
+            {
+                imageLocation = Url.Content(Utils.GetNewsImageLocation(Model.NewsDisplayed.Content, true));
+                <div><img class="resimg" src="@imageLocation" alt="@Model.NewsDisplayed.Caption" /></div>
+            }
+            <p style="white-space: pre-line;">@Model.NewsDisplayed.newstext</p>
+        </div>
+        if (Model.RelatedTopics != null && Model.RelatedTopics.Any())
+        {
+            <ul class="rel_category">
+                <li class="fs18 bold">関連トピック</li>
+                @foreach (var topic in Model.RelatedTopics)
+                {
+                    <li><a href="@topic.JumpUrl" target="_blank">@topic.TopicName</a></li>
+                }
+            </ul>
+        }
+        <div class="tcenter">
+			<p class="fb_topnewsbd">この記事が気に入ったら いいね！しよう<br>スポログの最新記事をお届けします</p>
+            <div class="fb-page" data-href="https://www.facebook.com/spolog.jp" data-width="500" data-height="250" data-hide-cover="false" data-show-facepile="false" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/spolog.jp"><a href="https://www.facebook.com/spolog.jp">スポログ</a></blockquote></div></div>
+        </div>
+        <div class="space20"></div>
+        <div class="block_05_2">
+            @Html.Partial("~/Views/Shared/_ShareContentSocial.cshtml")
+            <p class="edit_btn02">
+                <a href="@Url.RouteUrl("5-4", new { newsclassid=1, quoteuniqueid1=@ViewBag.newsItemID })">
+                    <span class="icon"> </span>記事を書く
+                </a>
+            </p>
+            @*@Html.Hidden("CurrentMemberSession", Session["CurrentUser"])
+            @Html.Hidden("RedirectURL", Url.RouteUrl("5-4", new { newsClassId = 1, quoteUniqueId1 = @ViewBag.newsItemID }))*@
+        </div>
+    }
+    @if (Model.RelatedNews != null && Model.RelatedNews.Any())
+    {
+        int relatedNewsSize = Convert.ToInt32(ViewBag.relatedNewsSize ?? 5);
+        //Get first row to define another format.
+        var firstNews = @Model.RelatedNews.FirstOrDefault();
+        var imageSports = Utils.GetNewsImageLocation(firstNews.Content ?? Constants.IMAGE_DEFAULT);
+
+        <div class="space20"></div>
+        <div class="row">
+            <div class="cat_title">
+                <h3>関連ニュース</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="block_03_1">
+                <a href="@Url.Action("Index", new { topic = ViewBag.topic, newsItemID = firstNews.NewsItemID, sportID = ViewBag.sportID, uniqueID = (ViewBag.uniqueID ?? Constants.NEWS_DEFAULT_PARAMETER), teamID = (ViewBag.teamID ?? Constants.NEWS_DEFAULT_PARAMETER) })">
+                    <img src="@Url.Content(@imageSports)" class="resimg" alt="" />
+                </a>
+            </div>
+            <div class="block_03_2">
+                <h3 class="subtitle02">@Html.ActionLink(string.Format("{0} {1}", firstNews.Headline, firstNews.SubHeadline), "Index", new { topic = ViewBag.topic, newsItemID = firstNews.NewsItemID, sportID = ViewBag.sportID, uniqueID = (ViewBag.uniqueID ?? Constants.NEWS_DEFAULT_PARAMETER), teamID = (ViewBag.teamID ?? Constants.NEWS_DEFAULT_PARAMETER) })</h3>
+                <h4><span class="gray2">@firstNews.SentFrom  @Utils.ParseLocalDateToShortJapanDate(firstNews.DeliveryDate)</span></h4>
+                <p>@Utils.ShortenString(firstNews.newstext, 50)</p>
+            </div>
+            <ul class="block_list01">
+                @foreach (var news in Model.RelatedNews.Skip(1).Take(relatedNewsSize - 1))
+                {
+                    <li>
+                        @Html.ActionLink(string.Format("{0} {1}", news.Headline, news.SubHeadline), "Index", new { topic = ViewBag.topic, newsItemID = news.NewsItemID, sportID = ViewBag.sportID, uniqueID = (ViewBag.uniqueID ?? Constants.NEWS_DEFAULT_PARAMETER), teamID = (ViewBag.teamID ?? Constants.NEWS_DEFAULT_PARAMETER) })
+                        <span>@news.SentFrom @Utils.ParseLocalDateToShortJapanDate(news.DeliveryDate)</span>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>
+
+@if (Model.RelatedPosts != null && Model.RelatedPosts.Any())
+{
+    <div class="topic_block">
+        <div class="cat_stitle">
+            <h3>関連投稿記事</h3>
+            <p><a href="/user_article/@sportType/sport/">投稿記事をもっと読む</a></p>
+        </div>
+        <ul class="block_list02">
+            @foreach (var post in Model.RelatedPosts.Take(3))
+            {
+                string postContent = string.Format("{0}&nbsp;&nbsp;&nbsp;{1}投稿", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                <li>
+                    <a href="/user/@post.MemberId/"><img src="@post.ProfileImg" alt="icon" /></a>
+                    <a class="bold" href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a>
+                    <br />
+                    @Html.Raw(postContent)
+                </li>
+            }
+        </ul>
+    </div>
+}

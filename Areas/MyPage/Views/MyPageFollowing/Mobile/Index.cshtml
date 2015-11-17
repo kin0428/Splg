@@ -1,0 +1,73 @@
+﻿@{
+    // Developer	: Nojima
+    // Html No      : 3-5
+}
+@using Splg.Areas.MyPage.Models.ViewModel;
+@using Splg.Areas.MyPage.Models.InfoModel;
+@model MyPageFollowingViewModel
+@{
+    ViewBag.Title = "フォローリスト";
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.FOLLOWING_INDEX;
+    Layout = "~/Views/Shared/Mobile/_MyPageLayout.cshtml";
+}
+
+<script src="~/Scripts/Home.js"></script>
+<script src="~/Areas/MyPage/Scripts/Mobile/follow_unfolllow.js"></script>
+<script src="~/Areas/MyPage/Scripts/Mobile/3-5.js"></script>
+
+@{
+
+    int totalCount = Model.TotalCount;
+    int viewingCount = 0;
+    if (Model.FollowingMembers != null)
+    {
+        viewingCount = System.Math.Min(Model.FollowingMembers.Count(), MyPageFollowersViewModel.INITIAL_SIZE);
+    }
+
+    <section class="block_9">
+        <div class="my-title1">
+            <h2>フォローリスト</h2>
+            <p><a href="/user_search/">友だちを見つける</a></p>
+        </div>
+        <p class="subtitle3"><a href="#">フォローランキング（<span id="totalCount">@Model.TotalCount</span> 人）</a></p>
+        <ul class="my-list" id="lines">
+
+            @if (Model.FollowingMembers != null)
+            {
+
+                foreach (FollowingMemberForMyPage m in Model.FollowingMembers)
+                {
+                    string formattedLastExpectedPointDate = "";
+                    if (m.FormattedLastExpectedPointDate != null)
+                    {
+                        formattedLastExpectedPointDate = "最終予想 " + m.FormattedLastExpectedPointDate;
+                    }
+
+                    string displayFollow = m.IsFollowing ? "display:none" : "";
+                    string displayUnfollow = m.IsFollowing ? "" : "display:none";
+                    
+                    <li>
+                        <a href="/user/@m.MemberId">
+                            <div class="m-col01"><img class="circle" src="@Url.Content(@m.ProfileImg)" alt="@m.Nickname"></div>
+                            <div class="m-col02">
+                                <h4>@m.Nickname</h4>
+                                <p class="fs8">@m.FormattedDisplayPoints pt @formattedLastExpectedPointDate</p>
+                            </div>
+                        </a>
+                        <div class="m-col03">
+                            <a class="unfollow_link" id="unfollow-@m.MemberId" style="@displayUnfollow">フォロー中</a>
+                            <a class="my-btn01 follow_link" id="follow-@m.MemberId" style="@displayFollow">フォローする</a>
+                        </div>
+                    </li>
+                }
+            }
+        </ul>
+        @{
+            string displayGetMoreButton = (viewingCount < totalCount) ? "" : "display:none";
+            <p class="my-btn02" style="float:right;@displayGetMoreButton"><a id="GetMoreFollowingsButton" data-followingcount="@viewingCount"><font color="white">もっと見る</font></a></p>
+        }
+
+    </section>
+}
+
+

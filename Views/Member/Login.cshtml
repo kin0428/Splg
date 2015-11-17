@@ -1,0 +1,56 @@
+﻿@model Splg.Models.ViewModel.LoginViewModel
+@{
+    ViewBag.Title = "ログイン";
+}
+<div class="bottom">
+    <div class="mem_block01 clear">
+        <div class="mem_b1_1">
+            <h2>スポログにユーザー登録(無料)する</h2>
+        </div>
+        <div class="mem_b1_3 bdbtm">
+            @using (Html.BeginForm("Login", "Member", FormMethod.Post, new { @id = "loginForm", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <p style="text-align:center">
+                    @Html.ValidationMessageFor(model => model.ErrorLogin, String.Empty, new { @class = "red" })
+                </p>
+                <dl class="clear">
+
+                    <dt>メールアドレス</dt>
+                    <dd>
+                        @Html.TextBoxFor(model => model.Email, new { @class = "mem470", autofocus = "autofocus", @id = "emailAddr" })
+                        @Html.ValidationMessageFor(model => model.Email, String.Empty, new { @class = "red" })
+                    </dd>
+                    <dt>パスワード</dt>
+                    <dd>
+                        @Html.PasswordFor(model => model.Password, new { @class = "mem470", @id = "password" })
+                        @Html.ValidationMessageFor(model => model.Password, String.Empty, new { @class = "red" })
+                    </dd>
+                </dl>
+                <div class="row">
+                    <p class="board_link">
+                        <input class="send_mail" type="submit" value="ログインする" />
+                    </p>
+                    <a class="mem_link" href="@Url.Action("ForgotPassword", "Member")">パスワードを忘れた方</a>
+                </div>
+            }
+        </div>
+        <h3 class="mem_title01">SNSのアカウントなら登録が簡単！</h3>
+        <ul class="mem_b1_2 nobd clear">
+            <li><a href="@Url.Action("TwitterLogin","Member")"><img src="~/Content/img/tmp/m_btn01.png" alt="Twitterから登録する" /></a></li>
+            <li><a href="@Url.Action("FacebookLogin","Member")"><img src="~/Content/img/tmp/m_btn02.png" alt="Facebookから登録する" /></a></li>
+            <li><a href="@Url.Action("GoogleLogin","Member")"><img src="~/Content/img/tmp/m_btn03.png" alt="Google+から登録する" /></a></li>
+        </ul>
+        <h3 class="mem_title01">ユーザー登録されていない方は・・・  スポログに登録しませんか？</h3>
+        <div class="mem_b1_4">
+            <h4 class="fs18">「スポーツがもっと楽しくなる場所」</h4>
+            <p>スポログは、そんな場所を目指しています。少しでも気になったり、面白そうと思ったら、まずはユーザー登録をしてみてください。<br />登録、利用は無料です。</p>
+        </div>
+        <p class="board_link">
+            <a href="@Url.Action("Register","Member")">スポログユーザー登録(無料)</a>
+        </p>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

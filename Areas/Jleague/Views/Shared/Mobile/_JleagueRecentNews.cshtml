@@ -1,0 +1,88 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : _NpbRecentNews.cshtml
+    //Created Date : 2015/02/25
+}
+
+@model IEnumerable<Splg.Models.News.ViewModel.NewsInfoViewModel>
+@using Splg;
+
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        var nameType = string.Empty;
+        var nameBlock = string.Empty;
+        if (@ViewBag.Name == Constants.JLG_GAME_INFO)
+        {
+            nameBlock = "block_5 clear";
+        }
+        else
+        {
+            nameBlock = "block_2 clear";
+        }
+        <div class="@nameBlock">
+            <section class="block_3_1">
+                <!--For page 8-1-->
+                @if (@ViewBag.Name == Constants.JLG_TOP_INDEX)
+                {
+                    nameType = Constants.NEWSLINK_1 + "の" + Constants.NEWSHEADER_2;
+                    <h3 class="subtitle3">@nameType</h3>
+                }
+                //For page 8-6
+                else if (@ViewBag.Name == Constants.JLG_GAME_INFO)
+                {
+                    if (@ViewBag.HomeVisitor == "1")
+                    {
+                        nameType = Constants.NEWSHEADER_3;
+                    }
+                    else
+                    {
+                        nameType = Constants.NEWSHEADER_4;
+                    }
+                    <h3 class="subtitle3">@nameType</h3>
+                }
+                //For page 8-5-1, 8-5-8, 8-5-9
+                else
+                {
+                    nameType = @ViewBag.TeamName + " " + Constants.NEWSHEADER_2;
+                    <h3 class="subtitle3">@nameType</h3>
+                }
+                @foreach (var news in Model)
+                {
+                    var routeValuesItems = new RouteValueDictionary();
+                    routeValuesItems.Add("area", string.Empty);
+                    routeValuesItems.Add("topic", Constants.JLG_TOPIC_NAME);
+                    routeValuesItems.Add("newsItemID", @news.NewsItemID);
+                    routeValuesItems.Add("sportID", Constants.JLG_SPORT_ID);
+                    if (@ViewBag.Name == Constants.JLG_J1_T_TOP || @ViewBag.Name == Constants.JLG_J1_T_PYR )
+                    {
+                        routeValuesItems.Add("uniqueID", Constants.NEWS_DEFAULT_PARAMETER);
+                        routeValuesItems.Add("teamID", (ViewBag.teamID ?? Constants.NEWS_DEFAULT_PARAMETER));
+                    }
+                    else if (@ViewBag.Name == Constants.JLG_GAME_INFO)
+                    {
+                        routeValuesItems.Add("uniqueID", (@ViewBag.GameID ?? Constants.NEWS_DEFAULT_PARAMETER));
+                        routeValuesItems.Add("teamID", (ViewBag.teamID ?? Constants.NEWS_DEFAULT_PARAMETER));
+                    }
+                    var imageSports = Utils.GetNewsImageLocation(news.Content ?? Constants.IMAGE_DEFAULT);
+                    <article>
+                        <figure>
+                            <a href="@Url.Action("Index", "NewsArticleCommon", @routeValuesItems, null)">
+                                <img src="@Url.Content(@imageSports)" alt="" />
+                            </a>
+                        </figure>
+                        <div>
+                            <h4>@Html.ActionLink(@news.Headline, "Index", "NewsArticleCommon", @routeValuesItems, null)</h4>
+                            <p>@news.SentFrom @news.DeliveryDate.ToString("MM/dd HH:mm")</p>
+                        </div>
+                    </article>
+                }
+                <p class="panel-link">
+                        <strong>@Html.ActionLink("Jリーグのニュースをもっと見る", "Index", "NpbNewsList", new { area = "Npb" }, null)</strong>
+                </p>
+            </section>
+        </div>
+    }
+}
+

@@ -1,0 +1,41 @@
+﻿@model Splg.Areas.Jleague.Models.ViewModel.JlgResultViewModel
+@using Splg;
+@using Splg.Areas.Jleague.Models.ViewModel.InfosModel;
+@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: _JleagueGameInfosResult.cshtml
+    // Device       : Mobile
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-04-22
+    // Html No      : 10-2-3 ; 10-3-3    
+}
+@if (Model != null && Model.JlgResultGameInfos != null && Model.JlgResultGameInfos.Any())
+{
+    var teamInfo = Model.JlgResultTeamInfo;
+    if (teamInfo != null)
+   {       
+        <p class="subtitle4"><strong>@teamInfo.TeamName の戦績</strong></p>
+   }
+<ul class="jlist">
+    @foreach (var item in Model.JlgResultGameInfos)
+    {
+        var seasonClass = "season-" + item.SeasonID;
+
+        var sSec = string.Format("{0}{1}{2}", "第", item.Sec.ToString(), "節");
+        var sIcon = item.GameResult == "W" ? "~/Content/img/jleague/icon01.png" : item.GameResult == "L" ? "~/Content/img/jleague/icon02.png" : item.GameResult == "D" ? "~/Content/img/jleague/icon03.png" : "";
+        <li class="jrow @seasonClass">
+            <div>
+                <dl>
+                    <dt>@sSec</dt>
+                    <dd>@item.StadiumNameS</dd>
+                </dl>
+                <p>
+                    <a class="fs14" href="@string.Format("/jleague/j{0}/teams/{1}/", ViewBag.JleagueMenu == 2 ? "1" : ViewBag.JleagueMenu == 3 ? "2" : "", teamInfo.TeamID == item.FirstTeamID ? item.SecondTeamID : item.FirstTeamID)">@(teamInfo.TeamID == item.FirstTeamID ? item.SecondTeamName : item.FirstTeamName)</a>
+                    <a class="fs24" href="@string.Format("/jleague/game/{1}", ViewBag.JleagueMenu == 2 ? "1" : ViewBag.JleagueMenu == 3 ? "2" : "", item.GameID)"><span class="fi">@item.Score</span> - <span class="fi">@item.Lost</span></a>
+                </p>
+            </div>
+            <p><img class="resimg" src="@Url.Content(sIcon ?? Constants.IMAGE_DEFAULT)" alt="" /></p>
+        </li>
+    }
+</ul>
+}

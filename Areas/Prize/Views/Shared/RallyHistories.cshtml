@@ -1,0 +1,14 @@
+﻿@model List<Splg.Areas.Prize.Models.ViewModel.RallyViewModel>
+
+@{
+    var entryStartDate = Model.First().EntryStartDate;
+    
+    <p><span class="fs18">@Html.DisplayFor(m => entryStartDate.Year) </span>年</p>
+    foreach (var item in Model)
+    {
+        //Todo:リンク（リンク先不明）
+        <p class="blue">@Html.DisplayFor(m => item.RallyName)</p>
+    
+    }
+}
+

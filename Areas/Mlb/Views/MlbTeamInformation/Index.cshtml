@@ -1,0 +1,83 @@
+﻿@{
+    //Author : e-concier
+    //FileName : Index.cshtml (9-1)
+    //Created Date : 2015/04/10
+}
+
+@model IEnumerable<Splg.Areas.Mlb.Models.ViewModels.MlbTeamInformationViewModel>
+    @using Splg.Areas.Mlb;
+
+    @{
+        ViewBag.Title = "チーム情報（MLB）";
+        ViewBag.Name = Splg.Areas.Mlb.MlbConstants.MLB_TEAMINFORMATION;
+        Layout = "~/Views/Shared/_MlbLayout.cshtml";
+    }
+
+    <div class="block_03">
+        <h2 class="mytitle">チーム情報</h2>
+        <div class="row">
+            @if (Model.Any())
+            {
+                if (Model.Any())
+                {
+                    var lstLeague = (from lg in Model select new { lg.TeamInfo.LeagueID, lg.TeamInfo.LeagueName }).Distinct();
+                    var thisYear = DateTime.Now.Year.ToString();
+                    
+                    foreach (var league in lstLeague)
+                    {
+                        <div class="team_list01 @((league.LeagueID == 8)? "left":"right")">
+                            <h3>@league.LeagueName</h3>
+                            @{
+                        var lstLeagueTeams = Model.Where(x => x.TeamInfo.LeagueID == league.LeagueID);
+                        var lstDiv = (from div in lstLeagueTeams
+                                      select new { div.TeamInfo.DivID, div.TeamInfo.DivName }
+                        ).Distinct();
+                            }
+                            @foreach (var div in lstDiv)
+                            {
+                                <table cellpadding="0" cellspacing="0" summary="team">
+                                    <tr>
+                                        <th>@div.DivName</th>
+                                        <th>日本人選手</th>
+                                    </tr>
+                                    @foreach (var item in lstLeagueTeams.Where(x => x.TeamInfo.DivID == div.DivID).OrderBy(x => x.TeamInfo.TeamID))
+                                    {
+                                        <tr>
+                                            <td colspan="2">
+                                                <div style="float:left">
+                                                    <a href="@Url.Action("Index", "MlbTeamInfoTeamTop", new { area = "Mlb", teamID = @item.TeamInfo.TeamID }, null)">@item.TeamInfo.TeamName</a>
+                                                </div>
+                                                @{
+                                        var playerName = "";
+                                        var lstJpPlayer = (from jpl in item.getExistingJapanesePlayers(thisYear)
+                                                           select new { jpl.PlayerName });
+                                        if (lstJpPlayer.Any())
+                                        {
+                                            playerName = lstJpPlayer.Select(x => x.PlayerName).Aggregate((a, b) => a + " " + b);
+                                        }
+                                                }
+                                                <div style="float:right;text-align:right">@playerName</div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            }
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </div>
+
+<!--Mlb News-->
+@Html.Action("ShowMlbRecentNews", "MlbRightContent", new { area = "Mlb", type = @ViewBag.Name })
+<!--Right Content-->
+@section MlbPage{
+    <div class="cat_stitle">
+        <h3>順位表</h3>
+        <p>@Html.ActionLink("一覧で見る", "Index", "MlbOrder", new { area = "Mlb" }, null)</p>
+    </div>
+    <div id="npbTop3Ranking">
+        @Html.Action("ShowTopNRanking", "MlbRightContent", new { area = "Mlb" })
+    </div>
+}

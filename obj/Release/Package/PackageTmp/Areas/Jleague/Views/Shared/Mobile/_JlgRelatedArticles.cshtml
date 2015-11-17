@@ -1,0 +1,46 @@
+﻿@model Splg.Areas.Jleague.Models.ViewModel.JlgRelatedArticlesViewModel
+@using Splg.Core.Constant;
+@using Splg.Areas.Jleague;
+
+<div class="socData socArticle">
+    <h2 class="socData-hdg">関連記事</h2>
+
+    <div class="socHdgMini-left">
+        <img src="@Url.Content(Model.HomeTeamSpec.TeamIconUrl)" alt="@Model.HomeTeamSpec.TeamName に関する記事">
+        <p>@Model.HomeTeamSpec.TeamName に関する記事</p>
+    </div>
+
+    <!--0件時表示-->
+    @if (Model.HomeRelatedArticles.Items.Count == 0)
+    {
+        @Html.Partial("_EmptyRelatedArticleItem")
+    }
+    else
+    {
+        @Html.Partial("_RelatedArticleItem", Model.HomeRelatedArticles)
+    }
+
+    <div class="socHdgMini-left">
+        <img src="@Url.Content(Model.AwayTeamSpec.TeamIconUrl)" alt="@Model.HomeTeamSpec.TeamName に関する記事">
+        <p>@Model.AwayTeamSpec.TeamName に関する記事</p>
+    </div>
+
+    <!--0件時表示-->
+    @if (Model.AwayRelatedArticles.Items.Count == 0)
+    {
+        @Html.Partial("_EmptyRelatedArticleItem")
+    }
+    else
+    {
+        @Html.Partial("_RelatedArticleItem", Model.AwayRelatedArticles)
+    }
+
+    <ul class="socDataLink">
+        <li>
+            @Html.RouteLink("サッカーのニュースをもっと見る", RouteNameConst.JlgNewsHome)
+        </li>
+        <li>
+            @Html.RouteLink("サッカーのコラムをもっと見る", RouteNameConst.UserArticleBySportsId, new { area = "", sportID = 2 })
+        </li>
+    </ul>
+</div>

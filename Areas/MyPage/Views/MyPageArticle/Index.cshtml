@@ -1,0 +1,198 @@
+﻿@{
+    //Author : Nojima
+    //FileName : Index.cshtml (3-3)
+    //Created Date : 2015/04/12
+}
+@*
+    @using Splg.Areas.MyPage.Models.ViewModel;
+    @using Splg.Areas.MyPage.Models.InfoModel;
+    @model MyPageArticleViewModel
+*@
+@*
+    <p class="edit_btn"><a href="/user_article/new/0/0/"><span class="icon"> </span>記事を作成する</a></p>
+*@
+@*
+    <div class="block_04">
+            <div class="block_04_6" id="lines">
+
+        @{
+            int totalCount = Model.TotalCount;
+            int viewingCount = 0;   //表示後の件数
+            if (Model.Contributions != null)
+            {
+                viewingCount = System.Math.Min(Model.Contributions.Count(), MyPageArticleViewModel.INITIAL_SIZE);
+            }
+        }
+
+            @{string oldDate = null;}
+
+            @if (Model.Contributions != null){
+                foreach (ContributionForMyPage c in Model.Contributions)
+                {
+
+                    string formattedModifiedDateTime = null;
+                    if (c.ModifiedDate != null)
+                    {
+                        formattedModifiedDateTime = c.FormattedModifiedDateTime + " 更新";
+                    }
+
+                    //日付タイトル
+                    string newDate = null;
+
+                    if (c.ContributeDate != null)
+                    {
+                        newDate = c.FormattedContributeDate;
+
+                        if (newDate != oldDate)
+                        {
+                        <h4>@c.FormattedContributeDate</h4>
+                        }
+                    }
+
+                    //記事行
+                    <dl class="block_04_6_l1 clear">
+                        <dt class="fs14 blue" style="width:100%">@c.Title</dt>
+                        <dd class="fs10">@c.TopicTitles<br />@c.FormattedContributeDate 投稿 @formattedModifiedDateTime</dd>
+                    </dl>
+
+                    oldDate = newDate;
+                }
+
+            }
+
+            </div>
+
+            @{
+                string displayGetMoreButton = (viewingCount < totalCount) ? "" : "display:none";
+                <!-- <ul class="board_list"> -->
+                <ul class="" style="float: right;@displayGetMoreButton">
+                    <li><a id="GetMoreArticlesButton" data-lastheaderdate="@oldDate" data-articlecount="@viewingCount">投稿記事をもっと見る<span class="icon"> </span></a></li>
+                </ul>
+            }
+    </div>
+*@
+@model Splg.Models.UserArticle.ViewModel.UserArticleMonthListViewModel
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "投稿記事";
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.ARTICLE_INDEX;
+    Layout = "~/Views/Shared/_MyPageLayout.cshtml";
+}
+<script src="~/Areas/MyPage/Scripts/Views/3-3.js"></script>
+<script src="~/Scripts/Home.js"></script>
+
+<div class="block_04">
+
+    <h2 class="mytitle">投稿記事</h2>
+    @if (Model != null)
+    {
+        <p class="j_rank bold">
+            @if (Model.YearList.Contains(Model.Year - 1))
+            {
+                int preYear = Model.Year - 1;
+                <a href="/mypage/article/?year=@preYear"><span class="fs20">≪</span>&nbsp;</a>
+            }
+            <a class="active"><span class="fs20">@Model.Year</span>年&nbsp;</a>
+            @if (Model.YearList.Contains(Model.Year + 1))
+            {
+                int nextYear = Model.Year + 1;
+                <a href="/mypage/article/?year=@nextYear"><span class="fs20">≫</span>&nbsp;</a>
+            }
+            &nbsp;
+            @for (int m = 1; m <= 12; m++)
+            {
+                if (Model.MonthList.Contains(m))
+                {
+                    if (m == ViewBag.PostMonth)
+                    {
+                        <a class="active"><span class="fs20">@m</span>月&nbsp;</a>
+                    }
+                    else
+                    {
+                        <a href="/mypage/article/?year=@Model.Year&month=@m"><span class="fs20">@m</span>月&nbsp;</a>
+                    }
+                }
+                else
+                {
+                    <span class="gray fs20">@m</span><span class="gray">月</span>
+                }
+            }
+        </p>
+        if (Model.PostList.Any())
+        {
+            <div class="space20"> </div>
+            <div class="block_04_6">
+                @{
+                    DateTime dayCount = Model.PostList.FirstOrDefault().ContributeDate.Value;
+                    int count = 1;
+                    bool isOpenHiddenDiv = false;
+                    var hiddenDivBegin = "</dl><div id='more_game' style='display:none'><dl class='block_04_6_l1 clear'>";
+                    var hiddenDivEnd = "</div>";
+                    var ulBegin = "<dl class='block_04_6_l1 clear'>";
+                    var ulEnd = "</dl>";
+                }
+                <h4>@dayCount.Month.ToString()/@dayCount.Day.ToString() (@Utils.GetWeekDayToJapanTime(dayCount))</h4>
+                <dl class="block_04_6_l1 clear">
+                    @foreach (var item in Model.PostList)
+                    {
+                        if (item.ContributeDate != null && dayCount.Date.CompareTo(item.ContributeDate.Value.Date) != 0)
+                        {
+                            dayCount = item.ContributeDate.Value;
+                            @Html.Raw(ulEnd)
+                            <h4>@dayCount.Month.ToString()/@dayCount.Day.ToString() (@Utils.GetWeekDayToJapanTime(dayCount))</h4>
+                            @Html.Raw(ulBegin)
+                        }
+                        string postContent = Splg.Controllers.PostedController.GetPostContent(item);
+                        if (count == (Splg.Areas.MyPage.Models.ViewModel.MyPageArticleViewModel.INITIAL_SIZE + 1))
+                        {
+                            isOpenHiddenDiv = true;
+                            <ul class="board_list">
+                                <li id="show_more_game"><a href="javascript:void(0);">投稿記事をもっと見る<span class="icon"> </span></a></li>
+                            </ul>
+                            @Html.Raw(hiddenDivBegin)
+                        }
+                        <dt class="fs14 blue" style="width:100%"><a class="bold" href="/user_article/@item.TopicID/@item.ContributeId/">@item.Title</a></dt>
+                        <dd class="fs10">
+                            @postContent
+                            @if (item.ContributeDate != null)
+                            {
+                                <br />
+                                if (item.ModifiedDate != null)
+                                {
+                                    var dateDisplaied = string.Format("{0}投稿 - {1}更新", Splg.Utils.ParseLocalDateToLongJapanDate(item.ContributeDate.Value, false), Splg.Utils.ParseLocalDateToLongJapanDate(item.ModifiedDate.Value, false));
+                                    @dateDisplaied @*<span class="fs10 gray2"></span>*@
+                                }
+                                else
+                                {
+                                    var dateDisplaied = string.Format("{0}投稿", Splg.Utils.ParseLocalDateToLongJapanDate(item.ContributeDate.Value, false));
+                                    @dateDisplaied @*<span class="fs10 gray2"></span>*@
+                                }
+                            }
+                        </dd>
+                            count++;
+                    }
+                </dl>
+                @if (isOpenHiddenDiv)
+                {
+                    <div class="board_control">
+                        @if (Model.PostList.PageNumber > 1)
+                        {
+                            var nextPage = Model.PostList.PageNumber - 1;
+                            <a class="board_prev" href="/mypage/article/?page=@nextPage&year=@Model.Year&month=@ViewBag.PostMonth">≪前のページ</a>
+                        }
+                        @if (Model.PostList.PageNumber < Model.PostList.PageCount)
+                        {
+                            var nextPage = Model.PostList.PageNumber + 1;
+                            <a class="board_next" href="/mypage/article/?page=@nextPage&year=@Model.Year&month=@ViewBag.PostMonth">次のページ≫</a>
+                        }
+                    </div>
+                    @Html.Raw(hiddenDivEnd)
+                }
+            </div>
+        }
+        else
+        {
+            <h3 class="mytitle">記事がありません</h3>
+        }
+    }
+</div>

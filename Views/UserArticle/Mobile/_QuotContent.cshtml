@@ -1,0 +1,337 @@
+﻿@{
+    //Page : _QuotContent.cshtml (Mobile)
+}
+
+@model Splg.Models.UserArticle.ViewModel.UserArticleInfoViewModel
+@if (Model.Status == 1)
+{
+    switch (Model.NewsClassId)
+    {
+        case 1:
+            if (Model.NewsInfo != null)
+            {
+                var imageSports = Utils.GetNewsImageLocation(Model.NewsInfo.Content ?? Constants.IMAGE_DEFAULT);
+                string topicSportName = Constants.NPB_TOPIC_NAME;
+                if (Model.SportID == 2)
+                {
+                    topicSportName = Constants.JLG_TOPIC_NAME;
+                }
+                else if (Model.SportID == 3)
+                {
+                    topicSportName = Constants.MLB_TOPIC_NAME;
+
+                }
+                <section class="block_3_1">
+                    <article>
+                        <figure><img src="@Url.Content(@imageSports)" alt="" /></figure>
+                        <div>
+                            <h3>@Html.ActionLink(Model.NewsInfo.Headline, "Index", "NewsArticleCommon", new { topic = topicSportName, newsItemID = Model.NewsInfo.NewsItemID, sportID = Model.SportID }, null)</h3>
+                            <p>@Model.NewsInfo.SentFrom @Model.NewsInfo.DeliveryDate.ToString("yyyy/MM/dd HH:mm")</p>
+                        </div>
+                    </article>
+                </section>
+            }
+            break;
+        case 2:
+            switch (Model.QuoteUniqueId1)
+            {
+                case 1: // NPB
+                    if (Model.NpbTeamInfo != null)
+                    {
+                        <section class="block_4 clear">
+                            <dl class="team-name">
+                                @if (!string.IsNullOrEmpty(@Model.NpbTeamInfo.TeamIcon))
+                                {
+                                    <dt><img src="@Url.Content(@Model.NpbTeamInfo.TeamIcon)" alt="@Model.NpbTeamInfo.Team" /></dt>
+                                    @Html.Hidden("TeamID", @Model.NpbTeamInfo.TeamID)
+                                }
+                                @if (!string.IsNullOrEmpty(@Model.NpbTeamInfo.Team))
+                                {
+                                    <dd>
+                                        <h3 class="fs14">@Model.NpbTeamInfo.Team</h3>
+                                        <p>@Model.NpbTeamInfo.ShortNameLeague <span>@string.Format("{0}位", Model.NpbTeamInfo.Ranking)</span></p>
+                                    </dd>
+                                }
+                            </dl>
+                            @if (@Model.NpbTeamInfo.BetrayalDeviation != null && @Model.NpbTeamInfo.ExpectationsDeviation != null)
+                            {
+                                <dl class="team-score orange">
+                                    <dt>期待度偏差値</dt>
+                                    <dd class="fs30 num">@Model.NpbTeamInfo.ExpectationsDeviation.ToString(Constants.REMOVE_ZEROS)</dd>
+                                </dl>
+                                <dl class="team-score1 violet">
+                                    <dt>裏切度偏差値</dt>
+                                    <dd class="fs30 num">@Model.NpbTeamInfo.BetrayalDeviation.ToString(Constants.REMOVE_ZEROS)</dd>
+                                </dl>
+                                <p class="team-note">
+                                    期待度偏差値とは…総予想ポイント数の偏差値<br>
+                                    裏切度偏差値とは…負けた試合の総予想ポイント数の偏差値
+                                </p>
+                            }
+                        </section>
+                    }
+                    break;
+                case 2: // Jleague
+                    if (Model.JlgTeamInfo != null)
+                    {
+                        <section class="block_4 clear">
+
+                            <dl class="team-name">
+                                @if (!string.IsNullOrEmpty(@Model.JlgTeamInfo.TeamIcon))
+                                {
+                                    <dt><img src="@Url.Content(@Model.JlgTeamInfo.TeamIcon)" alt="@Model.JlgTeamInfo.Team" /></dt>
+                                    @Html.Hidden("TeamID", @Model.JlgTeamInfo.TeamID)
+                                }
+                                @if (!string.IsNullOrEmpty(@Model.JlgTeamInfo.Team))
+                                {
+                                    <dd>
+                                        <h3 class="fs14">@Model.JlgTeamInfo.Team</h3>                                        
+                                        <p>@Model.JlgTeamInfo.ShortNameLeague <span>@string.Format("{0}位", Model.JlgTeamInfo.Ranking)</span></p>
+                                    </dd>
+                                }
+                            </dl>
+                            @if (@Model.JlgTeamInfo.BetrayalDeviation != null && @Model.JlgTeamInfo.ExpectationsDeviation != null)
+                            {
+                                <dl class="team-score orange">
+                                    <dt>期待度偏差値</dt>
+                                    <dd class="fs30 num">@Model.JlgTeamInfo.ExpectationsDeviation.ToString(Constants.REMOVE_ZEROS)</dd>
+                                </dl>
+                                <dl class="team-score1 violet">
+                                    <dt>裏切度偏差値</dt>
+                                    <dd class="fs30 num">@Model.JlgTeamInfo.BetrayalDeviation.ToString(Constants.REMOVE_ZEROS)</dd>
+                                </dl>
+                                <p class="team-note">
+                                    期待度偏差値とは…総予想ポイント数の偏差値<br>
+                                    裏切度偏差値とは…負けた試合の総予想ポイント数の偏差値
+                                </p>
+                            }
+                            @if (Model.RankInfoRT != null)
+                            {
+
+                                var rank = Model.RankInfoRT;
+                                var balance = rank.Score - rank.Lost;
+
+                                <article class="block_8_2">
+                                    <div class="jtbl01">
+                                        <h3 class="">今シーズンの成績</h3>
+                                        <div class="jrow02">
+                                            <p class="j01">得点</p>
+                                            <p class="j02 num">@rank.Score</p>
+                                        </div>
+                                        <div class="jrow02">
+                                            <p class="j01">試合数</p>
+                                            <p class="j02 num">@rank.Game</p>
+                                        </div>
+                                        <div class="jrow02">
+                                            <p class="j01">勝数</p>
+                                            <p class="j02 num">@rank.Win</p>
+                                        </div>
+                                        <div class="jrow02">
+                                            <p class="j01">勝点</p>
+                                            <p class="j02 num">@rank.Point</p>
+                                        </div>
+                                        <div class="jrow02">
+                                            <p class="j01">引分数</p>
+                                            <p class="j02 num">@rank.Draw</p>
+                                        </div>
+                                        <div class="jrow02">
+                                            <p class="j01">失点</p>
+                                            <p class="j02 num">@rank.Lost</p>
+                                        </div>
+                                        <div class="jrow02">
+                                            <p class="j01">敗数</p>
+                                            <p class="j02 num">@rank.Lose</p>
+                                        </div>
+                                        <div class="jrow02">
+                                            <p class="j01">得失点</p>
+                                            <p class="j02 num">@balance</p>
+                                        </div>
+                                    </div>
+                                </article>
+                            }
+
+                        </section>
+                    }
+                    break;
+                case 3: // MLB
+                    if (Model.MlbTeamInfo != null)
+                    {
+                        <section class="block_4 clear">
+                            <dl class="team-name">
+                                @if (!string.IsNullOrEmpty(@Model.MlbTeamInfo.TeamIcon))
+                                {
+                                    <dt><img src="@Url.Content(@Model.MlbTeamInfo.TeamIcon)" alt="@Model.MlbTeamInfo.Team" /></dt>
+                                    @Html.Hidden("TeamID", @Model.MlbTeamInfo.TeamID)
+                                }
+                                @if (!string.IsNullOrEmpty(@Model.MlbTeamInfo.Team))
+                                {
+                                    <dd>
+                                        <h3 class="fs14">@Model.MlbTeamInfo.Team</h3>
+                                        <p>@Model.MlbTeamInfo.ShortNameLeague <span>@string.Format("{0}位", Model.MlbTeamInfo.Ranking)</span></p>
+                                    </dd>
+                                }
+                            </dl>
+                            @if (Model.MlbTeamInfo.ExpectationsDeviation != null && Model.MlbTeamInfo.BetrayalDeviation != null)
+                            {
+                                <dl class="team-score orange">
+                                    <dt>期待度偏差値</dt>
+                                    <dd class="fs30 num">@Model.MlbTeamInfo.ExpectationsDeviation.ToString(Constants.REMOVE_ZEROS)</dd>
+                                </dl>
+                                <dl class="team-score1 violet">
+                                    <dt>裏切度偏差値</dt>
+                                    <dd class="fs30 num">@Model.MlbTeamInfo.BetrayalDeviation.ToString(Constants.REMOVE_ZEROS)</dd>
+                                </dl>
+                                <p class="team-note">
+                                    期待度偏差値とは…総予想ポイント数の偏差値<br>
+                                    裏切度偏差値とは…負けた試合の総予想ポイント数の偏差値
+                                </p>
+                            }
+                        </section>
+                    }
+                    break;
+                case 4:
+                    break;
+            }
+            break;
+        case 3:
+            switch (Model.QuoteUniqueId1)
+            {
+                case 1: // NPB
+                    <section class="block_2 clear">
+                    @Html.Action("ShowPersonInfo", "NpbRightContent", new { area = "Npb", teamID = Model.QuoteUniqueId2, playerID = Model.QuoteUniqueId3 })
+                    </section>
+                    @Html.Action("ShowHittingStats", "NpbRightContent", new { area = "Npb", teamID = Model.QuoteUniqueId2, playerID = Model.QuoteUniqueId3 })
+                    break;
+                case 2: // Jleague
+                <section class="block_9 clear">
+                    @Html.Action("ShowPersonInfo", "JlgRightContent", new { area = "Jleague", teamID = Model.QuoteUniqueId2, playerID = Model.QuoteUniqueId3 })
+                    <div class="jtbl01">
+                        <h3>今シーズンの成績</h3>
+                        @if (Model != null && Model.PlayerInfoYear != null)
+                        {
+                            <div class="jrow02">
+                                <p class="j01">得点</p>
+                                <p class="j02 num">@Model.PlayerInfoYear.PlayerInfoPS.Goal</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">PK得点</p>
+                                <p class="j02 num">>@Model.PlayerInfoYear.PlayerInfoPS.GoalPK</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">シュート数</p>
+                                <p class="j02 num">@Model.PlayerInfoYear.PlayerInfoPS.Shoot</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">警告</p>
+                                <p class="j02 num">@Model.PlayerInfoYear.PlayerInfoPS.Yellow</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">退場</p>
+                                <p class="j02 num">@Model.PlayerInfoYear.PlayerInfoPS.Red</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">試合数</p>
+                                <p class="j02 num">@Model.PlayerInfoYear.PlayerInfoPS.Game</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">出場時間</p>
+                                <p class="j02 num">@string.Format("{0}分", Model.PlayerInfoYear.PlayerInfoPS.Time)</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">シュート決定率</p>
+                                <p class="j02 num">@String.Format("{0:0.0000}％", System.Math.Round((double)(Model.PlayerInfoYear.PlayerInfoPS.Shoot > 0 ? 100 * Model.PlayerInfoYear.PlayerInfoPS.Goal / Model.PlayerInfoYear.PlayerInfoPS.Shoot : 0), 4, MidpointRounding.AwayFromZero))</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">90分平均得点</p>
+                                <p class="j02 num">@String.Format("{0:0.0000}点", System.Math.Round((double)(Model.PlayerInfoYear.PlayerInfoPS.Time > 0 ? 90 * Model.PlayerInfoYear.PlayerInfoPS.Goal / Model.PlayerInfoYear.PlayerInfoPS.Time : 0), 4, MidpointRounding.AwayFromZero))</p>
+                            </div>
+                        }
+                    </div>
+                    <div class="jtbl01">
+                        <h3>通算成績</h3>
+                        @if (Model != null && Model.PlayerSum != null)
+                        {
+                            <div class="jrow02">
+                                <p class="j01">試合数</p>
+                                <p class="j02 num">@Model.PlayerSum.Game</p>
+                            </div>
+                            <div class="jrow02">
+                                <p class="j01">得点</p>
+                                <p class="j02 num">@Model.PlayerSum.Goal</p>
+                            </div>
+                        }
+                    </div>
+                </section>
+                        break;
+                case 3: // MLB
+                        if (Model.MlbTeamInfo != null)
+                        {
+                            <section class="block_4 clear">
+                                <dl class="team-name">
+                                    @if (!string.IsNullOrEmpty(@Model.MlbTeamInfo.TeamIcon))
+                                    {
+                                        <dt><img src="@Url.Content(@Model.MlbTeamInfo.TeamIcon)" alt="@Model.MlbTeamInfo.Team" /></dt>
+                                        @Html.Hidden("TeamID", @Model.MlbTeamInfo.TeamID)
+                                    }
+                                    @if (!string.IsNullOrEmpty(@Model.MlbTeamInfo.Team))
+                                    {
+                                        <dd>
+                                            <h3 class="fs14">@Model.MlbTeamInfo.Team</h3>
+                                            <p>@Model.MlbTeamInfo.ShortNameLeague <span>@string.Format("{0}位", Model.MlbTeamInfo.Ranking)</span></p>
+                                        </dd>
+                                    }
+                                </dl>
+                                @if (Model.MlbTeamInfo.ExpectationsDeviation != null && Model.MlbTeamInfo.BetrayalDeviation != null)
+                                {
+                                    <dl class="team-score orange">
+                                        <dt>期待度偏差値</dt>
+                                        <dd class="fs30 num">@Model.MlbTeamInfo.ExpectationsDeviation.ToString(Constants.REMOVE_ZEROS)</dd>
+                                    </dl>
+                                    <dl class="team-score1 violet">
+                                        <dt>裏切度偏差値</dt>
+                                        <dd class="fs30 num">@Model.MlbTeamInfo.BetrayalDeviation.ToString(Constants.REMOVE_ZEROS)</dd>
+                                    </dl>
+                                    <p class="team-note">
+                                        期待度偏差値とは…総予想ポイント数の偏差値<br>
+                                        裏切度偏差値とは…負けた試合の総予想ポイント数の偏差値
+                                    </p>
+                                }
+                            </section>
+                        }
+                        break;
+                case 4: //WS
+                        break;
+            }
+            break;
+        case 4:
+            break;
+        case 5:
+            switch (Model.QuoteUniqueId1)
+            {
+                case 1: // NPB
+                    <input type="hidden" id="Page5" name="Page5" value="4" data-gameid="@Model.QuoteUniqueId2" data-link="1" />
+                    <div class="row" id="npbGameLeague">
+                        @Html.Action("ShowGameInfo", "NpbTop", new { area = "Npb", type = 4, gameID = @Model.QuoteUniqueId2, link = 1 })
+                    </div>
+                    break;
+                case 2: // Jleague
+                    <input type="hidden" id="Page7" name="Page7" value="4" data-gameid="@Model.QuoteUniqueId2" data-link="1" data-league="0" />
+                    <div class="row" id="jlgGameLeague">
+                        @Html.Action("ShowGameInfo", "JlgTop", new { area = "Jleague", type = 4, gameID = @Model.QuoteUniqueId2, leagueType = 0, link = 1 })
+                    </div>
+                    break;
+                case 3: // MLB
+                    <input type="hidden" id="Page6" name="Page6" value="4" data-gameid="@Model.QuoteUniqueId2" data-link="1" />
+                    <div class="row" id="mlbGameLeague">
+                        @Html.Action("ShowGameInfo", "MlbTop", new { area = "Mlb", type = 4, gameID = @Model.QuoteUniqueId2, link = 1 })
+                    </div>
+                    break;
+                case 4: //WS
+                    break;
+            }
+            break;
+        case 6:
+            break;
+    }
+    <div class="space20"></div>
+}

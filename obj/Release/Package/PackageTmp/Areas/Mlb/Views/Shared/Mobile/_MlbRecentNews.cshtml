@@ -1,0 +1,84 @@
+﻿@{
+    //Author : k.isogawa
+    //FileName : _MlbRecentNews.cshtml
+    //Created Date : 2015/04/27
+}
+
+@model IEnumerable<Splg.Models.News.ViewModel.NewsInfoViewModel>
+@using Splg;
+
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        var nameType = string.Empty;
+
+        <div class="block_2 clear">
+            <section class="block_3_1">
+                <!--For page 8-1, 8-5-1-->
+                @if (@ViewBag.Name == Constants.MLB_TOP_INDEX || @ViewBag.Name == Constants.MLB_TEAMINFO_TEAMTOP)
+                {
+                    if (@ViewBag.Name == Constants.MLB_TOP_INDEX)
+                    {
+                        nameType = Constants.NEWSHEADER_1_MLB;
+                    }
+                    else
+                    {
+                        nameType = Constants.NEWSHEADER_2;
+                    }
+                    <h3>@nameType</h3>
+                }
+                //For page 8-5-8, 8-5-9
+                @*else if (@ViewBag.Name == Constants.MLBTEAMINFOPITCHER || @ViewBag.Name == Constants.MLBTEAMINFOBATCHER)
+                {
+                    nameType = @ViewBag.TeamName + " " + Constants.NEWSHEADER_2;
+                    <h3>@nameType</h3>
+                }*@
+                else
+                {
+                    if (@ViewBag.HomeVisitor == "1")
+                    {
+                        nameType = Constants.NEWSHEADER_3;
+                    }
+                    else
+                    {
+                        nameType = Constants.NEWSHEADER_4;
+                    }
+                    <h3>@nameType</h3>
+                }
+                @foreach (var news in Model)
+                {
+                    var routeValuesItems = new RouteValueDictionary();
+                    routeValuesItems.Add("area", string.Empty);
+                    routeValuesItems.Add("topic", Constants.MLB_TOPIC_NAME);
+                    routeValuesItems.Add("newsItemID", @news.NewsItemID);
+                    routeValuesItems.Add("sportID", Constants.MLB_SPORT_ID);
+                    if (@ViewBag.Name == Constants.MLB_TEAMINFO_TEAMTOP @*|| ViewBag.Name == Constants.NPBTEAMINFOBATCHER || @ViewBag.Name == Constants.NPBTEAMINFOPITCHER*@)
+                    {
+                        routeValuesItems.Add("uniqueID", Constants.NEWS_DEFAULT_PARAMETER);
+                        routeValuesItems.Add("teamID", (ViewBag.teamID ?? Constants.NEWS_DEFAULT_PARAMETER));
+                    }
+                    else if (@ViewBag.Name == Constants.MLB_GAME_INFORMATION)
+                    {
+                        routeValuesItems.Add("uniqueID", (@ViewBag.GameID ?? Constants.NEWS_DEFAULT_PARAMETER));
+                        routeValuesItems.Add("teamID", (ViewBag.teamID ?? Constants.NEWS_DEFAULT_PARAMETER));
+                    }
+                    var imageSports = Utils.GetNewsImageLocation(news.Content ?? Constants.IMAGE_DEFAULT);
+                    <article>
+                        <figure>
+                            <a href="@Url.Action("Index", "NewsArticleCommon", @routeValuesItems, null)">
+                                <img src="@Url.Content(@imageSports)" alt="" />
+                            </a>
+                        </figure>
+                        <div>
+                            <h3>@Html.ActionLink(@news.Headline, "Index", "NewsArticleCommon", @routeValuesItems, null)</h3>
+                            <p>@news.SentFrom @news.DeliveryDate.ToString("yyyy/MM/dd hh:mm")</p>
+                        </div>
+                    </article>
+                }
+                <p class="panel-link">@Html.ActionLink("MLBのニュースをもっと見る", "Index", "MlbNewsList", new { area = "Mlb" }, null)</p>
+            </section>
+        </div>
+    }
+}
+

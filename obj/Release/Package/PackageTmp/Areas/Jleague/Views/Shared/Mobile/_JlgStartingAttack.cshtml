@@ -1,0 +1,20 @@
+﻿@using Splg.Core.Constant;
+@foreach (var m in Model)
+{
+    <dl class="socStartersList">
+        <dt class="socStartersList-name">
+            <span>@m.PlayerPosition</span>
+            <span>@m.PlayerUniformNo</span>
+            <span><a href="@Url.Action("Index", "JlgTeamInfoPlayerDetail", new { area = "Jleague", playerID = m.PlayerID }, null)">@m.PlayerName</a></span>
+        </dt>
+        <dd>
+            <p class="socStartersList-bar">
+                @for(var i = 0;i < m.AttackCBPForDisplay; i++)
+                {
+                    <img src="@Url.Content(JlgConst.AttackImageUrl)" alt="攻撃力 @m.AttackCBP">
+                }
+            </p>
+            <p class="socStartersList-count">@m.AttackCBP</p>
+        </dd>
+    </dl>
+}

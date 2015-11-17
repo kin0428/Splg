@@ -1,0 +1,51 @@
+﻿@model Splg.Areas.Jleague.Models.ViewModel.JlgGameInfoViewModel
+  
+  @*@if (gameStatus > 1 && Model.GameEndInfo != null)*@
+    @if (Model.GameEndInfo != null)
+    {
+
+    <div class="socData socMatchData">
+        <h2 class="socData-hdg"><img src="/html/Mobile/Content/img/jleague/hdg_matchdata.png" alt="試合データ"></h2>
+
+        <table class="socMatchDataList">
+            <tbody>
+                <tr>
+                    <th>観客数</th>
+                    <td>@Model.GameEndInfo.Spectators<span>人</span></td>
+                </tr>
+                <tr>
+                    <th>芝状況</th>
+                    <td>@Model.GameEndInfo.Condition</td>
+                </tr>
+                <tr>
+                    <th>天候</th>
+                    <td>@Model.GameEndInfo.Weather</td>
+                </tr>
+                <tr>
+                    <th>気温</th>
+                    <td>@Model.GameEndInfo.Temperature<span>℃</span></td>
+                </tr>
+                <tr>
+                    <th>湿度</th>
+                    <td>@Model.GameEndInfo.Humidity<span>％</span></td>
+                </tr>
+                <tr>
+                    <th>風</th>
+                    <td>@Model.GameEndInfo.Wind</td>
+                </tr>
+                <tr>
+                    <th>主審</th>
+                    <td>@Model.GameEndInfo.Referee</td>
+                </tr>
+                <tr>
+                    <th>副審</th>
+                    <td>@Model.GameEndInfo.Linesman1</td>
+                </tr>
+                <tr>
+                    <th>副審</th>
+                    <td>@Model.GameEndInfo.Linesman2</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    }

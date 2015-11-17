@@ -1,0 +1,84 @@
+﻿@model Splg.Models.UserArticle.ViewModel.UserArticleInfoViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p class="block_path02">
+    <a href="/"><span class="icon gui_icon"> </span></a>
+    > <a href="/user_article/">投稿記事トップ</a>
+    > 確認画面
+</p>
+<ul class="block_nav">
+    <li><a class="active" href="/user_article/">投稿記事トップ</a></li>
+    <li><a href="/user_article/1/sport/">プロ野球</a></li>
+    <li><a href="/user_article/2/sport/">Jリーグ</a></li>
+    <li><a href="/user_article/3/sport/">MLB</a></li>
+</ul>
+<div class="block_06">
+    <h2 class="mytitle">作成内容の確認</h2>
+    @Html.Partial("_QuotContent", Model)
+    <div class="block_06_4">
+        <h4>@Model.Title</h4>
+        <h5 class="gray2">@Model.Nickname  @Utils.ParseLocalDateToShortJapanDate(Model.ContributeDate)</h5>
+        @if (Model.HasImageLink) {
+        <div style="width:360px;height:240px;overflow:hidden"><img src="@Url.Content(@Model.ImageLink)" alt="" /></div>
+        }
+        <p style="white-space: pre-line;">@Model.Body</p>
+    </div>
+    <div class="block_05_1">
+        <ul class="rel_category">
+            <li class="fs18 bold">関連トピック</li>
+            @if (Model.RelatedTopicList != null && Model.RelatedTopicList.Any())
+            {
+                foreach (var item in Model.RelatedTopicList)
+                {
+                    <li><a href="/user_article/@item.TopicId/topic/">@item.TopicName</a></li>
+                }
+            }
+        </ul>
+    </div>
+    @using (Html.BeginForm("CompleteAddNewArticle", "UserArticle", FormMethod.Post, new { @id = "postCompleteForm" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ContributeId)
+        @Html.HiddenFor(model => model.Status)
+        @Html.HiddenFor(model => model.NewsClassId)
+        @Html.HiddenFor(model => model.QuoteUniqueId1)
+        @Html.HiddenFor(model => model.QuoteUniqueId2)
+        @Html.HiddenFor(model => model.QuoteUniqueId3)
+        @Html.HiddenFor(model => model.Title)
+        @Html.HiddenFor(model => model.Nickname)
+        @Html.HiddenFor(model => model.ContributeDate)
+        @Html.HiddenFor(model => model.ImageLink)
+        @Html.HiddenFor(model => model.Body)
+        @Html.HiddenFor(model => model.DataURL)
+        @Html.HiddenFor(model => model.ImageName)
+        @Html.HiddenFor(model => model.OldImageLink)
+        <p class="board_link">
+                <a href="javascript:void(0);" onclick="document.getElementById('postCompleteForm').submit();">投稿する</a>
+        </p>
+    }
+    @using (Html.BeginForm("EditNewUserArticle", "UserArticle", FormMethod.Post, new { @id = "postEditForm" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.ContributeId)
+        @Html.HiddenFor(model => model.Status)
+        @Html.HiddenFor(model => model.NewsClassId)
+        @Html.HiddenFor(model => model.QuoteUniqueId1)
+        @Html.HiddenFor(model => model.QuoteUniqueId2)
+        @Html.HiddenFor(model => model.QuoteUniqueId3)
+        @Html.HiddenFor(model => model.Title)
+        @Html.HiddenFor(model => model.Nickname)
+        @Html.HiddenFor(model => model.ContributeDate)
+        <input id="ImageLink" name="ImageLink" value="@Model.ImageLink" type="hidden"/>
+        //@Html.HiddenFor(model => model.ImageLink)
+        @Html.HiddenFor(model => model.Body)
+        @Html.HiddenFor(model => model.DataURL)
+        @Html.HiddenFor(model => model.ImageName)
+        @Html.HiddenFor(model => model.OldImageLink)
+        <p class="edit_btn02">
+            <a href="javascript:void(0);" onclick="document.getElementById('postEditForm').submit();">修正する</a>
+        </p>
+    }
+</div>

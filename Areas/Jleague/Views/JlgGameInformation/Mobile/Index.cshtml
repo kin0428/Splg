@@ -1,0 +1,213 @@
+﻿@{
+    // FileName : Splg\Areas\Jleague\Views\JlgGameInformation\Mobile\Index.cshtml (10-5)
+    // url      : /jleague/game/(gameid)/
+}
+@model Splg.Areas.Jleague.Models.ViewModel.JlgGameInfoViewModel
+@using Splg;
+@using Splg.Areas.Jleague;
+@using Splg.Areas.Jleague.Models;
+
+@{
+    ViewBag.Title = "試合情報";
+    ViewBag.Name = Constants.JLG_GAME_INFO;
+    ViewBag.pageNo = Constants.JLG_GAME_INFO;
+    Layout = "~/Views/Shared/Mobile/_JlgLayout.cshtml";
+    int gameID = 0;
+    int gameStatus = 0;
+
+    if (Model != null)
+    {
+        gameID = Model.GameID;
+        gameStatus = Model.GameStatus;
+    }
+
+}
+
+<script>
+
+    var interval = null;
+
+    $(document).ready(function () {
+        // bx-slider -init -------------
+        $('.bxslider').bxSlider({
+            slideWidth: 35,
+            slideMargin: 5,
+            minSlides: 1,
+            maxSlides: 7,
+            moveSlides: 1,
+        });
+
+        $('input[name="socRptLoad"]:radio').change(function () {
+            if ($('#socRptLoad_auto').prop('checked')) {
+                AutoLoad();
+            } else {
+                clearInterval(interval);
+            }
+
+        });
+
+        function AutoLoad() {
+            var status = "";
+            var isChange = "";
+            var gameID = '@gameID';
+
+            $.ajax({
+                type: "POST",
+                url: '/jleague/JlgGameInformation/GetGameStatusByGameID',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify({ gameID: gameID }),
+                async: false,
+                success: function (result) {
+                    if (result != null) {
+                        var list = result;
+                        $.each(list, function (index, item) {
+                            if (index == 0) {
+                                isChange = item;
+                            }
+                            else {
+                                status = item;
+                            }
+                        });
+                    }
+                },
+            });
+
+            if (isChange == "True") {
+                    //Status change -> load div : jlgGameText.
+
+                var linkUrl = '@Url.Action("ShowGameTexts", "JlgGameInformation", new { area = "Jleague", gameID = gameID }, null)';
+                $('#jlgGameText').load(linkUrl);
+
+                //If status : 試合後, stop update div : jlgGameText.
+                if (status == "2") {
+                    clearInterval(interval);
+                }
+            }
+            else {
+                //If status : 試合後, not update div : jlgGameText.
+                if (status == "2") {
+                    clearInterval(interval);
+                }
+            }
+        };
+
+        $(function () {
+            interval = setInterval(AutoLoad, 30000);
+        });
+
+
+    });
+</script>
+
+@if (Model != null)
+{
+    gameID = Model.GameID;
+    gameStatus = Model.GameStatus;
+    <section class="block_5 clear">
+        @if (Model.GameStatus != null)
+        {
+            <div id="jlgGameInfoPlayerInfo">
+                @Html.Action("ShowGameInfoPlayerInfo", "JlgGameInformation", new { area = "Jleague", gameID = Model.GameID })
+            </div>
+        }
+    </section>
+
+    <!-- Phase3用 -->
+    <!-- タブコントロール -->
+    <ul class="tabList tabList-socGame clear">
+        <li class="active">チームデータ</li>
+        <li class="">フォーメーション<br>選手情報</li>
+        <li>テキスト速報</li>
+    </ul>
+
+    <!-- タブパネル -->
+    <div class="tabContent clear">
+        <!-- tab1 -->
+        <div class="tabFlag tabInner">
+            <!-- 最近5試合の直接対決 -->
+            @Html.Action("GetJlgRecentMatches", "JlgTeamInfo", new { area = "Jleague", homeTeamId = Model.HomeTeamID, awayTeamId = Model.AwayTeamID, gameDate = Model.ScheduleInfo.GameDate })
+
+            <!-- 直近の試合結果 -->
+            @Html.Action("GetRecentGameResults", "JlgTeamInfo", new { area = "Jleague", homeTeamId = Model.HomeTeamID, awayTeamId = Model.AwayTeamID, gameId = Model.GameID })
+
+            <!--チーム傾向-->
+            <div class="socData socProp">
+                <h2 class="socData-hdg">チームの傾向</h2>
+
+                @Html.Action("GetTeamTrendsAtBar", "JlgTeamInfo", new { area = "Jleague", homeTeamId = Model.HomeTeamID, awayTeamId = Model.AwayTeamID, gameDate = Model.ScheduleInfo.GameDate })
+
+                @Html.Action("GetGetTeamTrendsAtPie", "JlgTeamInfo", new { area = "Jleague", homeTeamId = Model.HomeTeamID, awayTeamId = Model.AwayTeamID })
+            </div>
+
+            <!--関連記事-->
+            @Html.Action("GetRelatedArticles", "JlgTeamInfo", new { area = "Jleague", homeTeamId = Model.HomeTeamID, awayTeamId = Model.AwayTeamID })
+
+        </div>
+        <!-- /tab1 -->
+        <!-- tab2 -->
+        <div id="FormationTab" class="tabFlag tabInner">
+            <!-- スターティングメンバー -->
+            @Html.Action("GetStartingMembers", "JlgGameInformation", new { area = "Jleague", GameID = Model.GameID })
+
+            <!-- フォーメーション-->
+            @Html.Partial("_JlgFormation", Model)
+
+            <!-- スタッツ　試合後-->
+            @if (gameStatus > 1)
+            {
+                @Html.Partial("_JlgStats", Model)
+            }
+
+            <!--戦評-->
+            @Html.Partial("_JlgGameCritique")
+
+            <!--試合データ-->
+            @Html.Partial("_JlgGameRecords")
+
+            <!--次の試合-->
+            @Html.Action("ShowGameInfo", "JlgTop", new { area = "Jleague", type = 5, teamID = Model.HomeTeamID, occasionNo = ((int)Model.OccasionNo + 1) })
+        </div>
+        <!-- /tab2 -->
+        <!-- tab3 -->
+        <div class="tabFlag tabInner hide">
+            <!-- テキスト速報 -->
+            <div class="socData socRpt">
+                <h2 class="socData-hdg">テキスト速報</h2>
+
+                @*<p class="socRptSwitch">
+                    <select id="socRptSwitch" name="socRptSwitch">
+                        <option value="all" selected="">テキスト速報＋コメント</option>
+                        <option value="onlyRpt">テキスト速報のみ</option>
+                        <option value="onlyCom">コメントのみ</option>
+                    </select>
+                </p>*@
+
+                <p class="socRptLoad">
+                    <input type="radio" name="socRptLoad" id="socRptLoad_auto" value="1" checked="checked">
+                    <label for="socRptLoad_auto">自動更新</label>
+                    <input type="radio" name="socRptLoad" id="socRptLoad_manu" value="0">
+                    <label for="socRptLoad_manu">手動更新</label>
+                </p>
+                <div id="jlggametext">
+                    @Html.Action("ShowGameTexts", "JlgGameInformation", new { gameId = gameID })
+                </div>
+            </div>
+            <!-- /socRpt -->
+        </div>
+        <!-- /tab3 -->
+    </div>
+    <script>
+        changePatternSelect();
+        hiddenFormationTab();
+    </script>
+}
+@section styleSheets{
+    <link rel="stylesheet" href="~/Mobile/Content/soccer_gameinfo.css">
+    <link rel="stylesheet" href="~/Mobile/Content/chart.css">
+}
+@section scripts{
+    <script src="~/Scripts/flotr2.min.js"></script>
+    <script src="~/Mobile/Scripts/soccer_gameinfo.js"></script>
+}
+

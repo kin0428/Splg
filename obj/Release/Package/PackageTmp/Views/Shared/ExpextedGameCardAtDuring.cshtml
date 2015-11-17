@@ -1,0 +1,18 @@
+﻿@model Splg.Models.Game.ViewModel.ExpectedGameSchedule
+@using Splg.Core.Extend;
+
+@{
+    <div class="side_b1 mrgin_bt10 bder_bttom4" id="@Model.DivId">
+        <div>
+            <p class="fs11">@Model.SportsName @Html.DisplayFor(m => Model.GameDate) </p>
+            <p class="side_b1_1">
+                @Html.RouteLink(Model.GameCardTitle, Model.RouteName, new { gameID = Model.GameInfoViewModel.GameID })
+            </p>
+
+            <span class="icon side_b1_2"> </span>
+            <span class="icon side_b1_3"> </span>
+            <p class="fs14">@Model.BetTargetAlert</p>
+            <p class="tmp"><span class="fs18">@Html.DisplayFor(m => Model.ExpectPoint)</span> pt <span class="fs14">x</span> @Model.Odds<span id="TotalPoint_@Model.GameInfoViewModel.GameID" class="bold fs16">⇒ @Html.DisplayFor(m => Model.GetPoint)</span>pt</p>
+        </div>
+    </div>
+}

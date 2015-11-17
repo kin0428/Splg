@@ -1,0 +1,86 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : Index.cshtml (8-5)
+    //Created Date : 2015/03/05
+}
+
+@model IEnumerable<Splg.Areas.Npb.Models.ViewModel.NpbTeamInfoViewModel>
+@using Splg.Areas.Npb;
+@{
+    ViewBag.Title = "チーム情報";
+    ViewBag.Name = Constants.NPBTEAMINFO;
+    Layout = "~/Views/Shared/_NpbLayout.cshtml";
+}
+
+<div class="block_05">
+        <h2 class="mytitle">チーム情報</h2>
+        <div class="row">
+        @if (Model.Any())
+        {
+                var lstSeLeague = Model.Where(x => x.TeamInfoMST.LeagueID == (int)NpbConstants.GameAssortment.Se);
+                var lstPaLeague = Model.Where(x => x.TeamInfoMST.LeagueID == (int)NpbConstants.GameAssortment.Pa);             
+                var leagueName = string.Empty;
+                var className = string.Empty;
+                if (lstSeLeague.Any())
+                {
+                    lstSeLeague = lstSeLeague.OrderBy(m => m.SortOrd);
+                    leagueName = "セ・リーグ";
+                    className = "left";
+                    @RenderTeam(lstSeLeague, leagueName, className)
+                }
+                if (lstPaLeague.Any())
+                {
+                    lstPaLeague = lstPaLeague.OrderBy(m => m.SortOrd);
+                    leagueName = "パ・リーグ";
+                    className = "right";
+                    @RenderTeam(lstPaLeague, leagueName, className)
+                }
+        }
+        </div>
+</div>   
+
+@helper RenderTeam(IEnumerable<Splg.Areas.Npb.Models.ViewModel.NpbTeamInfoViewModel> lstLeague, string leagueName, string className)
+{
+    <div class="team_list @className">
+        <h3>@leagueName</h3>
+        <ul>
+            @foreach (var item in lstLeague)
+            {
+                <li>
+                    <h4>@Html.ActionLink(@item.TeamInfoMST.Team, "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamInfoMST.TeamCD }, null)</h4>
+                    <dl>
+                        <dt>
+                            <a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamInfoMST.TeamCD }, null)">
+                                <img src="@Url.Content(@item.TeamIcon)" alt=@item.TeamInfoMST.Team />
+                            </a>
+                        </dt>
+                        <dd>
+                            <ul>
+                                <li>@Html.ActionLink("日程・結果", "Index", "NpbTeamInfoDailyResult", new { area = "Npb", teamID = @item.TeamInfoMST.TeamCD }, null)</li>
+                                <li>@Html.ActionLink("対戦成績", "Index", "NpbTeamInfoConfrontationResult", new { area = "Npb", teamID = @item.TeamInfoMST.TeamCD }, null)</li>
+                                <li>@Html.ActionLink("投手", "Index", "NpbTeamInfoPlayer", new { area = "Npb", teamID = @item.TeamInfoMST.TeamCD, typeID = 1 }, null)</li>
+                                <li>@Html.ActionLink("捕手・野手", "Index", "NpbTeamInfoPlayer", new { area = "Npb", teamID = @item.TeamInfoMST.TeamCD, typeID = 2 }, null)</li>
+                                <li>@Html.ActionLink("監督・スタッフ", "Index", "NpbTeamInfoPlayer", new { area = "Npb", teamID = @item.TeamInfoMST.TeamCD, typeID = 3 }, null)</li>
+                                <li>@Html.ActionLink("ニュース", "Index", "NpbTeamInfoNews", new { area = "Npb", teamId = @item.TeamInfoMST.TeamCD }, null)</li>                                
+                            </ul>
+                        </dd>
+                    </dl>
+                </li>
+            }
+        </ul>
+    </div>
+}
+
+<!--Right Content-->
+@section NpbPage{
+<div class="cat_stitle">
+    <h3>順位表</h3>
+    <p>@Html.ActionLink("一覧で見る", "Index", "NpbOrder", new { area = "Npb" }, null)</p>
+</div>
+<div id="npbTop3Ranking">
+    @Html.Action("ShowTopNRanking", "NpbRightContent", new { area = "Npb" })
+</div>
+@Html.Action("ShowNpbRightRecentNews", "NpbRightContent", new { area = "Npb", type = "8-5" })
+}
+
+

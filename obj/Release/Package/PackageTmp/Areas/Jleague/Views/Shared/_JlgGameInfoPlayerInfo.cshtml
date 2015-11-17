@@ -1,0 +1,664 @@
+﻿@{
+    //Author : Nojima
+    //FileName : Index.cshtml (8-6)
+    //Modified Date : 2015/05/3
+}
+@using Splg;
+@using Splg.Areas.Jleague.Models.ViewModel;
+@using Splg.Areas.Jleague.Models.ViewModel.InfosModel;
+@model Splg.Areas.Jleague.Models.ViewModel.JlgGameInfoViewModel
+@{
+    int gameID = Model.GameID;
+    int gameStatus = Model.GameStatus;
+}
+
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+@if (@Model != null)
+{
+    bool postLinkFg = false;
+
+    <div class="evt_block01">
+        <div id="jlgGameInfo">
+            @Html.Action("ShowGameInfo", "JlgTop", new { area = "Jleague", type = 4, gameID = @gameID, withScoreDetails = true })
+            <p class="edit_btn02">
+                <a href="@Url.RouteUrl("5-4", new { newsClassID = Constants.NEWSCLASSID_GAME_RESULT, quoteUniqueId1 = Constants.JLG_SPORT_ID, quoteUniqueId2 = @gameID })"><span class="icon"> </span>この試合の記事を書きませんか？</a>                
+            </p>
+        </div>
+        @if (@gameStatus > 0 && Model.HasPK)
+        {
+            postLinkFg = true;
+
+         <!-- 試合中以降でPKあり -->
+            <div class="jevt_tbl01">
+                <p class="jhead">PK</p>
+                @if (@Model.HomePKInfos != null)
+                {
+                    int countHome = Model.HomePKInfos.Count();
+                    int countAway = Model.AwayPKInfos.Count();
+                    int count = Math.Max(countHome, countAway);
+
+                    for (int i = 0; i < count; i++)
+                    {
+                        JlgPKInfoModel pkH = (i < countHome) ? Model.HomePKInfos[i] : new JlgPKInfoModel();
+                        JlgPKInfoModel pkA = (i < countAway) ? Model.AwayPKInfos[i] : new JlgPKInfoModel();
+                        string pkHStyle = "";
+                        string pkAStyle = "";
+
+                        if (i < countHome)
+                        {
+                            pkHStyle = (pkH.SuccessF == 0) ? "jcircle1" : "jcircle";
+                        }
+                        if (i < countAway)
+                        {
+                            pkAStyle = (pkA.SuccessF == 0) ? "jcircle1" : "jcircle";
+                        }
+
+                        <div class="jbody">
+                            <p class="jcol01">
+                                <span class="jtxt"><a href="#">@pkH.PlayerName</a></span>
+                                <span class="@pkHStyle"></span>
+                            </p>
+                            <p class="jcol02">
+                                @i
+                            </p>
+                            <p class="jcol03">
+                                <span class="@pkAStyle"></span>
+                                <span class="jtxt"><a href="#">@pkA.PlayerName</a></span>
+                            </p>
+                        </div>
+                    }
+
+                }
+            </div>
+        }
+
+        @if (@gameStatus > 1)
+        {
+            postLinkFg = true;
+            <div class="space20"> </div>
+            <div class="jevt_tbl01">
+                <p class="jhead">試合終了</p>
+                <div class="jbody">
+                    <div class="jcol01">
+                        @if (Model.HomeGoalInfos != null && Model.HomeGoalInfos.Count() > 0)
+                        {
+                            foreach (var Key in Model.HomeGoalInfos)
+                            {
+                                <p>@Key.GPlayerNameSK</p>
+                            }
+                        }
+                    </div>
+                    <p class="jcol02">得点</p>
+                    <div class="jcol03">
+                        @if (Model.AwayGoalInfos != null && Model.AwayGoalInfos.Count() > 0)
+                        {
+                            foreach (var Key in Model.AwayGoalInfos)
+                            {
+                                <p>@Key.GPlayerNameSK</p>
+                            }
+                        }
+                    </div>
+                </div>
+        <div class="jbody">
+            <div class="jcol01">
+                @if (Model.HomeWarningInfos != null && Model.HomeWarningInfos.Count() > 0)
+                {
+                    string BHomePlayerNameS = "";
+                    foreach (var Key in Model.HomeWarningInfos)
+                    {
+                        if (BHomePlayerNameS != Key.PlayerNameS)
+                        {
+                            
+                            int homeCardFlg = Model.HomeWarningInfo(Key.PlayerID);
+                            <p>
+                            @if (homeCardFlg == 1)
+                            {
+                                <img class="jicon" src="/Content/img/jleague/i-ycard.png" alt="イエローカード" />
+                                @Key.PlayerNameS
+                            }
+                            else if (homeCardFlg == 2)
+                            {
+                                <img class="jicon" src="/Content/img/jleague/i-rcard.png" alt="レッドカード" />
+                                @Key.PlayerNameS
+                            }
+                            else
+                            {
+                                <img class="jicon" src="/Content/img/jleague/i-card.png" alt="イエロー＆レッドカード" />
+                                @Key.PlayerNameS
+                            }
+                            </p>
+                            BHomePlayerNameS = Key.PlayerNameS;
+                        }
+                    }
+                }
+            </div>
+            <p class="jcol02">警告・退場</p>
+            <div class="jcol03">
+                @if (Model.AwayWarningInfos != null && Model.AwayWarningInfos.Count() > 0)
+                {
+                    string BAwayPlayerNameS = "";
+                    foreach (var Key in Model.AwayWarningInfos)
+                    {
+                        if (BAwayPlayerNameS != Key.PlayerNameS)
+                        {
+                            
+                            int awayCardFlg = Model.AwayWarningInfo(Key.PlayerID);
+                            <p>
+                            @if (awayCardFlg == 1)
+                            {
+                                <img class="jicon" src="/Content/img/jleague/i-ycard.png" alt="イエローカード" />
+                                @Key.PlayerNameS
+                            }
+                            else if (awayCardFlg == 2)
+                            {
+                                <img class="jicon" src="/Content/img/jleague/i-rcard.png" alt="レッドカード" />
+                                @Key.PlayerNameS
+                            }
+                            else
+                            {
+                                <img class="jicon" src="/Content/img/jleague/i-card.png" alt="イエロー＆レッドカード" />
+                                @Key.PlayerNameS
+                            }
+                            </p>
+                            BAwayPlayerNameS = Key.PlayerNameS;
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div class="jbody">
+            <p class="jcol01">
+                @Model.HomeGameScore.Shoot
+            </p>
+            <p class="jcol02">シュート</p>
+            <p class="jcol03">
+                @Model.AwayGameScore.Shoot
+            </p>
+        </div>
+        <div class="jbody">
+            <p class="jcol01">
+                @Model.HomeGameScore.FKD
+            </p>
+            <p class="jcol02">直接FK</p>
+            <p class="jcol03">
+                @Model.AwayGameScore.FKD
+            </p>
+        </div>
+        <div class="jbody">
+            <p class="jcol01">
+                @Model.HomeGameScore.FKI
+            </p>
+            <p class="jcol02">関節FK</p>
+            <p class="jcol03">
+                @Model.AwayGameScore.FKI
+            </p>
+        </div>
+        <div class="jbody">
+            <p class="jcol01">
+                @Model.HomeGameScore.CK
+            </p>
+            <p class="jcol02">CK</p>
+            <p class="jcol03">
+                @Model.AwayGameScore.CK
+            </p>
+        </div>
+        <div class="jbody">
+            <p class="jcol01">
+                @Model.HomeGameScore.PK
+            </p>
+            <p class="jcol02">PK</p>
+            <p class="jcol03">
+                @Model.AwayGameScore.PK
+            </p>
+        </div>
+        <div class="jbody">
+            <p class="jcol01">
+                @Model.HomeGameScore.GK
+            </p>
+            <p class="jcol02">GK</p>
+            <p class="jcol03">
+                @Model.AwayGameScore.GK
+            </p>
+        </div>
+                </div>
+
+        }
+
+
+        @if (@gameStatus > 0)
+        {
+         <!-- 試合中 テキスト速報 -->
+            <div class="evt_bl01_2">
+                @if (Model.ListGameTexts != null && Model.ListGameTexts.Count() > 0)
+                {
+                    if (postLinkFg)
+                    {
+                        postLinkFg=false;
+                        <p class="edit_btn02">
+                           <a href="@Url.RouteUrl("5-4", new { newsClassID = Constants.NEWSCLASSID_GAME_RESULT, quoteUniqueId1 = Constants.JLG_SPORT_ID, quoteUniqueId2 = @gameID })">
+                                <span class="icon"></span>この試合の記事を書きませんか？
+                           </a>                           
+                        </p>
+                    }
+                    <div class="block_04">
+                        <h2 class="subtitle03">テキスト速報</h2>
+                        <div class="evt_scorelight">
+                            @foreach (var gameText in Model.ListGameTexts)
+                            {
+                                <p><strong>【@gameText.StateName @gameText.Half 分】</strong>@gameText.Comment</p>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+
+         <!-- 試合中、試合後 メンバー表 -->
+            if (@Model.HomeStartingMembers != null)
+            {
+                postLinkFg = true;
+
+                var icon = string.Empty;
+                var teamName = string.Empty;
+                <div class="block_04">
+                    <div class="jboard jbleft" style="width:280px">
+                        <div class="jbname">
+                            <div><img src="/Content/img/TeamIcon/jleague/TeamCD_@{@Model.HomeTeamID}.png" class="resimg" alt="チームアイコン" /></div>
+                            <h4><a href="/jleague/j1/teams/@Model.HomeTeamID/">@Model.HomeTeamName</a></h4>
+                        </div>
+                        <h5>スターティングメンバー</h5>
+                        <dl>
+                            @foreach (var m in @Model.HomeStartingMembers)
+                            {
+                                <dt>
+                                    <p>@m.Pos</p>
+                                    <p><span class="fi">@m.Uni</span></p>
+                                </dt>
+
+                                <dd style="width:180px;">
+                                    <a href="/jleague/players/@m.ID/">@m.Name</a>
+                                    @if (Model.HomeStartingMemberInTime(m.ID).Length > 0)
+                                    {
+                                        <img class="jicon" src="/Content/img/jleague/i-in.png" alt="IN" />
+                                        <span class="jmemo fi">in @Model.HomeStartingMemberInTime(m.ID)</span>
+                                    }
+                                    @if (Model.HomeStartingMemberGoalTime(m.ID).Length > 0)
+                                    {
+                                        <img class="jicon" src="/Content/img/jleague/i-goal.png" alt="ゴール" />
+                                        <span class="jmemo fi">@Model.HomeStartingMemberGoalTime(m.ID)</span>
+                                    }
+                                    @if (Model.HomeStartingMemberCardTime(m.ID).Length > 0)
+                                    {
+                                        if (Model.HomeStartingMemberCardType(m.ID) == 1)
+                                        {
+                                            <img class="jicon" src="/Content/img/jleague/i-ycard.png" alt="イエローカード" />
+                                            <span class="jmemo fi">@Model.HomeStartingMemberCardTime(m.ID)</span>
+                                        }
+                                        else if (Model.HomeStartingMemberCardType(m.ID) == 2)
+                                        {
+                                            <img class="jicon" src="/Content/img/jleague/i-rcard.png" alt="レッドカード" />
+                                            <span class="jmemo fi">@Model.HomeStartingMemberCardTime(m.ID)</span>
+                                        }
+                                        else
+                                        {
+                                            <img class="jicon" src="/Content/img/jleague/i-card.png" alt="イエロー＆レッドカード" />
+                                            <span class="jmemo fi">@Model.HomeStartingMemberCardTime(m.ID)</span>
+                                        }
+                                    }
+                                   @if (Model.HomeStartingMemberOutTime(m.ID).Length > 0)
+                                    {
+                                        <img class="jicon" src="/Content/img/jleague/i-out.png" alt="OUT" />
+                                        <span class="jmemo fi">out @Model.HomeStartingMemberOutTime(m.ID)</span>
+                                    }
+                                </dd>
+                            }
+                        </dl>
+                        <h5 style="clear:both;">サブメンバー</h5>
+                        <dl>
+                            @foreach (var m in @Model.HomeSubMembers)
+                            {
+                                <dt>
+                                    <p>@m.Pos</p>
+                                    <p><span class="fi">@m.Uni</span></p>
+                                </dt>
+                                <dd style="width:180px;">
+                                    <a href="/jleague/players/@m.ID/">@m.Name</a>
+                                    @if (Model.HomeSubMemberInTime(m.ID).Length > 0)
+                                    {
+                                        <img class="jicon" src="/Content/img/jleague/i-in.png" alt="IN" />
+                                        <span class="jmemo fi">in @Model.HomeSubMemberInTime(m.ID)</span>
+                                    }
+                                    @if (Model.HomeSubMemberGoalTime(m.ID).Length > 0)
+                                    {
+                                        <img class="jicon" src="/Content/img/jleague/i-goal.png" alt="ゴール" />
+                                        <span class="jmemo fi">@Model.HomeSubMemberGoalTime(m.ID)</span>
+                                    }
+                                    @if (Model.HomeSubMemberCardTime(m.ID).Length > 0)
+                                    {
+                                        if (Model.HomeSubMemberCardType(m.ID) == 1){
+                                            <img class="jicon" src="/Content/img/jleague/i-ycard.png" alt="イエローカード" />
+                                            <span class="jmemo fi">@Model.HomeSubMemberCardTime(m.ID)</span>
+                                        }
+                                        else if (Model.HomeSubMemberCardType(m.ID) == 2)
+                                        {
+                                            <img class="jicon" src="/Content/img/jleague/i-rcard.png" alt="レッドカード" />
+                                            <span class="jmemo fi">@Model.HomeSubMemberCardTime(m.ID)</span>
+                                        }
+                                        else
+                                        {
+                                            <img class="jicon" src="/Content/img/jleague/i-card.png" alt="イエロー＆レッドカード" />
+                                            <span class="jmemo fi">@Model.HomeSubMemberCardTime(m.ID)</span>
+                                        }
+                                    }
+                                    @if (Model.HomeSubMemberOutTime(m.ID).Length > 0)
+                                    {
+                                        <img class="jicon" src="/Content/img/jleague/i-out.png" alt="OUT" />
+                                        <span class="jmemo fi">out @Model.HomeSubMemberOutTime(m.ID)</span>
+                                    }
+                                </dd>
+                            }
+                        </dl>
+                    </div>
+                    <div class="jboard jbright" style="width:280px">
+                        <div class="jbname">
+                            <h4><a href="/jleague/j1/teams/@Model.AwayTeamID/">@Model.AwayTeamName</a></h4>
+                            <div><img src="/Content/img/TeamIcon/jleague/TeamCD_@{@Model.AwayTeamID}.png" class="resimg" alt="チームアイコン" /></div>
+                        </div>
+                        <h5>スターティングメンバー</h5>
+                        <dl>
+                            @foreach (var m in @Model.AwayStartingMembers)
+                            {
+                                <dt>
+                                    <p>@m.Pos</p>
+                                    <p><span class="fi">@m.Uni</span></p>
+                                </dt>
+
+                                <dd style="width:180px;float:right">
+                                    @if (Model.AwayStartingMemberInTime(m.ID).Length > 0)
+                                    {
+                                        <span class="jmemo fi">in @Model.AwayStartingMemberInTime(m.ID)</span>
+                                        <img class="jicon" src="/Content/img/jleague/i-in.png" alt="IN" />
+                                    }
+                                    @if (Model.AwayStartingMemberGoalTime(m.ID).Length > 0)
+                                    {
+                                        <span class="jmemo fi">@Model.AwayStartingMemberGoalTime(m.ID)</span>
+                                        <img class="jicon" src="/Content/img/jleague/i-goal.png" alt="ゴール" />
+                                    }
+                                    @if (Model.AwayStartingMemberCardTime(m.ID).Length > 0)
+                                    {
+                                        if (Model.AwayStartingMemberCardType(m.ID) == 1){
+                                            <img class="jicon" src="/Content/img/jleague/i-ycard.png" alt="イエローカード" />
+                                            <span class="jmemo fi">@Model.AwayStartingMemberCardTime(m.ID)</span>
+                                        }
+                                        else if (Model.AwayStartingMemberCardType(m.ID) == 2){
+                                            <img class="jicon" src="/Content/img/jleague/i-rcard.png" alt="レッドカード" />
+                                            <span class="jmemo fi">@Model.AwayStartingMemberCardTime(m.ID)</span>
+                                        }
+                                        else
+                                        {
+                                            <img class="jicon" src="/Content/img/jleague/i-card.png" alt="イエロー＆レッドカード" />
+                                            <span class="jmemo fi">@Model.AwayStartingMemberCardTime(m.ID)</span>
+                                        }
+                                    }
+                                    @if (Model.AwayStartingMemberOutTime(m.ID).Length > 0)
+                                    {
+                                        <span class="jmemo fi">out @Model.AwayStartingMemberOutTime(m.ID)</span>
+                                        <img class="jicon" src="/Content/img/jleague/i-out.png" alt="OUT" />
+                                    }
+                                    <a href="/jleague/players/@m.ID/">@m.Name</a>
+                                </dd>
+                            }
+                        </dl>
+                        <h5 style="clear:both;">サブメンバー</h5>
+                        <dl>
+                            @foreach (var m in @Model.AwaySubMembers)
+                            {
+                                <dt>
+                                    <p>@m.Pos</p>
+                                    <p><span class="fi">@m.Uni</span></p>
+                                </dt>
+                                <dd style="width:180px;float:right">
+                                    @if (Model.AwaySubMemberInTime(m.ID).Length > 0)
+                                    {
+                                        <span class="jmemo fi">in @Model.AwaySubMemberInTime(m.ID)</span>
+                                        <img class="jicon" src="/Content/img/jleague/i-in.png" alt="IN" />
+                                    }
+                                    @if (Model.AwaySubMemberGoalTime(m.ID).Length > 0)
+                                    {
+                                        <span class="jmemo fi">@Model.AwaySubMemberGoalTime(m.ID)</span>
+                                        <img class="jicon" src="/Content/img/jleague/i-goal.png" alt="ゴール" />
+                                    }
+                                    @if (Model.AwaySubMemberCardTime(m.ID).Length > 0)
+                                    {
+                                        if (Model.AwaySubMemberCardType(m.ID) == 1){
+                                            <img class="jicon" src="/Content/img/jleague/i-ycard.png" alt="イエローカード" />
+                                            <span class="jmemo fi">@Model.AwaySubMemberCardTime(m.ID)</span>
+                                        }
+                                        else if (Model.AwaySubMemberCardType(m.ID) == 2){
+                                            <img class="jicon" src="/Content/img/jleague/i-rcard.png" alt="レッドカード" />
+                                            <span class="jmemo fi">@Model.AwaySubMemberCardTime(m.ID)</span>
+                                        }
+                                        else
+                                        {
+                                            <img class="jicon" src="/Content/img/jleague/i-card.png" alt="イエロー＆レッドカード" />
+                                            <span class="jmemo fi">@Model.AwaySubMemberCardTime(m.ID)</span>
+                                        }
+                                    }
+                                    @if (Model.AwaySubMemberOutTime(m.ID).Length > 0)
+                                    {
+                                        <span class="jmemo fi">out @Model.AwaySubMemberOutTime(m.ID)</span>
+                                        <img class="jicon" src="/Content/img/jleague/i-out.png" alt="OUT" />
+                                    }
+                                    <a href="/jleague/players/@m.ID/">@m.Name</a>
+                                </dd>
+                            }
+                        </dl>
+                    </div>
+                </div>
+            }
+        }
+
+        @if (Model.Recaps != null)
+        {
+            postLinkFg = true;
+            <div class="evt_bl01_2_4">
+                @{
+            var recaps3 = Model.Recaps.Take(3);
+                }
+
+                <h3 class="mytitle01">戦評</h3>
+                <div class="evt_tbl03">
+                    <table cellpadding="0" cellspacing="0" summary="戦評">
+                        <col width="12%" />
+                        <col width="88%" />
+                        @foreach (var item in recaps3)
+                        {
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <span>@item.GameRecap<br /></span>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+                @if(Model.Recaps.Count() > 3){
+                    <ul class="board_list" id="npbPopup">
+                        <li class="blue">この試合をもっと見る<span class="icon"> </span></li>
+                    </ul>
+                }
+            </div>
+
+            <div id="npbGameText">
+                <div class="evt_bl01_2_4">
+                    <h3 class="mytitle01">戦評</h3>
+                    <div class="evt_tbl03">
+                        <table cellpadding="0" cellspacing="0" summary="得点">
+                            <col width="11%" />
+                            <col width="89%" />
+                            @foreach (var item in Model.Recaps)
+                            {
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        <span class="fs14">@item.GameRecap</span>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+        <div class="block_04">
+
+            @if (postLinkFg) {
+
+                if (@gameStatus == 2)
+                {
+                    //-- 試合後--
+                    <p class="edit_btn02">
+                        <a href="@Url.RouteUrl("5-4", new { newsClassId=Constants.NEWSCLASSID_GAME_RESULT, quoteUniqueId1=Constants.JLG_SPORT_ID, quoteUniqueId2=@gameID })"><span class="icon"> </span>この試合の記事を書きませんか？</a>                        
+                    </p>
+                }
+                else
+                {
+                    //--試合前--
+                    <div class="evt_bl01_2">
+                        <p class="edit_btn02">
+                            <a href="@Url.RouteUrl("5-4", new { newsClassId = Constants.NEWSCLASSID_GAME_RESULT, quoteUniqueId1 = Constants.JLG_SPORT_ID, quoteUniqueId2 = @gameID })"><span class="icon"> </span>この試合の記事を書きませんか？</a>                            
+                        </p>
+                    </div>
+                }
+            }
+
+
+            <!--   試合前、試合中　直接対決の勝敗 -->
+            @if (@gameStatus == 0)
+            {
+                if (Model.List5GamesHomeInHistory != null)
+                {
+                    <div class="evt_block03">
+                        <h3 class="mem_title01">過去の勝敗 @Model.HomeTeamName</h3>
+                        <div class="evt_tbl02">
+                            <table cellpadding="0" cellspacing="0" summary="tbl">
+                                <col width="12%" />
+                                <col width="25%" />
+                                <col width="25%" />
+                                <col width="15%" />
+                                <col width="11%" />
+                                <col width="12%" />
+                                <tr>
+                                    <th>試合日</th>
+                                    <th>ホーム</th>
+                                    <th>アウェイ</th>
+                                    <th>勝敗</th>
+                                    <th>得点</th>
+                                    <th>場所</th>
+                                </tr>
+                                @foreach (var item in @Model.List5GamesHomeInHistory)
+                                {
+                                    <tr>
+                                        @{
+                                    var date = DateTime.ParseExact(@item.GameDate.ToString(), "yyyyMMdd", null).ToString("yyyy/MM/dd");
+                                        }
+                                        <td><span class="fs10">@date</span></td>
+                                        <td>@Html.ActionLink(@item.HomeTeamnames, "Index", "JlgTeamInfoTop", new { area = "Jleague", teamID = @Model.HomeTeamID }, null)</td>
+                                        <td>@Html.ActionLink(@item.AwayTeamnames, "Index", "JlgTeamInfoTop", new { area = "Jleague", teamID = @Model.AwayTeamID }, null)</td>
+                                        <td><span class="fs24 bold">@item.GameResult</span></td>
+                                        <td><span class="fs10">@item.Score</span></td>
+                                        <td><span class="fs10">@item.StadiumNameS </span></td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                }
+
+                if (Model.List5GamesAwayInHistory != null)
+                {
+                    <div class="evt_block03">
+                        <h3 class="mem_title01">過去の勝敗 @Model.AwayTeamName</h3>
+                        <div class="evt_tbl02">
+                            <table cellpadding="0" cellspacing="0" summary="tbl">
+                                <col width="12%" />
+                                <col width="25%" />
+                                <col width="25%" />
+                                <col width="15%" />
+                                <col width="11%" />
+                                <col width="12%" />
+                                <tr>
+                                    <th>試合日</th>
+                                    <th>ホーム</th>
+                                    <th>アウェイ</th>
+                                    <th>勝敗</th>
+                                    <th>得点</th>
+                                    <th>場所</th>
+                                </tr>
+                                @foreach (var item in @Model.List5GamesAwayInHistory)
+                                {
+                                    <tr>
+                                        @{
+                                    var date = DateTime.ParseExact(@item.GameDate.ToString(), "yyyyMMdd", null).ToString("yyyy/MM/dd");
+                                        }
+                                        <td><span class="fs10">@date</span></td>
+                                        <td>@Html.ActionLink(@item.HomeTeamnames, "Index", "JlgTeamInfoTop", new { area = "Jleague", teamID = @Model.HomeTeamID }, null)</td>
+                                        <td>@Html.ActionLink(@item.AwayTeamnames, "Index", "JlgTeamInfoTop", new { area = "Jleague", teamID = @Model.AwayTeamID }, null)</td>
+                                        <td><span class="fs24 bold">@item.GameResult</span></td>
+                                        <td><span class="fs10">@item.Score</span></td>
+                                        <td><span class="fs10">@item.StadiumNameS </span></td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                }
+
+                if (Model.List5GamesInHistory != null && Model.List5GamesInHistory.Count() > 0)
+                {
+                    <div class="evt_block03">
+                        <h3 class="mem_title01">過去の直接対決の勝敗</h3>
+                        <div class="evt_tbl02">
+                            <table cellpadding="0" cellspacing="0" summary="tbl">
+                                <col width="12%" />
+                                <col width="20%" />
+                                <col width="15%" />
+                                <col width="19%" />
+                                <col width="11%" />
+                                <col width="12%" />
+                                <col width="11%" />
+                                <tr>
+                                    <th>試合日</th>
+                                    <th>ホーム</th>
+                                    <th>結果</th>
+                                    <th>アウェイ</th>
+                                    <th>ホーム</th>
+                                    <th>引き分け</th>
+                                    <th>アウェイ</th>
+                                </tr>
+                                @foreach (var item in @Model.List5GamesInHistory)
+                                {
+                                    <tr>
+                                        @{
+                                    var date = DateTime.ParseExact(@item.GameDate.ToString(), "yyyyMMdd", null).ToString("yyyy/MM/dd");
+                                        }
+                                        <td><span class="fs10">@date</span></td>
+                                        <td>@Html.ActionLink(@item.HomeTeamnames, "Index", "JlgTeamInfoTop", new { area = "Jleague", teamID = @Model.HomeTeamID }, null)</td>
+                                        <td><span class="fs24 bold">@item.HomeScore - @item.AwayScore</span></td>
+                                        <td>@Html.ActionLink(@item.AwayTeamnames, "Index", "JlgTeamInfoTop", new { area = "Jleague", teamID = @Model.AwayTeamID }, null)</td>
+                                        <td><span class="fs10">@item.Win</span></td>
+                                        <td><span class="fs10">@item.Draw </span></td>
+                                        <td><span class="fs10">@item.Lose)</span></td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+}

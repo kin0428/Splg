@@ -1,0 +1,28 @@
+﻿@{
+    // Developer	: Endo
+    // Html No      : 10-1
+}
+@using Splg.Areas.Jleague;
+@using Splg.Areas.Jleague.Models.ViewModel;
+@using Splg.Areas.Jleague.Models.ViewModel.InfosModel;
+@model JlgTopViewModel
+@{
+    ViewBag.Title = "10-1";
+    ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_NB_SDL;
+    ViewBag.pageNO = Splg.Areas.Jleague.JlgConstants.JLG_NB_SDL;
+    Layout = "~/Views/Shared/Mobile/_JleagueLayout.cshtml";
+    var jName = Splg.Areas.Jleague.JlgConstants.JLG_NB_SDL;
+
+}
+<script src="~/Areas/Jleague/Scripts/Mobile/10-1.js"></script>
+<script src="~/Areas/Jleague/Scripts/Mobile/10-2.js"></script>
+<script src="~/Scripts/Home.js"></script>
+
+<!--GameInfo-->
+@Html.Partial("~/Views/Shared/Mobile/_NextPrevMonthDay.cshtml")
+<input type="hidden" id="Page" name="Page" value="1" data-gamedate="@DateTime.Now.ToShortDateString().Replace("/", "" )" />
+<div id="jlgGameInfo">
+    @Html.Action("ShowGameInfo", "JlgTop", new { area = "Jleague", type = 1, gameDate = DateTime.Now.ToShortDateString().Replace("/", ""), leagueType = 4 })
+</div>
+<!--End GameInfo-->
+}

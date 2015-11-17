@@ -1,0 +1,112 @@
+﻿@*
+ * Device       : Mobile
+ * File Name	: ~/Areas/View/MlbOrder/Index.cshtml
+ * 
+ * Developer	: Endo
+ *
+ *@
+
+@model IEnumerable<Splg.Areas.Mlb.Models.ViewModels.MlbOrderViewModel>
+@{
+    ViewBag.Title = "順位表（";
+    ViewBag.Name = Splg.Areas.Mlb.MlbConstants.MLB_ORDER_INDEX;
+    Layout = "~/Views/Shared/Mobile/_MlbLayout.cshtml";
+}
+
+<p class="block-path2">
+    <a class="anchor" onclick="return false" data-target="a01" href="#">アメリカン・リーグ 東地区</a><span>/</span>
+    <a class="anchor" onclick="return false" data-target="a02" href="#">アメリカン・リーグ 中地区</a><span>/</span>
+    <a class="anchor" onclick="return false" data-target="a03" href="#">アメリカン・リーグ 西地区</a><span>/</span>
+    <a class="anchor" onclick="return false" data-target="a04" href="#">ナショナル・リーグ 東地区</a><span>/</span>
+    <a class="anchor" onclick="return false" data-target="a05" href="#">ナショナル・リーグ 中地区</a><span>/</span>
+    <a class="anchor" onclick="return false" data-target="a06" href="#">ナショナル・リーグ 西地区</a>
+</p>
+@if (Model != null && Model.Any())
+{
+    foreach (var item in Model)
+    {
+        var leagueType = "アメリカン・リーグ";
+        var divType = "東地区";
+        var data_target = "a01";
+       if (item.LeagueID == 8)
+        {
+            leagueType = "アメリカン・リーグ";
+            switch (item.DivID)
+            {
+                case 1:
+                    divType = "東地区";
+                    data_target = "a01";
+                   break;
+                case 2:
+                    divType = "中地区";
+                    data_target = "a02";
+                    break;
+                case 3:
+                    divType = "西地区";
+                    data_target = "a03";
+                    break;
+            }
+        }
+        else if (item.LeagueID == 9)
+        {
+            leagueType = "ナショナル・リーグ";
+            switch (item.DivID)
+            {
+                case 1:
+                    divType = "東地区";
+                    data_target = "a04";
+                   break;
+                case 2:
+                    divType = "中地区";
+                    data_target = "a05";
+                   break;
+                case 3:
+                    divType = "西地区";
+                    data_target = "a06";
+                    break;
+            }
+        }              
+        if (item.officialStatsViewModels != null && item.officialStatsViewModels.Any())
+        {
+            var dateDisplay = string.Empty;
+            if (item.officialStatsViewModels.FirstOrDefault().CreatedDate != null)
+            {
+                dateDisplay = string.Format("{0}更新", Utils.ParseLocalDateToLongJapanDate(item.officialStatsViewModels.FirstOrDefault().CreatedDate.Value, false));
+            }
+            <section class="block_4 clear">
+                <div class="clear">
+                    <h3 id="@data_target" class="subtitle3">@leagueType @string.Format("{0}順位表", divType)<span class="fs8"> @dateDisplay</span></h3>
+                </div>
+                <ul class="team-list">
+                    @foreach (var itemChild in item.officialStatsViewModels)
+                    {
+                        var orange = "";
+                        orange = "orange";
+                        if (itemChild.Ranking != 1)
+                        {
+                            orange = "";
+                        }
+                        var winningPercentage = Convert.ToDouble(@itemChild.WinningPercentage);
+                        <li>
+                            <p class="num fs40 @orange">@itemChild.Ranking</p>
+                            <div>
+                                <dl>
+                                    <dt>@Html.ActionLink(itemChild.TeamName, "Index", "MlbTeamInfoTeamTop", new { area = "Mlb", teamID = itemChild.TeamID }, null)</dt>
+                                    <dd class="fs30 num">@itemChild.GameBehind</dd>
+                                </dl>
+                                <ul class="jinfo">
+                                    <li>勝 @itemChild.Win</li>
+                                    <li>負 @itemChild.Lose</li>
+                                    <li>勝率 @(winningPercentage < 1 ? winningPercentage.ToString(".000") : winningPercentage.ToString(".00"))</li>
+                                    <li>ホーム勝敗 @itemChild.StatHome</li>
+                                    <li>ビジター勝敗 @itemChild.StatVisitor</li>
+                                    <li>連勝/連敗 @itemChild.Streak</li>
+                                </ul>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </section>
+        }
+    }
+}

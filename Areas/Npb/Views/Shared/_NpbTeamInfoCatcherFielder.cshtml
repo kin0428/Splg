@@ -1,0 +1,79 @@
+﻿@using Splg;
+@using Splg.Areas.Npb.Models.ViewModel.InfosModel;
+@model Splg.Areas.Npb.Models.ViewModel.NpbTeamInfoPlayerViewModel
+@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: _NpbTeamInfoCatcherFielder.cshtml
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-03-19
+    // Html No      : 8-5-5  
+    
+}
+<!-- InstanceBeginEditable name="content" -->
+<div class="evt_block09">  
+@Html.Partial("~/Areas/Npb/Views/Shared/_NpbTeamInfoMenu.cshtml")
+<div class="space"></div>
+@if (Model.TeamInfoCatcherFielderInfos != null && Model.TeamInfoCatcherFielderInfos.Any())
+    {
+        int intCountTbl1 = 0;
+        string feedtabTbl1;
+        int intCountTbl2 = 0;
+        string feedtabTbl2 ;
+       <p class="feed_rank">   
+        @foreach (var item in Model.TeamInfoCatcherFielderInfos)
+{
+    intCountTbl1++;
+    feedtabTbl1 = string.Format("{0}{1}", "feedtab", intCountTbl1);
+    <a class="anchor1" onclick="return false" data-target="@feedtabTbl1" href="#">@item.Name</a>
+    if (intCountTbl1 < Model.TeamInfoCatcherFielderInfos.Count())
+    {
+                    @("/")
+                }
+            }
+    </p>
+    <div class="space20"> </div>
+        foreach (var item in Model.TeamInfoCatcherFielderInfos)
+        {
+            intCountTbl2++;
+            feedtabTbl2 = string.Format("{0}{1}", "feedtab", intCountTbl2);         
+            decimal battingValue = 0;
+             <div class="space"> </div>
+            <div id="@feedtabTbl2">
+                <dl class="feed_title">
+                    <dt>@item.Num</dt>
+                    <dd><a href="@Url.Action("Index", "NpbTeamInfoHittingDetail", new { area = "Npb", teamID = @item.TeamCD, playerID = @item.playerMSTCD }, null)">@item.Name</a></dd>
+                </dl>
+                <div class="row">
+                    <dl class="feed_row">
+                        <dt>打率</dt>
+                        <dd><span class="fs18 bold ">@(decimal.TryParse(item.BattingAverage, out battingValue) == true ? Math.Round(battingValue, 3, MidpointRounding.ToEven).ToString(".000") : "-")</span></dd>
+                    </dl>
+                    <dl class="feed_row">
+                        <dt>試合数</dt>
+                        <dd><span class="fs18 bold">@(item.PlayerCD == null ? "-" : item.Game.ToString())</span></dd>
+                    </dl>
+                    <dl class="feed_row">
+                        <dt>打席数</dt>
+                        <dd><span class="fs18 bold">@(item.PlayerCD == null ? "-" : item.PlateAppearance.ToString())</span></dd>
+                    </dl>
+                    <dl class="feed_row">
+                        <dt>打数</dt>
+                        <dd><span class="fs18 bold">@(item.PlayerCD == null ? "-" : item.AtBat.ToString())</span></dd>
+                    </dl>
+                </div>
+                <div class="row">
+                    <dl class="feed_row">
+                        <dt>塁打数</dt>
+                        <dd><span class="fs18 bold">@(item.PlayerCD == null ? "-" : item.Base.ToString())</span></dd>
+                    </dl>
+                    <dl class="feed_row">
+                        <dt>打点</dt>
+                        <dd><span class="fs18 bold">@(item.PlayerCD == null ? "-" : item.RunsBattingIn.ToString())</span></dd>
+                    </dl>
+                   
+                </div>
+             </div>
+        }
+    }
+    </div>
+<!-- InstanceEndEditable -->

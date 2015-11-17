@@ -1,0 +1,113 @@
+﻿@{
+    //Author : k.isogawa
+    //FileName : Index.cshtml (9-7)
+    //Created Date : 2015/04/27
+}
+
+@model Splg.Areas.Mlb.Models.ViewModel.MlbGameInformationViewModel
+
+@using Splg.Areas.Mlb.Models;
+
+@{
+    ViewBag.Title = "試合情報";
+    ViewBag.Name = Splg.Areas.Mlb.MlbConstants.MLB_GAME_INFORMATION;
+    Layout = "~/Views/Shared/Mobile/_MlbLayout.cshtml";
+}
+<script src="~/Areas/Mlb/Scripts/Mobile/9-7.js"></script>
+<link rel="stylesheet" href="~/Content/bxslider.css" type="text/css" />
+<script type="text/javascript" src="~/Scripts/jquery.bxslider.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // bx-slider -init -------------
+        $('.bxslider').bxSlider({
+            slideWidth: 35,
+            slideMargin: 5,
+            minSlides: 1,
+            maxSlides: 7,
+            moveSlides: 1,
+        });
+    });
+</script>
+@if (Model != null)
+{
+    <section class="block_5 clear">
+        @if (Session["Status"] != null)
+        {
+            <div id="mlbGameInfoPlayerInfo">
+                @Html.Action("ShowGameInfoPlayerInfo", "MlbGameInformation", new { area = "Mlb", gameID = @TempData["gameID"] })
+            </div>
+        }
+    </section>
+    <section class="block_5 clear">
+        <div class="block_5_1">
+            <h3 class="subtitle3">フォローユーザーの予想</h3>
+            <h4 class="subtitle">ホームの勝ち</h4>
+            <div class="mem-list">
+                <ul class="bxslider">
+                    <li><img class="circle" src="~/Content/img/tmp/mem.png" alt="" /></li>
+                    <li><img class="circle" src="~/Content/img/tmp/mem.png" alt="" /></li>
+                    <li><img class="circle" src="~/Content/img/tmp/mem.png" alt="" /></li>
+                    <li><img class="circle" src="~/Content/img/tmp/mem.png" alt="" /></li>
+                    <li><img class="circle" src="~/Content/img/tmp/mem.png" alt="" /></li>
+                    <li><img class="circle" src="~/Content/img/tmp/mem.png" alt="" /></li>
+                    <li><img class="circle" src="~/Content/img/tmp/mem.png" alt="" /></li>
+                </ul>
+            </div>
+            <h4 class="subtitle">引き分け</h4>
+            <div class="mem-list">
+                <ul class="bxslider">
+                    <li><img class="circle" src="~/Content/img/tmp/mem.png" alt="" /></li>
+                    <li><img class="circle" src="~/Content/img/tmp/mem.png" alt="" /></li>
+                    <li><img class="circle" src="~/Content/img/tmp/mem.png" alt="" /></li>
+                </ul>
+            </div>
+            <h4 class="subtitle">アウェイの勝ち</h4>
+            <div class="mem-list">
+                <ul class="bxslider">
+                    <li><img class="circle" src="~/Content/img/tmp/mem.png" alt="" /></li>
+                    <li><img class="circle" src="~/Content/img/tmp/mem.png" alt="" /></li>
+                    <li><img class="circle" src="~/Content/img/tmp/mem.png" alt="" /></li>
+                    <li><img class="circle" src="~/Content/img/tmp/mem.png" alt="" /></li>
+                    <li><img class="circle" src="~/Content/img/tmp/mem.png" alt="" /></li>
+                    <li><img class="circle" src="~/Content/img/tmp/mem.png" alt="" /></li>
+                    <li><img class="circle" src="~/Content/img/tmp/mem.png" alt="" /></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    //Home Team
+    if (Model.PostedInfo != null && Model.PostedInfo.Any())
+    {
+            <section class="block_5 clear">
+                <section class="block_3_1">
+                    <h3 class="subtitle3">新着投稿記事</h3>
+                    <ul class="block-list clear">
+                        @foreach (var post in Model.PostedInfo.Take(3))
+                {
+                    string postContent = string.Format("{0} {1}", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                    <li>
+                        <a href="/user/@post.MemberId/">
+                            <figure><img src="@post.ProfileImg" alt="" /></figure>
+                        </a>
+                        <div>
+                            <h4><a href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a></h4>
+                            <p>@postContent</p>
+                        </div>
+                    </li>
+                }
+                    </ul>
+                    <p class="panel-link"><a href="/user_article/1/sport/">投稿記事をもっと読む</a></p>
+                </section>
+            </section>
+    }
+    //Home Team
+    @Html.Action("ShowMlbRecentNews", "MlbRightContent", new { area = "Mlb", type = Constants.MLB_GAME_INFORMATION, teamID = Model.GameInSeasonSchedule.HomeTeamID, homeVisitor = "1" })
+    //Visitor team
+    @Html.Action("ShowMlbRecentNews", "MlbRightContent", new { area = "Mlb", type = Constants.MLB_GAME_INFORMATION, teamID = Model.GameInSeasonSchedule.VisitorTeamID, homeVisitor = "2" })
+    <section class="block_5 clear">
+            <h3 class="subtitle3">次の試合</h3>
+            @Html.Action("ShowGameInfo", "MlbTop", new { area = "Mlb", type = 5, gameDate = @TempData["gameID"].ToString().Substring(0, 8) })
+        </section>
+}
+

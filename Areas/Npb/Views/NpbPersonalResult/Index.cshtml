@@ -1,0 +1,576 @@
+﻿@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: Index.cshtml
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-03-19
+    // Html No      : 8-4
+}
+@{   
+    ViewBag.Title = "チーム情報　対戦成績";
+    ViewBag.Name = Constants.NPBTEAMINFOSTAT;
+    Layout = "~/Views/Shared/_NpbLayout.cshtml";
+}
+@using Splg;
+@model Splg.Areas.Npb.Models.ViewModel.NpbPersonalResultViewModel
+<div class="evt_block09 clear">
+    <h2 class="mytitle">個人成績</h2>       
+    <div class="row">
+        <h3 class="gr53_title">セ・リーグ 打者成績</h3>
+        <h3 class="gr53_title">パ・リーグ 打者成績</h3>
+        @*----Row 1: BattingAverageBest10----*@
+        @if (Model.SeBattingAverageBest10 != null && Model.SeBattingAverageBest10.Any())
+        {        
+            <div class="evt_bl09_1 left">           
+                <h3>打率ランキング</h3>  
+                <table cellpadding="0" cellspacing="0" summary="順位表">
+                    <col width="12%" />
+                    <col width="30%" />
+                    <col width="16%" />
+                    <col width="14%" />
+                    <col width="14%" />
+                    <col width="14%" />
+                    <thead>
+                        <tr>
+                            <th>順位</th>
+                            <th></th>
+                            <th></th>
+                            <th>打率</th>
+                            <th>本塁打</th>
+                            <th>打点</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                   @foreach (var item in Model.SeBattingAverageBest10)
+                   {
+                       decimal battingValue = 0;    
+                    <tr>
+                        @if (@item.Ranking == 1)
+                            {
+                            <td><span class="organge">@item.Ranking</span></td>
+                            }
+                            else
+                            {
+                            <td><span>@item.Ranking</span></td>
+                            }
+                        <th><span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamCD, playerID= @item.PlayerCD }, null)">@item.Name</a></span></th>
+                        <td>(<span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamCD }, null)">@item.ShortNameTeam</a></span>)</td>                         
+                        <td class="highlight">@(decimal.TryParse(item.BattingAverage, out battingValue) == true ? Math.Round(battingValue, 3, MidpointRounding.ToEven).ToString(".000") : ".000")</td>
+                        <td>@item.Homerun</td>
+                        <td>@item.RunsBattingIn</td>
+                    </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+        @if (Model.PaBattingAverageBest10 != null && Model.PaBattingAverageBest10.Any())
+        {
+            <div class="evt_bl09_1 right">   
+                <h3>打率ランキング</h3>         
+                <table cellpadding="0" cellspacing="0" summary="順位表">
+                    <col width="12%" />
+                    <col width="30%" />
+                    <col width="16%" />
+                    <col width="14%" />
+                    <col width="14%" />
+                    <col width="14%" />
+                    <thead>
+                        <tr>
+                            <th>順位</th>
+                            <th></th>
+                            <th></th>
+                            <th>打率</th>
+                            <th>本塁打</th>
+                            <th>打点</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.PaBattingAverageBest10)
+                        {
+                            decimal battingValue = 0;  
+                    <tr>
+                        @if (@item.Ranking == 1)
+                            {
+                            <td><span class="organge">@item.Ranking</span></td>
+                            }
+                            else
+                            {
+                            <td><span>@item.Ranking</span></td>
+                            }
+                        <th><span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamCD, playerID= @item.PlayerCD }, null)">@item.Name</a></span></th>
+                        <td>(<span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamCD }, null)">@item.ShortNameTeam</a></span>)</td>
+                        <td class="highlight">@(decimal.TryParse(item.BattingAverage, out battingValue) == true ? Math.Round(battingValue, 3, MidpointRounding.ToEven).ToString(".000") : ".000")</td>
+                        <td>@item.Homerun</td>
+                        <td>@item.RunsBattingIn</td>
+                    </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+    @*----Row 2: HomerunBest10----*@
+    <div class="row">
+        @if (Model.SeHomerunBest10!=null && Model.SeHomerunBest10.Any())
+    {
+    <div class="evt_bl09_1 left">      
+        <h3>本塁打ランキング</h3>   
+        <table cellpadding="0" cellspacing="0" summary="順位表">
+            <col width="12%" />
+            <col width="30%" />
+            <col width="16%" />
+            <col width="14%" />
+            <col width="14%" />
+            <col width="14%" />
+            <thead>
+                <tr>
+                    <th>順位</th>
+                    <th></th>
+                    <th></th>
+                    <th>打率</th>
+                    <th>本塁打</th>
+                    <th>打点</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.SeHomerunBest10)
+                {
+                    decimal battingValue = 0;    
+                    <tr>
+                        @if (@item.Ranking == 1)
+                            {
+                            <td><span class="organge">@item.Ranking</span></td>
+                            }
+                            else
+                            {
+                            <td><span>@item.Ranking</span></td>
+                            }
+                        <th><span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamCD, playerID= @item.PlayerCD }, null)">@item.Name</a></span></th>
+                        <td>(<span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamCD }, null)">@item.ShortNameTeam</a></span>)</td>
+                        <td>@(decimal.TryParse(item.BattingAverage, out battingValue) == true ? Math.Round(battingValue, 3, MidpointRounding.ToEven).ToString(".000") : ".000")</td>
+                        <td class="highlight">@item.Homerun</td>
+                        <td>@item.RunsBattingIn</td>
+                    </tr>
+                    }
+            </tbody>
+        </table>
+    </div>
+    }
+        @if (Model.PaHomerunBest10!=null && Model.PaHomerunBest10.Any())
+    {
+         <div class="evt_bl09_1 right"> 
+             <h3>本塁打ランキング</h3>      
+        <table cellpadding="0" cellspacing="0" summary="順位表">
+            <col width="12%" />
+            <col width="30%" />
+            <col width="16%" />
+            <col width="14%" />
+            <col width="14%" />
+            <col width="14%" />
+            <thead>
+                <tr>
+                    <th>順位</th>
+                    <th></th>
+                    <th></th>
+                    <th>打率</th>
+                    <th>本塁打</th>
+                    <th>打点</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.PaHomerunBest10)
+                {
+                    decimal battingValue = 0;   
+                    <tr>
+                        @if (@item.Ranking == 1)
+                            {
+                            <td><span class="organge">@item.Ranking</span></td>
+                            }
+                            else
+                            {
+                            <td><span>@item.Ranking</span></td>
+                            }
+                        <th><span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamCD, playerID= @item.PlayerCD }, null)">@item.Name</a></span></th>
+                        <td>(<span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamCD }, null)">@item.ShortNameTeam</a></span>)</td>
+                        <td>@(decimal.TryParse(item.BattingAverage, out battingValue) == true ? Math.Round(battingValue, 3, MidpointRounding.ToEven).ToString(".000") : ".000")</td>
+                        <td class="highlight">@item.Homerun</td>
+                        <td>@item.RunsBattingIn</td>
+                    </tr>
+                    }
+            </tbody>
+        </table>
+    </div>
+    }
+    </div>
+    @*----Row 3: RunBattedInBest10----*@
+    <div class="row">
+        @if (Model.SeRunBattedInBest10 !=null && Model.SeRunBattedInBest10.Any())
+    {
+    <div class="evt_bl09_1 left">  
+        <h3>打点ランキング</h3>     
+        <table cellpadding="0" cellspacing="0" summary="順位表">
+            <col width="12%" />
+            <col width="30%" />
+            <col width="16%" />
+            <col width="14%" />
+            <col width="14%" />
+            <col width="14%" />
+            <thead>
+                <tr>
+                    <th>順位</th>
+                    <th></th>
+                    <th></th>
+                    <th>打率</th>
+                    <th>本塁打</th>
+                    <th>打点</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.SeRunBattedInBest10)
+                {
+                    decimal battingValue = 0;
+                    <tr>
+                        @if (@item.Ranking == 1)
+                            {
+                            <td><span class="organge">@item.Ranking</span></td>
+                            }
+                            else
+                            {
+                            <td><span>@item.Ranking</span></td>
+                            }
+                        <th><span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamCD, playerID= @item.PlayerCD }, null)">@item.Name</a></span></th>
+                        <td>(<span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamCD }, null)">@item.ShortNameTeam</a></span>)</td>
+                        <td>@(decimal.TryParse(item.BattingAverage, out battingValue) == true ? Math.Round(battingValue, 3, MidpointRounding.ToEven).ToString(".000") : ".000")</td>
+                        <td>@item.Homerun</td>
+                        <td class="highlight">@item.RunsBattingIn</td>
+                    </tr>
+                    }
+            </tbody>
+        </table>
+    </div>
+    }
+        @if (Model.PaRunBattedInBest10!=null && Model.PaRunBattedInBest10.Any())
+    {
+    <div class="evt_bl09_1 right">     
+        <h3>打点ランキング</h3>  
+        <table cellpadding="0" cellspacing="0" summary="順位表">
+            <col width="12%" />
+            <col width="30%" />
+            <col width="16%" />
+            <col width="14%" />
+            <col width="14%" />
+            <col width="14%" />
+            <thead>
+                <tr>
+                    <th>順位</th>
+                    <th></th>
+                    <th></th>
+                    <th>打率</th>
+                    <th>本塁打</th>
+                    <th>打点</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.PaRunBattedInBest10)
+                {
+                    decimal battingValue = 0;
+                    <tr>
+                        @if (@item.Ranking == 1)
+                            {
+                            <td><span class="organge">@item.Ranking</span></td>
+                            }
+                            else
+                            {
+                            <td><span>@item.Ranking</span></td>
+                            }
+                        <th><span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamCD, playerID= @item.PlayerCD }, null)">@item.Name</a></span></th>
+                        <td>(<span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamCD }, null)">@item.ShortNameTeam</a></span>)</td>
+                        <td>@(decimal.TryParse(item.BattingAverage, out battingValue) == true ? Math.Round(battingValue, 3, MidpointRounding.ToEven).ToString(".000") : ".000")</td>
+                        <td>@item.Homerun</td>
+                        <td class="highlight">@item.RunsBattingIn</td>
+                    </tr>
+                    }
+            </tbody>
+        </table>
+    </div>
+    }
+    </div>
+    <div class="row">
+        <div class="evt_bl09_1 left">
+        </div>
+        <div class="evt_bl09_1 right">
+        </div>
+    </div>
+        @*----Row 4: WinBest10----*@
+        <div class="row">
+            <h3 class="gr53_title">セ・リーグ 投手成績</h3>
+            <h3 class="gr53_title">パ・リーグ 投手成績</h3>
+            @if (Model.SeWinBest10 != null && Model.SeWinBest10.Any())
+            {
+                <div class="evt_bl09_1 left">        
+                    <h3>勝数ランキング</h3>             
+                    <table cellpadding="0" cellspacing="0" summary="順位表">
+                        <col width="12%" />
+                        <col width="30%" />
+                        <col width="16%" />
+                        <col width="14%" />
+                        <col width="14%" />
+                        <col width="14%" />
+                        <thead>
+                            <tr>
+                                <th>順位</th>
+                                <th></th>
+                                <th></th>
+                                <th>勝数</th>
+                                <th>敗戦</th>
+                                <th>奪三振</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.SeWinBest10)
+                            {
+                                <tr>
+                                    @if (@item.Ranking == 1)
+                                    {
+                                        <td><span class="organge">@item.Ranking</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span>@item.Ranking</span></td>
+                                    }
+                                    <th><span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamCD, playerID= @item.PlayerCD }, null)">@item.Name</a></span></th>
+                                    <td>（<span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamCD }, null)">@item.ShortNameTeam</a></span>）</td>
+                                    <td class="highlight">@item.Win</td>
+                                    <td>@item.Lost</td>
+                                    <td>@item.Strikeout</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            @if (Model.PaWinBest10 != null && Model.PaWinBest10.Any())
+            {
+                <div class="evt_bl09_1 right">     
+                    <h3>勝数ランキング</h3>                
+                    <table cellpadding="0" cellspacing="0" summary="順位表">
+                        <col width="12%" />
+                        <col width="30%" />
+                        <col width="16%" />
+                        <col width="14%" />
+                        <col width="14%" />
+                        <col width="14%" />
+                        <thead>
+                            <tr>
+                                <th>順位</th>
+                                <th></th>
+                                <th></th>
+                                <th>勝数</th>
+                                <th>敗戦</th>
+                                <th>奪三振</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.PaWinBest10)
+                            {
+                                <tr>
+                                    @if (@item.Ranking == 1)
+                                    {
+                                        <td><span class="organge">@item.Ranking</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span>@item.Ranking</span></td>
+                                    }
+                                    <th><span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamCD, playerID= @item.PlayerCD }, null)">@item.Name</a></span></th>
+                                    <td>（<span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamCD }, null)">@item.ShortNameTeam</a></span>）</td>
+                                    <td class="highlight">@item.Win</td>
+                                    <td>@item.Lost</td>
+                                    <td>@item.Strikeout</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+        @*----Row 5: EarnedRunAverageBest10----*@
+        <div class="row">
+            @if (Model.SeEarnedRunAverageBest10 != null && Model.SeEarnedRunAverageBest10.Any())
+            {
+                <div class="evt_bl09_1 left">      
+                    <h3>防御率ランキング</h3>              
+                    <table cellpadding="0" cellspacing="0" summary="順位表">
+                        <col width="12%" />
+                        <col width="30%" />
+                        <col width="16%" />
+                        <col width="21%" />
+                        <col width="21%" />                           
+                        <thead>
+                            <tr>
+                                <th>順位</th>
+                                <th></th>
+                                <th></th>
+                                <th>防御率</th>
+                                <th>投球回数</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.SeEarnedRunAverageBest10)
+                            {
+                                decimal earnedValue = 0;
+                                <tr>
+                                    @if (@item.Ranking == 1)
+                                    {
+                                        <td><span class="organge">@item.Ranking</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span>@item.Ranking</span></td>
+                                    }
+                                    <th><span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamCD, playerID= @item.PlayerCD }, null)">@item.Name</a></span></th>
+                                    <td>（<span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamCD }, null)">@item.ShortNameTeam</a></span>）</td>
+                                    <td class="highlight">@(decimal.TryParse(item.EarnedRunAverage, out earnedValue) == true ? Math.Round(earnedValue, 2, MidpointRounding.ToEven).ToString("0.00") : "0.00")</td>
+                                    <td>@item.Display</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            @if (Model.PaEarnedRunAverageBest10 != null && Model.PaEarnedRunAverageBest10.Any())
+            {
+                <div class="evt_bl09_1 right">    
+                    <h3>防御率ランキング</h3>             
+                    <table cellpadding="0" cellspacing="0" summary="順位表">
+                        <col width="12%" />
+                        <col width="30%" />
+                        <col width="16%" />
+                        <col width="21%" />
+                        <col width="21%" />  
+                        <thead>
+                            <tr>
+                                <th>順位</th>
+                                <th></th>
+                                <th></th>
+                                <th>防御率</th>
+                                <th>投球回数</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.PaEarnedRunAverageBest10)
+                            {
+                                decimal earnedValue = 0;
+                                <tr>
+                                    @if (@item.Ranking == 1)
+                                    {
+                                        <td><span class="organge">@item.Ranking</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span>@item.Ranking</span></td>
+                                    }
+                                    <th><span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamCD, playerID= @item.PlayerCD }, null)">@item.Name</a></span></th>
+                                    <td>（<span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamCD }, null)">@item.ShortNameTeam</a></span>）</td>
+                                    <td class="highlight">@(decimal.TryParse(item.EarnedRunAverage, out earnedValue) == true ? Math.Round(earnedValue, 2, MidpointRounding.ToEven).ToString("0.00") : "0.00")</td>
+                                    <td>@item.Display</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+        @*----Row 6: SaveBest10----*@
+        <div class="row">
+            @if (Model.SeSaveBest10 != null && Model.SeSaveBest10.Any())
+            {
+                <div class="evt_bl09_1 left">                 
+                    <h3>セーブ数ランキング</h3> 
+                    <table cellpadding="0" cellspacing="0" summary="順位表">
+                        <col width="12%" />
+                        <col width="30%" />
+                        <col width="16%" />
+                        <col width="21%" />
+                        <col width="21%" />    
+                        <thead>
+                            <tr>
+                                <th>順位</th>
+                                <th></th>
+                                <th></th>
+                                <th>セーブ</th>
+                                <th>試合数</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.SeSaveBest10)
+                            {
+                                <tr>
+                                    @if (@item.Ranking == 1)
+                                    {
+                                        <td><span class="organge">@item.Ranking</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span>@item.Ranking</span></td>
+                                    }
+                                    <th><span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamCD, playerID= @item.PlayerCD }, null)">@item.Name</a></span></th>
+                                    <td>（<span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamCD }, null)">@item.ShortNameTeam</a></span>）</td>
+                                    <td class="highlight">@item.Save</td>
+                                    <td>@item.GamePitched</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            @if (Model.PaSaveBest10 != null && Model.PaSaveBest10.Any())
+            {
+                <div class="evt_bl09_1 right">  
+                    <h3>セーブ数ランキング</h3>                  
+                    <table cellpadding="0" cellspacing="0" summary="順位表">
+                        <col width="12%" />
+                        <col width="30%" />
+                        <col width="16%" />
+                        <col width="21%" />
+                        <col width="21%" />      
+                        <thead>
+                            <tr>
+                                <th>順位</th>
+                                <th></th>
+                                <th></th>
+                                <th>セーブ</th>
+                                <th>試合数</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.PaSaveBest10)
+                            {
+                                <tr>
+                                    @if (@item.Ranking == 1)
+                                    {
+                                        <td><span class="organge">@item.Ranking</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span>@item.Ranking</span></td>
+                                    }
+                                    <th><span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamCD, playerID= @item.PlayerCD }, null)">@item.Name</a></span></th>
+                                    <td>（<span class="blue"><a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamCD }, null)">@item.ShortNameTeam</a></span>）</td>
+                                    <td class="highlight">@item.Save</td>
+                                    <td>@item.GamePitched</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+        @* //
+            // Add News items to right - bottom of screen
+            // Huynh
+        *@
+        @section NpbPage{
+            @Html.Action("ShowNpbRightRecentNews", "NpbRightContent", new { area = "Npb", type = "8-4" })
+        }
+    </div>

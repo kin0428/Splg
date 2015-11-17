@@ -1,0 +1,113 @@
+﻿@{
+    //Author : Nojima
+    //FileName : Index.cshtml (9-5-1)
+    //Created Date : 2015/04/24
+}
+
+@model Splg.Areas.Mlb.Models.ViewModels.MlbTeamInfoTeamTopViewModel
+@{
+    ViewBag.Title = "チーム情報　チームトップ（MLB）";
+    ViewBag.Name = Splg.Areas.Mlb.MlbConstants.MLB_TEAMINFO_TEAMTOP;
+    Layout = "~/Views/Shared/_MlbLayout.cshtml";
+}
+<script src="~/Areas/Mlb/Scripts/9-5-1.js"></script>
+
+<div class="evt_block09">
+    <h2 class="mytitle">チームトップ</h2>
+    @Html.Partial("~/Areas/Mlb/Views/Shared/_MlbTeamInfoMenu.cshtml")
+    @if (Model != null)
+    {
+        <div class="evt_bl09_2 clear">
+            @if (!string.IsNullOrEmpty(@Model.TeamIcon))
+            {
+                <div class="evt_bl09_2_1">
+                    <img src="@Url.Content(@Model.TeamIcon)" alt="@Model.Team" />
+                </div>
+                @Html.Hidden("TeamID", @Model.TeamID)
+            }
+            @if (!string.IsNullOrEmpty(@Model.Team))
+            {
+                <div class="evt_bl09_2_2">
+                    <h3>@Model.Team</h3>
+                    <p class="evt_edit_btn">
+                        <a href="@Url.RouteUrl("5-4", new { newsClassID = 2, quoteUniqueId1 = Constants.MLB_SPORT_ID, quoteUniqueId2 = 0, quoteUniqueId3 = @Model.TeamID })">記事作成</a>
+                    </p>
+                    <p><span class="fs18">@Model.ShortNameLeague @Model.Ranking</span>位</p>
+                </div>
+            }
+            @if (@Model.BetrayalDeviation != null && @Model.ExpectationsDeviation != null)
+            {
+                <div class="evt_bl09_2_3 clear">
+                    <div class="evt_bl09_2_3_1">
+                        <p class="evt_teams">期待度偏差値</p>
+                        <p class="evt_points fi">@Math.Round(@Model.ExpectationsDeviation)</p>
+                    </div>
+                    <div class="evt_bl09_2_3_2">
+                        <p class="evt_teams">裏切度偏差値</p>
+                        <p class="evt_points fi">@Math.Round(@Model.BetrayalDeviation)</p>
+                    </div>
+                </div>
+                <p class="evt_bl09_2_4">
+                    期待度偏差値とは…総予想ポイント数の偏差値<br>
+                    裏切度偏差値とは…負けた試合の総予想ポイント数の偏差値
+                </p>
+            }
+        </div>
+    <!--新着のニュース-->
+        @Html.Action("ShowMlbRecentNews", "MlbRightContent", new { area = "Mlb", type = @ViewBag.Name, teamID = @ViewBag.TeamID })
+        
+    <!--試合情報-->
+        <div class="board_control clear">
+            <span class="board_prev blue">前の試合を見る</span>
+            <h4 id="gameDate">
+                @Utils.GetMonthAndDayOfWeek(DateTime.Now) の試合
+            </h4>
+            <span class="board_next blue">次の試合を見る</span>
+        </div>
+        <input type="hidden" id="Page" name="Page" value="3" data-gamedate="@DateTime.Now.ToShortDateString().Replace("/", "" )" data-teamid=@ViewBag.TeamID />
+        <div id="mlbGameInfo">
+            @Html.Action("ShowGameInfo", "MlbTop", new { area = "Mlb", type = 3, gameDate = DateTime.Now.ToShortDateString().Replace("/", ""), teamID = @ViewBag.TeamID })
+        </div>
+        
+    <!--新着の投稿記事-->
+        if (Model.TeamPostList != null && Model.TeamPostList.Any())
+        {
+            <div class="cat_stitle">
+                <h3>新着の投稿記事</h3>
+                <p><a href="/user_article/1/sport/">投稿記事をもっと読む</a></p>
+            </div>
+            <ul class="evt_list01">
+                @foreach (var post in Model.TeamPostList.Take(5))
+                {
+                    string postContent = Splg.Controllers.PostedController.GetPostContent(post);
+                    <li>
+                        <a href="/user/@post.MemberId/"><img src="@post.ProfileImg" alt="icon" /></a>
+                        <a class="bold" href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a>
+                        <br />
+                        @post.ContributeDate.Value.ToString("MM/dd HH:mm")
+                        @if (!string.IsNullOrEmpty(postContent))
+                        {
+                            <br />
+                            @postContent
+                        }
+                    </li>
+                }
+            </ul>
+        }
+        <div class="space20"></div>
+    }
+</div>
+
+
+<!--Mlb News-->
+@Html.Action("ShowMlbRecentNews", "MlbRightContent", new { area = "Mlb", type = @ViewBag.Name })
+<!--Right Content-->
+@section MlbPage{
+    <div class="cat_stitle">
+        <h3>順位表</h3>
+        <p>@Html.ActionLink("一覧で見る", "Index", "MlbOrder", new { area = "Mlb" }, null)</p>
+    </div>
+    <div id="npbTop3Ranking">
+        @Html.Action("ShowTopNRanking", "MlbRightContent", new { area = "Mlb" })
+    </div>
+}

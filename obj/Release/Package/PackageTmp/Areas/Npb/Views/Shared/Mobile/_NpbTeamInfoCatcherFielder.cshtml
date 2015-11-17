@@ -1,0 +1,43 @@
+﻿@using Splg;
+@using Splg.Areas.Npb.Models.ViewModel.InfosModel;
+@model Splg.Areas.Npb.Models.ViewModel.NpbTeamInfoPlayerViewModel
+@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: _NpbTeamInfoCatcherFielder.cshtml
+    // Device       : Mobile
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-04-06
+    // Html No      : 8-5-5    
+}
+@Html.Partial("~/Areas/Npb/Views/Shared/Mobile/_NpbTeamInfoMenu.cshtml")
+<section class="block_2 clear">
+    <div class="clear">
+        <p class="sub-text fs8"></p>
+        <h3 id="a01" class="subtitle3">捕手・野手</h3>
+    </div>
+    @if (Model!= null && Model.TeamInfoCatcherFielderInfos != null && Model.TeamInfoCatcherFielderInfos.Any())
+{
+    <ul class="team-list">
+        @foreach (var item in Model.TeamInfoCatcherFielderInfos)
+        {
+            decimal battingValue = 0;     
+           <li>
+                <p class="num fs15">@item.Num</p>
+                <div>
+                    <h4><a href="@Url.Action("Index", "NpbTeamInfoHittingDetail", new { area = "Npb", teamID = @item.TeamCD, playerID = @item.PlayerCD }, null)">@item.Name</a></h4>
+                    <ul class="jinfo">
+                        <li>打率 <span class="fs15">@(decimal.TryParse(item.BattingAverage, out battingValue) == true ? Math.Round(battingValue, 3, MidpointRounding.ToEven).ToString(".000") : "-")</span></li>
+                        <li>試合数 <span class="fs15">@(item.PlayerCD == null ? "-" : item.Game.ToString())</span></li>
+                        <li>打席数 <span class="fs15">@(item.PlayerCD == null ? "-" : item.PlateAppearance.ToString())</span></li>
+                        <li>打数 <span class="fs15">@(item.PlayerCD == null ? "-" : item.AtBat.ToString())</span></li>                                        
+                     @*   <li>塁打数 <span class="fs15">@(item.PlayerCD == null ? "-" : item.Base.ToString())</span></li>*@
+                        <li>安打数 <span class="fs15">@(item.PlayerCD == null ? "-" : item.Hit.ToString())</span></li>
+                        <li>打点 <span class="fs15">@(item.PlayerCD == null ? "-" : item.RunsBattingIn.ToString())</span></li>                    
+                    </ul>
+                </div>
+            </li>
+        }
+    </ul>
+}
+ @*   <p class="panel-link more_view"><a href="#">ランキングをもっと見る</a></p>*@
+ </section>

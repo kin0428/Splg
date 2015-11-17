@@ -1,0 +1,83 @@
+﻿@{
+    //Dev : Nojima
+    //FileName : UserSubMenu.cshtml
+    //Created Date : 2015/04/12
+}
+
+@{
+    var url = Context.Request.Path;
+    string[] subUrls = url.Split('/');
+    List<string> subUrlList = new List<string>();
+    for (int i = 0; i < subUrls.Count(); i++)
+    {
+        if (!string.IsNullOrEmpty(subUrls[i]))
+        {
+            subUrlList.Add(subUrls[i]);
+        }
+    }
+    List<string> menuLinkList = new List<string>();
+    List<string> menuNameList = new List<string>();
+    string secondMenu = string.Empty;
+    int secondMenuActive = 0;
+    int subUrlCount = subUrlList.Count();
+
+    if (subUrlList.First().ToLower().Equals("user"))
+    {
+        secondMenu = "user";
+        menuLinkList.Add(" > " + ViewBag.OthermemberNickName);
+        menuNameList.Add("/user/" + ViewBag.OtherMemberID + "/");
+        secondMenuActive = 1;
+        if (subUrlCount > 1)
+        {
+            subUrlList.RemoveAt(0);
+            subUrlCount = subUrlCount - 1;
+
+            if (subUrlCount > 1)
+            {
+                subUrlList.RemoveAt(0);
+                subUrlCount = subUrlCount - 1;
+                switch (subUrlList.First().ToLower())
+                {
+                    case "expectedlist":
+                        menuLinkList.Add("予想リスト");
+                        menuNameList.Add("/user/" + ViewBag.OtherMemberID + "/expectedlist/");
+                        secondMenuActive = 2;
+                        break;
+                    case "article":
+                        menuLinkList.Add("投稿記事");
+                        menuNameList.Add("/user/" + ViewBag.OtherMemberID + "/article/");
+                        secondMenuActive = 3;
+                        break;
+                    case "following":
+                        menuLinkList.Add("フォロー");
+                        menuNameList.Add("/user/" + ViewBag.OtherMemberID + "/following/");
+                        secondMenuActive = 5;
+                        break;
+                    case "followers":
+                        menuLinkList.Add("フォロワー");
+                        menuNameList.Add("/user/" + ViewBag.OtherMemberID + "/followers/");
+                        secondMenuActive = 6;
+                        break;
+                }
+            }
+        }
+    }
+}
+<p class="block_path02">
+    <a class="icon gui_icon" href="/"></a>
+    @for (int j = 0; j < menuLinkList.Count() - 1; j++)
+    {
+        @:<a href="@menuNameList.ElementAt(j)">@menuLinkList.ElementAt(j)</a>>
+    }
+    @menuLinkList.ElementAt(menuLinkList.Count() - 1)
+</p>
+@if (secondMenu.Equals("user"))
+{
+    <ul class="block_nav">
+        <li><a class="@(secondMenuActive == 1 ? "active" : "")" href="/user/@ViewBag.OtherMemberID">他ユーザーのページ</a></li>
+        <li><a class="@(secondMenuActive == 2 ? "active" : "")" href="/user/@ViewBag.OtherMemberID/expectedlist/">予想リスト</a></li>
+        <li><a class="@(secondMenuActive == 3 ? "active" : "")" href="/user/@ViewBag.OtherMemberID/article/">投稿記事</a></li>
+        <li><a class="@(secondMenuActive == 5 ? "active" : "")" href="/user/@ViewBag.OtherMemberID/following/">フォロー</a></li>
+        <li><a class="@(secondMenuActive == 6 ? "active" : "")" href="/user/@ViewBag.OtherMemberID/followers/">フォロワー</a></li>
+    </ul>
+}

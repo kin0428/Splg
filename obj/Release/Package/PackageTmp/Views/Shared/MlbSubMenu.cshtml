@@ -1,0 +1,124 @@
+﻿@{
+    //Author : e-concier
+    //FileName : Index.cshtml (9-1)
+    //Created Date : 2015/04/10
+}
+
+@{
+    var url = Context.Request.Path;
+    string[] subUrls = url.Split('/');
+    List<string> subUrlList = new List<string>();
+    for (int i = 0; i < subUrls.Count(); i++)
+    {
+        if (!string.IsNullOrEmpty(subUrls[i]))
+        {
+            subUrlList.Add(subUrls[i]);
+        }
+    }
+    List<string> menuLinkList = new List<string>();
+    List<string> menuNameList = new List<string>();
+    string secondMenu = string.Empty;
+    int secondMenuActive = 0;
+    int subUrlCount = subUrlList.Count();
+
+
+    if (subUrlList.First().ToLower().Equals("mlb"))
+    {
+        secondMenu = "mlb";
+        menuLinkList.Add(" > MLB");
+        menuNameList.Add("/mlb/");
+        secondMenuActive = 1;
+        if (subUrlCount > 1)
+        {
+            subUrlList.RemoveAt(0);
+            subUrlCount = subUrlCount - 1;
+            switch (subUrlList.First().ToLower())
+            {
+                case "schedule":
+                    menuLinkList.Add("日程・結果");
+                    menuNameList.Add("/mlb/schedule/");
+                    secondMenuActive = 2;
+                    break;
+                case "standings":
+                    menuLinkList.Add("順位表");
+                    menuNameList.Add("/mlb/standings/");
+                    secondMenuActive = 3;
+                    break;
+                case "teams":
+                    menuLinkList.Add("チーム一覧");
+                    menuNameList.Add("/mlb/teams/");
+                    secondMenuActive = 5;
+                    if (subUrlCount > 1)
+                    {
+                        subUrlList.RemoveAt(0);
+                        subUrlCount = subUrlCount - 1;
+
+                        menuLinkList.Add(ViewBag.TeamName);
+                        string teamsUrl = "/mlb/teams/" + ViewBag.teamId + "/";
+                        menuNameList.Add(teamsUrl);
+                        if (subUrlCount > 1)
+                        {
+                            subUrlList.RemoveAt(0);
+                            subUrlCount = subUrlCount - 1;
+                            switch (subUrlList.First().ToLower())
+                            {
+                                case "schedule":
+                                    menuLinkList.Add("日程・結果");
+                                    menuNameList.Add(teamsUrl + "schedule/");
+                                    break;
+                                case "stats":
+                                    menuLinkList.Add("対戦成績");
+                                    menuNameList.Add(teamsUrl + "stats/");
+                                    break;
+                                case "news":
+                                    menuLinkList.Add("ニュース");
+                                    menuNameList.Add(teamsUrl + "news/");
+                                    break;
+                            }
+                            menuNameList.Add("#");
+                            
+                        }
+                    }
+                    break;
+                case "game":
+                    secondMenu = string.Empty;
+                    int urlGameId = 0;
+                    subUrlList.RemoveAt(0);
+                    string menuGame = "試合";
+                    if (subUrlList.Count() > 0)
+                    {
+                        if (Int32.TryParse(subUrlList.First(), out urlGameId))
+                        {
+                            menuGame = Utils.GetGameNameById(Constants.MLB_SPORT_ID, urlGameId);
+                        }
+                    }
+                    menuLinkList.Add(menuGame);
+                    menuNameList.Add("#");
+                    break;
+                case "news":
+                    secondMenuActive = 7;
+                    menuLinkList.Add("ニュース");
+                    menuNameList.Add("/mlb/news/");
+                    break;
+            }
+        }
+    }
+}
+<p class="block_path02">
+    <a class="icon gui_icon" href="/"></a>
+    @for (int j = 0; j < menuLinkList.Count() - 1; j++)
+    {
+        @:<a href="@menuNameList.ElementAt(j)">@menuLinkList.ElementAt(j)</a>> 
+    }
+    @menuLinkList.ElementAt(menuLinkList.Count() - 1)
+</p>
+@if (secondMenu.Equals("mlb"))
+{
+    <ul class="block_nav">
+        <li><a class="@(secondMenuActive == 1 ? "active" : "")" href="/mlb/">MLBトップ</a></li>
+        <li><a class="@(secondMenuActive == 2 ? "active" : "")" href="/mlb/schedule/">日程・結果</a></li>
+        <li><a class="@(secondMenuActive == 3 ? "active" : "")" href="/mlb/standings/">順位表</a></li>
+        <li><a class="@(secondMenuActive == 5 ? "active" : "")" href="/mlb/teams/">チーム一覧</a></li>
+        <li><a class="@(secondMenuActive == 8 ? "active" : "")" href="/mlb/news/">ニュース</a></li>
+    </ul>
+}

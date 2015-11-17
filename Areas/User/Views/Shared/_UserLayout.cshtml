@@ -1,0 +1,69 @@
+﻿@{
+    //Author : Nojima
+    //FileName : _UserLayout.cshtml
+    //Created Date : 2015/04/12
+    ViewBag.MainMenu = "User";
+}
+@using Splg;
+@{
+    string[] pageInfo = Utils.GetUserTDK(Context.Request.Path, (ViewBag.pageNO != null));
+    ViewBag.Npb = "User";
+}
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+    @*<meta http-equiv="content-type" content="text/html; charset=utf-8" />*@
+    <meta charset="UTF-8" />
+    <!-- InstanceBeginEditable name="doctitle" -->
+    <title>@pageInfo[0]</title>
+    <!-- InstanceEndEditable -->
+    <meta http-equiv="content-script-type" content="text/javascript" />
+    <meta http-equiv="content-style-type" content="text/style" />
+    <meta http-equiv="content-style-type" content="text/css" />
+    <meta name="description" content="@pageInfo[1]" />
+    <meta name="keywords" content="@pageInfo[2]" />
+    <meta name="Author" content="サイト名入力" />
+    <meta name="copyright" content="ﾌｯﾀｰｺﾋﾟｰﾗｲﾄ(著作権)を入力" />
+    <link rel="stylesheet" href="~/Content/base.css" type="text/css" />
+    <script type="text/javascript" src="~/Scripts/jquery.js"></script>
+    <script type="text/javascript" src="~/Scripts/autoNumeric-2.0.js"></script>
+    <script type="text/javascript" src="~/Scripts/common.js"></script>
+
+    @RenderSection("scripts", false)
+    <!-- InstanceBeginEditable name="head" -->
+    <!-- InstanceEndEditable -->
+</head>
+<body>
+    <!--Header-->
+    <div class="header">
+        <h1><a href="/"><img src="~/Content/img/tmp/logo.png" alt="スポログ" /></a></h1>
+        <!-- InstanceBeginEditable name="navbox" -->
+        @Html.Partial("~/Views/Shared/MainMenu.cshtml")
+        <!-- InstanceEndEditable -->
+        @Html.Partial("_SearchEngine")
+        @Html.Partial("~/Areas/User/Views/Shared/UserHeaderSubMenu.cshtml")
+        @Html.Partial("~/Views/Shared/SubMember.cshtml")
+    </div>
+    <!--Header-->
+    @Html.Partial("~/Views/Shared/PopupLoginBox.cshtml")
+    <!--Main-->
+    <div class="main">
+        <div class="content">
+            <!-- InstanceBeginEditable name="content" -->
+            @Html.Partial("~/Views/Shared/UserSubMenu.cshtml")
+            @RenderBody()
+            <!-- InstanceEndEditable -->
+        </div>
+        <div class="side">
+            @Html.Partial("~/Views/Shared/UserCommon.cshtml")
+            <!-- Each page render my section NpbPage -->
+            @RenderSection("UserPage", false)
+        </div>
+    </div>
+    <!--Main-->
+    <!--Footer-->
+    @Html.Partial("~/Views/Shared/MainFooterMenu.cshtml")
+    <!--Footer-->
+</body>
+</html>

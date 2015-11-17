@@ -1,0 +1,90 @@
+﻿@{
+    // Developer	: Nojima
+    // Html No      : 4-1
+}
+@using Splg.Areas.User.Models.ViewModel;
+@model Splg.Areas.User.Models.ViewModel.UserTopViewModel
+@{
+    ViewBag.Title = "";
+    ViewBag.PageNo = Splg.Areas.User.UserConstant.TOP_INDEX;
+    Layout = "~/Views/Shared/Mobile/_UserLayout.cshtml";
+}
+<script src="~/Scripts/Home.js"></script>
+<script src="~/Areas/User/Scripts/Mobile/4-1.js"></script>
+
+@if (Model != null)
+{
+    
+    UserTopViewModel.MemberInfoModel MemberInfo = Model.MemberInfo.FirstOrDefault();
+    UserTopViewModel.PointInfoModel PointInfo = Model.PointInfo;
+    
+    <section class="block_8">
+        @if (MemberInfo != null && PointInfo != null)
+        {
+            <figure class="my-image">
+                <img src="@MemberInfo.ProfileImg" alt="" />
+            </figure>
+            <div class="block_8_1">
+                <article class="my-info">
+                    <h2>@MemberInfo.Nickname</h2>
+                    <p>
+                        <span class="fs8">性別</span> @MemberInfo.Gender ・
+                        <span class="fs8"> 生年月日 @{@MemberInfo.BirthdayYear}年@{@MemberInfo.BirthdayMonth}月@{@MemberInfo.BirthdayDay}日</span>
+                        <span class="fs8">出身</span>・
+                        @MemberInfo.PrefecturesName
+                    </p>
+                    <p>
+                        <span class="fs8">好きなスポーツ</span>@MemberInfo.LikeSports<br>
+                        <span class="fs8">好きなチーム </span>
+                        @foreach (var tm in MemberInfo.Team)
+                        {
+                            <span class="fs14 blue" id="@(tm.TeamID)"><a href="@(tm.Url)">@tm.TeamName</a><br /></span>
+                        }
+                    </p>
+                </article>
+                <ul class="my-list">
+                    <li>
+                        <h4 class="left">現在のポイント</h4>
+                        <div class="right"><strong><span class="fs24">@Html.DisplayFor(m => PointInfo.PossesionPoint) </span> pt</strong></div>
+                    </li>
+                    <li>
+                        <h4 class="left">総順位</h4>
+                        <div class="right"><strong><span class="fs24">@Model.TotalRankStr</span> 位</strong></div>
+                    </li>
+                    <li>
+                        <h4 class="left"><a href="/user/@Model.MemberId/following/">フォロー</a></h4>
+                        <div class="right blue fs24"><strong>@MemberInfo.FollowingNumber 人</strong></div>
+                    </li>
+                    <li>
+                        <h4 class="left"><a href="/user/@Model.MemberId/followers/">フォロワー</a></h4>
+                        <div class="right blue fs24"><strong>@MemberInfo.FollowerNumber 人</strong></div>
+                    </li>
+                </ul>
+                <h3 class="my-title">@{@MemberInfo.Nickname}のスタッツ</h3>
+                <nav id="usermonthlyreport" class="my-panel" data-other_member_id="@ViewBag.OtherMemberID">
+                    <a href="#" class="prev" id="prev_month">前の月</a>
+                    <h4><span id="user_selected_month"></span></h4>
+                    <a href="#" class="next" id="next_month">次の月</a>
+                </nav>
+                <p class="panel-board2"><span id="total_correct_percentage_month" class="fs15"></span>月の総的中率 <span id="total_correct_percentage" class="fs24"></span>%</p>
+                <dl class="my-dialog">
+                    <dt>プロ野球</dt>
+                    <dd>
+                	    <div class="dialog" id="npb_correct_percentage_bar"  style="width: 0%;"><span id="npb_correct_percentage_bar_text"></span></div>
+                    </dd>
+                    <dt>MLB</dt>
+                    <dd>
+                	    <div class="dialog" id="mlb_correct_percentage_bar"  style="width: 0%;"><span id="mlb_correct_percentage_bar_text"></span></div>
+                    </dd>
+                    <dt>Jリーグ</dt>
+                    <dd>
+                        <div class="dialog" id="jlg_correct_percentage_bar" style="width: 0%;"><span id="jlg_correct_percentage_bar_text"></span></div>
+                    </dd>
+                </dl>
+                <p class="panel-link2">
+                    <a href="@Url.RouteUrl("5-4", new { newsClassID = 6, quoteUniqueId1 = 0 })">この的中率について記事を書いてみませんか？</a>
+                </p>
+            </div>
+        }
+    </section>
+}

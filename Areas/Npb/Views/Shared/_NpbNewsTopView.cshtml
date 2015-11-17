@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Splg.Models.News.ViewModel.NewsInfoViewModel>
+
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        var firstNews = Model.FirstOrDefault();       
+        var routeValues = new RouteValueDictionary();
+        routeValues.Add("area", string.Empty);
+        routeValues.Add("topic", Constants.NPB_TOPIC_NAME);
+        routeValues.Add("newsItemID", @firstNews.NewsItemID);
+        routeValues.Add("sportID", Constants.NPB_SPORT_ID);
+        var imageSports = Utils.GetNewsImageLocation(firstNews.Content ?? Constants.IMAGE_DEFAULT);
+        <div class="block_01">
+        <div class="row">
+            <div class="block_01_1">
+                <h2 class="subtitle01 fi">NEWS TOPICS</h2>
+                <h3 class="subtitle02">@Html.ActionLink(string.Format("{0} {1}", @firstNews.Headline, @firstNews.SubHeadline), "Index", "NewsArticleCommon", @routeValues, null)</h3>
+                <h4><span class="gray2">@firstNews.SentFrom &nbsp; @string.Format("{0} views", firstNews.TotalViews)</span></h4>
+                <p>@Utils.ShortenString(firstNews.newstext,50)</p>
+            </div>
+            <div class="block_01_2">
+				<a href="@Url.Action("Index", "NewsArticleCommon", @routeValues, null)">
+					<img class="resimg" src="@Url.Content(@imageSports)" alt="" />
+				</a>
+            </div>
+        </div>
+        <ul class="block_list01">
+            @foreach (var item in Model.Skip(1))
+            {
+                var routeValuesItems = new RouteValueDictionary();
+                routeValuesItems.Add("area", string.Empty);
+                routeValuesItems.Add("topic", Constants.NPB_TOPIC_NAME);
+                routeValuesItems.Add("newsItemID", @item.NewsItemID);
+                routeValuesItems.Add("sportID", Constants.NPB_SPORT_ID);
+                <li>@Html.ActionLink(string.Format("{0} {1}", item.Headline, item.SubHeadline), "Index", "NewsArticleCommon", @routeValuesItems, null)
+                <span>@item.SentFrom</span> <span>@item.TotalViews views</span>
+                </li>
+            }
+        </ul>
+        <p class="block_01_link">@Html.ActionLink("プロ野球 ニュースをもっと読む", "Index", "NpbNewsList", new { area = "Npb" }, null)</p>
+        </div>
+    }
+}
+
+

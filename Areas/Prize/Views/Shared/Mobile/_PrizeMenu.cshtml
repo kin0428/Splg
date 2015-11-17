@@ -1,0 +1,26 @@
+﻿@{
+    // Namespace	: Splg.Areas.Prize.Models.ViewModel
+    // FileName		: _PrizeMenu.cshtml
+    // Device       :  Mobile
+    // Developer	: Nojima
+    // Update date  : 2015-04-16
+}
+<!-- path -->
+<ul class="block-path">
+    <li>
+        <a class="active" href="javascript:void(0)">懸賞</a>
+        <ul>
+            @*懸賞　賞品詳細: 6-1 *@
+            <li><a href="@Url.Action("Index", "PrizeTop", new { area = "Prize" }, null)">懸賞トップ</a></li>
+
+            @*懸賞　賞品詳細: 6-2 *@
+            <li><a href="@Url.Action("Index", "PrizeExpectedList", new { area = "Prize" }, null)">賞品詳細</a></li>
+
+            @*懸賞　大会詳細: 6-3 *@
+            <li><a href="@Url.Action("Index", "PrizeArticle", new { area = "Prize" }, null)">大会詳細</a></li>
+            
+            @*懸賞　大会ポイントランキング: 6-3 *@
+            <li><a href="@Url.Action("Index", "PrizeArticle", new { area = "Prize" }, null)">大会ポイントランキング</a></li>
+        </ul>
+      </li>
+</ul>

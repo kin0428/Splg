@@ -1,0 +1,54 @@
+﻿@using Splg.Core.Constant;
+@model Splg.Areas.Jleague.Models.ViewModel.JlgGameInfoViewModel
+@if (Model != null)
+{
+    <div class="socData socStarters">
+        <h2 class="socData-hdg">スターティングメンバー</h2>
+
+        <!-- socStartersSwitch -->
+        <ul class="socStartersSwitch clear">
+            <li id="socStSwitchHome" class="active">
+                <div class="socStartersSwitch-panel">
+                    <img src="@Url.Content(Model.homeTeamSpec.TeamIconUrl)" alt="@Model.homeTeamSpec.TeamName" class="socStartersSwitch-teamIcon">
+                    <p>@Model.homeTeamSpec.TeamName</p>
+                    <p class="socStartersSwitch-system">@Model.homeTeamSpec.FormationName</p>
+                </div>
+            </li>
+            <li id="socStSwitchAway">
+                <div class="socStartersSwitch-panel">
+                    <img src="@Url.Content(Model.awayTeamSpec.TeamIconUrl)" alt="@Model.awayTeamSpec.TeamName" class="socStartersSwitch-teamIcon">
+                    <p>@Model.awayTeamSpec.TeamName</p>
+                    <p class="socStartersSwitch-system">@Model.awayTeamSpec.FormationName</p>
+                </div>
+            </li>
+        </ul>
+        <!-- /socStartersSwitch -->
+        <!--  tab2_tab1 -->
+        <div id="socStartersTabHome" class="socStartersTab stTabActive">
+            <div class="startingMemberStarters">
+                <p class="socStarters-subHdg">スターティングメンバー</p>
+                @Html.Partial("_JlgStartingMembersPlayInfo", Model.HomeStartingMembers)
+                <p class="socStarters-subHdg">サブメンバー</p>
+                @Html.Partial("_JlgStartingMembersPlayInfo", Model.HomeSubMembers)
+                <!-- 欠場選手情報-->
+                @Html.Partial("_JlgInjuredMembers", Model.HomeInjuredMembers)
+                <!-- 出場停止選手情報-->
+                @Html.Partial("_JlgSuspendedMembers", Model.HomeSuspendedMembers)
+            </div>
+        </div>
+        <!--  /tab2_tab1 -->
+        <!--  tab2_tab2 -->
+        <div id="socStartersTabAway" class="socStartersTab clear hide">
+            <div class="startingMemberStarters">
+                <p class="socStarters-subHdg">スターティングメンバー</p>
+                @Html.Partial("_JlgStartingMembersPlayInfo", Model.AwayStartingMembers)
+                <p class="socStarters-subHdg">サブメンバー</p>
+                @Html.Partial("_JlgStartingMembersPlayInfo", Model.AwaySubMembers)
+                <!-- 欠場選手情報-->
+                @Html.Partial("_JlgInjuredMembers", Model.AwayInjuredMembers)
+                <!-- 出場停止選手情報-->
+                @Html.Partial("_JlgSuspendedMembers", Model.AwaySuspendedMembers)
+            </div>
+        </div>
+    </div>
+}

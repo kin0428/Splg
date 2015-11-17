@@ -1,0 +1,103 @@
+﻿@*
+    * File Name	:
+    *
+    * Developer	: Tran Sy Huynh
+    *
+*@
+
+@model Splg.Models.News.ViewModel.NewsTopicViewModel
+@using Splg;
+
+@{
+    //var layoutUsed = "~/Views/Shared/Mobile/_Layout.cshtml";
+    int sportType = Convert.ToInt32(ViewBag.sportID);
+    //if (sportType == Constants.NPB_SPORT_ID)
+    //{
+    //    layoutUsed = "~/Views/Shared/Mobile/_NpbLayout.cshtml";
+    //}
+    Layout = "~/Views/Shared/Mobile/_Layout.cshtml";
+}
+
+<section class="block_1">
+    <article class="news-block">
+        @if (Model.NewsDisplayed != null)
+        {
+            var imageLocation = string.Empty;
+            <h2>@Model.NewsDisplayed.Headline</h2>
+            if (!string.IsNullOrEmpty(Model.NewsDisplayed.Content))
+            {
+                imageLocation = @Url.Content(Utils.GetNewsImageLocation(Model.NewsDisplayed.Content, true));
+                <figure class="img"><img src="@imageLocation" alt="news" /></figure>
+            }
+            <div class="detail">
+                <dl class="news-date">
+                    <dt>@Model.NewsDisplayed.SentFrom</dt>
+                    <dd>@Model.NewsDisplayed.DeliveryDate.ToString("yyyy/MM/dd HH:mm")</dd>
+                </dl>
+                <div>
+                    <p style="white-space: pre-line;">@Model.NewsDisplayed.newstext</p>
+                </div>
+            </div>
+            if (Model.RelatedTopics != null && Model.RelatedTopics.Any())
+            {
+                <ul class="rel-topic">
+                    <li>関連トピック</li>
+                    @foreach (var topic in Model.RelatedTopics)
+                    {
+                        <li><a href="@topic.JumpUrl" target="_blank">@topic.TopicName</a></li>
+                    }
+                </ul>
+            }
+        }
+        <div class="tcenter">
+			<p class="fb_topbd fs8">この記事が気に入ったら いいね！しよう<br>スポログの最新記事をお届けします</p>
+            <div class="fb-page" data-href="https://www.facebook.com/spolog.jp" data-hide-cover="false" data-show-facepile="false" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/spolog.jp"><a href="https://www.facebook.com/spolog.jp">スポログ</a></blockquote></div></div>
+        </div>
+		<div class="space20"> </div>
+        @Html.Partial("~/Views/Shared/Mobile/_ShareContentSocial.cshtml")
+        <p class="panel-link2">
+            <a href='@Url.RouteUrl("5-4", new { newsClassId = 1, quoteUniqueId1 = @ViewBag.newsItemID })'>記事を書く</a>
+        </p>
+    </article>
+</section>
+<section class="block_2 clear">
+    @if (Model.RelatedNews != null && Model.RelatedNews.Any())
+    {
+        int relatedNewsSize = Convert.ToInt32(ViewBag.relatedNewsSize ?? 5);
+        <section class="block_3_1">
+            <h3 class="subtitle2">関連ニュース</h3>
+            @foreach (var news in Model.RelatedNews.Take(relatedNewsSize))
+            {
+                var imageSports = Utils.GetNewsImageLocation(news.Content ?? Constants.IMAGE_DEFAULT);
+                <article>
+                    <figure><img src="@Url.Content(@imageSports)" alt="" /></figure>
+                    <div>
+                        <h3>@Html.ActionLink(news.Headline, "Index", new { topic = ViewBag.topic, newsItemID = news.NewsItemID, sportID = ViewBag.sportID, uniqueID = (ViewBag.uniqueID ?? Constants.NEWS_DEFAULT_PARAMETER), teamID = (ViewBag.teamID ?? Constants.NEWS_DEFAULT_PARAMETER) })</h3>
+                        <p>@news.SentFrom @news.DeliveryDate.ToString("yyyy/MM/dd HH:mm")</p>
+                    </div>
+                </article>
+            }
+        </section>
+    }
+    @if (Model.RelatedPosts != null && Model.RelatedPosts.Any())
+    {
+        <div class="space20"> </div>
+        <h3 class="subtitle3">関連記事</h3>
+        <ul class="block-list clear">
+            @foreach (var post in Model.RelatedPosts.Take(3))
+            {
+                string postContent = string.Format("{0}&nbsp;&nbsp;&nbsp;{1}投稿", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                <li>
+                    <a href="/user/@post.MemberId/">
+                        <figure><img src="@post.ProfileImg" alt="" /></figure>
+                    </a>
+                    <div>
+                        <h4><a href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a></h4>
+                        <p>@Html.Raw(postContent)</p>
+                    </div>
+                </li>
+            }
+        </ul>
+        <p class="panel-link"><a class="bold" href="/user_article/@string.Format("{0}",sportType)/sport/">投稿記事をもっと読む</a></p>
+    }
+</section>

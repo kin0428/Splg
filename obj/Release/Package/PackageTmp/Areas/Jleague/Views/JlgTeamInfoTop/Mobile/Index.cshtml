@@ -1,0 +1,187 @@
+﻿@{
+    //Author : Nojima
+    //FileName : Index.cshtml (Mobile: 8-5-1)
+    //Created Date : 2015/05/06
+}
+
+@model Splg.Areas.Jleague.Models.ViewModel.JlgTeamInfoTopViewModel
+@{
+    string league = string.Empty;
+    if (ViewBag.JType == 1)
+    {
+        league = "J1";
+        ViewBag.Title = "チーム情報　チームトップ";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J1_T_TOP;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J1_T_TOP;
+    }
+    else
+    {
+        league = "J2";
+        ViewBag.Title = "チーム情報　チームトップ";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J2_T_TOP;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J2_T_TOP;
+    }
+    Layout = "~/Views/Shared/Mobile/_JlgLayout.cshtml";
+}
+<script src="~/Areas/Jleague/Scripts/Mobile/10-1.js"></script>
+@if (Model != null)
+{
+    <!--Sub Menu-->
+    @Html.Partial("~/Areas/Jleague/Views/Shared/Mobile/_JlgTeamInfoMenu.cshtml")
+    <section class="block_4 clear">
+        
+        <dl class="team-name">
+            @if (!string.IsNullOrEmpty(@Model.TeamIcon))
+            {
+                <dt><img src="@Url.Content(@Model.TeamIcon)" alt="@Model.Team" /></dt>
+                @Html.Hidden("TeamID", @Model.TeamID)
+            }
+            @if (!string.IsNullOrEmpty(@Model.Team))
+            {
+                <dd>
+                    <h3 class="fs14">@Model.Team</h3>
+                    <p class="evt_edit_btn">
+                        <a href="@Url.RouteUrl("5-4", new { newsClassID = 2, quoteUniqueId1 = Constants.JLG_SPORT_ID, quoteUniqueId2 = 0, quoteUniqueId3 = @Model.TeamID })">記事作成</a>
+                    </p>
+                    <p>@league<span>@string.Format("{0}位", Model.Ranking)</span></p>
+                </dd>
+            }
+        </dl>
+        @if (Model.BetrayalDeviation != null && Model.ExpectationsDeviation != null)
+        { 
+            <dl class="team-score orange">
+                <dt>期待度偏差値</dt>
+                <dd class="fs30 num">@Model.ExpectationsDeviation.ToString(Constants.REMOVE_ZEROS)</dd>
+            </dl>
+            <dl class="team-score1 violet">
+                <dt>裏切度偏差値</dt>
+                <dd class="fs30 num">@Model.BetrayalDeviation.ToString(Constants.REMOVE_ZEROS)</dd>
+            </dl>
+            <p class="team-note">
+                期待度偏差値とは…総予想ポイント数の偏差値<br>
+                裏切度偏差値とは…負けた試合の総予想ポイント数の偏差値
+            </p>
+        }
+        @if (Model.RankInfoRT != null)
+        {
+
+            var rank = Model.RankInfoRT;
+            var balance = rank.Score - rank.Lost;
+
+            <article class="block_8_2">
+                <div class="jtbl01">
+                    <h3 class="">今シーズンの成績</h3>
+                    <div class="jrow02">
+                        <p class="j01">得点</p>
+                        <p class="j02 num">@rank.Score</p>
+                    </div>
+                    <div class="jrow02">
+                        <p class="j01">試合数</p>
+                        <p class="j02 num">@rank.Game</p>
+                    </div>
+                    <div class="jrow02">
+                        <p class="j01">勝数</p>
+                        <p class="j02 num">@rank.Win</p>
+                    </div>
+                    <div class="jrow02">
+                        <p class="j01">勝点</p>
+                        <p class="j02 num">@rank.Point</p>
+                    </div>
+                    <div class="jrow02">
+                        <p class="j01">引分数</p>
+                        <p class="j02 num">@rank.Draw</p>
+                    </div>
+                    <div class="jrow02">
+                        <p class="j01">失点</p>
+                        <p class="j02 num">@rank.Lost</p>
+                    </div>
+                    <div class="jrow02">
+                        <p class="j01">敗数</p>
+                        <p class="j02 num">@rank.Lose</p>
+                    </div>
+                    <div class="jrow02">
+                        <p class="j01">得失点</p>
+                        <p class="j02 num">@balance</p>
+                    </div>
+                </div>
+            </article>
+        }
+
+    </section>
+}
+
+@if (Model != null)
+{
+    if (Model.TeamPostList != null && Model.TeamPostList.Any())
+    {
+        <section class="block_2 clear">
+            <h3 class="subtitle3">新着投稿記事</h3>
+            <ul class="block-list clear">
+                @foreach (var post in Model.TeamPostList.Take(3))
+                {
+                    string postContent = string.Format("{0} {1}", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                    <li>
+                        <a href="/user/@post.MemberId/">
+                            <figure><img src="@post.ProfileImg" alt="" /></figure>
+                        </a>
+                        <div>
+                            <h4><a href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a></h4>
+                            <p>@postContent</p>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <p class="panel-link"><a href="/user_article/1/sport/">投稿記事をもっと読む</a></p>
+        </section>
+
+    }
+
+
+    <section class="block_2">
+        <h2 class="subtitle3">チーム内得点ランキング</h2>
+        <ul class="team-list">
+            @if (Model.Top5Players != null && Model.Top5Players.Any())
+                    {
+                        foreach (var item in Model.Top5Players)
+                        {
+                            string topStyle = "";
+                            if (item.Ranking == 1)
+                            {
+                                topStyle = "orange";
+                            }
+                            var rateGoalShoot = decimal.MinValue;
+                            var rateGoalTime = decimal.MinValue;
+            <li>
+                <p class="num fs40 @topStyle">@item.Ranking</p>
+                <div>
+                    <dl>
+                        <dt>
+                            <a href="#">@item.PlayerNames</a>
+                            <p class="fs8">@item.Position</p>
+                        </dt>
+                        <dd class="fs36 num">@item.Shoot</dd>
+                    </dl>
+                </div>
+            </li>
+                        }
+                    }
+        </ul>
+    </section>
+
+
+    @Html.Action("ShowJlgRecentNews", "JlgRightContent", new { area = "Jleague", type = @ViewBag.Name, teamID = @ViewBag.TeamID })
+    <section class="block_2">
+        <nav class="news-panel">
+            <a class="prev" href="#">前の試合</a>
+            <h4 id="gameDate">
+                @Utils.GetMonthAndDayOfWeek(DateTime.Now)の試合
+            </h4>
+            <a class="next" href="#">次の試合</a>
+        </nav>
+        <div id="jlgGameInfo">
+            @Html.Hidden("Page", 3)
+            @Html.Action("ShowGameInfo", "JlgTop", new { area = "Jleague", type = 3, gameDate = DateTime.Now.ToShortDateString().Replace("/", ""), teamID = @ViewBag.TeamID })
+        </div>
+    </section>
+
+}

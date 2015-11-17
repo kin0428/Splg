@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "ログアウト";
+    Layout = "~/Views/Shared/Mobile/_Layout.cshtml";
+}
+
+<section class="block_7">
+    <h3 class="sigtitle">スポログからログアウトしますか？</h3>
+    @using (Html.BeginForm("Logout", "Member", FormMethod.Post, new { @id = "logoutForm", role = "form" }))
+    {
+        <p>
+            スポログからログアウトしますか？<br />
+            ログアウトしてもポイントは変動しません。ご安心ください。
+        </p>
+        <p class="sig-note">
+            <img src="~/Content/img/tmp/mail_note02.png" alt="">
+        </p>
+        <input type="hidden" name="typeID" />
+    }
+    <p class="sig-submit"><a href="javascript:void();" onclick="document.getElementById('logoutForm').submit();">ログアウトするへ</a></p>
+</section>
+

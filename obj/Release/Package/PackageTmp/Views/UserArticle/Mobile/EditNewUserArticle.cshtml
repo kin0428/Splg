@@ -1,0 +1,97 @@
+﻿@using Splg.Core.Constant;
+@model Splg.Models.UserArticle.ViewModel.UserArticleInfoViewModel
+
+@{
+    Layout = "~/Views/Shared/Mobile/_Layout.cshtml";
+}
+<script src="~/Scripts/preview_image.js"></script>
+<script src="~/Scripts/section2.js"></script>
+@if (Model != null)
+{
+    <section class="block_9">
+        <h2 class="subtitle2">記事作成</h2>
+        @Html.Partial("_QuotContent", Model)
+        <ul class="rel-topic">
+            <li>関連トピック</li>
+            @if (Model.RelatedTopicList != null && Model.RelatedTopicList.Any())
+            {
+                foreach (var item in Model.RelatedTopicList)
+                {
+                    <li><a href="/user_article/@item.TopicId/topic/">@item.TopicName</a></li>
+                }
+            }
+        </ul>
+        <div class="space"></div>
+        @using (Html.BeginForm("ConfirmUserArticle", "UserArticle", FormMethod.Post, new { @id = "postForm" }))
+        {
+            @Html.ValidationSummary(true)
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.ContributeId)
+            @Html.HiddenFor(model => model.ContributeDate)
+            @Html.HiddenFor(model => model.Status)
+            @Html.HiddenFor(model => model.NewsClassId)
+            @Html.HiddenFor(model => model.QuoteUniqueId1)
+            @Html.HiddenFor(model => model.QuoteUniqueId2)
+            @Html.HiddenFor(model => model.QuoteUniqueId3)
+            @Html.HiddenFor(model => model.ImageLink)
+            @Html.HiddenFor(model => model.OldImageLink)
+            <dl class="cmt_frm">
+                <dt>@Html.LabelFor(m => m.Title)</dt>
+                <dd>
+                    @Html.TextBoxFor(m => m.Title, new { @class = "cmt_input", @id = "postTitle", @placeholder = UserArticleConst.TitlePlaceHolderMessage })
+                    <span class="right  validation_message">
+                        @Html.ValidationMessageFor(m => m.Title)
+                    </span>
+                </dd>
+                <dd>
+                    @Html.TextAreaFor(model => model.Body, new { @id = "postBody", @class = "cmt_area", @cols = "15", @rows = "5", @placeholder = UserArticleConst.BodyPlaceHolderMessage })
+                    <span class="right validation_message">
+                        @Html.ValidationMessageFor(m => m.Body)
+                    </span>
+                </dd>
+                <dd>
+                    <div class="cmt_img">
+                        <div><img src="@Url.Content(Model.ImageLink)" id="img_preview" alt=""></div>
+                        <p><a href="javascript:void();" onclick="document.getElementById('image_file').click();">ファイルを選択</a></p>
+                        <span id="errorImage" style="color:red"></span>
+                        <input type="file" name="image_file" id="image_file" style="visibility: hidden; width: 1px; height: 1px" onchange="fileSelected();" />
+                        @Html.HiddenFor(model => model.DataURL, new { @id = "dataURL" })
+                    </div>
+                </dd>
+            </dl>   
+            <p class="sig-submit"><input type="submit" class="confirm_button" value="記事を修正する" /></p>
+        }
+
+    <div class="cancelPost">
+        <div class="cancelPost_child">
+            <h3 class="rule_title">予想削除</h3>
+            <div class="ready_box">
+                <p>この投稿記事を削除してもよろしいでしょうか</p>
+                @using (Html.BeginForm("DeleteNewUserArticle", "UserArticle", FormMethod.Post, new { @id = "postCancelForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.ContributeId)
+                    @Html.HiddenFor(model => model.Status)
+                    @Html.HiddenFor(model => model.NewsClassId)
+                    @Html.HiddenFor(model => model.QuoteUniqueId1)
+                    @Html.HiddenFor(model => model.QuoteUniqueId2)
+                    @Html.HiddenFor(model => model.QuoteUniqueId3)
+                    @Html.HiddenFor(model => model.Title)
+                    @Html.HiddenFor(model => model.Nickname)
+                    @Html.HiddenFor(model => model.ContributeDate)
+                    @Html.HiddenFor(model => model.ImageLink)
+                    @Html.HiddenFor(model => model.Body)
+                    @Html.HiddenFor(model => model.DataURL)
+                    @Html.HiddenFor(model => model.ImageName)
+                    @Html.HiddenFor(model => model.OldImageLink)
+                    <p class="ready_link"><a href="javascript:void(0);" onclick="document.getElementById('postCancelForm').submit();">投稿記事を削除する</a></p>
+                }
+            </div>
+            <p class="sig-submit02"><a id="close_post_popup" href="javascript:void();">キャンセル</a></p>
+            <p class="close_post_popup">close</p>
+        </div>
+    </div>
+    <p class="sig-submit"><a id="postConfirmDlg" href="javascript:void();">記事を削除する</a></p>
+
+    </section>
+}

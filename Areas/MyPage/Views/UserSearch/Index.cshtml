@@ -1,0 +1,63 @@
+﻿@{
+    //Author : Nojima
+    //FileName : Index.cshtml (3-9)
+    //Created Date : 2015/04/12
+}
+@using Splg.Areas.MyPage.Models.ViewModel;
+@using Splg.Areas.MyPage.Models.InfoModel;
+@model UserSearchViewModel
+
+@{
+    ViewBag.Title = "ユーザー検索";
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.USERSEARCH_INDEX;
+    Layout = "~/Views/Shared/_MyPageLayout.cshtml";
+}
+<script src="~/Scripts/jquery.shorten.1.0.js"></script>
+<script src="~/Scripts/splgCommon.js"></script>
+<script src="~/Areas/MyPage/Scripts/Views/follow_unfolllow.js"></script>
+<script src="~/Areas/MyPage/Scripts/Views/3-9.js"></script>
+
+<div class="block_04">
+    <h2 class="mytitle">ユーザー検索</h2>
+
+    <div class="block_04_6_l3">
+        <span>友達を<br />見つける</span>
+        <p><input type="text" value="" id="iname" /><p class="board_link"><a id="submit">検索</a></p>
+    </div>
+    <h3>
+        <span class="fs14">検索結果 </span>
+        <span class="fs18" id="totalFoundCount">0</span>
+        <span class="fs14">名</span>
+    </h3>
+    @{
+        int totalCount = Model.TotalCount;
+        int viewingCount = 0;   //表示後の件数
+        if (Model.UserSearchMembers != null)
+        {
+            viewingCount = System.Math.Min(Model.UserSearchMembers.Count(), UserSearchViewModel.INITIAL_SIZE);
+        }
+    }
+    <div id="lines" data-usersearckeyword="" data-usersearchcount="0">
+    </div>
+
+    @{string displayGetMoreButton = (viewingCount < totalCount) ? "" : "display:none";}
+    <!-- <ul class="board_list"> -->
+    <ul class="" style="float: right;">
+        <li><a id="GetMoreUsersButton" data-usersearchcount="@viewingCount" style="@displayGetMoreButton">もっと見る<span class="icon"> </span></a></li>
+    </ul>
+
+</div>	
+
+<!--Right Content-->
+@section MyPagePage{
+    <div class="cat_stitle">
+        <h3>順位表</h3>
+        <p>@Html.ActionLink("一覧で見る", "Index", "NpbOrder", new { area = "Npb" }, null)</p>
+    </div>
+    <div id="npbTop3Ranking">
+        @Html.Action("ShowTopNRanking", "NpbRightContent", new { area = "Npb" })
+    </div>
+    <div class="side_block01">
+        <img class="resimg" src="~/Content/img/tmp/side_img01.jpg" alt="" />
+    </div>
+}

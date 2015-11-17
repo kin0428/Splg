@@ -1,0 +1,445 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : _NpbGameInfo.cshtml (Use for many pages : 8-1, 8-2, 8-5-1, 8-6)
+}
+
+@using Splg.Areas.Npb.Models;
+@using Splg.Areas.Npb.Models.ViewModel;
+@using Splg.Models.Game.ViewModel;
+@model IEnumerable<GameInfoViewModelForNBP>
+
+
+@if (Model != null && Model.Any())
+{
+    var type = ViewBag.Type;
+    
+    //For page 8-2
+    if (@ViewBag.Type == 2)
+    {
+        foreach (var groupDate in Model.OrderBy(x => x.GameDate).GroupBy(x => x.GameDate))
+        {
+            var firstRecord = groupDate.FirstOrDefault();            
+            <h3 class="board_title">
+            @{
+                DateTime gameDate = DateTime.ParseExact(firstRecord.GameDate.ToString(), "yyyyMMdd", null);                
+            }@Utils.GetMonthAndDayOfWeek(gameDate) の試合</h3>
+            @RenderGame(@type, groupDate.GroupBy(x => x.GameTypeName), null)
+        }
+
+    }
+    //For another page
+    else
+    {
+        var lastInGroup = Model.OrderBy(x => x.GameTypeName).LastOrDefault();
+        var lstGroup = Model.GroupBy(x => x.GameTypeName);
+        @RenderGame(@type, lstGroup, lastInGroup)
+    }
+}
+else
+{
+    <div class="inner tcenter fs15">
+        <div class="space20"></div>
+         <h3>試合はありません。</h3>
+    </div>
+}
+
+@helper RenderGame(int type, IEnumerable<IGrouping<string, GameInfoViewModelForNBP>> lstGroup, GameInfoViewModelForNBP lastInGroup)
+{
+    
+    foreach (var groupLeague in lstGroup)
+    {
+        var firstInGroup = groupLeague.FirstOrDefault();
+        
+        foreach (var item in groupLeague)
+        {
+            var strUser = (Session["CurrentUser"] == null ? string.Empty : Session["CurrentUser"].ToString());
+            var gameStatus = NpbCommon.GetStatusMatch(item.GameID, strUser);
+          
+            DateTime gameTime = DateTime.ParseExact(@item.Time, "HHmm", null);
+            var strGameTime = gameTime.ToString("HH:mm");
+
+            if (type == 4 && ViewBag.Link == null)
+            {
+                DateTime gameDate = DateTime.ParseExact(firstInGroup.GameDate.ToString(), "yyyyMMdd", null);
+                var strTop = string.Format("プロ野球リーグ 第{0}戦 {1} @ {2} {3} プレイボール",
+                                           firstInGroup.Round, 
+                                           Utils.GetMonthAndDayOfWeek(gameDate), 
+                                           firstInGroup.StadiumName, 
+                                           strGameTime);
+           
+                <p class="evt_bl01_1">@strTop</p>
+                <div class="space"> </div>
+            }
+
+            var className = string.Empty;
+            switch (type)
+            {
+                case 6:
+                    className = @item.GameID.Equals(lastInGroup.GameID) ? "inner" : "evt_inner";
+                    break;
+                case 3:
+                case 4:
+                    className = "evt_bl01_2";
+                    break;
+                default:
+                    className = "evt_inner";
+                    break;
+            }
+
+            <div class="@className @item.GameID">
+            
+                @if (@item == firstInGroup)
+                {
+                    if (type == 1 || type == 2)
+                    {
+                        if (groupLeague.Key == "セリーグ公式戦")
+                        {
+                            <h4 class="mytitle02">セ・リーグ公式戦</h4>
+                        }
+                        else if (groupLeague.Key == "パリーグ公式戦")
+                        {
+                            <h4 class="mytitle02">パ・リーグ公式戦</h4>
+                        }
+                        else
+                        {
+                            <h4 class="mytitle02">@groupLeague.Key</h4>
+                        }
+                    }
+                }
+                
+                <!--Game not start-->
+                @if (gameStatus == 2 || gameStatus == 3 || gameStatus == 1)
+                {
+                    var strTimeRemain = Utils.CalculateTimeRemainDisplayString(@item.GameDate, @item.Time);
+                    if (gameStatus == 1)
+                    {
+                        var strTmp = string.Format("{0} 受付", strTimeRemain);
+                        var date = Utils.ParseToJapanDate(false, @item.GameDate.ToString());
+                        <div class="block_note">
+                            <div>
+                                <p class="bon">受付前</p>
+                                <p class="boff"><span class="white">@strTmp</span></p>
+                            </div>
+                            <p>@item.StadiumName  <span>@date @strGameTime</span></p>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="block_date"><span>予想締切<span class="bold">@strTimeRemain</span></span>@item.StadiumName  @strGameTime</p>
+                    }
+                }
+                else if (gameStatus == 4 || gameStatus == 5)
+                {
+                    <div class="block_note">
+                        <div>
+                            <p class="bon">受付終了</p>
+                            <p class="boff"><span class="white">試合前</span></p>
+                        </div>
+                        <p>@item.StadiumName  <span>@strGameTime</span></p>
+                    </div>
+                }
+                else if (gameStatus == 6 || gameStatus == 7)
+                {
+                    <div class="block_note">
+                        <div>
+                            <p class="bon">受付終了</p>
+                            <p class="boff">試合中</p>
+                        </div>
+                        <p>@item.StadiumName  <span>@strGameTime</span></p>
+                    </div>
+                }
+                else if (gameStatus == 10)
+                {
+                    var date = Utils.ParseToJapanDate(false, @item.GameDate.ToString());
+                    <div class="block_note">
+                        <div>
+                            <p class="bon">受付終了</p>
+                            <p class="boff"><span class="white">試合中止</span></p>
+                        </div>
+                        <p>@item.StadiumName  <span>@date @strGameTime</span></p>
+                    </div>
+                }
+                else
+                {
+                    <div class="block_note">
+                        <div>
+                            <p class="bon">受付終了</p>
+                            <p class="boff"><span class="white">試合終了</span></p>
+                        </div>
+                        <p>@item.StadiumName  <span>@strGameTime</span></p>
+                    </div>
+                }
+
+                <!-- チーム情報（ホーム）-->
+                <div class="evt_bl01_2_1">                   
+                        <div>
+                            <a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.HomeTeamID }, null)"><img src=@Url.Content(@item.HomeTeamIcon) alt="" /></a>                            
+                            <p>過去の<br/>対戦成績<br><span class="fs24 bold">@item.HomeTeamWin</span><span class="bold">勝</span></p>
+                        </div>
+                        <p class="bold"><a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.HomeTeamID }, null)">@item.HomeTeamNameS <span>@item.HomeTeamRanking</span>位</a></p>                    
+                        @switch (gameStatus)
+                        {
+                            case 0:
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 4:
+                            case 5:
+                                if (item.PreForeRunnerNameSH != "")
+                                {
+                                    <p>予告先発　<span class="fs16">@item.PreForeRunnerNameSH</span><br>防御率　@item.PreForeRunnerEraH</p>
+                                }
+                                break;
+                            case 6:
+                            case 7:
+                                if (item.ForeRunnerNameSH != "")
+                                {
+                                    <p>先発　<span class="fs16">@item.ForeRunnerNameSH</span><br>防御率　@item.ForeRunnerEraH</p>
+                                }
+                                break;
+                            case 8:
+                            case 9:
+                                if (item.WinLoseNameSH != "")
+                                {
+                                    <p>@item.WinLoseTextH　<span class="fs16">@item.WinLoseNameSH</span><br>防御率　@item.WinLoseEraH</p>
+                                }
+                                break;
+                        }
+                </div>
+
+                <!-- BET関連と試合情報（何対何かとかね）-->
+                <div class="evt_bl01_2_2">
+                    @if (gameStatus == 1 || gameStatus == 10)
+                    {
+                        <div class="noboard">
+                            @if (gameStatus == 1)
+                            {
+                                <h5>まだ予想はできません</h5>
+                            }
+                            else
+                            {
+                                <h5>
+                                    試合は中止になりました <br />
+                                    予想ポイントは全て返却されます
+                                </h5>
+                            }
+                            <p><img src="~/Content/img/tmp/mail_note05.png" alt="noboard"></p>
+                        </div>
+                    }
+                    else
+                    {
+                        GameOddsInfo gOdds = NpbCommon.GetOddsInfoByGameID(@item.GameID);
+                        //Get odds for hometeam, visitorteam and draw.
+                        if (gameStatus >= 6 && gameStatus <= 9)
+                        {
+                            string odds1ClassName = null;
+                            string odds2ClassName = null;
+                            string odds3ClassName = null;
+                            ScoreGameInfo lstScoreHome = NpbCommon.GetTeamInfoGTSByGameIDTeamID(@item.GameID, @item.HomeTeamID);
+                            ScoreGameInfo lstScoreVisitor = NpbCommon.GetTeamInfoGTSByGameIDTeamID(@item.GameID, @item.VisitorTeamID);
+                            var inningTB = Utils.GetRoundName(lstScoreHome.TB.Value);
+                            var round = lstScoreHome.Inning + inningTB;
+                            
+                            if(gOdds != null)
+                            {
+                                if (gOdds.BetSelectedID == 1)
+                                {
+                                    odds1ClassName = "green";
+                                    odds2ClassName = "gray1";
+                                    odds3ClassName = "gray1";
+                                }
+                                else if(gOdds.BetSelectedID == 3)
+                                {
+                                    odds1ClassName = "gray1";
+                                    odds2ClassName = "green";
+                                    odds3ClassName = "gray1";
+                                }
+                                else if (gOdds.BetSelectedID == 2)
+                                {
+                                    odds1ClassName = "gray1";
+                                    odds2ClassName = "gray1";
+                                    odds3ClassName = "green";
+                                }
+                                else
+                                {
+                                    odds1ClassName = "gray1";
+                                    odds2ClassName = "gray1";
+                                    odds3ClassName = "gray1";
+                                }
+                            }
+                            
+                            <div>
+                                <p class="btitle fs10 bd @odds1ClassName">ホームの勝ち<span class="arrow barrow"> </span></p>
+                                <p class="bnum @odds1ClassName">x <span class="fs24">@gOdds.HomeTeamOdds</span></p>
+                            </div>
+                            <div>
+                                <p class="btitle fs10 @odds2ClassName">引き分け<span class="arrow barrow"> </span></p>
+                                <p class="bnum @odds2ClassName">x <span class="fs24">@gOdds.DrawOdds</span></p>
+                            </div>
+                            <div>
+                                <p class="btitle fs10 @odds3ClassName">ビジターの勝ち<span class="arrow barrow"> </span></p>
+                                <p class="bnum @odds3ClassName">x <span class="fs24">@gOdds.VisitorTeamOdds</span></p>
+                            </div>
+                        
+                            <p class="board_score">
+                                <span class="bscore">@lstScoreHome.R</span>                               
+                                @if (gameStatus == 8 || gameStatus == 9)
+                                {
+                                    <span class="pnote">試合終了</span>
+                                }
+                                else
+                                {
+                                    <span class="pnote">@round</span>
+                                }
+                                <span class="bscore">@lstScoreVisitor.R</span>
+                            </p>
+                        }
+                        else
+                        {
+                            string button1ClassName = null;
+                            string button2ClassName = null;
+                            string button3ClassName = null;
+                            string text1ClassName = null;
+                            string text2ClassName = null;
+                            string text3ClassName = null;
+                            string button1Caption = "予想する";
+                            string button2Caption = "予想する";
+                            string button3Caption = "予想する";
+                            
+                            if (gameStatus == 4 || gameStatus == 5)
+                            {
+                                button1ClassName = "disable";
+                                button2ClassName = "disable";
+                                button3ClassName = "disable";
+                                text1ClassName = "gray1";
+                                text2ClassName = "gray1";
+                                text3ClassName = "gray1";                               
+                            }
+
+                            switch (gOdds.BetSelectedID)
+                            {
+                                case 1:
+                                    button1ClassName = "change hasbet";
+                                    button2ClassName = "disable";
+                                    button3ClassName = "disable";
+                                    text1ClassName = "green";
+                                    text2ClassName = "gray1";
+                                    text3ClassName = "gray1";
+                                    button1Caption = "予想中";
+                                    break;
+                                case 3:
+                                    button1ClassName = "disable";
+                                    button2ClassName = "change hasbet";
+                                    button3ClassName = "disable";
+                                    text1ClassName = "gray1";
+                                    text2ClassName = "green";
+                                    text3ClassName = "gray1";                              
+                                    button2Caption = "予想中";
+                                    break;
+                                case 2:
+                                    button1ClassName = "disable";
+                                    button2ClassName = "disable";
+                                    button3ClassName = "change hasbet";
+                                    text1ClassName = "gray1";
+                                    text2ClassName = "gray1";
+                                    text3ClassName = "green";                                
+                                    button3Caption = "予想中";
+                                    break;
+                            }
+
+                            <div class="type1">
+                                <p class="btitle fs10 bd @text1ClassName">ホームの勝ち<span class="arrow barrow"> </span></p>
+                                <p class="bnum @text1ClassName">x <span class="fs24">@gOdds.HomeTeamOdds</span></p>
+                                <p class="bbtn @button1ClassName" data-team="@item.HomeTeamID" data-odd="@gOdds.HomeTeamOdds" data-id="@item.GameID.ToString()" data-gameDate="@item.GameDate" data-type="1" data-expecttarget="@StringProtector.Protect(@gOdds.ExpectTargetID.ToString())">
+                                    <span>@button1Caption</span>
+                                </p>
+                            </div>
+                            <div class="type3">
+                                <p class="btitle fs10 @text2ClassName">引き分け<span class="arrow barrow"> </span></p>
+                                <p class="bnum @text2ClassName">x <span class="fs24">@gOdds.DrawOdds</span></p>
+                                <p class="bbtn @button2ClassName" data-team="0" data-odd="@gOdds.DrawOdds" data-id="@item.GameID.ToString()" data-gamedate="@item.GameDate" data-type="3" data-expecttarget="@StringProtector.Protect(@gOdds.ExpectTargetID.ToString())">
+                                    <span>@button2Caption</span>
+                                </p>
+                            </div>
+                            <div class="type2">
+                                <p class="btitle fs10 @text3ClassName">ビジターの勝ち<span class="arrow barrow"> </span></p>
+                                <p class="bnum @text3ClassName">x <span class="fs24">@gOdds.VisitorTeamOdds</span></p>
+                                <p class="bbtn @button3ClassName" data-team="@item.VisitorTeamID" data-odd="@gOdds.VisitorTeamOdds" data-id="@item.GameID.ToString()" data-gamedate="@item.GameDate" data-type="2" data-expecttarget="@StringProtector.Protect(@gOdds.ExpectTargetID.ToString())">
+                                    <span>@button3Caption</span>
+                                </p>
+                            </div>
+                        }
+                    }
+
+                    @if (type == 1 || type == 2 || type == 5)
+                    {
+                        DateTime gameDate = DateTime.ParseExact(item.GameDate.ToString(), "yyyyMMdd", null);
+                        if (gameDate.Date < DateTime.Now.Date)
+                        {
+                            <p class="board_link"><a href="@Url.Action("Index", "NpbGameInformation", new { area = "Npb", gameID = @item.GameID }, null)">試合前データを見る</a></p>
+                        }
+                        else
+                        {
+                            <p class="board_link"><a href="@Url.Action("Index", "NpbGameInformation", new { area = "Npb", gameID = @item.GameID }, null)">対戦前データを見る</a></p>
+                        }
+                    }
+                    else if (type == 3)
+                    {
+                        <p class="board_link"><a href="@Url.Action("Index", "NpbGameInformation", new { area = "Npb", gameID = @item.GameID }, null)">試合速報を見る</a></p>
+                    }
+                    else if (type == 6 || @ViewBag.Link == 1)
+                    {
+                        if (gameStatus < 6)
+                        {
+                            <p class="board_link"><a href="@Url.Action("Index", "NpbGameInformation", new { area = "Npb", gameID = @item.GameID }, null)">対戦前データを見る</a></p>
+                        }
+                        else
+                        {
+                            <p class="board_link"><a href="@Url.Action("Index", "NpbGameInformation", new { area = "Npb", gameID = @item.GameID }, null)">試合速報を見る</a></p>
+                        }
+                    }
+                    
+                </div>
+
+                <!-- チーム情報（ビジター）-->
+                <div class="evt_bl01_2_1">                  
+                        <div>
+                            <p>過去の<br />対戦成績<br><span class="fs24 bold">@item.VisitorTeamWin</span><span class="bold">勝</span></p>
+                            <a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.VisitorTeamID }, null)"><img src=@Url.Content(@item.VisitorTeamIcon) alt="" /></a>
+                        </div>
+                        <p class="bold"><a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.VisitorTeamID }, null)">@item.VisitorTeamNameS<span> @item.VisitorTeamRanking</span>位</a></p>                   
+                     
+                       @switch (gameStatus)
+                        {
+                            case 0:
+                            case 1:
+                            case 2:
+                            case 3:
+                            case 4:
+                            case 5:
+                                if (item.PreForeRunnerNameSV != "")
+                                {
+                                    <p>予告先発　<span class="fs16">@item.PreForeRunnerNameSV</span><br>防御率　@item.PreForeRunnerEraV</p>
+                                }
+                                break;
+                            case 6:
+                            case 7:
+                                if (item.ForeRunnerNameSV != "")
+                                {
+                                    <p>先発　<span class="fs16">@item.ForeRunnerNameSV</span><br>防御率　@item.ForeRunnerEraV</p>
+                                }
+                                break;
+                            case 8:
+                            case 9:
+                                if (item.WinLoseNameSV != "")
+                                {
+                                    <p>@item.WinLoseTextV　<span class="fs16">@item.WinLoseNameSV</span><br>防御率　@item.WinLoseEraV</p>
+                                }
+                                break;
+                        }
+               </div>
+
+            </div>
+        }
+    }
+}

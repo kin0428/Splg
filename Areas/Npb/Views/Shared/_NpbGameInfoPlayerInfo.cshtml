@@ -1,0 +1,1096 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : Index.cshtml (8-6)
+    //Modified Date : 2015/03/26
+}
+
+@model Splg.Areas.Npb.Models.ViewModel.NpbGameInfoViewModel
+@using Splg;
+@using Splg.Areas.Npb.Models;
+
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<link href="~/Content/jquery-ui-dialog.css" rel="stylesheet" />
+<script src="~/Areas/Npb/Scripts/8-6.js"></script>
+
+<div class="evt_block01">
+    <div id="npbGameInfo">
+        @Html.Action("ShowGameInfo", "NpbTop", new { area = "Npb", type = 4, gameID = @TempData["gameID"] })
+    </div>
+    @if (@ViewBag.Status == 1)
+    {
+        <!-- 試合中-->
+        <div class="space"></div>
+        <p class="edit_btn02">
+            <a href="@Url.RouteUrl("5-4", new { newsClassID = Constants.NEWSCLASSID_GAME_RESULT, quoteUniqueId1 = Constants.NPB_SPORT_ID, quoteUniqueId2 = Model.GameInSeasonSchedule.GameID })"><span class="icon"> </span>この試合の記事を書きませんか？</a>
+        </p>
+        <div class="evt_bl01_2">
+            <div class="evt_bl01_2">
+                @if (Model.ListGameScoreOngoing != null && Model.ListGameScoreOngoing.Any())
+                {
+                    var firstInGroup = @Model.ListGameScoreOngoing.FirstOrDefault();
+                    var inning = firstInGroup.Inning;                    
+                    <div class="evt_bl01_2_3">
+                        <table cellpadding="0" cellspacing="0" summary="pannel">
+                            @if (inning <= 9)
+                            {
+                                var lastCol = 7.0;
+                                var firstCol = 20.5;
+                                var innCol = 0.0;                                
+                                innCol = Math.Round((100 - (firstCol + (lastCol * 3)))/9);
+                                <col width="@firstCol" />
+                                for (int i = 1; i < 10; i++)
+                                {
+                                    <col width="@innCol%" />
+                                }                               
+                                <col width="@lastCol%" />
+                                <col width="@lastCol%" />
+                                <col width="@lastCol%" />
+                                <thead>
+                                    <tr>
+                                        <th>INNINGS</th>
+                                        @for (int i = 1; i < 10; i++)
+                                        {
+                                            <th>@i</th>                                            
+                                        }
+                                        <th>RUNS</th>
+                                        <th>HITS</th>
+                                        <th>ERR</th>
+                                    </tr>
+                                </thead>
+                            }
+                            else
+                            {
+                                <thead>
+                                    <tr>
+                                        <th>INNINGS</th>
+                                        @for (int i = 1; i < inning + 1; i++)
+                                        {
+                                            <th>@i</th>
+                                        }
+                                        <th>RUNS</th>
+                                        <th>HITS</th>
+                                        <th>ERR</th>
+                                    </tr>
+                                </thead>
+                            }
+                            <tbody>
+                                @{
+                                    NpbEntities npb = new NpbEntities();
+                                }
+                                @foreach (var group in @Model.ListGameScoreOngoing.OrderByDescending(x => x.HV).GroupBy(x => x.HV))
+                                {
+                                    var teamName = string.Empty;
+                                    foreach (var item in group)
+                                    {
+                                        var lstScore = npb.ScoreGTE.Where(x => x.TeamInfoGTEId == item.TeamInfoGTEID);
+                                        if (lstScore != null && lstScore.Any())
+                                        {
+                                            <tr>
+                                                <th>@item.NameS</th>
+                                                <td>@lstScore.Where(x => x.Inn == 1).Select(x => x.Score).FirstOrDefault()</td>
+                                                <td>@lstScore.Where(x => x.Inn == 2).Select(x => x.Score).FirstOrDefault()</td>
+                                                <td>@lstScore.Where(x => x.Inn == 3).Select(x => x.Score).FirstOrDefault()</td>
+                                                <td>@lstScore.Where(x => x.Inn == 4).Select(x => x.Score).FirstOrDefault()</td>
+                                                <td>@lstScore.Where(x => x.Inn == 5).Select(x => x.Score).FirstOrDefault()</td>
+                                                <td>@lstScore.Where(x => x.Inn == 6).Select(x => x.Score).FirstOrDefault()</td>
+                                                <td>@lstScore.Where(x => x.Inn == 7).Select(x => x.Score).FirstOrDefault()</td>
+                                                <td>@lstScore.Where(x => x.Inn == 8).Select(x => x.Score).FirstOrDefault()</td>
+                                                <td>@lstScore.Where(x => x.Inn == 9).Select(x => x.Score).FirstOrDefault()</td>
+                                                @if (inning > 9)
+                                                {
+                                                    var range = inning - 9;
+                                                    for (int i = 1; i <= range; i++)
+                                                    {
+                                                        var tmp = i + 9;
+                                                        <td>@lstScore.Where(x => x.Inn == tmp).Select(x => x.Score).FirstOrDefault()</td>
+                                                    }
+                                                }                                                
+                                                <td class="on_score"><span class="organge">@item.Runs</span></td>
+                                                <td>@item.Hits</td>
+                                                <td>@item.Err</td>
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <th>@item.NameS</th>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td class="on_score"><span class="organge">@item.Runs</span></td>
+                                                <td>@item.Hits</td>
+                                                <td>@item.Err</td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                @if (Model.ListGameText != null && Model.ListGameText.Any())
+                {
+                    <div class="evt_bl01_2_4">
+                        <h3 class="mytitle01">戦評</h3>
+                        <div class="evt_tbl03">
+                            <table cellpadding="0" cellspacing="0" summary="責任投手・本塁打">
+                                <colgroup>
+                                    <col width="12%">
+                                    <col width="88%">
+                                </colgroup>
+                                <tbody>
+                                    @foreach (var groupRound in Model.ListGameText.OrderBy(m => m.RoundName.Length).GroupBy(m => m.RoundName))
+                                    {
+                                        foreach (var groupTeam in groupRound.GroupBy(m => m.TeamNameS))
+                                        {
+                                            <tr>
+                                                <th>
+                                                    @groupRound.Key<br />
+                                                    [@groupTeam.Key]
+                                                </th>
+                                                @{var lastItem = groupTeam.Last();
+                                                }
+                                                <td>
+                                                    @foreach (var item in groupTeam)
+                                                    {
+                                                        if (item.Equals(lastItem))
+                                                        {
+                                                            @item.TextOfTeam
+                                                        }
+                                                        else
+                                                        {
+                                                            @item.TextOfTeam<br />
+                                                        }
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+            </div>
+            @if (@Model.ListPlayerInfo != null && @Model.ListPlayerInfo.Any())
+            {
+                var icon = string.Empty;
+                var teamName = string.Empty;
+                var teamID = 0;
+                <div class="evt_bl01_3">
+                    <h3 class="mytitle01">戦評</h3>
+                    @foreach (var group in @Model.ListPlayerInfo.OrderBy(x => x.HV).GroupBy(x => x.HV))
+                    {
+                        if (group.Key == 1)
+                        {
+                            icon = @Model.GameInSeasonSchedule.HomeTeamIcon;
+                            teamID = @Model.GameInSeasonSchedule.HomeTeamID;
+                            teamName = @Model.GameInSeasonSchedule.HomeTeamNameS;
+                        }
+                        else
+                        {
+                            icon = @Model.GameInSeasonSchedule.VisitorTeamIcon;
+                            teamID = @Model.GameInSeasonSchedule.VisitorTeamID;
+                            teamName = @Model.GameInSeasonSchedule.VisitorTeamNameS;
+                        }
+                        var groupBatNo = group.Where(x => x.PlayerInfoGameOrder.BatNo >= 1 && x.PlayerInfoGameOrder.BatNo <= 9).OrderBy(x => x.PlayerInfoGameOrder.BatNo);
+                        var lstForeRunner = group.Where(x => x.PlayerInfoGameOrder.Position == 1);
+                    <div class="evt_bl01_3_1">
+                        <div class="evt_name">
+                            <h4>@Html.ActionLink(@teamName, "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @teamID }, null)</h4>
+                            <a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @teamID }, null)">
+                                <img src="@Url.Content(@icon)" alt="" />
+                            </a>
+                        </div>
+                        <div class="evt_board">
+                            <h5>スターティングメンバー</h5>
+                            <table cellpadding="0" cellspacing="0" summary="board">
+                                <col width="13%" />
+                                <col width="17%" />
+                                <col width="59%" />
+                                <col width="11%" />
+                                <thead>
+                                    <tr>
+                                        <th>投手</th>
+                                        <th>位置</th>
+                                        <th><span>選手名</span></th>
+                                        <th>投</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var itemForeRunner in lstForeRunner)
+                                        {
+                                            var armName = Utils.GetBattingTypeName(@itemForeRunner.PlayerInfoGameOrder.BattingType.Value);
+                                    <tr class="nobd">
+                                        <td>先発</td>
+                                        <td>(投)</td>
+                                        <td><a href="@Url.Action("Index", "NpbTeamInfoHittingDetail", new { area = "Npb", teamID = @teamID, playerID = @itemForeRunner.PlayerID }, null)">@itemForeRunner.PlayerInfoGameOrder.PlayerNameL</a></td>
+                                        <td>@armName.Substring(0, 1)</td>
+                                    </tr>
+                                        }
+                                </tbody>
+                            </table>
+                            <table cellpadding="0" cellspacing="0" summary="board">
+                                <col width="13%" />
+                                <col width="17%" />
+                                <col width="59%" />
+                                <col width="11%" />
+                                <thead>
+                                    <tr>
+                                        <th>打順</th>
+                                        <th>位置</th>
+                                        <th><span>選手名</span></th>
+                                        <th>打</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in groupBatNo)
+                                        {
+                                            var armName = Utils.GetBattingTypeName(@item.PlayerInfoGameOrder.BattingType.Value);
+                                    <tr>
+                                        <td>@item.PlayerInfoGameOrder.BatNo</td>
+                                        <td>@item.PositionName</td>
+                                        <td><a href="@Url.Action("Index", "NpbTeamInfoHittingDetail", new { area = "Npb", teamID = @teamID, playerID = @item.PlayerID }, null)">@item.PlayerInfoGameOrder.PlayerNameL</a></td>
+                                        <td>@armName.Substring(0, 1)</td>
+                                    </tr>
+                                        }
+                                </tbody>
+                            </table>
+                            <div class="blue" id="benchMembers_@group.Key">ベンチ入りメンバーを見る</div>
+                            <div class="benchGroup_@group.Key">
+                                @{
+                                        var lstGroupBench = group.Where(x => x.PlayerInfoGameOrder.BatNo == 11);
+                                        var nameGroup = string.Empty;
+                                        var lstVTPitcher = @lstGroupBench.Where(x => x.PlayerInfoGameOrder.Position == 1);
+                                        var lstVTCatcher = @lstGroupBench.Where(x => x.PlayerInfoGameOrder.Position == 2);
+                                        var lstVTInfielder = @lstGroupBench.Where(x => x.PlayerInfoGameOrder.Position == 3 || x.PlayerInfoGameOrder.Position == 4 || x.PlayerInfoGameOrder.Position == 5 || x.PlayerInfoGameOrder.Position == 6);
+                                        var lstVTOutfielder = @lstGroupBench.Where(x => x.PlayerInfoGameOrder.Position == 7 || x.PlayerInfoGameOrder.Position == 8 || x.PlayerInfoGameOrder.Position == 9);
+                                }
+                                @if (lstVTPitcher.Any())
+                                    {
+                                <h6>投手</h6>
+                                <table cellpadding="0" cellspacing="0" summary="投手">
+                                    <col width="80%" />
+                                    <col width="20%" />
+                                    <tr>
+                                        <th><span>選手名</span></th>
+                                        <th>投 / 打</th>
+                                    </tr>
+                                    @foreach (var item in lstVTPitcher)
+                                            {
+                                                var pitchingArm = Utils.GetPitchingArmName(item.PlayerInfoGameOrder.PitchingArm.Value).Substring(0, 1);
+                                                var battingType = Utils.GetBattingTypeName(item.PlayerInfoGameOrder.BattingType.Value).Substring(0, 1);
+                                        <tr>
+                                            <td><a href="@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @teamID, playerID = @item.PlayerInfoGameOrder.PlayerID }, null)">@item.PlayerInfoGameOrder.PlayerNameL</a></td>
+                                            <td>@pitchingArm / @battingType</td>
+                                        </tr>
+                                            }
+                                </table>
+                                    }
+                                @if (lstVTCatcher.Any())
+                                    {
+                                <h6>捕手</h6>
+                                <table cellpadding="0" cellspacing="0" summary="投手">
+                                    <col width="80%" />
+                                    <col width="20%" />
+                                    <tr>
+                                        <th><span>選手名</span></th>
+                                        <th>投 / 打</th>
+                                    </tr>
+                                    @foreach (var item in lstVTCatcher)
+                                            {
+                                                var pitchingArm = Utils.GetPitchingArmName(item.PlayerInfoGameOrder.PitchingArm.Value).Substring(0, 1);
+                                                var battingType = Utils.GetBattingTypeName(item.PlayerInfoGameOrder.BattingType.Value).Substring(0, 1);
+                                        <tr>
+                                            <td><a href="@Url.Action("Index", "NpbTeamInfoHittingDetail", new { area = "Npb", teamID = @teamID, playerID = @item.PlayerInfoGameOrder.PlayerID }, null)">@item.PlayerInfoGameOrder.PlayerNameL</a></td>
+                                            <td>@pitchingArm / @battingType</td>
+                                        </tr>
+                                            }
+                                </table>
+                                    }
+                                @if (lstVTInfielder.Any())
+                                    {
+                                <h6>内野手</h6>
+                                <table cellpadding="0" cellspacing="0" summary="投手">
+                                    <col width="80%" />
+                                    <col width="20%" />
+                                    <tr>
+                                        <th><span>選手名</span></th>
+                                        <th>投 / 打</th>
+                                    </tr>
+                                    @foreach (var item in lstVTInfielder)
+                                            {
+                                                var pitchingArm = Utils.GetPitchingArmName(item.PlayerInfoGameOrder.PitchingArm.Value).Substring(0, 1);
+                                                var battingType = Utils.GetBattingTypeName(item.PlayerInfoGameOrder.BattingType.Value).Substring(0, 1);
+                                        <tr>
+                                            <td><a href="@Url.Action("Index", "NpbTeamInfoHittingDetail", new { area = "Npb", teamID = @teamID, playerID = @item.PlayerInfoGameOrder.PlayerID }, null)">@item.PlayerInfoGameOrder.PlayerNameL</a></td>
+                                            <td>@pitchingArm / @battingType</td>
+                                        </tr>
+                                            }
+                                </table>
+                                    }
+                                @if (lstVTOutfielder.Any())
+                                    {
+                                <h6>外野手</h6>
+                                <table cellpadding="0" cellspacing="0" summary="投手">
+                                    <col width="80%" />
+                                    <col width="20%" />
+                                    <tr>
+                                        <th><span>選手名</span></th>
+                                        <th>投 / 打</th>
+                                    </tr>
+                                    @foreach (var item in lstVTOutfielder)
+                                            {
+                                                var pitchingArm = Utils.GetPitchingArmName(item.PlayerInfoGameOrder.PitchingArm.Value).Substring(0, 1);
+                                                var battingType = Utils.GetBattingTypeName(item.PlayerInfoGameOrder.BattingType.Value).Substring(0, 1);
+                                        <tr>
+                                            <td><a href="@Url.Action("Index", "NpbTeamInfoHittingDetail", new { area = "Npb", teamID = @teamID, playerID = @item.PlayerInfoGameOrder.PlayerID }, null)">@item.PlayerInfoGameOrder.PlayerNameL</a></td>
+                                            <td>@pitchingArm / @battingType</td>
+                                        </tr>
+                                            }
+                                </table>
+                                    }
+                                <p id="closeBenchGroup_@group.Key" class="tright blue">ベンチ入りメンバーを閉じる</p>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            }
+        </div>
+    }
+    else if (@ViewBag.Status == 2)
+    {
+        //-- 試合後--
+        <p class="edit_btn02">
+            <a href="@Url.RouteUrl("5-4", new { newsClassID = Constants.NEWSCLASSID_GAME_RESULT, quoteUniqueId1 = Constants.NPB_SPORT_ID, quoteUniqueId2 = Model.GameInSeasonSchedule.GameID })"><span class=" icon"> </span>この試合の記事を書きませんか？</a>
+        </p>
+        if (Model.ListGameScoreEnd != null && Model.ListGameScoreEnd.Any())
+        {
+            var firstInGroup = Model.ListGameScoreEnd.FirstOrDefault();
+            var inning = firstInGroup.Inning;           
+            <div class="evt_bl01_2_3">
+                <table cellpadding="0" cellspacing="0" summary="pannel">
+                    @if (inning <= 9)
+                    {
+                        var lastCol = 7.0;
+                        var firstCol = 20.5;
+                        var innCol = 0.0;
+                        innCol = Math.Round((100 - (firstCol + (lastCol * 3))) / 9);
+                        <col width="@firstCol" />
+                        for (int i = 1; i < 10; i++)
+                        {
+                            <col width="@innCol%" />
+                        }
+                        <col width="@lastCol%" />
+                        <col width="@lastCol%" />
+                        <col width="@lastCol%" />
+                        <thead>
+                            <tr>
+                                <th>INNINGS</th>
+                                @for (int i = 1; i < 10; i++)
+                                {
+                                    <th>@i</th>
+                                }
+                                <th>RUNS</th>
+                                <th>HITS</th>
+                                <th>ERR</th>
+                            </tr>
+                        </thead>
+                    }
+                    else
+                    {
+                        <thead>
+                            <tr>
+                                <th>INNINGS</th>
+                                @for (int i = 1; i < inning + 1; i++)
+                                {
+                                    <th>@i</th>
+                                }
+                                <th>RUNS</th>
+                                <th>HITS</th>
+                                <th>ERR</th>
+                            </tr>
+                        </thead>
+                    }
+                    <tbody>
+                        @{
+                            NpbEntities npb = new NpbEntities();
+                        }
+                        @foreach (var group in @Model.ListGameScoreEnd.OrderByDescending(x => x.HV).GroupBy(x => x.HV))
+                        {
+                            foreach (var item in group)
+                            {
+                                var lstScoreEnd = npb.InningScoreInfoCO.Where(x => x.TeamInfoCOId == item.TeamInfoCOID);
+                                if (lstScoreEnd != null && lstScoreEnd.Any())
+                                {
+                                    <tr>
+                                        <th>@item.NameS</th>
+                                        <td>@lstScoreEnd.Where(x => x.Inning == 1).Select(x => x.Score).FirstOrDefault()</td>
+                                        <td>@lstScoreEnd.Where(x => x.Inning == 2).Select(x => x.Score).FirstOrDefault()</td>
+                                        <td>@lstScoreEnd.Where(x => x.Inning == 3).Select(x => x.Score).FirstOrDefault()</td>
+                                        <td>@lstScoreEnd.Where(x => x.Inning == 4).Select(x => x.Score).FirstOrDefault()</td>
+                                        <td>@lstScoreEnd.Where(x => x.Inning == 5).Select(x => x.Score).FirstOrDefault()</td>
+                                        <td>@lstScoreEnd.Where(x => x.Inning == 6).Select(x => x.Score).FirstOrDefault()</td>
+                                        <td>@lstScoreEnd.Where(x => x.Inning == 7).Select(x => x.Score).FirstOrDefault()</td>
+                                        <td>@lstScoreEnd.Where(x => x.Inning == 8).Select(x => x.Score).FirstOrDefault()</td>
+                                        <td>@lstScoreEnd.Where(x => x.Inning == 9).Select(x => x.Score).FirstOrDefault()</td>
+                                        @if (inning > 9)
+                                        {
+                                            var range = inning - 9;
+                                            for (int i = 1; i <= range; i++)
+                                            {
+                                                var tmp = i + 9;
+                                                <td>@lstScoreEnd.Where(x => x.Inning == tmp).Select(x => x.Score).FirstOrDefault()</td>
+                                            }
+                                        }
+                                        
+                                        <td class="on_score"><span class="organge">@item.Runs</span></td>
+                                        <td>@item.Hits</td>
+                                        <td>@item.Err</td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <th>@item.NameS</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="on_score"><span class="organge">@item.Runs</span></td>
+                                        <td>@item.Hits</td>
+                                        <td>@item.Err</td>
+                                    </tr>
+                                }
+
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        if (@Model.ListPlayerInfo != null && @Model.ListPlayerInfo.Any())
+        {
+            var icon = string.Empty;
+            var teamName = string.Empty;
+            var teamID = 0;
+            <div class="evt_bl01_2">
+                <div class="evt_bl01_2_4">
+                    @if (Model.GameRoundComment != null)
+                    {
+                        var date = Utils.GetMonthAndDayOfWeek(DateTime.ParseExact(TempData["gameID"].ToString().Substring(0, 8), "yyyyMMdd", null));
+                        <h3 class="mytitle01">戦評</h3>
+                        <dl>
+                            <dt>@date @Model.GameRoundComment.HomeTeamNameS vs. @Model.GameRoundComment.VisitorTeamNameS @Model.GameRoundComment.Round 回戦</dt>
+                            <dd>@Model.GameRoundComment.GameComment</dd>
+                        </dl>
+                    }
+                </div>
+                <div class="evt_bl01_2_4">
+                    @if (Model.ListPitcher != null && Model.ListPitcher.Any())
+                    {
+                        <h3 class="mytitle01">責任投手・本塁打</h3>
+                        <div class="evt_tbl03">
+                            <table cellpadding="0" cellspacing="0" summary="責任投手・本塁打">
+                                <col width="12%" />
+                                <col width="88%" />
+                                @{
+                        var winPitcher = Model.ListPitcher.Where(m => m.Type == 1).FirstOrDefault();
+                        var losePitcher = Model.ListPitcher.Where(m => m.Type == 2).FirstOrDefault();
+                        var savePitcher = Model.ListPitcher.Where(m => m.Type == 3).FirstOrDefault();
+                                }
+                                @if (winPitcher != null)
+                                {
+                                    var strStatistic = @winPitcher.Win + Constants.STRING_WIN + @winPitcher.Lose + Constants.STRING_LOSE + @winPitcher.Save + Constants.STRING_SAVE;
+                                    <tr>
+                                        <th>勝利投手</th>
+                                        @if (winPitcher.TeamID != -1)
+                                        {
+                                            <td>［@winPitcher.TeamNameS］@Html.ActionLink(@winPitcher.PlayerNameS, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @winPitcher.TeamID, playerID = @winPitcher.PlayerID }, null) @strStatistic</td>
+                                        }
+                                        else
+                                        {
+                                            <td>［@winPitcher.TeamNameS］@winPitcher.PlayerNameS @strStatistic</td>
+                                        }
+
+                                    </tr>
+                                }
+                                @if (losePitcher != null)
+                                {
+                                    var strStatistic = @losePitcher.Win + Constants.STRING_WIN + @losePitcher.Lose + Constants.STRING_LOSE + @losePitcher.Save + Constants.STRING_SAVE;
+                                    <tr>
+                                        <th>敗戦投手</th>
+                                        @if (losePitcher.TeamID != -1)
+                                        {
+                                            <td>［@losePitcher.TeamNameS］@Html.ActionLink(@losePitcher.PlayerNameS, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @losePitcher.TeamID, playerID = @losePitcher.PlayerID }, null) @strStatistic</td>
+                                        }
+                                        else
+                                        {
+                                            <td>［@losePitcher.TeamNameS］@losePitcher.PlayerNameS @strStatistic</td>
+                                        }
+
+                                    </tr>
+                                }
+                                @if (savePitcher != null)
+                                {
+                                    var strStatistic = @savePitcher.Win + Constants.STRING_WIN + @savePitcher.Lose + Constants.STRING_LOSE + @savePitcher.Save + Constants.STRING_SAVE;
+                                    <tr>
+                                        <th>セーブ</th>
+                                        @if (savePitcher.TeamID != -1)
+                                        {
+                                            <td>［@savePitcher.TeamNameS］@Html.ActionLink(@savePitcher.PlayerNameS, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @savePitcher.TeamID, playerID = @savePitcher.PlayerID }, null) @strStatistic</td>
+                                        }
+                                        else
+                                        {
+                                            <td>［@savePitcher.TeamNameS］@savePitcher.PlayerNameS @strStatistic</td>
+                                        }
+
+                                    </tr>
+                                }
+                                @if (Model.ListHomerun != null && Model.ListHomerun.Any())
+                                {
+                                    <tr>
+                                        <th>本塁打</th>
+                                        <td>
+                                            @foreach (var group in Model.ListHomerun.GroupBy(x => x.TeamNameS))
+                                            {
+                                                var lastRecord = group.LastOrDefault();
+                                                <span>
+                                                    ［@group.Key］
+                                                    @foreach (var item in group)
+                                                    {
+                                                        var tmp = string.Empty;
+                                                        if (item.Equals(lastRecord))
+                                                        {
+                                                            tmp = " " + @item.TotalC + Constants.TOTALC;
+                                                        }
+                                                        else
+                                                        {
+                                                            tmp = " " + @item.TotalC + Constants.TOTALC + ", ";
+                                                        }
+                                                        @Html.ActionLink(@item.PlayerNameS, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamID, playerID = @item.PlayerID }, null) @tmp
+                                                    }
+                                                </span>
+                                                <br />
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    }
+                </div>
+                <div class="evt_bl01_2_4">
+                    @if (Model.ListReliefInfoes != null && Model.ListReliefInfoes.Any())
+                    {
+                        <h3 class="mytitle01">バッテリー</h3>
+                        <div class="evt_tbl03">
+                            <table cellpadding="0" cellspacing="0" summary="バッテリー">
+                                <col width="26%" />
+                                <col width="74%" />
+                                @foreach (var group in Model.ListReliefInfoes.OrderBy(x => x.HV).GroupBy(x => x.TeamNameS))
+                                {
+                                    var groupName = @group.Key + "バッテリー";
+                                    <tr>
+                                        <th>@groupName</th>
+                                        <td>
+                                            @{
+                                    var lstPitcher = group.Where(x => x.Type == 1);
+                                    var lstCatcher = group.Where(x => x.Type == 2);
+                                    var strBreak = ", ";
+                                    var strJoin = "-";
+                                            }
+                                            @if (lstPitcher.Any())
+                                            {
+                                                var lastRecordPitcher = lstPitcher.LastOrDefault();
+                                                foreach (var item in lstPitcher)
+                                                {
+                                                    if (item.Equals(lastRecordPitcher))
+                                                    {
+                                                        @Html.ActionLink(@item.NameS, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamID, playerID = @item.PlayerID }, null) @strJoin
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.ActionLink(@item.NameS, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamID, playerID = @item.PlayerID }, null) @strBreak
+                                                    }
+                                                }
+                                            }
+                                            @if (lstCatcher.Any())
+                                            {
+                                                var lastRecordCatcher = lstCatcher.LastOrDefault();
+                                                foreach (var item in lstCatcher)
+                                                {
+                                                    if (item.Equals(lastRecordCatcher))
+                                                    {
+                                                        @Html.ActionLink(@item.NameS, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamID, playerID = @item.PlayerID }, null)
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.ActionLink(@item.NameS, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamID, playerID = @item.PlayerID }, null) @strBreak
+                                                    }
+                                                }
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    }
+                </div>
+                <div class="evt_bl01_2_4">
+                    @if (Model.ListGameTextScore != null && Model.ListGameTextScore.Any())
+                    {
+                        <h3 class="mytitle01">得点</h3>
+                        <div class="evt_tbl03">
+                            <table cellpadding="0" cellspacing="0" summary="得点">
+                                <col width="12%" />
+                                <col width="88%" />
+                            @foreach (var groupRound in Model.ListGameTextScore.OrderBy(m => m.ID).GroupBy(m => m.RoundName))
+                            {
+                                var lastGroup = groupRound.LastOrDefault();
+                            <tr>
+                                <th>@groupRound.Key</th>
+                                <td>
+                                    @foreach (var item in groupRound)
+                                        {
+                                            if (item.Equals(lastGroup))
+                                            {
+                                        <span>@item.TextOfTeam</span>
+                                            }
+                                            else
+                                            {
+                                        <span>@item.TextOfTeam<br /></span>
+                                            }
+                                        }
+                                </td>
+                            </tr>
+                            }
+                            </table>
+                        </div>
+                    }
+                    <ul class="board_list" id="npbPopup">
+                        <li class="blue">この試合をもっと見る<span class="icon"> </span></li>
+                    </ul>
+                </div>
+                <div id="npbGameText">
+                    @if (Model.ListGameText != null && Model.ListGameText.Any())
+                    {
+                        <div class="evt_tbl03">
+                            <h3>テキスト速報</h3>
+                            <table cellpadding="0" cellspacing="0" summary="責任投手・本塁打">
+                                <colgroup>
+                                    <col width="12%">
+                                    <col width="88%">
+                                </colgroup>
+                                <tbody>
+                                    @foreach (var groupRound in Model.ListGameText.OrderBy(m => m.RoundName.Length).GroupBy(m => m.RoundName))
+                                    {
+                                        foreach (var groupTeam in groupRound.GroupBy(m => m.TeamNameS))
+                                        {
+                                            <tr>
+                                                <th>
+                                                    @groupRound.Key<br />
+                                                    [@groupTeam.Key]
+                                                </th>
+                                                @{var lastItem = groupTeam.Last();
+                                                }
+                                                <td>
+                                                    @foreach (var item in groupTeam)
+                                                    {
+                                                        if (item.Equals(lastItem))
+                                                        {
+                                                            @item.TextOfTeam
+                                                        }
+                                                        else
+                                                        {
+                                                            @item.TextOfTeam<br />
+                                                        }
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+                <div class="evt_bl01_2_4">
+                    @if (Model.GameRoundComment != null)
+                    {
+                        var strAtendance = @Model.GameRoundComment.Atendance + "人";
+                        <h3 class="mytitle01">試合データ</h3>
+                        <div class="evt_tbl03">
+                            <table cellpadding="0" cellspacing="0" summary="試合データ">
+                                <col width="15%" />
+                                <col width="85%" />
+                                <tr>
+                                    <th>観衆数</th>
+                                    <td>@strAtendance<span class="space02 bold mleft">試合時間</span><span class="mleft">@Utils.GetTimeSpan(@Model.GameRoundComment.StartTime, @Model.GameRoundComment.EndTime)</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="evt_bl01_3">
+                <h3 class="mytitle01">スターティングメンバー</h3>
+                @foreach (var group in @Model.ListPlayerInfo.OrderByDescending(x => x.HV).GroupBy(x => x.HV))
+                {
+                    if (group.Key == 1)
+                    {
+                        icon = @Model.GameInSeasonSchedule.HomeTeamIcon;
+                        teamID = @Model.GameInSeasonSchedule.HomeTeamID;
+                        teamName = @Model.GameInSeasonSchedule.HomeTeamNameS;
+                    }
+                    else
+                    {
+                        icon = @Model.GameInSeasonSchedule.VisitorTeamIcon;
+                        teamID = @Model.GameInSeasonSchedule.VisitorTeamID;
+                        teamName = @Model.GameInSeasonSchedule.VisitorTeamNameS;
+                    }
+                    var groupBatNo = group.Where(x => x.PlayerInfoStarting.StartBatNo >= 1 && x.PlayerInfoStarting.StartBatNo <= 9).OrderBy(x => x.PlayerInfoStarting.StartBatNo);
+                    var lstForeRunner = group.Where(x => x.PlayerInfoStarting.StartPosition == 1);
+                    <div class="evt_bl01_3_1">
+                        <div class="evt_name">
+                            <h4>@Html.ActionLink(@teamName, "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @teamID }, null)</h4>
+                            <a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @teamID }, null)">
+                                <img src="@Url.Content(@icon)" alt="" />
+                            </a>
+                        </div>
+                        <div class="evt_board">
+                            <h5>スターティングメンバー</h5>
+                            <table cellpadding="0" cellspacing="0" summary="board">
+                                <col width="13%" />
+                                <col width="17%" />
+                                <col width="59%" />
+                                <col width="11%" />
+                                <thead>
+                                    <tr>
+                                        <th>投手</th>
+                                        <th>位置</th>
+                                        <th><span>選手名</span></th>
+                                        <th>投</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var itemForeRunner in lstForeRunner)
+                                    {
+                                        var armName = Utils.GetBattingTypeName(@itemForeRunner.PlayerInfoStarting.BattingType.Value);
+                                        <tr class="nobd">
+                                            <td>先発</td>
+                                            <td>(投)</td>
+                                            <td><a href="@Url.Action("Index", "NpbTeamInfoHittingDetail", new { area = "Npb", teamID = @teamID, playerID = @itemForeRunner.PlayerID }, null)">@itemForeRunner.PlayerInfoStarting.PlayerNameL</a></td>
+                                            <td>@armName.Substring(0, 1)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <table cellpadding="0" cellspacing="0" summary="board">
+                                <col width="13%" />
+                                <col width="17%" />
+                                <col width="59%" />
+                                <col width="11%" />
+                                <thead>
+                                    <tr>
+                                        <th>打順</th>
+                                        <th>位置</th>
+                                        <th><span>選手名</span></th>
+                                        <th>打</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in groupBatNo)
+                                    {
+                                        var armName = Utils.GetBattingTypeName(@item.PlayerInfoStarting.BattingType.Value);
+                                        <tr>
+                                            <td>@item.PlayerInfoStarting.StartBatNo</td>
+                                            <td>@item.PositionName</td>
+                                            <td><a href="@Url.Action("Index", "NpbTeamInfoHittingDetail", new { area = "Npb", teamID = @teamID, playerID = @item.PlayerID }, null)">@item.PlayerInfoStarting.PlayerNameL</a></td>
+                                            <td>@armName.Substring(0, 1)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="blue" id="benchMembers_@group.Key">ベンチ入りメンバーを見る</div>
+                            <div class="benchGroup_@group.Key">
+                                @{
+                                    var lstGroupBench = group.Where(x => x.PlayerInfoStarting.StartBatNo == 11);
+                                    var nameGroup = string.Empty;
+                                    var lstVTPitcher = @lstGroupBench.Where(x => x.PlayerInfoStarting.PositionType == 1);
+                                    var lstVTCatcher = @lstGroupBench.Where(x => x.PlayerInfoStarting.PositionType == 2);
+                                    var lstVTInfielder = @lstGroupBench.Where(x => x.PlayerInfoStarting.PositionType == 3 || x.PlayerInfoStarting.PositionType == 4 || x.PlayerInfoStarting.PositionType == 5 || x.PlayerInfoStarting.PositionType == 6);
+                                    var lstVTOutfielder = @lstGroupBench.Where(x => x.PlayerInfoStarting.PositionType == 7 || x.PlayerInfoStarting.PositionType == 8 || x.PlayerInfoStarting.PositionType == 9);
+                                }
+                                @if (lstVTPitcher.Any())
+                                {
+                                    <h6>投手</h6>
+                                    <table cellpadding="0" cellspacing="0" summary="投手">
+                                        <col width="80%" />
+                                        <col width="20%" />
+                                        <tr>
+                                            <th><span>選手名</span></th>
+                                            <th>投 / 打</th>
+                                        </tr>
+                                        @foreach (var item in lstVTPitcher)
+                                        {
+                                            var pitchingArm = Utils.GetPitchingArmName(item.PlayerInfoStarting.PitchingArm.Value).Substring(0, 1);
+                                            var battingType = Utils.GetBattingTypeName(item.PlayerInfoStarting.BattingType.Value).Substring(0, 1);
+                                            <tr>
+                                                <td><a href="@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @teamID, playerID = @item.PlayerInfoStarting.PlayerID }, null)">@item.PlayerInfoStarting.PlayerNameL</a></td>
+                                                <td>@pitchingArm / @battingType</td>
+                                            </tr>
+                                        }
+                                    </table>
+                                }
+                                @if (lstVTCatcher.Any())
+                                {
+                                    <h6>捕手</h6>
+                                    <table cellpadding="0" cellspacing="0" summary="投手">
+                                        <col width="80%" />
+                                        <col width="20%" />
+                                        <tr>
+                                            <th><span>選手名</span></th>
+                                            <th>投 / 打</th>
+                                        </tr>
+                                        @foreach (var item in lstVTCatcher)
+                                        {
+                                            var pitchingArm = Utils.GetPitchingArmName(item.PlayerInfoStarting.PitchingArm.Value).Substring(0, 1);
+                                            var battingType = Utils.GetBattingTypeName(item.PlayerInfoStarting.BattingType.Value).Substring(0, 1);
+                                            <tr>
+                                                <td><a href="@Url.Action("Index", "NpbTeamInfoHittingDetail", new { area = "Npb", teamID = @teamID, playerID = @item.PlayerInfoStarting.PlayerID }, null)">@item.PlayerInfoStarting.PlayerNameL</a></td>
+                                                <td>@pitchingArm / @battingType</td>
+                                            </tr>
+                                        }
+                                    </table>
+                                }
+                                @if (lstVTInfielder.Any())
+                                {
+                                    <h6>内野手</h6>
+                                    <table cellpadding="0" cellspacing="0" summary="投手">
+                                        <col width="80%" />
+                                        <col width="20%" />
+                                        <tr>
+                                            <th><span>選手名</span></th>
+                                            <th>投 / 打</th>
+                                        </tr>
+                                        @foreach (var item in lstVTInfielder)
+                                        {
+                                            var pitchingArm = Utils.GetPitchingArmName(item.PlayerInfoStarting.PitchingArm.Value).Substring(0, 1);
+                                            var battingType = Utils.GetBattingTypeName(item.PlayerInfoStarting.BattingType.Value).Substring(0, 1);
+                                            <tr>
+                                                <td><a href="@Url.Action("Index", "NpbTeamInfoHittingDetail", new { area = "Npb", teamID = @teamID, playerID = @item.PlayerInfoStarting.PlayerID }, null)">@item.PlayerInfoStarting.PlayerNameL</a></td>
+                                                <td>@pitchingArm / @battingType</td>
+                                            </tr>
+                                        }
+                                    </table>
+                                }
+                                @if (lstVTOutfielder.Any())
+                                {
+                                    <h6>外野手</h6>
+                                    <table cellpadding="0" cellspacing="0" summary="投手">
+                                        <col width="80%" />
+                                        <col width="20%" />
+                                        <tr>
+                                            <th><span>選手名</span></th>
+                                            <th>投 / 打</th>
+                                        </tr>
+                                        @foreach (var item in lstVTOutfielder)
+                                        {
+                                            var pitchingArm = Utils.GetPitchingArmName(item.PlayerInfoStarting.PitchingArm.Value).Substring(0, 1);
+                                            var battingType = Utils.GetBattingTypeName(item.PlayerInfoStarting.BattingType.Value).Substring(0, 1);
+                                            <tr>
+                                                <td><a href="@Url.Action("Index", "NpbTeamInfoHittingDetail", new { area = "Npb", teamID = @teamID, playerID = @item.PlayerInfoStarting.PlayerID }, null)">@item.PlayerInfoStarting.PlayerNameL</a></td>
+                                                <td>@pitchingArm / @battingType</td>
+                                            </tr>
+                                        }
+                                    </table>
+                                }
+                                <p id="closeBenchGroup_@group.Key" class="tright blue">ベンチ入りメンバーを閉じる</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    }
+    else if(ViewBag.Status == 0)
+    {
+        //--試合前--
+        <div class="space"></div>
+        <div class="evt_bl01_2">
+            <p class="edit_btn02">
+                <a href="@Url.RouteUrl("5-4", new { newsClassID = Constants.NEWSCLASSID_GAME_RESULT, quoteUniqueId1 = Constants.NPB_SPORT_ID, quoteUniqueId2 = Model.GameInSeasonSchedule.GameID })"><span class="icon"> </span>この試合の記事を書きませんか？</a>
+            </p>
+        </div>
+    }
+</div>
+@if (@ViewBag.Status == 0)
+{
+    <!--試合前-->
+    <!-- 予告先発情報 -->
+    if (@Model.ListPreStartingPitcher.Any())
+    {
+        <div class="evt_block03">
+            <h3 class="mem_title01">予告先発情報</h3>
+            <div class="clear">
+                @{
+        var className = string.Empty;
+        var icon = string.Empty;
+        var teamName = string.Empty;
+        foreach (var group in @Model.ListPreStartingPitcher.GroupBy(m => m.HV))
+        {
+            if (group.Key == 1)
+            {
+                className = "evt_item left";
+                icon = @Model.GameInSeasonSchedule.HomeTeamIcon;
+                teamName = @Model.GameInSeasonSchedule.HomeTeamNameS;
+            }
+            else
+            {
+                className = "evt_item right";
+                icon = @Model.GameInSeasonSchedule.VisitorTeamIcon;
+                teamName = @Model.GameInSeasonSchedule.VisitorTeamNameS;
+            }
+                <div class="@className">
+                    @foreach (var item in group)
+                {
+                <div>
+                    <a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.ID }, null)">
+                        <img src="@Url.Content(@icon)" alt="" />
+                    </a>
+                    @{
+                    var armName = string.Empty;
+                    if (@item.PitcherArm == 1)
+                    {
+                        armName = "(" + Constants.PITCHERARM_1 + ")";
+                    }
+                    else if (@item.PitcherArm == 2)
+                    {
+                        armName = "(" + Constants.PITCHERARM_2 + ")";
+                    }
+                    }
+                    <div>
+                        <h4>@item.PitcherNum @item.PitcherName@armName</h4>
+                        <p>防御率　@item.Era<br />@string.Concat("対", @teamName, "防御率")　@item.VsEra</p>
+                    </div>
+                </div>
+                }
+                </div>
+        }
+                }
+            </div>
+        </div>
+    }
+    <!-- 打者情報 -->
+    if (@Model.ListPlayerInfo.Any())
+    {
+        <div class="evt_block03">
+            <h3 class="mem_title01">戦評</h3>
+            <div class="evt_bl03_1">
+                @{
+        var clsDivPlayer = string.Empty;
+        var lstStarting = Model.ListPlayerInfo.Where(x => x.PlayerInfoStarting.StartBatNo >= 1 && x.PlayerInfoStarting.StartBatNo <= 9).OrderBy(x => x.PlayerInfoStarting.StartBatNo);
+        foreach (var group in @lstStarting.OrderBy(x => x.HV).GroupBy(x => x.HV))
+        {
+            if (group.Key == 1)
+            {
+                clsDivPlayer = "evt_tbl left";
+            }
+            else
+            {
+                clsDivPlayer = "evt_tbl right";
+            }
+                <div class="@clsDivPlayer">
+                    <table cellpadding="0" cellspacing="0" summary="戦評">
+                        <col width="13%" />
+                        <col width="13%" />
+                        <col width="50%" />
+                        <col width="11%" />
+                        <col width="13%" />
+                        <tr>
+                            <th>打順</th>
+                            <th>位置</th>
+                            <th class="tleft">選手名</th>
+                            <th>打</th>
+                            <th>打率</th>
+                        </tr>
+                        @foreach (var item in group.Distinct())
+                    {
+                        var armName = Utils.GetBattingTypeName(@item.PlayerInfoStarting.BattingType.Value);
+                        var className = string.Empty;
+                        if (@item.PlayerInfoStarting.StartBatNo == 1)
+                        {
+                            className = "nobd";
+                        }
+                    <tr class=@className>
+                        <td>@item.PlayerInfoStarting.StartBatNo</td>
+                        <td>@item.PositionName</td>
+                        <td class="tleft">@Html.ActionLink(@item.PlayerInfoStarting.PlayerNameL, "Index", "NpbTeamInfoHittingDetail", new { area = "Npb", teamID = @item.TeamID, playerID = @item.PlayerID }, null)</td>
+                        <td>@armName.Substring(0, 1)</td>
+                        <td>@item.PlayerInfoStarting.Avg</td>
+                    </tr>
+                    }
+                    </table>
+                </div>
+        }
+                }
+            </div>
+        </div>
+    }
+    if (Model.List5GamesInHistory.Any())
+    {
+        <div class="evt_block03">
+            <h3 class="mem_title01">過去の直接対決の勝敗</h3>
+            <div class="evt_tbl02">
+                <table cellpadding="0" cellspacing="0" summary="tbl">
+                    <col width="12%" />
+                    <col width="20%" />
+                    <col width="15%" />
+                    <col width="19%" />
+                    <col width="11%" />
+                    <col width="12%" />
+                    <col width="11%" />
+                    <tr>
+                        <th>試合日</th>
+                        <th>ホーム</th>
+                        <th>結果</th>
+                        <th>ビジター</th>
+                        <th>ホーム</th>
+                        <th>引き分け</th>
+                        <th>ビジター</th>
+                    </tr>
+                    @foreach (var item in @Model.List5GamesInHistory)
+                    {
+                    <tr>
+                        @{
+                                var date = DateTime.ParseExact(@item.GameInfoSSN.DateJPN.ToString(), "yyyyMMdd", null).ToString("yyyy/MM/dd");
+                                var oddsInfo = NpbCommon.GetOddsInfoByGameID(item.GameInfoSSN.ID);
+                        }
+                        <td><span class="fs10">@date</span></td>
+                        <td>@Html.ActionLink(item.GameInfoSSN.HTeamNameS, "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = item.GameInfoSSN.HTeamID }, null)</td>
+                        <td><span class="fs24 bold">@item.GameInfoSSN.HScore - @item.GameInfoSSN.VScore</span></td>
+                        <td>@Html.ActionLink(item.GameInfoSSN.VTeamNameS, "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = item.GameInfoSSN.VTeamID }, null)</td>
+
+                        <td><span class="fs10">@(oddsInfo.HomeTeamOdds == 0 ? string.Empty : oddsInfo.HomeTeamOdds.ToString())</span></td>
+                        <td><span class="fs10">@(oddsInfo.DrawOdds == 0 ? string.Empty : oddsInfo.DrawOdds.ToString())</span></td>
+                        <td><span class="fs10">@(oddsInfo.VisitorTeamOdds == 0 ? string.Empty : oddsInfo.VisitorTeamOdds.ToString())</span></td>
+                    </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    }
+}

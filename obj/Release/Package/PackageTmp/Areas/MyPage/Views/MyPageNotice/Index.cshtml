@@ -1,0 +1,76 @@
+﻿@{
+    //Author : Nojima
+    //FileName : Index.cshtml (3-8)
+    //Created Date : 2015/04/12
+}
+@using Splg.Areas.MyPage.Models.ViewModel;
+@using Splg.Areas.MyPage.Models.InfoModel;
+@model MyPageNoticeViewModel
+
+@{
+    ViewBag.Title = "お知らせ";
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.NOTICE_INDEX;
+    Layout = "~/Views/Shared/_MyPageLayout.cshtml";
+}
+<script src="~/Scripts/jquery.shorten.1.0.js"></script>
+<script src="~/Scripts/splgCommon.js"></script>
+<script src="~/Areas/MyPage/Scripts/Views/3-8.js"></script>
+
+@{
+    
+    int managementNoticeCount = 0;
+    if (Model.ManagementNotices != null)
+    {
+        managementNoticeCount = System.Math.Min(Model.ManagementNotices.Count(), MyPageNoticeViewModel.MANAGEMENT_NOTICE_INITIAL_SIZE);
+    }
+
+    int userNoticeCount = 0;
+    if (Model.UserNotices != null)
+    {
+        userNoticeCount = System.Math.Min(Model.UserNotices.Count(), MyPageNoticeViewModel.USER_NOTICE_INITIAL_SIZE);
+    }
+}
+
+    <div class="block_04">
+@*
+        <h2 class="mytitle">運営からのお知らせ</h2>
+        <ul class="my_news" id="managementNoticeLines">
+
+            @if (Model.ManagementNotices != null)
+            {
+                foreach (NoticeInfoForMyPage n in Model.ManagementNotices)
+                {
+                    <li>
+                        <p class="mname"><a class="noticeload0" href="@n.TransitionsURL" data-noticedeliverysubjectId=" @n.NoticeDeliverySubjectId ">@n.Title</a></p>
+                        <p class="mday">@n.FormattedDeliveryTime</p>
+                    </li>
+                }
+            }
+        </ul>
+
+    @{
+        string displayGetMoreManagementNoticeButton = (managementNoticeCount < Model.ManagementNoticeTotalCount) ? "" : "display:none";
+        <p class="tright" style="float: right;@displayGetMoreManagementNoticeButton"><a id="submitManagementNotice" data-managementnoticecount="@managementNoticeCount">≫もっと見る</a></p>
+    }
+*@
+
+    <div class="space20"> </div>
+    <h2 class="mytitle">@Model.Nickname さんへのお知らせ</h2>
+    <ul class="my_news" id="userNoticeLines">
+        @*
+    @if (Model.UserNotices != null)
+    {
+        foreach (NoticeInfoForMyPage n in Model.UserNotices)
+        {
+            <li>
+                <p class="mname"><a class="usernoticeload0" href="@n.TransitionsURL" data-noticedeliverysubjectId="@n.NoticeDeliverySubjectId">@n.Title</a></p>
+                <p class="mday">@n.FormattedCreatedDate</p>
+            </li>
+        }
+    }*@
+    </ul>
+@{
+    <p class="tright" style="float: right;"><a id="submitUserNotice" data-usernoticecount="@userNoticeCount">≫もっと見る</a></p>
+
+}
+</div>

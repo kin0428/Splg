@@ -1,0 +1,206 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : Index.cshtml (8-5-1)
+    //Created Date : 2015/03/05
+}
+
+@model Splg.Areas.Npb.Models.ViewModel.NpbTeamTopInfoViewModel
+@using Splg;
+
+@{
+    ViewBag.Title = "チーム情報　チームトップ";
+    ViewBag.Name = Constants.NPBTEAMINFOTOP;
+    Layout = "~/Views/Shared/_NpbLayout.cshtml";    
+}
+<script src="~/Areas/Npb/Scripts/8-1.js"></script>
+
+<div class="evt_block09">      
+    <h2 class="mytitle"><a href="#">チーム情報</a> @Model.Team</h2>   
+    @Html.Partial("~/Areas/Npb/Views/Shared/_NpbTeamInfoMenu.cshtml")   
+    @if(Model!= null)
+    { 
+    <div class="evt_bl09_2 clear">
+            @if (!string.IsNullOrEmpty(@Model.TeamIcon))
+            {
+                <div class="evt_bl09_2_1">
+                    <img src="@Url.Content(@Model.TeamIcon)" alt="@Model.Team" />
+                </div>
+                @Html.Hidden("TeamID", @Model.TeamID)     
+            }            
+            @if (!string.IsNullOrEmpty(@Model.Team))
+            {
+                <div class="evt_bl09_2_2">
+                    <h3>@Model.Team</h3>
+                    <p class="evt_edit_btn fs14">                       
+                        <a href="@Url.RouteUrl("5-4", new { newsClassID = 2, quoteUniqueId1 = Constants.NPB_SPORT_ID, quoteUniqueId2 = 0, quoteUniqueId3 = @Model.TeamID })">記事作成</a>              
+                    </p>
+                    <p><span class="fs18">@Model.ShortNameLeague @Model.Ranking</span>位</p>
+                </div>
+            }
+            @if (@Model.BetrayalDeviation != null && @Model.ExpectationsDeviation != null)
+            {
+                <div class="evt_bl09_2_3 clear">
+                    <div class="evt_bl09_2_3_1">
+                        <p class="evt_teams">期待度偏差値</p>
+                        <p class="evt_points fi">@Math.Round(@Model.ExpectationsDeviation)</p>
+                    </div>
+                    <div class="evt_bl09_2_3_2">
+                        <p class="evt_teams">裏切度偏差値</p>
+                        <p class="evt_points fi">@Math.Round(@Model.BetrayalDeviation)</p>
+                    </div>
+                </div>
+                <p class="evt_bl09_2_4">
+                    期待度偏差値とは…総予想ポイント数の偏差値<br>
+                    裏切度偏差値とは…負けた試合の総予想ポイント数の偏差値
+                </p>
+            }  
+        </div>
+    <!--Npb News-->
+    @Html.Action("ShowNpbRecentNews", "NpbRightContent", new { area = "Npb", type = @ViewBag.Name, teamID = @ViewBag.TeamID })
+    <div class="board_control clear">
+        <span class="board_prev blue">前の試合を見る</span>
+        <h4 id="gameDate">
+            @Utils.GetMonthAndDayOfWeek(DateTime.Now) の試合
+        </h4>
+        <span class="board_next blue">次の試合を見る</span>
+    </div>
+    <input type="hidden" id="Page" name="Page" value="3" data-gamedate="@DateTime.Now.ToShortDateString().Replace("/", "" )" data-teamid=@ViewBag.TeamID />
+    <div id="npbGameInfo">       
+        @Html.Action("ShowGameInfo", "NpbTop", new { area = "Npb", type = 3, gameDate = DateTime.Now.ToShortDateString().Replace("/", ""), teamID = @ViewBag.TeamID })        
+    </div>
+    if (Model.TeamPostList != null && Model.TeamPostList.Any())
+    {
+        <div class="cat_stitle">
+            <h3>新着の投稿記事</h3>
+            <p><a href="/user_article/1/sport/">投稿記事をもっと読む</a></p>
+        </div>
+        <ul class="evt_list01">
+            @foreach (var post in Model.TeamPostList.Take(5))
+            {
+                string postContent = string.Format("{0}&nbsp;&nbsp;&nbsp;{1}投稿", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                <li>
+					<a href="/user/@post.MemberId/"><img src="@post.ProfileImg" alt="icon" /></a>
+                    <a class="bold" href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a>
+                    <br />
+					@Html.Raw(postContent)
+                </li>
+            }
+        </ul>
+    }
+    <div class="space20"></div>
+    <div class="row">
+        @if (Model.HittingRanking != null || Model.PitchingRanking != null)
+        {
+            if (Model.HittingRanking.Any())
+            {
+                <h3 class="mem_title01">チーム内成績ランキング</h3>
+            }
+        }           
+        @if(Model.HittingRanking != null)
+        {
+            if (Model.HittingRanking.Any())
+            {
+                <div class="evt_bl09_1 left">
+                        <table cellpadding="0" cellspacing="0" summary="個人">
+                            <col width="13%" />
+                            <col width="48%" />
+                            <col width="13%" />
+                            <col width="13%" />
+                            <col width="13%" />
+                            <thead>
+                                <tr>
+                                    <th class="tleft" colspan="2">打率順位</th>
+                                    <th>打率</th>
+                                    <th>本塁打</th>
+                                    <th>打点</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ var iRanking = 1;      }
+                                @foreach (var item in Model.HittingRanking)
+                                {
+                                    <tr>                    
+                                        @if (iRanking == 1)
+                                        {
+                                            <td class="bold"><span class="organge">@iRanking</span></td>
+                                        }
+                                        else
+                                        {
+                                            <td class="bold"><span>@iRanking</span></td>
+                                        }
+                                        <th>@Html.ActionLink(@item.Name, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamCD, playerID = @item.PlayerCD }, null)</th>
+                                       
+                                        <td class="bold">@item.BattingAverage.Substring(0,4)</td>                             
+                                        <td class="bold">@item.Homerun</td>
+                                        <td class="bold">@item.RunsBattingIn</td>
+                                    </tr>
+                                    iRanking++;
+                                }           
+                            </tbody>
+                        </table>
+                    </div>
+            } 
+        }
+        @if(Model.PitchingRanking != null)
+        {
+                <div class="evt_bl09_1 right">
+                    <table cellpadding="0" cellspacing="0" summary="個人">
+                        <col width="30%" />
+                        <col width="50%" />
+                        <col width="20%" />
+                        <thead>
+                            <tr>
+                                <th class="tleft" colspan="3">投手成績</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="tleft">防御率</td>
+                                <th>@Html.ActionLink(@Model.PitchingRanking.NamePlayerERA, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @ViewBag.TeamID, playerID = @Model.PitchingRanking.PlayerIDERA}, null)</th>
+                                @{ var runAverage = Convert.ToDecimal(Model.PitchingRanking.EarnedRunAverage).ToString("0.00");}
+                                <td class="tright fs14 bold">@runAverage</td>
+                            </tr>
+                            <tr>
+                                <td class="tleft">勝ち数</td>
+                                <th>@Html.ActionLink(@Model.PitchingRanking.NamePlayerW, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @ViewBag.TeamID, playerID = @Model.PitchingRanking.PlayerIDW }, null)</th>
+                                <td class="tright fs14 bold">@Model.PitchingRanking.Win</td>
+                            </tr>
+                            <tr>
+                                <td class="tleft">奪三振</td>
+                                <th>@Html.ActionLink(@Model.PitchingRanking.NamePlayerSO, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @ViewBag.TeamID, playerID = @Model.PitchingRanking.PlayerIDSO }, null)</th>
+                                <td class="tright fs14 bold">@Model.PitchingRanking.StrikeOut</td>
+                            </tr>
+                            <tr>
+                                <td class="tleft">セーブ</td>
+                                <th>@Html.ActionLink(@Model.PitchingRanking.NamePlayerS, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @ViewBag.TeamID, playerID = @Model.PitchingRanking.PlayerIDS }, null)</th>
+                                <td class="tright fs14 bold">@Model.PitchingRanking.Save</td>
+                            </tr>
+                            <tr>
+                                <td class="tleft">ホールド</td>
+                                <th>@Html.ActionLink(@Model.PitchingRanking.NameH, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @ViewBag.TeamID, playerID = @Model.PitchingRanking.PlayerIDH }, null)</th>
+                                <td class="tright fs14 bold">@Model.PitchingRanking.Hold</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        } 
+        </div>
+    }
+</div>
+
+@if(Model!= null)
+{ 
+    @section NpbPage{
+        <div class="cat_stitle">
+        <h3>順位表</h3>
+        <p>@Html.ActionLink("一覧で見る", "Index", "NpbOrder", new { area = "Npb" }, null)</p>
+    </div>
+    <div id="npbTop3Ranking" class="side_board">
+        @Html.Action("ShowTopNRanking", "NpbRightContent", new { area = "Npb", teamID = @ViewBag.TeamID })
+    </div>
+    }
+}
+
+
+
+

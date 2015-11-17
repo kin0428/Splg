@@ -1,0 +1,32 @@
+﻿@using Splg;
+@using Splg.Areas.Npb.Models.ViewModel.InfosModel;
+@model Splg.Areas.Npb.Models.ViewModel.NpbTeamInfoPlayerViewModel
+@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: Index.cshtml
+    // Device       : Mobile
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-04-06
+    // Html No      : 8-5-4;8-5-5;8-5-6  
+    ViewBag.Name = Constants.NPBTEAMINFONEWS;
+    Layout = "~/Views/Shared/Mobile/_NpbLayout.cshtml";
+}
+@if (Model != null)
+{
+    if (Model.TeamInfoCatcherFielderInfos != null && Model.TeamInfoCatcherFielderInfos.Any())
+    {       
+        @Html.Partial("~/Areas/Npb/Views/Shared/Mobile/_NpbTeamInfoCatcherFielder.cshtml", Model);
+    }
+    if (Model.TeamInfoPitchingInfos != null && Model.TeamInfoPitchingInfos.Any())
+    {       
+        @Html.Partial("~/Areas/Npb/Views/Shared/Mobile/_NpbTeamInfoPitcher.cshtml", Model);
+    }
+    if (Model.TeamInfoDirectorStaffInfos != null && Model.TeamInfoDirectorStaffInfos.Any())
+    {       
+        @Html.Partial("~/Areas/Npb/Views/Shared/Mobile/_NpbTeamInfoDirectorStaff.cshtml", Model);
+    }
+}
+<!--Right Content-->
+@section NpbPage{      
+}
+

@@ -1,0 +1,345 @@
+﻿@{
+    //Author : Endo
+    //FileName :_MyPageRecentExpectedList.cshtml
+    //Created Date :2015/5/1
+}
+@{
+    int odds;
+    int point;
+    int i;
+    int modelLen;
+    int? gameStatus;
+    string fstClass;
+    long getPoint;
+}
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        modelLen = Model.Count;
+        i = 0;
+        point = (int)(@item.Points);
+        odds = (int)(@item.Odds * 100);
+        getPoint = (long)(item.Odds * item.Points);
+                
+        i = i + 1;
+        if (i == modelLen)
+        {
+            fstClass ="inner_last";
+        }
+        else
+        {
+            fstClass = "evt_inner";
+        }
+        
+         // game_status
+        // １・・試合2週間以上前 ベット不可、２/３・・試合前 ベット可、４/５・・試合開始5分前～試合開始　ベット不可
+        // ６/７・・試合中　ベット不可、８/９・・試合終了後、１０・・試合中止
+        gameStatus = (int?)item.GameStatus;
+       
+        <div class="@fstClass">
+            <!-- 一番上の行（ポイント関連の情報だったり、試合中かどうかとかを表示。試合前は予想取り消しボタンもあるよ。-->
+            <div class="add_date01">
+                @switch (gameStatus)
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        var strTimeRemain = Utils.CalculateTimeRemainDisplayString(@item.usingDate, @item.usingTime);
+                        <div class="add_dtime">
+							<div class="add_dtime01 add_bg01">
+								<div>
+                                    <input class="expect_point" id="ExpectPoint-@item.SportsID-@item.GameID-@odds" value="@item.Points" data-bedpoint="@item.Points" type="text" name="point">
+									Pt @item.ExpectionResult に予想<span class="add_pdl15 fs14">＋@getPoint Pt</span>
+								</div>
+							</div>
+							<div class="add_dtime02 add_tbg01">
+								予想締切まで @strTimeRemain
+							</div>
+                        </div>
+                        <a id="ExpectCancelGameID-@item.SportsID-@item.GameID-@odds" data-gamedivblockid="@item.GameID" href="#" class="add_dlink expect_cancel">予想を取り消す</a>
+                        break;
+                    case 4:
+                    case 5:
+                        <div class="add_dtime">
+                            <div class="add_dtime01 add_bg01">
+                                <div>
+                                    @item.Points Pt @item.ExpectionResult に予想<span class="add_pdl15 fs14">＋@getPoint Pt</span>
+                                </div>
+                            </div>
+                            <div class="add_dtime02 add_tbg01">
+                                予想受付終了
+                            </div>
+                        </div>
+                        break;
+                    case 6:
+                    case 7:
+                        <div class="add_dtime">
+							<dl class="add_dtime01">
+								<dt class="cl01">試合中</dt>
+								<dd class="bg02">@item.Points Pt @item.ExpectionResult に予想<span class="add_pdl15 fs14 bg02">＋@getPoint Pt</span></dd>
+							</dl>
+                        </div>
+                        break;
+                    case 8:
+                    case 9:
+						<div class="add_dtime">
+							<dl class="add_dtime01">
+                                @if (item.BetWin)
+                                {
+								    <dt class="organge">的中</dt>
+								    <dd class="bg03">@item.Points Pt @item.ExpectionResult に予想<span class="add_pdl15 fs14">＋@getPoint Pt</span></dd>
+                                }
+                                else
+                                {
+								    <dt class="cl02">外れ</dt>
+								    <dd class="bg04">@item.Points Pt @item.ExpectionResult に予想<span class="add_pdl15 fs14">0 Pt</span></dd>
+                                }
+							</dl>
+						</div>
+                        break;
+                    default:
+                        <div class="cl02">試合中止</div>
+                        break;
+                }
+            </div>
+            <!-- ホームチーム情報-->
+            <div class="evt_bl01_2_1">
+                <div>
+                    <a href=@Url.Content(@item.HomeTeamUrl)><img src=@Url.Content(@item.HomeTeamIcon) alt="" /></a>
+                    <p>このカードでは<br><span class="fs24 ">@item.HomeTeamWin</span>勝</p>
+                </div>
+                <p><a href="#">@item.HomeTeamS @item.HomeTeamRanking 位</a></p>
+                @if (item.SportsID == Constants.NPB_SPORT_ID)
+                {
+                    switch (gameStatus)
+                    {
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 5:
+                            if (item.PreForeRunnerNameSH != "")
+                            {
+                                <p>予告先発　<span class="fs16">@item.PreForeRunnerNameSH</span><br>防御率　@item.PreForeRunnerEraH</p>
+                            }
+                            break;
+                        case 6:
+                        case 7:
+                            if (item.ForeRunnerNameSH != "")
+                            {
+                                <p>先発　<span class="fs16">@item.ForeRunnerNameSH</span><br>防御率　@item.ForeRunnerEraH</p>
+                            }
+                            break;
+                        case 8:
+                        case 9:
+                            if (item.WinLoseNameSH != "")
+                            {
+                                <p>@item.WinLoseTextH　<span class="fs16">@item.WinLoseNameSH</span><br>防御率　@item.WinLoseEraH</p>
+                            }
+                            break;
+                        default:
+                            break;
+
+                    }
+                }
+                else if (item.SportsID == Constants.MLB_SPORT_ID)
+                {
+                    switch (gameStatus)
+                    {
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 5:
+                        case 6:
+                        case 7:
+                            if (item.PreForeRunnerNameSH != "")
+                            {
+                                <p>予告先発　<span class="fs16">@item.PreForeRunnerNameSH</span></p>
+                            }
+                            break;
+                        case 8:
+                        case 9:
+                            if (item.ForeRunnerNameSH != "")
+                            {
+                                <p>先発　<span class="fs16">@item.ForeRunnerNameSH</span></p>
+                            }
+                            break;
+                        default:
+                            break;
+
+                    }                 
+                }
+            </div>
+            <!-- BET、試合情報（オッズとか点数とか）-->
+            <div class="evt_bl01_2_2">                
+                @switch (gameStatus)
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:                   
+                    case 5:
+						<div>
+							<p class="btitle fs10 bd @item.betHomeClass">@item.HomeWinText<span class="arrow barrow"> </span></p>
+							<p class="bnum @item.betHomeOddsClass">x <span class="fs24 ">@item.OddsInfoModel.HomeTeamOdds</span></p>
+                            <p class="bbtn @item.betHomeBtnClass">
+                                <span>予想する</span>
+                            </p>
+						</div>
+						<div>
+                            <p class="btitle fs10 @item.betDrawClass">@item.DrawText<span class="arrow barrow"> </span></p>
+                            <p class="bnum @item.betDrawOddsClass">x <span class="fs24 ">@item.OddsInfoModel.DrawOdds</span></p>
+                            <p class="bbtn @item.betDrawBtnClass">
+                                <span>予想する</span>
+                            </p>
+						</div>
+						<div>
+                            <p class="btitle fs10 @item.betVisitorClass">@item.VisitorWinText<span class="arrow barrow"> </span></p>
+                            <p class="bnum @item.betVisitorOddsClass">x <span class="fs24 ">@item.OddsInfoModel.VisitorTeamOdds</span></p>
+                            <p class="bbtn @item.betVisitorBtnClass">
+                                <span>予想する</span>
+                            </p>
+						</div>
+						<p class="board_link"><a href=@Url.Content(@item.Url)>対戦前データを見る</a></p>
+                        break;
+                    case 6:
+                    case 7:
+						<div>
+                            <p class="btitle fs10 bd @item.betHomeClass">@item.HomeWinText<span class="arrow barrow"> </span></p>
+                            <p class="bnum @item.betHomeOddsClass">x <span class="fs24 ">@item.OddsInfoModel.HomeTeamOdds</span></p>
+						</div>
+						<div>
+                            <p class="btitle fs10 @item.betDrawClass">@item.DrawText<span class="arrow barrow"> </span></p>
+                            <p class="bnum @item.betDrawOddsClass">x <span class="fs24 ">@item.OddsInfoModel.DrawOdds</span></p>
+						</div>
+						<div>
+                            <p class="btitle fs10 @item.betVisitorClass">@item.VisitorWinText<span class="arrow barrow"> </span></p>
+                            <p class="bnum @item.betVisitorOddsClass">x <span class="fs24 ">@item.OddsInfoModel.VisitorTeamOdds</span></p>
+						</div>
+                        <p class="board_score">
+                            <span class="bscore ">@item.DispHomeScore</span>
+                            <span class="pnote">@item.DispInning</span>
+                            <span class="bscore ">@item.DispVisitorScore</span>
+                        </p>
+						<p class="board_link"><a href=@Url.Content(@item.Url)>試合速報を見る</a></p>
+                        break;
+                    case 8:
+                    case 9:
+						<div>
+							<p class="btitle fs10 bd">@item.HomeWinText<span class="arrow barrow"> </span></p>
+                            <p class="bnum @item.betHomeOddsClass">x <span class="fs24 ">@item.OddsInfoModel.HomeTeamOdds</span></p>
+						</div>
+						<div>
+							<p class="btitle fs10">@item.DrawText<span class="arrow barrow"> </span></p>
+                            <p class="bnum @item.betDrawOddsClass">x <span class="fs24 ">@item.OddsInfoModel.DrawOdds</span></p>
+						</div>
+						<div>
+                            <p class="btitle fs10">@item.VisitorWinText<span class="arrow barrow"> </span></p>
+                            <p class="bnum @item.betVisitorOddsClass">x <span class="fs24 ">@item.OddsInfoModel.VisitorTeamOdds</span></p>
+						</div>
+						<p class="board_score">
+							<span class="bscore ">@item.HomeScore</span>
+							<span class="pnote">試合終了</span>
+							<span class="bscore ">@item.VisitorScore</span>
+						</p>
+						<p class="board_link"><a href=@Url.Content(@item.Url)>試合前データを見る</a></p>
+                        break; 
+                    default:
+						<div>
+							<p class="btitle fs10 bd">@item.HomeWinText<span class="arrow barrow"> </span></p>
+                            <p class="bnum @item.betHomeOddsClass">x <span class="fs24 ">@item.OddsInfoModel.HomeTeamOdds</span></p>
+						</div>
+						<div>
+							<p class="btitle fs10">@item.DrawText<span class="arrow barrow"> </span></p>
+                            <p class="bnum @item.betDrawOddsClass">x <span class="fs24 ">@item.OddsInfoModel.DrawOdds</span></p>
+						</div>
+						<div>
+                            <p class="btitle fs10 @item.betVisitorClass">@item.VisitorWinText<span class="arrow barrow"> </span></p>
+                            <p class="bnum @item.betVisitorOddsClass">x <span class="fs24 ">@item.OddsInfoModel.VisitorTeamOdds</span></p>
+						</div>
+						<p class="board_score">
+							<span class="pnote">試合中止</span>
+						</p>
+                        break; 
+
+                }
+            </div>
+            <!-- ビジターチーム情報-->
+            <div class="evt_bl01_2_1">
+                <div>
+                    <a href=@Url.Content(@item.VisitorTeamUrl)><img src=@Url.Content(@item.VisitorTeamIcon) alt="" /></a>
+                    <p>このカードでは<br><span class="fs24 ">@item.VisitorTeamWin</span>勝</p>
+                </div>
+                <p><a href="#">@item.VisitorTeamS @item.VisitorTeamRanking 位</a></p>
+                @if (item.SportsID == Constants.NPB_SPORT_ID)
+                {
+                    switch (gameStatus)
+                    {
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 5:
+                            if (item.PreForeRunnerNameSV != "")
+                            {
+                                <p>予告先発　<span class="fs16">@item.PreForeRunnerNameSV</span><br>防御率　@item.PreForeRunnerEraV</p>
+                            }
+                            break;
+                        case 6:
+                        case 7:
+                            if (item.ForeRunnerNameSV != "")
+                            {
+                                <p>先発　<span class="fs16">@item.ForeRunnerNameSV</span><br>防御率　@item.ForeRunnerEraV</p>
+                            }
+                            break;
+                        case 8:
+                        case 9:
+                            if (item.WinLoseNameSV != "")
+                            {
+                                <p>@item.WinLoseTextV　<span class="fs16">@item.WinLoseNameSV</span><br>防御率　@item.WinLoseEraV</p>
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else if (item.SportsID == Constants.MLB_SPORT_ID)
+                {
+                    switch (gameStatus)
+                    {
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 5:
+                        case 6:
+                        case 7:
+                            if (item.PreForeRunnerNameSV != "")
+                            {
+                                <p>予告先発　<span class="fs16">@item.PreForeRunnerNameSV</span></p>
+                            }              
+                            break;
+                        case 8:
+                        case 9:
+                            if (item.ForeRunnerNameSV != "")
+                            {
+                                <p>先発　<span class="fs16">@item.ForeRunnerNameSV</span></p>
+                            }
+                            break;
+                        default:
+                            break;
+
+                    }                 
+                }
+            </div>
+        </div>
+    }
+}

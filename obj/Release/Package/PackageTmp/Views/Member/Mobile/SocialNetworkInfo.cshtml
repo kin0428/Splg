@@ -1,0 +1,146 @@
+﻿@model Splg.Models.ViewModel.MemberRegistViewModel
+@{
+    ViewBag.Title = "登録 ";
+    Layout = "~/Views/Shared/Mobile/_Layout.cshtml";
+}
+<div class="head-text">
+    <p>「スポーツ観戦をもっと熱く もっと楽しく」</p>
+    <p>
+        スポログはスポーツの勝敗予想ができます。<br>
+        自分なりに分析して予想をしたり、<br>
+        他の人の予想を参考にしたり、<br>
+        スポーツの勝敗にこだわってみませんか？<br>
+        少しでも面白そうと思ったらまずはユーザー登録をしてみてください。<br>
+        登録、利用は無料です。
+    </p>
+    <p>スポログは、全てのスポーツを応援しています。</p>
+</div>
+<ul class="block-path1">
+    <li class="active">
+        <p><strong>STEP<span class="fs15">1</span></strong></p>
+        <p class="fs8">登録</p>
+        <span> </span>
+    </li>
+    <li>
+        <p><strong>STEP<span class="fs15">2</span></strong></p>
+        <p class="fs8">確認</p>
+        <span> </span>
+    </li>
+    <li>
+        <p><strong>STEP<span class="fs15">3</span></strong></p>
+        <p class="fs8">メール送信</p>
+        <span> </span>
+    </li>
+    <li>
+        <p><strong>STEP<span class="fs15">4</span></strong></p>
+        <p class="fs8">完了</p>
+        <span> </span>
+    </li>
+</ul>
+<section class="block_7">
+    <h3 class="sigtitle">スポログにユーザー登録(無料)する</h3>
+    <ul class="sig-btn">
+        @switch (@Model.SNSName)
+        {
+            case Constants.TWITTER:
+                <li><img src="~/Content/img/tmp/reg-btn01.png" alt="Twitterから登録する" /></li>
+                break;
+            case Constants.FACEBOOK:
+            <li><img src="~/Content/img/tmp/reg-btn02.png" alt="Facebookから登録する" /></li>
+                break;
+            case Constants.GOOGLE:
+            <li><img src="~/Content/img/tmp/reg-btn03.png" alt="Google+から登録する" /></li>
+                break;
+        }
+    </ul>
+    <div class="sig-frm">
+        @using (Html.BeginForm("Register", "Member", FormMethod.Post, new { @id = "registerForm", role = "form" }))
+        {
+            <dl class="sns_frm">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @if (Model.SNSName.Equals(Constants.TWITTER))
+                {
+                    <dt>メールアドレス<span class="fs8">※メールアドレスはログインに使用します。</span></dt>
+                    <dd style="text-align:left">
+                        @Html.TextBoxFor(model => model.Email, new { @id = "emailAddr" })
+                        @Html.ValidationMessageFor(model => model.Email, String.Empty, new { @class = "red" })
+                    </dd>
+                }
+                else
+                {
+                    <dt>メールアドレス</dt>
+                    <dd style="text-align:left">
+                        @Model.Email
+                        @Html.HiddenFor(model => model.Email, new { @id = "emailAddr" })
+                    </dd>
+                }
+
+                <dt>パスワード<span class="fs8">※6字以上で入力してください</span></dt>
+                <dd style="text-align:left">
+                    @Html.PasswordFor(model => model.Password, new { @id = "password" })
+                    @Html.ValidationMessageFor(model => model.Password, String.Empty, new { @class = "red" })
+                </dd>
+                <dt>パスワード(確認)</dt>
+                <dd style="text-align:left">
+                    @Html.PasswordFor(model => model.ConfirmPassword, new { @id = "passwordConfirm" })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, String.Empty, new { @class = "red" })
+                </dd>
+                <dt>アイコン</dt>
+                <dd style="text-align:left">
+                    <img class="sns_img" src="@Model.ImageLink" alt="100x100" />
+                </dd>
+                @if (!string.IsNullOrEmpty(Model.NickName))
+                {
+                    <dt>ユーザー名</dt>
+                    <dd style="text-align:left">
+                        @Model.NickName
+                        @Html.HiddenFor(model => model.NickName)
+                    </dd>
+                }
+                @if (Model.Gender.HasValue)
+                {
+                    <dt>性別</dt>
+                    <dd style="text-align:left">
+
+                        @if (Model.Gender == 1)
+                        {
+                            <p>男性</p>
+                        }
+                        else
+                        {
+                            <p>女性</p>
+                        }
+                        @Html.HiddenFor(model => model.Gender)
+                    </dd>
+                }
+                @if (Model.Birthday.HasValue)
+                {
+                    <dt>生年月日</dt>
+                    <dd style="text-align:left">
+                        @Model.Birthday
+                        @Html.HiddenFor(model => model.Birthday)
+                    </dd>
+                }
+                @if (!string.IsNullOrEmpty(Model.Place))
+                {
+                    <dt>出身地</dt>
+                    <dd style="text-align:left">
+                        @Model.Place
+                        @Html.HiddenFor(model => model.Place)
+                    </dd>
+                }
+            </dl>
+            <p class="sig-txt">
+                @Html.CheckBoxFor(model => model.ReceiveEmail, new { @checked = "checked", @id = "name01-0" })
+                <label for="name01">スポログからのメールを受け取る</label>
+            </p>
+            <p class="board_link" style="text-align:center">
+                <input class="send_mail" type="submit" value="同意して確認画面に進む" />
+            </p>
+        }
+    </div>
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

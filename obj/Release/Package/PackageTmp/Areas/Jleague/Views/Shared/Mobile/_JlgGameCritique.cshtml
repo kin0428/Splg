@@ -1,0 +1,38 @@
+﻿@model Splg.Areas.Jleague.Models.ViewModel.JlgGameInfoViewModel
+
+<div class="socData socInterpret">
+    <h2 class="socData-hdg">戦評</h2>
+
+    @if (Model.Recaps != null)
+    {
+        //postLinkFg = true;
+        <div class="evt_bl01_2_4">
+            @{
+        var recaps3 = Model.Recaps.Take(3);
+            }
+
+            <h3 class="mytitle01">戦評</h3>
+            <div class="evt_tbl03">
+                <table cellpadding="0" cellspacing="0" summary="戦評">
+                    <col width="12%" />
+                    <col width="88%" />
+                    @foreach (var item in recaps3)
+                    {
+                        <tr>
+                            <th></th>
+                            <td>
+                                <span>@item.GameRecap<br /></span>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            @if (Model.Recaps.Count() > 3)
+            {
+                <ul class="board_list" id="npbPopup">
+                    <li class="blue">この試合をもっと見る<span class="icon"> </span></li>
+                </ul>
+            }
+        </div>
+    }
+</div>

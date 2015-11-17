@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "ログアウト - 完了";
+    Layout = "~/Views/Shared/Mobile/_Layout.cshtml";
+}
+<section class="block_7">
+    <h3 class="sigtitle">スポログのアカウントをログアウトしました。</h3>
+    <p><p>ログアウトしました。<br>ご利用いただきありがとうございました。</p>
+    <p class="sig-note">
+        <img src="~/Content/img/tmp/mail_note02.png" alt="">
+    </p>
+    <p class="sig-submit"><a href="@Url.Action("Index", "Home", new { tokenID = @ViewBag.TokenID })">トップページへ戻る</a></p>
+</section>
+

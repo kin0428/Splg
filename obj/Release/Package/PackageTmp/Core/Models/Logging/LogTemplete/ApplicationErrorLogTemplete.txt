@@ -1,0 +1,8 @@
+MemberId:{0}
+HttpStatusCode:{1}
+Url:{2}
+UserAgent:{3}
+UrlReferrer:{4}
+SessionId:{5}
+Exception:{6}
+InnerException:{7}

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Splg.Models.News.ViewModel.NewsInfoViewModel>
+
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        var firstNews = Model.FirstOrDefault();
+        var routeValues = new RouteValueDictionary();
+        routeValues.Add("area", string.Empty);
+        routeValues.Add("topic", Constants.NPB_TOPIC_NAME);
+        routeValues.Add("newsItemID", @firstNews.NewsItemID);
+        routeValues.Add("sportID", Constants.NPB_SPORT_ID);
+        var imageSports = Utils.GetNewsImageLocation(firstNews.Content ?? Constants.IMAGE_DEFAULT);
+        <section class="block_1">
+            <article class="news_block">
+                <div class="news_image">
+					<a href="@Url.Action("Index", "NewsArticleCommon", @routeValues, null)">
+						<img src="@Url.Content(@imageSports)" alt="news" />
+					</a>
+				</div>
+                <div class="news_detail">
+                    <h2>NEWS TOPIC</h2>
+                    <h3>@Html.ActionLink(@firstNews.Headline, "Index", "NewsArticleCommon", @routeValues, null)</h3>
+                    <p>@firstNews.SentFrom <strong>@firstNews.TotalViews</strong> views</p>
+                </div>
+            </article>
+            <ul class="news_list1">
+                @foreach (var item in Model.Skip(1))
+                {
+                    var routeValuesItems = new RouteValueDictionary();
+                    routeValuesItems.Add("area", string.Empty);
+                    routeValuesItems.Add("topic", Constants.NPB_TOPIC_NAME);
+                    routeValuesItems.Add("newsItemID", @item.NewsItemID);
+                    routeValuesItems.Add("sportID", Constants.NPB_SPORT_ID);
+                    <li>
+                        <h4>@Html.ActionLink(@item.Headline, "Index", "NewsArticleCommon", @routeValuesItems, null)</h4>
+                        <p>@item.SentFrom <strong>@item.TotalViews</strong> views</p>
+                    </li>
+                }
+            </ul>
+        </section>
+    }
+}
+
+

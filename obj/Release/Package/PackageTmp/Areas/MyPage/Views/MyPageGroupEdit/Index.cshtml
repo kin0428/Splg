@@ -1,0 +1,100 @@
+﻿@{
+    //Author : Nojima
+    //FileName : Index.cshtml (3-4-3)
+    //Created Date : 2015/04/12
+}
+
+@model Splg.Areas.MyPage.Models.ViewModel.MyPageGroupEditViewModel
+
+@{
+    ViewBag.Title = "グループ編集";
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.GROUP_EDIT;
+    Layout = "~/Views/Shared/_MyPageLayout.cshtml";
+}
+<script src="~/Scripts/jquery.shorten.1.0.js"></script>
+<script src="~/Scripts/splgCommon.js"></script>
+<script src="~/Areas/MyPage/Scripts/Views/3-4-3.js"></script>
+
+
+<!--News Top View-->
+@if (Model != null)
+{
+    var group_id = Model.NewGroup.GroupID;
+    var group_name = Model.NewGroup.GroupName;
+    var search_string = Model.NewGroup.FollowerSearchString;
+
+    int totalCount = Model.TotalCount;
+    int viewingCount = 0;
+
+    <div class="block_04">
+        <h2 class="mytitle">グループを編集する</h2>
+        <div class="block_04_6_l3">
+            <span>グループ名</span>
+            <p><input type="text" id="group_id" value="@group_name" name="@group_id" /></p>
+        </div>
+        <div id="group_menber">
+            <p class="fs14">グループメンバー</p>
+
+            @foreach (var m in Model.NewGroup.GroupMembers)
+            {
+                var member_name = m.Nickname;
+                var member_image = m.ProfileImg;
+
+                var member_payofpoints = m.FormattedDisplayPoints;
+                var member_expect = (m.LastExpectedPointDate == null ? "" : "最終予想 " + m.LastExpectedPointDate);
+                var member_id = m.MemberId;
+
+                <div class="sub_list_row" id="GroupMember-@(member_id)">
+                    <h4>
+                        <img class="circle resimg" src="@member_image" alt="@member_name" />
+                        <span class="fs14 blue"><a href="/user/@member_id">@member_name</a></span>
+                        <span class="fs14">@(member_payofpoints) pt  </span>
+                        <span class="fs10 gray2">@member_expect</span>
+                    </h4>
+                    <a class="block_04_7_btn01" id="@member_id-@member_image-@member_name-@member_payofpoints-@member_expect" name="RemoveFromGroup" href="#">グループから外す</a>
+                </div>
+            }
+        </div>
+        <p class="board_link" id="update_group"><a href="#">更新する</a></p>
+        <h4 class="fs14 bold">グループメンバーの追加</h4>
+        <div class="block_04_6_l3">
+            <p><input type="text" id="member_search_string" value="@search_string" name="iname" /></p>
+            <p class="board_link" id="member_search"><a href="#">検索する</a></p>
+        </div>
+        <div id="follow_member">
+            
+        </div>
+
+        @{
+            <!-- <ul class="board_list"> -->
+            <ul class="" style="float: right;">
+                <li><a id="GetMoreFollowingButton" data-followingcount="0">フォローをもっと見る<span class="icon"> </span></a></li>
+            </ul>
+        }
+
+    </div>
+}
+else
+{
+    <div class="ready_box">
+        <div>
+            <h3>
+                このグループは削除されました。<br />
+                <a href="/mypage/">マイページトップへ</a>
+            </h3>
+        </div>
+    </div>
+}
+
+<!--Right Content-->
+@section MyPagePage{
+    @if (Model != null && Model.NewGroup != null && Model.NewGroup.MemberId > 0)
+    {
+        <h3 class="mem_title01">グループリスト</h3>
+        @Html.Action("ShowGroupList", "MyPageRightContent", new { area = "MyPage", memberId = @Model.NewGroup.MemberId })
+        <p class="tright"><a href="/mypage/group/">≫もっと見る</a></p>
+        <h3 class="mem_title01">フォローランキング</h3>
+        @Html.Action("ShowFollowPointRankings", "MyPageRightContent", new { area = "MyPage", memberId = @Model.NewGroup.MemberId })
+        <p class="tright"><a href="/mypage/following/">≫もっと見る</a></p>
+    }
+}

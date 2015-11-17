@@ -1,0 +1,35 @@
+﻿@{
+    // Developer	: Nojima
+    // Html No      : 4-1
+}
+@using Splg.Areas.MyPage.Models.ViewModel;
+@model Splg.Areas.MyPage.Models.ViewModel.MyPageExpectedListViewModel
+@{
+    ViewBag.Title = "予想リスト";
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.EXPECTEDLIST_INDEX;
+    Layout = "~/Views/Shared/Mobile/_MyPageLayout.cshtml";
+}
+<script src="~/Scripts/jquery.shorten.1.0.js"></script>
+<script src="~/Areas/MyPage/Scripts/Mobile/3-2.js"></script>
+<script src="~/Scripts/Home.js"></script>
+
+
+@if (Model != null)
+{    
+       
+    <section class="block_8">
+        <div class="block_8_2">
+            <nav class="my-panel">
+                <a href="#" class="prev" id="prev_month">前の月</a>
+                <h4><span id="mypage_selected_month">@Model.ThisYear 年 @Model.ThisMonth 月</span></h4>
+                <a href="#" class="next" id="next_month">次の月</a>
+            </nav>
+         </div>
+        <h3 class="my-title">予想リスト</h3>
+        <div id="GameLists" class="tab-flag" style="display:block">
+            <div class="ad_inner">
+                @Html.Partial("~/Areas/MyPage/Views/Shared/Mobile/_MyPageExpectedListInfo.cshtml", Model.GameInfo)
+            </div>
+        </div>
+</section>
+}

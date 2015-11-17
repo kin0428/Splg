@@ -1,0 +1,30 @@
+﻿@{
+    //Author : Nojima
+    //FileName :_MyPageRightGroupRanking.cshtml
+    //Created Date :2015/5/1
+}
+
+@using Splg.Models.ViewModel;
+@using Splg;
+
+@model List<PointRankingViewModel>
+
+@if (Model != null && Model.Any())
+{
+    var rankNo = 0;
+        <ul class="side_list01">
+            @foreach (var item in Model)
+            {
+                rankNo += 1;
+                
+                <li>
+                    <span class="side_num organge">@Html.DisplayFor(m => rankNo)</span>
+                    <img class="side_mem" src="@item.ProfileImage" alt="" />
+                    @Html.RouteLink(item.Nickname, "User_4-1", new { memberId = item.MemberId })
+                    <span class="side_price">@Html.DisplayFor(m => item.Point) pt</span>
+                </li>
+            }
+        </ul>
+    
+}
+

@@ -1,0 +1,78 @@
+﻿@model Splg.Models.ViewModel.MemberRegistViewModel
+@{
+    ViewBag.Title = "会員登録(無料)";
+    Layout = "~/Views/Shared/Mobile/_Layout.cshtml";
+}
+<ul class="block-path1">
+    <li class="active">
+        <p><strong>STEP<span class="fs15">1</span></strong></p>
+        <p class="fs8">登録</p>
+        <span> </span>
+    </li>
+    <li>
+        <p><strong>STEP<span class="fs15">2</span></strong></p>
+        <p class="fs8">確認</p>
+        <span> </span>
+    </li>
+    <li>
+        <p><strong>STEP<span class="fs15">3</span></strong></p>
+        <p class="fs8">メール送信</p>
+        <span> </span>
+    </li>
+    <li>
+        <p><strong>STEP<span class="fs15">4</span></strong></p>
+        <p class="fs8">完了</p>
+        <span> </span>
+    </li>
+</ul>
+<section class="block_7">
+    <h3 class="sigtitle">スポログにユーザー登録(無料)する</h3>
+    <ul class="sig-btn">
+        <li><a href="@Url.Action("TwitterLogin","Member")"><img src="~/Content/img/tmp/reg-btn01.png" alt="Twitterアカウントで登録する" /></a></li>
+        <li><a href="@Url.Action("FacebookLogin","Member")"><img src="~/Content/img/tmp/reg-btn02.png" alt="Facebookアカウントで登録する" /></a></li>
+        <li><a href="@Url.Action("GoogleLogin","Member")"><img src="~/Content/img/tmp/reg-btn03.png" alt="Googleアカウントで登録する" /></a></li>
+    </ul>
+    <div class="sig-frm">
+        @using (Html.BeginForm("Register", "Member", FormMethod.Post, new { @id = "registerForm", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <dl>
+                <dt>メールアドレス<span class="fs8">※メールアドレスはログインに使用します。</span></dt>
+                <dd>
+                    @Html.TextBoxFor(model => model.Email, new { @id = "emailAddr" })
+                    @Html.ValidationMessageFor(model => model.Email, String.Empty, new { @class = "red" })
+                </dd>
+
+                <dt>パスワード<span class="fs8">※6字以上で入力してください</span></dt>
+                <dd>
+                    @Html.PasswordFor(model => model.Password, new { @id = "password" })
+                    @Html.ValidationMessageFor(model => model.Password, String.Empty, new { @class = "red" })
+                </dd>
+                <dt>パスワード(確認)</dt>
+                <dd>
+                    @Html.PasswordFor(model => model.ConfirmPassword, new { @id = "passwordConfirm" })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, String.Empty, new { @class = "red" })
+                </dd>
+            </dl>
+            <p class="sig-txt">
+                @Html.CheckBoxFor(model => model.RememberMe, new { @checked = "checked", @id = "name01" })
+                <label for="name01">このブラウザでログイン状態を保持する</label>
+            </p>
+            <p class="sig-txt">
+                @Html.CheckBoxFor(model => model.ReceiveEmail, new { @checked = "checked", @id = "name02" })
+                <label for="name02">スポログからのメールを受け取る</label>
+            </p>
+
+            <p class="sig-txt">
+                <a href="/support/rules">スポログ利用規約</a>に同意の上、<br>「同意して確認画面に進む」を押してください。
+            </p>
+            <p class="sig-submit">
+                <input class="send_mail" type="submit" value="同意して確認画面に進む" />
+            </p>
+        }
+    </div>
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,29 @@
+﻿@{
+    // Namespace	: Splg.Areas.Mlb.Models.ViewModel
+    // FileName		: _MlbLayout.cshtml
+    // Device       :  PC
+    // Developer	: Nojima
+    // Update date  : 2015-04-12
+}
+<!-- path -->
+<ul class="block-path">
+    <li>
+        <a class="active" href="javascript:void(0)">MLB</a>
+        <ul>
+            @*MLBTOP: 9-1 *@
+            <li><a href="@Url.Action("Index", "MlbTop", new { area = "Mlb" }, null)">MLBTOP</a></li>
+
+            @*日程・結果: 9-2 *@
+            <li><a href="@Url.Action("Index", "MlbScheduleResult", new { area = "Mlb" }, null)">日程・結果</a></li>
+
+            @*順位表: 9-3 *@
+            <li><a href="@Url.Action("Index", "MlbOrder", new { area = "Mlb" }, null)">順位表</a></li>
+
+            @*チーム成績: 9-5 *@
+            <li><a href="@Url.Action("Index", "MlbTeamInformation", new { area = "Mlb" }, null)">チーム成績</a></li>
+
+            @*ニュース: 9-8*@
+            <li><a href="@Url.Action("Index", "MlbNewsList", new { area = "Mlb" }, null)">ニュース</a></li>
+        </ul>
+    </li>
+</ul>

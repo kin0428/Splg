@@ -1,0 +1,205 @@
+﻿@using Splg.Areas.Jleague;
+@using Splg.Areas.Jleague.Models.ViewModel.InfosModel;
+@model Splg.Areas.Jleague.Models.ViewModel.JlgTeamInfoTopViewModel
+@{
+    if (ViewBag.JType == 1)
+    {
+        ViewBag.Title = "チーム情報　チームトップ";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J1_T_TOP;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J1_T_TOP;
+    }
+    else
+    {
+        ViewBag.Title = "チーム情報　チームトップ";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J2_T_TOP;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J2_T_TOP;
+    }
+    Layout = "~/Views/Shared/_JlgContentsLayout.cshtml";
+}
+<script src="~/Areas/Jleague/Scripts/10-2-5-1.js"></script>
+
+<div class="evt_block09">
+    @Html.Partial("~/Areas/Jleague/Views/Shared/JleagueTeamMenu.cshtml")
+
+    @if (Model != null)
+    {
+        <div class="evt_bl09_2 clear">
+            @if (!string.IsNullOrEmpty(@Model.TeamIcon))
+            {
+                <div class="evt_bl09_2_1">
+                    <img src="@Url.Content(@Model.TeamIcon)" alt="@Model.Team" />
+                </div>
+                @Html.Hidden("TeamID", @Model.TeamID)
+            }
+            @if (!string.IsNullOrEmpty(Model.Team))
+            {
+                <div class="evt_bl09_2_2">
+                    <h3>@Model.Team</h3>
+                    <p class="evt_edit_btn fs14">
+                        <a href="@Url.RouteUrl("5-4", new { newsClassID = 2, quoteUniqueId1 = Constants.JLG_SPORT_ID, quoteUniqueId2 = 0, quoteUniqueId3 = @Model.TeamID })">記事作成</a>
+                    </p>
+                    <p><span class="fs18">@Model.ShortNameLeague @Model.Ranking</span>位</p>
+                </div>
+            }
+            @if (Model.BetrayalDeviation != null && Model.ExpectationsDeviation != null)
+            {
+                <div class="evt_bl09_2_3 clear">
+                    <div class="evt_bl09_2_3_1">
+                        <p class="evt_teams">期待度偏差値</p>
+                        <p class="evt_points fi">@Math.Round(@Model.ExpectationsDeviation)</p>
+                    </div>
+                    <div class="evt_bl09_2_3_2">
+                        <p class="evt_teams">裏切度偏差値</p>
+                        <p class="evt_points fi">@Math.Round(@Model.BetrayalDeviation)</p>
+                    </div>
+                </div>
+                <p class="evt_bl09_2_4">
+                    期待度偏差値とは…総予想ポイント数の偏差値<br>
+                    裏切度偏差値とは…負けた試合の総予想ポイント数の偏差値
+                </p>
+            }
+            <div class="space"></div>
+            @if (Model.RankInfoRT != null)
+            {
+                var rank = Model.RankInfoRT;
+                var balance = rank.Score - rank.Lost;
+
+                <div class="row">
+                    <table class="jtbl01" cellpadding="0" cellspacing="0" summary="content1">
+                        <col width="39%" />
+                        <col width="8%" />
+                        <col width="7%" />
+                        <col width="7%" />
+                        <col width="8%" />
+                        <col width="7%" />
+                        <col width="7%" />
+                        <col width="8%" />
+                        <col width="9%" />
+                        <tr>
+                            <th class="tleft">順位</th>
+                            <th>試合数</th>
+                            <th>勝数</th>
+                            <th>負数</th>
+                            <th>分数</th>
+                            <th>得点</th>
+                            <th>失点</th>
+                            <th>得失点</th>
+                            <th>勝ち点</th>
+                        </tr>
+                        <tr>
+                            <td><h4 class="tleft">@rank.Ranking</h4></td>
+                            <td><span class="fs18 num fi">@rank.Game</span></td>
+                            <td><span class="fs18 num fi">@rank.Win</span></td>
+                            <td><span class="fs18 num fi">@rank.Lose</span></td>
+                            <td><span class="fs18 num fi">@rank.Draw</span></td>
+                            <td><span class="fs18 num fi">@rank.Score</span></td>
+                            <td><span class="fs18 num fi">@rank.Lost</span></td>
+                            <td><span class="fs18 num fi">@balance</td>
+                            <td><span class="fs24 num fi">@rank.Point</td>
+                        </tr>
+                    </table>
+                </div>
+            }
+
+            <!-- J1 ピックアップニュース -->
+            @Html.Action("ShowJlgRecentNews", "JlgRightContent", new { area = "Jleague", type = @ViewBag.Name, teamID = @ViewBag.TeamID })
+
+            <!-- 今日の試合 -->
+
+            <div class="board_control clear">
+                <span class="board_prev blue">前の試合を見る</span>
+                <h4 id="gameDate">
+                    @Splg.Utils.GetMonthAndDayOfWeek(DateTime.Now) の試合
+                </h4>
+                <span class="board_next blue">次の試合を見る</span>
+            </div>
+            <input type="hidden" id="Page" name="Page" value="3" data-gamedate='@DateTime.Now.ToShortDateString().Replace("/", "" )' data-teamid=@ViewBag.TeamID />
+            <div id="jlgGameInfo">
+                @Html.Action("ShowGameInfo", "JlgTop", new { area = "Jleague", type = 3, gameDate = DateTime.Now.ToShortDateString().Replace("/", ""), teamID = @ViewBag.TeamID })
+            </div>
+
+            <!-- Jリーグ 投稿記事 -->
+            @if (Model.TeamPostList != null && Model.TeamPostList.Any())
+            {
+                <div class="cat_stitle">
+                    <h3>新着の投稿記事</h3>
+                    <p><a href="/user_article/1/sport/">投稿記事をもっと読む</a></p>
+                </div>
+                <ul class="evt_list01">
+                    @foreach (var post in Model.TeamPostList.Take(5))
+                    {
+                        string postContent = string.Format("{0}&nbsp;&nbsp;&nbsp;{1}投稿", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                        <li>
+                            <a href="/user/@post.MemberId/"><img src="@post.ProfileImg" alt="icon" /></a>
+                            <a class="bold" href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a>
+                            <br />
+                            @Html.Raw(postContent)
+                        </li>
+                    }
+                </ul>
+            }
+
+            <div class="space20"></div>
+
+            <!-- 順位（昨日変更のため削除、後日実装-->
+
+
+            <!-- 年度 -->
+            <div class="space"> </div>
+            <div class="jgroup">
+                <table class="jtbl02" cellpadding="0" cellspacing="0" summary="個人">
+                    <col width="16%" />
+                    <col width="14%" />
+                    <col width="14%" />
+                    <col width="14%" />
+                    <col width="14%" />
+                    <col width="14%" />
+                    <col width="14%" />
+                    <tr>
+                        <th>年度</th>
+                        <th>試合数</th>
+                        <th>勝数</th>
+                        <th>敗数</th>
+                        <th>引分数</th>
+                        <th>得点</th>
+                        <th>失点</th>
+                    </tr>
+                    @if (Model.ResultInfoSS != null && Model.ResultInfoSS.Any())
+                    {
+                        foreach (var item in Model.ResultInfoSS)
+                        {
+                            <tr>
+                                <td><p class="jimg01">@item.Year @item.GameKindName</p></td>
+                                <td>@item.Game</td>
+                                <td>@item.Win</td>
+                                <td>@item.Lose</td>
+                                <td>@item.Draw</td>
+                                <td>@item.Score</td>
+                                <td>@item.Lost</td>
+                            </tr>
+                        }
+                    }
+                </table>
+            </div>
+
+        </div>
+    }
+</div>
+<!--Right Content-->
+@section JlgPage{
+        @*Html.Action("ShowJlgRightRecentNews", "JlgRightRecentNews", new { area = "Jleague" })*@
+        
+        @if (ViewBag.JleagueMenu == 2)
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_J1, jType = 1 })
+        }
+        else if (ViewBag.JleagueMenu == 3)
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_J2, jType = 2 })
+        }
+        else 
+        {
+            @Html.Action("ShowJlgRightStanding", "JlgRightOrder", new { area = "Jleague", gameType = JlgConstants.JLG_GAMEKIND_NABISCO, jType = ViewBag.JType })
+        }
+    </div>
+}

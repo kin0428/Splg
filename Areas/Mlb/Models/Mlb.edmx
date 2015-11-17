@@ -1,0 +1,894 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MlbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DailySchedule">
+          <Key>
+            <PropertyRef Name="DailyScheduleId" />
+          </Key>
+          <Property Name="DailyScheduleId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DailyScheduleHeaderId" Type="bigint" Nullable="false" />
+          <Property Name="SeqNo" Type="int" Nullable="false" />
+          <Property Name="SeasonID" Type="int" Nullable="false" />
+          <Property Name="GameID" Type="int" Nullable="false" />
+          <Property Name="Time" Type="nvarchar" MaxLength="64" />
+          <Property Name="StadiumName" Type="nvarchar" MaxLength="64" />
+          <Property Name="HomeTeamID" Type="int" />
+          <Property Name="HomeTeamFullName" Type="nvarchar" MaxLength="64" />
+          <Property Name="HomeTeamName" Type="nvarchar" MaxLength="64" />
+          <Property Name="HomeNoticeStarterName" Type="nvarchar" MaxLength="64" />
+          <Property Name="HomeNoticeStarterNum" Type="nvarchar" MaxLength="8" />
+          <Property Name="HomeNoticeStarterArm" Type="smallint" />
+          <Property Name="VisitorTeamID" Type="int" />
+          <Property Name="VisitorTeamFullName" Type="nvarchar" MaxLength="64" />
+          <Property Name="VisitorTeamName" Type="nvarchar" MaxLength="64" />
+          <Property Name="VisitorNoticeStarterName" Type="nvarchar" MaxLength="64" />
+          <Property Name="VisitorNoticeStarterNum" Type="nvarchar" MaxLength="8" />
+          <Property Name="VisitorNoticeStarterArm" Type="smallint" />
+          <Property Name="WinLast5" Type="int" />
+          <Property Name="LoseLast5" Type="int" />
+          <Property Name="GameCount" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DailyScheduleHeader">
+          <Key>
+            <PropertyRef Name="DailyScheduleHeaderId" />
+          </Key>
+          <Property Name="DailyScheduleHeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Created" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="GameDate" Type="int" />
+          <Property Name="GameDateJPN" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DayGroup">
+          <Key>
+            <PropertyRef Name="DayGroupId" />
+          </Key>
+          <Property Name="DayGroupId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MonthGroupId" Type="bigint" Nullable="false" />
+          <Property Name="GameDate" Type="int" />
+          <Property Name="GameDateJPN" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DivGroupMlb">
+          <Key>
+            <PropertyRef Name="DivGroupMlbId" />
+          </Key>
+          <Property Name="DivGroupMlbId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeagueGroupMlbId" Type="bigint" Nullable="false" />
+          <Property Name="DivID" Type="int" Nullable="false" />
+          <Property Name="DivName" Type="nvarchar" MaxLength="64" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="JapanesePlayers">
+          <Key>
+            <PropertyRef Name="JapanesePlayersId" />
+          </Key>
+          <Property Name="JapanesePlayersId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeamInfoId" Type="bigint" Nullable="false" />
+          <Property Name="PlayerName" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Years" Type="nvarchar" MaxLength="512" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LeagueGroupMlb">
+          <Key>
+            <PropertyRef Name="LeagueGroupMlbId" />
+          </Key>
+          <Property Name="LeagueGroupMlbId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OfficialStatsHeaderMlbId" Type="bigint" Nullable="false" />
+          <Property Name="LeagueID" Type="int" Nullable="false" />
+          <Property Name="LeagueName" Type="nvarchar" MaxLength="64" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MasterTransfersMlb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="No" Type="nvarchar" MaxLength="16" />
+          <Property Name="FunctionName" Type="nvarchar" MaxLength="64" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="64" />
+          <Property Name="FilePathServer" Type="nvarchar" MaxLength="64" />
+          <Property Name="Schema" Type="nvarchar" MaxLength="16" />
+          <Property Name="SuffixTables" Type="nvarchar" MaxLength="16" />
+          <Property Name="IgnoreTables" Type="nvarchar" MaxLength="64" />
+          <Property Name="QuerySqlDelete" Type="nvarchar(max)" />
+          <Property Name="HasCustomHeader" Type="smallint" />
+          <Property Name="HasSubFolder" Type="smallint" />
+          <Property Name="Description" Type="nvarchar" MaxLength="512" />
+          <Property Name="CreateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MonthGroup">
+          <Key>
+            <PropertyRef Name="MonthGroupId" />
+          </Key>
+          <Property Name="MonthGroupId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SeasonScheduleHeaderId" Type="bigint" Nullable="false" />
+          <Property Name="Month" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OfficialStatsHeaderMlb">
+          <Key>
+            <PropertyRef Name="OfficialStatsHeaderMlbId" />
+          </Key>
+          <Property Name="OfficialStatsHeaderMlbId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Created" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="Year" Type="int" />
+          <Property Name="GameDate" Type="int" />
+          <Property Name="GameDateJPN" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OfficialStatsMlb">
+          <Key>
+            <PropertyRef Name="OfficialStatsMlbId" />
+          </Key>
+          <Property Name="OfficialStatsMlbId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DivGroupMlbId" Type="bigint" Nullable="false" />
+          <Property Name="Ranking" Type="int" Nullable="false" />
+          <Property Name="TeamID" Type="int" Nullable="false" />
+          <Property Name="TeamFullName" Type="nvarchar" MaxLength="64" />
+          <Property Name="TeamName" Type="nvarchar" MaxLength="64" />
+          <Property Name="GameCount" Type="int" />
+          <Property Name="Win" Type="int" />
+          <Property Name="Lose" Type="int" />
+          <Property Name="WinningPercentage" Type="nvarchar" MaxLength="8" />
+          <Property Name="GameBehind" Type="nvarchar" MaxLength="8" />
+          <Property Name="Run" Type="int" />
+          <Property Name="PointLost" Type="int" />
+          <Property Name="Homerun" Type="int" />
+          <Property Name="StolenBase" Type="int" />
+          <Property Name="BattingAverage" Type="nvarchar" MaxLength="8" />
+          <Property Name="EarnedRunAverage" Type="nvarchar" MaxLength="8" />
+          <Property Name="RunsBattingIn" Type="int" />
+          <Property Name="WinLast10" Type="int" />
+          <Property Name="LoseLast10" Type="int" />
+          <Property Name="Streak" Type="nvarchar" MaxLength="64" />
+          <Property Name="StatHome" Type="nvarchar" MaxLength="64" />
+          <Property Name="StatVisitor" Type="nvarchar" MaxLength="64" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RealGameInfo">
+          <Key>
+            <PropertyRef Name="RealGameInfoId" />
+          </Key>
+          <Property Name="RealGameInfoId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RealGameInfoHeaderId" Type="bigint" Nullable="false" />
+          <Property Name="SeqNo" Type="int" Nullable="false" />
+          <Property Name="GameID" Type="int" Nullable="false" />
+          <Property Name="HomeTeamID" Type="int" />
+          <Property Name="HomeTeamFullName" Type="nvarchar" MaxLength="64" />
+          <Property Name="HomeTeamName" Type="nvarchar" MaxLength="64" />
+          <Property Name="HomeStarterName" Type="nvarchar" MaxLength="64" />
+          <Property Name="HomeStarterNum" Type="nvarchar" MaxLength="8" />
+          <Property Name="HomeStarterArm" Type="smallint" />
+          <Property Name="HomeScore" Type="int" />
+          <Property Name="HomeHits" Type="int" />
+          <Property Name="HomeErrors" Type="int" />
+          <Property Name="VisitorTeamID" Type="int" />
+          <Property Name="VisitorTeamFullName" Type="nvarchar" MaxLength="64" />
+          <Property Name="VisitorTeamName" Type="nvarchar" MaxLength="64" />
+          <Property Name="VisitorStarterName" Type="nvarchar" MaxLength="64" />
+          <Property Name="VisitorStarterNum" Type="nvarchar" MaxLength="8" />
+          <Property Name="VisitorStarterArm" Type="smallint" />
+          <Property Name="VisitorScore" Type="int" />
+          <Property Name="VisitorHits" Type="int" />
+          <Property Name="VisitorErrors" Type="int" />
+          <Property Name="GameStateID" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RealGameInfoHeader">
+          <Key>
+            <PropertyRef Name="RealGameInfoHeaderId" />
+          </Key>
+          <Property Name="RealGameInfoHeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Created" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="GameDate" Type="int" />
+          <Property Name="GameDateJPN" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SeasonSchedule">
+          <Key>
+            <PropertyRef Name="SeasonScheduleId" />
+          </Key>
+          <Property Name="SeasonScheduleId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DayGroupId" Type="bigint" Nullable="false" />
+          <Property Name="SeqNo" Type="int" Nullable="false" />
+          <Property Name="SeasonID" Type="int" Nullable="false" />
+          <Property Name="GameID" Type="int" Nullable="false" />
+          <Property Name="Time" Type="nvarchar" MaxLength="64" />
+          <Property Name="StadiumName" Type="nvarchar" MaxLength="64" />
+          <Property Name="HomeTeamID" Type="int" />
+          <Property Name="HomeTeamFullName" Type="nvarchar" MaxLength="64" />
+          <Property Name="HomeTeamName" Type="nvarchar" MaxLength="64" />
+          <Property Name="VisitorTeamID" Type="int" />
+          <Property Name="VisitorTeamFullName" Type="nvarchar" MaxLength="64" />
+          <Property Name="VisitorTeamName" Type="nvarchar" MaxLength="64" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SeasonScheduleHeader">
+          <Key>
+            <PropertyRef Name="SeasonScheduleHeaderId" />
+          </Key>
+          <Property Name="SeasonScheduleHeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Created" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="Year" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="StatLast5Years">
+          <Key>
+            <PropertyRef Name="StatLast5YearsId" />
+          </Key>
+          <Property Name="StatLast5YearsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeamInfoId" Type="bigint" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Stat" Type="nvarchar" MaxLength="128" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TeamIconMlb">
+          <Key>
+            <PropertyRef Name="TeamCD" />
+          </Key>
+          <Property Name="TeamCD" Type="int" Nullable="false" />
+          <Property Name="TeamIcon" Type="varchar" MaxLength="255" />
+          <Property Name="SortOrd" Type="int" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TeamInfo">
+          <Key>
+            <PropertyRef Name="TeamInfoId" />
+          </Key>
+          <Property Name="TeamInfoId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeamInfoMSTHeaderId" Type="bigint" Nullable="false" />
+          <Property Name="TeamID" Type="int" Nullable="false" />
+          <Property Name="TeamFullName" Type="nvarchar" MaxLength="64" />
+          <Property Name="TeamName" Type="nvarchar" MaxLength="64" />
+          <Property Name="LeagueID" Type="int" />
+          <Property Name="LeagueName" Type="nvarchar" MaxLength="64" />
+          <Property Name="DivID" Type="int" />
+          <Property Name="DivName" Type="nvarchar" MaxLength="64" />
+          <Property Name="FoundedYear" Type="int" />
+          <Property Name="OwnerName" Type="nvarchar" MaxLength="64" />
+          <Property Name="ManagerName" Type="nvarchar" MaxLength="64" />
+          <Property Name="WSTitles" Type="int" />
+          <Property Name="Pennants" Type="int" />
+          <Property Name="DivTitles" Type="int" />
+          <Property Name="WCBerths" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TeamInfoMSTHeader">
+          <Key>
+            <PropertyRef Name="TeamInfoMSTHeaderId" />
+          </Key>
+          <Property Name="TeamInfoMSTHeaderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Created" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="Year" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="MlbModelStoreContainer">
+          <EntitySet Name="DailySchedule" EntityType="Self.DailySchedule" Schema="Mlb" store:Type="Tables" />
+          <EntitySet Name="DailyScheduleHeader" EntityType="Self.DailyScheduleHeader" Schema="Mlb" store:Type="Tables" />
+          <EntitySet Name="DayGroup" EntityType="Self.DayGroup" Schema="Mlb" store:Type="Tables" />
+          <EntitySet Name="DivGroupMlb" EntityType="Self.DivGroupMlb" Schema="Mlb" store:Type="Tables" />
+          <EntitySet Name="JapanesePlayers" EntityType="Self.JapanesePlayers" Schema="Mlb" store:Type="Tables" />
+          <EntitySet Name="LeagueGroupMlb" EntityType="Self.LeagueGroupMlb" Schema="Mlb" store:Type="Tables" />
+          <EntitySet Name="MasterTransfersMlb" EntityType="Self.MasterTransfersMlb" Schema="Mlb" store:Type="Tables" />
+          <EntitySet Name="MonthGroup" EntityType="Self.MonthGroup" Schema="Mlb" store:Type="Tables" />
+          <EntitySet Name="OfficialStatsHeaderMlb" EntityType="Self.OfficialStatsHeaderMlb" Schema="Mlb" store:Type="Tables" />
+          <EntitySet Name="OfficialStatsMlb" EntityType="Self.OfficialStatsMlb" Schema="Mlb" store:Type="Tables" />
+          <EntitySet Name="RealGameInfo" EntityType="Self.RealGameInfo" Schema="Mlb" store:Type="Tables" />
+          <EntitySet Name="RealGameInfoHeader" EntityType="Self.RealGameInfoHeader" Schema="Mlb" store:Type="Tables" />
+          <EntitySet Name="SeasonSchedule" EntityType="Self.SeasonSchedule" Schema="Mlb" store:Type="Tables" />
+          <EntitySet Name="SeasonScheduleHeader" EntityType="Self.SeasonScheduleHeader" Schema="Mlb" store:Type="Tables" />
+          <EntitySet Name="StatLast5Years" EntityType="Self.StatLast5Years" Schema="Mlb" store:Type="Tables" />
+          <EntitySet Name="TeamIconMlb" EntityType="Self.TeamIconMlb" Schema="Mlb" store:Type="Tables" />
+          <EntitySet Name="TeamInfo" EntityType="Self.TeamInfo" Schema="Mlb" store:Type="Tables" />
+          <EntitySet Name="TeamInfoMSTHeader" EntityType="Self.TeamInfoMSTHeader" Schema="Mlb" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MlbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DailySchedule">
+          <Key>
+            <PropertyRef Name="DailyScheduleId" />
+          </Key>
+          <Property Name="DailyScheduleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DailyScheduleHeaderId" Type="Int64" Nullable="false" />
+          <Property Name="SeqNo" Type="Int32" Nullable="false" />
+          <Property Name="SeasonID" Type="Int32" Nullable="false" />
+          <Property Name="GameID" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="StadiumName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="HomeTeamID" Type="Int32" />
+          <Property Name="HomeTeamFullName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="HomeTeamName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="HomeNoticeStarterName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="HomeNoticeStarterNum" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="HomeNoticeStarterArm" Type="Int16" />
+          <Property Name="VisitorTeamID" Type="Int32" />
+          <Property Name="VisitorTeamFullName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="VisitorTeamName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="VisitorNoticeStarterName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="VisitorNoticeStarterNum" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="VisitorNoticeStarterArm" Type="Int16" />
+          <Property Name="WinLast5" Type="Int32" />
+          <Property Name="LoseLast5" Type="Int32" />
+          <Property Name="GameCount" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DailyScheduleHeader">
+          <Key>
+            <PropertyRef Name="DailyScheduleHeaderId" />
+          </Key>
+          <Property Name="DailyScheduleHeaderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Created" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GameDate" Type="Int32" />
+          <Property Name="GameDateJPN" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DayGroup">
+          <Key>
+            <PropertyRef Name="DayGroupId" />
+          </Key>
+          <Property Name="DayGroupId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MonthGroupId" Type="Int64" Nullable="false" />
+          <Property Name="GameDate" Type="Int32" />
+          <Property Name="GameDateJPN" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="DivGroupMlb">
+          <Key>
+            <PropertyRef Name="DivGroupMlbId" />
+          </Key>
+          <Property Name="DivGroupMlbId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeagueGroupMlbId" Type="Int64" Nullable="false" />
+          <Property Name="DivID" Type="Int32" Nullable="false" />
+          <Property Name="DivName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="JapanesePlayers">
+          <Key>
+            <PropertyRef Name="JapanesePlayersId" />
+          </Key>
+          <Property Name="JapanesePlayersId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamInfoId" Type="Int64" Nullable="false" />
+          <Property Name="PlayerName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Years" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="LeagueGroupMlb">
+          <Key>
+            <PropertyRef Name="LeagueGroupMlbId" />
+          </Key>
+          <Property Name="LeagueGroupMlbId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OfficialStatsHeaderMlbId" Type="Int64" Nullable="false" />
+          <Property Name="LeagueID" Type="Int32" Nullable="false" />
+          <Property Name="LeagueName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MasterTransfersMlb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="No" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="FunctionName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="FilePathServer" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Schema" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="SuffixTables" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="IgnoreTables" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="QuerySqlDelete" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HasCustomHeader" Type="Int16" />
+          <Property Name="HasSubFolder" Type="Int16" />
+          <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MonthGroup">
+          <Key>
+            <PropertyRef Name="MonthGroupId" />
+          </Key>
+          <Property Name="MonthGroupId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SeasonScheduleHeaderId" Type="Int64" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OfficialStatsHeaderMlb">
+          <Key>
+            <PropertyRef Name="OfficialStatsHeaderMlbId" />
+          </Key>
+          <Property Name="OfficialStatsHeaderMlbId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Created" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="GameDate" Type="Int32" />
+          <Property Name="GameDateJPN" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OfficialStatsMlb">
+          <Key>
+            <PropertyRef Name="OfficialStatsMlbId" />
+          </Key>
+          <Property Name="OfficialStatsMlbId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DivGroupMlbId" Type="Int64" Nullable="false" />
+          <Property Name="Ranking" Type="Int32" Nullable="false" />
+          <Property Name="TeamID" Type="Int32" Nullable="false" />
+          <Property Name="TeamFullName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="TeamName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="GameCount" Type="Int32" />
+          <Property Name="Win" Type="Int32" />
+          <Property Name="Lose" Type="Int32" />
+          <Property Name="WinningPercentage" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="GameBehind" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Run" Type="Int32" />
+          <Property Name="PointLost" Type="Int32" />
+          <Property Name="Homerun" Type="Int32" />
+          <Property Name="StolenBase" Type="Int32" />
+          <Property Name="BattingAverage" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="EarnedRunAverage" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="RunsBattingIn" Type="Int32" />
+          <Property Name="WinLast10" Type="Int32" />
+          <Property Name="LoseLast10" Type="Int32" />
+          <Property Name="Streak" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="StatHome" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="StatVisitor" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RealGameInfo">
+          <Key>
+            <PropertyRef Name="RealGameInfoId" />
+          </Key>
+          <Property Name="RealGameInfoId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RealGameInfoHeaderId" Type="Int64" Nullable="false" />
+          <Property Name="SeqNo" Type="Int32" Nullable="false" />
+          <Property Name="GameID" Type="Int32" Nullable="false" />
+          <Property Name="HomeTeamID" Type="Int32" />
+          <Property Name="HomeTeamFullName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="HomeTeamName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="HomeStarterName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="HomeStarterNum" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="HomeStarterArm" Type="Int16" />
+          <Property Name="HomeScore" Type="Int32" />
+          <Property Name="HomeHits" Type="Int32" />
+          <Property Name="HomeErrors" Type="Int32" />
+          <Property Name="VisitorTeamID" Type="Int32" />
+          <Property Name="VisitorTeamFullName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="VisitorTeamName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="VisitorStarterName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="VisitorStarterNum" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="VisitorStarterArm" Type="Int16" />
+          <Property Name="VisitorScore" Type="Int32" />
+          <Property Name="VisitorHits" Type="Int32" />
+          <Property Name="VisitorErrors" Type="Int32" />
+          <Property Name="GameStateID" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RealGameInfoHeader">
+          <Key>
+            <PropertyRef Name="RealGameInfoHeaderId" />
+          </Key>
+          <Property Name="RealGameInfoHeaderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Created" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GameDate" Type="Int32" />
+          <Property Name="GameDateJPN" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SeasonSchedule">
+          <Key>
+            <PropertyRef Name="SeasonScheduleId" />
+          </Key>
+          <Property Name="SeasonScheduleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DayGroupId" Type="Int64" Nullable="false" />
+          <Property Name="SeqNo" Type="Int32" Nullable="false" />
+          <Property Name="SeasonID" Type="Int32" Nullable="false" />
+          <Property Name="GameID" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="StadiumName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="HomeTeamID" Type="Int32" />
+          <Property Name="HomeTeamFullName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="HomeTeamName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="VisitorTeamID" Type="Int32" />
+          <Property Name="VisitorTeamFullName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="VisitorTeamName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SeasonScheduleHeader">
+          <Key>
+            <PropertyRef Name="SeasonScheduleHeaderId" />
+          </Key>
+          <Property Name="SeasonScheduleHeaderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Created" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="StatLast5Years">
+          <Key>
+            <PropertyRef Name="StatLast5YearsId" />
+          </Key>
+          <Property Name="StatLast5YearsId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamInfoId" Type="Int64" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Stat" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TeamIconMlb">
+          <Key>
+            <PropertyRef Name="TeamCD" />
+          </Key>
+          <Property Name="TeamCD" Type="Int32" Nullable="false" />
+          <Property Name="TeamIcon" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="SortOrd" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeamInfo">
+          <Key>
+            <PropertyRef Name="TeamInfoId" />
+          </Key>
+          <Property Name="TeamInfoId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamInfoMSTHeaderId" Type="Int64" Nullable="false" />
+          <Property Name="TeamID" Type="Int32" Nullable="false" />
+          <Property Name="TeamFullName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="TeamName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="LeagueID" Type="Int32" />
+          <Property Name="LeagueName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="DivID" Type="Int32" />
+          <Property Name="DivName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="FoundedYear" Type="Int32" />
+          <Property Name="OwnerName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="WSTitles" Type="Int32" />
+          <Property Name="Pennants" Type="Int32" />
+          <Property Name="DivTitles" Type="Int32" />
+          <Property Name="WCBerths" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TeamInfoMSTHeader">
+          <Key>
+            <PropertyRef Name="TeamInfoMSTHeaderId" />
+          </Key>
+          <Property Name="TeamInfoMSTHeaderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Created" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="MlbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DailySchedule" EntityType="Self.DailySchedule" />
+          <EntitySet Name="DailyScheduleHeader" EntityType="Self.DailyScheduleHeader" />
+          <EntitySet Name="DayGroup" EntityType="Self.DayGroup" />
+          <EntitySet Name="DivGroupMlb" EntityType="Self.DivGroupMlb" />
+          <EntitySet Name="JapanesePlayers" EntityType="Self.JapanesePlayers" />
+          <EntitySet Name="LeagueGroupMlb" EntityType="Self.LeagueGroupMlb" />
+          <EntitySet Name="MasterTransfersMlb" EntityType="Self.MasterTransfersMlb" />
+          <EntitySet Name="MonthGroup" EntityType="Self.MonthGroup" />
+          <EntitySet Name="OfficialStatsHeaderMlb" EntityType="Self.OfficialStatsHeaderMlb" />
+          <EntitySet Name="OfficialStatsMlb" EntityType="Self.OfficialStatsMlb" />
+          <EntitySet Name="RealGameInfo" EntityType="Self.RealGameInfo" />
+          <EntitySet Name="RealGameInfoHeader" EntityType="Self.RealGameInfoHeader" />
+          <EntitySet Name="SeasonSchedule" EntityType="Self.SeasonSchedule" />
+          <EntitySet Name="SeasonScheduleHeader" EntityType="Self.SeasonScheduleHeader" />
+          <EntitySet Name="StatLast5Years" EntityType="Self.StatLast5Years" />
+          <EntitySet Name="TeamIconMlb" EntityType="Self.TeamIconMlb" />
+          <EntitySet Name="TeamInfo" EntityType="Self.TeamInfo" />
+          <EntitySet Name="TeamInfoMSTHeader" EntityType="Self.TeamInfoMSTHeader" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MlbModelStoreContainer" CdmEntityContainer="MlbEntities">
+          <EntitySetMapping Name="DailySchedule">
+            <EntityTypeMapping TypeName="MlbModel.DailySchedule">
+              <MappingFragment StoreEntitySet="DailySchedule">
+                <ScalarProperty Name="DailyScheduleId" ColumnName="DailyScheduleId" />
+                <ScalarProperty Name="DailyScheduleHeaderId" ColumnName="DailyScheduleHeaderId" />
+                <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+                <ScalarProperty Name="SeasonID" ColumnName="SeasonID" />
+                <ScalarProperty Name="GameID" ColumnName="GameID" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="StadiumName" ColumnName="StadiumName" />
+                <ScalarProperty Name="HomeTeamID" ColumnName="HomeTeamID" />
+                <ScalarProperty Name="HomeTeamFullName" ColumnName="HomeTeamFullName" />
+                <ScalarProperty Name="HomeTeamName" ColumnName="HomeTeamName" />
+                <ScalarProperty Name="HomeNoticeStarterName" ColumnName="HomeNoticeStarterName" />
+                <ScalarProperty Name="HomeNoticeStarterNum" ColumnName="HomeNoticeStarterNum" />
+                <ScalarProperty Name="HomeNoticeStarterArm" ColumnName="HomeNoticeStarterArm" />
+                <ScalarProperty Name="VisitorTeamID" ColumnName="VisitorTeamID" />
+                <ScalarProperty Name="VisitorTeamFullName" ColumnName="VisitorTeamFullName" />
+                <ScalarProperty Name="VisitorTeamName" ColumnName="VisitorTeamName" />
+                <ScalarProperty Name="VisitorNoticeStarterName" ColumnName="VisitorNoticeStarterName" />
+                <ScalarProperty Name="VisitorNoticeStarterNum" ColumnName="VisitorNoticeStarterNum" />
+                <ScalarProperty Name="VisitorNoticeStarterArm" ColumnName="VisitorNoticeStarterArm" />
+                <ScalarProperty Name="WinLast5" ColumnName="WinLast5" />
+                <ScalarProperty Name="LoseLast5" ColumnName="LoseLast5" />
+                <ScalarProperty Name="GameCount" ColumnName="GameCount" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DailyScheduleHeader">
+            <EntityTypeMapping TypeName="MlbModel.DailyScheduleHeader">
+              <MappingFragment StoreEntitySet="DailyScheduleHeader">
+                <ScalarProperty Name="DailyScheduleHeaderId" ColumnName="DailyScheduleHeaderId" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="GameDate" ColumnName="GameDate" />
+                <ScalarProperty Name="GameDateJPN" ColumnName="GameDateJPN" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DayGroup">
+            <EntityTypeMapping TypeName="MlbModel.DayGroup">
+              <MappingFragment StoreEntitySet="DayGroup">
+                <ScalarProperty Name="DayGroupId" ColumnName="DayGroupId" />
+                <ScalarProperty Name="MonthGroupId" ColumnName="MonthGroupId" />
+                <ScalarProperty Name="GameDate" ColumnName="GameDate" />
+                <ScalarProperty Name="GameDateJPN" ColumnName="GameDateJPN" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DivGroupMlb">
+            <EntityTypeMapping TypeName="MlbModel.DivGroupMlb">
+              <MappingFragment StoreEntitySet="DivGroupMlb">
+                <ScalarProperty Name="DivGroupMlbId" ColumnName="DivGroupMlbId" />
+                <ScalarProperty Name="LeagueGroupMlbId" ColumnName="LeagueGroupMlbId" />
+                <ScalarProperty Name="DivID" ColumnName="DivID" />
+                <ScalarProperty Name="DivName" ColumnName="DivName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JapanesePlayers">
+            <EntityTypeMapping TypeName="MlbModel.JapanesePlayers">
+              <MappingFragment StoreEntitySet="JapanesePlayers">
+                <ScalarProperty Name="JapanesePlayersId" ColumnName="JapanesePlayersId" />
+                <ScalarProperty Name="TeamInfoId" ColumnName="TeamInfoId" />
+                <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
+                <ScalarProperty Name="Years" ColumnName="Years" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeagueGroupMlb">
+            <EntityTypeMapping TypeName="MlbModel.LeagueGroupMlb">
+              <MappingFragment StoreEntitySet="LeagueGroupMlb">
+                <ScalarProperty Name="LeagueGroupMlbId" ColumnName="LeagueGroupMlbId" />
+                <ScalarProperty Name="OfficialStatsHeaderMlbId" ColumnName="OfficialStatsHeaderMlbId" />
+                <ScalarProperty Name="LeagueID" ColumnName="LeagueID" />
+                <ScalarProperty Name="LeagueName" ColumnName="LeagueName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MasterTransfersMlb">
+            <EntityTypeMapping TypeName="MlbModel.MasterTransfersMlb">
+              <MappingFragment StoreEntitySet="MasterTransfersMlb">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="FilePathServer" ColumnName="FilePathServer" />
+                <ScalarProperty Name="Schema" ColumnName="Schema" />
+                <ScalarProperty Name="SuffixTables" ColumnName="SuffixTables" />
+                <ScalarProperty Name="IgnoreTables" ColumnName="IgnoreTables" />
+                <ScalarProperty Name="QuerySqlDelete" ColumnName="QuerySqlDelete" />
+                <ScalarProperty Name="HasCustomHeader" ColumnName="HasCustomHeader" />
+                <ScalarProperty Name="HasSubFolder" ColumnName="HasSubFolder" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonthGroup">
+            <EntityTypeMapping TypeName="MlbModel.MonthGroup">
+              <MappingFragment StoreEntitySet="MonthGroup">
+                <ScalarProperty Name="MonthGroupId" ColumnName="MonthGroupId" />
+                <ScalarProperty Name="SeasonScheduleHeaderId" ColumnName="SeasonScheduleHeaderId" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OfficialStatsHeaderMlb">
+            <EntityTypeMapping TypeName="MlbModel.OfficialStatsHeaderMlb">
+              <MappingFragment StoreEntitySet="OfficialStatsHeaderMlb">
+                <ScalarProperty Name="OfficialStatsHeaderMlbId" ColumnName="OfficialStatsHeaderMlbId" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="GameDate" ColumnName="GameDate" />
+                <ScalarProperty Name="GameDateJPN" ColumnName="GameDateJPN" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OfficialStatsMlb">
+            <EntityTypeMapping TypeName="MlbModel.OfficialStatsMlb">
+              <MappingFragment StoreEntitySet="OfficialStatsMlb">
+                <ScalarProperty Name="OfficialStatsMlbId" ColumnName="OfficialStatsMlbId" />
+                <ScalarProperty Name="DivGroupMlbId" ColumnName="DivGroupMlbId" />
+                <ScalarProperty Name="Ranking" ColumnName="Ranking" />
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="TeamFullName" ColumnName="TeamFullName" />
+                <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+                <ScalarProperty Name="GameCount" ColumnName="GameCount" />
+                <ScalarProperty Name="Win" ColumnName="Win" />
+                <ScalarProperty Name="Lose" ColumnName="Lose" />
+                <ScalarProperty Name="WinningPercentage" ColumnName="WinningPercentage" />
+                <ScalarProperty Name="GameBehind" ColumnName="GameBehind" />
+                <ScalarProperty Name="Run" ColumnName="Run" />
+                <ScalarProperty Name="PointLost" ColumnName="PointLost" />
+                <ScalarProperty Name="Homerun" ColumnName="Homerun" />
+                <ScalarProperty Name="StolenBase" ColumnName="StolenBase" />
+                <ScalarProperty Name="BattingAverage" ColumnName="BattingAverage" />
+                <ScalarProperty Name="EarnedRunAverage" ColumnName="EarnedRunAverage" />
+                <ScalarProperty Name="RunsBattingIn" ColumnName="RunsBattingIn" />
+                <ScalarProperty Name="WinLast10" ColumnName="WinLast10" />
+                <ScalarProperty Name="LoseLast10" ColumnName="LoseLast10" />
+                <ScalarProperty Name="Streak" ColumnName="Streak" />
+                <ScalarProperty Name="StatHome" ColumnName="StatHome" />
+                <ScalarProperty Name="StatVisitor" ColumnName="StatVisitor" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RealGameInfo">
+            <EntityTypeMapping TypeName="MlbModel.RealGameInfo">
+              <MappingFragment StoreEntitySet="RealGameInfo">
+                <ScalarProperty Name="RealGameInfoId" ColumnName="RealGameInfoId" />
+                <ScalarProperty Name="RealGameInfoHeaderId" ColumnName="RealGameInfoHeaderId" />
+                <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+                <ScalarProperty Name="GameID" ColumnName="GameID" />
+                <ScalarProperty Name="HomeTeamID" ColumnName="HomeTeamID" />
+                <ScalarProperty Name="HomeTeamFullName" ColumnName="HomeTeamFullName" />
+                <ScalarProperty Name="HomeTeamName" ColumnName="HomeTeamName" />
+                <ScalarProperty Name="HomeStarterName" ColumnName="HomeStarterName" />
+                <ScalarProperty Name="HomeStarterNum" ColumnName="HomeStarterNum" />
+                <ScalarProperty Name="HomeStarterArm" ColumnName="HomeStarterArm" />
+                <ScalarProperty Name="HomeScore" ColumnName="HomeScore" />
+                <ScalarProperty Name="HomeHits" ColumnName="HomeHits" />
+                <ScalarProperty Name="HomeErrors" ColumnName="HomeErrors" />
+                <ScalarProperty Name="VisitorTeamID" ColumnName="VisitorTeamID" />
+                <ScalarProperty Name="VisitorTeamFullName" ColumnName="VisitorTeamFullName" />
+                <ScalarProperty Name="VisitorTeamName" ColumnName="VisitorTeamName" />
+                <ScalarProperty Name="VisitorStarterName" ColumnName="VisitorStarterName" />
+                <ScalarProperty Name="VisitorStarterNum" ColumnName="VisitorStarterNum" />
+                <ScalarProperty Name="VisitorStarterArm" ColumnName="VisitorStarterArm" />
+                <ScalarProperty Name="VisitorScore" ColumnName="VisitorScore" />
+                <ScalarProperty Name="VisitorHits" ColumnName="VisitorHits" />
+                <ScalarProperty Name="VisitorErrors" ColumnName="VisitorErrors" />
+                <ScalarProperty Name="GameStateID" ColumnName="GameStateID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RealGameInfoHeader">
+            <EntityTypeMapping TypeName="MlbModel.RealGameInfoHeader">
+              <MappingFragment StoreEntitySet="RealGameInfoHeader">
+                <ScalarProperty Name="RealGameInfoHeaderId" ColumnName="RealGameInfoHeaderId" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="GameDate" ColumnName="GameDate" />
+                <ScalarProperty Name="GameDateJPN" ColumnName="GameDateJPN" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeasonSchedule">
+            <EntityTypeMapping TypeName="MlbModel.SeasonSchedule">
+              <MappingFragment StoreEntitySet="SeasonSchedule">
+                <ScalarProperty Name="SeasonScheduleId" ColumnName="SeasonScheduleId" />
+                <ScalarProperty Name="DayGroupId" ColumnName="DayGroupId" />
+                <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+                <ScalarProperty Name="SeasonID" ColumnName="SeasonID" />
+                <ScalarProperty Name="GameID" ColumnName="GameID" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="StadiumName" ColumnName="StadiumName" />
+                <ScalarProperty Name="HomeTeamID" ColumnName="HomeTeamID" />
+                <ScalarProperty Name="HomeTeamFullName" ColumnName="HomeTeamFullName" />
+                <ScalarProperty Name="HomeTeamName" ColumnName="HomeTeamName" />
+                <ScalarProperty Name="VisitorTeamID" ColumnName="VisitorTeamID" />
+                <ScalarProperty Name="VisitorTeamFullName" ColumnName="VisitorTeamFullName" />
+                <ScalarProperty Name="VisitorTeamName" ColumnName="VisitorTeamName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeasonScheduleHeader">
+            <EntityTypeMapping TypeName="MlbModel.SeasonScheduleHeader">
+              <MappingFragment StoreEntitySet="SeasonScheduleHeader">
+                <ScalarProperty Name="SeasonScheduleHeaderId" ColumnName="SeasonScheduleHeaderId" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatLast5Years">
+            <EntityTypeMapping TypeName="MlbModel.StatLast5Years">
+              <MappingFragment StoreEntitySet="StatLast5Years">
+                <ScalarProperty Name="StatLast5YearsId" ColumnName="StatLast5YearsId" />
+                <ScalarProperty Name="TeamInfoId" ColumnName="TeamInfoId" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Stat" ColumnName="Stat" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamIconMlb">
+            <EntityTypeMapping TypeName="MlbModel.TeamIconMlb">
+              <MappingFragment StoreEntitySet="TeamIconMlb">
+                <ScalarProperty Name="SortOrd" ColumnName="SortOrd" />
+                <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+                <ScalarProperty Name="TeamIcon" ColumnName="TeamIcon" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamInfo">
+            <EntityTypeMapping TypeName="MlbModel.TeamInfo">
+              <MappingFragment StoreEntitySet="TeamInfo">
+                <ScalarProperty Name="TeamInfoId" ColumnName="TeamInfoId" />
+                <ScalarProperty Name="TeamInfoMSTHeaderId" ColumnName="TeamInfoMSTHeaderId" />
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="TeamFullName" ColumnName="TeamFullName" />
+                <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+                <ScalarProperty Name="LeagueID" ColumnName="LeagueID" />
+                <ScalarProperty Name="LeagueName" ColumnName="LeagueName" />
+                <ScalarProperty Name="DivID" ColumnName="DivID" />
+                <ScalarProperty Name="DivName" ColumnName="DivName" />
+                <ScalarProperty Name="FoundedYear" ColumnName="FoundedYear" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="ManagerName" ColumnName="ManagerName" />
+                <ScalarProperty Name="WSTitles" ColumnName="WSTitles" />
+                <ScalarProperty Name="Pennants" ColumnName="Pennants" />
+                <ScalarProperty Name="DivTitles" ColumnName="DivTitles" />
+                <ScalarProperty Name="WCBerths" ColumnName="WCBerths" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamInfoMSTHeader">
+            <EntityTypeMapping TypeName="MlbModel.TeamInfoMSTHeader">
+              <MappingFragment StoreEntitySet="TeamInfoMSTHeader">
+                <ScalarProperty Name="TeamInfoMSTHeaderId" ColumnName="TeamInfoMSTHeaderId" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="なし" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,36 @@
+﻿@{
+    // Developer	: Nojima
+    // Html No      : 3-7-2
+}
+@model Splg.Areas.MyPage.Models.ViewModel.MyPageSettingPasswordViewModel
+@{
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.SETTING_PASSWORD;
+    Layout = "~/Views/Shared/Mobile/_MyPageLayout.cshtml";   
+}
+<script src="~/Areas/MyPage/Scripts/Mobile/3-7-2.js"></script>
+<script src="~/Scripts/Home.js"></script>
+
+
+@if (Model != null)
+{
+<section class="block_7">
+	<h3 class="sigtitle">パスワード変更</h3>						
+	<div class="sig-frm">
+		<dl>								
+			<dt>古いパスワードの確認</dt>
+			<dd>
+                <input type="password" value="" id="expass">
+				<p class="tright"><a href="/forgotPassword">パスワードを忘れてしまった方</a></p>
+			</dd>
+			<dt>新しいパスワード<p class="tright fs8">※パスワードは6字以上で入力してください</p></dt>
+			<dd><input type="password" value="" id="npass"></dd>
+			<dt>パスワード</dt>
+			<dd><input type="password" value="" id="npass_confirm"></dd>
+		</dl>
+		<p class="sig-submit">
+            <a id="settingssendnewpassword">変更する</a>
+		</p>
+	</div>
+</section>
+
+}

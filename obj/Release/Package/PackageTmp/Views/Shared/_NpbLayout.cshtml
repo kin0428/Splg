@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.MainMenu = "Npb";  
+}
+
+@using Splg;
+@using Splg.Core.Constant;
+
+@{
+    string[] pageInfo = Utils.GetNpbTDK(Context.Request.Path, ViewBag.Name);
+    ViewBag.Npb = "Npb";   
+}
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+    @*<meta http-equiv="content-type" content="text/html; charset=utf-8" />*@
+    <meta charset="UTF-8" />
+    <!-- InstanceBeginEditable name="doctitle" -->
+    <title>@pageInfo[0]</title>
+    <!-- InstanceEndEditable -->
+    <meta http-equiv="content-script-type" content="text/javascript" />
+    <meta http-equiv="content-style-type" content="text/style" />
+    <meta http-equiv="content-style-type" content="text/css" />
+    <meta name="description" content="@pageInfo[1]" />
+    <meta name="keywords" content="@pageInfo[2]" />
+    @if (pageInfo.Count() > 3)
+    {
+        if (!string.IsNullOrEmpty(pageInfo[3]) && pageInfo[3].Equals("none"))
+        {
+            <meta name="robots" content="none" />
+        }
+    }
+    <meta property="og:title" content="@pageInfo[0]" />
+    <meta property="og:url" content="@Context.Request.Url.AbsoluteUri" />
+    <meta property="og:image" content="https://www.dropbox.com/s/fquwo6w0tc27q9h/splog_ogp.jpg?dl=0" />
+    <meta property="og:description" content="@pageInfo[1]" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="スポログ" />
+    <meta property="og:locale" content="ja_JP" />
+	<link rel="Shortcut Icon" href="~/Content/img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="~/Content/base.css" type="text/css" />
+    <script type="text/javascript" src="~/Scripts/jquery.js"></script>
+    <script type="text/javascript" src="~/Scripts/autoNumeric-2.0.js"></script>
+    <script type="text/javascript" src="~/Scripts/common.js"></script>   
+    <script type="text/javascript" src="~/Scripts/section2.js"></script> 
+     @Html.Partial("~/Views/Shared/GoogleAnalytics.cshtml")
+    @RenderSection("scripts", false)
+    <!-- InstanceBeginEditable name="head" -->
+    <!-- InstanceEndEditable -->   
+</head>
+<body>
+    <!--Header-->
+    <div class="header">
+        <h1><a href="/"><img src="~/Content/img/tmp/logo.png" alt="スポログ" /></a></h1>
+        <!-- InstanceBeginEditable name="navbox" -->
+        @Html.Partial("~/Views/Shared/MainMenu.cshtml")         
+        <!-- InstanceEndEditable -->
+         @Html.Partial("_SearchEngine")     
+        @Html.Partial("~/Views/Shared/SubMember.cshtml")          
+         @Html.Partial("~/Areas/Npb/Views/Shared/NpbHeaderSubMenu.cshtml")       
+    </div>
+    <!--Header-->
+    @Html.Partial("~/Views/Shared/PopupLoginBox.cshtml", new Splg.Models.ViewModel.LoginViewModel())
+    <!--Main-->
+    <div class="main">
+        <div class="content">
+            <!-- InstanceBeginEditable name="content" -->
+            @Html.Partial("~/Views/Shared/NpbSubMenu.cshtml")
+            @RenderBody()
+            <!-- InstanceEndEditable -->
+        </div>           
+        <div class="side">
+            <div>
+                <a href="@Url.RouteUrl(RouteNameConst.PrizeTop)">
+                    <img src="~/Content/img/tmp/prize_bannner_PC.png" />
+                </a>
+            </div>
+            @Html.Partial("~/Views/Shared/NpbCommon.cshtml")
+            <!-- Each page render my section NpbPage -->
+            @RenderSection("NpbPage", false)
+            <div class="fb-page" data-href="https://www.facebook.com/spolog.jp" data-width="300" data-height="440" data-hide-cover="true" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/spolog.jp"><a href="https://www.facebook.com/spolog.jp">スポログ</a></blockquote></div></div>
+        </div>           
+     </div>    
+    <!--Main-->
+    <!--Footer-->
+        @Html.Partial("~/Views/Shared/MainFooterMenu.cshtml")
+    <!--Footer-->
+    <div id="fb-root"></div>
+    <script>
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+</body>
+</html>

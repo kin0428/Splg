@@ -1,0 +1,53 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : _NpbPersonInfo.cshtml (Used in 10-2-5-6)
+    //Created Date : 2015/05/02
+}
+
+@model Splg.Areas.Jleague.Models.ViewModel.JlgPersonInfoViewModel
+@using Splg;
+
+<!--Person Info-->
+@if (Model != null)
+{
+	<div class="row" style="position:relative;">
+		<div class="agent_info">
+			<div class="agent_name">
+				<p><span class="fi">@Model.PersonInfoDI.UniformNO</span></p>
+				<div>
+					<h3>@Model.PersonInfoDI.RealNameK</h3>
+					<p>@string.Format("{0} / {1}", Model.PersonInfoDI.RealName, @Model.PersonInfoDI.Position)</p>
+                    @if (!Request.Url.AbsoluteUri.Contains("user_article"))
+                    {
+                        <p class="evt_edit_btn_player fs14">
+                            <a href="@Url.RouteUrl("5-4", new { newsClassID = 3, quoteUniqueId1 = Constants.JLG_SPORT_ID, quoteUniqueId2 = @ViewBag.TeamID, quoteUniqueId3 = @Model.PersonInfoDI.PlayerID })">記事作成</a>
+                        </p>
+                    }   
+				</div>
+			</div>
+			<dl>
+				<dt>身長 / 体重</dt>
+				<dd>@string.Format("{0}cm/{1}kg", Model.PersonInfoDI.Height, Model.PersonInfoDI.Weight)</dd>
+				<dt>生年月日</dt>
+				<dd>@string.Format("{0}年{1}月{2}日", Model.PersonInfoDI.Birthday.ToString().Substring(0, 4), Model.PersonInfoDI.Birthday.ToString().Substring(4, 2), Model.PersonInfoDI.Birthday.ToString().Substring(6, 2))</dd>
+				<dt>出身地</dt>
+				<dd>@Model.PersonInfoDI.HomeTown</dd>
+				<dt>血液型</dt>
+				<dd>@Model.PersonInfoDI.Blood</dd>
+				<dt>所属チーム</dt>
+				<dd>@Model.PersonInfoDI.PlayerTeamHistory</dd>
+				<dt>主な経歴</dt>
+				<dd>@Model.PersonInfoDI.Career</dd>
+				<dt>主な個人タイトル</dt>
+				<dd>@Model.PersonInfoDI.IndividualTitle</dd>
+			</dl>
+		</div>
+		<div class="agent_img">
+           @if (Model.ImagePath != null && Model.ImagePath != "")
+           {
+                <img class="resimg" src="@Url.Content(Model.ImagePath)" alt="" />
+           }
+ 		</div>
+	</div>
+}
+

@@ -1,0 +1,95 @@
+﻿@*
+    次節の試合
+*@
+@using Splg.Areas.Jleague.Models.ViewModel.InfosModel;
+@model IEnumerable<JlgGameInfos>
+
+<div class="socData socNextSeason">
+    <h2 class="socData-hdg">次節の試合</h2>
+
+    @if (Model != null)
+    {
+        @*<ul class="socNextSeasonList">*@
+        foreach (var m in Model)
+        {
+            <div class="clear">
+
+                <!-- ホームチーム -->
+                <article class="panel-col1">
+                    <figure>
+                        <a href="@Url.Action("Index", "JlgTeamInfoTop", new {area = "Jleague", teamID = m.HomeTeamID}, null)">
+                            <img src="@m.HomeTeamIcon.Replace("~", "")" alt="" />
+                        </a>
+                    </figure>
+                    <p class="blue fs14">
+                        <a href="@Url.Action("Index", "JlgTeamInfoTop", new {area = "Jleague", teamID = m.HomeTeamID}, null)">
+                            @m.HomeTeamNameS
+                        </a>
+                    </p>
+                </article>
+
+                <!-- 試合日程 -->
+            @{
+                string strGameDate = Utils.GetMonthAndDayOfWeek(Utils.ConvertStrToDatetime(m.GameDate.ToString()));
+
+                int time;
+                var gameTime = DateTime.MaxValue;
+                string strGameTime = "開始時間未定";
+                
+                if (int.TryParse(m.Time, out time))
+                {
+                    gameTime = DateTime.ParseExact(time.ToString().PadLeft(4, '0'), "HHmm", null);
+                    strGameTime = gameTime.ToString("HH:mm");
+                }
+                else
+                {
+                    strGameTime = "2359";
+                }
+            }
+
+                <a href="@Url.Action("Index", "JlgGameInformation", new {area = "Jleague", gameID = m.GameID}, null)" class="socNextSeasonList-game"><span>@strGameDate</span>@strGameTime</a>
+
+                <!-- アウエイチーム -->
+                <article class="panel-col1">
+                    <figure>
+                        <a href="@Url.Action("Index", "JlgTeamInfoTop", new {area = "JleagstrGameTimeue", teamID = m.AwayTeamID}, null)">
+                            <img src="@m.AwayTeamIcon.Replace("~", "")" alt="" />
+                        </a>
+                    </figure>
+                    <p class="fs14">
+                        <a href="@Url.Action("Index", "JlgTeamInfoTop", new { area = "Jleague", teamID = m.AwayTeamID }, null)">
+                            @m.AwayTeamNameS
+                        </a>
+                    </p>
+                </article>
+
+            </div>
+        }
+        @*<li>
+                <!--									<a href="#">-->
+                <img src="/html/Content/img/TeamIcon/Jleague/TeamCD_128.png" alt="ガンバ大阪" class="socNextSeason-teamIcon">
+                <p class="socNextSeasonList-team">大阪</p>
+                <!--									</a>-->
+
+                <a href="#" class="socNextSeasonList-game"><span>8/23(日)</span>16：00</a>
+
+                <!--									<a href="#">-->
+                <p class="socNextSeasonList-team">鹿島</p>
+                <img src="/html/Content/img/TeamIcon/Jleague/TeamCD_120.png" alt="鹿島アントラーズ" class="socNextSeason-teamIcon">
+                <!--									</a>-->
+            </li><li>
+                <!--									<a href="#">-->
+                <img src="/html/Content/img/TeamIcon/Jleague/TeamCD_126.png" alt="清水エスパルス" class="socNextSeason-teamIcon">
+                <p class="socNextSeasonList-team">清水</p>
+                <!--									</a>-->
+
+                <a href="#" class="socNextSeasonList-game"><span>8/23(日)</span>16：00</a>
+
+                <!--									<a href="#">-->
+                <p class="socNextSeasonList-team">広島</p>
+                <img src="/html/Content/img/TeamIcon/Jleague/TeamCD_129.png" alt="サンフレッチェ広島" class="socNextSeason-teamIcon">
+                <!--									</a>-->
+            </li>*@
+        @*</ul>*@
+    }
+</div>

@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Splg.Areas.Prize.Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EntryHistories">
+          <Key>
+            <PropertyRef Name="EntryHistoryId" />
+          </Key>
+          <Property Name="EntryHistoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PointId" Type="bigint" Nullable="false" />
+          <Property Name="RallyGoodId" Type="bigint" Nullable="false" />
+          <Property Name="EntryDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="GoodsSpec">
+          <Key>
+            <PropertyRef Name="GoodSpecId" />
+          </Key>
+          <Property Name="GoodSpecId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GoodName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SubName" Type="nvarchar" MaxLength="256" />
+          <Property Name="ThumbnailUrl" Type="nvarchar" MaxLength="2000" />
+          <Property Name="FullImageUrl" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Description" Type="nvarchar" MaxLength="512" />
+          <Property Name="PointsForBuy" Type="int" Nullable="false" />
+          <Property Name="PointsForDraw" Type="int" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rallies">
+          <Key>
+            <PropertyRef Name="RallyId" />
+          </Key>
+          <Property Name="RallyId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RallyName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Description" Type="nvarchar" MaxLength="512" />
+          <Property Name="EntryStartDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryEndDate" Type="datetime" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RallyGoods">
+          <Key>
+            <PropertyRef Name="RallyGoodId" />
+          </Key>
+          <Property Name="RallyGoodId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RallyId" Type="bigint" Nullable="false" />
+          <Property Name="GoodSpecId" Type="bigint" Nullable="false" />
+          <Property Name="EntryMethod" Type="smallint" Nullable="false" />
+          <Property Name="EntryLimit" Type="smallint" Nullable="false" />
+          <Property Name="Points" Type="int" Nullable="false" />
+          <Property Name="WinVolume" Type="int" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RallyGoodsRemarks">
+          <Key>
+            <PropertyRef Name="RallyGoodRemarksId" />
+          </Key>
+          <Property Name="RallyGoodRemarksId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RallyGoodId" Type="bigint" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="2000" />
+          <Property Name="DisplayOrder" Type="smallint" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RallyGoodsRemarksLink">
+          <Key>
+            <PropertyRef Name="RallyGoodsRemarksLinkId" />
+          </Key>
+          <Property Name="RallyGoodsRemarksLinkId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RallyGoodRemarksId" Type="bigint" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="LinkUrl" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="DisplayOrder" Type="smallint" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RallyGoodsRemarksText">
+          <Key>
+            <PropertyRef Name="RallyGoodsRemarksTextId" />
+          </Key>
+          <Property Name="RallyGoodsRemarksTextId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RallyGoodRemarksId" Type="bigint" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Contents" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="DisplayOrder" Type="smallint" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedAccountID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SplgAreasPrizeModelsStoreContainer">
+          <EntitySet Name="EntryHistories" EntityType="Self.EntryHistories" Schema="Prize" store:Type="Tables" />
+          <EntitySet Name="GoodsSpec" EntityType="Self.GoodsSpec" Schema="Prize" store:Type="Tables" />
+          <EntitySet Name="Rallies" EntityType="Self.Rallies" Schema="Prize" store:Type="Tables" />
+          <EntitySet Name="RallyGoods" EntityType="Self.RallyGoods" Schema="Prize" store:Type="Tables" />
+          <EntitySet Name="RallyGoodsRemarks" EntityType="Self.RallyGoodsRemarks" Schema="Prize" store:Type="Tables" />
+          <EntitySet Name="RallyGoodsRemarksLink" EntityType="Self.RallyGoodsRemarksLink" Schema="Prize" store:Type="Tables" />
+          <EntitySet Name="RallyGoodsRemarksText" EntityType="Self.RallyGoodsRemarksText" Schema="Prize" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Splg.Areas.Prize.Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EntryHistories">
+          <Key>
+            <PropertyRef Name="EntryHistoryId" />
+          </Key>
+          <Property Name="EntryHistoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PointId" Type="Int64" Nullable="false" />
+          <Property Name="RallyGoodId" Type="Int64" Nullable="false" />
+          <Property Name="EntryDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="GoodsSpec">
+          <Key>
+            <PropertyRef Name="GoodSpecId" />
+          </Key>
+          <Property Name="GoodSpecId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GoodName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ThumbnailUrl" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="FullImageUrl" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="PointsForBuy" Type="Int32" Nullable="false" />
+          <Property Name="PointsForDraw" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Rallies">
+          <Key>
+            <PropertyRef Name="RallyId" />
+          </Key>
+          <Property Name="RallyId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RallyName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="EntryStartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryEndDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="RallyGoods">
+          <Key>
+            <PropertyRef Name="RallyGoodId" />
+          </Key>
+          <Property Name="RallyGoodId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RallyId" Type="Int64" Nullable="false" />
+          <Property Name="GoodSpecId" Type="Int64" Nullable="false" />
+          <Property Name="EntryMethod" Type="Int16" Nullable="false" />
+          <Property Name="EntryLimit" Type="Int16" Nullable="false" />
+          <Property Name="Points" Type="Int32" Nullable="false" />
+          <Property Name="WinVolume" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="RallyGoodsRemarks">
+          <Key>
+            <PropertyRef Name="RallyGoodRemarksId" />
+          </Key>
+          <Property Name="RallyGoodRemarksId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RallyGoodId" Type="Int64" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayOrder" Type="Int16" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RallyGoodsRemarksLink">
+          <Key>
+            <PropertyRef Name="RallyGoodsRemarksLinkId" />
+          </Key>
+          <Property Name="RallyGoodsRemarksLinkId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RallyGoodRemarksId" Type="Int64" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LinkUrl" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int16" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="RallyGoodsRemarksText">
+          <Key>
+            <PropertyRef Name="RallyGoodsRemarksTextId" />
+          </Key>
+          <Property Name="RallyGoodsRemarksTextId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RallyGoodRemarksId" Type="Int64" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Contents" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int16" Nullable="false" />
+          <Property Name="CreatedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedAccountID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="PrizeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EntryHistories" EntityType="Self.EntryHistories" />
+          <EntitySet Name="GoodsSpec" EntityType="Self.GoodsSpec" />
+          <EntitySet Name="Rallies" EntityType="Self.Rallies" />
+          <EntitySet Name="RallyGoods" EntityType="Self.RallyGoods" />
+          <EntitySet Name="RallyGoodsRemarks" EntityType="Self.RallyGoodsRemarks" />
+          <EntitySet Name="RallyGoodsRemarksLink" EntityType="Self.RallyGoodsRemarksLink" />
+          <EntitySet Name="RallyGoodsRemarksText" EntityType="Self.RallyGoodsRemarksText" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SplgAreasPrizeModelsStoreContainer" CdmEntityContainer="PrizeEntities">
+          <EntitySetMapping Name="EntryHistories">
+            <EntityTypeMapping TypeName="Splg.Areas.Prize.Models.EntryHistories">
+              <MappingFragment StoreEntitySet="EntryHistories">
+                <ScalarProperty Name="EntryHistoryId" ColumnName="EntryHistoryId" />
+                <ScalarProperty Name="PointId" ColumnName="PointId" />
+                <ScalarProperty Name="RallyGoodId" ColumnName="RallyGoodId" />
+                <ScalarProperty Name="EntryDateTime" ColumnName="EntryDateTime" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoodsSpec">
+            <EntityTypeMapping TypeName="Splg.Areas.Prize.Models.GoodsSpec">
+              <MappingFragment StoreEntitySet="GoodsSpec">
+                <ScalarProperty Name="GoodSpecId" ColumnName="GoodSpecId" />
+                <ScalarProperty Name="GoodName" ColumnName="GoodName" />
+                <ScalarProperty Name="SubName" ColumnName="SubName" />
+                <ScalarProperty Name="ThumbnailUrl" ColumnName="ThumbnailUrl" />
+                <ScalarProperty Name="FullImageUrl" ColumnName="FullImageUrl" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PointsForBuy" ColumnName="PointsForBuy" />
+                <ScalarProperty Name="PointsForDraw" ColumnName="PointsForDraw" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rallies">
+            <EntityTypeMapping TypeName="Splg.Areas.Prize.Models.Rallies">
+              <MappingFragment StoreEntitySet="Rallies">
+                <ScalarProperty Name="RallyId" ColumnName="RallyId" />
+                <ScalarProperty Name="RallyName" ColumnName="RallyName" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EntryStartDate" ColumnName="EntryStartDate" />
+                <ScalarProperty Name="EntryEndDate" ColumnName="EntryEndDate" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RallyGoods">
+            <EntityTypeMapping TypeName="Splg.Areas.Prize.Models.RallyGoods">
+              <MappingFragment StoreEntitySet="RallyGoods">
+                <ScalarProperty Name="RallyGoodId" ColumnName="RallyGoodId" />
+                <ScalarProperty Name="RallyId" ColumnName="RallyId" />
+                <ScalarProperty Name="GoodSpecId" ColumnName="GoodSpecId" />
+                <ScalarProperty Name="EntryMethod" ColumnName="EntryMethod" />
+                <ScalarProperty Name="EntryLimit" ColumnName="EntryLimit" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="WinVolume" ColumnName="WinVolume" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RallyGoodsRemarks">
+            <EntityTypeMapping TypeName="Splg.Areas.Prize.Models.RallyGoodsRemarks">
+              <MappingFragment StoreEntitySet="RallyGoodsRemarks">
+                <ScalarProperty Name="RallyGoodRemarksId" ColumnName="RallyGoodRemarksId" />
+                <ScalarProperty Name="RallyGoodId" ColumnName="RallyGoodId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RallyGoodsRemarksLink">
+            <EntityTypeMapping TypeName="Splg.Areas.Prize.Models.RallyGoodsRemarksLink">
+              <MappingFragment StoreEntitySet="RallyGoodsRemarksLink">
+                <ScalarProperty Name="RallyGoodsRemarksLinkId" ColumnName="RallyGoodsRemarksLinkId" />
+                <ScalarProperty Name="RallyGoodRemarksId" ColumnName="RallyGoodRemarksId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="LinkUrl" ColumnName="LinkUrl" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RallyGoodsRemarksText">
+            <EntityTypeMapping TypeName="Splg.Areas.Prize.Models.RallyGoodsRemarksText">
+              <MappingFragment StoreEntitySet="RallyGoodsRemarksText">
+                <ScalarProperty Name="RallyGoodsRemarksTextId" ColumnName="RallyGoodsRemarksTextId" />
+                <ScalarProperty Name="RallyGoodRemarksId" ColumnName="RallyGoodRemarksId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="なし" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,115 @@
+﻿@model Splg.Models.ViewModel.LoginViewModel
+<!--Popup Login box-->
+<div id="overlay" class="pop_outside" style="display:none;">
+    <div class="pop_block">
+        <a id="close" class="pop_exit" href="#"><img src="~/Content/img/tmp/close.png" alt="exit" /></a>
+        <h1 class="pop_title">ログイン</h1>
+        <div class="pop_bl01">
+            @using (Html.BeginForm("LoginApp", "Member", FormMethod.Post, new { @id = "loginFormApp", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <p style="text-align:center">
+                    @Html.ValidationMessageFor(model => model.ErrorLogin, String.Empty, new { @class = "red" })
+                </p>
+                <dl>
+                    <dt>メールアドレス</dt>
+                    <dd>
+                        @Html.TextBoxFor(model => model.Email, new { @class = "ip100", autofocus = "autofocus", @id = "emailAddr" })
+                        @Html.ValidationMessageFor(model => model.Email, String.Empty, new { @class = "red" })
+                    </dd>
+                    <dt>パスワード</dt>
+                    <dd>
+                        @Html.PasswordFor(model => model.Password, new { @class = "ip100", @id = "password" })
+                        @Html.ValidationMessageFor(model => model.Password, String.Empty, new { @class = "red" })
+                    </dd>
+                </dl>
+                <p class="pop_link01">
+                    <input class="send_mail" type="submit" value="ログイン" />
+                </p>
+                <p class="pop_link02">
+                    <a href="@Url.Action("ForgotPassword", "Member", new { Area = string.Empty }, null)">パスワードを忘れた方</a>
+                </p>
+            }
+        </div>
+        <div class="pop_bl02">
+            <h3 class="mem_title01">SNSのアカウントでログイン</h3>
+            <ul>
+                <li><a href="@Url.Action("TwitterLogin", "Member", new { Area = string.Empty}, null)"><img src="~/Content/img/tmp/p_btn03.png" alt="Twitterでログイン" /></a></li>
+                <li><a href="@Url.Action("FacebookLogin", "Member", new { Area = string.Empty}, null)"><img src="~/Content/img/tmp/p_btn02.png" alt="Facebookでログイン" /></a></li>
+                <li><a href="@Url.Action("GoogleLogin", "Member", new { Area = string.Empty }, null)"><img src="~/Content/img/tmp/p_btn01.png" alt="Google+でログイン" /></a></li>
+            </ul>
+        </div>
+        <div class="pop_bl02">
+            <h3 class="mem_title01">ユーザー登録されていない方はこちら</h3>
+            <p class="pop_link01"><a href="@Url.Action("Register", "Member", new { Area = string.Empty }, null)">ユーザー登録(無料)</a></p>
+        </div>
+    </div>
+</div>
+@Html.Hidden("txtMemberId", Session["CurrentUser"])
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script lang="text/javascript">
+    $(document).ready(function () {
+        var IsLoginClick = true;
+        //user_article/new click
+        $(".panel-link2 a, .edit_btn02 a").live("click", function () {
+            IsLoginClick = false;
+        });
+
+        $("#close").click(function () {
+       
+            $('span[data-valmsg-for="Email"]').text('');
+            $('span[data-valmsg-for="Password"]').text('');
+            $('span[data-valmsg-for="ErrorLogin"]').text('');
+            IsLoginClick = true;
+        });
+
+        //button submit
+        $("#loginFormApp").live("submit", function (event) {
+            event.preventDefault();
+            var form = $(this);
+            $.ajax({
+                url: '@Url.Action("LoginApp", "Member", new { Area = string.Empty }, null)',
+                type: "POST",
+                data: form.serialize(),
+                success: function (data) {
+                    if (data !== null && data != "success") {
+                        $('span[data-valmsg-for="Email"]').text('');
+                        $('span[data-valmsg-for="Password"]').text('');
+                        $('span[data-valmsg-for="ErrorLogin"]').text('');
+                        if (data.length > 0) {
+                            for (var i = 0; i < data.length; i++) {
+
+                                switch (data[i].Key) {
+                                    case "Email":
+                                        $('span[data-valmsg-for="Email"]').text(data[i].Value);
+                                        break;
+                                    case "Password":
+                                        $('span[data-valmsg-for="Password"]').text(data[i].Value);
+                                        break;
+                                    case "ErrorLogin":
+                                        $('span[data-valmsg-for="ErrorLogin"]').text(data[i].Value);
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        var url = window.location.href;
+                        if (window.location.href.indexOf("logout") > -1) {
+                            url = '/';
+                        }
+                        var href = $('.panel-link2 a, .edit_btn02 a').attr('href');
+                        if (typeof href !== 'undefined' && !IsLoginClick) {
+                            url = href;
+                        }
+                        window.location.reload();
+                        window.location.href = url;
+                        $(".pop_outside").hide();
+                    }
+                },
+            });
+        });
+    });
+</script>

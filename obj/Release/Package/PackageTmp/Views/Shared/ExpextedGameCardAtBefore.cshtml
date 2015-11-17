@@ -1,0 +1,28 @@
+﻿@model Splg.Models.Game.ViewModel.ExpectedGameSchedule
+@using Splg.Core.Extend;
+
+@{
+<div class="side_b2 mrgin_bt10 bder_bttom4" id="@Model.DivId">
+    <div>
+        <p class="fs11">@Model.SportsName @Html.DisplayFor(m => Model.GameDate) </p>
+        <p class="side_b2_1">
+            @Html.RouteLink(Model.GameCardTitle, Model.RouteName, new { gameID = Model.GameInfoViewModel.GameID })
+        </p>
+
+        @if (Model.IsExpectable)
+        {
+            <span class="side_b1_li blue" data-sport="@Model.SportsId" data-gameid="@Model.GameInfoViewModel.GameID" data-date="@Model.BetStartDate.ToShortDateString().Replace("/", "")" data-expectpoint="@StringProtector.Protect(@Model.ExpectPointID.ToString())" data-point="@StringProtector.Protect(@Model.PointId.ToString())">取り消す</span>
+        }
+        <p class="gr_spec">@Model.BetTargetAlert</p>
+
+        @if (Model.IsExpectable)
+        {
+        <p class="tmp"><input maxlength="5" data-sport="@Model.SportsId" data-gameid="@Model.GameInfoViewModel.GameID" value="@Model.InputPoint" data-odd="@Model.Odds" data-old="@Model.ExpectPoint" data-expectpoint="@StringProtector.Protect(@Model.ExpectPointID.ToString())" data-point="@StringProtector.Protect(@Model.PointId.ToString())" data-date="@Model.BetStartDate.ToShortDateString().Replace("/", "")" class="pointBet" type="text" value="1" name="sprice" /> <span class="bold fs16">00</span>pt <span class="fs14">x</span> @Model.Odds <span id="TotalPoint_@Model.GameInfoViewModel.GameID" class="bold fs16">⇒ @Html.DisplayFor(m => Model.GetPoint)</span>pt</p>
+        }
+        else
+        {
+        <p class="tmp"><span class="fs18">@Html.DisplayFor(m =>Model.ExpectPoint)</span> pt <span class="fs14">x</span> @Model.Odds<span id="TotalPoint_@Model.GameInfoViewModel.GameID" class="bold fs16">⇒ @Html.DisplayFor(m => Model.GetPoint)</span>pt</p>
+        }
+    </div>
+</div>
+}

@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "ログアウト";
+}
+<div class="bottom">
+    <div class="mem_block01 clear">
+        <div class="mem_b1_1">
+            <h2>スポログからログアウトしますか？</h2>
+        </div>
+        <div class="mem_b2_1">
+        @using (Html.BeginForm("Logout", "Member",FormMethod.Post, new {@id="logoutForm", role = "form"}))
+        {
+            <p class="mail_title">
+                <span class="bold">スポログからログアウトしますか？</span><br />
+                ログアウトしてもポイントは変動しません。ご安心ください。
+            </p>
+            <p class="board_link"><a href="javascript:void(0);" onclick="document.getElementById('logoutForm').submit();">ログアウトする</a></p>
+            <input type="hidden" name="typeID"/>
+        }
+        </div>
+    </div>
+</div>

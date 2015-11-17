@@ -1,0 +1,17 @@
+
+	xaxis   : { 
+		  min : @XAxisMinValue,
+		  max : @XAxisMaxValue,
+		  showLabels : @XAxisIsVisibleLabels
+	},
+	yaxis   : { 
+		  min : @YAxisMinValue,
+		  max : @YAxisMaxValue,
+		  showLabels : @YAxisIsVisibleLabels
+	},
+	grid : { 
+		  backgroundImage: @GridBackGroundImageAddress,
+		  verticalLines: @GridIsVisibleVerticalLines, 
+		  horizontalLines: @GridIsVisibleHorizontalLines
+	},
+	colors : [@Colors]

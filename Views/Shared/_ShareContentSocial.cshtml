@@ -1,0 +1,39 @@
+﻿@{
+    //Namespace  : Splg
+    //Controller :
+    //FileName   : _SearchEngine.cshtml
+    //Developer  : Nguyen Ho Long Hai
+    //create date : 20150417
+    //Html no:partial view
+    //function : share content page on social
+}
+<script src="~/Scripts/line_library.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //facebook share
+        var linkfb = 'http://www.facebook.com/sharer.php?u=' + window.location.href;
+        document.getElementById("fb_share").setAttribute("href", linkfb);
+        document.getElementById("fb_share").setAttribute("target", "_blank");
+        //Twitter share
+        var linkTwitter = 'https://twitter.com/home?status=' + window.location.href;
+        document.getElementById("twitter_share").setAttribute("href", linkTwitter);
+        document.getElementById("twitter_share").setAttribute("target", "_blank");
+        //Google+ share
+        var linkGoogle = 'https://plus.google.com/share?url=' + window.location.href;
+        document.getElementById("google_share").setAttribute("href", linkGoogle); document.getElementById("google_share").setAttribute("target", "_blank");
+        document.getElementById("google_share").setAttribute("target", "_blank");
+    });
+</script>
+
+<ul>
+    <li><a id="twitter_share"><img src="~/Content/img/tmp/s_btn01.png" alt="ツィートする" /></a></li>
+    <li><a id="fb_share"><img src="~/Content/img/tmp/s_btn02.png" alt="シェアする" /></a></li>
+    <li><a id="google_share"><img src="~/Content/img/tmp/s_btn03.png" alt="で共有する" /></a></li>
+    <li>
+        <script type="text/javascript">new media_line_me.LineButton({ "pc": true, "lang": "en", "type": "a" });</script>
+    </li>
+    
+</ul>
+
+
+

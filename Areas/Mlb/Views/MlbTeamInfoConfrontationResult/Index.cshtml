@@ -1,0 +1,496 @@
+﻿@{
+    //Author : e-concier
+    //FileName : Index.cshtml (9-1)
+    //Created Date : 2015/04/10
+}
+
+@using Splg.Areas.Mlb;
+
+@{
+    ViewBag.Title = "Index";
+    //ViewBag.Name = Splg.Areas.Mlb.MlbConstants.MLBTOP;
+    Layout = "~/Areas/Mlb/Views/Shared/_MlbLayout.cshtml";
+}
+
+<div class="evt_block09">
+    <h2 class="mytitle"><a href="#">チーム情報</a> 阪神タイガース</h2>
+    @Html.Partial("~/Areas/Mlb/Views/Shared/_MlbTeamInfoMenu.cshtml")
+        <ul class="yak_team">
+            <li class="active">
+                <img src="../img/topics/logo01.png" alt="logo" />
+                <a href="javascript:void(0)" class="active">巨人</a>
+            </li>
+            <li>
+                <img src="../img/topics/logo02.png" alt="logo" />
+                <a href="javascript:void(0)">ヤクルト</a>
+            </li>
+            <li>
+                <img src="../img/topics/logo03.png" alt="logo" />
+                <a href="javascript:void(0)">広島</a>
+            </li>
+            <li>
+                <img src="../img/topics/logo04.png" alt="logo" />
+                <a href="javascript:void(0)">中日</a>
+            </li>
+            <li>
+                <img src="../img/topics/logo05.png" alt="logo" />
+                <a href="javascript:void(0)">DeNA</a>
+            </li>
+            <li>
+                <img src="../img/topics/logo06.png" alt="logo" />
+                <a href="javascript:void(0)">ソフトバンク</a>
+            </li>
+            <li>
+                <img src="../img/topics/logo07.png" alt="logo" />
+                <a href="javascript:void(0)">日本ハム</a>
+            </li>
+            <li>
+                <img src="../img/topics/logo08.png" alt="logo" />
+                <a href="javascript:void(0)">楽天</a>
+            </li>
+            <li>
+                <img src="../img/topics/logo09.png" alt="logo" />
+                <a href="javascript:void(0)">ロッテ</a>
+            </li>
+            <li>
+                <img src="../img/topics/logo11.png" alt="logo" />
+                <a href="javascript:void(0)">オリックス</a>
+            </li>
+            <li>
+                <img src="../img/topics/logo12.png" alt="logo" />
+                <a href="javascript:void(0)">西武</a>
+            </li>
+        </ul>
+        <div class="yak_list clear">
+            <div class="yak_title">
+                <h3>対戦成績 <span>対</span>巨人</h3>
+                <p>2014年10月7日 22時55分更新</p>
+            </div>
+            <ul>
+                <li>
+                    <p class="left fs14">試合数</p>
+                    <p class="right fs18 bold fi">24</p>
+                </li>
+                <li>
+                    <p class="left fs14">勝利</p>
+                    <p class="right fs18 bold fi">13</p>
+                </li>
+                <li>
+                    <p class="left fs14">敗戦</p>
+                    <p class="right fs18 bold fi">24</p>
+                </li>
+                <li>
+                    <p class="left fs14">引分</p>
+                    <p class="right fs18 bold fi">0</p>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <p class="left fs14">得点</p>
+                    <p class="right fs18 bold fi">24</p>
+                </li>
+                <li>
+                    <p class="left fs14">失点</p>
+                    <p class="right fs18 bold fi">13</p>
+                </li>
+                <li>
+                    <p class="left fs14">安打</p>
+                    <p class="right fs18 bold fi fi">24</p>
+                </li>
+                <li>
+                    <p class="left fs14">本塁打</p>
+                    <p class="right fs18 bold fi">24</p>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <p class="left fs14">三振</p>
+                    <p class="right fs18 bold fi">24</p>
+                </li>
+                <li>
+                    <p class="left fs14">四球</p>
+                    <p class="right fs18 bold fi">13</p>
+                </li>
+                <li>
+                    <p class="left fs14">死球</p>
+                    <p class="right fs18 bold fi">24</p>
+                </li>
+                <li>
+                    <p class="left fs14">併殺打</p>
+                    <p class="right fs18 bold fi">24</p>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <p class="left fs14">盗塁</p>
+                    <p class="right fs18 bold fi">24</p>
+                </li>
+                <li>
+                    <p class="left fs14">失策</p>
+                    <p class="right fs18 bold fi">13</p>
+                </li>
+                <li>
+                    <p class="left fs14">打率</p>
+                    <p class="right fs18 bold fi">.251</p>
+                </li>
+                <li>
+                    <p class="left fs14">防御率</p>
+                    <p class="right fs18 bold fi">3.24</p>
+                </li>
+            </ul>
+        </div>
+        <h3 class="yak_title01">1月の試合</h3>
+        <div class="yak_tbl">
+            <table cellpadding="0" cellspacing="0" summary="table">
+                <tr>
+                    <th class="tleft">日付</th>
+                    <th>勝敗</th>
+                    <th>スコア</th>
+                    <th> </th>
+                    <th>球場</th>
+                    <th>時刻</th>
+                </tr>
+                <tr>
+                    <td>8/12 (金)</td>
+                    <td>◯</td>
+                    <td><a href="#" class="fs18 fi">3 - 4</a></td>
+                    <td class="tleft">勝 <a href="#">福原 </a> S <a href="#">呉昇桓</a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+                <tr>
+                    <td>8/13 (土)</td>
+                    <td>-</td>
+                    <td><a href="#">試合前</span></td>
+                    <td class="tleft">（<a href="#">神</span>）<a href="#"> 福原 </a>（<a href="#">神</a>） <a href="#"> マシソン </a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+            </table>
+        </div>
+        <h3 class="yak_title01">2月の試合</h3>
+        <div class="yak_tbl">
+            <table cellpadding="0" cellspacing="0" summary="table">
+                <tr>
+                    <th class="tleft">日付</th>
+                    <th>勝敗</th>
+                    <th>スコア</th>
+                    <th> </th>
+                    <th>球場</th>
+                    <th>時刻</th>
+                </tr>
+                <tr>
+                    <td>8/12 (金)</td>
+                    <td>◯</td>
+                    <td><a href="#" class="fs18 fi">3 - 4</a></td>
+                    <td class="tleft">勝 <a href="#">福原 </a> S <a href="#">呉昇桓</a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+                <tr>
+                    <td>8/13 (土)</td>
+                    <td>-</td>
+                    <td><a href="#">試合前</span></td>
+                    <td class="tleft">（<a href="#">神</span>）<a href="#"> 福原 </a>（<a href="#">神</a>） <a href="#"> マシソン </a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+            </table>
+        </div>
+        <h3 class="yak_title01">3月の試合</h3>
+        <div class="yak_tbl">
+            <table cellpadding="0" cellspacing="0" summary="table">
+                <tr>
+                    <th class="tleft">日付</th>
+                    <th>勝敗</th>
+                    <th>スコア</th>
+                    <th> </th>
+                    <th>球場</th>
+                    <th>時刻</th>
+                </tr>
+                <tr>
+                    <td>8/12 (金)</td>
+                    <td>◯</td>
+                    <td><a href="#" class="fs18 fi">3 - 4</a></td>
+                    <td class="tleft">勝 <a href="#">福原 </a> S <a href="#">呉昇桓</a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+                <tr>
+                    <td>8/13 (土)</td>
+                    <td>-</td>
+                    <td><a href="#">試合前</span></td>
+                    <td class="tleft">（<a href="#">神</span>）<a href="#"> 福原 </a>（<a href="#">神</a>） <a href="#"> マシソン </a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+            </table>
+        </div>
+        <h3 class="yak_title01">4月の試合</h3>
+        <div class="yak_tbl">
+            <table cellpadding="0" cellspacing="0" summary="table">
+                <tr>
+                    <th class="tleft">日付</th>
+                    <th>勝敗</th>
+                    <th>スコア</th>
+                    <th> </th>
+                    <th>球場</th>
+                    <th>時刻</th>
+                </tr>
+                <tr>
+                    <td>8/12 (金)</td>
+                    <td>◯</td>
+                    <td><a href="#" class="fs18 fi">3 - 4</a></td>
+                    <td class="tleft">勝 <a href="#">福原 </a> S <a href="#">呉昇桓</a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+                <tr>
+                    <td>8/13 (土)</td>
+                    <td>-</td>
+                    <td><a href="#">試合前</span></td>
+                    <td class="tleft">（<a href="#">神</span>）<a href="#"> 福原 </a>（<a href="#">神</a>） <a href="#"> マシソン </a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+            </table>
+        </div>
+        <h3 class="yak_title01">5月の試合</h3>
+        <div class="yak_tbl">
+            <table cellpadding="0" cellspacing="0" summary="table">
+                <tr>
+                    <th class="tleft">日付</th>
+                    <th>勝敗</th>
+                    <th>スコア</th>
+                    <th> </th>
+                    <th>球場</th>
+                    <th>時刻</th>
+                </tr>
+                <tr>
+                    <td>8/12 (金)</td>
+                    <td>◯</td>
+                    <td><a href="#" class="fs18 fi">3 - 4</a></td>
+                    <td class="tleft">勝 <a href="#">福原 </a> S <a href="#">呉昇桓</a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+                <tr>
+                    <td>8/13 (土)</td>
+                    <td>-</td>
+                    <td><a href="#">試合前</span></td>
+                    <td class="tleft">（<a href="#">神</span>）<a href="#"> 福原 </a>（<a href="#">神</a>） <a href="#"> マシソン </a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+            </table>
+        </div>
+        <h3 class="yak_title01">6月の試合</h3>
+        <div class="yak_tbl">
+            <table cellpadding="0" cellspacing="0" summary="table">
+                <tr>
+                    <th class="tleft">日付</th>
+                    <th>勝敗</th>
+                    <th>スコア</th>
+                    <th> </th>
+                    <th>球場</th>
+                    <th>時刻</th>
+                </tr>
+                <tr>
+                    <td>8/12 (金)</td>
+                    <td>◯</td>
+                    <td><a href="#" class="fs18 fi">3 - 4</a></td>
+                    <td class="tleft">勝 <a href="#">福原 </a> S <a href="#">呉昇桓</a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+                <tr>
+                    <td>8/13 (土)</td>
+                    <td>-</td>
+                    <td><a href="#">試合前</span></td>
+                    <td class="tleft">（<a href="#">神</span>）<a href="#"> 福原 </a>（<a href="#">神</a>） <a href="#"> マシソン </a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+            </table>
+        </div>
+        <h3 class="yak_title01">7月の試合</h3>
+        <div class="yak_tbl">
+            <table cellpadding="0" cellspacing="0" summary="table">
+                <tr>
+                    <th class="tleft">日付</th>
+                    <th>勝敗</th>
+                    <th>スコア</th>
+                    <th> </th>
+                    <th>球場</th>
+                    <th>時刻</th>
+                </tr>
+                <tr>
+                    <td>8/12 (金)</td>
+                    <td>◯</td>
+                    <td><a href="#" class="fs18 fi">3 - 4</a></td>
+                    <td class="tleft">勝 <a href="#">福原 </a> S <a href="#">呉昇桓</a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+                <tr>
+                    <td>8/13 (土)</td>
+                    <td>-</td>
+                    <td><a href="#">試合前</span></td>
+                    <td class="tleft">（<a href="#">神</span>）<a href="#"> 福原 </a>（<a href="#">神</a>） <a href="#"> マシソン </a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+            </table>
+        </div>
+        <h3 class="yak_title01">8月の試合</h3>
+        <div class="yak_tbl">
+            <table cellpadding="0" cellspacing="0" summary="table">
+                <tr>
+                    <th class="tleft">日付</th>
+                    <th>勝敗</th>
+                    <th>スコア</th>
+                    <th> </th>
+                    <th>球場</th>
+                    <th>時刻</th>
+                </tr>
+                <tr>
+                    <td>8/12 (金)</td>
+                    <td>◯</td>
+                    <td><a href="#" class="fs18 fi">3 - 4</a></td>
+                    <td class="tleft">勝 <a href="#">福原 </a> S <a href="#">呉昇桓</a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+                <tr>
+                    <td>8/13 (土)</td>
+                    <td>-</td>
+                    <td><a href="#">試合前</span></td>
+                    <td class="tleft">（<a href="#">神</span>）<a href="#"> 福原 </a>（<a href="#">神</a>） <a href="#"> マシソン </a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+            </table>
+        </div>
+        <h3 class="yak_title01">8月の試合</h3>
+        <div class="yak_tbl">
+            <table cellpadding="0" cellspacing="0" summary="table">
+                <tr>
+                    <th class="tleft">日付</th>
+                    <th>勝敗</th>
+                    <th>スコア</th>
+                    <th> </th>
+                    <th>球場</th>
+                    <th>時刻</th>
+                </tr>
+                <tr>
+                    <td>8/12 (金)</td>
+                    <td>◯</td>
+                    <td><a href="#" class="fs18 fi">3 - 4</a></td>
+                    <td class="tleft">勝 <a href="#">福原 </a> S <a href="#">呉昇桓</a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+                <tr>
+                    <td>8/13 (土)</td>
+                    <td>-</td>
+                    <td><a href="#">試合前</span></td>
+                    <td class="tleft">（<a href="#">神</span>）<a href="#"> 福原 </a>（<a href="#">神</a>） <a href="#"> マシソン </a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+            </table>
+        </div>
+        <h3 class="yak_title01">10月の試合</h3>
+        <div class="yak_tbl">
+            <table cellpadding="0" cellspacing="0" summary="table">
+                <tr>
+                    <th class="tleft">日付</th>
+                    <th>勝敗</th>
+                    <th>スコア</th>
+                    <th> </th>
+                    <th>球場</th>
+                    <th>時刻</th>
+                </tr>
+                <tr>
+                    <td>8/12 (金)</td>
+                    <td>◯</td>
+                    <td><a href="#" class="fs18 fi">3 - 4</a></td>
+                    <td class="tleft">勝 <a href="#">福原 </a> S <a href="#">呉昇桓</a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+                <tr>
+                    <td>8/13 (土)</td>
+                    <td>-</td>
+                    <td><a href="#">試合前</span></td>
+                    <td class="tleft">（<a href="#">神</span>）<a href="#"> 福原 </a>（<a href="#">神</a>） <a href="#"> マシソン </a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+            </table>
+        </div>
+        <h3 class="yak_title01">11月の試合</h3>
+        <div class="yak_tbl">
+            <table cellpadding="0" cellspacing="0" summary="table">
+                <tr>
+                    <th class="tleft">日付</th>
+                    <th>勝敗</th>
+                    <th>スコア</th>
+                    <th> </th>
+                    <th>球場</th>
+                    <th>時刻</th>
+                </tr>
+                <tr>
+                    <td>8/12 (金)</td>
+                    <td>◯</td>
+                    <td><a href="#" class="fs18 fi">3 - 4</a></td>
+                    <td class="tleft">勝 <a href="#">福原 </a> S <a href="#">呉昇桓</a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+                <tr>
+                    <td>8/13 (土)</td>
+                    <td>-</td>
+                    <td><a href="#">試合前</span></td>
+                    <td class="tleft">（<a href="#">神</span>）<a href="#"> 福原 </a>（<a href="#">神</a>） <a href="#"> マシソン </a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+            </table>
+        </div>
+        <h3 class="yak_title01">12月の試合</h3>
+        <div class="yak_tbl">
+            <table cellpadding="0" cellspacing="0" summary="table">
+                <tr>
+                    <th class="tleft">日付</th>
+                    <th>勝敗</th>
+                    <th>スコア</th>
+                    <th> </th>
+                    <th>球場</th>
+                    <th>時刻</th>
+                </tr>
+                <tr>
+                    <td>8/12 (金)</td>
+                    <td>◯</td>
+                    <td><a href="#" class="fs18 fi">3 - 4</a></td>
+                    <td class="tleft">勝 <a href="#">福原 </a> S <a href="#">呉昇桓</a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+                <tr>
+                    <td>8/13 (土)</td>
+                    <td>-</td>
+                    <td><a href="#">試合前</span></td>
+                    <td class="tleft">（<a href="#">神</span>）<a href="#"> 福原 </a>（<a href="#">神</a>） <a href="#"> マシソン </a></td>
+                    <td>東京ドーム</td>
+                    <td>18:00</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+</div>

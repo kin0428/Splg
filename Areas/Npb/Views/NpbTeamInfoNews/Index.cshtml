@@ -1,0 +1,77 @@
+﻿@*
+    * 
+    * Developer	: Tran Sy Huynh
+    *
+*@
+@model PagedList.IPagedList<Splg.Models.News.ViewModel.NewsInfoViewModel>
+@using PagedList.Mvc;
+@using Splg;
+
+@{
+    ViewBag.Title = "チーム情報　ニュース";
+    ViewBag.Name = Constants.NPBTEAMINFONEWS;
+    Layout = "~/Views/Shared/_NpbLayout.cshtml";    
+}
+<div class="block_05">
+    <h2 class="mytitle">@ViewBag.TeamName　ニュース</h2>      
+    @Html.Partial("~/Areas/Npb/Views/Shared/_NpbTeamInfoMenu.cshtml")
+    @if (Model != null && Model.Count() > 0)
+    {
+        DateTime dayCount = Model.FirstOrDefault().DeliveryDate;
+        var ulBegin = "<ul class='news_list'>";
+        var ulEnd = "</ul>";
+        <h3 class="news_title"> @dayCount.ToString("MM/dd") (@Utils.GetWeekDayToJapanTime(dayCount)) </h3>
+        @Html.Raw(ulBegin)
+        foreach (var item in Model)
+        {
+            var imageLocation = Utils.GetNewsImageLocation(item.Content ?? Constants.IMAGE_DEFAULT);
+            if (dayCount.Date.CompareTo(item.DeliveryDate.Date) != 0)
+            {
+                dayCount = item.DeliveryDate;
+                @Html.Raw(ulEnd)
+                <h3 class="news_title"> @dayCount.ToString("MM/dd") (@Utils.GetWeekDayToJapanTime(dayCount)) </h3>
+                @Html.Raw(ulBegin)
+            }
+            <li>
+                <p><img class="resimg" src="@Url.Content(imageLocation)" alt="" /></p>
+                <div>
+                    <h4>@Html.RouteLink(string.Format("{0} {1}", item.Headline, item.SubHeadline), "7_1", new { areas = string.Empty, topic = Constants.NPB_TOPIC_NAME, newsItemID = item.NewsItemID, sportID = Constants.NPB_SPORT_ID, uniqueID = Constants.NEWS_DEFAULT_PARAMETER, teamID = ViewBag.TeamId })</h4>
+                    
+                    <p>@Utils.ShortenString(item.newstext, 50)</p>
+                    <p class="gray">@item.SentFrom - @item.DeliveryDate.ToString("yyyy/MM/dd HH:mm")</p>
+                </div>
+            </li>
+        }
+        @Html.Raw(ulEnd)
+        <div class="board_control">
+            @if (Model.PageNumber > 1)
+            {
+                var nextPage = Model.PageNumber - 1;
+                <a class="board_prev" href="?page=@nextPage">≪前のページ</a>
+            }
+            else
+            {
+                <a class="board_prev">≪前のページ</a>
+            }
+            @if (Model.PageNumber < Model.PageCount)
+            {
+                var nextPage = Model.PageNumber + 1;
+                <a class="board_next" href="?page=@nextPage">次のページ≫</a>
+            }
+            else
+            {
+                <a class="board_next">次のページ≫</a>
+            }
+        </div>
+    }
+</div>
+<!--Right Content-->
+@section NpbPage{
+    <div class="cat_stitle">
+        <h3>順位表</h3>
+        <p>@Html.ActionLink("一覧で見る", "Index", "NpbOrder", new { area = "Npb" }, null)</p>
+    </div>
+    <div id="npbTop3Ranking" class="side_board">
+        @Html.Action("ShowTopNRanking", "NpbRightContent", new { area = "Npb", teamID = ViewBag.teamId })
+    </div>
+}

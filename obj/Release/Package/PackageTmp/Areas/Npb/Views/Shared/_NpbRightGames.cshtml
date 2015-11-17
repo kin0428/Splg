@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Splg.Models.Game.ViewModel.GameInfoViewModel>
+@using Splg.Areas.Npb.Models;
+@using Splg;
+@{
+    //Author : CucHTP
+    //FileName : _NpbRightGames.cshtml
+    //Created Date : 2015/03/11
+}
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        <div class="side_block05">
+            @{
+                var firstGame = Model.FirstOrDefault();
+                var date = Utils.ParseToJapanDate(false, firstGame.GameDate.ToString()) + "の試合";
+            }
+            <h3>@date</h3>
+            @foreach (var item in Model)
+            {
+                var status = NpbCommon.GetStatusMatch(item.GameID.ToString());     
+                var day = Utils.ParseToJapanDate(false, firstGame.GameDate.ToString());
+                DateTime gameTime = DateTime.ParseExact(@item.Time, "HHmm", null);
+                var strGameTime = gameTime.ToString("HH:mm");
+                if (status == 0)
+                {                                   
+                    <div>
+                        <p>@day @strGameTime - <a href="@Url.Action("Index", "NpbGameInformation", new { area = "Npb", gameID = @item.GameID }, null)">試合前　試合前データを見る</a></p>
+                        <p><a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.HomeTeamID }, null)">@item.HomeTeamName</a><span class="fs24 bold"> - </span><a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.VisitorTeamID }, null)">@item.VisitorTeamName</a></p>
+                    </div>
+                }
+                else
+                {
+                    var result = NpbCommon.GetGameResultInRightContent(item.GameID);
+                    var situation = Utils.FormatGameSituationWithInning(result);
+                    var strStatus = string.Empty;
+                    if (status == 1)
+                    {
+                        strStatus = "試合中　試合速報を見る";
+                    }
+                    else
+                    {
+                        strStatus = "試合終了　結果を見る";
+                    }
+                    <div>
+                        <p>@day @strGameTime - <a href="@Url.Action("Index", "NpbGameInformation", new { area = "Npb", gameID = @item.GameID }, null)">@strStatus</a></p>
+                        <p><a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.HomeTeamID }, null)">@item.HomeTeamName</a><span class="fs24 bold">@result.HomeTeamScore - @result.VisitorTeamScore</span><a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.VisitorTeamID }, null)">@item.VisitorTeamName</a></p>
+                        <a href="@Url.Action("Index", "NpbGameInformation", new { area = "Npb", gameID = @item.GameID }, null)">@situation</a>
+                    </div>
+                }
+            }
+        </div>
+    }
+}
+
+

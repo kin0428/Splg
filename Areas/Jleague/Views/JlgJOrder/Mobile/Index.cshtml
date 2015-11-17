@@ -1,0 +1,118 @@
+﻿@*
+    * Developer	: Tran Sy Huynh
+    *
+*@
+@model IEnumerable<Splg.Areas.Jleague.Models.ViewModel.JlgJ12OrderViewModel>
+
+@{
+    if (ViewBag.JType == 1)
+    {
+        ViewBag.Title = "順位表";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J1_ODR;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J1_ODR;
+    }
+    else
+    {
+        ViewBag.Title = "順位表";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J2_ODR;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J2_ODR;
+    }
+   Layout = "~/Views/Shared/Mobile/_JlgLayout.cshtml";
+}
+<script src="~/Areas/Jleague/Scripts/Mobile/10-2-2.js"></script>
+
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        var dateDisplay = string.Empty;
+        if (Model.FirstOrDefault().RankingInfo != null)
+        {
+            if (Model.FirstOrDefault().RankingInfo.CreatedDate != null)
+            {
+                dateDisplay = string.Format("{0}更新", Utils.ParseLocalDateToLongJapanDate(Model.FirstOrDefault().RankingInfo.CreatedDate.Value, false));
+            }
+        }
+        <section class="block_2">
+            <h2 class="subtitle2">J @Convert.ToString(ViewBag.JType)　順位表 <span class="fs8">@dateDisplay</span></h2>
+            <!--
+                SeasonID	SeasonName	SeasonNameS
+                1	シーズン（通算）	通算
+                2	ファーストステージ	1stステージ
+                3	セカンドステージ	2ndステージ
+            -->
+            @{var seasonDefaultStyle = "";}
+
+            @if (ViewBag.JType == 1)
+            {
+                string sel1Class = String.Empty;
+                string sel2Class = String.Empty;
+                string sel3Class = String.Empty;
+                if (ViewBag.CurrentSeasonID == 2)
+                {
+                    sel2Class = "selected";
+                }
+                else if (ViewBag.CurrentSeasonID == 3)
+                {
+                    sel3Class = "selected";
+                }
+                else
+                {
+                    sel1Class = "selected";
+                }
+                
+                seasonDefaultStyle = "display:none;";
+                <div class="select-box clear">
+                    <div class="left">
+                        <select id="Seasons">
+                            <option @sel2Class value="2">1stステージ</option>
+                            <option @sel3Class value="3">2ndステージ</option>
+                            <option @sel1Class value="1">通年</option>
+                        </select>
+                    </div>
+                </div>
+            }
+
+            @foreach (var item in Model)
+            {
+
+                if (item.RankingInfo != null)
+                {
+                    var orange = "";
+                    orange = "orange";
+                    if (item.RankingInfo.Ranking != 1)
+                    {
+                        orange = "";
+                    }
+                    <ul class="team-list season-@item.SeasonID" style="@seasonDefaultStyle">
+                        <li>
+                            <p class="num fs40 @orange">@item.RankingInfo.Ranking</p>
+                            <div>
+                                <dl>
+                                    <dt><a href="@string.Format("/jleague/j{0}/teams/{1}/", ViewBag.JType, item.TeamID)">@item.TeamName</a></dt>
+                                </dl>
+                                <ul class="jinfo">
+                                    <li>勝点 @item.RankingInfo.Point</li>
+                                    <li>試合数 @item.RankingInfo.Game</li>
+                                    <li>　勝数 @item.RankingInfo.Win</li>
+                                    <li>　引分数 @item.RankingInfo.Draw</li>
+                                    <li>敗数 @item.RankingInfo.Lose</li>
+                                    <li>失点 @item.RankingInfo.Lost</li>
+                                    <li>　得失点差 @item.RankingInfo.Differ</li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <div class="ready_box" style="display:none;">
+                        <div>
+                            <h3>順位情報はありません。</h3>
+                        </div>
+                    </div>
+                }
+            }
+</section>
+    }
+}

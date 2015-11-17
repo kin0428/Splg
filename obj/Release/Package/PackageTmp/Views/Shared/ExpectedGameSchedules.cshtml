@@ -1,0 +1,19 @@
+﻿@model Splg.Models.Game.ViewModel.ExpectedGameSchedulesViewModel
+@using Splg.Core.Extend;
+
+@{
+    <h2 class="black mrgin_bt10">@Html.DisplayFor(m => m.ScheduledDate) の試合予想<span class="fs14 fw_normal">（ @Html.DisplayFor(m => m.GameCount) 試合）</span></h2>
+
+    foreach (var item in Model.ExpectedGameSchedules)
+    {   
+        if ((Model.ScheduledDate.IsToday()) && (item.IsExpectable))
+        {
+        //Todo:イケてないので変更の必要有
+            var remainTime = Utils.CalculateTimeRemainDisplayString(item.GameDate.ParseToInt(), item.GameDate.ToString("HHmm"));
+            <p class="side_text05">予想変更締切まで　<span>@remainTime</span></p>
+        }
+        
+        @Html.Partial(item.PartialViewName,item)
+          
+        }
+}

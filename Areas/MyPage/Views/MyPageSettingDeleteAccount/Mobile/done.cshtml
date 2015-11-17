@@ -1,0 +1,33 @@
+﻿@{
+    // Developer	: Nojima
+    // Html No      : 3-7-2
+}
+@model Splg.Areas.MyPage.Models.ViewModel.MyPageSettingDeleteAccountViewModel
+
+@{
+    ViewBag.Title = "設定　アカウントの削除";
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.SETTING_DELETEACCOUNT;
+    Layout = "~/Views/Shared/Mobile/_MyPageLayout.cshtml";   
+}
+<script src="~/Scripts/Home.js"></script>
+
+
+@if (Model != null)
+{
+<section class="block_7">
+	<h3 class="sigtitle">アカウントが削除されました</h3>						
+	<div class="sig-frm">
+		<dl>								
+			<dd>
+                アカウントが削除されました。
+                <br />
+                ご利用いただきありがとうございました。
+            </dd>
+		</dl>
+        <p class="">
+            <a href="/">スポログのトップページへ行く</a>
+        </p>
+	</div>
+</section>
+
+}

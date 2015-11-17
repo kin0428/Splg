@@ -1,0 +1,86 @@
+﻿@using Splg;
+@using Splg.Areas.Jleague.Models.Dto;
+@{
+    JlgGameStats homeStats = null;
+    JlgGameStats awayStats = null;
+
+    if (Model != null)
+    {
+        homeStats = Model.HomeGameStats;
+        awayStats = Model.AwayGameStats;
+    }
+}
+
+@if (homeStats != null && awayStats != null)
+{
+    <div class="socData socStats">
+        <h2 class="socData-hdg">スタッツ</h2>
+
+        <table class="tblCompare">
+            <tr>
+                <th class="tblCompare-home fsMini">
+                    <p>@homeStats.TeamShortName</p>
+                </th>
+                <th></th>
+                <th class="tblCompare-away fsMini">
+                    <p>@awayStats.TeamShortName</p>
+                </th>
+            </tr>
+            <tr>
+                <td>@homeStats.ShootCount</td>
+                <th>シュート</th>
+                <td>@awayStats.ShootCount</td>
+            </tr>
+            <tr>
+                <td>@homeStats.WithinShootCount</td>
+                <th>枠内シュート</th>
+                <td>@awayStats.WithinShootCount</td>
+            </tr>
+            <tr>
+                <td>@homeStats.PassCount</td>
+                <th>パス</th>
+                <td>@awayStats.PassCount</td>
+            </tr>
+            <tr>
+                <td>@homeStats.CrossCount</td>
+                <th>クロス</th>
+                <td>@awayStats.CrossCount</td>
+            </tr>
+            <tr>
+                <td>@homeStats.DribbleCount</td>
+                <th>ドリブル</th>
+                <td>@awayStats.DribbleCount</td>
+            </tr>
+            <tr>
+                <td>@homeStats.InterceptCount</td>
+                <th>ボール奪取数</th>
+                <td>@awayStats.InterceptCount</td>
+            </tr>
+            <tr>
+                <td>@homeStats.a30mLineCount</td>
+                <th class="fsMini">30mライン進入回数</th>
+                <td>@awayStats.a30mLineCount</td>
+            </tr>
+            <tr>
+                <td>@homeStats.PossessionRatio</td>
+                <th>ポゼッション率</th>
+                <td>@awayStats.PossessionRatio</td>
+            </tr>
+            <tr>
+                <td>@homeStats.ShootCount</td>
+                <th>フリーキック</th>
+                <td>@awayStats.ShootCount</td>
+            </tr>
+            <tr>
+                <td>@homeStats.ShootCount</td>
+                <th>コーナーキック</th>
+                <td>@awayStats.ShootCount</td>
+            </tr>
+            <tr>
+                <td>@homeStats.ShootCount</td>
+                <th>オフサイド</th>
+                <td>@awayStats.ShootCount</td>
+            </tr>
+        </table>
+    </div>
+}

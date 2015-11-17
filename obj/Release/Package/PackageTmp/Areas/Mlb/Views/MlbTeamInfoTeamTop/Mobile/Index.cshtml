@@ -1,0 +1,254 @@
+﻿@{
+    //Author : Nojima
+    //FileName : Index.cshtml (Mobile: 9-5-1)
+    //Created Date : 2015/04/15
+}
+
+@model Splg.Areas.Mlb.Models.ViewModels.MlbTeamInfoTeamTopViewModel
+@{
+    ViewBag.Title = "チーム情報　チームトップ（MLB）";
+    ViewBag.Name = Splg.Areas.Mlb.MlbConstants.MLB_TEAMINFO_TEAMTOP;
+    Layout = "~/Views/Shared/Mobile/_MlbLayout.cshtml";
+}
+<script src="~/Areas/Mlb/Scripts/Mobile/9-1.js"></script>
+
+@Html.Partial("~/Areas/Mlb/Views/Shared/Mobile/_MlbTeamInfoMenu.cshtml")
+
+<section class="block_4 clear">
+    <dl class="team-name">
+        @if (!string.IsNullOrEmpty(@Model.TeamIcon))
+        {
+            <dt><img src="@Url.Content(@Model.TeamIcon)" alt="@Model.Team" /></dt>
+            @Html.Hidden("TeamID", @Model.TeamID)
+        }
+        @if (!string.IsNullOrEmpty(@Model.Team))
+        {
+            <dd>
+                <h3 class="fs14">@Model.Team</h3>
+                <p class="evt_edit_btn fs14">
+                    <a href="@Url.RouteUrl("5-4", new { newsClassID = 2, quoteUniqueId1 = Constants.MLB_SPORT_ID, quoteUniqueId2 = 0, quoteUniqueId3 = @Model.TeamID })">記事作成</a>
+                </p>
+                <p>@Model.ShortNameLeague <span>@string.Format("{0}位", Model.Ranking)</span></p>
+            </dd>
+        }
+    </dl>
+    @if (Model.ExpectationsDeviation != null && Model.BetrayalDeviation != null)
+    {
+        <dl class="team-score orange">
+            <dt>期待度偏差値</dt>
+            <dd class="fs30 num">@Model.ExpectationsDeviation.ToString(Constants.REMOVE_ZEROS)</dd>
+        </dl>
+        <dl class="team-score1 violet">
+            <dt>裏切度偏差値</dt>
+            <dd class="fs30 num">@Model.BetrayalDeviation.ToString(Constants.REMOVE_ZEROS)</dd>
+        </dl>
+        <p class="team-note">
+            期待度偏差値とは…総予想ポイント数の偏差値<br>
+            裏切度偏差値とは…負けた試合の総予想ポイント数の偏差値
+        </p>
+    }
+
+    <h3 class="subtitle2">チーム所属中の日本人</h3>
+    <ul class="team-list">
+        @if (Model.ExistingJapanesePlayers != null)
+        {
+            foreach (var p in Model.ExistingJapanesePlayers)
+            {
+                <li>
+                    <p>@p.Years</p>
+                    <div>@p.PlayerName</div>
+                </li>
+            }
+        }
+    </ul>
+    <div class="space20"> </div>
+
+    <h3 class="subtitle2">今シーズンの成績</h3>
+    <table cellpadding="0" cellspacing="0" summary="tbl" class="team-tbl">
+        @if (Model.OfficialStatsMlb != null)
+        {
+            <tr>
+                <th>試合数</th>
+                <td>@Model.OfficialStatsMlb.GameCount</td>
+            </tr>
+            <tr>
+                <th>失点</th>
+                <td>@Model.OfficialStatsMlb.PointLost</td>
+            </tr>
+            <tr>
+                <th>勝数</th>
+                <td>@Model.OfficialStatsMlb.Win</td>
+            </tr>
+            <tr>
+                <th>本塁打数</th>
+                <td>@Model.OfficialStatsMlb.Homerun</td>
+            </tr>
+            <tr>
+                <th>敗数</th>
+                <td>@Model.OfficialStatsMlb.Lose</td>
+            </tr>
+            <tr>
+                <th>盗塁数</th>
+                <td>@Model.OfficialStatsMlb.StolenBase</td>
+            </tr>
+            <tr>
+                <th>勝率</th>
+                <td>@Model.OfficialStatsMlb.WinningPercentage</td>
+            </tr>
+            <tr>
+                <th>チーム打率</th>
+                <td>@Model.OfficialStatsMlb.BattingAverage</td>
+            </tr>
+            <tr>
+                <th>勝差</th>
+                <td>@Model.OfficialStatsMlb.GameBehind</td>
+            </tr>
+            <tr>
+                <th>チーム防御率</th>
+                <td>@Model.OfficialStatsMlb.EarnedRunAverage</td>
+            </tr>
+            <tr>
+                <th>打点</th>
+                <td>@Model.OfficialStatsMlb.RunsBattingIn</td>
+            </tr>
+        }
+        </table>
+            <div class="space20"> </div>
+            <h3 class="subtitle2">チーム成績の傾向</h3>
+            <table cellpadding="0" cellspacing="0" summary="tbl02" class="team-tbl02">
+@if (Model.OfficialStatsMlb != null)
+{
+                <tr>
+                    <th>最近10試合の勝ち</th>
+                    <td>@Model.OfficialStatsMlb.WinLast10</td>
+                </tr>
+                <tr>
+                    <th>最近10試合の負け</th>
+                    <td>@Model.OfficialStatsMlb.LoseLast10</td>
+                </tr>
+                <tr>
+                    <th>連勝・連敗実績</th>
+                    <td>@Model.OfficialStatsMlb.Streak</td>
+                </tr>
+                <tr>
+                    <th>ホームゲームでの勝数</th>
+                    <td>@Model.OfficialStatsMlb.StatHome</td>
+                </tr>
+                <tr>
+                    <th>ビジターゲームでの勝数</th>
+                    <td>@Model.OfficialStatsMlb.StatVisitor</td>
+                </tr>
+                <tr>
+                    <th>盗塁数</th>
+                    <td>@Model.OfficialStatsMlb.StolenBase</td>
+                </tr>            
+}
+            </table>
+        </section>
+
+
+        @Html.Action("ShowMlbRecentNews", "MlbRightContent", new { area = "Mlb", type = @ViewBag.Name, teamID = @ViewBag.TeamID })
+
+
+        <section class="block_2">
+            <nav class="news-panel">
+                <a class="prev" href="#">前の試合</a>
+                <h4 id="gameDate">
+                    @Utils.GetMonthAndDayOfWeek(DateTime.Now)の試合
+                </h4>
+                <a class="next" href="#">
+                    次の試合
+                </a>
+            </nav>
+            <div id="mlbGameInfo">
+                @Html.Hidden("Page", 3)
+                @Html.Action("ShowGameInfo", "MlbTop", new { area = "Mlb", type = 3, gameDate = DateTime.Now.ToShortDateString().Replace("/", ""), teamID = @ViewBag.TeamID })
+            </div>
+        </section>
+
+            <section class="block_2 clear">
+                <h3 class="subtitle3">新着投稿記事</h3>
+                <ul class="block-list clear">
+                    @if (Model.TeamPostList != null)
+                    {
+                        foreach (var post in Model.TeamPostList.Take(3))
+                        {
+                            string postContent = string.Format("{0} {1}", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                            <li>
+                                <a href="/user/@post.MemberId/">
+                                    <figure><img src="@post.ProfileImg" alt="" /></figure>
+                                </a>
+                                <div>
+                                    <h4><a href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a></h4>
+                                    <p>@postContent</p>
+                                </div>
+                            </li>
+                        }
+                    }
+                </ul>
+                <p class="panel-link"><a href="/user_article/1/sport/">投稿記事をもっと読む</a></p>
+            </section>
+            <section class="block_2 clear">
+                <h3 class="subtitle3">チームデータ</h3>
+                <table cellpadding="0" cellspacing="0" summary="tbl03" class="team-tbl02">
+                    @if (Model.TeamInfo != null)
+                    {
+                        <tr>
+                            <th>創設年</th>
+                            <td>@Model.TeamInfo.FoundedYear 年</td>
+                        </tr>
+                        <tr>
+                            <th>オーナー名</th>
+                            <td>@Model.TeamInfo.OwnerName</td>
+                        </tr>
+                        <tr>
+                            <th>監督名</th>
+                            <td>@Model.TeamInfo.ManagerName</td>
+                        </tr>
+                        <tr>
+                            <th>Wシリーズ優勝回数</th>
+                            <td>@Model.TeamInfo.WSTitles</td>
+                        </tr>
+                        <tr>
+                            <th>リーグ優勝回数</th>
+                            <td>@Model.TeamInfo.Pennants</td>
+                        </tr>
+                        <tr>
+                            <th>地区優勝回数</th>
+                            <td>@Model.TeamInfo.DivTitles</td>
+                        </tr>
+                        <tr>
+                            <th>Wカード獲得回数</th>
+                            <td>@Model.TeamInfo.WCBerths</td>
+                        </tr>
+                    }
+                    <tr>
+                        <th>過去在籍した日本人</th>
+                        <td>
+                            @if (Model.ExistedJapanesePlayers != null)
+                            {
+                                foreach (var p in Model.ExistedJapanesePlayers)
+                                {
+                                    var str = "（" + p.Years + "）";
+                                    <p>@p.PlayerName @str </p>
+                                }
+                            }
+                        </td>
+                    </tr>
+                </table>
+                <div class="space20"> </div>
+                <h3 class="subtitle3">過去5年間のシーズン順位</h3>
+                <table cellpadding="0" cellspacing="0" summary="tbl03" class="team-tbl">
+                    @if (Model.StatLast5Years != null)
+                    {
+                        foreach (var s in Model.StatLast5Years)
+                        {
+                        <tr>
+                            <th>@s.Year 年</th>
+                            <td>@s.Stat</td>
+                        </tr>
+                    }
+                    }
+                </table>
+            </section>
+        }

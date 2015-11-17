@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Splg.Models.News.ViewModel.PostedInfoViewModel>
+@{
+    Layout = "~/Views/Shared/Mobile/_Layout.cshtml";
+}
+<section class="block_9">
+    <h2 class="subtitle2">記事の投稿完了</h2>
+    <article class="block_8_2">
+        <p>記事を投稿しました。<br>SNSへ投稿する場合はボタンを押してください。</p>
+        <div class="space20"> </div>
+        <ul class="sig-log">
+            <li>
+                <a href="@Url.Action("TwitterLogin", "Member")">
+                    <img src="~/Mobile/Content/img/tmp/log-icon02.png" alt="twitter">
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("FacebookLogin", "Member")">
+                    <img src="~/Mobile/Content/img/tmp/log-icon01.png" alt="facebook">
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("GoogleLogin","Member")">
+                    <img src="~/Mobile/Content/img/tmp/log-icon03.png" alt="gplus">
+                </a>
+            </li>
+        </ul>
+    </article>
+    @if (Model != null && Model.Any())
+    {
+        <h2 class="subtitle2">投稿記事</h2>
+        <div class="block_3_1">
+            @foreach (var item in Model)
+            {
+                var memberImage = Constants.IMAGE_DEFAULT;
+                if (!string.IsNullOrEmpty(item.ProfileImg))
+                {
+                    memberImage = item.ProfileImg;
+                }
+                string postContent = Splg.Controllers.PostedController.GetPostContent(item);
+                <article>
+                    <figure><a href="/user/@item.MemberId/"><img src="@Url.Content(memberImage)" alt="" /></a></figure>
+                    <div>
+                        <h3><a href="/user_article/@item.TopicID/@item.ContributeId/">@item.Title</a></h3>
+                        @if (!string.IsNullOrEmpty(postContent))
+                        {
+                            <p>@postContent</p>
+                        }
+                        <p>@item.Nickname &nbsp; &nbsp; @item.ContributeDate.Value.ToString("MM/dd HH:mm") &nbsp; &nbsp; <strong>@item.Views</strong> views</p>
+                    </div>
+                </article>
+            }
+        </div>
+    }
+    <div class="space20"> </div>
+    <p class="sig-submit">@Html.ActionLink("投稿記事トップへ", "Index", "UserArticle", null, null)</p>
+</section>

@@ -1,0 +1,23 @@
+﻿@using Splg.Core.Constant;
+@model Splg.Areas.Prize.Models.ViewModel.PrizeTopViewModel
+
+
+@{
+    foreach (var item in Model.RallyGoodsModel)
+    {
+    <div class="block_8_2">
+        <div class="prize_img">
+            <img src="@item.ThumbnailUrl" alt="@item.GoodName">
+            <div>@Html.DisplayFor(m => item.GoodName)</div>
+        </div>
+        <dl class="prize_tag">
+            <dt class="white">@Html.DisplayFor(m => item.WinVolumeView) </dt>
+            <dd>一口 @Html.DisplayFor(m => item.Points)Pt</dd>
+        </dl>
+        <div class="space20"> </div>
+        <p class="prize_link">
+            <a href="@Url.RouteUrl(RouteNameConst.PrizeDetal, new{targetYearMonth = Model.RallyViewModel.TargetYearMonth,  rallyGoodsId = item.RallyGoodId  })">賞品応募ページへ</a>
+        </p>
+    </div>
+    }
+}

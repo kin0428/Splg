@@ -1,0 +1,25 @@
+﻿@{
+    //Author : e-concier
+    //FileName : Index.cshtml (9-1)
+    //Created Date : 2015/04/10
+}
+
+@if (@ViewBag.TeamID != null)
+{
+    <ul class="team_menu clear">
+        @*画面設計書 (チーム情報　チームトップ（MLB）画面）: 9-5-1 *@
+        <li class=@(ViewBag.TeamInfoMenuTabActive == 1 ? "active" : "")>@Html.ActionLink("チーム情報トップ", "Index", "MlbTeamInfoTeamTop", new { area = "Mlb", teamID = @ViewBag.TeamID }, null)</li>
+        @*画面設計書 (チーム情報　日程・結果（MLB）: 9-5-2 *@
+        <li class=@(ViewBag.TeamInfoMenuTabActive == 2 ? "active" : "")>@Html.ActionLink("日程・結果", "Index", "MlbTeamInfoDailyResult", new { area = "Mlb", teamID = @ViewBag.TeamID }, null)</li>
+
+    @*画面設計書 (チーム情報　ニュース（MLB: 8-5-6 *@
+        <li class=@(ViewBag.TeamInfoMenuTabActive == 6 ? "active" : "")>@Html.ActionLink("ニュース", "Index", "MlbTeamInfoNews", new { area = "Mlb", teamID = @ViewBag.TeamID, typeID = 3 }, null)</li>
+    </ul>
+}
+
+@{/*
+9-5-1	MlbTeamInfoTeamTopController	チーム情報　チームトップ（MLB）
+9-5-2	MlbTeamInfoDailyResultController	チーム情報　日程・結果（MLB）
+9-5-3	MlbTeamInfoConfrontationResultController	チーム情報　対戦成績（MLB）
+9-5-6	MlbTeamInfoNewsController	チーム情報　ニュース（MLB）
+*/}

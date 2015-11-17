@@ -1,0 +1,4 @@
+		  function (o) {
+            var Label@Suffix = @Data;
+            return Label@Suffix[o.index]; 
+          }

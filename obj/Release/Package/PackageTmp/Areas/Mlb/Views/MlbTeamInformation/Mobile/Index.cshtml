@@ -1,0 +1,63 @@
+﻿@{
+    //Author : Takagi
+    //FileName : Index.cshtml (9-5-1)
+    //Created Date : 2015/04/10
+}
+
+@using Splg.Areas.Mlb.Models.ViewModels;
+@model IEnumerable<Splg.Areas.Mlb.Models.ViewModels.MlbTeamInformationViewModel>
+
+@{
+    ViewBag.Title = "チーム情報（MLB）";
+    ViewBag.Name = Splg.Areas.Mlb.MlbConstants.MLB_TEAMINFORMATION;
+    Layout = "~/Views/Shared/Mobile/_MlbLayout.cshtml";
+}
+
+<script src="~/Areas/Mlb/Scripts/Mobile/9-5.js"></script>
+
+<p class="block-path2">
+    <a id="ALeagueButton" href="#">アメリカン・リーグ</a><span>/</span>
+    <a id="NaLeagueButton" href="#">ナショナル・リーグ</a>
+</p>
+
+<!-- path -->
+<section class="block_2">
+    @if (Model.Any())
+    {
+        var lstLeague2 = (from lg in Model select new { lg.TeamInfo.LeagueID, lg.TeamInfo.LeagueName }).Distinct();
+
+        <div>
+            @foreach (var league2 in lstLeague2)
+{
+    var lstLeagueTeams = Model.Where(x => x.TeamInfo.LeagueID == league2.LeagueID);
+    var lstDiv = (from div1 in lstLeagueTeams
+                  select new { div1.TeamInfo.DivID, div1.TeamInfo.DivName }).Distinct();
+                
+            <h1 class="subtitle2 leagueId@{@league2.LeagueID}">@league2.LeagueName</h1>
+    string oldDiv = null;
+
+    foreach (var div2 in lstDiv)
+    {
+        if (oldDiv != div2.DivName)
+        {
+            <h2 class="subtitle2 leagueId@{@league2.LeagueID}">@div2.DivName</h2>
+            oldDiv = div2.DivName;
+        }
+
+        <ul class="team-list leagueId@{@league2.LeagueID}">
+            @foreach (var item in lstLeagueTeams.Where(x => x.TeamInfo.DivID == div2.DivID).OrderBy(x => x.TeamInfo.TeamID))
+            {
+                <li>
+                    <p><img src="@Url.Content(@item.TeamIcon)" alt="" /></p>
+                    <div><a href='@Url.Action("Index", "MlbTeamInfoTeamTop", new { area = "Mlb", teamID = @item.TeamInfo.TeamID }, null)'>@item.TeamInfo.TeamName</a></div>
+                </li>
+            }
+        </ul>
+
+    }
+}
+
+
+        </div>
+    }
+</section>

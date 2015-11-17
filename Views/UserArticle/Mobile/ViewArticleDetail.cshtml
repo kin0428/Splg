@@ -1,0 +1,131 @@
+﻿@model Splg.Models.UserArticle.ViewModel.UserArticleInfoViewModel
+@{
+    ViewBag.Title = "ViewArticleDetail";
+    Layout = "~/Views/Shared/Mobile/_ArticlesLayout.cshtml";
+}
+<script src="~/Areas/User/Scripts/Mobile/follow_unfolllow.js"></script>
+@if (Model != null)
+{
+    <section class="block_8">		
+        @Html.Partial("_QuotContent", Model)
+        @if (Session["CurrentUser"] != null)
+        {
+            long currentMemberId = Convert.ToInt64(Session["CurrentUser"]);
+            if (currentMemberId == Model.MemberId)
+            {
+                using (Html.BeginForm("EditNewUserArticle", "UserArticle", FormMethod.Post, new { @id = "postEditForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.ContributeId)
+                    @Html.HiddenFor(model => model.Status)
+                    @Html.HiddenFor(model => model.TopicID)
+                    @Html.HiddenFor(model => model.QuoteUniqueId1)
+                    @Html.HiddenFor(model => model.QuoteUniqueId2)
+                    @Html.HiddenFor(model => model.QuoteUniqueId3)
+                    @Html.HiddenFor(model => model.Title)
+                    @Html.HiddenFor(model => model.Nickname)
+                    @Html.HiddenFor(model => model.ContributeDate)
+                    @Html.HiddenFor(model => model.ImageLink)
+                    @Html.HiddenFor(model => model.Body)
+                    <input data-val="true" data-val-number="The field NewsClassID must be a number." data-val-required="The NewsClassID field is required." id="NewsClassId" name="NewsClassId" type="hidden" value="@Model.NewsClassId" />
+                }
+                <p class="panel-link"><a href="javascript:void(0);" onclick="document.getElementById('postEditForm').submit();">投稿する</a></p>
+            }
+        }
+		<div style="position:relative;">
+			@if (Model.HasImageLink)
+			{
+				<p class="panel_views"><span class="fs8"><strong>@Splg.Controllers.PostedController.GetTotalViewOfPost(Model.ContributeId)</strong> views</span></p>
+				<figure class="my-image">
+					<img src="@Url.Content(@Model.ImageLink)" alt="@Model.Title" />
+				</figure>
+			}
+			else
+            {
+				<p class="panel_views_noimg"><span class="fs8"><strong>@Splg.Controllers.PostedController.GetTotalViewOfPost(Model.ContributeId)</strong> views</span></p>
+			}
+			<div class="block_8_1">
+				<h2 class="subtitle1">@Model.Title</h2>			
+				<article class="cmt_content">
+					<p style="white-space: pre-line;">@Model.Body</p>
+					<div class="space"> </div>
+					<p class="fs8">配信元<a href="/user/@Model.MemberId/">@Model.Nickname</a>@Model.ContributeDate</p>
+					<div class="space"> </div>
+				</article>			
+			</div>
+		</div>
+        <ul class="rel-topic">
+            <li>関連トピック</li>
+            @foreach (var item in @Model.RelatedTopicList)
+            {
+                <li><a href="/user_article/@item.TopicId/topic/">@item.TopicName</a></li>
+            }
+        </ul>
+        <div class="tcenter">
+			<p class="fb_topbd fs8">この記事が気に入ったら いいね！しよう<br>スポログの最新記事をお届けします</p>
+            <div class="fb-page" data-href="https://www.facebook.com/spolog.jp" data-hide-cover="false" data-show-facepile="false" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/spolog.jp"><a href="https://www.facebook.com/spolog.jp">スポログ</a></blockquote></div></div>
+        </div>
+		<div class="space20"> </div>
+        <h3 class="subtitle2">シェア</h3>
+        @Html.Partial("~/Views/Shared/Mobile/_ShareContentSocial.cshtml")
+        @if (Session["CurrentUser"] != null)
+        {
+            long currentMemberId = -1;
+            currentMemberId = Convert.ToInt64(Session["CurrentUser"]);
+            if (currentMemberId > 0 && Model.FollowedUserInfo != null)
+            {
+                string formattedLastExpectedPointDate = null;
+                if (Model.FollowedUserInfo.FormattedLastExpectedPointDate != null)
+                {
+                    formattedLastExpectedPointDate = "最終予想 " + Model.FollowedUserInfo.FormattedLastExpectedPointDate;
+                }
+
+                string displayFollow = Model.FollowedUserInfo.IsFollowing ? "display:none" : "";
+                string displayUnfollow = Model.FollowedUserInfo.IsFollowing ? "" : "display:none";
+                <div class="space"></div>
+                <div class="block_8_2">
+                    <ul class="my-list" id="lines">
+                        <li>
+                            <div class="m-col01"><a href="/user/@Model.FollowedUserInfo.MemberId"><img class="circle" src="@Model.FollowedUserInfo.ProfileImg" alt="" /></a></div>
+                            <div class="m-col02">
+                                <h4><a href="/user/@Model.FollowedUserInfo.MemberId">@Model.FollowedUserInfo.Nickname</a></h4>
+                                <p class="fs8">@Model.FollowedUserInfo.FormattedPayOffPoints pt @formattedLastExpectedPointDate</p>
+                            </div>
+                            @* ログイン会員の場合の対処 *@
+                            @if (currentMemberId != Model.FollowedUserInfo.MemberId)
+                            {
+                                <div class="m-col03">
+                                    <a href="javascript:void(0);" class="my-btn01 unfollow_link" id="unfollow-@Model.FollowedUserInfo.MemberId" style="@displayUnfollow">フォロー中</a>
+                                    <a href="javascript:void(0);" class="my-btn01 follow_link" id="follow-@Model.FollowedUserInfo.MemberId" style="@displayFollow">フォローする</a>
+                                </div>
+                            }
+                        </li>
+                    </ul>
+                </div>
+            }
+        }
+        @if (Model.RelatedPostList.Any())
+        {
+            <div class="space"> </div>
+            <section class="block_8_2">
+                <h3 class="subtitle3">関連記事</h3>
+                <ul class="block-list clear">
+                    @foreach (var post in Model.RelatedPostList)
+                    {
+                        string postContent = string.Format("{0}&nbsp;&nbsp;{1}投稿", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                        <li>
+                            <a href="/user/@post.MemberId/">
+                                <figure><img src="@post.ProfileImg" alt="" /></figure>
+                            </a>
+                            <div>
+                                <h4><a href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a></h4>
+                                <p>@Html.Raw(postContent)<span class="right"><strong>@post.Views</strong> views</span></p>
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <p class="panel-link"><a class="bold" href="/user_article/@Model.TopicID/topic/">投稿記事をもっと読む</a></p>
+            </section>
+        }
+    </section>
+}

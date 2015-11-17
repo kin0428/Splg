@@ -1,0 +1,62 @@
+﻿@*
+    * Developer	: Tran Sy Huynh
+    *
+*@
+
+@model Splg.Areas.Jleague.Models.ViewModel.JlgJNewsViewModel
+@using PagedList.Mvc;
+@using Splg;
+@using Splg.Areas.Jleague;
+@{
+    ViewBag.Title = "Jリーグ ニュースリスト";
+    ViewBag.Name = Constants.JLG_NEWS;
+    ViewBag.pageNo = Constants.JLG_NEWS;
+    Layout = "~/Views/Shared/Mobile/_JlgLayout.cshtml";
+}
+
+<section class="block_2">
+    <h2 class="subtitle2">Jリーグ　ニュース</h2>
+    @using (Html.BeginForm("Index",
+                            "JlgNews",
+                            FormMethod.Get))
+    {
+        List<SelectListItem> items = new List<SelectListItem>();
+        items.Add(new SelectListItem { Text = "全て", Value = string.Empty, Selected = (ViewBag.jType == string.Empty) });
+        for (int i = 0; i < Model.JList.Count(); i++)
+        {
+            items.Add(new SelectListItem { Text = Model.JList[i], Value = Convert.ToString(i), Selected = (ViewBag.jType == string.Empty) ? false : (i == Convert.ToInt32(ViewBag.jType)) });
+        }
+        <div class="news-box">
+            @Html.DropDownList("jType", items, new { onchange = @"form.submit();" })
+        </div>
+    }
+    @if (Model.TeamNewsList != null && Model.TeamNewsList.Count() > 0)
+    {
+        <div class="block_3_1">
+            @foreach (var item in Model.TeamNewsList)
+                {
+                    var imageLocation = Utils.GetNewsImageLocation(item.Content ?? Constants.IMAGE_DEFAULT);
+                <article>
+                    <figure><img src="@Url.Content(imageLocation)" alt="" /></figure>
+                    <div>
+                        <h3>@Html.RouteLink(item.Headline, "7_1", new { areas = string.Empty, topic = JlgConstants.JLG_TOPIC_NAME, newsItemID = item.NewsItemID, sportID = JlgConstants.JLG_SPORT_ID })</h3>
+                        <p>@item.SentFrom　@item.DeliveryDate.ToString("MM/dd HH:mm")</p>
+                    </div>
+                </article>
+                }
+        </div>
+        <div class="space20"> </div>
+        <nav class="news-control">
+            @if (Model.TeamNewsList.PageNumber > 1)
+            {
+                var nextPage = Model.TeamNewsList.PageNumber - 1;
+                <a class="prev" href="?page=@nextPage&jType=@ViewBag.jType">前のページ</a>
+            }
+            @if (Model.TeamNewsList.PageNumber < Model.TeamNewsList.PageCount)
+            {
+                var nextPage = Model.TeamNewsList.PageNumber + 1;
+                <a class="next" href="?page=@nextPage&jType=@ViewBag.jType">次のページ</a>
+            }
+        </nav>
+    }
+</section>

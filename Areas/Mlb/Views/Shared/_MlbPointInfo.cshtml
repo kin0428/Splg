@@ -1,0 +1,88 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : _NpbPointInfo.cshtml (Use for main _NpbLayout.cshtml)
+    //Created Date : 2015/04/08
+}
+
+@model IEnumerable<Splg.Models.Game.ViewModel.PointInfoViewModel>
+@using Splg;
+@using Splg.Models.Game.ViewModel;
+@using Splg.Areas.Npb.Models;
+
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        var lstGroup = Model.OrderBy(m => m.PointID).GroupBy(m => m.PointID);
+        var firstGroup = lstGroup.FirstOrDefault();
+        //var lastGroup = lstGroup.LastOrDefault();
+        <div class="side_block02">             
+            @foreach (var groupWeek in lstGroup)
+            {
+                var firstInGroup = groupWeek.FirstOrDefault();
+                if (groupWeek.Key.Equals(firstGroup.Key))
+                {
+                    var strWeek = firstInGroup.GiveTargetMonth + "月" + @groupWeek.FirstOrDefault().GiveTargetWeek + "周目";
+                    <div class="cat_stitle">
+                        <h3>@strWeek</h3>
+                        <p><a href="#">右カラムmore</a></p>
+                    </div>
+                }           
+                else
+                {
+                    <div class="cat_stitle">
+                        <h3>来週予想した試合</h3>
+                    </div>
+                }
+                <div class="row">
+                    <p class="side_date"><span class="fs14">現在の所持ポイント</span></p>
+                    <p class="side_date_p organge"><span class="fs18 bold">@firstInGroup.PossessionPoint</span> pt</p>
+                </div>
+                foreach (var item in groupWeek.OrderBy(m => m.ExpectPointID))
+                {
+                    if (item.GameID != 0)
+                    {
+                        GameInfoViewModel gameInfo = NpbCommon.GetGameInfoByGameID(Constants.NPB_SPORT_ID, item.GameID.Value);
+                        var point = Math.Round(item.ExpectPoint * item.Odds);
+                        var tmp = DateTime.ParseExact(gameInfo.Time, "HHmm", null);
+                        var gameTime = tmp.ToString("HH:mm");
+                        var teamBetSelect = string.Empty;
+                        var status = NpbCommon.GetStatusMatch(item.GameID.ToString());
+                        var classStatus = string.Empty;
+                        if (status == 0)
+                        {
+                            classStatus = "side_b2";
+                        }
+                        else
+                        {
+                            classStatus = "side_b1";
+                        }
+                        <div class="@classStatus" id="@item.ExpectPointID.ToString()">
+                            <div>
+                                <p class="fs11">MLB  @Utils.ParseToJapanDate(false, gameInfo.GameDate.ToString()) @gameTime </p>
+                                <p class="side_b2_1">@gameInfo.HomeTeamName vs @gameInfo.VisitorTeamName</p>
+                                <span class="side_b1_li blue" data-expectpoint="@StringProtector.Protect(@item.ExpectPointID.ToString())" data-point="@StringProtector.Protect(@item.PointID.ToString()))">取り消す</span>
+                                <span class="icon side_b2_2"> </span>
+                                @if (item.BetSelectID == 1)
+                                {
+                                    teamBetSelect = gameInfo.HomeTeamName;
+                                }
+                                else if (item.BetSelectID == 2)
+                                {
+                                    teamBetSelect = @gameInfo.VisitorTeamName;
+                                }
+                                else
+                                {
+                                    teamBetSelect = "引き分け";
+                                }
+                                <p class="fs14">@teamBetSelect</p>
+                                <p><input maxlength="5" value="@item.ExpectPoint" name="sprice" data-posspoint="@item.PossessionPoint" class="pointBet"> pt <span class="fs14">x</span> @item.Odds</p>
+                            </div>
+                            <p>予想が的中すると @point pt を得られます</p>
+                        </div>
+                    }
+                }
+            }          
+        </div>
+    }
+}

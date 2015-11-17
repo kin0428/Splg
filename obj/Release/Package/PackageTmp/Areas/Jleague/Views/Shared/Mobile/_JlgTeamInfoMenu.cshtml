@@ -1,0 +1,35 @@
+﻿@{
+    //Author : e-concier
+    //FileName : Index.cshtml (9-1)
+    //Created Date : 2015/05/6
+}
+
+@if (@ViewBag.TeamID != null)
+{
+    string league = null;
+    if (ViewBag.JleagueMenu == 2)
+    {
+        league = "j1";
+    }
+    else if (ViewBag.JleagueMenu == 3)
+    {
+        league = "j2";
+    }
+    <p class="block-path2">
+        @*画面設計書 (チーム情報　チームトップ: 9-5-1 *@
+        <a class="@(ViewBag.TeamInfoMenuTabActive == 1 ? "active" : "")" href="/jleague/@league/teams/@ViewBag.TeamID">チーム情報トップ</a><span>/</span>
+
+        @*画面設計書 (チーム情報　日程・結果: 9-5-2 *@
+        <a class="@(ViewBag.TeamInfoMenuTabActive == 2 ? "active" : "")" href="/jleague/@league/teams/@ViewBag.TeamID/schedule">日程・結果</a><span>/</span>
+
+        @*画面設計書 (対戦成績: 8-5-6 *@
+        <a class="@(ViewBag.TeamInfoMenuTabActive == 3 ? "active" : "")" href="/jleague/@league/teams/@ViewBag.TeamID/stats">対戦成績</a><span>/</span>
+
+        @*画面設計書 (チーム情報　選手: 8-5-6 *@
+        <a class="@(ViewBag.TeamInfoMenuTabActive == 4 ? "active" : "")" href="/jleague/@league/teams/@ViewBag.TeamID/memberlist">選手</a><span>/</span>
+
+        @*画面設計書 (ニュース: 8-5-6 *@
+        <a class="@(ViewBag.TeamInfoMenuTabActive == 5 ? "active" : "")" href="/jleague/@league/teams/@ViewBag.TeamID/news">ニュース</a>
+
+    </p>
+}

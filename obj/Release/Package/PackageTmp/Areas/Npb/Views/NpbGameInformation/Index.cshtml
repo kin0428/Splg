@@ -1,0 +1,200 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : Index.cshtml (8-6)
+    //Created Date : 2015/03/10
+}
+@model Splg.Areas.Npb.Models.ViewModel.NpbGameInfoViewModel
+@using Splg.Areas.Npb.Models;
+@using Splg;
+
+@{
+    ViewBag.Title = "試合情報";
+    ViewBag.Name = Constants.NPBGAMEINFO;
+    Layout = "~/Views/Shared/_NpbLayout.cshtml";
+}
+
+<script type="text/javascript">
+    var interval = null;
+    function AutoLoad()
+    {
+        var status = "";
+        var isChange = "";
+        var gameID = @TempData["gameID"];
+        $.ajax({
+            type: "POST",
+            url: '/Npb/NpbGameInformation/GetGameStatusByGameID',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify({ gameID: gameID }),
+            async: false,
+            success: function (result) {
+                if (result != null) {
+                    var list = result;
+                    $.each(list, function (index, item) {
+                        if(index == 0)
+                        {
+                            isChange = item;
+                        }
+                        else
+                        {
+                            status = item;
+                        }
+                    });
+                }
+            },
+        });
+        if(isChange == "True")
+        {
+            //Status change -> load 2 div : npbGameInfoPlayerInfo, npbRightGames.
+            var linkUrl = '@Url.Action("ShowGameInfoPlayerInfo", "NpbGameInformation", new { area = "Npb", gameID = @TempData["gameID"] }, null)';
+            $('#npbGameInfoPlayerInfo').load(linkUrl);
+
+            var linkUrlGame = '@Url.Action("ShowGameInRightContent", "NpbGameInformation", new { area = "Npb", gameID = @TempData["gameID"] }, null)';
+            $('#npbRightGames').load(linkUrlGame);
+
+            //If status : 試合後, stop update div : npbGameInfoPlayerInfo.
+            if(status == "2")
+            {
+                //alert("Remove interval");
+                clearInterval(interval);
+            }
+        }
+        else
+        {
+            //If status : 試合後, not update div : npbGameInfoPlayerInfo.
+            if(status == "2")
+            {
+                //alert("Remove interval");
+                clearInterval(interval);
+            }
+        }
+    };
+
+    $(function () {
+        interval = setInterval(AutoLoad, 15000);
+    });
+</script>
+
+@if (Model != null)
+{
+    if (Session["Status"] != null)
+    {
+        <input type="hidden" id="Page" name="Page" value="4" data-gameid="@TempData["gameID"]" />
+        <div id="npbGameInfoPlayerInfo">
+            @Html.Action("ShowGameInfoPlayerInfo", "NpbGameInformation", new { area = "Npb", gameID = @TempData["gameID"] })
+        </div>
+    }
+    <!-- フォローユーザーの予想 -->
+    <div class="evt_block02">
+        @if (Session["CurrentUser"] != null)
+        {
+            <h3 class="mytitle02">フォローユーザーの予想</h3>
+        }
+        else
+        {
+            <h3 class="mytitle02">みんなの予想</h3>
+        }
+        @{
+        int betWinCount = Model.FollowMembersBetToWin == null ? 0 : Model.FollowMembersBetToWin.Count();
+        int betDrawCount = Model.FollowMembersBetToDraw == null ? 0 : Model.FollowMembersBetToDraw.Count();
+        int betLoseCount = Model.FollowMembersBetToLose == null ? 0 : Model.FollowMembersBetToLose.Count();
+        <p class="evt_bl02_1">ホームの勝ち<span class="fs14">@betWinCount</span>人が予想</p>
+            <ul class="evt_bl02_2">
+                @{
+                    if (Model.FollowMembersBetToWin != null && Model.FollowMembersBetToWin.Any())
+                    {
+                        foreach (var item in Model.FollowMembersBetToWin.Take(6))
+                        {
+                            <li><a href="/user/@item.MemberId"><img class="resimg circle" src="@Url.Content(Utils.FormatProfileImageLocation(item.ProfileImg))" alt="" /></a></li>
+                        }
+                        if (betWinCount > 6)
+                        {
+                            <li class="count_num02"><span>+@(betWinCount - 6)</span></li>
+                        }
+                    }
+                }
+            </ul>
+            <p class="evt_bl02_1">引き分け<span class="fs14">@betDrawCount</span>人が予想</p>
+            <ul class="evt_bl02_2">
+                @{
+                    if (Model.FollowMembersBetToDraw != null && Model.FollowMembersBetToDraw.Any())
+                    {
+                        for (int i = 0; i < Math.Min(betDrawCount, 6); i++)
+                        {
+                            var m = Model.FollowMembersBetToDraw[i];
+                            <li><a href="/user/@m.MemberId"><img class="resimg circle" src="@Url.Content(Utils.FormatProfileImageLocation(m.ProfileImg))" alt="" /></a></li>
+                        }
+
+                        if (betDrawCount > 6)
+                        {
+                            <li class="count_num02"><span>+@(betDrawCount - 6)</span></li>
+                        }
+                    }
+                }
+            </ul>
+            <p class="evt_bl02_1">ビジターの勝ち<span class="fs14">@betLoseCount</span>人が予想</p>
+            <ul class="evt_bl02_2">
+                @{
+                    if (Model.FollowMembersBetToLose != null && Model.FollowMembersBetToLose.Any())
+                    {
+                        for (int i = 0; i < Math.Min(betLoseCount, 6); i++)
+                        {
+                            var m = Model.FollowMembersBetToLose[i];
+                            <li><a href="/user/@m.MemberId"><img class="resimg circle" src="@Url.Content(Utils.FormatProfileImageLocation(m.ProfileImg))" alt="" /></a></li>
+                        }
+
+                        if (betLoseCount > 6)
+                        {
+                            <li class="count_num02"><span>+@(betLoseCount - 6)</span></li>
+                        }
+                    }
+                }
+            </ul>
+        }
+    </div>
+    <div class="space"> </div>
+    if (Model.PostedInfo != null && Model.PostedInfo.Any())
+    {
+        <div class="evt_block02">
+            <div class="cat_stitle">
+                <h3>この試合の投稿記事</h3>
+                <p><a href="/user_article/1/sport/">投稿記事をもっと読む</a></p>
+            </div>
+            <ul class="evt_list01">
+                @foreach (var post in Model.PostedInfo.Take(5))
+                {
+                    string postContent = string.Format("{0}&nbsp;&nbsp;&nbsp;{1}投稿", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                    <li>
+                        <a href="/user/@post.MemberId/"><img src="@post.ProfileImg" alt="icon" /></a>
+                        <a class="bold" href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a>
+                        <br />
+                        @Html.Raw(postContent)
+                    </li>
+                }
+            </ul>
+            <p class="edit_btn02"><a href="@Url.RouteUrl("5-4", new { newsClassID = Constants.NEWSCLASSID_GAME_RESULT, quoteUniqueId1 = Constants.NPB_SPORT_ID, quoteUniqueId2 = Model.GameInSeasonSchedule.GameID })"><span class="icon"> </span>この試合の記事を書きませんか？</a></p>
+        </div>        
+    }
+    if (Model.GameInSeasonSchedule != null)
+    {
+        //Home Team
+        @Html.Action("ShowNpbRecentNews", "NpbRightContent", new { area = "Npb", type = Constants.NPBGAMEINFO, teamID = Model.GameInSeasonSchedule.HomeTeamID, homeVisitor = "1" })
+        //Visitor team
+        @Html.Action("ShowNpbRecentNews", "NpbRightContent", new { area = "Npb", type = Constants.NPBGAMEINFO, teamID = Model.GameInSeasonSchedule.VisitorTeamID, homeVisitor = "2" })
+    }
+}
+
+<!--Right Content-->
+@section NpbPage{
+    <div id="npbRightGames">
+        @Html.Action("ShowGameInRightContent", "NpbGameInformation", new { area = "Npb", gameID = @TempData["gameID"] })
+    </div>
+}
+
+<div class="evt_block05">
+    <input type="hidden" id="Page3" name="Page3" value="5" data-gamedate="@TempData["gameID"].ToString().Substring(0, 8)" />
+    <h3 class="subtitle03">次の試合を予想してみよう</h3>
+    <div id="npbGameInfoNextDate">
+        @Html.Action("ShowGameInfo", "NpbTop", new { area = "Npb", type = 5, gameDate = @TempData["gameID"].ToString().Substring(0, 8) })
+    </div>
+</div>

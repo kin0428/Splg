@@ -1,0 +1,71 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : _NpbPersonInfo.cshtml (Used in 8-5-8, 8-5-9)
+    //Created Date : 2015/03/12
+}
+
+@model Splg.Areas.Npb.Models.ViewModel.NpbPersonInfoViewModel
+@using Splg;
+
+<!--Person Info-->
+@if (Model != null)
+{
+    <div class="row" style="position: relative;">
+        <div class="agent_info">
+            <div class="agent_name">
+                <p class="bold">@Model.PersonInfo.BackNumber</p>
+                <div>
+                    <h3>@Model.PersonInfo.PlayerName</h3>
+                    @{
+                        var positionName = Utils.GetPositionName(Model.PersonInfo.PositionType);
+                    }                    
+                    <p>@Model.PersonInfo.PlayerNameK / @positionName</p>
+                    @if (!Request.Url.AbsoluteUri.Contains("user_article"))
+                    {
+                        <p class="evt_edit_btn_player fs14">
+                            <a href="@Url.RouteUrl("5-4", new { newsClassID = 3, quoteUniqueId1 = Constants.NPB_SPORT_ID, quoteUniqueId2 = @Model.TeamID, quoteUniqueId3 = @Model.PersonInfo.ID })">記事作成</a>
+                        </p>
+                    }                                   
+                </div>
+            </div>
+            <dl>
+                <dt>身長 / 体重</dt>
+                @{
+                    var heightAndWeight = Model.PersonInfo.Height + "cm/" + Model.PersonInfo.Weight + "kg";
+                }
+                <dd>@heightAndWeight</dd>
+                <dt>生年月日</dt>
+                @{
+                    var birthDay = Utils.ParseToJapanDate(true, @Model.PersonInfo.Birthday.ToString());
+                    birthDay = birthDay + "(" + @Model.PersonInfo.Age + "歳" + ")";
+                }
+                <dd>@birthDay</dd>
+                <dt>出身地</dt>
+                <dd>@Model.PersonInfo.Hometown</dd>
+                <dt>血液型</dt>
+                <dd>@string.Concat(@Model.PersonInfo.Blood,"型")</dd>
+                @{
+                    var pitching = Utils.GetPitchingArmName(@Model.PersonInfo.PitchingArm.Value);
+                    var batting = Utils.GetBattingTypeName(@Model.PersonInfo.BattingType.Value);
+                }
+                <dt>投打</dt>
+                <dd>@pitching @batting</dd>
+                @{
+                    if (Model.PersonInfo.DraftYear.Value != 0)
+                    {
+                        <dt>ドラフト年(順位)</dt>
+                        <dd>@string.Concat(@Model.PersonInfo.DraftYear, "年", "(", @Model.PersonInfo.DraftNo, ")")</dd>
+                    }
+                }               
+                <dt>プロ通算年</dt>
+                <dd>@string.Concat(@Model.PersonInfo.ProTotal,"年")</dd>
+                <dt>経歴</dt>
+                <dd>@Model.PersonInfo.Career</dd>
+                <dt>主な個人タイトル</dt>
+                <dd>@Model.PersonInfo.Prize</dd>
+            </dl>
+        </div>       
+        <p class="agent_cmt">@Model.PersonInfo.DSComment</p>
+    </div>
+}
+

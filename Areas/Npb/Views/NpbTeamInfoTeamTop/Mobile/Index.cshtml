@@ -1,0 +1,178 @@
+﻿@{
+    //Author : Huynh
+    //FileName : Index.cshtml (Mobile: 8-5-1)
+    //Created Date : 2015/04/15
+}
+
+@model Splg.Areas.Npb.Models.ViewModel.NpbTeamTopInfoViewModel
+@{
+    ViewBag.Title = "チーム情報　チームトップ";
+    ViewBag.Name = Constants.NPBTEAMINFOTOP;
+    Layout = "~/Views/Shared/Mobile/_NpbLayout.cshtml";    
+}
+<script src="~/Areas/Npb/Scripts/Mobile/8-1.js"></script>
+
+@Html.Partial("~/Areas/Npb/Views/Shared/Mobile/_NpbTeamInfoMenu.cshtml")
+@if (Model != null)
+{
+    <section class="block_4 clear">
+        <dl class="team-name">
+            @if (!string.IsNullOrEmpty(@Model.TeamIcon))
+            {
+                <dt><img src="@Url.Content(@Model.TeamIcon)" alt="@Model.Team" /></dt>
+                @Html.Hidden("TeamID", @Model.TeamID)
+            }
+            @if (!string.IsNullOrEmpty(@Model.Team))
+            {
+                <dd>
+                    <h3 class="fs14">@Model.Team</h3>
+                    <p class="evt_edit_btn">
+                        <a href="@Url.RouteUrl("5-4", new { newsClassID = 2, quoteUniqueId1 = Constants.NPB_SPORT_ID, quoteUniqueId2 = 0, quoteUniqueId3 = @Model.TeamID })">記事作成</a>
+                    </p>
+                    <p>@Model.ShortNameLeague <span>@string.Format("{0}位", Model.Ranking)</span></p>
+                </dd>
+            }
+        </dl>
+        @if (@Model.BetrayalDeviation != null && @Model.ExpectationsDeviation != null)
+        {
+            <dl class="team-score orange">
+                <dt>期待度偏差値</dt>
+                <dd class="fs30 num">@Math.Round(@Model.ExpectationsDeviation)</dd>
+            </dl>
+            <dl class="team-score1 violet">
+                <dt>裏切度偏差値</dt>
+                <dd class="fs30 num">@Math.Round(@Model.BetrayalDeviation)</dd>
+            </dl>
+            <p class="team-note">
+                期待度偏差値とは…総予想ポイント数の偏差値<br>
+                裏切度偏差値とは…負けた試合の総予想ポイント数の偏差値
+            </p>
+        }
+    </section>
+}
+@Html.Action("ShowNpbRecentNews", "NpbRightContent", new { area = "Npb", type = @ViewBag.Name, teamID = @ViewBag.TeamID })
+<section class="block_2">
+    <nav class="news-panel">
+        <a class="prev" href="#">前の日</a>
+        <h4 id="gameDate">
+            @Utils.GetMonthAndDayOfWeek(DateTime.Now)の試合
+        </h4>
+        <a class="next" href="#">次の日</a>
+    </nav>
+    <div id="npbGameInfo">
+        @Html.Hidden("Page", 3)
+        @Html.Action("ShowGameInfo", "NpbTop", new { area = "Npb", type = 3, gameDate = DateTime.Now.ToShortDateString().Replace("/", ""), teamID = @ViewBag.TeamID })
+    </div>
+</section>
+@if (Model != null)
+{
+    if (Model.TeamPostList != null && Model.TeamPostList.Any())
+    {
+        <section class="block_2 clear">
+            <h3 class="subtitle3">新着投稿記事</h3>
+            <ul class="block-list clear">
+                @foreach (var post in Model.TeamPostList.Take(3))
+                {
+					string postContent = string.Format("{0}&nbsp;&nbsp;&nbsp;{1}投稿", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                    <li>
+                        <a href="/user/@post.MemberId/">
+                            <figure><img src="@post.ProfileImg" alt="" /></figure>
+                        </a>
+                        <div>
+                            <h4><a href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a></h4>
+                            <p>@Html.Raw(postContent)</p>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <p class="panel-link"><a class="bold" href="/user_article/1/sport/">投稿記事をもっと読む</a></p>
+        </section>
+
+    }
+    
+    if (Model.HittingRanking != null && Model.HittingRanking.Any())
+    {
+        <section class="block_2 clear">
+            <h3 class="subtitle3">チーム内ランキング 打者</h3>
+            <ul class="team-list">
+                @{ var iRanking = 1;      }
+                @foreach (var item in Model.HittingRanking)
+                {
+                    <li>
+                        @if (iRanking == 1)
+                        {
+                            <p class="num fs40 orange">1</p>
+                        }
+                        else
+                        {
+                            <p class="num fs40">@iRanking</p>
+                        }
+                        <div>
+                            <h4>@Html.ActionLink(@item.Name, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamCD, playerID = @item.PlayerCD }, null)</h4>                           
+                            <ul class="jinfo">                                
+                                <li>打率 <span class="fs15">@item.BattingAverage.Substring(0,4)</span></li>
+                                <li>本塁打 <span class="fs15">@item.Homerun</span></li>
+                                <li>打点 <span class="fs15">@item.RunsBattingIn</span></li>
+                            </ul>
+                        </div>
+                    </li>
+                    iRanking++;
+                }
+            </ul>
+        </section>
+    }
+    if (Model.PitchingRanking != null)
+    {
+        <section class="block_2 clear">
+            <h3 class="subtitle3">チーム内ランキング 投手</h3>
+            <ul class="team-list">
+                <li>
+                    <p class="num"><span class="fs8">防御率</span></p>
+                    <div>
+                        <dl>
+                            <dt>@Html.ActionLink(@Model.PitchingRanking.NamePlayerERA, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @ViewBag.TeamID, playerID = @Model.PitchingRanking.PlayerIDERA }, null)</dt>
+                            @{ var runAverage = Convert.ToDecimal(Model.PitchingRanking.EarnedRunAverage).ToString("0.00");}
+                            <dd class="num fs30">@runAverage</dd>
+                        </dl>
+                    </div>
+                </li>
+                <li>
+                    <p class="num"><span class="fs8">勝ち数</span></p>
+                    <div>
+                        <dl>
+                            <dt>@Html.ActionLink(@Model.PitchingRanking.NamePlayerW, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @ViewBag.TeamID, playerID = @Model.PitchingRanking.PlayerIDW }, null)</dt>
+                            <dd class="num fs30">@Model.PitchingRanking.Win</dd>
+                        </dl>
+                    </div>
+                </li>
+                <li>
+                    <p class="num"><span class="fs8">奪三振</span></p>
+                    <div>
+                        <dl>
+                            <dt>@Html.ActionLink(@Model.PitchingRanking.NamePlayerSO, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @ViewBag.TeamID, playerID = @Model.PitchingRanking.PlayerIDSO }, null)</dt>
+                            <dd class="num fs30">@Model.PitchingRanking.StrikeOut</dd>
+                        </dl>
+                    </div>
+                </li>
+                <li>
+                    <p class="num"><span class="fs8">セーブ</span></p>
+                    <div>
+                        <dl>
+                            <dt>@Html.ActionLink(@Model.PitchingRanking.NamePlayerS, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @ViewBag.TeamID, playerID = @Model.PitchingRanking.PlayerIDS }, null)</dt>
+                            <dd class="num fs30">@Model.PitchingRanking.Save</dd>
+                        </dl>
+                    </div>
+                </li>
+                <li>
+                    <p class="num"><span class="fs8">ホールド</span></p>
+                    <div>
+                        <dl>
+                            <dt>@Html.ActionLink(@Model.PitchingRanking.NameH, "Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @ViewBag.TeamID, playerID = @Model.PitchingRanking.PlayerIDH }, null)</dt>
+                            <dd class="num fs30">@Model.PitchingRanking.Hold</dd>
+                        </dl>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    }
+}

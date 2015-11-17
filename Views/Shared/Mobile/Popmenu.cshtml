@@ -1,0 +1,49 @@
+﻿@{
+    // Namespace	: 
+    // FileName		: splg\views\shared\mobile\popmenu.cshtml
+    // Device       : Mobile
+}
+@using MvcSiteMapProvider.Web.Html.Models
+
+<!-- path -->
+<div class="sb-slidebar sb-left">
+    <nav class="navbox">
+
+        <script>
+            (function () {
+                var cx = '005334526103246678100:hyyozpx0-8g';
+                var gcse = document.createElement('script');
+                gcse.type = 'text/javascript';
+                gcse.async = true;
+                gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                    '//cse.google.com/cse.js?cx=' + cx;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(gcse, s);
+            })();
+        </script>
+
+        <div class="search_box">
+            @*<gcse:searchbox-only></gcse:searchbox-only>*@
+            <form name="nemuGoogleSearch" id="nemuGoogleSearch" class="nemuGoogleSearch" method="get" action="#">
+                <input type="text" id="keywords" name="keywords" class="nemuGoogleSearch-box">
+                <input type="submit" class="nemuGoogleSearch-btn" value="">
+            </form>
+        </div>
+
+        <ul class="menu">
+
+            @{
+                var isLoggedIn = Session["CurrentUser"] != null;
+                var dic = new Dictionary<string, object>();
+                dic.Add("IsLoggedIn", isLoggedIn);
+                var sourceMetadata = new MvcSiteMapProvider.Collections.Specialized.SourceMetadataDictionary(dic);
+            }
+
+            @Html.MvcSiteMap().Menu("TopMenuHelperModel", sourceMetadata)
+
+            <li class="menu-tw"><a href="https://twitter.com/spolog_official" target="_blank">公式Twitter</a></li>
+            <li class="menu-fb"><a href="https://www.facebook.com/spolog.jp" target="_blank">公式Facebook</a></li>
+        </ul>
+    </nav>
+
+</div>

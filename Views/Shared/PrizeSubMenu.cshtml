@@ -1,0 +1,72 @@
+﻿@{
+    //Dev : Nojima
+    //FileName : UserSubMenu.cshtml
+    //Created Date : 2015/04/12
+}
+
+@{
+    var url = Context.Request.Path;
+    string[] subUrls = url.Split('/');
+    List<string> subUrlList = new List<string>();
+    for (int i = 0; i < subUrls.Count(); i++)
+    {
+        if (!string.IsNullOrEmpty(subUrls[i]))
+        {
+            subUrlList.Add(subUrls[i]);
+        }
+    }
+    List<string> menuLinkList = new List<string>();
+    List<string> menuNameList = new List<string>();
+    string secondMenu = string.Empty;
+    int secondMenuActive = 0;
+    int subUrlCount = subUrlList.Count();
+
+    if (subUrlList.First().ToLower().Equals("user"))
+    {
+        secondMenu = "user";
+        menuLinkList.Add("懸賞TOP");
+        menuNameList.Add("/prize/");
+        secondMenuActive = 1;
+        if (subUrlCount > 1)
+        {
+            subUrlList.RemoveAt(0);
+            subUrlCount = subUrlCount - 1;
+            switch (subUrlList.First().ToLower())
+            {
+                case "expectedlist":
+                    menuLinkList.Add("賞品詳細");
+                    menuNameList.Add("/prize//");
+                    secondMenuActive = 2;
+                    break;
+                case "article":
+                    menuLinkList.Add("大会詳細");
+                    menuNameList.Add("/prize//");
+                    secondMenuActive = 3;
+                    break;
+                case "following":
+                    menuLinkList.Add("大会ポイントランキング");
+                    menuNameList.Add("/prize//");
+                    secondMenuActive = 5;
+                    break;
+            }
+        }
+    }
+}
+<p class="block_path02">
+    <a class="icon gui_icon" href="/"></a>
+    @for (int j = 0; j < menuLinkList.Count() - 1; j++ )
+    {
+        @:> <a href="@menuNameList.ElementAt(j)">@menuLinkList.ElementAt(j)</a>
+    }
+    > @menuLinkList.ElementAt(menuLinkList.Count() - 1)
+</p>
+@if (secondMenu.Equals("user"))
+{
+    <ul class="block_nav">
+        <li><a class="@(secondMenuActive == 1 ? "active" : "")" href="/prize/">懸賞TOP</a></li>
+        <li><a class="@(secondMenuActive == 2 ? "active" : "")" href="/prize//">賞品詳細</a></li>
+        <li><a class="@(secondMenuActive == 3 ? "active" : "")" href="/prize//">投稿記事</a></li>
+        <li><a class="@(secondMenuActive == 5 ? "active" : "")" href="/prize//">フォロー</a></li>
+        <li><a class="@(secondMenuActive == 6 ? "active" : "")" href="/prize//">フォロワー</a></li>
+    </ul>
+}

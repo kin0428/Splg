@@ -1,0 +1,81 @@
+﻿<div class="board_control clear">
+    <a class="board_prev" href="#" onclick="prevDate()">前の日の試合を見る</a>
+    @{
+        string date = string.Format("{0}{1}", Utils.GetMonthAndDayOfWeek(DateTime.Now), Resources.Japanese.lblGame);
+    }
+    <h3 id="h3Date">@date</h3>
+    <a class="board_next" href="#" onclick="nextDate()">次の日の試合を見る</a>
+</div>
+<script type="text/javascript">
+
+    //Format date compare to Date in sql
+    function getDateFormatToSql(d) {
+        return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+    }
+
+    function getDateFormatCompare(d) {
+        var _month = d.getMonth() < 10 ? '0' + (d.getMonth() + 1) : (d.getMonth() + 1);
+        var _date = d.getDate() < 10 ? '0' + d.getDate() : d.getDate();
+        return d.getFullYear() + '' + _month + '' + _date;
+    }
+
+    var date = new Date();
+    function prevDate() {
+        date.setDate(date.getDate() - 1);
+        var _prevDate = getDateFormatToSql(date);
+        GetMonthAndDayOfWeek(_prevDate);
+        dateNextPrev = "";
+        dateNextPrev = getDateFormatCompare(date);
+        gameIDs = getGameIDByOneDay(dateNextPrev);
+        getDataScheduleResult();
+
+        //return false;
+       
+    }
+
+    function nextDate() {
+        date.setDate(date.getDate() + 1);
+        var _nextDate = getDateFormatToSql(date);
+        GetMonthAndDayOfWeek(_nextDate);
+        dateNextPrev = "";
+        dateNextPrev = getDateFormatCompare(date);
+        gameIDs = getGameIDByOneDay(dateNextPrev);
+        getDataScheduleResult();
+       // return false;
+      
+    }
+
+    //// format month And Day OfWeek
+    function GetMonthAndDayOfWeek(dateInput) {
+        $.ajax({
+            type: "POST",
+            url: '/Npb/NpbScheduleResult/GetMonthAndDayOfWeek',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify({ dateInput: dateInput }),
+            async: false,
+            success: function (result) {
+                $("#h3Date").html(result + "の試合");
+            },
+        });
+    }
+
+    function getGameIDByOneDay(dateInput) {
+         var _gameId = "";
+        $.ajax({
+            type: "POST",
+            url: '/Npb/NpbScheduleResult/GetGameID',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify({ dateInput: dateInput, firstDateWeek:0,lastDateWeek:0}),
+            async: false,
+            success: function (result) {
+                if (result.length > 0) {
+                    _gameId = result;
+                }
+            },
+        });
+        return _gameId
+    }
+</script>
+

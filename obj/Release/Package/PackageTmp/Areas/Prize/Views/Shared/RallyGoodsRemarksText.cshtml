@@ -1,0 +1,6 @@
+﻿
+@foreach (var item in Model)
+{
+    <h3 class="mytitle02">@item.Title</h3>
+    <p class="add_pagr01">@Html.Raw(Html.Encode(item.Contents).Replace("\n", "<br />"))</p>
+}

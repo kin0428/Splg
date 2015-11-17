@@ -1,0 +1,55 @@
+﻿@{
+    // Namespace	: Splg.Areas.Jleague
+    // Controller   : JlgTeamInfo
+    // FileName		: Index.cshtml
+    // Developer	: Nguyen Ho Long Hai
+    // Update date  : 2015-04-02
+    // Html No      : 10-2-5 && 10_3_5(mobile)
+    int jType = Convert.ToInt32(ViewBag.JType);
+    string title = string.Empty;
+    string h2text = string.Empty;
+    string jleague = string.Empty;
+    switch (jType)
+    {
+        case 1:
+            title = "チーム情報（J1）";
+            jleague = "j1";
+            h2text = "J1チーム一覧";
+            ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J1_GI;
+            ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J1_GI;
+            break;
+        case 2:
+            title = "チーム情報（J2）";
+            jleague = "j2";
+            h2text = "J2チーム一覧";
+            ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J2_GI;
+            ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J2_GI;
+            break;
+    }
+    ViewBag.Title = title;
+    Layout = "~/Views/Shared/Mobile/_JlgLayout.cshtml";
+}
+@model IEnumerable<Splg.Areas.Jleague.Models.ViewModel.JlgTeamInfoViewModel>
+<!-- path -->
+@Html.Partial("~/Areas/Jleague/Views/Shared/Mobile/_JlgTeamInfoMenu.cshtml")
+<section class='block_2'>
+    <h2 class='subtitle2'>@h2text</h2>
+    <ul class='team-list'>
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                var teamName = item.TeamName;
+                var teamIcon = (item.TeamIcon != null ? item.TeamIcon.Replace("~", "") : string.Empty);
+                <li>
+                    <p><img src="@teamIcon" alt="@teamName" /></p>
+                    <div><a href='/jleague/@jleague/teams/@item.TeamID/'>@teamName</a></div>
+                </li>
+            }
+        }
+    </ul>
+</section>
+
+
+
+

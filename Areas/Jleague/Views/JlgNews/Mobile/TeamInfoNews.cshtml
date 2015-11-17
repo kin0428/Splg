@@ -1,0 +1,57 @@
+﻿@*
+    * Developer	: Tran Sy Huynh
+    *
+*@
+
+@model PagedList.IPagedList<Splg.Models.News.ViewModel.NewsInfoViewModel>
+@using PagedList.Mvc;
+@using Splg;
+@using Splg.Areas.Jleague;
+@{
+    if (ViewBag.JType == 1)
+    {
+        ViewBag.Title = "チーム情報　ニュース";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J1_T_NEWS;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J1_T_NEWS;
+    }
+    else
+    {
+        ViewBag.Title = "チーム情報　ニュース";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J2_T_NEWS;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J2_T_NEWS;
+    }
+    Layout = "~/Views/Shared/Mobile/_JlgLayout.cshtml";
+}
+
+    @Html.Partial("~/Areas/Jleague/Views/Shared/Mobile/_JlgTeamInfoMenu.cshtml")<section class="block_2">
+    <h2 class="subtitle2">@ViewBag.TeamName　ニュース</h2>
+    @if (Model != null && Model.Count() > 0)
+    {
+        <div class="block_3_1">
+            @foreach (var item in Model)
+            {
+                var imageLocation = Utils.GetNewsImageLocation(item.Content ?? Constants.IMAGE_DEFAULT);
+                <article>
+                    <figure><img src="@Url.Content(imageLocation)" alt="" /></figure>
+                    <div>
+                        <h3>@Html.RouteLink(item.Headline, "7_1", new { areas = string.Empty, topic = JlgConstants.JLG_TOPIC_NAME, newsItemID = item.NewsItemID, sportID = JlgConstants.JLG_SPORT_ID, uniqueID = (ViewBag.JType == 1 ? JlgConstants.JLG_GAMEKIND_J1 : JlgConstants.JLG_GAMEKIND_J2), teamID = ViewBag.TeamId })</h3>
+                        <p>@item.SentFrom　@item.DeliveryDate.ToString("MM/dd HH:mm")</p>
+                    </div>
+                </article>
+            }
+        </div>
+        <div class="space20"> </div>
+        <nav class="news-control">
+            @if (Model.PageNumber > 1)
+            {
+                var nextPage = Model.PageNumber - 1;
+                <a class="prev" href="?page=@nextPage">前のページ</a>
+            }
+            @if (Model.PageNumber < Model.PageCount)
+            {
+                var nextPage = Model.PageNumber + 1;
+                <a class="next" href="?page=@nextPage">次のページ</a>
+            }
+        </nav>
+    }
+</section>

@@ -1,0 +1,365 @@
+﻿@{
+    ViewBag.Title = "チーム情報　日程・結果";
+    ViewBag.Name = Constants.NPBTEAMINFOSCHE;
+    List<string> lstMonth = ViewBag.MonthOfGameDate;
+    Layout = "~/Views/Shared/_NpbLayout.cshtml";
+}
+<div class="evt_block09">
+    <h2 class="mytitle">
+        <a href="#">チーム情報</a> @ViewBag.TeamName
+    </h2>
+    @Html.Partial("~/Areas/Npb/Views/Shared/_NpbTeamInfoMenu.cshtml")
+    <p class="j_rank bold">
+        @for (int i = 1; i <= 12; i++)
+        {
+            string cssClass = string.Empty;
+            var month = i < 10 ? "0" + i.ToString() : i.ToString();
+            if (!lstMonth.Any(a => a == month))
+            {
+                cssClass = "gray";
+                <span class="@cssClass fs20">@i</span><span class="@cssClass">月  /</span>
+            }
+            else
+            {
+                cssClass = i.Equals(DateTime.Now.Month) ? "active" : string.Empty;
+                <a class="@cssClass" href="javascript:void(0);">
+                    <span class="fs20">@i</span>月
+                </a>
+                <span>  /</span>
+            }
+        }
+    <p>
+        <div class="space"> </div>
+        <div class="evt_schedule">
+            <table cellpadding="0" cellspacing="0" summary="schedule">
+                <col width="15%" />
+                <col width="14%" />
+                <col width="14%" />
+                <col width="14%" />
+                <col width="14%" />
+                <col width="14%" />
+                <col width="15%" />
+                <thead>
+                    <tr>
+                        <th>月</th>
+                        <th>火</th>
+                        <th>水</th>
+                        <th>木</th>
+                        <th>金</th>
+                        <th>土</th>
+                        <th>日</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
+</div>
+<script type="text/javascript">
+
+    function GetData(year, month, teamId) {
+        var data;
+        $.ajax({
+            type: "POST",
+            url: '/Npb/NpbTeamInfoDailyResult/GetDataTeamInfoDailyResult',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify({ year: year, month:month, teamId: teamId }),
+            async: false,
+            success: function (result) {
+                data = result;
+            },
+            error: function (error) { }
+        });
+        return data;
+    }
+
+
+    function GetTeamWind(date, gameId, teamId) {
+        var data;
+        $.ajax({
+            type: "POST",
+            url: '/Npb/NpbTeamInfoDailyResult/GetTeamWind',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify({ date: date, gameId: gameId, teamId: teamId }),
+            async: false,
+            success: function (result) {
+                data = result;
+            },
+            error: function (error) { }
+        });
+        return data;
+    }
+
+    function GetStatusMatch(gameId) {
+        var data;
+        $.ajax({
+            type: "POST",
+            url: '/Npb/NpbTeamInfoDailyResult/GetStatusMatch',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify({gameId: gameId }),
+            async: false,
+            success: function (result) {
+                data = result;
+            },
+            error: function (error) { }
+        });
+        return data;
+    }
+
+    function getFirstDay(theYear, theMonth) {
+        var firstDate = new Date(theYear, theMonth, 1)
+        return firstDate.getDay()
+    }
+
+    // number of days in the month
+    function getMonthLen(theYear, theMonth) {
+        var oneDay = 1000 * 60 * 60 * 24
+        var thisMonth = new Date(theYear, theMonth, 1)
+        var nextMonth = new Date(theYear, theMonth + 1, 1)
+        var len = Math.ceil((nextMonth.getTime() -
+            thisMonth.getTime()) / oneDay)
+        return len
+    }
+
+    function getObject(obj) {
+        var theObj
+        if (document.all) {
+            if (typeof obj == "string") {
+                return document.all(obj)
+            } else {
+                return obj.style
+            }
+        }
+        if (document.getElementById) {
+            if (typeof obj == "string") {
+                return document.getElementById(obj)
+            } else {
+                return obj.style
+            }
+        }
+        return null
+    }
+
+    function parseObject(iData) {
+        var _data = {};
+        if (typeof iData != 'undefined'){
+            for (var i = 0; i < iData.length; i++) {
+                var _tmpVal = iData[i]["GameDate"] + '';
+                var _tmpKey = _tmpVal.slice(_tmpVal.length - 2);
+                _data[_tmpKey] = iData[i];
+            }
+        }
+        return _data;
+    }
+
+    function teamInfDailyResult(month, year) {
+
+        var firstDay = getFirstDay(year, (month-1))
+        var howMany = getMonthLen(year, (month-1))
+
+        var teamInfDailyResult = GetData(year,month,teamId);
+        teamInfDailyResult = parseObject(teamInfDailyResult);
+
+        var dayCounter = 1;
+        var TBody = getObject("tableBody")
+        // clear any existing rows
+        while (TBody.rows.length > 0) {
+            TBody.deleteRow(0)
+        }
+        var newR, newC;
+        var done = false
+
+        while (!done) {
+            // create new row at end
+            newR = TBody.insertRow(TBody.rows.length)
+            for (var i = 1; i < 8; i++) {
+                // create new cell at end of row
+                newC = newR.insertCell(newR.cells.length)
+
+                if (TBody.rows.length == 1 && i < firstDay) {
+                    // no content for boxes before first day
+                    newC.innerHTML = "";
+                    continue;
+                }
+                if (dayCounter == howMany) {
+                    // no more rows after this one
+                    done = true;
+                }
+
+                if (dayCounter <= howMany) {
+
+                    dateOfMonth = dayCounter++;
+                    var _tmpKey = dateOfMonth < 10 ? "0" + dateOfMonth : dateOfMonth;
+                    var _date = year + '' + (month < 10 ? "0" + month  : month + 1) + '' + _tmpKey;
+                    var _html = "";
+                    if (teamInfDailyResult.hasOwnProperty(_tmpKey)) {
+
+                        _html = "<p class='sch_day'>" + dateOfMonth + "</p>";
+                        _html += "<div class='sch_group'>";
+                        _html += "<div class='sch_name'>";
+                        _html += "<a href='@Url.Action("Index", "NpbTeamInfoTeamTop", new { teamID = "--visitorteamicon--" })'>";
+                        _html=_html.replace('--visitorteamicon--',teamInfDailyResult[_tmpKey].TeamID);
+                        _html += "<img src=" + teamInfDailyResult[_tmpKey].TeamIcon.replace('~', '') + "" + " alt='logo'/></a>";
+                        _html += "<a href='@Url.Action("Index", "NpbTeamInfoTeamTop", new { teamID = "--visitorteamname--" })'>";
+                        _html=_html.replace('--visitorteamname--',teamInfDailyResult[_tmpKey].TeamID);
+                        _html += "<span class='blue'>" + teamInfDailyResult[_tmpKey].TeamNameS + "</span></a>";
+                        _html += "</div>";
+                        var statusMatch = GetStatusMatch(teamInfDailyResult[_tmpKey].GameId);
+                        statusMatch = parseInt(statusMatch, 10);
+                        var _hours = teamInfDailyResult[_tmpKey].Time.slice(0, 2);
+                        var _minutes = teamInfDailyResult[_tmpKey].Time.slice(-2);
+                        switch (statusMatch) {
+                            //not yet started
+                            case 0:
+                                _html += "<div class='sch_match'>";
+                                _html +=" <a href='@Url.Action("Index", "NpbGameInformation", new { @gameID = "--gameid86--" })'>";
+                                _html=_html.replace('--gameid86--',teamInfDailyResult[_tmpKey].GameId);
+                                _html += "<span class='blue fs14 bold'>" + _hours + ":" + _minutes + "</span>";
+                                _html += "</a>";
+                                _html += "</div>";
+                                _html += "<p class='fs10'>";
+                                _html += teamInfDailyResult[_tmpKey].StadiumNameS + "<br />";
+                                if(teamInfDailyResult[_tmpKey].PitcherNameS)
+                                {
+                                    _html += "予告先発:";
+                                    _html += "<a href='@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { @teamID = "--teamid858--", @playerID = "--playerid858--" })'>";
+                                    _html += teamInfDailyResult[_tmpKey].PitcherNameS;
+                                    _html=_html.replace('--teamID858--',teamInfDailyResult[_tmpKey].TeamID);
+                                    _html=_html.replace('--playerID858--',teamInfDailyResult[_tmpKey].PitcherID);
+                                    _html += "</a>";
+                                    _html += "</p>";
+                                }
+                                break;
+                                //on going
+                            case 1:
+                                _html += "<div class='sch_match'>";
+                                _html += "<a href='@Url.Action("Index", "NpbGameInformation", new { @gameID = "--gameid86a--" })'>";
+                                if(parseInt(teamInfDailyResult[_tmpKey].HomeScore, 10)== parseInt(teamInfDailyResult[_tmpKey].VisitorScore, 10))
+                                {
+                                    _html += "<span class='blue fs14 bold'>" + teamInfDailyResult[_tmpKey].HomeScore + "-" + teamInfDailyResult[_tmpKey].VisitorScore + "</span>";
+                                }
+                                else
+                                {
+                                    _html += "<span class='blue fs14 bold'>" + teamInfDailyResult[_tmpKey].HomeScore + "-" + teamInfDailyResult[_tmpKey].VisitorScore + " 速報</span>";
+                                }
+
+                                _html=_html.replace('--gameid86a--',teamInfDailyResult[_tmpKey].GameId);
+                                _html += "</a>";
+                                _html += "</div>";
+                                _html += "<p class='fs10'>";
+                                _html += teamInfDailyResult[_tmpKey].StadiumNameS + "<br />";
+
+                                if (teamInfDailyResult[_tmpKey].StartPosition != null && teamInfDailyResult[_tmpKey].StartPosition == 1) {
+                                    _html += "<a href='@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { teamID = "--teamid858a--", playerID = "--playerid858a--" })'>";
+                                    _html += "先発:" + teamInfDailyResult[_tmpKey].PlayerNameS + "<br />";
+                                    _html=_html.replace('--teamid858a--',teamInfDailyResult[_tmpKey].TeamID);
+                                    _html=_html.replace('--playerid858a--',teamInfDailyResult[_tmpKey].PlayerID);
+                                    _html += "</a>";
+                                }
+                                _html += "</p>";
+                                break;
+                                //finish
+                            case 2:
+
+                                _html += "<div class='sch_match'>";
+                                if (parseInt(teamInfDailyResult[_tmpKey].HomeScore, 10) > parseInt(teamInfDailyResult[_tmpKey].VisitorScore, 10)) {
+                                    _html += "<div class='sch_on'></div>";
+                                }
+                                else if (parseInt(teamInfDailyResult[_tmpKey].HomeScore, 10) == parseInt(teamInfDailyResult[_tmpKey].VisitorScore, 10)) {
+
+                                    _html += "<div class='sch_draw'></div>";
+                                }
+                                else {
+                                    _html += "<div class='sch_off'></div>";
+                                }
+                                _html += "<a href='@Url.Action("Index", "NpbGameInformation", new { @gameID = "--gameid86b--" })'>";
+                                _html += "<span class='blue fs14 bold'>" + teamInfDailyResult[_tmpKey].HomeScore + "-" + teamInfDailyResult[_tmpKey].VisitorScore + "</span>";
+                                _html=_html.replace('--gameid86b--',teamInfDailyResult[_tmpKey].GameId);
+                                _html += "</a>";
+                                _html += "</div>";
+                                _html += "<p class='fs10'>";
+                                _html += teamInfDailyResult[_tmpKey].StadiumNameS + "<br />";
+                                //Get info team win
+
+                                var _infoTeamWin = GetTeamWind(_date, teamInfDailyResult[_tmpKey].GameId, teamId);
+                                if (typeof (_infoTeamWin) != "undefined") {
+                                    for (k = 0; k < _infoTeamWin.length; k++) {
+                                        _html +=_infoTeamWin[k].WinTeamCD == teamId ? "勝：":"負：";
+                                        _html += "<a href='@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { teamID = "--teamid858a--", playerID = "--playerid858a--" })'>";
+                                        _html +=_infoTeamWin[k].ShortNameWinTeam ;
+                                        _html += "</a><br>";
+                                        _html=_html.replace('--teamid858a--',_infoTeamWin[k].WinTeamCD);
+                                        _html=_html.replace('--playerid858a--',_infoTeamWin[k].PlayerCD);
+                                        if(_infoTeamWin[k].WinTeamCD == teamId && _infoTeamWin[k].ShortNamePlayer !="")
+                                        {
+                                            _html += "S:"
+                                            _html += "<a href='@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { teamID = "--teamid858b--", playerID = "--playerid858b--" })'>";
+                                            _html += _infoTeamWin[k].ShortNamePlayer ;
+                                            _html += "</a>";
+                                            _html=_html.replace('--teamid858b--',_infoTeamWin[k].WinTeamCD);
+                                            _html=_html.replace('--playerid858b--',_infoTeamWin[k].PlayerID);
+                                        }
+                                    }
+                                    _html += "</p>";
+                                }
+                                break;
+                                //delay
+                            case 3:
+                                _html += "<div class='sch_match'>";
+                                _html +=" <a href='@Url.Action("Index", "NpbGameInformation", new { @gameID = "--gameid86delay--" })'>";
+                                _html += "<span class='blue fs14 bold'>中止</span>";
+                                _html=_html.replace('--gameid86delay--',teamInfDailyResult[_tmpKey].GameId);
+                                _html += "</a>";
+                                _html += "</div>";
+                                _html += "<p class='fs10'>"+teamInfDailyResult[_tmpKey].StadiumNameS +"</p>";
+                                break;
+                        }
+                        newC.innerHTML = _html;
+                    }
+                    else {
+
+                        _html = "<p class='sch_day'>" + dateOfMonth + "</p>";
+                        _html += "<p class='fs10'>試合なし</p>";
+                        newC.innerHTML = _html;
+                    }
+                }
+
+            }
+        }
+    }
+
+    var teamId="";
+    $(document).ready(function () {
+
+        teamId = @Html.Raw(Json.Encode(ViewBag.TeamId));
+        var dt = new Date();
+        var month =parseInt(dt.getMonth()); // read the current month
+        var year = dt.getFullYear(); // read the current year
+        var data = "";
+        teamInfDailyResult(month+1, year);
+
+        // month click
+        $('.j_rank a:not(.active)').live('click', function (event) {
+
+            $(this).toggleClass("active");
+            $(this).siblings().removeClass("active");
+            var _month = $(this).text().replace("月", "").trim();
+            teamInfDailyResult(_month, year);
+            event.preventDefault();
+
+        });
+    });
+</script>
+
+<!--Right Content-->
+@section NpbPage{
+    <div class="cat_stitle">
+        <h3>順位表</h3>
+        <p>@Html.ActionLink("一覧で見る", "Index", "NpbOrder", new { area = "Npb" }, null)</p>
+    </div>
+    <div id="npbTop3Ranking" class="side_board">
+        @Html.Action("ShowTopNRanking", "NpbRightContent", new { area = "Npb", teamID = @ViewBag.TeamID })
+    </div>
+}

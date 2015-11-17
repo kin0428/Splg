@@ -1,0 +1,117 @@
+﻿@{
+    // Namespace	: Splg.Areas.Jleague
+    // Controller   : JlgTeamInfoPlayer
+    // FileName		: Index.cshtml
+    // Developer	: e-concier
+    // Update date  : 2015-04-02
+    // Html No      : 10-2-5-6
+    int jType = Convert.ToInt32(ViewBag.JType);
+    string title = string.Empty;
+    switch (jType)
+    {
+        case 1:
+            title = "チーム情報　選手（J1）";
+            break;
+        case 2:
+            title = "チーム情報　選手（J2）";
+            break;
+    }
+    if (ViewBag.JType == 1)
+    {
+        ViewBag.Title = "チーム情報　選手";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J1_T_PYR;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J1_T_PYR;
+    }
+    else
+    {
+        ViewBag.Title = "チーム情報　選手";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J2_T_PYR;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J2_T_PYR;
+    }
+    Layout = "~/Views/Shared/Mobile/_JlgLayout.cshtml";
+}
+@using Splg.Areas.Jleague.Models.ViewModel;
+@model Splg.Areas.Jleague.Models.ViewModel.JlgTeamInfoPlayerViewModel
+    @Html.Partial("~/Areas/Jleague/Views/Shared/Mobile/_JlgTeamInfoMenu.cshtml")
+<!-- path -->
+<section class='block_2'>
+    <h2 class='subtitle2'>@string.Format("チーム情報{0}", title)</h2>
+    <ul class='team-list'>
+    @if (((JlgTeamInfoPlayerViewModel)Model).TeamInfoPlayerInfosGK != null && ((JlgTeamInfoPlayerViewModel)Model).TeamInfoPlayerInfosGK.Any())
+    {
+            foreach (var item in ((JlgTeamInfoPlayerViewModel)Model).TeamInfoPlayerInfosGK)
+            {
+                <li>
+                    <p class="num fs18">@item.Position</p>
+                    <div>
+                        <dl>
+                            <dt>
+                                <a href="@Url.Action("Index", "JlgTeamInfoPlayerDetail", new { area = "Jleague",playerID = @item.PlayerID }, null)">@item.PlayerName</a>
+                                <p class="fs8">@ViewBag.TeamName</p>
+                            </dt>
+                            <dd class="fs24 num">@item.UniformNO</dd>
+                        </dl>
+                    </div>
+                </li>
+            }
+    }
+    @if (((JlgTeamInfoPlayerViewModel)Model).TeamInfoPlayerInfosDF != null && ((JlgTeamInfoPlayerViewModel)Model).TeamInfoPlayerInfosDF.Any())
+    {
+            foreach (var item in ((JlgTeamInfoPlayerViewModel)Model).TeamInfoPlayerInfosDF)
+            {
+                <li>
+                    <p class="num fs18">@item.Position</p>
+                    <div>
+                        <dl>
+                            <dt>
+                                <a href="@Url.Action("Index", "JlgTeamInfoPlayerDetail", new { area = "Jleague", playerID = @item.PlayerID }, null)">@item.PlayerName</a>
+                                <p class="fs8">@ViewBag.TeamName</p>
+                            </dt>
+                            <dd class="fs24 num">@item.UniformNO</dd>
+                        </dl>
+                    </div>
+                </li>
+            }
+    }
+    @if (((JlgTeamInfoPlayerViewModel)Model).TeamInfoPlayerInfosMF != null && ((JlgTeamInfoPlayerViewModel)Model).TeamInfoPlayerInfosMF.Any())
+    {
+            foreach (var item in ((JlgTeamInfoPlayerViewModel)Model).TeamInfoPlayerInfosMF)
+            {
+                <li>
+                    <p class="num fs18">@item.Position</p>
+                    <div>
+                        <dl>
+                            <dt>
+                                <a href="@Url.Action("Index", "JlgTeamInfoPlayerDetail", new { area = "Jleague", playerID = @item.PlayerID }, null)">@item.PlayerName</a>
+                                <p class="fs8">@ViewBag.TeamName</p>
+                            </dt>
+                            <dd class="fs24 num">@item.UniformNO</dd>
+                        </dl>
+                    </div>
+                </li>
+            }
+        }
+        @if (((JlgTeamInfoPlayerViewModel)Model).TeamInfoPlayerInfosFW != null && ((JlgTeamInfoPlayerViewModel)Model).TeamInfoPlayerInfosFW.Any())
+        {
+            foreach (var item in ((JlgTeamInfoPlayerViewModel)Model).TeamInfoPlayerInfosFW)
+            {
+                <li>
+                    <p class="num fs18">@item.Position</p>
+                    <div>
+                        <dl>
+                            <dt>
+                                <a href="@Url.Action("Index", "JlgTeamInfoPlayerDetail", new { area = "Jleague", playerID = @item.PlayerID }, null)">@item.PlayerName</a>
+                                <p class="fs8">@ViewBag.TeamName</p>
+                            </dt>
+                            <dd class="fs24 num">@item.UniformNO</dd>
+                        </dl>
+                    </div>
+                </li>
+            }
+        }
+    </ul>
+</section>
+
+
+
+

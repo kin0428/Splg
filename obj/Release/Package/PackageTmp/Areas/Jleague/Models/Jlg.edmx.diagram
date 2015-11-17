@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d5791dfe839d400b8af5a62938ad02de" Name="Diagram1" ZoomLevel="78">
+        <EntityTypeShape EntityType="JlgModel.BenchInfoLP" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.CategoryGT" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.ChangeInfoLP" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.CommentInfo" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.CommentReport" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.DirectoryDA" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.DirectoryDI" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.GainInfoLG" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.GameCategory" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.GameCategoryHE" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.GameCategoryMR" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.GameEndInfoLG" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.GameInfoMR" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.GameKindInfo" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.GameKindMST" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.GameKindTeamGT" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.GameReportLG" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.GameSchedule" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.GameStateLG" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.GoalInfoLG" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.LeagueInfo" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.LeagueMST" Width="1.5" PointX="12.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.MasterTransfersJlg" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.NowOrderInfoLP" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.PKInfoLG" Width="1.5" PointX="4.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.PlayerInfoDA" Width="1.5" PointX="6.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.PlayerInfoDI" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.PlayerInfoLPBE" Width="1.5" PointX="14.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.PlayerInfoLPCH" Width="1.5" PointX="14.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.PlayerInfoLPNO" Width="1.5" PointX="8.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.PlayerInfoLPST" Width="1.5" PointX="10.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.PlayerInfoPL" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.PlayerInfoPS" Width="1.5" PointX="2.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.PlayerInfoRE" Width="1.5" PointX="16.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.PlayerLG" Width="1.5" PointX="16.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.PlayerMSTPL" Width="1.5" PointX="16.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.PlayerReportLP" Width="1.5" PointX="16.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.PlayerStatsReportPS" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.RankGoalReportRG" Width="1.5" PointX="18.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.RankInfoRG" Width="1.5" PointX="4.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.RankInfoRT" Width="1.5" PointX="18.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.RankReportRT" Width="1.5" PointX="12.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.RecapReportRE" Width="1.5" PointX="18.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.ResultInfoHE" Width="1.5" PointX="6.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.ResultInfoSS" Width="1.5" PointX="18.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.ResultInfoT5" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.ResultInfoTC" Width="1.5" PointX="20.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.ScheduleInfo" Width="1.5" PointX="8.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.ScheduleInfoHE" Width="1.5" PointX="20.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.ScorePlayerT5" Width="1.5" PointX="20.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.SeasonInfo" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.SeasonMST" Width="1.5" PointX="22.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.SecGameRecordReportMR" Width="1.5" PointX="22.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.StartingInfoLP" Width="1.5" PointX="10.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.Team5thGameReportT5" Width="1.5" PointX="22.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.TeamCardReportTC" Width="1.5" PointX="12.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.TeamInfoGT" Width="1.5" PointX="22.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.TeamInfoLG" Width="1.5" PointX="22.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.TeamInfoRE" Width="1.5" PointX="24.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.TeamInfoTC" Width="1.5" PointX="0.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.TeamInfoTE" Width="1.5" PointX="2.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.TeamInfoTS" Width="1.5" PointX="24.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.TeamMSTTE" Width="1.5" PointX="4.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.TeamScheduleReportHE" Width="1.5" PointX="24.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.TeamSeasonReportSS" Width="1.5" PointX="24.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.TeamStatsReportTS" Width="1.5" PointX="24.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.TimeInfoLG" Width="1.5" PointX="24.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.WarningInfoLG" Width="1.5" PointX="24.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JlgModel.TeamIconJlg" Width="1.5" PointX="15.375" PointY="22.75" />
+        <EntityTypeShape EntityType="JlgModel.PlayerLS" Width="1.5" PointX="15.375" PointY="25.75" />
+        <EntityTypeShape EntityType="JlgModel.StatsReportLS" Width="1.5" PointX="21.375" PointY="25.75" />
+        <EntityTypeShape EntityType="JlgModel.TeamInfoLS" Width="1.5" PointX="11.375" PointY="26.75" />
+        <EntityTypeShape EntityType="JlgModel.FormationInfo" Width="1.5" PointX="17.75" PointY="26.75" />
+        <EntityTypeShape EntityType="JlgModel.FormationReportLF" Width="1.5" PointX="27.75" PointY="0.75" />
+        <EntityTypeShape EntityType="JlgModel.GameInfoSR" Width="1.5" PointX="27.75" PointY="4.75" />
+        <EntityTypeShape EntityType="JlgModel.InjulyReportIR" Width="1.5" PointX="5.75" PointY="27.75" />
+        <EntityTypeShape EntityType="JlgModel.PlayerCBP" Width="1.5" PointX="27.75" PointY="8.75" />
+        <EntityTypeShape EntityType="JlgModel.PlayerInfoIR" Width="1.5" PointX="27.75" PointY="16.75" />
+        <EntityTypeShape EntityType="JlgModel.PlayerInfoLF" Width="1.5" PointX="27.75" PointY="21.75" />
+        <EntityTypeShape EntityType="JlgModel.ResultInfoTH" Width="1.5" PointX="29.75" PointY="0.75" />
+        <EntityTypeShape EntityType="JlgModel.ResultInfoTT" Width="1.5" PointX="29.75" PointY="6.75" />
+        <EntityTypeShape EntityType="JlgModel.SuspendReportSR" Width="1.5" PointX="7.75" PointY="29.75" />
+        <EntityTypeShape EntityType="JlgModel.SuspensionInfoSR" Width="1.5" PointX="29.75" PointY="12.75" />
+        <EntityTypeShape EntityType="JlgModel.TeamCBP" Width="1.5" PointX="29.75" PointY="16.75" />
+        <EntityTypeShape EntityType="JlgModel.TeamHAReportTH" Width="1.5" PointX="23.75" PointY="29.75" />
+        <EntityTypeShape EntityType="JlgModel.TeamInfoIR" Width="1.5" PointX="9.75" PointY="30.75" />
+        <EntityTypeShape EntityType="JlgModel.TeamInfoLF" Width="1.5" PointX="11.75" PointY="30.75" />
+        <EntityTypeShape EntityType="JlgModel.TeamInfoTH" Width="1.5" PointX="29.75" PointY="30.75" />
+        <EntityTypeShape EntityType="JlgModel.TeamInfoTT" Width="1.5" PointX="31.75" PointY="0.75" />
+        <EntityTypeShape EntityType="JlgModel.TeamTimeReportTT" Width="1.5" PointX="2.75" PointY="31.75" />
+        <EntityTypeShape EntityType="JlgModel.TeamGameStats" Width="1.5" PointX="17.375" PointY="31.75" />
+        <EntityTypeShape EntityType="JlgModel.TeamSeasonStats" Width="1.5" PointX="19.375" PointY="31.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

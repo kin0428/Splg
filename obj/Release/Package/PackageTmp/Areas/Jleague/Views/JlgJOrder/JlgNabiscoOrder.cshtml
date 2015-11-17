@@ -1,0 +1,211 @@
+﻿@*
+    * Developer	: Tran Sy Huynh
+    *
+*@
+@model IEnumerable<Splg.Areas.Jleague.Models.ViewModel.JlgJ12OrderViewModel>
+@{
+    ViewBag.Title = "順位表";
+    ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_NB_ODR;
+    ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_NB_ODR;
+    Layout = "~/Views/Shared/_JlgContentsLayout.cshtml";
+    ViewBag.JleagueMenu = 4;
+    ViewBag.JleagueSubMenu = 3;
+    var seasonDefaultStyle = "display:none;";
+    //データに存在する最後のシーズンID
+    var theLastSeasonId1 = 0;
+    var theLastSeasonId2 = 0;
+}
+
+                      <script src="~/Scripts/jquery-ui.min.js"></script>
+                      <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+@if (Model != null)
+{
+    
+    if (Model.Any())
+    {
+        <div class="jblock_01">
+            <h2 class="jtitle">ヤマザキナビスコカップ</h2>
+            @foreach (var group in Model.GroupBy(g => g.GroupID))
+            {
+                var groupId = group.FirstOrDefault().GroupID;
+                var dateDisplay = string.Empty;
+                if (group.FirstOrDefault().RankingInfo != null)
+                {
+                    if (group.FirstOrDefault().RankingInfo.CreatedDate != null)
+                    {
+                        dateDisplay = string.Format("{0}更新", Utils.ParseLocalDateToLongJapanDate(group.FirstOrDefault().RankingInfo.CreatedDate.Value, false));
+                    }
+                }
+                int jType = group.Key == "A" ? 1 : 2;
+                //タブコンテナクラス
+                var tabsClass1 = "tabs-" + groupId;
+                //タブクラス
+                var tabClass4 = "tab-4" + groupId;
+                var tabClass5 = "tab-5" + groupId;
+                
+                <h3 class="jtitle">@string.Format("{0}グループ順位", group.Key)<span class="fs10">@dateDisplay</span></h3>
+                
+                    <!--
+                        SeasonID        SeasonName
+                        4       予選リーグ
+                        5       決勝トーナメント
+                    -->
+                    <ul class="block_04_3_l3 @tabsClass1 clear">
+                        <li id="@tabClass4"><a href="javascript:void(0);">予選リーグ</a></li>
+                        <li id="@tabClass5"><a href="javascript:void(0);">決勝トーナメント</a></li>
+                    </ul>
+                <div class="row">
+                    <table class="jtbl01" cellpadding="0" cellspacing="0" summary="content1">
+                        <col width="7%" />
+                        <col width="32%" />
+                        <col width="8%" />
+                        <col width="7%" />
+                        <col width="7%" />
+                        <col width="8%" />
+                        <col width="7%" />
+                        <col width="7%" />
+                        <col width="8%" />
+                        <tr>
+                            <th><span class="fs10">順位</span></th>
+                            <th> </th>
+                            <th><span class="fs10">試合数</span></th>
+                            <th><span class="fs10">勝数</span></th>
+                            <th><span class="fs10">引分数</span></th>
+                            <th><span class="fs10">敗数</span></th>
+                            <th><span class="fs10">失点</span></th>
+                            <th><span class="fs10">得失点差</span></th>
+                            <th><span class="fs10">勝点</span></th>
+                        </tr>
+                        @foreach (var item in group)
+{
+    if (item.RankingInfo != null)
+    {
+        theLastSeasonId1 = item.SeasonID;
+        var seasonClass = "season-" + groupId + "_" + item.SeasonID;
+        var ordersClass = "orders-" + groupId;
+
+        var orange = "";
+        orange = "organge";
+        if (item.RankingInfo.Ranking != 1)
+        {
+            orange = "";
+        }
+        <tr class="@ordersClass @seasonClass" style="@seasonDefaultStyle">
+            <td>
+                <span class="roll @orange fi">@item.RankingInfo.Ranking</span>
+            </td>
+            <td>
+                <div class="jteam">
+                    <div><a href="@string.Format("/jleague/j{0}/teams/{1}/", jType, item.TeamID)"><img class="resimg" src="@Url.Content(item.TeamIcon ?? Constants.IMAGE_DEFAULT)" alt="" /></a></div>
+                    <p><a href="@string.Format("/jleague/j{0}/teams/{1}/", jType, item.TeamID)">@item.TeamName</a></p>
+                </div>
+            </td>
+            <td>
+                <span class="fs18 bold">@item.RankingInfo.Game</span>
+            </td>
+            <td>
+                <span class="fs18 bold">@item.RankingInfo.Win</span>
+            </td>
+            <td>
+                <span class="fs18 bold">@item.RankingInfo.Draw</span>
+            </td>
+            <td>
+                <span class="fs18 bold">@item.RankingInfo.Lose</span>
+            </td>
+            <td>
+                <span class="fs18 bold">@item.RankingInfo.Lost</span>
+            </td>
+            <td>
+                <span class="fs18 bold">@item.RankingInfo.Differ</span>
+            </td>
+            <td>
+                <span class="fs18 bold fi">@item.RankingInfo.Point</span>
+            </td>
+        </tr>
+    }
+}
+                    </table>
+                    @{var ready_box = "ready_box" + groupId;}
+
+                    <div class="@ready_box" style="display:none;">
+                        <div>
+                            <h3>順位情報はありません。</h3>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="space20"> </div>
+            }
+        </div>
+    }
+}
+
+<script>
+
+    $(".tabs-A").tabs();
+    $(".tabs-B").tabs();
+
+    $(".tabs-A").removeClass('ui-tabs');
+    $(".tabs-A").removeClass('ui-widget');
+    $(".tabs-A").removeClass('ui-content');
+    $(".tabs-A").removeClass('ui-corner-a');
+    $(".tabs-B").removeClass('ui-tabs');
+    $(".tabs-B").removeClass('ui-widget');
+    $(".tabs-B").removeClass('ui-content');
+    $(".tabs-B").removeClass('ui-corner-a');
+
+    $('#tab-4A').live('click', function (event) {
+        setTabs('A', 4);
+    });
+    $('#tab-5A').live('click', function (event) {
+        setTabs('A', 5);
+    });
+    $('#tab-4B').live('click', function (event) {
+        setTabs('B', 4);
+    });
+    $('#tab-5B').live('click', function (event) {
+        setTabs('B', 5);
+    });
+    
+
+    function setTabs(groupId, seasonId) {
+
+        var sessionIdStr = ".season-" + groupId + "_" + seasonId;
+        var ordersClassStr = ".orders-" + groupId;
+        var ready_box = ".ready_box" + groupId;
+
+        $(ordersClassStr).hide();
+        $(sessionIdStr).show();
+
+        if ($(sessionIdStr).length > 0) {
+            $(ready_box).hide();
+        }
+        else {
+            $(ready_box).show();
+        }
+
+        for (i = 4; i <= 5; i++) {
+
+            tabIdStr = "#tab-" + i + groupId;
+
+            if (i == seasonId) {
+                if (!$(tabIdStr).hasClass('active')) {
+                    $(tabIdStr).addClass('active');
+                }
+            } else {
+                $(tabIdStr).removeClass('active');
+            }
+        }
+    }
+    
+    var theLastSeasonId = @theLastSeasonId1 ;
+    setTabs('A',theLastSeasonId);
+    setTabs('B',theLastSeasonId);
+
+
+</script>
+
+@section JlgPage{
+    @Html.Action("ShowJlgRightRecentNews", "JlgRightRecentNews", new { area = "Jleague", jType = ViewBag.JType })
+}
+

@@ -1,0 +1,90 @@
+﻿@using System.Web.Mvc.Ajax;
+@using Splg.Areas.Jleague.Models.Dto;
+@model List<JlgGameText>
+
+@*<div class="socData socRpt">
+    <h2 class="socData-hdg">テキスト速報</h2>
+
+    @*<p class="socRptSwitch">
+            <select id="socRptSwitch" name="socRptSwitch">
+                <option value="all" selected="">テキスト速報＋コメント</option>
+                <option value="onlyRpt">テキスト速報のみ</option>
+                <option value="onlyCom">コメントのみ</option>
+            </select>
+        </p>*@
+
+@*<p class="socRptLoad">
+        <input type="radio" name="socRptLoad" id="socRptLoad_auto" value="1" checked="checked">
+        <label for="socRptLoad_auto">自動更新</label>
+        <input type="radio" name="socRptLoad" id="socRptLoad_manu" value="0">
+        <label for="socRptLoad_manu">手動更新</label>
+    </p>*@
+
+
+@*<form name="socRptEnter" class="socRptEnter">
+        <p class="socRptCom clear">
+            <input type="text" name="socRptCom-entry" class="socRptCom-entry" placeholder="コメントを書いてみよう！">
+
+            <input type="submit" value="送信" class="socRptCom-btnSub">
+        </p>
+
+        <p class="socRptTeam">
+            <label for="socRptTeam">チームを選ぶ：</label>
+            <select id="socRptTeam" name="socRptTeam">
+                <option value="notSelect" selected="">選ばない</option>
+                <option value="home">ガンバ大阪</option>
+                <option value="away">サンフレッチェ広島</option>
+            </select>
+        </p>
+    </form>*@
+
+<div id="jlgGameText">
+
+    @if (Model != null)
+    {
+        <ul class="socRptTimeline">
+            @foreach (var gameText in Model)
+            {
+                <li>
+                    <div class="socRptTl-mark">
+                        @*<img src="/html/Content/img/TeamIcon/Jleague/TeamCD_128.png" alt="ガンバ大阪" class="socRptTl-teamIco">*@
+                        @if (gameText.TeamID.HasValue)
+                        {
+                            var teamid = gameText.TeamID.Value.ToString();
+                            var src = string.Format("/Content/img/TeamIcon/jleague/TeamCD_{0}.png", teamid);
+                            <img src="@src" alt="@gameText.TeamNameS" class="socRptTl-teamIco">
+                        }
+                        else
+                        {
+                            <img src="" class="socRptTl-teamIco" />
+                        }
+                        <p class="socRptTl-time">@gameText.DislayHalf</p>
+                    </div>
+                    <div class="socRptTl-com">
+                        @gameText.DisplayComment
+                        <div class="socRptTl-reply">
+                            <ul class="socRptTlRep-li">
+                                @*<li>
+                                        <p class="socRptTl-userIco"><span>icon</span></p>
+                                        <p class="socRptTlRep-com">森脇のチャンスクラッシャー・・・・orz</p>
+                                    </li>
+                                    <li>
+                                    <p class="socRptTl-userIco"><span>icon</span></p>
+                                     <p class="socRptTlRep-com">
+                                         ありえねえええええええええまじで
+                                     </p>
+                                    </li>*@
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            }
+
+        </ul>
+    }
+    <!-- /socRptField -->
+
+</div>
+
+@*</div>*@
+<!-- /socRpt -->

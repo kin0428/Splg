@@ -1,0 +1,11 @@
+      {
+        data : @Data,
+        bubbles : {
+			show : @BubblesIsVisible,
+			baseRadius : @BubblesBaseRadius
+		},
+		mouse : {
+			track : @MouseIsTrackable,
+			trackFormatter : @MouseTrackFormatter
+		}
+	  }

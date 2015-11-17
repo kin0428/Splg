@@ -1,0 +1,57 @@
+﻿@{
+    //Author : Nojima
+    //FileName : Index.cshtml (3-7-1)
+    //Created Date : 2015/04/12
+}
+
+@using Splg.Models.ViewModel;
+@using Splg.Areas.MyPage.Models.ViewModel;
+@model Splg.Areas.MyPage.Models.ViewModel.MyPageSettingAddressViewModel
+
+@{
+    ViewBag.Title = "設定　メールアドレス変更";
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.SETTING_ADDRESS;
+    Layout = "~/Views/Shared/_MyPageLayout.cshtml";
+}
+<script src="~/Scripts/jquery.shorten.1.0.js"></script>
+<script src="~/Scripts/splgCommon.js"></script>
+
+<script src="~/Areas/MyPage/Scripts/Views/3-7-1.js"></script>
+
+
+<div class="block_04">
+    @{
+        MyPageSettingAddressViewModel.SettingAddressModel SettingAddress = Model.SettingAddress;
+    }
+    <div class="block_04_7">
+        <h2 class="mytitle">プロフィール設定</h2>
+        <table cellpadding="0" cellspacing="0" summary="mypage">
+            <col width="22%" />
+            <col width="78%" />
+            <tbody valign="top">
+                <tr>
+                    <th>新しいEmail</th>
+                    <td><input class="ip460" type="text" id="entry_mail" value="" /></td>
+                </tr>
+                                                @*if (SettingAddress.MemberRegisterInfo.IsSNS != false)
+                        {*@
+                            <tr>
+                                <th>パスワード</th>
+                                <td><input class="ip460" type="password" id="entry_password" value="" /></td>
+                            </tr>
+                        @*}*@
+                        <tr>
+                            <th>メッセージ</th>
+                            <td>
+                                @using (Html.BeginForm("RegisterReview", "Member", FormMethod.Post, new { @id = "sendMailForActivation", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    //                            <p class="board_link"><a id="sendToNewAddress" href="#" >新しいメールアドレスにメールを送信</a></p>
+                                    <p class="board_link"><a href="javascript:void(0);" id="settingssendnewaddress">新しいメールアドレスにメールを送信</a></p>
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>

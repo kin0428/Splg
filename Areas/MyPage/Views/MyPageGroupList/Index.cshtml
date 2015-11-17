@@ -1,0 +1,87 @@
+﻿@{
+    //Author : Nojima
+    //FileName : Index.cshtml (8-1)
+    //Created Date : 2015/04/12
+}
+
+@using Splg.Areas.MyPage.Models.ViewModel;
+@model Splg.Areas.MyPage.Models.ViewModel.MyPageGroupListViewModel
+
+@{
+    ViewBag.Title = "グループリスト";
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.GROUP_INDEX;
+    Layout = "~/Views/Shared/_MyPageLayout.cshtml";
+}
+<script src="~/Scripts/jquery.shorten.1.0.js"></script>
+<script src="~/Scripts/splgCommon.js"></script>
+
+<script src="~/Areas/MyPage/Scripts/Views/3-4.js"></script>
+
+<!--News Top View-->
+
+@if (Model != null)
+{
+<div class="block_04">
+    <h2 class="mytitle"><a href="/mypage/group/new">グループを作成する</a></h2>
+    <div class="block_04_6">
+        <ul class="block_04_6_l2" id="group-list">
+
+    @{
+        int totalCount = Model.TotalCount;
+        int viewingCount = 0;
+    }
+    @if (Model.GroupLists != null)
+    {
+        foreach (var c in Model.GroupLists)
+        {
+            if (c != null)
+            { 
+            <li>
+                <p ><a class="leavegroup" id=@(c.GroupID.ToString()) href="#">メンバーから抜ける<</a></p>
+                <dl>
+                    <dt><span class="blue"><a href="/mypage/group/@(c.GroupID)/detail">@c.GroupName</a></span><br><span>@(c.NumberOfMember.ToString())名</span></dt>
+                    <dd>
+                @foreach (var profile in c.ProfileMember)
+                {
+                    if (string.IsNullOrEmpty(profile.ProfileImage) == false)
+                    {<a href="/user/@(profile.MemberId)"><img class="resimg circle" src="@(profile.ProfileImage)" alt="@profile.Nickname" /></a>}
+                }
+                @if (c.NumberOfOther > 0)
+                {
+                    <span class="count_num">+@(c.NumberOfOther)</span>
+                }
+                    </dd>
+                </dl>
+            </li>
+            }
+        }
+    }
+    @if (totalCount == 0)
+    {
+        <li>
+            <h2>グループに入っていません</h2>
+        </li>
+    }
+        </ul>
+    @{
+        string displayGetMoreButton = (viewingCount < totalCount) ? "" : "display:none";
+        <!-- <ul class="board_list"> -->
+        <ul class="" style="float: right;@displayGetMoreButton">
+            <li><a id="GetMoreGroupButton" data-groupcount="@viewingCount">グループをもっと見る<span class="icon"> </span></a></li>
+        </ul>
+    }
+    </div>
+</div>
+}
+<!--Right Content-->
+@section MyPagePage{
+    @if (Model != null && Model.MemberId > 0)
+    {
+    <h3 class="mem_title01">グループリスト</h3>
+    @Html.Action("ShowGroupList", "MyPageRightContent", new { area = "MyPage", memberId = @Model.MemberId })
+    <p class="tright"><a href="/mypage/group/">≫もっと見る</a></p>
+    <h3 class="mem_title01">フォローランキング</h3>
+    @Html.Action("ShowFollowPointRankings", "MyPageRightContent", new { area = "MyPage", memberId = @Model.MemberId })
+    <p class="tright"><a href="/mypage/following/">≫もっと見る</a></p>
+    }
+}

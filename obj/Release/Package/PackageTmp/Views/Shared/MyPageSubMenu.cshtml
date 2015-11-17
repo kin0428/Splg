@@ -1,0 +1,105 @@
+﻿@{
+    //Dev : Nojima
+    //FileName : MyPageSubMenu.cshtml
+    //Created Date : 2015/04/12
+}
+
+@{
+    var url = Context.Request.Path;
+    string[] subUrls = url.Split('/');
+    List<string> subUrlList = new List<string>();
+    for (int i = 0; i < subUrls.Count(); i++)
+    {
+        if (!string.IsNullOrEmpty(subUrls[i]))
+        {
+            subUrlList.Add(subUrls[i]);
+        }
+    }
+    List<string> menuLinkList = new List<string>();
+    List<string> menuNameList = new List<string>();
+    string secondMenu = string.Empty;
+    int secondMenuActive = 0;
+    int subUrlCount = subUrlList.Count();
+    
+    string theFirstUrlFragment = subUrlList.First().ToLower();
+
+    if (theFirstUrlFragment.Equals("mypage") || theFirstUrlFragment.Equals("user_search"))
+    {
+        secondMenu = "mypage";
+        menuLinkList.Add(" > マイページ");
+        menuNameList.Add("/mypage/");
+        secondMenuActive = 1;
+        if (subUrlCount > 1)
+        {
+            subUrlList.RemoveAt(0);
+            subUrlCount = subUrlCount - 1;
+            switch (subUrlList.First().ToLower())
+            {
+                case "expectedlist":
+                    menuLinkList.Add("予想リスト");
+                    menuNameList.Add("/mypage/expectedlist/");
+                    secondMenuActive = 2;
+                    break;
+                case "article":
+                    menuLinkList.Add("投稿記事");
+                    menuNameList.Add("/mypage/article/");
+                    secondMenuActive = 3;
+                    break;
+                case "group":
+                    menuLinkList.Add("グループ");
+                    menuNameList.Add("/mypage/group/");
+                    secondMenuActive = 4;
+                    break;
+                case "following":
+                    menuLinkList.Add("フォロー");
+                    menuNameList.Add("/mypage/following/");
+                    secondMenuActive = 5;
+                    break;
+                case "followers":
+                    menuLinkList.Add("フォロワー");
+                    menuNameList.Add("/mypage/followers/");
+                    secondMenuActive = 6;
+                    break;
+                case "setting":
+                    menuLinkList.Add("設定");
+                    menuNameList.Add("/mypage/setting/");
+                    secondMenuActive = 7;
+                    break;
+                case "notice":
+                    menuLinkList.Add("お知らせ");
+                    menuNameList.Add("/mypage/notice/");
+                    secondMenuActive = 8;
+                    break;
+            }
+        }
+    }
+    //if (subUrlList.First().ToLower().Equals("user_search"))
+    //{
+    //    secondMenu = "mypage";
+    //    menuLinkList.Add("ユーザー検索");
+    //    menuNameList.Add("/user_search/");
+    //    secondMenuActive = 9;
+    //}
+}
+<p class="block_path02">
+    <a class="icon gui_icon" href="/"></a>
+    @for (int j = 0; j < menuLinkList.Count() - 1; j++)
+    {
+        @:<a href="@menuNameList.ElementAt(j)">@menuLinkList.ElementAt(j)</a>>
+    }
+    @menuLinkList.ElementAt(menuLinkList.Count() - 1)
+</p>
+@if (secondMenu.Equals("mypage"))
+{
+    <ul class="block_nav">
+        <li><a class="@(secondMenuActive == 1 ? "active" : "")" href="/mypage/">マイページ</a></li>
+        <li><a class="@(secondMenuActive == 2 ? "active" : "")" href="/mypage/expectedlist/">予想リスト</a></li>
+        <li><a class="@(secondMenuActive == 3 ? "active" : "")" href="/mypage/article/">投稿記事</a></li>
+        <li><a class="@(secondMenuActive == 4 ? "active" : "")" href="/mypage/group/">グループ</a></li>
+        <li><a class="@(secondMenuActive == 5 ? "active" : "")" href="/mypage/following/">フォロー</a></li>
+        <li><a class="@(secondMenuActive == 6 ? "active" : "")" href="/mypage/followers/">フォロワー</a></li>
+        <li><a class="@(secondMenuActive == 7 ? "active" : "")" href="/mypage/setting/">設定</a></li>
+        <li><a class="@(secondMenuActive == 8 ? "active" : "")" href="/mypage/notice/">お知らせ</a></li>
+        <!-- <li><a class="@(secondMenuActive == 9 ? "active" : "")" href="/user_search/">ユーザー検索</a></li> -->
+    </ul>
+}

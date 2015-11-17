@@ -1,0 +1,21 @@
+﻿@using Splg.Areas.Jleague;
+@using Splg.Areas.Jleague.Models.ViewModel.InfosModel;
+@using Splg.Areas.Jleague.Models;
+@using Splg.Areas.Jleague.Models.ViewModel;
+@model JlgScheduleResultViewModel
+
+@{
+    ViewBag.Title = Model.PageTitle;
+    ViewBag.Name = Model.PageName;
+    ViewBag.JleagueMenu = Model.JLeagueMenu;
+    ViewBag.JleagueSubMenu = Model.JLeagueSubMenu;    
+    Layout = "~/Views/Shared/Mobile/_JleagueLayout.cshtml";
+}
+<script src="~/Areas/Jleague/Scripts/Mobile/10-2.js"></script>
+<script src="~/Scripts/Home.js"></script>
+
+@Html.Partial("~/Views/Shared/Mobile/_NextPrevOccasion.cshtml")
+<input type="hidden" id="Page" name="Page" value="1" data-scheduleresult="true" data-occasion="@Model.OccasionNo" data-maxoccasionno="@Model.MaxOccasionNo" data-seasonid="@Model.SeasonId" />
+<div id="jlgGameInfo">
+    @Html.Action("ShowGameInfo", "JlgTop", new { area = "Jleague", type = 2, occasionNo = @Model.OccasionNo, round = 0, leagueType = @Model.JType, seasonId = @Model.SeasonId })
+</div>

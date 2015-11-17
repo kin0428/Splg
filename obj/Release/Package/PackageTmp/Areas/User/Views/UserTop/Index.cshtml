@@ -1,0 +1,190 @@
+﻿@{
+    //Author : Nojima
+    //FileName : Index.cshtml (4-1)
+    //Created Date : 2015/04/29
+}
+
+@using Splg.Areas.User.Models.ViewModel;
+@model Splg.Areas.User.Models.ViewModel.UserTopViewModel
+
+@{
+    ViewBag.Title = "他ユーザーページ";
+    ViewBag.PageNo = Splg.Areas.User.UserConstant.TOP_INDEX;
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery.shorten.1.0.js"></script>
+<script src="~/Scripts/splgCommon.js"></script>
+
+<script src="~/Areas/User/Scripts/Views/highcharts.js"></script>
+<script src="~/Areas/User/Scripts/Views/4-1.js"></script>
+
+<!--News Top View-->
+@*@Html.Action("ShowUserNewsTopViews", "UserRightContent", new { area = "User" })*@
+@{
+    var memberInfo = Model.MemberInfo.FirstOrDefault();
+    var pointInfo = Model.PointInfo;
+
+    if (memberInfo != null && pointInfo != null)
+    {
+        <div class="block_04">
+            <div class="block_04_1"><img class="resimg circle" src="@Url.Content(@memberInfo.ProfileImg)" alt="" /></div>
+            <div class="block_04_2">
+                <h3 class="subtitle04">@memberInfo.Nickname</h3>
+                <p>
+                    <span class="organge fs24">現在のポイント：</span><span class="fs24 bold organge"> @Html.DisplayFor(m => pointInfo.PossesionPoint)</span> pt<br />
+                    <span class="fs14 black">懸賞応募可能ポイント：</span><span class="fs24 bold"> @Html.DisplayFor(m => pointInfo.AvailablePoint)</span> pt
+                </p>
+                <p>
+                    総順位
+                    <span class="fs18 bold"> @Model.TotalRankStr</span> 位
+                    <span class="fs24 gray"> / </span>
+                    <span class="fs14 blue"><a href="/user/@memberInfo.MemberId/following/">フォロー</a></span>
+                    <span class="blue fs18 bold"> @memberInfo.FollowingNumber</span>
+                    <span class="fs14 blue">人</span>
+                    <span class="fs24 gray"> / </span>
+                    <span class="fs14 blue"><a href="/user/@memberInfo.MemberId/followers/">フォロワー</a></span>
+                    <span class="blue fs18 bold"> @memberInfo.FollowerNumber</span>
+                    <span class="fs14 blue">人</span>
+                </p>
+                <h4 class="organge">YOUR STATUS</h4>
+                <p>
+                    <span class="fs14 bold">@memberInfo.Gender</span>
+                    <span class="fs24 gray">  /  </span>
+                    <span class="fs14 bold">@(string.Format("{0:0000}", memberInfo.BirthdayYear))年@(string.Format("{0,2}", memberInfo.BirthdayMonth))月@(string.Format("{0,2}", memberInfo.BirthdayDay))日</span>
+                    <span class="fs24 gray">  /  </span>
+                    <span class="fs14 bold">@memberInfo.PrefecturesName</span>
+                </p>
+                <dl>
+                    <dt>好きなスポーツ</dt>
+                    <dd class="fs14 bold">@memberInfo.LikeSports</dd>
+                    <dt>好きなチーム</dt>
+                    <dd class="fs14 bold">
+                        @foreach (var tm in memberInfo.Team)
+                        {
+                            <span class="fs14 blue" id="@(tm.TeamID)"><a href="@(tm.Url)">@tm.TeamName</a><br /></span>
+                        }
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    }
+}
+<div class="block_04">
+    <h3 class="mytitle" id="usermonthlyreport" data-other_member_id="@ViewBag.OtherMemberID">月別レポート</h3>
+    <div class="block_04_3">
+        <ul class="block_04_3_l1 clear">
+            @for (int i = 0; i < Model.YearStatuses.Length; i++)
+            {
+                int year = Model.RegistratedYear + i;
+                switch (Model.YearStatuses[i])
+                {
+                    case 1:　//ターゲット年
+                        <li class="active"><a href="#">@year<span class="arrow yarrow"> </span></a></li>
+                        break;
+                    case 2:　//データあり
+                    <li><a href="#">@year<span class="arrow yarrow"> </span></a></li>
+                        break;
+                    default:　//データなし
+                    <li class="gray">@year<span class="arrow yarrow"> </span></li>
+                        break;
+                }
+            }
+        </ul>
+        <p class="j_rank bold" id="mypage_top_monthes">
+            @for (int i = 1; i <= 12; i++)
+            {
+                string className = "";
+                switch (Model.MonthStatuses[i - 1])
+                {
+                    case 1:　//ターゲット年
+                        <a class="active" href="javascript:void(0);"><span class="fs20">@i</span>月</a>
+                        <span>  /</span>
+                        break;
+                    case 2:　//データあり
+                    <a class="" href="javascript:void(0);"><span class="fs20">@i</span>月</a>
+                    <span>  /</span>
+                        break;
+                    default:　//データなし
+                    <span class="fs20 gray">@i</span><span>月</span>
+                    <span>  /</span>
+                        break;
+                }
+
+            }
+        </p>
+        <div>
+            <div class="row">
+                <div style="float:left">
+                    <div class="row">
+                        <div id="container_percent_l" class="block_04_3_l"></div>
+                    </div>
+                    <div class="row">
+                        <div class="edit_btn">
+                            <a href="javascript:void(0);" onclick="GetRelevantYearMonth(@ViewBag.OtherMemberID,1);">
+                                <span class="icon"> </span>
+                            </a>
+                        </div>
+                        <div style="clear:both">
+                            <a href="javascript:void(0);" onclick="GetRelevantYearMonth(@ViewBag.OtherMemberID,1);" id="container_percent_post">この的中率に関して記事を<br />書いてみませんか？</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="container_percent_r" class="block_04_3_r" style="float:right">
+                </div>
+            </div>
+            <div class="row">
+                <div style="float:left">
+                    <div class="row">
+                        <div id="container_point_l" class="block_04_3_l"></div>
+                    </div>
+                    <div class="row">
+                        <div class="edit_btn">
+                            <a href="javascript:void(0);" onclick="GetRelevantYearMonth(@ViewBag.OtherMemberID,2);">
+                                <span class="icon"> </span>
+                            </a>
+                        </div>
+                        <div style="clear:both">
+                            <a href="javascript:void(0);" onclick="GetRelevantYearMonth(@ViewBag.OtherMemberID,2);" id="container_percent_post">この的中ポイント数に関して記事を<br />書いてみませんか？</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="container_point_r" class="block_04_3_r" style="float:right">
+                </div>
+            </div>
+            <div class="row">
+                <div style="float:left">
+                    <div class="row">
+                        <div id="container_number_l" class="block_04_3_l"></div>
+                    </div>
+                    <div class="row">
+                        <div class="edit_btn">
+                            <a href="javascript:void(0);" onclick="GetRelevantYearMonth(@ViewBag.OtherMemberID,3);">
+                                <span class="icon"> </span>
+                            </a>
+                        </div>
+                        <div style="clear:both">
+                            <a href="javascript:void(0);" onclick="GetRelevantYearMonth(@ViewBag.OtherMemberID,3);" id="container_percent_post">この予想数に関して記事を<br />書いてみませんか？</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="container_number_r" class="block_04_3_r" style="float:right">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--Right Content-->
+<!--Mlb News-->
+@Html.Action("ShowMlbRecentNews", "MlbRightContent", new { area = "Mlb", type = @ViewBag.Name })
+@section UserPage{
+<h3 class="mem_title01">グループリスト</h3>
+@Html.Action("ShowGroupList", "MyPageRightContent", new { area = "MyPage", memberId = @memberInfo.MemberId })
+<p class="tright"><a href="/mypage/group/">≫もっと見る</a></p>
+<h3 class="mem_title01">フォローランキング</h3>
+@Html.Action("ShowFollowPointRankings", "MyPageRightContent", new { area = "MyPage", memberId = @memberInfo.MemberId })
+<p class="tright"><a href="/mypage/following/">≫もっと見る</a></p>
+}
+

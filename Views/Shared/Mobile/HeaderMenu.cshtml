@@ -1,0 +1,88 @@
+﻿@{
+    // Namespace	: 
+    // FileName		: Splg\Views\Shared\Mobile\HeaderMenu.cshtml
+    // Device       : Mobile
+
+    var com = new Splg.Models.ComEntities();
+    int unreadNotice = 0;
+    string imgPath = "~/Mobile/Content/img/tmp/mem.png";
+
+    if (Session["CurrentUser"] != null)
+    {
+        Int64 memberID = Convert.ToInt64(Session["CurrentUser"]);
+        var user = com.Member.SingleOrDefault(m => m.MemberId == memberID);
+        imgPath = user != null ? user.ProfileImg : "~/Mobile/Content/img/tmp/mem.png";
+        unreadNotice = Splg.Utils.GetNumberOfUnreadNotice(Convert.ToInt32(memberID));
+    }
+
+    string sbg = string.Format("circle {0}", unreadNotice == 0 ? "head-inbox-bg " : "head-inbox");
+    //string sbg = string.Format("circle {0}", unreadNotice == 0 ? "head-inbox-bg " : "head-inbox");
+}
+<div class="headerCommon">
+    <header class="header">
+
+        <script src="~/Scripts/cookie.js"></script>
+        @*<script src="~/Mobile/Scripts/tutorials.js"></script>*@
+
+        <p><a href="#" class="sb-toggle-left head-btn">メニュー</a></p>
+        <p class="head-logo">
+            <a href="/">
+                <img src="~/Mobile/Content/img/tmp/logo.png" alt="スポログ" />
+            </a>
+        </p>
+
+        @if (Session["CurrentUser"] == null)
+        {
+            <a href="javascript:void(0)" class="head-mem reg-link login-link">ユーザー登録・ログイン</a>
+            @*<a href="javascript:void(0)" class="head-mem reg-link"><img class="circle resimg" src="~/Mobile/Content/img/tmp/log-default.png" alt="name" /></a>*@
+            @*<ul class="head-link">
+                    <li><a class="login-link" href="javascript:void(0)">ログイン</a></li>
+                    <li><a href="/signup/">ユーザー登録(無料)</a></li>
+                </ul>*@
+        }
+        else
+        {
+            <a href="/mypage/notice/" class="head-mem reg-link-in">お知らせ<span class="newsPush">@unreadNotice</span></a>
+            @*<a class="@sbg" href="/mypage/notice/">@unreadNotice</a>*@
+        }
+
+        @*<!--Popup-->
+            <div class="outside_overclay">
+                <div class="tutorial_popupclass=" head-mem reg-link-in">
+                    <p class="close_popup popclose"><img src="img/tmp/close.png" alt="exit" /></p>
+                    <h2 class="add_pop_title" id="popTitleSp">
+                        スポログとは？
+                    </h2>
+                    <div class="add_image" id="imgTutorial01">
+                        <img src="~/Content/img/tmp/tutorial_01_sp.gif" alt="">
+                    </div>
+                    <p class="add_pagr01" id="contentSp01">
+                    </p>
+                    <p class="add_pagr01" id="contentSp02"></p>
+                    <p class="sig-submit" id="nextPopupSp"><a href="javascript:;">ポイントを貯めると？</a></p>
+                </div>
+            </div>
+            <!--Popup-->*@
+
+        @if (Session["CurrentUser"] != null)
+        {
+            @*<div class="ad_content">*@
+            <div class="pointBoard clear">
+
+                <div class="pointBoard-user">
+                    <img src=@imgPath alt="ログインユーザー">
+                </div>
+
+                @*<div id="PosessionPoint" class="ad_row01">*@
+                <div id="PosessionPoint" class="pointBoard-point">
+                    @Html.Action("ShowPointAlert", "Home", new { area = "" })
+                </div>
+            </div>
+        }
+        else
+        {
+            // todo お試し会員
+        }
+
+    </header>
+</div>

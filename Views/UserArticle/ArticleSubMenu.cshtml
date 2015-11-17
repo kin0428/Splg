@@ -1,0 +1,233 @@
+﻿@model Splg.Models.UserArticle.ViewModel.UserArticleInfoViewModel
+@using Splg.Models;
+@using Splg.Areas.Jleague.Models;
+@using Splg.Areas.Npb.Models;
+@using Splg.Areas.Mlb.Models;
+@{
+    List<string> menuLinkList = new List<string>();
+    List<string> menuNameList = new List<string>();
+    
+    NpbEntities npb = new NpbEntities();
+    MlbEntities mlb = new MlbEntities();
+    JlgEntities jlg = new JlgEntities();
+    
+    if(Model != null)
+    {
+        int sportID = Model.SportID;
+        switch (sportID)
+        {
+            case 1:
+                menuNameList.Add("プロ野球");
+                menuLinkList.Add("/" + Constants.NPB_TOPIC_NAME +"/");
+                break;
+            case 2:
+                menuNameList.Add("Ｊリーグ");
+                menuLinkList.Add("/" + Constants.JLG_TOPIC_NAME + "/");
+                break;
+            case 3:
+                menuNameList.Add("MLB");
+                menuLinkList.Add("/" + Constants.MLB_TOPIC_NAME + "/");
+                break;
+            case 4:
+                menuNameList.Add("海外サッカー");
+                menuLinkList.Add("/ws/");
+                break;
+        }
+        
+        int tmpTeamId, tmpPlayerId, tmpGameId;
+        switch (Model.NewsClassId)
+        {
+            case 1:
+                menuNameList.Add(Splg.Utils.ShortenString(Splg.Utils.GetNewsTitleById(Model.QuoteUniqueId1), 20));
+                menuLinkList.Add(string.Format("{0}news/{1}/{2}/", menuLinkList.LastOrDefault(), Model.QuoteUniqueId1, sportID));
+                break;
+            case 2:
+                switch (Model.QuoteUniqueId1)
+                {
+                    case 1:
+                        menuLinkList.Add(string.Format("/" + Constants.NPB_TOPIC_NAME + "/teams/{0}/", Model.QuoteUniqueId3));
+                        menuNameList.Add(Splg.Utils.GetTeamNameById(1, Convert.ToInt32(Model.QuoteUniqueId3)));
+                        break;
+                    case 2:
+                        tmpTeamId = Convert.ToInt32(Model.QuoteUniqueId3);
+                        var jlgTeams = (from categoryGT in jlg.CategoryGT
+                                        join teamInfoGT in jlg.TeamInfoGT on categoryGT.CategoryGTId equals teamInfoGT.CategoryGTId
+                                        where teamInfoGT.TeamID == tmpTeamId
+                                        && (categoryGT.GameKindID == 2 || categoryGT.GameKindID == 4 || categoryGT.GameKindID == 6 )
+                                        select new
+                                        {
+                                            TeamID = teamInfoGT.TeamID,
+                                            TeamName = teamInfoGT.TeamName,
+                                            LeagueID = categoryGT.GameKindID
+                                        }).FirstOrDefault();
+                        if(jlgTeams != null)
+                        {
+                            string leagueName = string.Empty;
+                            string leagueLink = string.Empty;
+                            switch (jlgTeams.LeagueID)
+                            {
+                                case 2:
+                                    leagueName = "J1";
+                                    leagueLink = "/" + Constants.JLG_TOPIC_NAME + "/j1/";
+                                    break;
+                                case 4:
+                                    leagueName = "ナビスコC";
+                                    leagueLink = "/" + Constants.JLG_TOPIC_NAME + "/jleaguecup/";
+                                    break;
+                                case 6:
+                                    leagueName = "J2";
+                                    leagueLink = "/" + Constants.JLG_TOPIC_NAME + "/j2/";
+                                    break;
+                            }
+                            menuNameList.Add(leagueName);
+                            menuLinkList.Add(leagueLink);
+                            menuNameList.Add(jlgTeams.TeamName);
+                            menuLinkList.Add(string.Format("{0}teams/{1}/",leagueLink,tmpTeamId));
+                        }
+                        break;
+                    case 3:
+                        tmpTeamId = Convert.ToInt32(Model.QuoteUniqueId3);
+                        var mlbTeams = (from ti in mlb.TeamInfo
+                                        join l in mlb.LeagueGroupMlb on ti.LeagueID equals l.LeagueID
+                                        select new
+                                        {
+                                            TeamID = ti.TeamID,
+                                            TeamName = ti.TeamName,
+                                            LeagueName = ti.LeagueName
+                                        }).FirstOrDefault();
+                        if(mlbTeams != null)
+                        {
+                            menuNameList.Add(string.Format("{0}>{1}", mlbTeams.LeagueName, mlbTeams.TeamName));
+                            menuLinkList.Add(string.Format("/" + Constants.MLB_TOPIC_NAME + "/teams/{0}/", tmpTeamId));
+                        }
+                        break;
+                    case 4:
+                        break;
+                }
+                break;
+            case 3:
+                tmpTeamId = Convert.ToInt32(Model.QuoteUniqueId2);
+                switch (Model.QuoteUniqueId1)
+                {
+                    case 1:
+                        tmpPlayerId = Convert.ToInt32(Model.QuoteUniqueId3);
+                        //位置区分
+                        var tmpPitchField = (from pim in npb.PlayerInfoMST where pim.PlayerCD == tmpPlayerId select pim.PitchField).FirstOrDefault();
+                        var teamName = Splg.Utils.GetTeamNameById(1, tmpTeamId);
+                        menuNameList.Add(teamName);
+                        menuLinkList.Add(string.Format("/" + Constants.NPB_TOPIC_NAME + "/teams/{0}/", tmpTeamId));
+                        var playerName = (from t in npb.PlayerInfoMST
+                                          where t.PlayerCD == tmpPlayerId
+                                          select t).FirstOrDefault();
+                        if(playerName != null)
+                        {
+                            menuNameList.Add(playerName.Player);
+                            //位置区分はURL上、投手の場合1 、野手の場合2
+                            menuLinkList.Add(string.Format("/" + Constants.NPB_TOPIC_NAME + "/players/{0}/{1}/{2}/", tmpTeamId, tmpPlayerId, (tmpPitchField == 1?1:2)));
+                        }
+                        break;
+                    case 2:
+                        var jlgTeams = (from categoryGT in jlg.CategoryGT
+                                        join teamInfoGT in jlg.TeamInfoGT on categoryGT.CategoryGTId equals teamInfoGT.CategoryGTId
+                                        where teamInfoGT.TeamID == tmpTeamId
+                                        && (categoryGT.GameKindID == 2 || categoryGT.GameKindID == 4 || categoryGT.GameKindID == 6 )
+                                        select new
+                                        {
+                                            TeamID = teamInfoGT.TeamID,
+                                            TeamName = teamInfoGT.TeamName,
+                                            LeagueID = categoryGT.GameKindID
+                                        }).FirstOrDefault();
+                        if(jlgTeams != null)
+                        {
+                            string leagueName = string.Empty;
+                            string leagueLink = string.Empty;
+                            switch (jlgTeams.LeagueID)
+                            {
+                                case 2:
+                                    leagueName = "J1";
+                                    leagueLink = "/" + Constants.JLG_TOPIC_NAME + "/j1/";
+                                    break;
+                                case 4:
+                                    leagueName = "ナビスコC";
+                                    leagueLink = "/" + Constants.JLG_TOPIC_NAME + "/jleaguecup/";
+                                    break;
+                                case 6:
+                                    leagueName = "J2";
+                                    leagueLink = "/" + Constants.JLG_TOPIC_NAME + "/j2/";
+                                    break;
+                            }
+                            menuNameList.Add(leagueName);
+                            menuLinkList.Add(leagueLink);
+                            menuNameList.Add(jlgTeams.TeamName);
+                            menuLinkList.Add(string.Format("{0}teams/{1}/",leagueLink,tmpTeamId));
+                            
+                            tmpPlayerId = Convert.ToInt32(Model.QuoteUniqueId3);
+                            var playerNames = (from p in jlg.PlayerInfoDI
+                                               where p.PlayerID == tmpPlayerId
+                                               select p).FirstOrDefault();
+                            if (playerNames != null)
+                            {
+                                menuNameList.Add(playerNames.PlayerName);
+                                //menuLinkList.Add(string.Format("{0}player/{1}/{2}/", leagueLink, tmpTeamId, tmpPlayerId));
+                                menuLinkList.Add(string.Format("/jleague/players/{0}/", tmpPlayerId));
+                            }
+                        }
+                        break;
+                    case 3:
+                        var mlbTeams = (from ti in mlb.TeamInfo
+                                        join l in mlb.LeagueGroupMlb on ti.LeagueID equals l.LeagueID
+                                        select new
+                                        {
+                                            TeamID = ti.TeamID,
+                                            TeamName = ti.TeamName,
+                                            LeagueName = ti.LeagueName
+                                        }).FirstOrDefault();
+                        if(mlbTeams != null)
+                        {
+                            menuNameList.Add(string.Format("{0}>{1}", mlbTeams.LeagueName, mlbTeams.TeamName));
+                            menuLinkList.Add(string.Format("/" + Constants.MLB_TOPIC_NAME + "/teams/{0}/", tmpTeamId));
+                        }
+                        break;
+                    case 4:
+                        break;
+                }
+                break;
+            case 4:
+            case 5:
+                    tmpGameId = Convert.ToInt32(Model.QuoteUniqueId2);
+                    switch (Model.QuoteUniqueId1)
+                    {
+                        case 1:
+                            menuNameList.Add(Splg.Utils.GetGameNameById(Splg.Constants.NPB_SPORT_ID, tmpGameId));
+                            menuLinkList.Add(string.Format("/" + Constants.NPB_TOPIC_NAME + "/game/{0}/", tmpGameId));
+                            break;
+                        case 2:
+                            menuNameList.Add(Splg.Utils.GetGameNameById(Splg.Constants.JLG_SPORT_ID, tmpGameId));
+                            menuLinkList.Add(string.Format("/" + Constants.JLG_TOPIC_NAME + "/game/{0}/", tmpGameId));
+                            break;
+                        case 3:
+                            menuNameList.Add(Splg.Utils.GetGameNameById(Splg.Constants.MLB_SPORT_ID, tmpGameId));
+                            menuLinkList.Add(string.Format("/" + Constants.MLB_TOPIC_NAME + "/game/{0}/", tmpGameId));
+                            break;
+                        case 4:
+                            break;
+                    }
+                break;
+            case 6:
+                break;
+        }
+        menuNameList.Add("ニュース");
+        menuLinkList.Add("/user_article/");
+        menuNameList.Add(Splg.Utils.ShortenString(Model.Title, 20));
+        menuLinkList.Add("#");
+    }
+}
+<p class="block_path02">
+    <a href="/"><span class="icon gui_icon"> </span></a>
+    @for (int j = 0; j < menuNameList.Count() - 1; j++)
+    {
+        @:> <a href="@menuLinkList.ElementAt(j)">@menuNameList.ElementAt(j)</a>
+    }
+    > @menuNameList.ElementAt(menuNameList.Count() - 1)
+</p>
+

@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "TokenTimeOut";
+}
+
+<div class="bottom">
+    <div class="mem_block01 clear">
+        <div class="mem_b1_1">
+            <h2>スポログにユーザー登録(無料)する</h2>
+            <ul>
+                <li>STEP 1<br />入力</li>
+                <li>STEP 2<br />確認</li>
+                <li><span>STEP 3<br />メール送信</span></li>
+                <li>STEP 4<br />登録完了</li>
+            </ul>
+        </div>
+        <div class="mem_b2_1">
+            <p class="mail_title">
+                <span class="bold">有効期限が切れています。登録するには再度手続きをしてください。</span><br />
+                <a href="@Url.Action("ReConfirmToken", "Member", new { })">本登録に必要なURLを、入力したメールアドレス宛に送信します。</a>
+            </p>
+            <p>メールに記載されたURLをクリックしないまま24時間が経過した場合、<br />ご登録依頼が解除となりますのでご注意ください。</p>
+            <p class="mail_note">
+                <img src="~/Content/Images/tmp/mail_note05.png" alt="メールの確認はお早めに！" />
+            </p>
+        </div>
+    </div>
+</div>
+

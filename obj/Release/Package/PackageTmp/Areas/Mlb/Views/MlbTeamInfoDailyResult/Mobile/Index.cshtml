@@ -1,0 +1,26 @@
+﻿@{
+    // Namespace	: Splg.Areas.Mlb
+    // Controller   : MlbTeamInfoDailyResult
+    // FileName		: Index.cshtml
+    // Developer	: Nojima
+    // Update date  : 2015-04-27
+    // Html No      : 9-5-2(Mobile)
+}
+@{
+    ViewBag.Title = "チーム情報　日程・結果（MLB）";
+    ViewBag.Name = Splg.Areas.Mlb.MlbConstants.MLB_TEAMINFO_DAILYRESULT;
+    Layout = "~/Views/Shared/Mobile/_MlbLayout.cshtml";
+}
+<script src="~/Areas/Mlb/Scripts/Mobile/9-5-2.js"></script>
+@Html.Partial("~/Areas/Mlb/Views/Shared/Mobile/_MlbTeamInfoMenu.cshtml")
+@Html.Partial("~/Views/Shared/Mobile/_NextPrevMonth.cshtml")
+<div id="mlbGameInfoWeek">
+    @{
+        var now = DateTime.Now;
+        var startOfMonth = new DateTime(now.Year, now.Month, 1).ToShortDateString().Replace("/", ""); ;
+        var DaysInMonth = DateTime.DaysInMonth(now.Year, now.Month);
+        var lastDay = new DateTime(now.Year, now.Month, DaysInMonth).ToShortDateString().Replace("/", ""); ;
+    }
+    @Html.Action("ShowGameInfo", "MlbTop", new { area = "Mlb", type = 2, startDate = startOfMonth, endDate = lastDay })
+</div>
+

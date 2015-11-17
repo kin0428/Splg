@@ -1,0 +1,260 @@
+﻿@{
+    //Author : Nojima
+    //FileName : JlgSubMenu.cshtml
+    //Created Date : 2015/05/12
+}
+
+@{
+    var url = Context.Request.Path;
+    string[] subUrls = url.Split('/');
+    List<string> subUrlList = new List<string>();
+    for (int i = 0; i < subUrls.Count(); i++)
+    {
+        if (!string.IsNullOrEmpty(subUrls[i]))
+        {
+            subUrlList.Add(subUrls[i]);
+        }
+    }
+    List<string> menuLinkList = new List<string>();
+    List<string> menuNameList = new List<string>();
+    string secondMenu = string.Empty;
+    int secondMenuActive = 0;
+    int subUrlCount = subUrlList.Count();
+
+
+    if (subUrlList.First().ToLower().Equals("jleague"))
+    {
+        secondMenu = "jleague";
+        menuLinkList.Add(" > Jリーグ");
+        menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/");
+        secondMenuActive = 1;
+        if (subUrlCount > 1)
+        {
+            subUrlList.RemoveAt(0);
+            subUrlCount = subUrlCount - 1;
+            switch (subUrlList.First().ToLower())
+            {
+                case "j1":
+                    menuLinkList.Add("J1");
+                    menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/j1/");
+                    secondMenuActive = 2;
+                    if (subUrlCount > 1)
+                    {
+                        subUrlList.RemoveAt(0);
+                        subUrlCount = subUrlCount - 1;
+                        switch (subUrlList.First().ToLower())
+                        {
+                            case "schedule":
+                                menuLinkList.Add("日程・結果");
+                                menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/j1/schedule");
+                                break;
+                            case "standings":
+                                menuLinkList.Add("順位表");
+                                menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/j1/standings/");
+                                break;
+                            case "matrix":
+                                menuLinkList.Add("戦績表");
+                                menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/j1/matrix/");
+                                break;
+                            case "stats":
+                                menuLinkList.Add("得点ランキング");
+                                menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/j1/stats/");
+                                break;
+                            case "teams":
+
+                                if (subUrlCount < 2)
+                                {
+                                    menuLinkList.Add("チーム一覧");
+                                    menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/j1/teams/");
+
+                                }
+                                else
+                                {
+                                    subUrlList.RemoveAt(0);
+                                    subUrlCount = subUrlCount - 1;
+                                    menuLinkList.Add(ViewBag.TeamName);
+                                    string teamsUrl = "/" + Constants.JLG_TOPIC_NAME + "/j1/teams/" + ViewBag.TeamID + "/";
+                                    menuNameList.Add(teamsUrl);
+                                    if (subUrlCount > 1)
+                                    {
+                                        subUrlList.RemoveAt(0);
+                                        subUrlCount = subUrlCount - 1;
+                                        switch (subUrlList.First().ToLower())
+                                        {
+                                            case "schedule":
+                                                menuLinkList.Add("日程・結果");
+                                                menuNameList.Add(teamsUrl + "schedule/");
+                                                break;
+                                            case "stats":
+                                                menuLinkList.Add("対戦成績");
+                                                menuNameList.Add(teamsUrl + "matrix/");
+                                                break;
+                                            case "memberlist":
+                                                menuLinkList.Add("選手");
+                                                menuNameList.Add(teamsUrl + "memberlist/");
+                                                break;
+                                            case "news":
+                                                menuLinkList.Add("ニュース");
+                                                menuNameList.Add(teamsUrl + "news/");
+                                                break;
+                                        }
+                                    }
+                                }
+                                break;
+                            case "news":
+                                menuLinkList.Add("ニュース");
+                                menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/j1/news/");
+                                break;
+                        }
+                    }
+                    break;
+                case "j2":
+                    menuLinkList.Add("J2");
+                    menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/j2/");
+                    secondMenuActive = 2;
+                    if (subUrlCount > 1)
+                    {
+                        subUrlList.RemoveAt(0);
+                        subUrlCount = subUrlCount - 1;
+                        switch (subUrlList.First().ToLower())
+                        {
+                            case "schedule":
+                                menuLinkList.Add("日程・結果");
+                                menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/j12/schedule");
+                                break;
+                            case "standings":
+                                menuLinkList.Add("順位表");
+                                menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/j2/standings/");
+                                break;
+                            case "matrix":
+                                menuLinkList.Add("戦績表");
+                                menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/j2/matrix/");
+                                break;
+                            case "stats":
+                                menuLinkList.Add("得点ランキング");
+                                menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/j2/stats/");
+                                break;
+                            case "teams":
+
+                                if (subUrlCount < 2)
+                                {
+                                    menuLinkList.Add("チーム一覧");
+                                    menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/j2/teams/");
+                                }
+                                else
+                                {
+                                    subUrlList.RemoveAt(0);
+                                    subUrlCount = subUrlCount - 1;
+                                    menuLinkList.Add(ViewBag.TeamName);
+                                    string teamsUrl = "/" + Constants.JLG_TOPIC_NAME + "/j2/teams/" + ViewBag.TeamID + "/";
+                                    menuNameList.Add(teamsUrl);
+                                    if (subUrlCount > 1)
+                                    {
+                                        subUrlList.RemoveAt(0);
+                                        subUrlCount = subUrlCount - 1;
+                                        switch (subUrlList.First().ToLower())
+                                        {
+                                            case "schedule":
+                                                menuLinkList.Add("日程・結果");
+                                                menuNameList.Add(teamsUrl + "schedule/");
+                                                break;
+                                            case "stats":
+                                                menuLinkList.Add("対戦成績");
+                                                menuNameList.Add(teamsUrl + "matrix/");
+                                                break;
+                                            case "memberlist":
+                                                menuLinkList.Add("選手");
+                                                menuNameList.Add(teamsUrl + "memberlist/");
+                                                break;
+                                            case "news":
+                                                menuLinkList.Add("ニュース");
+                                                menuNameList.Add(teamsUrl + "news/");
+                                                break;
+                                        }
+                                    }
+                                }
+                                break;
+                            case "game":
+                                menuLinkList.Add("試合情報");
+                                menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/game/");
+                                break;
+                        }
+                    }
+                    break;
+                case "jleaguecup":
+                    menuLinkList.Add("ナビスコC");
+                    menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/jleaguecup/");
+                    secondMenuActive = 2;
+                    if (subUrlCount > 1)
+                    {
+                        subUrlList.RemoveAt(0);
+                        subUrlCount = subUrlCount - 1;
+                        switch (subUrlList.First().ToLower())
+                        {
+                            case "schedule":
+                                menuLinkList.Add("日程・結果");
+                                menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/j1/schedule");
+                                break;
+                            case "standings":
+                                menuLinkList.Add("順位表");
+                                menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/j1/standings/");
+                                break;
+                            //case "matrix":
+                            //    menuLinkList.Add("戦績表");
+                            //    menuNameList.Add("/Jleague/j1/matrix/");
+                            //    break;
+                            //case "stats":
+                            //    menuLinkList.Add("得点ランキング");
+                            //    menuNameList.Add("/Jleague/j1/stats/");
+                            //    break;
+                            //case "teams":
+                            //    menuLinkList.Add("チーム一覧");
+                            //    menuNameList.Add("/Jleague/j1/teams/");
+                            //    break;
+                            //case "news":
+                            //    menuLinkList.Add("ニュース");
+                            //    menuNameList.Add("/Jleague/j1/news/");
+                            //    break;
+                        }
+                    }
+                    break;
+                case "players":
+                    secondMenuActive = 7;
+                    menuLinkList.Add("選手詳細");
+                    menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/players/");
+                    break;
+                case "game":
+                    secondMenuActive = 7;
+                    menuLinkList.Add("試合情報");
+                    menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/game/");
+                    break;
+                case "news":
+                    secondMenuActive = 7;
+                    menuLinkList.Add("ニュースリスト");
+                    menuNameList.Add("/" + Constants.JLG_TOPIC_NAME + "/news/");
+                    break;
+            }
+        }
+    }
+}
+<p class="block_path02">
+    <a class="icon gui_icon" href="/"></a>
+    @for (int j = 0; j < menuLinkList.Count() - 1; j++)
+    {
+        @:<a href="@menuNameList.ElementAt(j)">@menuLinkList.ElementAt(j)</a>>
+    }
+    @menuLinkList.ElementAt(menuLinkList.Count() - 1)
+</p>
+@*
+    @if (secondMenu.Equals("mlb"))
+    {
+        <ul class="block_nav">
+            <li><a class="@(secondMenuActive == 1 ? "active" : "")" href="/jleague/">JLGトップ</a></li>
+            <li><a class="@(secondMenuActive == 2 ? "active" : "")" href="/jleague/schedule/">日程・結果</a></li>
+            <li><a class="@(secondMenuActive == 3 ? "active" : "")" href="/jleague/standings/">順位表</a></li>
+            <li><a class="@(secondMenuActive == 5 ? "active" : "")" href="/jleague/teams/">チーム情報</a></li>
+            <li><a class="@(secondMenuActive == 8 ? "active" : "")" href="/jleague/news/">ニュース</a></li>
+        </ul>
+    }
+
+*@

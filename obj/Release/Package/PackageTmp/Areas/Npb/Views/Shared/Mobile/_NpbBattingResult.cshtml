@@ -1,0 +1,42 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : _NpbBattingResult.cshtml (Used in 8-5-8, 8-5-9)
+    //Created Date : 2015/03/13
+}
+
+@model Splg.Areas.Npb.Models.HittingStats
+@using Splg;
+
+@if (Model != null)
+{
+    <section class="block_2 clear">
+        <h3 class="subtitle4">今シーズンの打者成績</h3>
+        <div class="feed_slider">
+            <div class="feed_group">
+                <p>打率 @Convert.ToDecimal(@Model.BattingAverage).ToString(Constants.REMOVE_ZEROS)</p>
+                <p>試合数 @Model.Game</p>
+                <p>打席数 @Model.PlateAppearance</p>
+                <p>打数 @Model.AtBat</p>
+                <p>安打 @Model.Hit</p>
+                <p>二塁打 @Model.Double</p>
+                <p>三塁打 @Model.Triple</p>
+                <p>本塁打 @Model.Homerun</p>
+                <p>塁打数 @Model.Base</p>
+                <p>得点 @Model.Run</p>
+                <p>打点 @Model.RunsBattingIn</p>
+                <p>得点圏打率 @Model.TBAWRIS</p>
+                <p>三振 @Model.StrikeOut</p>
+                <p>四球 @Model.BaseOnBall</p>
+                <p>死球 @Model.HitByPitch</p>
+                <p>犠打 @Model.SacrificeHit</p>
+                <p>犠飛 @Model.SacrificeFly</p>
+                <p>盗塁 @Model.StolenBase</p>
+                <p>併殺打 @Model.DoublePlay</p>
+                <p>出塁率 @Model.OnBase</p>
+                <p>長打率 @Model.Slugging</p>
+                <p>OPS @Model.Ops</p>
+            </div>
+        </div>
+    </section>
+}
+

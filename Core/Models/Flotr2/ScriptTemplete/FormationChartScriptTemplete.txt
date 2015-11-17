@@ -1,0 +1,46 @@
+<script type="text/javascript">
+	(function basic_bubble(container) {
+		var
+		  x = 0,
+		  y = 0,
+		  z = 0,
+		  url,
+		  point, 
+		  graph, 
+		  i;
+
+		// Draw the graph
+		graph = Flotr.draw(container, 
+			[
+				@Container
+			], 
+			{
+				@FormationSheredTemplete
+			}
+		);
+		// Add a point to the series and redraw the graph
+		Flotr.EventAdapter.observe(container, 'flotr:click', function(position)
+		{
+
+			if (Math.abs(x) > 0 || Math.abs(y) > 0) {
+		  
+			  if (position.x + (20 * z) > x && position.x - (20 * z) < x){
+
+				if (position.y + (20 * z) > y && position.y - (20 * z) < y) {
+					// Redraw the graph, with the new series.
+					  location.href = url;
+				}
+				else 
+				{
+				  x = 0;
+				  y = 0;
+				  z = 0;
+				  url = "";
+				}
+
+			  }        
+			}
+		});
+
+	})(document.getElementById("@ContainerId"));
+</script>

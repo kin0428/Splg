@@ -1,0 +1,56 @@
+﻿@{
+    // Namespace	: Splg.Areas.Jleague.Models.ViewModel
+    // FileName		: Index.cshtml
+    // Device       : Mobile
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-04-24
+    // Html No      : 10-2-4 : 10-3-4
+}
+@{      
+    if (ViewBag.JType == 1)
+    {
+        ViewBag.Title = "個人成績";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J1_STA;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J1_STA;
+    }
+    else
+    {
+        ViewBag.Title = "個人成績";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J2_STA;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J2_STA;
+    } Layout = "~/Views/Shared/Mobile/_JleagueLayout.cshtml";                
+}
+@model Splg.Areas.Jleague.Models.ViewModel.JlgPersonalAchieveViewModel	
+
+<section class="block_2">
+    <h2 class="subtitle2">
+        @string.Format("{0}{1}", ViewBag.JleagueMenu == 2 ? "J1" : ViewBag.JleagueMenu == 3 ? "J2" : "", "得点ランキング")<span class="fs10"></span>
+    </h2>   
+    @if (Model != null && Model.JlgPersonalInfos != null && Model.JlgPersonalInfos.Any())
+    {
+        <ul class="team-list">
+            @foreach (var item in Model.JlgPersonalInfos)
+            {               
+                <li>
+                    <p class="num fs40 orange">@item.Ranking</p>
+                    <div>
+                        <dl>
+                            <dt><a href="@Url.Action("Index", "JlgTeamInfoPlayerDetail", new { area = "Jleague",  playerID = @item.PlayerID }, null)">@item.PlayerName</a></dt>
+                            <dd class="fs30 num">@item.Goal</dd>
+                        </dl>
+                        <ul class="jinfo">
+                            <li>チーム名 @item.TeamNameS</li>
+                            <li>ポジション @item.Position</li>
+                            @*<li>PK @item.GoalPK</li>
+                            <li>シュート @item.Shoot</li>                              
+                            <li>試合数 @item.Game</li>
+                            <li>出場時 @item.Time</li>
+                            <li>警告 @item.Yellow</li>
+                            <li>退場 @item.Red</li>*@                                                                                                                  
+                        </ul>
+                    </div>
+                </li>
+            }
+        </ul>
+    }  
+</section>	   

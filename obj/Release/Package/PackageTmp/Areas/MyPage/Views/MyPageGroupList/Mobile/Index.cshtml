@@ -1,0 +1,68 @@
+﻿@{
+    // Developer	: Nojima
+    // Html No      : 4-1
+}
+
+@using Splg.Areas.MyPage.Models.ViewModel;
+@model Splg.Areas.MyPage.Models.ViewModel.MyPageGroupListViewModel
+
+
+@{
+    ViewBag.Title = "グループリスト";
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.GROUP_INDEX;
+    Layout = "~/Views/Shared/Mobile/_MyPageLayout.cshtml";   
+}
+<link rel="stylesheet" href="~/Mobile/Content/bxslider.css" type="text/css" />
+<script src="~/Mobile/Scripts/jquery.bxslider.js"></script>
+
+<script src="~/Areas/MyPage/Scripts/Mobile/3-4.js"></script>
+
+@if (Model != null)
+{
+    <section class="block_9">
+    <div class="my-title1">
+        <h2>グループリスト</h2>
+        <p><a class="btn01" href="/mypage/group/new">グループを追加する</a></p>
+    </div>
+    <div id="group-list">
+
+    @{
+        int totalCount = Model.TotalCount;
+        int viewingCount = 0;
+    }
+    @if (Model.GroupLists != null)
+    {
+        foreach (var c in Model.GroupLists)
+        {
+            if (c != null)
+            {
+                <p class="subtitle3"><a href="/mypage/group/@(c.GroupID)/detail">@c.GroupName</a></p>
+                <div class="mem-list">
+                <ul class="bxslider">
+                @foreach (var profile in c.ProfileMember)
+                {
+                    if (string.IsNullOrEmpty(profile.ProfileImage) == false)
+                    {
+                        <li><a href="/user/@(profile.MemberId)"><img class="circle" src=@(profile.ProfileImage) alt="" /></a></li>
+                    }
+                }
+                </ul>
+                </div>
+                <p class="link-right fs8"><a class="leavegroup" id=@(c.GroupID.ToString()) href="#">メンバーから抜ける</a></p>
+            }
+        }
+    }
+    </div>
+    @if (totalCount == 0)
+    {
+        <h2>グループに入っていません</h2>
+    }
+    @{
+        string displayGetMoreButton = (viewingCount < totalCount) ? "" : "display:none";
+        <ul class="" style="float: right;@displayGetMoreButton">
+            <li><a id="GetMoreGroupButton" data-groupcount="@viewingCount">もっと見る</a></li>
+        </ul>
+        <br />
+     }
+    </section>
+}

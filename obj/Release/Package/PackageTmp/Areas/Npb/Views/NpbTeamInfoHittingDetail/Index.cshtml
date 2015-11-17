@@ -1,0 +1,326 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : Index.cshtml (8-5-9)
+    //Modified Date : 2015/04/25
+}
+
+@model Splg.Areas.Npb.Models.ViewModel.NpbTeamInfoHittingDetailModelView
+@using Splg;
+
+@{
+    ViewBag.Title = "チーム情報　捕手・野手";
+    ViewBag.Name = Constants.NPBTEAMINFOBATCHER;
+    Layout = "~/Views/Shared/_NpbLayout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/bxslider.css" type="text/css" />
+<script type="text/javascript" src="~/Scripts/jquery.cslide.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#cslide-slides-int1").cslide();
+        $("#cslide-slides-int2").cslide();
+        $("#cslide-slides-int3").cslide();
+    });
+</script>
+
+<div class="jblock_01">
+    <!--Sub Menu-->
+    @Html.Partial("~/Areas/Npb/Views/Shared/_NpbTeamInfoMenu.cshtml")   
+    <div class="space"></div> 
+    <h2 class="jtitle">@ViewBag.TeamName</h2>
+    <!--Person Info-->
+    @Html.Action("ShowPersonInfo", "NpbRightContent", new { area = "Npb", teamID = @ViewBag.TeamID, playerID = @ViewBag.PlayerID })
+    <!--Batting Info-->
+    @Html.Action("ShowHittingStats", "NpbRightContent", new { area = "Npb", teamID = @ViewBag.TeamID, playerID = @ViewBag.PlayerID })
+    <div class="space"> </div>
+    <!--HittingStats6thGameinfo-->
+    @if (Model != null && Model.ListHittingStats6thGameInfo != null)
+    {
+        if (Model.ListHittingStats6thGameInfo.Any())
+        {
+            <div class="feed_content">
+                <h4 class="mem_title01">最近6試合の成績</h4>
+                <div class="feed_slider cslide-slides-master" id="cslide-slides-int1">
+                    <div class="cslide-prev-next" style="display: block;">
+                        <span class="cslide-prev cslide-disabled"> </span>
+                        <span class="cslide-next"> </span>
+                    </div>
+                    <div class="cslide-slides-container">
+                    @foreach (var item in @Model.ListHittingStats6thGameInfo.OrderByDescending(m => m.GameDate))
+                    {
+                        var gameDate = Utils.GetDateMMddDayofWeekToJapanTime(DateTime.ParseExact(@item.GameDate.ToString(), "yyyyMMdd", null));
+                        var gameTime = DateTime.ParseExact(@item.Time, "HHmm", null).ToString("HH:mm");                                                      
+                        var battingResults = (string.IsNullOrEmpty(item.HittingStats6thGameInfo.BatingResult1)) ? string.Empty : item.HittingStats6thGameInfo.BatingResult1;
+                        battingResults = string.Format("{0}{1}", battingResults, (string.IsNullOrEmpty(item.HittingStats6thGameInfo.BatingResult2)) ? string.Empty : string.Format(",{0}", item.HittingStats6thGameInfo.BatingResult2));
+                        battingResults = string.Format("{0}{1}", battingResults, (string.IsNullOrEmpty(item.HittingStats6thGameInfo.BatingResult3)) ? string.Empty : string.Format(",{0}", item.HittingStats6thGameInfo.BatingResult3));
+                        battingResults = string.Format("{0}{1}", battingResults, (string.IsNullOrEmpty(item.HittingStats6thGameInfo.BatingResult4)) ? string.Empty : string.Format(",{0}", item.HittingStats6thGameInfo.BatingResult4));
+                        battingResults = string.Format("{0}{1}", battingResults, (string.IsNullOrEmpty(item.HittingStats6thGameInfo.BatingResult5)) ? string.Empty : string.Format(",{0}", item.HittingStats6thGameInfo.BatingResult5));
+                        battingResults = string.Format("{0}{1}", battingResults, (string.IsNullOrEmpty(item.HittingStats6thGameInfo.BatingResult6)) ? string.Empty : string.Format(",{0}", item.HittingStats6thGameInfo.BatingResult6));
+                        battingResults = string.Format("{0}{1}", battingResults, (string.IsNullOrEmpty(item.HittingStats6thGameInfo.BatingResult7)) ? string.Empty : string.Format(",{0}", item.HittingStats6thGameInfo.BatingResult7));
+                        battingResults = string.Format("{0}{1}", battingResults, (string.IsNullOrEmpty(item.HittingStats6thGameInfo.BatingResult8)) ? string.Empty : string.Format(",{0}", item.HittingStats6thGameInfo.BatingResult8));
+                        battingResults = string.Format("{0}{1}", battingResults, (string.IsNullOrEmpty(item.HittingStats6thGameInfo.BatingResult9)) ? string.Empty : string.Format(",{0}", item.HittingStats6thGameInfo.BatingResult9));
+                        battingResults = string.Format("{0}{1}", battingResults, (string.IsNullOrEmpty(item.HittingStats6thGameInfo.BatingResult10)) ? string.Empty : string.Format(",{0}", item.HittingStats6thGameInfo.BatingResult10));
+                        <div class="cslide-slide">
+                            <ul>
+                                <li>
+                                    <p class="feed_info bold">
+                                        <span class="fs14">@gameDate</span>
+                                        <span>@Utils.GetHittingResultName(@item.GameResult, item.HTeamID, item.VTeamID, @ViewBag.TeamID)</span>
+                                        <span>@Html.ActionLink(string.Concat(Constants.TEAMVS, ".", @item.HittingStats6thGameInfo.ShortNameTeamsOpponent, " ", @item.HScore, " - ", @item.VScore), "Index", "NpbGameInformation", new { area = "Npb", gameID = @item.GameID }, null)</span>
+                                    </p>
+                                    <dl class="feed_info1">
+                                        <dt>@item.StadiumName</dt>
+                                        <dd>@gameTime</dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <dl class="feed_row">
+                                        <dt>打席数</dt>
+                                        <dd class="bold">@item.HittingStats6thGameInfo.PlateAppearance</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>打数</dt>
+                                        <dd class="bold">@item.HittingStats6thGameInfo.AtBat</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>安打</dt>
+                                        <dd class="bold">@item.HittingStats6thGameInfo.Hit</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>本塁打</dt>
+                                        <dd class="bold">@item.HittingStats6thGameInfo.Homerun</dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <dl class="feed_row">
+                                        <dt>打点</dt>
+                                        <dd class="bold">@item.HittingStats6thGameInfo.RunsBattingIn</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>得点</dt>
+                                        <dd class="bold">@item.HittingStats6thGameInfo.Run</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>四球</dt>
+                                        <dd class="bold">@item.HittingStats6thGameInfo.BaseOnBall</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>死球</dt>
+                                        <dd class="bold">@item.HittingStats6thGameInfo.HitByPitch</dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <dl class="feed_row_last">
+                                        <dt>打席結果</dt>
+                                        <dd>@battingResults</dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                    </div>
+                    </div>
+            </div>
+        }
+    }
+    <div class="space"> </div>
+    @if (Model != null && Model.HittingStatsConditionStandingList != null)
+    {
+        if (Model.HittingStatsConditionStandingList.Any())
+        {
+            var index = 0;
+            var indexChild = 0;
+            var firstRecord = Model.HittingStatsConditionStandingList.OrderBy(m => m.HittingStatsTeamDifferenceInfo.TeamsOpponentCD).FirstOrDefault();
+            var classTab = string.Empty;
+            <div class="feed_content">
+                <h4 class="mem_title01">@ViewBag.LeagueName</h4>
+                <ul class="feed-name">
+                    @foreach (var item in Model.HittingStatsConditionStandingList.OrderBy(m => m.HittingStatsTeamDifferenceInfo.TeamsOpponentCD))
+                    {
+                        if (item.HittingStatsTeamDifferenceInfo.TeamsOpponentCD.Equals(firstRecord.HittingStatsTeamDifferenceInfo.TeamsOpponentCD))
+                        {
+                            classTab = "active";
+                        }
+                        else
+                        {
+                            classTab = "";
+                        }
+                        index++;
+                        <li class="@classTab bold"><a href="@string.Concat("#feedtab",index)"><img src="@Url.Content(@item.TeamIcon)" alt="">@string.Concat(Constants.TEAMVS + "." + @item.HittingStatsTeamDifferenceInfo.ShortNameTeamsOpponent)</a></li>
+                    }
+                </ul>
+                
+                @foreach (var item in Model.HittingStatsConditionStandingList.OrderBy(m => m.HittingStatsTeamDifferenceInfo.TeamsOpponentCD))
+                {
+                    indexChild++;
+                    <div class="feedtab-contain" id="@string.Concat("feedtab", indexChild)">
+                        <ul>                            
+                            <li>
+                                <dl class="feed_row">
+                                    <dt>打率</dt>
+                                    <dd class="bold">@item.HittingStatsTeamDifferenceInfo.BattingAverage</dd>
+                                </dl>
+                                <dl class="feed_row">
+                                    <dt>打数</dt>
+                                    <dd class="bold">@item.HittingStatsTeamDifferenceInfo.AtBat</dd>
+                                </dl>
+                                <dl class="feed_row">
+                                    <dt>完投安打</dt>
+                                    <dd class="bold">@item.HittingStatsTeamDifferenceInfo.Hit</dd>
+                                </dl>
+                                <dl class="feed_row">
+                                    <dt>本塁打</dt>
+                                    <dd class="bold">@item.HittingStatsTeamDifferenceInfo.Homerun</dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl class="feed_row">
+                                    <dt>打点</dt>
+                                    <dd class="bold">@item.HittingStatsTeamDifferenceInfo.RunsBattingIn</dd>
+                                </dl>
+                                <dl class="feed_row">
+                                    <dt>三振</dt>
+                                    <dd class="bold">@item.HittingStatsTeamDifferenceInfo.StrikeOut</dd>
+                                </dl>
+                                <dl class="feed_row">
+                                    <dt>四球</dt>
+                                    <dd class="bold">@item.HittingStatsTeamDifferenceInfo.BaseOnBall</dd>
+                                </dl>
+                                <dl class="feed_row">
+                                    <dt>死球</dt>
+                                    <dd class="bold">@item.HittingStatsTeamDifferenceInfo.HitByPitch</dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </div>
+                }
+            </div>
+           
+        }
+    }
+    <div class="space"> </div>
+    <!--Pitching 3 Year Info-->
+    @if (Model != null && Model.HittingStats3YearsInfoList != null)
+    {
+        if (Model.HittingStats3YearsInfoList.Any())
+        {
+            <div class="feed_content">
+                <h4 class="mem_title01">過去3年間の成績</h4>
+            </div>
+            <div class="feed_slider cslide-slides-master" id="cslide-slides-int3">
+                <div class="cslide-prev-next" style="display: block;">
+                    <span class="cslide-prev cslide-disabled"> </span>
+                    <span class="cslide-next"> </span>
+                </div>
+                <div class="cslide-slides-container">
+                    @foreach (var item in Model.HittingStats3YearsInfoList.OrderByDescending(m => m.Year))
+                    {
+                        <div class="cslide-slide">
+                            <ul>
+                                <li>
+                                    <h5 class="fs18">@item.Year</h5>
+                                </li>
+                                <li>
+                                    <dl class="feed_row">
+                                        <dt>チーム</dt>
+                                        <dd>@Html.ActionLink(@item.TeamS, "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamID }, null)</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>打率</dt>
+                                        <dd class="bold">@item.AVG</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>試合数</dt>
+                                        <dd class="bold">@item.G</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>打数</dt>
+                                        <dd class="bold">@item.AB</dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <dl class="feed_row">
+                                        <dt>安打</dt>
+                                        <dd class="bold">@item.H</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>本塁打</dt>
+                                        <dd class="bold">@item.HR</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>打点</dt>
+                                        <dd class="bold">@item.RBI</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>得点</dt>
+                                        <dd class="bold">@item.R</dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <dl class="feed_row">
+                                        <dt>三振数</dt>
+                                        <dd class="bold">@item.SO</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>四球数</dt>
+                                        <dd class="bold">@item.BB</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>死球数</dt>
+                                        <dd class="bold">@item.HBP</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>犠打数</dt>
+                                        <dd class="bold">@item.SH</dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    <dl class="feed_row">
+                                        <dt>犠飛数</dt>
+                                        <dd class="bold">@item.SF</dd>
+                                    </dl>
+                                    <dl class="feed_row">
+                                        <dt>盗塁数</dt>
+                                        <dd class="bold">@item.SB</dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </div>
+                     }
+                </div>
+                </div>
+        }
+    }
+    <div class="space20"> </div>
+    @if (Model.TeamPostedInfoList != null && Model.TeamPostedInfoList.Any())
+    {
+        <div class="cat_stitle">
+            <h3>@ViewBag.TeamName 投稿記事</h3>
+            <p><a href="/user_article/1/sport/">投稿記事をもっと読む</a></p>
+        </div>
+        <ul class="evt_list01">
+            @foreach (var post in Model.TeamPostedInfoList.Take(3))
+            {
+                string postContent = string.Format("{0}&nbsp;&nbsp;&nbsp;{1}投稿", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                <li>
+					<a href="/user/@post.MemberId/"><img src="@post.ProfileImg" alt="icon" /></a>
+					<a class="bold" href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a>
+                    <br />
+					@Html.Raw(postContent)
+                </li>
+            }
+        </ul>
+    }
+    <div class="space20"> </div>
+    @Html.Action("ShowNpbRecentNews", "NpbRightContent", new { area = "Npb", type = @ViewBag.Name, teamID = @ViewBag.TeamID })
+</div>
+
+<!--Right Content-->
+@section NpbPage{
+    <div class="cat_stitle">
+    <h3>順位表</h3>
+    <p>@Html.ActionLink("一覧で見る", "Index", "NpbOrder", new { area = "Npb" }, null)</p>
+</div>
+<div id="npbTop3Ranking">
+    @Html.Action("ShowTopNRanking", "NpbRightContent", new { area = "Npb" })
+</div>
+}

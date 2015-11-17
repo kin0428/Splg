@@ -1,0 +1,99 @@
+﻿@model Splg.Areas.Npb.Models.ViewModel.NpbTeamInfoConfrontationResultViewModel
+@using Splg;
+@using Splg.Areas.Npb.Models.ViewModel.InfosModel;
+@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: _NpbTeamInfoConfrontationResult.cshtml
+    // Device       : Mobile
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-03-19
+    // Html No      : 8-5-3
+    NpbTeamInfoConfrontationResultInfos teamsOpponent = new NpbTeamInfoConfrontationResultInfos();
+    if (Model.TeamsOpponent != null)
+    {
+        teamsOpponent = Model.TeamsOpponent;
+        <h3 class="subtitle2">@teamsOpponent.ShortNameTeam <span class="fs8">との対戦成績</span></h3>
+    }
+}  
+@*----Row 1: TeamStatsCardDifferenceInfos----*@     
+@if (Model.TeamStatsCardDifferenceInfos != null && Model.TeamStatsCardDifferenceInfos.Any())
+{   
+    <section class="block_2 clear">
+        @foreach (var item in Model.TeamStatsCardDifferenceInfos)
+        {
+            decimal battingValue = 0;
+            decimal earnedValue = 0;
+        <table cellpadding="0" cellspacing="0" summary="tbl" class="team-tbl">
+            <tr>
+                <th>試合数</th>
+                <td>@item.Game</td>
+            </tr>
+            <tr>
+                <th>勝利</th>
+                <td>@item.Win</td>
+            </tr>
+            <tr>
+                <th>敗戦</th>
+                <td>@item.Lose</td>
+            </tr>
+            <tr>
+                <th>引分</th>
+                <td>@item.Draw</td>
+            </tr>
+            <tr>
+                <th>得点</th>
+                <td>@item.Run</td>
+            </tr>
+            <tr>
+                <th>失点</th>
+                <td>@item.PointLost</td>
+            </tr>
+            <tr>
+                <th>安打</th>
+                <td>@item.Hit</td>
+            </tr>
+            <tr>
+                <th>本塁打</th>
+                <td>@item.Homerun</td>
+            </tr>
+            <tr>
+                <th>三振</th>
+                <td>@item.StrikeOut</td>
+            </tr>
+            <tr>
+                <th>四球</th>
+                <td>@item.BaseOnBall</td>
+            </tr>
+            <tr>
+                <th>死球</th>
+                <td>@item.HitByPitch</td>
+            </tr>
+            <tr>
+                <th>併殺打</th>
+                <td>@item.DoublePlay</td>
+            </tr>
+            <tr>
+                <th>盗塁</th>
+                <td>@item.StolenBase</td>
+            </tr>
+            <tr>
+                <th>失策</th>
+                <td>@item.Error</td>
+            </tr>
+            <tr>
+                <th>打率</th>
+                <td>@(decimal.TryParse(item.BattingAverage, out battingValue) == true ? Math.Round(battingValue, 3, MidpointRounding.ToEven).ToString(".000") : ".000")</td>
+            </tr>
+            <tr>
+                <th>防御率</th>
+                <td>@(decimal.TryParse(item.EarnedRunAverage, out earnedValue) == true ? Math.Round(earnedValue, 2, MidpointRounding.ToEven).ToString("0.00") : "0.00")</td>
+            </tr>
+        </table>
+        }
+    </section>
+}
+<div id="resultDefaultGameInfos">
+    @Html.Partial("~/Areas/Npb/Views/Shared/Mobile/_NpbTeamInfoResultGameInfos.cshtml", Model)
+</div>
+
+      

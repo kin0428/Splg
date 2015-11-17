@@ -1,0 +1,61 @@
+﻿@model Splg.Models.ViewModel.LoginViewModel
+@{
+    ViewBag.Title = "ログイン";
+    Layout = "~/Views/Shared/Mobile/_Layout.cshtml";
+}
+<section class="block_7">
+    <h3 class="sigtitle">スポログにユーザー登録(無料)する</h3>
+    <div class="sig-frm">
+        @using (Html.BeginForm("Login", "Member", FormMethod.Post, new { @id = "loginForm", role = "form" }))
+        {
+
+            @Html.AntiForgeryToken()
+            <p style="text-align:center">
+                @Html.ValidationMessageFor(model => model.ErrorLogin, String.Empty, new { @class = "red" })
+            </p>
+            <dl>
+                <dt>メールアドレス</dt>
+                <dd>
+                    @Html.TextBoxFor(model => model.Email, new { @class = "mem470", autofocus = "autofocus", @id = "emailAddr" })
+                    @Html.ValidationMessageFor(model => model.Email, String.Empty, new { @class = "red" })
+                </dd>
+                <dt>パスワード</dt>
+                <dd>
+                    @Html.PasswordFor(model => model.Password, new { @class = "mem470", @id = "password" })
+                    @Html.ValidationMessageFor(model => model.Password, String.Empty, new { @class = "red" })
+                </dd>
+            </dl>
+            <p class="sig-submit">
+                <input class="send_mail" type="submit" value="ログイン" />
+            </p>
+            <p class="sig-txt">
+                <a href="@Url.Action("ForgotPassword", "Member")">パスワードを忘れてしまった</a>
+            </p>
+            <ul class="sig-log">
+                <li>
+                    <a href="@Url.Action("FacebookLogin","Member")">
+                        <img src="~/Mobile/Content/img/tmp/log-icon01.png" alt="facebook">
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("TwitterLogin","Member")">
+                        <img src="~/Mobile/Content/img/tmp/log-icon02.png" alt="twitter">
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("GoogleLogin", "Member")">
+                        <img src="~/Mobile/Content/img/tmp/log-icon03.png" alt="gplus">
+                    </a>
+                </li>
+            </ul>
+            <p class="sig-submit02">
+                <a href="@Url.Action("Register","Member")">ユーザー登録(無料)</a>
+            </p>
+        }
+    </div>
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

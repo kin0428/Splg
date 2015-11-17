@@ -1,0 +1,36 @@
+﻿@using Splg.Services.Point;
+@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: SubMember.cshtml
+    // Device       :  PC
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-05-11
+
+    string lstPossesionPointStr = "";
+    if (Session["CurrentUser"] != null)
+    {
+        Splg.Models.ComEntities com = new Splg.Models.ComEntities();
+        PointInfoService pointInfoService = new PointInfoService(com);
+        var memberID = Convert.ToInt32(Session["CurrentUser"].ToString());
+        lstPossesionPointStr = pointInfoService.GetOnlinePointStr(memberID);
+    }    
+}
+
+<div class="submember" id="menu02">
+    <div>
+        <h4>現在の所持ポイント</h4>
+        <p><span class="fs18 bold" >@lstPossesionPointStr</span> pt</p>
+    </div>
+    <ul>
+        <li><a href="/mypage/">マイページ</a></li>
+        <li><a href="/mypage/expectedlist/">予想リスト</a></li>
+        <li><a href="/mypage/article/">投稿記事</a></li>
+        <li><a href="/mypage/group/">グループ</a></li>
+        <li><a href="/mypage/following/">フォロー</a></li>
+        <li><a href="/mypage/followers/">フォロワー</a></li>
+        <li><a href="/mypage/setting/">設定</a></li>
+        @*<li style="@bgStyle"><a href="/mypage/notice/">お知らせ <strong>@unreadNotice</strong></a></li>
+        <li><a href="/user_search/">ユーザー検索</a></li>*@
+        <li><a href="/logout">ログアウト</a></li>
+    </ul>
+</div>

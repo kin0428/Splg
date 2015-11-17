@@ -1,0 +1,31 @@
+﻿@{
+    // Developer	: Nojima
+    // Html No      : 3-7-1
+}
+@model Splg.Areas.MyPage.Models.ViewModel.MyPageSettingAddressViewModel
+@{
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.SETTING_ADDRESS;
+    Layout = "~/Views/Shared/Mobile/_MyPageLayout.cshtml";   
+}
+<script src="~/Areas/MyPage/Scripts/Mobile/3-7-1.js"></script>
+<script src="~/Scripts/Home.js"></script>
+
+
+@if (Model != null)
+{
+<section class="block_7">
+	<h3 class="sigtitle">メールアドレス変更</h3>						
+	<div class="sig-frm">
+		<dl>								
+			<dt>新しいメールアドレス</dt>
+			<dd><input type="email" value="" id="entry_mail"></dd>
+			<dt>パスワード</dt>
+			<dd><input type="password" value="" id="entry_password"></dd>
+		</dl>
+		<p class="sig-submit">
+            <a id="settingssendnewaddress">メールを送信</a>
+		</p>
+	</div>
+</section>
+
+}

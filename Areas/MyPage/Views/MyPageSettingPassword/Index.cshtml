@@ -1,0 +1,60 @@
+﻿@{
+    //Author : Nojima
+    //FileName : Index.cshtml (3-7-2)
+    //Created Date : 2015/04/12
+}
+
+@model Splg.Areas.MyPage.Models.ViewModel.MyPageSettingPasswordViewModel
+
+@{
+    ViewBag.Title = "設定　パスワード変更";
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.SETTING_PASSWORD;
+    Layout = "~/Views/Shared/_MyPageLayout.cshtml";
+}
+<script src="~/Scripts/jquery.shorten.1.0.js"></script>
+<script src="~/Scripts/splgCommon.js"></script>
+<script src="~/Areas/MyPage/Scripts/Views/3-7-2.js"></script>
+
+
+<div class="block_04">
+    <div class="block_04_7">
+        <h2 class="mytitle01">古いパスワードの確認</h2>
+        <table cellpadding="0" cellspacing="0" summary="mypage">
+            <col width="22%" />
+            <col width="78%" />
+            <tbody valign="top">
+                <tr>
+                    <th>古いパスワード</th>
+                    <td>
+                        <input class="ip460" type="password" id="expass" value="" />
+                        <p><a href="/forgotPassword">パスワードを忘れてしまった方</a></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2 class="mytitle01">新しいパスワードの確認</h2>
+        <table cellpadding="0" cellspacing="0" summary="mypage">
+            <col width="22%" />
+            <col width="78%" />
+            <tbody valign="top">
+                <tr>
+                    <th>新しいパスワード</th>
+                    <td><input class="ip460" type="password" id="npass" value="" /></td>
+                </tr>
+                <tr>
+                    <th>パスワード(確認)</th>
+                    <td>
+                        <input class="ip460" type="password" id="npass_confirm" value="" />
+                        <p>※パスワードは6字以上で入力してください</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th> </th>
+                    <td>
+                        <p class="board_link"><a id="settingssendnewpassword" href="#">パスワードを変更する</a></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

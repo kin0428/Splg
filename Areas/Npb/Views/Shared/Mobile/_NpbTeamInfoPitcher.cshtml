@@ -1,0 +1,43 @@
+﻿@using Splg;
+@using Splg.Areas.Npb.Models.ViewModel.InfosModel;
+@model Splg.Areas.Npb.Models.ViewModel.NpbTeamInfoPlayerViewModel
+@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: _NpbTeamInfoPitcher.cshtml
+    // Device       : Mobile
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-04-06
+    // Html No      : 8-5-4  
+}
+@Html.Partial("~/Areas/Npb/Views/Shared/Mobile/_NpbTeamInfoMenu.cshtml")
+
+<section class="block_2 clear">
+    <div class="clear">       
+        <p class="sub-text fs8"></p>
+        <h3 id="a01" class="subtitle3">投手</h3>
+    </div>
+    @if (Model != null && Model.TeamInfoPitchingInfos != null && Model.TeamInfoPitchingInfos.Any())
+{
+    <ul class="team-list">
+        @foreach (var item in Model.TeamInfoPitchingInfos)
+        {
+            decimal earnedValue = 0;
+            <li>
+                <p class="num fs15">@item.Num</p>
+                <div>
+                    <h4><a href="@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.TeamCD, playerID= @item.PlayerCD }, null)">@item.Name</a></h4>
+                    <ul class="jinfo">
+                        <li>防御率 <span class="fs15">@(decimal.TryParse(item.EarnedRunAverage, out earnedValue) == true ? Math.Round(earnedValue, 2, MidpointRounding.ToEven).ToString("0.00") : "-")</span></li>
+                        <li>試合数 <span class="fs15">@(item.PlayerCD == null ? "-" : item.Game.ToString())</span></li>
+                        <li>勝数 <span class="fs15">@(item.PlayerCD == null ? "-" : item.Win.ToString())</span></li>
+                        <li>負数 <span class="fs15">@(item.PlayerCD == null ? "-" : item.Lost.ToString())</span></li>
+                        <li>セーブ数 <span class="fs15">@(item.PlayerCD == null ? "-" : item.Save.ToString())</span></li>
+                        <li>投球回数 <span class="fs15">@(item.PlayerCD == null ? "-" : item.Display.ToString())</span></li>
+                    </ul>
+                </div>
+            </li>                       
+        }
+    </ul>
+}
+  @*  <p class="panel-link more_view"><a href="#">ランキングをもっと見る</a></p>*@
+ </section>

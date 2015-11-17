@@ -1,0 +1,2197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NpbModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="BatGTE">
+      <EntityTypeMapping TypeName="NpbModel.BatGTE">
+        <MappingFragment StoreEntitySet="BatGTE">
+          <ScalarProperty Name="BatGTEId" ColumnName="BatGTEId" />
+          <ScalarProperty Name="TextInfoGTEId" ColumnName="TextInfoGTEId" />
+          <ScalarProperty Name="No" ColumnName="No" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BatGTS">
+      <EntityTypeMapping TypeName="NpbModel.BatGTS">
+        <MappingFragment StoreEntitySet="BatGTS">
+          <ScalarProperty Name="BatGTSId" ColumnName="BatGTSId" />
+          <ScalarProperty Name="TextInfoGTSId" ColumnName="TextInfoGTSId" />
+          <ScalarProperty Name="No" ColumnName="No" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BattingAverageBest10">
+      <EntityTypeMapping TypeName="NpbModel.BattingAverageBest10">
+        <MappingFragment StoreEntitySet="BattingAverageBest10">
+          <ScalarProperty Name="BattingAverageBest10Id" ColumnName="BattingAverageBest10Id" />
+          <ScalarProperty Name="BattingAverageBest10HeaderId" ColumnName="BattingAverageBest10HeaderId" />
+          <ScalarProperty Name="Ranking" ColumnName="Ranking" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="TeamInitial" ColumnName="TeamInitial" />
+          <ScalarProperty Name="BattingAverage" ColumnName="BattingAverage" />
+          <ScalarProperty Name="Game" ColumnName="Game" />
+          <ScalarProperty Name="PlateAppearance" ColumnName="PlateAppearance" />
+          <ScalarProperty Name="AtBat" ColumnName="AtBat" />
+          <ScalarProperty Name="Run" ColumnName="Run" />
+          <ScalarProperty Name="Hit" ColumnName="Hit" />
+          <ScalarProperty Name="Double" ColumnName="Double" />
+          <ScalarProperty Name="Triple" ColumnName="Triple" />
+          <ScalarProperty Name="Homerun" ColumnName="Homerun" />
+          <ScalarProperty Name="Base" ColumnName="Base" />
+          <ScalarProperty Name="RunsBattingIn" ColumnName="RunsBattingIn" />
+          <ScalarProperty Name="WinningRunsBattedIn" ColumnName="WinningRunsBattedIn" />
+          <ScalarProperty Name="StrikeOut" ColumnName="StrikeOut" />
+          <ScalarProperty Name="BaseOnBall" ColumnName="BaseOnBall" />
+          <ScalarProperty Name="HitByPitch" ColumnName="HitByPitch" />
+          <ScalarProperty Name="SacrificeHit" ColumnName="SacrificeHit" />
+          <ScalarProperty Name="SacrificeFly" ColumnName="SacrificeFly" />
+          <ScalarProperty Name="StolenBase" ColumnName="StolenBase" />
+          <ScalarProperty Name="TGIDP" ColumnName="TGIDP" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+          <ScalarProperty Name="TBAWRIS" ColumnName="TBAWRIS" />
+          <ScalarProperty Name="OnBase" ColumnName="OnBase" />
+          <ScalarProperty Name="Slugging" ColumnName="Slugging" />
+          <ScalarProperty Name="Ops" ColumnName="Ops" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BattingAverageBest10Header">
+      <EntityTypeMapping TypeName="NpbModel.BattingAverageBest10Header">
+        <MappingFragment StoreEntitySet="BattingAverageBest10Header">
+          <ScalarProperty Name="BattingAverageBest10HeaderId" ColumnName="BattingAverageBest10HeaderId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="League" ColumnName="League" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CatcherGL">
+      <EntityTypeMapping TypeName="NpbModel.CatcherGL">
+        <MappingFragment StoreEntitySet="CatcherGL">
+          <ScalarProperty Name="CatcherGLId" ColumnName="CatcherGLId" />
+          <ScalarProperty Name="ReliefInfoGLId" ColumnName="ReliefInfoGLId" />
+          <ScalarProperty Name="No" ColumnName="No" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="NameS" ColumnName="NameS" />
+          <ScalarProperty Name="NameL" ColumnName="NameL" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamS" ColumnName="TeamS" />
+          <ScalarProperty Name="TeamES" ColumnName="TeamES" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommentGameCO">
+      <EntityTypeMapping TypeName="NpbModel.CommentGameCO">
+        <MappingFragment StoreEntitySet="CommentGameCO">
+          <ScalarProperty Name="CommentGameCOId" ColumnName="CommentGameCOId" />
+          <ScalarProperty Name="GameDate" ColumnName="GameDate" />
+          <ScalarProperty Name="CommentF" ColumnName="CommentF" />
+          <ScalarProperty Name="MEPF" ColumnName="MEPF" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DefenceLocationMST">
+      <EntityTypeMapping TypeName="NpbModel.DefenceLocationMST">
+        <MappingFragment StoreEntitySet="DefenceLocationMST">
+          <ScalarProperty Name="DefenceLocationID" ColumnName="DefenceLocationID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NameS" ColumnName="NameS" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetailsGL">
+      <EntityTypeMapping TypeName="NpbModel.DetailsGL">
+        <MappingFragment StoreEntitySet="DetailsGL">
+          <ScalarProperty Name="DetailsGLId" ColumnName="DetailsGLId" />
+          <ScalarProperty Name="PlayerGLId" ColumnName="PlayerGLId" />
+          <ScalarProperty Name="TotalC" ColumnName="TotalC" />
+          <ScalarProperty Name="Run" ColumnName="Run" />
+          <ScalarProperty Name="Inn" ColumnName="Inn" />
+          <ScalarProperty Name="TB" ColumnName="TB" />
+          <ScalarProperty Name="RHR" ColumnName="RHR" />
+          <ScalarProperty Name="Direction" ColumnName="Direction" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Directory">
+      <EntityTypeMapping TypeName="NpbModel.Directory">
+        <MappingFragment StoreEntitySet="Directory">
+          <ScalarProperty Name="DirectoryId" ColumnName="DirectoryId" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+          <ScalarProperty Name="TeamNameS" ColumnName="TeamNameS" />
+          <ScalarProperty Name="TeamNameE" ColumnName="TeamNameE" />
+          <ScalarProperty Name="TeamNameES" ColumnName="TeamNameES" />
+          <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DSMEPInfoCO">
+      <EntityTypeMapping TypeName="NpbModel.DSMEPInfoCO">
+        <MappingFragment StoreEntitySet="DSMEPInfoCO">
+          <ScalarProperty Name="DSMEPInfoCOId" ColumnName="DSMEPInfoCOId" />
+          <ScalarProperty Name="GameInfoCOId" ColumnName="GameInfoCOId" />
+          <ScalarProperty Name="PlayerID" ColumnName="PlayerID" />
+          <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
+          <ScalarProperty Name="PlayerNameS" ColumnName="PlayerNameS" />
+          <ScalarProperty Name="BackNumber" ColumnName="BackNumber" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+          <ScalarProperty Name="TeamNameS" ColumnName="TeamNameS" />
+          <ScalarProperty Name="MEPReason" ColumnName="MEPReason" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EarnedRunAverageBest10">
+      <EntityTypeMapping TypeName="NpbModel.EarnedRunAverageBest10">
+        <MappingFragment StoreEntitySet="EarnedRunAverageBest10">
+          <ScalarProperty Name="EarnedRunAverageBest10Id" ColumnName="EarnedRunAverageBest10Id" />
+          <ScalarProperty Name="EarnedRunAverageBest10HeaderId" ColumnName="EarnedRunAverageBest10HeaderId" />
+          <ScalarProperty Name="Ranking" ColumnName="Ranking" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="TeamInitial" ColumnName="TeamInitial" />
+          <ScalarProperty Name="EarnedRunAverage" ColumnName="EarnedRunAverage" />
+          <ScalarProperty Name="Game" ColumnName="Game" />
+          <ScalarProperty Name="CompleteGame" ColumnName="CompleteGame" />
+          <ScalarProperty Name="Shutout" ColumnName="Shutout" />
+          <ScalarProperty Name="NoBaseOnBall" ColumnName="NoBaseOnBall" />
+          <ScalarProperty Name="Win" ColumnName="Win" />
+          <ScalarProperty Name="Lost" ColumnName="Lost" />
+          <ScalarProperty Name="Save" ColumnName="Save" />
+          <ScalarProperty Name="Hold" ColumnName="Hold" />
+          <ScalarProperty Name="HoldPoint" ColumnName="HoldPoint" />
+          <ScalarProperty Name="Batmen" ColumnName="Batmen" />
+          <ScalarProperty Name="InningsPitched" ColumnName="InningsPitched" />
+          <ScalarProperty Name="InningsPitched3rd" ColumnName="InningsPitched3rd" />
+          <ScalarProperty Name="Hit" ColumnName="Hit" />
+          <ScalarProperty Name="HomeRunHitAgainst" ColumnName="HomeRunHitAgainst" />
+          <ScalarProperty Name="Strikeout" ColumnName="Strikeout" />
+          <ScalarProperty Name="BasesOnBall" ColumnName="BasesOnBall" />
+          <ScalarProperty Name="HitBastsmen" ColumnName="HitBastsmen" />
+          <ScalarProperty Name="WildPitch" ColumnName="WildPitch" />
+          <ScalarProperty Name="Balk" ColumnName="Balk" />
+          <ScalarProperty Name="WinningPercentage" ColumnName="WinningPercentage" />
+          <ScalarProperty Name="StrikeoutPercentage" ColumnName="StrikeoutPercentage" />
+          <ScalarProperty Name="PointLost" ColumnName="PointLost" />
+          <ScalarProperty Name="EarnedRun" ColumnName="EarnedRun" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EarnedRunAverageBest10Header">
+      <EntityTypeMapping TypeName="NpbModel.EarnedRunAverageBest10Header">
+        <MappingFragment StoreEntitySet="EarnedRunAverageBest10Header">
+          <ScalarProperty Name="EarnedRunAverageBest10HeaderId" ColumnName="EarnedRunAverageBest10HeaderId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="League" ColumnName="League" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExhibitionGameStats">
+      <EntityTypeMapping TypeName="NpbModel.ExhibitionGameStats">
+        <MappingFragment StoreEntitySet="ExhibitionGameStats">
+          <ScalarProperty Name="ExhibitionGameStatsId" ColumnName="ExhibitionGameStatsId" />
+          <ScalarProperty Name="ExhibitionGameStatsHeaderId" ColumnName="ExhibitionGameStatsHeaderId" />
+          <ScalarProperty Name="Ranking" ColumnName="Ranking" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="Game" ColumnName="Game" />
+          <ScalarProperty Name="Win" ColumnName="Win" />
+          <ScalarProperty Name="Lose" ColumnName="Lose" />
+          <ScalarProperty Name="Draw" ColumnName="Draw" />
+          <ScalarProperty Name="WinningPercentage" ColumnName="WinningPercentage" />
+          <ScalarProperty Name="GameBehind" ColumnName="GameBehind" />
+          <ScalarProperty Name="Run" ColumnName="Run" />
+          <ScalarProperty Name="PointLost" ColumnName="PointLost" />
+          <ScalarProperty Name="RankShiftF" ColumnName="RankShiftF" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExhibitionGameStatsHeader">
+      <EntityTypeMapping TypeName="NpbModel.ExhibitionGameStatsHeader">
+        <MappingFragment StoreEntitySet="ExhibitionGameStatsHeader">
+          <ScalarProperty Name="ExhibitionGameStatsHeaderId" ColumnName="ExhibitionGameStatsHeaderId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="League" ColumnName="League" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GameClassMST">
+      <EntityTypeMapping TypeName="NpbModel.GameClassMST">
+        <MappingFragment StoreEntitySet="GameClassMST">
+          <ScalarProperty Name="GameClassMSTId" ColumnName="GameClassMSTId" />
+          <ScalarProperty Name="GameClassCD" ColumnName="GameClassCD" />
+          <ScalarProperty Name="GameClass" ColumnName="GameClass" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GameEndInfoGL">
+      <EntityTypeMapping TypeName="NpbModel.GameEndInfoGL">
+        <MappingFragment StoreEntitySet="GameEndInfoGL">
+          <ScalarProperty Name="GameEndInfoGLId" ColumnName="GameEndInfoGLId" />
+          <ScalarProperty Name="GameLiveGLId" ColumnName="GameLiveGLId" />
+          <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GameEndInfoGTE">
+      <EntityTypeMapping TypeName="NpbModel.GameEndInfoGTE">
+        <MappingFragment StoreEntitySet="GameEndInfoGTE">
+          <ScalarProperty Name="GameEndInfoGTEId" ColumnName="GameEndInfoGTEId" />
+          <ScalarProperty Name="GameInfoGTEId" ColumnName="GameInfoGTEId" />
+          <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="WinPitcher" ColumnName="WinPitcher" />
+          <ScalarProperty Name="LosePitcher" ColumnName="LosePitcher" />
+          <ScalarProperty Name="SavePitcher" ColumnName="SavePitcher" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GameEndInfoGTS">
+      <EntityTypeMapping TypeName="NpbModel.GameEndInfoGTS">
+        <MappingFragment StoreEntitySet="GameEndInfoGTS">
+          <ScalarProperty Name="GameEndInfoGTSId" ColumnName="GameEndInfoGTSId" />
+          <ScalarProperty Name="GameInfoGTSId" ColumnName="GameInfoGTSId" />
+          <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="WinPitcher" ColumnName="WinPitcher" />
+          <ScalarProperty Name="LosePitcher" ColumnName="LosePitcher" />
+          <ScalarProperty Name="SavePitcher" ColumnName="SavePitcher" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GameInfoCO">
+      <EntityTypeMapping TypeName="NpbModel.GameInfoCO">
+        <MappingFragment StoreEntitySet="GameInfoCO">
+          <ScalarProperty Name="GameInfoCOId" ColumnName="GameInfoCOId" />
+          <ScalarProperty Name="CommentGameCOId" ColumnName="CommentGameCOId" />
+          <ScalarProperty Name="GameID" ColumnName="GameID" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameKindName" ColumnName="GameKindName" />
+          <ScalarProperty Name="StadiumName" ColumnName="StadiumName" />
+          <ScalarProperty Name="StadiumNameS" ColumnName="StadiumNameS" />
+          <ScalarProperty Name="Round" ColumnName="Round" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="Atendance" ColumnName="Atendance" />
+          <ScalarProperty Name="GameSection" ColumnName="GameSection" />
+          <ScalarProperty Name="Inning" ColumnName="Inning" />
+          <ScalarProperty Name="TB" ColumnName="TB" />
+          <ScalarProperty Name="Xflag" ColumnName="Xflag" />
+          <ScalarProperty Name="GameEndState" ColumnName="GameEndState" />
+          <ScalarProperty Name="CompleteF" ColumnName="CompleteF" />
+          <ScalarProperty Name="GameComment" ColumnName="GameComment" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GameInfoGL">
+      <EntityTypeMapping TypeName="NpbModel.GameInfoGL">
+        <MappingFragment StoreEntitySet="GameInfoGL">
+          <ScalarProperty Name="GameInfoGLId" ColumnName="GameInfoGLId" />
+          <ScalarProperty Name="GameLiveGLId" ColumnName="GameLiveGLId" />
+          <ScalarProperty Name="GameDate" ColumnName="GameDate" />
+          <ScalarProperty Name="GameTime" ColumnName="GameTime" />
+          <ScalarProperty Name="GameTypeID" ColumnName="GameTypeID" />
+          <ScalarProperty Name="GameTypeName" ColumnName="GameTypeName" />
+          <ScalarProperty Name="StadiumID" ColumnName="StadiumID" />
+          <ScalarProperty Name="StadiumName" ColumnName="StadiumName" />
+          <ScalarProperty Name="Round" ColumnName="Round" />
+          <ScalarProperty Name="DoubleHeaderF" ColumnName="DoubleHeaderF" />
+          <ScalarProperty Name="DayNight" ColumnName="DayNight" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="Attendance" ColumnName="Attendance" />
+          <ScalarProperty Name="GameStateID" ColumnName="GameStateID" />
+          <ScalarProperty Name="GameStateName" ColumnName="GameStateName" />
+          <ScalarProperty Name="UmpireChief" ColumnName="UmpireChief" />
+          <ScalarProperty Name="UmpireFirst" ColumnName="UmpireFirst" />
+          <ScalarProperty Name="UmpireSecond" ColumnName="UmpireSecond" />
+          <ScalarProperty Name="UmpireThird" ColumnName="UmpireThird" />
+          <ScalarProperty Name="UmpireLeft" ColumnName="UmpireLeft" />
+          <ScalarProperty Name="UmpireRight" ColumnName="UmpireRight" />
+          <ScalarProperty Name="VsWinC" ColumnName="VsWinC" />
+          <ScalarProperty Name="VsLoseC" ColumnName="VsLoseC" />
+          <ScalarProperty Name="VsDrawC" ColumnName="VsDrawC" />
+          <ScalarProperty Name="Inning" ColumnName="Inning" />
+          <ScalarProperty Name="TB" ColumnName="TB" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GameInfoGTE">
+      <EntityTypeMapping TypeName="NpbModel.GameInfoGTE">
+        <MappingFragment StoreEntitySet="GameInfoGTE">
+          <ScalarProperty Name="GameInfoGTEId" ColumnName="GameInfoGTEId" />
+          <ScalarProperty Name="GameID" ColumnName="GameID" />
+          <ScalarProperty Name="GameDate" ColumnName="GameDate" />
+          <ScalarProperty Name="GameTime" ColumnName="GameTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="Round" ColumnName="Round" />
+          <ScalarProperty Name="GameKindID" ColumnName="GameKindID" />
+          <ScalarProperty Name="GameKindName" ColumnName="GameKindName" />
+          <ScalarProperty Name="StadiumID" ColumnName="StadiumID" />
+          <ScalarProperty Name="StadiumName" ColumnName="StadiumName" />
+          <ScalarProperty Name="DoubleHeaderF" ColumnName="DoubleHeaderF" />
+          <ScalarProperty Name="Attendance" ColumnName="Attendance" />
+          <ScalarProperty Name="UmpireChief" ColumnName="UmpireChief" />
+          <ScalarProperty Name="UmpireFirst" ColumnName="UmpireFirst" />
+          <ScalarProperty Name="UmpireSecond" ColumnName="UmpireSecond" />
+          <ScalarProperty Name="UmpireThird" ColumnName="UmpireThird" />
+          <ScalarProperty Name="UmpireLeft" ColumnName="UmpireLeft" />
+          <ScalarProperty Name="UmpireRight" ColumnName="UmpireRight" />
+          <ScalarProperty Name="GameStateID" ColumnName="GameStateID" />
+          <ScalarProperty Name="Inning" ColumnName="Inning" />
+          <ScalarProperty Name="TB" ColumnName="TB" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GameInfoGTS">
+      <EntityTypeMapping TypeName="NpbModel.GameInfoGTS">
+        <MappingFragment StoreEntitySet="GameInfoGTS">
+          <ScalarProperty Name="GameInfoGTSId" ColumnName="GameInfoGTSId" />
+          <ScalarProperty Name="GameID" ColumnName="GameID" />
+          <ScalarProperty Name="GameDate" ColumnName="GameDate" />
+          <ScalarProperty Name="GameTime" ColumnName="GameTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="Round" ColumnName="Round" />
+          <ScalarProperty Name="GameKindID" ColumnName="GameKindID" />
+          <ScalarProperty Name="GameKindName" ColumnName="GameKindName" />
+          <ScalarProperty Name="StadiumID" ColumnName="StadiumID" />
+          <ScalarProperty Name="StadiumName" ColumnName="StadiumName" />
+          <ScalarProperty Name="DoubleHeaderF" ColumnName="DoubleHeaderF" />
+          <ScalarProperty Name="Attendance" ColumnName="Attendance" />
+          <ScalarProperty Name="UmpireChief" ColumnName="UmpireChief" />
+          <ScalarProperty Name="UmpireFirst" ColumnName="UmpireFirst" />
+          <ScalarProperty Name="UmpireSecond" ColumnName="UmpireSecond" />
+          <ScalarProperty Name="UmpireThird" ColumnName="UmpireThird" />
+          <ScalarProperty Name="UmpireLeft" ColumnName="UmpireLeft" />
+          <ScalarProperty Name="UmpireRight" ColumnName="UmpireRight" />
+          <ScalarProperty Name="GameStateID" ColumnName="GameStateID" />
+          <ScalarProperty Name="Inning" ColumnName="Inning" />
+          <ScalarProperty Name="TB" ColumnName="TB" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GameInfoPSP">
+      <EntityTypeMapping TypeName="NpbModel.GameInfoPSP">
+        <MappingFragment StoreEntitySet="GameInfoPSP">
+          <ScalarProperty Name="GameInfoPSPId" ColumnName="GameInfoPSPId" />
+          <ScalarProperty Name="GameID" ColumnName="GameID" />
+          <ScalarProperty Name="GameKindID" ColumnName="GameKindID" />
+          <ScalarProperty Name="GameKindName" ColumnName="GameKindName" />
+          <ScalarProperty Name="GameDate" ColumnName="GameDate" />
+          <ScalarProperty Name="WeekDay" ColumnName="WeekDay" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="StadiumID" ColumnName="StadiumID" />
+          <ScalarProperty Name="StadiumName" ColumnName="StadiumName" />
+          <ScalarProperty Name="Round" ColumnName="Round" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GameInfoRGI">
+      <EntityTypeMapping TypeName="NpbModel.GameInfoRGI">
+        <MappingFragment StoreEntitySet="GameInfoRGI">
+          <ScalarProperty Name="GameInfoRGIId" ColumnName="GameInfoRGIId" />
+          <ScalarProperty Name="RealGameInfoRootRGIId" ColumnName="RealGameInfoRootRGIId" />
+          <ScalarProperty Name="GameID" ColumnName="GameID" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="ShortNameHomeTeam" ColumnName="ShortNameHomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="ShortNameVisitorTeam" ColumnName="ShortNameVisitorTeam" />
+          <ScalarProperty Name="StadiumCD" ColumnName="StadiumCD" />
+          <ScalarProperty Name="ShortNameStadium" ColumnName="ShortNameStadium" />
+          <ScalarProperty Name="Round" ColumnName="Round" />
+          <ScalarProperty Name="Win" ColumnName="Win" />
+          <ScalarProperty Name="Lose" ColumnName="Lose" />
+          <ScalarProperty Name="Draw" ColumnName="Draw" />
+          <ScalarProperty Name="Inning" ColumnName="Inning" />
+          <ScalarProperty Name="BottomTop" ColumnName="BottomTop" />
+          <ScalarProperty Name="GameSetSituationCD" ColumnName="GameSetSituationCD" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GameInfoSS">
+      <EntityTypeMapping TypeName="NpbModel.GameInfoSS">
+        <MappingFragment StoreEntitySet="GameInfoSS">
+          <ScalarProperty Name="GameInfoSSId" ColumnName="GameInfoSSId" />
+          <ScalarProperty Name="MonthGroupSSId" ColumnName="MonthGroupSSId" />
+          <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="GameDate" ColumnName="GameDate" />
+          <ScalarProperty Name="Week" ColumnName="Week" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="StadiumID" ColumnName="StadiumID" />
+          <ScalarProperty Name="StadiumName" ColumnName="StadiumName" />
+          <ScalarProperty Name="StadiumNameS" ColumnName="StadiumNameS" />
+          <ScalarProperty Name="Round" ColumnName="Round" />
+          <ScalarProperty Name="DoubleHeaderF" ColumnName="DoubleHeaderF" />
+          <ScalarProperty Name="DayNight" ColumnName="DayNight" />
+          <ScalarProperty Name="GamesDateNo" ColumnName="GamesDateNo" />
+          <ScalarProperty Name="GamesSeqNo" ColumnName="GamesSeqNo" />
+          <ScalarProperty Name="GameName" ColumnName="GameName" />
+          <ScalarProperty Name="GameState" ColumnName="GameState" />
+          <ScalarProperty Name="GameResult" ColumnName="GameResult" />
+          <ScalarProperty Name="HomeScore" ColumnName="HomeScore" />
+          <ScalarProperty Name="VisitorScore" ColumnName="VisitorScore" />
+          <ScalarProperty Name="HomeTeamID" ColumnName="HomeTeamID" />
+          <ScalarProperty Name="HomeTeamName" ColumnName="HomeTeamName" />
+          <ScalarProperty Name="HomeTeamNameS" ColumnName="HomeTeamNameS" />
+          <ScalarProperty Name="HomeTeamNameE" ColumnName="HomeTeamNameE" />
+          <ScalarProperty Name="HomeTeamNameES" ColumnName="HomeTeamNameES" />
+          <ScalarProperty Name="HomeTeamInitial" ColumnName="HomeTeamInitial" />
+          <ScalarProperty Name="VisitorTeamID" ColumnName="VisitorTeamID" />
+          <ScalarProperty Name="VisitorTeamName" ColumnName="VisitorTeamName" />
+          <ScalarProperty Name="VisitorTeamNameS" ColumnName="VisitorTeamNameS" />
+          <ScalarProperty Name="VisitorTeamNameE" ColumnName="VisitorTeamNameE" />
+          <ScalarProperty Name="VisitorTeamNameES" ColumnName="VisitorTeamNameES" />
+          <ScalarProperty Name="VisitorTeamInitial" ColumnName="VisitorTeamInitial" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GameInfoSSN">
+      <EntityTypeMapping TypeName="NpbModel.GameInfoSSN">
+        <MappingFragment StoreEntitySet="GameInfoSSN">
+          <ScalarProperty Name="GameInfoSSNId" ColumnName="GameInfoSSNId" />
+          <ScalarProperty Name="MonthGroupSSNId" ColumnName="MonthGroupSSNId" />
+          <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="GameKindID" ColumnName="GameKindID" />
+          <ScalarProperty Name="DateJPN" ColumnName="DateJPN" />
+          <ScalarProperty Name="TimeJPN" ColumnName="TimeJPN" />
+          <ScalarProperty Name="WeekDayJPN" ColumnName="WeekDayJPN" />
+          <ScalarProperty Name="StadiumID" ColumnName="StadiumID" />
+          <ScalarProperty Name="StadiumName" ColumnName="StadiumName" />
+          <ScalarProperty Name="Round" ColumnName="Round" />
+          <ScalarProperty Name="DhF" ColumnName="DhF" />
+          <ScalarProperty Name="GameState" ColumnName="GameState" />
+          <ScalarProperty Name="GameResult" ColumnName="GameResult" />
+          <ScalarProperty Name="HScore" ColumnName="HScore" />
+          <ScalarProperty Name="VScore" ColumnName="VScore" />
+          <ScalarProperty Name="HTeamID" ColumnName="HTeamID" />
+          <ScalarProperty Name="HTeamNameS" ColumnName="HTeamNameS" />
+          <ScalarProperty Name="VTeamID" ColumnName="VTeamID" />
+          <ScalarProperty Name="VTeamNameS" ColumnName="VTeamNameS" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GameLiveGL">
+      <EntityTypeMapping TypeName="NpbModel.GameLiveGL">
+        <MappingFragment StoreEntitySet="GameLiveGL">
+          <ScalarProperty Name="GameLiveGLId" ColumnName="GameLiveGLId" />
+          <ScalarProperty Name="GameID" ColumnName="GameID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GameOrderGO">
+      <EntityTypeMapping TypeName="NpbModel.GameOrderGO">
+        <MappingFragment StoreEntitySet="GameOrderGO">
+          <ScalarProperty Name="GameOrderGOId" ColumnName="GameOrderGOId" />
+          <ScalarProperty Name="GameID" ColumnName="GameID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GameResultInfoRGI">
+      <EntityTypeMapping TypeName="NpbModel.GameResultInfoRGI">
+        <MappingFragment StoreEntitySet="GameResultInfoRGI">
+          <ScalarProperty Name="GameResultInfoRGIId" ColumnName="GameResultInfoRGIId" />
+          <ScalarProperty Name="RealGameInfoRootRGIId" ColumnName="RealGameInfoRootRGIId" />
+          <ScalarProperty Name="WinTeamCD" ColumnName="WinTeamCD" />
+          <ScalarProperty Name="ShortNameWinTeam" ColumnName="ShortNameWinTeam" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GWRBIPlayerGL">
+      <EntityTypeMapping TypeName="NpbModel.GWRBIPlayerGL">
+        <MappingFragment StoreEntitySet="GWRBIPlayerGL">
+          <ScalarProperty Name="GWRBIPlayerGLId" ColumnName="GWRBIPlayerGLId" />
+          <ScalarProperty Name="GameEndInfoGLId" ColumnName="GameEndInfoGLId" />
+          <ScalarProperty Name="PlayerID" ColumnName="PlayerID" />
+          <ScalarProperty Name="BackNumber" ColumnName="BackNumber" />
+          <ScalarProperty Name="PlayerNameS" ColumnName="PlayerNameS" />
+          <ScalarProperty Name="PlayerNameL" ColumnName="PlayerNameL" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamS" ColumnName="TeamS" />
+          <ScalarProperty Name="TeamES" ColumnName="TeamES" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GWRBIRGI">
+      <EntityTypeMapping TypeName="NpbModel.GWRBIRGI">
+        <MappingFragment StoreEntitySet="GWRBIRGI">
+          <ScalarProperty Name="GWRBIRGIId" ColumnName="GWRBIRGIId" />
+          <ScalarProperty Name="GameResultInfoRGIId" ColumnName="GameResultInfoRGIId" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="Round" ColumnName="Round" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HittingStats">
+      <EntityTypeMapping TypeName="NpbModel.HittingStats">
+        <MappingFragment StoreEntitySet="HittingStats">
+          <ScalarProperty Name="HittingStatsId" ColumnName="HittingStatsId" />
+          <ScalarProperty Name="HittingStatsHeaderId" ColumnName="HittingStatsHeaderId" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="BattingAverage" ColumnName="BattingAverage" />
+          <ScalarProperty Name="Game" ColumnName="Game" />
+          <ScalarProperty Name="PlateAppearance" ColumnName="PlateAppearance" />
+          <ScalarProperty Name="AtBat" ColumnName="AtBat" />
+          <ScalarProperty Name="Run" ColumnName="Run" />
+          <ScalarProperty Name="Hit" ColumnName="Hit" />
+          <ScalarProperty Name="Double" ColumnName="Double" />
+          <ScalarProperty Name="Triple" ColumnName="Triple" />
+          <ScalarProperty Name="Homerun" ColumnName="Homerun" />
+          <ScalarProperty Name="Base" ColumnName="Base" />
+          <ScalarProperty Name="RunsBattingIn" ColumnName="RunsBattingIn" />
+          <ScalarProperty Name="WinningRunsBattedIn" ColumnName="WinningRunsBattedIn" />
+          <ScalarProperty Name="StrikeOut" ColumnName="StrikeOut" />
+          <ScalarProperty Name="BaseOnBall" ColumnName="BaseOnBall" />
+          <ScalarProperty Name="HitByPitch" ColumnName="HitByPitch" />
+          <ScalarProperty Name="SacrificeHit" ColumnName="SacrificeHit" />
+          <ScalarProperty Name="SacrificeFly" ColumnName="SacrificeFly" />
+          <ScalarProperty Name="StolenBase" ColumnName="StolenBase" />
+          <ScalarProperty Name="CaughtStealing" ColumnName="CaughtStealing" />
+          <ScalarProperty Name="DoublePlay" ColumnName="DoublePlay" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+          <ScalarProperty Name="PassedBall" ColumnName="PassedBall" />
+          <ScalarProperty Name="TBAWRIS" ColumnName="TBAWRIS" />
+          <ScalarProperty Name="OnBase" ColumnName="OnBase" />
+          <ScalarProperty Name="Slugging" ColumnName="Slugging" />
+          <ScalarProperty Name="Ops" ColumnName="Ops" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HittingStats3Years">
+      <EntityTypeMapping TypeName="NpbModel.HittingStats3Years">
+        <MappingFragment StoreEntitySet="HittingStats3Years">
+          <ScalarProperty Name="HittingStats3YearsId" ColumnName="HittingStats3YearsId" />
+          <ScalarProperty Name="HittingStats3YearsTeamsId" ColumnName="HittingStats3YearsTeamsId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NameS" ColumnName="NameS" />
+          <ScalarProperty Name="NameL" ColumnName="NameL" />
+          <ScalarProperty Name="Pos" ColumnName="Pos" />
+          <ScalarProperty Name="DataF" ColumnName="DataF" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HittingStats3YearsInfo">
+      <EntityTypeMapping TypeName="NpbModel.HittingStats3YearsInfo">
+        <MappingFragment StoreEntitySet="HittingStats3YearsInfo">
+          <ScalarProperty Name="HittingStats3YearsInfoId" ColumnName="HittingStats3YearsInfoId" />
+          <ScalarProperty Name="HittingStats3YearsId" ColumnName="HittingStats3YearsId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamS" ColumnName="TeamS" />
+          <ScalarProperty Name="TeamES" ColumnName="TeamES" />
+          <ScalarProperty Name="AVG" ColumnName="AVG" />
+          <ScalarProperty Name="G" ColumnName="G" />
+          <ScalarProperty Name="AB" ColumnName="AB" />
+          <ScalarProperty Name="R" ColumnName="R" />
+          <ScalarProperty Name="H" ColumnName="H" />
+          <ScalarProperty Name="HR" ColumnName="HR" />
+          <ScalarProperty Name="RBI" ColumnName="RBI" />
+          <ScalarProperty Name="SO" ColumnName="SO" />
+          <ScalarProperty Name="BB" ColumnName="BB" />
+          <ScalarProperty Name="HBP" ColumnName="HBP" />
+          <ScalarProperty Name="SH" ColumnName="SH" />
+          <ScalarProperty Name="SF" ColumnName="SF" />
+          <ScalarProperty Name="SB" ColumnName="SB" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HittingStats3YearsTeams">
+      <EntityTypeMapping TypeName="NpbModel.HittingStats3YearsTeams">
+        <MappingFragment StoreEntitySet="HittingStats3YearsTeams">
+          <ScalarProperty Name="HittingStats3YearsTeamsId" ColumnName="HittingStats3YearsTeamsId" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="Team" ColumnName="Team" />
+          <ScalarProperty Name="TeamS" ColumnName="TeamS" />
+          <ScalarProperty Name="TeamE" ColumnName="TeamE" />
+          <ScalarProperty Name="TeamES" ColumnName="TeamES" />
+          <ScalarProperty Name="TeamInitial" ColumnName="TeamInitial" />
+          <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+          <ScalarProperty Name="PlayerC" ColumnName="PlayerC" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HittingStats5thGame">
+      <EntityTypeMapping TypeName="NpbModel.HittingStats5thGame">
+        <MappingFragment StoreEntitySet="HittingStats5thGame">
+          <ScalarProperty Name="HittingStats5thGameId" ColumnName="HittingStats5thGameId" />
+          <ScalarProperty Name="HittingStats5thGameHeaderId" ColumnName="HittingStats5thGameHeaderId" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="BattingAverage" ColumnName="BattingAverage" />
+          <ScalarProperty Name="PlateAppearance" ColumnName="PlateAppearance" />
+          <ScalarProperty Name="AtBat" ColumnName="AtBat" />
+          <ScalarProperty Name="Hit" ColumnName="Hit" />
+          <ScalarProperty Name="Homerun" ColumnName="Homerun" />
+          <ScalarProperty Name="RunsBattingIn" ColumnName="RunsBattingIn" />
+          <ScalarProperty Name="StrikeOut" ColumnName="StrikeOut" />
+          <ScalarProperty Name="BaseOnBall" ColumnName="BaseOnBall" />
+          <ScalarProperty Name="HitByPitch" ColumnName="HitByPitch" />
+          <ScalarProperty Name="SacrificeHit" ColumnName="SacrificeHit" />
+          <ScalarProperty Name="SacrificeFly" ColumnName="SacrificeFly" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HittingStats5thGameHeader">
+      <EntityTypeMapping TypeName="NpbModel.HittingStats5thGameHeader">
+        <MappingFragment StoreEntitySet="HittingStats5thGameHeader">
+          <ScalarProperty Name="HittingStats5thGameHeaderId" ColumnName="HittingStats5thGameHeaderId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HittingStats6thGame">
+      <EntityTypeMapping TypeName="NpbModel.HittingStats6thGame">
+        <MappingFragment StoreEntitySet="HittingStats6thGame">
+          <ScalarProperty Name="HittingStats6thGameId" ColumnName="HittingStats6thGameId" />
+          <ScalarProperty Name="HittingStats6thGameHeaderId" ColumnName="HittingStats6thGameHeaderId" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HittingStats6thGameHeader">
+      <EntityTypeMapping TypeName="NpbModel.HittingStats6thGameHeader">
+        <MappingFragment StoreEntitySet="HittingStats6thGameHeader">
+          <ScalarProperty Name="HittingStats6thGameHeaderId" ColumnName="HittingStats6thGameHeaderId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HittingStats6thGameInfo">
+      <EntityTypeMapping TypeName="NpbModel.HittingStats6thGameInfo">
+        <MappingFragment StoreEntitySet="HittingStats6thGameInfo">
+          <ScalarProperty Name="HittingStats6thGameInfoId" ColumnName="HittingStats6thGameInfoId" />
+          <ScalarProperty Name="HittingStats6thGameId" ColumnName="HittingStats6thGameId" />
+          <ScalarProperty Name="TeamsOpponentCD" ColumnName="TeamsOpponentCD" />
+          <ScalarProperty Name="ShortNameTeamsOpponent" ColumnName="ShortNameTeamsOpponent" />
+          <ScalarProperty Name="Round" ColumnName="Round" />
+          <ScalarProperty Name="GameDate" ColumnName="GameDate" />
+          <ScalarProperty Name="PlateAppearance" ColumnName="PlateAppearance" />
+          <ScalarProperty Name="AtBat" ColumnName="AtBat" />
+          <ScalarProperty Name="Run" ColumnName="Run" />
+          <ScalarProperty Name="Hit" ColumnName="Hit" />
+          <ScalarProperty Name="Homerun" ColumnName="Homerun" />
+          <ScalarProperty Name="RunsBattingIn" ColumnName="RunsBattingIn" />
+          <ScalarProperty Name="GWRBI" ColumnName="GWRBI" />
+          <ScalarProperty Name="StrikeOut" ColumnName="StrikeOut" />
+          <ScalarProperty Name="BaseOnBall" ColumnName="BaseOnBall" />
+          <ScalarProperty Name="HitByPitch" ColumnName="HitByPitch" />
+          <ScalarProperty Name="BatingResult1" ColumnName="BatingResult1" />
+          <ScalarProperty Name="BatingResult2" ColumnName="BatingResult2" />
+          <ScalarProperty Name="BatingResult3" ColumnName="BatingResult3" />
+          <ScalarProperty Name="BatingResult4" ColumnName="BatingResult4" />
+          <ScalarProperty Name="BatingResult5" ColumnName="BatingResult5" />
+          <ScalarProperty Name="BatingResult6" ColumnName="BatingResult6" />
+          <ScalarProperty Name="BatingResult7" ColumnName="BatingResult7" />
+          <ScalarProperty Name="BatingResult8" ColumnName="BatingResult8" />
+          <ScalarProperty Name="BatingResult9" ColumnName="BatingResult9" />
+          <ScalarProperty Name="BatingResult10" ColumnName="BatingResult10" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HittingStatsHeader">
+      <EntityTypeMapping TypeName="NpbModel.HittingStatsHeader">
+        <MappingFragment StoreEntitySet="HittingStatsHeader">
+          <ScalarProperty Name="HittingStatsHeaderId" ColumnName="HittingStatsHeaderId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HittingStatsScoringPosition">
+      <EntityTypeMapping TypeName="NpbModel.HittingStatsScoringPosition">
+        <MappingFragment StoreEntitySet="HittingStatsScoringPosition">
+          <ScalarProperty Name="HittingStatsScoringPositionId" ColumnName="HittingStatsScoringPositionId" />
+          <ScalarProperty Name="HittingStatsScoringPositionHeaderId" ColumnName="HittingStatsScoringPositionHeaderId" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="BattingAverage" ColumnName="BattingAverage" />
+          <ScalarProperty Name="PlateAppearance" ColumnName="PlateAppearance" />
+          <ScalarProperty Name="AtBat" ColumnName="AtBat" />
+          <ScalarProperty Name="Hit" ColumnName="Hit" />
+          <ScalarProperty Name="Homerun" ColumnName="Homerun" />
+          <ScalarProperty Name="RunsBattingIn" ColumnName="RunsBattingIn" />
+          <ScalarProperty Name="StrikeOut" ColumnName="StrikeOut" />
+          <ScalarProperty Name="BaseOnBall" ColumnName="BaseOnBall" />
+          <ScalarProperty Name="HitByPitch" ColumnName="HitByPitch" />
+          <ScalarProperty Name="SacrificeHit" ColumnName="SacrificeHit" />
+          <ScalarProperty Name="SacrificeFly" ColumnName="SacrificeFly" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HittingStatsScoringPositionHeader">
+      <EntityTypeMapping TypeName="NpbModel.HittingStatsScoringPositionHeader">
+        <MappingFragment StoreEntitySet="HittingStatsScoringPositionHeader">
+          <ScalarProperty Name="HittingStatsScoringPositionHeaderId" ColumnName="HittingStatsScoringPositionHeaderId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HittingStatsTeamDifference">
+      <EntityTypeMapping TypeName="NpbModel.HittingStatsTeamDifference">
+        <MappingFragment StoreEntitySet="HittingStatsTeamDifference">
+          <ScalarProperty Name="HittingStatsTeamDifferenceId" ColumnName="HittingStatsTeamDifferenceId" />
+          <ScalarProperty Name="HittingStatsTeamDifferenceHeaderId" ColumnName="HittingStatsTeamDifferenceHeaderId" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HittingStatsTeamDifferenceHeader">
+      <EntityTypeMapping TypeName="NpbModel.HittingStatsTeamDifferenceHeader">
+        <MappingFragment StoreEntitySet="HittingStatsTeamDifferenceHeader">
+          <ScalarProperty Name="HittingStatsTeamDifferenceHeaderId" ColumnName="HittingStatsTeamDifferenceHeaderId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HittingStatsTeamDifferenceInfo">
+      <EntityTypeMapping TypeName="NpbModel.HittingStatsTeamDifferenceInfo">
+        <MappingFragment StoreEntitySet="HittingStatsTeamDifferenceInfo">
+          <ScalarProperty Name="HittingStatsTeamDifferenceInfoId" ColumnName="HittingStatsTeamDifferenceInfoId" />
+          <ScalarProperty Name="HittingStatsTeamDifferenceId" ColumnName="HittingStatsTeamDifferenceId" />
+          <ScalarProperty Name="TeamsOpponentCD" ColumnName="TeamsOpponentCD" />
+          <ScalarProperty Name="ShortNameTeamsOpponent" ColumnName="ShortNameTeamsOpponent" />
+          <ScalarProperty Name="BattingAverage" ColumnName="BattingAverage" />
+          <ScalarProperty Name="Game" ColumnName="Game" />
+          <ScalarProperty Name="PlateAppearance" ColumnName="PlateAppearance" />
+          <ScalarProperty Name="AtBat" ColumnName="AtBat" />
+          <ScalarProperty Name="Hit" ColumnName="Hit" />
+          <ScalarProperty Name="Double" ColumnName="Double" />
+          <ScalarProperty Name="Triple" ColumnName="Triple" />
+          <ScalarProperty Name="Homerun" ColumnName="Homerun" />
+          <ScalarProperty Name="RunsBattingIn" ColumnName="RunsBattingIn" />
+          <ScalarProperty Name="StrikeOut" ColumnName="StrikeOut" />
+          <ScalarProperty Name="BaseOnBall" ColumnName="BaseOnBall" />
+          <ScalarProperty Name="HitByPitch" ColumnName="HitByPitch" />
+          <ScalarProperty Name="SacrificeHit" ColumnName="SacrificeHit" />
+          <ScalarProperty Name="SacrificeFly" ColumnName="SacrificeFly" />
+          <ScalarProperty Name="StolenBase" ColumnName="StolenBase" />
+          <ScalarProperty Name="DoublePlay" ColumnName="DoublePlay" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HomerunBest10">
+      <EntityTypeMapping TypeName="NpbModel.HomerunBest10">
+        <MappingFragment StoreEntitySet="HomerunBest10">
+          <ScalarProperty Name="HomerunBest10Id" ColumnName="HomerunBest10Id" />
+          <ScalarProperty Name="HomerunBest10HeaderId" ColumnName="HomerunBest10HeaderId" />
+          <ScalarProperty Name="Ranking" ColumnName="Ranking" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="TeamInitial" ColumnName="TeamInitial" />
+          <ScalarProperty Name="HomeRun" ColumnName="HomeRun" />
+          <ScalarProperty Name="AtBat" ColumnName="AtBat" />
+          <ScalarProperty Name="HomerunPace" ColumnName="HomerunPace" />
+          <ScalarProperty Name="BattingAverage" ColumnName="BattingAverage" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HomerunBest10Header">
+      <EntityTypeMapping TypeName="NpbModel.HomerunBest10Header">
+        <MappingFragment StoreEntitySet="HomerunBest10Header">
+          <ScalarProperty Name="HomerunBest10HeaderId" ColumnName="HomerunBest10HeaderId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="League" ColumnName="League" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HomerunInfoGL">
+      <EntityTypeMapping TypeName="NpbModel.HomerunInfoGL">
+        <MappingFragment StoreEntitySet="HomerunInfoGL">
+          <ScalarProperty Name="HomerunInfoGLId" ColumnName="HomerunInfoGLId" />
+          <ScalarProperty Name="GameLiveGLId" ColumnName="GameLiveGLId" />
+          <ScalarProperty Name="HV" ColumnName="HV" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HomerunInfoRGI">
+      <EntityTypeMapping TypeName="NpbModel.HomerunInfoRGI">
+        <MappingFragment StoreEntitySet="HomerunInfoRGI">
+          <ScalarProperty Name="HomerunInfoRGIId" ColumnName="HomerunInfoRGIId" />
+          <ScalarProperty Name="RealGameInfoRootRGIId" ColumnName="RealGameInfoRootRGIId" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="TotalHomerun" ColumnName="TotalHomerun" />
+          <ScalarProperty Name="runsbattedin" ColumnName="runsbattedin" />
+          <ScalarProperty Name="MatterInning" ColumnName="MatterInning" />
+          <ScalarProperty Name="PitchersOpponentCD" ColumnName="PitchersOpponentCD" />
+          <ScalarProperty Name="ShortNamePitchersOpponent" ColumnName="ShortNamePitchersOpponent" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InningScoreInfoCO">
+      <EntityTypeMapping TypeName="NpbModel.InningScoreInfoCO">
+        <MappingFragment StoreEntitySet="InningScoreInfoCO">
+          <ScalarProperty Name="InningScoreInfoCOId" ColumnName="InningScoreInfoCOId" />
+          <ScalarProperty Name="TeamInfoCOId" ColumnName="TeamInfoCOId" />
+          <ScalarProperty Name="Inning" ColumnName="Inning" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="Xflag" ColumnName="Xflag" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LosePitcherGL">
+      <EntityTypeMapping TypeName="NpbModel.LosePitcherGL">
+        <MappingFragment StoreEntitySet="LosePitcherGL">
+          <ScalarProperty Name="LosePitcherGLId" ColumnName="LosePitcherGLId" />
+          <ScalarProperty Name="GameEndInfoGLId" ColumnName="GameEndInfoGLId" />
+          <ScalarProperty Name="PlayerID" ColumnName="PlayerID" />
+          <ScalarProperty Name="BackNumber" ColumnName="BackNumber" />
+          <ScalarProperty Name="PlayerNameS" ColumnName="PlayerNameS" />
+          <ScalarProperty Name="PlayerNameL" ColumnName="PlayerNameL" />
+          <ScalarProperty Name="Games" ColumnName="Games" />
+          <ScalarProperty Name="Win" ColumnName="Win" />
+          <ScalarProperty Name="Lose" ColumnName="Lose" />
+          <ScalarProperty Name="Save" ColumnName="Save" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamS" ColumnName="TeamS" />
+          <ScalarProperty Name="TeamES" ColumnName="TeamES" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LosingPitcherRGI">
+      <EntityTypeMapping TypeName="NpbModel.LosingPitcherRGI">
+        <MappingFragment StoreEntitySet="LosingPitcherRGI">
+          <ScalarProperty Name="LosingPitcherRGIId" ColumnName="LosingPitcherRGIId" />
+          <ScalarProperty Name="GameResultInfoRGIId" ColumnName="GameResultInfoRGIId" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="TotalWon" ColumnName="TotalWon" />
+          <ScalarProperty Name="TotalLost" ColumnName="TotalLost" />
+          <ScalarProperty Name="TotalSave" ColumnName="TotalSave" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ManagerInfoST">
+      <EntityTypeMapping TypeName="NpbModel.ManagerInfoST">
+        <MappingFragment StoreEntitySet="ManagerInfoST">
+          <ScalarProperty Name="ManagerInfoSTId" ColumnName="ManagerInfoSTId" />
+          <ScalarProperty Name="StartingGameSTId" ColumnName="StartingGameSTId" />
+          <ScalarProperty Name="HomeManagerID" ColumnName="HomeManagerID" />
+          <ScalarProperty Name="HomeManagerNumber" ColumnName="HomeManagerNumber" />
+          <ScalarProperty Name="HomeManagerNameS" ColumnName="HomeManagerNameS" />
+          <ScalarProperty Name="HomeManagerNameL" ColumnName="HomeManagerNameL" />
+          <ScalarProperty Name="VisitorManagerID" ColumnName="VisitorManagerID" />
+          <ScalarProperty Name="VisitorManagerNumber" ColumnName="VisitorManagerNumber" />
+          <ScalarProperty Name="VisitorManagerNameS" ColumnName="VisitorManagerNameS" />
+          <ScalarProperty Name="VisitorManagerNameL" ColumnName="VisitorManagerNameL" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MasterTransfersNpb">
+      <EntityTypeMapping TypeName="NpbModel.MasterTransfersNpb">
+        <MappingFragment StoreEntitySet="MasterTransfersNpb">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="No" ColumnName="No" />
+          <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FilePathServer" ColumnName="FilePathServer" />
+          <ScalarProperty Name="Schema" ColumnName="Schema" />
+          <ScalarProperty Name="SuffixTables" ColumnName="SuffixTables" />
+          <ScalarProperty Name="IgnoreTables" ColumnName="IgnoreTables" />
+          <ScalarProperty Name="QuerySqlDelete" ColumnName="QuerySqlDelete" />
+          <ScalarProperty Name="HasCustomHeader" ColumnName="HasCustomHeader" />
+          <ScalarProperty Name="HasSubFolder" ColumnName="HasSubFolder" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MonthGroupSS">
+      <EntityTypeMapping TypeName="NpbModel.MonthGroupSS">
+        <MappingFragment StoreEntitySet="MonthGroupSS">
+          <ScalarProperty Name="MonthGroupSSId" ColumnName="MonthGroupSSId" />
+          <ScalarProperty Name="SeasonScheduleSSId" ColumnName="SeasonScheduleSSId" />
+          <ScalarProperty Name="No" ColumnName="No" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MonthGroupSSN">
+      <EntityTypeMapping TypeName="NpbModel.MonthGroupSSN">
+        <MappingFragment StoreEntitySet="MonthGroupSSN">
+          <ScalarProperty Name="MonthGroupSSNId" ColumnName="MonthGroupSSNId" />
+          <ScalarProperty Name="No" ColumnName="No" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NoteInfoGL">
+      <EntityTypeMapping TypeName="NpbModel.NoteInfoGL">
+        <MappingFragment StoreEntitySet="NoteInfoGL">
+          <ScalarProperty Name="NoteInfoGLId" ColumnName="NoteInfoGLId" />
+          <ScalarProperty Name="GameLiveGLId" ColumnName="GameLiveGLId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="HV" ColumnName="HV" />
+          <ScalarProperty Name="Inning" ColumnName="Inning" />
+          <ScalarProperty Name="PlayerID" ColumnName="PlayerID" />
+          <ScalarProperty Name="BackNumber" ColumnName="BackNumber" />
+          <ScalarProperty Name="PlayerNameS" ColumnName="PlayerNameS" />
+          <ScalarProperty Name="PlayerNameL" ColumnName="PlayerNameL" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamS" ColumnName="TeamS" />
+          <ScalarProperty Name="TeamES" ColumnName="TeamES" />
+          <ScalarProperty Name="HostTeamID" ColumnName="HostTeamID" />
+          <ScalarProperty Name="HostTeamS" ColumnName="HostTeamS" />
+          <ScalarProperty Name="HostTeamES" ColumnName="HostTeamES" />
+          <ScalarProperty Name="VsPlayerID" ColumnName="VsPlayerID" />
+          <ScalarProperty Name="VsBackNumber" ColumnName="VsBackNumber" />
+          <ScalarProperty Name="VsPlayerNameS" ColumnName="VsPlayerNameS" />
+          <ScalarProperty Name="VsPlayerNameL" ColumnName="VsPlayerNameL" />
+          <ScalarProperty Name="VsTeamID" ColumnName="VsTeamID" />
+          <ScalarProperty Name="VsTeamS" ColumnName="VsTeamS" />
+          <ScalarProperty Name="VsTeamES" ColumnName="VsTeamES" />
+          <ScalarProperty Name="VsHostTeamID" ColumnName="VsHostTeamID" />
+          <ScalarProperty Name="VsHostTeamS" ColumnName="VsHostTeamS" />
+          <ScalarProperty Name="VsHostTeamES" ColumnName="VsHostTeamES" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OfficialStatsHeaderNpb">
+      <EntityTypeMapping TypeName="NpbModel.OfficialStatsHeaderNpb">
+        <MappingFragment StoreEntitySet="OfficialStatsHeaderNpb">
+          <ScalarProperty Name="OfficialStatsHeaderNpbId" ColumnName="OfficialStatsHeaderNpbId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="League" ColumnName="League" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OfficialStatsNpb">
+      <EntityTypeMapping TypeName="NpbModel.OfficialStatsNpb">
+        <MappingFragment StoreEntitySet="OfficialStatsNpb">
+          <ScalarProperty Name="OfficialStatsHeaderNpbId" ColumnName="OfficialStatsHeaderNpbId" />
+          <ScalarProperty Name="OfficialStatsNpbId" ColumnName="OfficialStatsNpbId" />
+          <ScalarProperty Name="Ranking" ColumnName="Ranking" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="Game" ColumnName="Game" />
+          <ScalarProperty Name="Win" ColumnName="Win" />
+          <ScalarProperty Name="Lose" ColumnName="Lose" />
+          <ScalarProperty Name="Draw" ColumnName="Draw" />
+          <ScalarProperty Name="WinningPercentage" ColumnName="WinningPercentage" />
+          <ScalarProperty Name="GameBehind" ColumnName="GameBehind" />
+          <ScalarProperty Name="Run" ColumnName="Run" />
+          <ScalarProperty Name="PointLost" ColumnName="PointLost" />
+          <ScalarProperty Name="Homerun" ColumnName="Homerun" />
+          <ScalarProperty Name="StolenBase" ColumnName="StolenBase" />
+          <ScalarProperty Name="BattingAverage" ColumnName="BattingAverage" />
+          <ScalarProperty Name="EarnedRunAverage" ColumnName="EarnedRunAverage" />
+          <ScalarProperty Name="RestGame" ColumnName="RestGame" />
+          <ScalarProperty Name="WinnerMagic" ColumnName="WinnerMagic" />
+          <ScalarProperty Name="POLastRanking" ColumnName="POLastRanking" />
+          <ScalarProperty Name="RankShiftF" ColumnName="RankShiftF" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonInfo">
+      <EntityTypeMapping TypeName="NpbModel.PersonInfo">
+        <MappingFragment StoreEntitySet="PersonInfo">
+          <ScalarProperty Name="PersonInfoId" ColumnName="PersonInfoId" />
+          <ScalarProperty Name="DirectoryId" ColumnName="DirectoryId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StaffKind" ColumnName="StaffKind" />
+          <ScalarProperty Name="StaffTitle" ColumnName="StaffTitle" />
+          <ScalarProperty Name="PositionType" ColumnName="PositionType" />
+          <ScalarProperty Name="BackNumber" ColumnName="BackNumber" />
+          <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
+          <ScalarProperty Name="PlayerNameK" ColumnName="PlayerNameK" />
+          <ScalarProperty Name="DelivName" ColumnName="DelivName" />
+          <ScalarProperty Name="DelivFirstName" ColumnName="DelivFirstName" />
+          <ScalarProperty Name="DelivLastName" ColumnName="DelivLastName" />
+          <ScalarProperty Name="DelivFirstNameK" ColumnName="DelivFirstNameK" />
+          <ScalarProperty Name="DelivLastNameK" ColumnName="DelivLastNameK" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="PitchingArm" ColumnName="PitchingArm" />
+          <ScalarProperty Name="BattingType" ColumnName="BattingType" />
+          <ScalarProperty Name="Hometown" ColumnName="Hometown" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Blood" ColumnName="Blood" />
+          <ScalarProperty Name="Career" ColumnName="Career" />
+          <ScalarProperty Name="ProTotal" ColumnName="ProTotal" />
+          <ScalarProperty Name="DraftYear" ColumnName="DraftYear" />
+          <ScalarProperty Name="DraftNo" ColumnName="DraftNo" />
+          <ScalarProperty Name="Prize" ColumnName="Prize" />
+          <ScalarProperty Name="DSComment" ColumnName="DSComment" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PitcherGL">
+      <EntityTypeMapping TypeName="NpbModel.PitcherGL">
+        <MappingFragment StoreEntitySet="PitcherGL">
+          <ScalarProperty Name="PitcherGLId" ColumnName="PitcherGLId" />
+          <ScalarProperty Name="ReliefInfoGLId" ColumnName="ReliefInfoGLId" />
+          <ScalarProperty Name="No" ColumnName="No" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="NameS" ColumnName="NameS" />
+          <ScalarProperty Name="NameL" ColumnName="NameL" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamS" ColumnName="TeamS" />
+          <ScalarProperty Name="TeamES" ColumnName="TeamES" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PitcherInfoRGI">
+      <EntityTypeMapping TypeName="NpbModel.PitcherInfoRGI">
+        <MappingFragment StoreEntitySet="PitcherInfoRGI">
+          <ScalarProperty Name="PitcherInfoRGIId" ColumnName="PitcherInfoRGIId" />
+          <ScalarProperty Name="RealGameInfoRootRGIId" ColumnName="RealGameInfoRootRGIId" />
+          <ScalarProperty Name="HomeVisitor" ColumnName="HomeVisitor" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="PitcherCD" ColumnName="PitcherCD" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PitchingStats">
+      <EntityTypeMapping TypeName="NpbModel.PitchingStats">
+        <MappingFragment StoreEntitySet="PitchingStats">
+          <ScalarProperty Name="PitchingStatsId" ColumnName="PitchingStatsId" />
+          <ScalarProperty Name="PitchingStatsHeaderId" ColumnName="PitchingStatsHeaderId" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="EarnedRunAverage" ColumnName="EarnedRunAverage" />
+          <ScalarProperty Name="Game" ColumnName="Game" />
+          <ScalarProperty Name="CompleteGame" ColumnName="CompleteGame" />
+          <ScalarProperty Name="Finished" ColumnName="Finished" />
+          <ScalarProperty Name="Started" ColumnName="Started" />
+          <ScalarProperty Name="Extension" ColumnName="Extension" />
+          <ScalarProperty Name="Shutout" ColumnName="Shutout" />
+          <ScalarProperty Name="NoBaseOnBall" ColumnName="NoBaseOnBall" />
+          <ScalarProperty Name="Win" ColumnName="Win" />
+          <ScalarProperty Name="Lost" ColumnName="Lost" />
+          <ScalarProperty Name="Save" ColumnName="Save" />
+          <ScalarProperty Name="Hold" ColumnName="Hold" />
+          <ScalarProperty Name="HoldPoint" ColumnName="HoldPoint" />
+          <ScalarProperty Name="Batmen" ColumnName="Batmen" />
+          <ScalarProperty Name="InningsPitched" ColumnName="InningsPitched" />
+          <ScalarProperty Name="InningsPitched3rd" ColumnName="InningsPitched3rd" />
+          <ScalarProperty Name="Hit" ColumnName="Hit" />
+          <ScalarProperty Name="HomeRunHitAgainst" ColumnName="HomeRunHitAgainst" />
+          <ScalarProperty Name="Strikeout" ColumnName="Strikeout" />
+          <ScalarProperty Name="BasesOnBall" ColumnName="BasesOnBall" />
+          <ScalarProperty Name="HitBastsmen" ColumnName="HitBastsmen" />
+          <ScalarProperty Name="WildPitch" ColumnName="WildPitch" />
+          <ScalarProperty Name="Balk" ColumnName="Balk" />
+          <ScalarProperty Name="WinningPercentage" ColumnName="WinningPercentage" />
+          <ScalarProperty Name="StrikeoutPercentage" ColumnName="StrikeoutPercentage" />
+          <ScalarProperty Name="PointLost" ColumnName="PointLost" />
+          <ScalarProperty Name="EarnedRun" ColumnName="EarnedRun" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PitchingStats3Years">
+      <EntityTypeMapping TypeName="NpbModel.PitchingStats3Years">
+        <MappingFragment StoreEntitySet="PitchingStats3Years">
+          <ScalarProperty Name="PitchingStats3YearsId" ColumnName="PitchingStats3YearsId" />
+          <ScalarProperty Name="PitchingStats3YearsTeamsId" ColumnName="PitchingStats3YearsTeamsId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NameS" ColumnName="NameS" />
+          <ScalarProperty Name="NameL" ColumnName="NameL" />
+          <ScalarProperty Name="Pos" ColumnName="Pos" />
+          <ScalarProperty Name="DataF" ColumnName="DataF" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PitchingStats3YearsInfo">
+      <EntityTypeMapping TypeName="NpbModel.PitchingStats3YearsInfo">
+        <MappingFragment StoreEntitySet="PitchingStats3YearsInfo">
+          <ScalarProperty Name="PitchingStats3YearsInfoId" ColumnName="PitchingStats3YearsInfoId" />
+          <ScalarProperty Name="PitchingStats3YearsId" ColumnName="PitchingStats3YearsId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamS" ColumnName="TeamS" />
+          <ScalarProperty Name="TeamES" ColumnName="TeamES" />
+          <ScalarProperty Name="ERA" ColumnName="ERA" />
+          <ScalarProperty Name="G" ColumnName="G" />
+          <ScalarProperty Name="W" ColumnName="W" />
+          <ScalarProperty Name="L" ColumnName="L" />
+          <ScalarProperty Name="S" ColumnName="S" />
+          <ScalarProperty Name="HLD" ColumnName="HLD" />
+          <ScalarProperty Name="HP" ColumnName="HP" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="IP3" ColumnName="IP3" />
+          <ScalarProperty Name="H" ColumnName="H" />
+          <ScalarProperty Name="HR" ColumnName="HR" />
+          <ScalarProperty Name="SO" ColumnName="SO" />
+          <ScalarProperty Name="BB" ColumnName="BB" />
+          <ScalarProperty Name="HBP" ColumnName="HBP" />
+          <ScalarProperty Name="ER" ColumnName="ER" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PitchingStats3YearsTeams">
+      <EntityTypeMapping TypeName="NpbModel.PitchingStats3YearsTeams">
+        <MappingFragment StoreEntitySet="PitchingStats3YearsTeams">
+          <ScalarProperty Name="PitchingStats3YearsTeamsId" ColumnName="PitchingStats3YearsTeamsId" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="Team" ColumnName="Team" />
+          <ScalarProperty Name="TeamS" ColumnName="TeamS" />
+          <ScalarProperty Name="TeamE" ColumnName="TeamE" />
+          <ScalarProperty Name="TeamES" ColumnName="TeamES" />
+          <ScalarProperty Name="TeamInitial" ColumnName="TeamInitial" />
+          <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+          <ScalarProperty Name="PlayerC" ColumnName="PlayerC" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PitchingStats6thGame">
+      <EntityTypeMapping TypeName="NpbModel.PitchingStats6thGame">
+        <MappingFragment StoreEntitySet="PitchingStats6thGame">
+          <ScalarProperty Name="PitchingStats6thGameId" ColumnName="PitchingStats6thGameId" />
+          <ScalarProperty Name="PitchingStats6thGameHeaderId" ColumnName="PitchingStats6thGameHeaderId" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PitchingStats6thGameHeader">
+      <EntityTypeMapping TypeName="NpbModel.PitchingStats6thGameHeader">
+        <MappingFragment StoreEntitySet="PitchingStats6thGameHeader">
+          <ScalarProperty Name="PitchingStats6thGameHeaderId" ColumnName="PitchingStats6thGameHeaderId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PitchingStats6thGameInfo">
+      <EntityTypeMapping TypeName="NpbModel.PitchingStats6thGameInfo">
+        <MappingFragment StoreEntitySet="PitchingStats6thGameInfo">
+          <ScalarProperty Name="PitchingStats6thGameInfoId" ColumnName="PitchingStats6thGameInfoId" />
+          <ScalarProperty Name="PitchingStats6thGameId" ColumnName="PitchingStats6thGameId" />
+          <ScalarProperty Name="TeamsOpponentCD" ColumnName="TeamsOpponentCD" />
+          <ScalarProperty Name="ShortNameTeamsOpponent" ColumnName="ShortNameTeamsOpponent" />
+          <ScalarProperty Name="Round" ColumnName="Round" />
+          <ScalarProperty Name="GameDate" ColumnName="GameDate" />
+          <ScalarProperty Name="MoundCD" ColumnName="MoundCD" />
+          <ScalarProperty Name="MoundRankingCD" ColumnName="MoundRankingCD" />
+          <ScalarProperty Name="PitchingResult" ColumnName="PitchingResult" />
+          <ScalarProperty Name="Batmen" ColumnName="Batmen" />
+          <ScalarProperty Name="InningsPitched" ColumnName="InningsPitched" />
+          <ScalarProperty Name="InningsPitched3rd" ColumnName="InningsPitched3rd" />
+          <ScalarProperty Name="Hit" ColumnName="Hit" />
+          <ScalarProperty Name="HomeRunHitAgainst" ColumnName="HomeRunHitAgainst" />
+          <ScalarProperty Name="Strikeout" ColumnName="Strikeout" />
+          <ScalarProperty Name="BasesOnBall" ColumnName="BasesOnBall" />
+          <ScalarProperty Name="HitBastsmen" ColumnName="HitBastsmen" />
+          <ScalarProperty Name="WildPitch" ColumnName="WildPitch" />
+          <ScalarProperty Name="Balk" ColumnName="Balk" />
+          <ScalarProperty Name="TotalPitch" ColumnName="TotalPitch" />
+          <ScalarProperty Name="PointLost" ColumnName="PointLost" />
+          <ScalarProperty Name="EarnedRun" ColumnName="EarnedRun" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PitchingStatsHeader">
+      <EntityTypeMapping TypeName="NpbModel.PitchingStatsHeader">
+        <MappingFragment StoreEntitySet="PitchingStatsHeader">
+          <ScalarProperty Name="PitchingStatsHeaderId" ColumnName="PitchingStatsHeaderId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PitchingStatsTeamsOpponent">
+      <EntityTypeMapping TypeName="NpbModel.PitchingStatsTeamsOpponent">
+        <MappingFragment StoreEntitySet="PitchingStatsTeamsOpponent">
+          <ScalarProperty Name="PitchingStatsTeamsOpponentId" ColumnName="PitchingStatsTeamsOpponentId" />
+          <ScalarProperty Name="PitchingStatsTeamsOpponentHeaderId" ColumnName="PitchingStatsTeamsOpponentHeaderId" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PitchingStatsTeamsOpponentHeader">
+      <EntityTypeMapping TypeName="NpbModel.PitchingStatsTeamsOpponentHeader">
+        <MappingFragment StoreEntitySet="PitchingStatsTeamsOpponentHeader">
+          <ScalarProperty Name="PitchingStatsTeamsOpponentHeaderId" ColumnName="PitchingStatsTeamsOpponentHeaderId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PitchingStatsTeamsOpponentInfo">
+      <EntityTypeMapping TypeName="NpbModel.PitchingStatsTeamsOpponentInfo">
+        <MappingFragment StoreEntitySet="PitchingStatsTeamsOpponentInfo">
+          <ScalarProperty Name="PitchingStatsTeamsOpponentInfoId" ColumnName="PitchingStatsTeamsOpponentInfoId" />
+          <ScalarProperty Name="PitchingStatsTeamsOpponentId" ColumnName="PitchingStatsTeamsOpponentId" />
+          <ScalarProperty Name="TeamsOpponentCD" ColumnName="TeamsOpponentCD" />
+          <ScalarProperty Name="ShortNameTeamsOpponent" ColumnName="ShortNameTeamsOpponent" />
+          <ScalarProperty Name="EarnedRunAverage" ColumnName="EarnedRunAverage" />
+          <ScalarProperty Name="Game" ColumnName="Game" />
+          <ScalarProperty Name="CompleteGame" ColumnName="CompleteGame" />
+          <ScalarProperty Name="Shutout" ColumnName="Shutout" />
+          <ScalarProperty Name="NoBaseOnBall" ColumnName="NoBaseOnBall" />
+          <ScalarProperty Name="Win" ColumnName="Win" />
+          <ScalarProperty Name="Lost" ColumnName="Lost" />
+          <ScalarProperty Name="Save" ColumnName="Save" />
+          <ScalarProperty Name="Hold" ColumnName="Hold" />
+          <ScalarProperty Name="HoldPoint" ColumnName="HoldPoint" />
+          <ScalarProperty Name="Batmen" ColumnName="Batmen" />
+          <ScalarProperty Name="InningsPitched" ColumnName="InningsPitched" />
+          <ScalarProperty Name="InningsPitched3rd" ColumnName="InningsPitched3rd" />
+          <ScalarProperty Name="Hit" ColumnName="Hit" />
+          <ScalarProperty Name="HomeRunHitAgainst" ColumnName="HomeRunHitAgainst" />
+          <ScalarProperty Name="Strikeout" ColumnName="Strikeout" />
+          <ScalarProperty Name="BasesOnBall" ColumnName="BasesOnBall" />
+          <ScalarProperty Name="HitBastsmen" ColumnName="HitBastsmen" />
+          <ScalarProperty Name="WildPitch" ColumnName="WildPitch" />
+          <ScalarProperty Name="Balk" ColumnName="Balk" />
+          <ScalarProperty Name="WinningPercentage" ColumnName="WinningPercentage" />
+          <ScalarProperty Name="StrikeoutPercentage" ColumnName="StrikeoutPercentage" />
+          <ScalarProperty Name="PointLost" ColumnName="PointLost" />
+          <ScalarProperty Name="EarnedRun" ColumnName="EarnedRun" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlayerGL">
+      <EntityTypeMapping TypeName="NpbModel.PlayerGL">
+        <MappingFragment StoreEntitySet="PlayerGL">
+          <ScalarProperty Name="PlayerGLId" ColumnName="PlayerGLId" />
+          <ScalarProperty Name="HomerunInfoGLId" ColumnName="HomerunInfoGLId" />
+          <ScalarProperty Name="No" ColumnName="No" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="NameS" ColumnName="NameS" />
+          <ScalarProperty Name="NameL" ColumnName="NameL" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamS" ColumnName="TeamS" />
+          <ScalarProperty Name="TeamES" ColumnName="TeamES" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlayerInfoGO">
+      <EntityTypeMapping TypeName="NpbModel.PlayerInfoGO">
+        <MappingFragment StoreEntitySet="PlayerInfoGO">
+          <ScalarProperty Name="PlayerInfoGOId" ColumnName="PlayerInfoGOId" />
+          <ScalarProperty Name="TeamInfoGOId" ColumnName="TeamInfoGOId" />
+          <ScalarProperty Name="BatNo" ColumnName="BatNo" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="PlayerID" ColumnName="PlayerID" />
+          <ScalarProperty Name="BackNumber" ColumnName="BackNumber" />
+          <ScalarProperty Name="PlayerNameS" ColumnName="PlayerNameS" />
+          <ScalarProperty Name="PlayerNameL" ColumnName="PlayerNameL" />
+          <ScalarProperty Name="PitchingArm" ColumnName="PitchingArm" />
+          <ScalarProperty Name="BattingType" ColumnName="BattingType" />
+          <ScalarProperty Name="Avg" ColumnName="Avg" />
+          <ScalarProperty Name="Hr" ColumnName="Hr" />
+          <ScalarProperty Name="Rbi" ColumnName="Rbi" />
+          <ScalarProperty Name="Condition" ColumnName="Condition" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamS" ColumnName="TeamS" />
+          <ScalarProperty Name="TeamES" ColumnName="TeamES" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlayerInfoMST">
+      <EntityTypeMapping TypeName="NpbModel.PlayerInfoMST">
+        <MappingFragment StoreEntitySet="PlayerInfoMST">
+          <ScalarProperty Name="PlayerInfoMSTId" ColumnName="PlayerInfoMSTId" />
+          <ScalarProperty Name="PlayerInfoMSTHeaderId" ColumnName="PlayerInfoMSTHeaderId" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="Player" ColumnName="Player" />
+          <ScalarProperty Name="UniformNO" ColumnName="UniformNO" />
+          <ScalarProperty Name="PitchField" ColumnName="PitchField" />
+          <ScalarProperty Name="PitcherSide" ColumnName="PitcherSide" />
+          <ScalarProperty Name="BatterSide" ColumnName="BatterSide" />
+          <ScalarProperty Name="SmartStart" ColumnName="SmartStart" />
+          <ScalarProperty Name="SmartEnd" ColumnName="SmartEnd" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlayerInfoMSTHeader">
+      <EntityTypeMapping TypeName="NpbModel.PlayerInfoMSTHeader">
+        <MappingFragment StoreEntitySet="PlayerInfoMSTHeader">
+          <ScalarProperty Name="PlayerInfoMSTHeaderId" ColumnName="PlayerInfoMSTHeaderId" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlayerInfoST">
+      <EntityTypeMapping TypeName="NpbModel.PlayerInfoST">
+        <MappingFragment StoreEntitySet="PlayerInfoST">
+          <ScalarProperty Name="PlayerInfoSTId" ColumnName="PlayerInfoSTId" />
+          <ScalarProperty Name="TeamInfoSTId" ColumnName="TeamInfoSTId" />
+          <ScalarProperty Name="StartBatNo" ColumnName="StartBatNo" />
+          <ScalarProperty Name="StartPosition" ColumnName="StartPosition" />
+          <ScalarProperty Name="PositionType" ColumnName="PositionType" />
+          <ScalarProperty Name="PlayerID" ColumnName="PlayerID" />
+          <ScalarProperty Name="BackNumber" ColumnName="BackNumber" />
+          <ScalarProperty Name="PlayerNameS" ColumnName="PlayerNameS" />
+          <ScalarProperty Name="PlayerNameL" ColumnName="PlayerNameL" />
+          <ScalarProperty Name="PitchingArm" ColumnName="PitchingArm" />
+          <ScalarProperty Name="BattingType" ColumnName="BattingType" />
+          <ScalarProperty Name="GameF" ColumnName="GameF" />
+          <ScalarProperty Name="Avg" ColumnName="Avg" />
+          <ScalarProperty Name="Hr" ColumnName="Hr" />
+          <ScalarProperty Name="Rbi" ColumnName="Rbi" />
+          <ScalarProperty Name="Era" ColumnName="Era" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamS" ColumnName="TeamS" />
+          <ScalarProperty Name="TeamES" ColumnName="TeamES" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RealGameInfoRootRGI">
+      <EntityTypeMapping TypeName="NpbModel.RealGameInfoRootRGI">
+        <MappingFragment StoreEntitySet="RealGameInfoRootRGI">
+          <ScalarProperty Name="RealGameInfoRootRGIId" ColumnName="RealGameInfoRootRGIId" />
+          <ScalarProperty Name="FixedDistribute" ColumnName="FixedDistribute" />
+          <ScalarProperty Name="ControlNO" ColumnName="ControlNO" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReliefInfoGL">
+      <EntityTypeMapping TypeName="NpbModel.ReliefInfoGL">
+        <MappingFragment StoreEntitySet="ReliefInfoGL">
+          <ScalarProperty Name="ReliefInfoGLId" ColumnName="ReliefInfoGLId" />
+          <ScalarProperty Name="GameLiveGLId" ColumnName="GameLiveGLId" />
+          <ScalarProperty Name="HV" ColumnName="HV" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RunBattedInBest10">
+      <EntityTypeMapping TypeName="NpbModel.RunBattedInBest10">
+        <MappingFragment StoreEntitySet="RunBattedInBest10">
+          <ScalarProperty Name="RunBattedInBest10Id" ColumnName="RunBattedInBest10Id" />
+          <ScalarProperty Name="RunBattedInBest10HeaderId" ColumnName="RunBattedInBest10HeaderId" />
+          <ScalarProperty Name="Ranking" ColumnName="Ranking" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="TeamInitial" ColumnName="TeamInitial" />
+          <ScalarProperty Name="RunsBattingIn" ColumnName="RunsBattingIn" />
+          <ScalarProperty Name="AtBat" ColumnName="AtBat" />
+          <ScalarProperty Name="BattingAverage" ColumnName="BattingAverage" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RunBattedInBest10Header">
+      <EntityTypeMapping TypeName="NpbModel.RunBattedInBest10Header">
+        <MappingFragment StoreEntitySet="RunBattedInBest10Header">
+          <ScalarProperty Name="RunBattedInBest10HeaderId" ColumnName="RunBattedInBest10HeaderId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="League" ColumnName="League" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RunInfoRGI">
+      <EntityTypeMapping TypeName="NpbModel.RunInfoRGI">
+        <MappingFragment StoreEntitySet="RunInfoRGI">
+          <ScalarProperty Name="RunInfoRGIId" ColumnName="RunInfoRGIId" />
+          <ScalarProperty Name="ScoreRGIId" ColumnName="ScoreRGIId" />
+          <ScalarProperty Name="Inning" ColumnName="Inning" />
+          <ScalarProperty Name="Run" ColumnName="Run" />
+          <ScalarProperty Name="NothingInning" ColumnName="NothingInning" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaveBest10">
+      <EntityTypeMapping TypeName="NpbModel.SaveBest10">
+        <MappingFragment StoreEntitySet="SaveBest10">
+          <ScalarProperty Name="SaveBest10Id" ColumnName="SaveBest10Id" />
+          <ScalarProperty Name="SaveBest10HeaderId" ColumnName="SaveBest10HeaderId" />
+          <ScalarProperty Name="Ranking" ColumnName="Ranking" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="TeamInitial" ColumnName="TeamInitial" />
+          <ScalarProperty Name="Save" ColumnName="Save" />
+          <ScalarProperty Name="GamePitched" ColumnName="GamePitched" />
+          <ScalarProperty Name="EarnedRunAverage" ColumnName="EarnedRunAverage" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaveBest10Header">
+      <EntityTypeMapping TypeName="NpbModel.SaveBest10Header">
+        <MappingFragment StoreEntitySet="SaveBest10Header">
+          <ScalarProperty Name="SaveBest10HeaderId" ColumnName="SaveBest10HeaderId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="League" ColumnName="League" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SavePitcherGL">
+      <EntityTypeMapping TypeName="NpbModel.SavePitcherGL">
+        <MappingFragment StoreEntitySet="SavePitcherGL">
+          <ScalarProperty Name="SavePitcherGLId" ColumnName="SavePitcherGLId" />
+          <ScalarProperty Name="GameEndInfoGLId" ColumnName="GameEndInfoGLId" />
+          <ScalarProperty Name="PlayerID" ColumnName="PlayerID" />
+          <ScalarProperty Name="BackNumber" ColumnName="BackNumber" />
+          <ScalarProperty Name="PlayerNameS" ColumnName="PlayerNameS" />
+          <ScalarProperty Name="PlayerNameL" ColumnName="PlayerNameL" />
+          <ScalarProperty Name="Games" ColumnName="Games" />
+          <ScalarProperty Name="Win" ColumnName="Win" />
+          <ScalarProperty Name="Lose" ColumnName="Lose" />
+          <ScalarProperty Name="Save" ColumnName="Save" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamS" ColumnName="TeamS" />
+          <ScalarProperty Name="TeamES" ColumnName="TeamES" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SavingPitcherRGI">
+      <EntityTypeMapping TypeName="NpbModel.SavingPitcherRGI">
+        <MappingFragment StoreEntitySet="SavingPitcherRGI">
+          <ScalarProperty Name="SavingPitcherRGIId" ColumnName="SavingPitcherRGIId" />
+          <ScalarProperty Name="GameResultInfoRGIId" ColumnName="GameResultInfoRGIId" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="TotalWon" ColumnName="TotalWon" />
+          <ScalarProperty Name="TotalLost" ColumnName="TotalLost" />
+          <ScalarProperty Name="TotalSave" ColumnName="TotalSave" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScoreGL">
+      <EntityTypeMapping TypeName="NpbModel.ScoreGL">
+        <MappingFragment StoreEntitySet="ScoreGL">
+          <ScalarProperty Name="ScoreGLId" ColumnName="ScoreGLId" />
+          <ScalarProperty Name="TeamGLId" ColumnName="TeamGLId" />
+          <ScalarProperty Name="Inn" ColumnName="Inn" />
+          <ScalarProperty Name="TB" ColumnName="TB" />
+          <ScalarProperty Name="R" ColumnName="R" />
+          <ScalarProperty Name="H" ColumnName="H" />
+          <ScalarProperty Name="BB" ColumnName="BB" />
+          <ScalarProperty Name="ColCount" ColumnName="ColCount" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScoreGTE">
+      <EntityTypeMapping TypeName="NpbModel.ScoreGTE">
+        <MappingFragment StoreEntitySet="ScoreGTE">
+          <ScalarProperty Name="ScoreGTEId" ColumnName="ScoreGTEId" />
+          <ScalarProperty Name="TeamInfoGTEId" ColumnName="TeamInfoGTEId" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="Inn" ColumnName="Inn" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScoreGTS">
+      <EntityTypeMapping TypeName="NpbModel.ScoreGTS">
+        <MappingFragment StoreEntitySet="ScoreGTS">
+          <ScalarProperty Name="ScoreGTSId" ColumnName="ScoreGTSId" />
+          <ScalarProperty Name="TeamInfoGTSId" ColumnName="TeamInfoGTSId" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="Inn" ColumnName="Inn" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScoreInfoGL">
+      <EntityTypeMapping TypeName="NpbModel.ScoreInfoGL">
+        <MappingFragment StoreEntitySet="ScoreInfoGL">
+          <ScalarProperty Name="ScoreInfoGLId" ColumnName="ScoreInfoGLId" />
+          <ScalarProperty Name="GameLiveGLId" ColumnName="GameLiveGLId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScoreRGI">
+      <EntityTypeMapping TypeName="NpbModel.ScoreRGI">
+        <MappingFragment StoreEntitySet="ScoreRGI">
+          <ScalarProperty Name="ScoreRGIId" ColumnName="ScoreRGIId" />
+          <ScalarProperty Name="RealGameInfoRootRGIId" ColumnName="RealGameInfoRootRGIId" />
+          <ScalarProperty Name="HomeVisitor" ColumnName="HomeVisitor" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="TotalScore" ColumnName="TotalScore" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SeasonScheduleSS">
+      <EntityTypeMapping TypeName="NpbModel.SeasonScheduleSS">
+        <MappingFragment StoreEntitySet="SeasonScheduleSS">
+          <ScalarProperty Name="SeasonScheduleSSId" ColumnName="SeasonScheduleSSId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameTypeID" ColumnName="GameTypeID" />
+          <ScalarProperty Name="GameTypeName" ColumnName="GameTypeName" />
+          <ScalarProperty Name="TotalGameC" ColumnName="TotalGameC" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StartingGameST">
+      <EntityTypeMapping TypeName="NpbModel.StartingGameST">
+        <MappingFragment StoreEntitySet="StartingGameST">
+          <ScalarProperty Name="StartingGameSTId" ColumnName="StartingGameSTId" />
+          <ScalarProperty Name="GameID" ColumnName="GameID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamGL">
+      <EntityTypeMapping TypeName="NpbModel.TeamGL">
+        <MappingFragment StoreEntitySet="TeamGL">
+          <ScalarProperty Name="TeamGLId" ColumnName="TeamGLId" />
+          <ScalarProperty Name="ScoreInfoGLId" ColumnName="ScoreInfoGLId" />
+          <ScalarProperty Name="HV" ColumnName="HV" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NameS" ColumnName="NameS" />
+          <ScalarProperty Name="NameE" ColumnName="NameE" />
+          <ScalarProperty Name="NameES" ColumnName="NameES" />
+          <ScalarProperty Name="NameInitial" ColumnName="NameInitial" />
+          <ScalarProperty Name="R" ColumnName="R" />
+          <ScalarProperty Name="PA" ColumnName="PA" />
+          <ScalarProperty Name="H" ColumnName="H" />
+          <ScalarProperty Name="BB" ColumnName="BB" />
+          <ScalarProperty Name="SB" ColumnName="SB" />
+          <ScalarProperty Name="E" ColumnName="E" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamInfoCO">
+      <EntityTypeMapping TypeName="NpbModel.TeamInfoCO">
+        <MappingFragment StoreEntitySet="TeamInfoCO">
+          <ScalarProperty Name="TeamInfoCOId" ColumnName="TeamInfoCOId" />
+          <ScalarProperty Name="GameInfoCOId" ColumnName="GameInfoCOId" />
+          <ScalarProperty Name="HomeVisitor" ColumnName="HomeVisitor" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+          <ScalarProperty Name="TeamNameS" ColumnName="TeamNameS" />
+          <ScalarProperty Name="TeamNameE" ColumnName="TeamNameE" />
+          <ScalarProperty Name="TeamNameES" ColumnName="TeamNameES" />
+          <ScalarProperty Name="TotalScore" ColumnName="TotalScore" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamInfoGO">
+      <EntityTypeMapping TypeName="NpbModel.TeamInfoGO">
+        <MappingFragment StoreEntitySet="TeamInfoGO">
+          <ScalarProperty Name="TeamInfoGOId" ColumnName="TeamInfoGOId" />
+          <ScalarProperty Name="GameOrderGOId" ColumnName="GameOrderGOId" />
+          <ScalarProperty Name="HV" ColumnName="HV" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+          <ScalarProperty Name="TeamNameS" ColumnName="TeamNameS" />
+          <ScalarProperty Name="TeamNameE" ColumnName="TeamNameE" />
+          <ScalarProperty Name="TeamNameES" ColumnName="TeamNameES" />
+          <ScalarProperty Name="TeamNameInitial" ColumnName="TeamNameInitial" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamInfoGTE">
+      <EntityTypeMapping TypeName="NpbModel.TeamInfoGTE">
+        <MappingFragment StoreEntitySet="TeamInfoGTE">
+          <ScalarProperty Name="TeamInfoGTEId" ColumnName="TeamInfoGTEId" />
+          <ScalarProperty Name="GameInfoGTEId" ColumnName="GameInfoGTEId" />
+          <ScalarProperty Name="HV" ColumnName="HV" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NameS" ColumnName="NameS" />
+          <ScalarProperty Name="NameES" ColumnName="NameES" />
+          <ScalarProperty Name="R" ColumnName="R" />
+          <ScalarProperty Name="H" ColumnName="H" />
+          <ScalarProperty Name="E" ColumnName="E" />
+          <ScalarProperty Name="Relief" ColumnName="Relief" />
+          <ScalarProperty Name="Homerun" ColumnName="Homerun" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamInfoGTS">
+      <EntityTypeMapping TypeName="NpbModel.TeamInfoGTS">
+        <MappingFragment StoreEntitySet="TeamInfoGTS">
+          <ScalarProperty Name="TeamInfoGTSId" ColumnName="TeamInfoGTSId" />
+          <ScalarProperty Name="GameInfoGTSId" ColumnName="GameInfoGTSId" />
+          <ScalarProperty Name="HV" ColumnName="HV" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NameS" ColumnName="NameS" />
+          <ScalarProperty Name="NameES" ColumnName="NameES" />
+          <ScalarProperty Name="R" ColumnName="R" />
+          <ScalarProperty Name="H" ColumnName="H" />
+          <ScalarProperty Name="E" ColumnName="E" />
+          <ScalarProperty Name="Relief" ColumnName="Relief" />
+          <ScalarProperty Name="Homerun" ColumnName="Homerun" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamInfoMST">
+      <EntityTypeMapping TypeName="NpbModel.TeamInfoMST">
+        <MappingFragment StoreEntitySet="TeamInfoMST">
+          <ScalarProperty Name="TeamInfoMSTId" ColumnName="TeamInfoMSTId" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="LocalID" ColumnName="LocalID" />
+          <ScalarProperty Name="LocalName" ColumnName="LocalName" />
+          <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+          <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+          <ScalarProperty Name="LeagueID" ColumnName="LeagueID" />
+          <ScalarProperty Name="League" ColumnName="League" />
+          <ScalarProperty Name="LeagueK" ColumnName="LeagueK" />
+          <ScalarProperty Name="ShortNameLeague" ColumnName="ShortNameLeague" />
+          <ScalarProperty Name="LeagueE" ColumnName="LeagueE" />
+          <ScalarProperty Name="LeagueES" ColumnName="LeagueES" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="Team" ColumnName="Team" />
+          <ScalarProperty Name="TeamK" ColumnName="TeamK" />
+          <ScalarProperty Name="TeamE" ColumnName="TeamE" />
+          <ScalarProperty Name="TeamES" ColumnName="TeamES" />
+          <ScalarProperty Name="OnceNameTeam" ColumnName="OnceNameTeam" />
+          <ScalarProperty Name="SmartStart" ColumnName="SmartStart" />
+          <ScalarProperty Name="SmartEnd" ColumnName="SmartEnd" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamInfoPSP">
+      <EntityTypeMapping TypeName="NpbModel.TeamInfoPSP">
+        <MappingFragment StoreEntitySet="TeamInfoPSP">
+          <ScalarProperty Name="TeamInfoPSPId" ColumnName="TeamInfoPSPId" />
+          <ScalarProperty Name="GameInfoPSPId" ColumnName="GameInfoPSPId" />
+          <ScalarProperty Name="HV" ColumnName="HV" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NameS" ColumnName="NameS" />
+          <ScalarProperty Name="Initial" ColumnName="Initial" />
+          <ScalarProperty Name="MainID" ColumnName="MainID" />
+          <ScalarProperty Name="MainNameE" ColumnName="MainNameE" />
+          <ScalarProperty Name="MainNameES" ColumnName="MainNameES" />
+          <ScalarProperty Name="PredictionF" ColumnName="PredictionF" />
+          <ScalarProperty Name="PitcherID" ColumnName="PitcherID" />
+          <ScalarProperty Name="PitcherName" ColumnName="PitcherName" />
+          <ScalarProperty Name="PitcherNameS" ColumnName="PitcherNameS" />
+          <ScalarProperty Name="PitcherNum" ColumnName="PitcherNum" />
+          <ScalarProperty Name="PitcherArm" ColumnName="PitcherArm" />
+          <ScalarProperty Name="IntervalDate" ColumnName="IntervalDate" />
+          <ScalarProperty Name="GamePitched" ColumnName="GamePitched" />
+          <ScalarProperty Name="GameStarted" ColumnName="GameStarted" />
+          <ScalarProperty Name="Wins" ColumnName="Wins" />
+          <ScalarProperty Name="Losses" ColumnName="Losses" />
+          <ScalarProperty Name="Saves" ColumnName="Saves" />
+          <ScalarProperty Name="Era" ColumnName="Era" />
+          <ScalarProperty Name="VsGamePitched" ColumnName="VsGamePitched" />
+          <ScalarProperty Name="VsGameStarted" ColumnName="VsGameStarted" />
+          <ScalarProperty Name="VsWins" ColumnName="VsWins" />
+          <ScalarProperty Name="VsLosses" ColumnName="VsLosses" />
+          <ScalarProperty Name="VsSaves" ColumnName="VsSaves" />
+          <ScalarProperty Name="VsEra" ColumnName="VsEra" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamInfoST">
+      <EntityTypeMapping TypeName="NpbModel.TeamInfoST">
+        <MappingFragment StoreEntitySet="TeamInfoST">
+          <ScalarProperty Name="TeamInfoSTId" ColumnName="TeamInfoSTId" />
+          <ScalarProperty Name="StartingGameSTId" ColumnName="StartingGameSTId" />
+          <ScalarProperty Name="HV" ColumnName="HV" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+          <ScalarProperty Name="TeamNameS" ColumnName="TeamNameS" />
+          <ScalarProperty Name="TeamNameE" ColumnName="TeamNameE" />
+          <ScalarProperty Name="TeamNameES" ColumnName="TeamNameES" />
+          <ScalarProperty Name="TeamNameInitial" ColumnName="TeamNameInitial" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamStats10thGame">
+      <EntityTypeMapping TypeName="NpbModel.TeamStats10thGame">
+        <MappingFragment StoreEntitySet="TeamStats10thGame">
+          <ScalarProperty Name="TeamStats10thGameId" ColumnName="TeamStats10thGameId" />
+          <ScalarProperty Name="TeamStats10thGameHeaderId" ColumnName="TeamStats10thGameHeaderId" />
+          <ScalarProperty Name="GameDate" ColumnName="GameDate" />
+          <ScalarProperty Name="TeamsOpponentCD" ColumnName="TeamsOpponentCD" />
+          <ScalarProperty Name="ShortNameTeamsOpponent" ColumnName="ShortNameTeamsOpponent" />
+          <ScalarProperty Name="Round" ColumnName="Round" />
+          <ScalarProperty Name="StadiumCD" ColumnName="StadiumCD" />
+          <ScalarProperty Name="Stadium" ColumnName="Stadium" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="GameResult" ColumnName="GameResult" />
+          <ScalarProperty Name="GamesStartedCD" ColumnName="GamesStartedCD" />
+          <ScalarProperty Name="ShortNameGamesStart" ColumnName="ShortNameGamesStart" />
+          <ScalarProperty Name="ResponsibilityPitcherCD" ColumnName="ResponsibilityPitcherCD" />
+          <ScalarProperty Name="ShortNameResponsibilityPitcher" ColumnName="ShortNameResponsibilityPitcher" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamStats10thGameHeader">
+      <EntityTypeMapping TypeName="NpbModel.TeamStats10thGameHeader">
+        <MappingFragment StoreEntitySet="TeamStats10thGameHeader">
+          <ScalarProperty Name="TeamStats10thGameHeaderId" ColumnName="TeamStats10thGameHeaderId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamStatsCardDifference">
+      <EntityTypeMapping TypeName="NpbModel.TeamStatsCardDifference">
+        <MappingFragment StoreEntitySet="TeamStatsCardDifference">
+          <ScalarProperty Name="TeamStatsCardDifferenceId" ColumnName="TeamStatsCardDifferenceId" />
+          <ScalarProperty Name="TeamStatsCardDifferenceHeaderId" ColumnName="TeamStatsCardDifferenceHeaderId" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamStatsCardDifferenceHeader">
+      <EntityTypeMapping TypeName="NpbModel.TeamStatsCardDifferenceHeader">
+        <MappingFragment StoreEntitySet="TeamStatsCardDifferenceHeader">
+          <ScalarProperty Name="TeamStatsCardDifferenceHeaderId" ColumnName="TeamStatsCardDifferenceHeaderId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="League" ColumnName="League" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamStatsCardDifferenceInfo">
+      <EntityTypeMapping TypeName="NpbModel.TeamStatsCardDifferenceInfo">
+        <MappingFragment StoreEntitySet="TeamStatsCardDifferenceInfo">
+          <ScalarProperty Name="TeamStatsCardDifferenceInfoId" ColumnName="TeamStatsCardDifferenceInfoId" />
+          <ScalarProperty Name="TeamStatsCardDifferenceId" ColumnName="TeamStatsCardDifferenceId" />
+          <ScalarProperty Name="AnotherLeagueF" ColumnName="AnotherLeagueF" />
+          <ScalarProperty Name="TeamsOpponentCD" ColumnName="TeamsOpponentCD" />
+          <ScalarProperty Name="ShortNameTeamsOpponent" ColumnName="ShortNameTeamsOpponent" />
+          <ScalarProperty Name="Win" ColumnName="Win" />
+          <ScalarProperty Name="Lose" ColumnName="Lose" />
+          <ScalarProperty Name="Draw" ColumnName="Draw" />
+          <ScalarProperty Name="Game" ColumnName="Game" />
+          <ScalarProperty Name="Run" ColumnName="Run" />
+          <ScalarProperty Name="PointLost" ColumnName="PointLost" />
+          <ScalarProperty Name="Hit" ColumnName="Hit" />
+          <ScalarProperty Name="Homerun" ColumnName="Homerun" />
+          <ScalarProperty Name="StrikeOut" ColumnName="StrikeOut" />
+          <ScalarProperty Name="BaseOnBall" ColumnName="BaseOnBall" />
+          <ScalarProperty Name="HitByPitch" ColumnName="HitByPitch" />
+          <ScalarProperty Name="DoublePlay" ColumnName="DoublePlay" />
+          <ScalarProperty Name="StolenBase" ColumnName="StolenBase" />
+          <ScalarProperty Name="Error" ColumnName="Error" />
+          <ScalarProperty Name="BattingAverage" ColumnName="BattingAverage" />
+          <ScalarProperty Name="EarnedRunAverage" ColumnName="EarnedRunAverage" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TextGTE">
+      <EntityTypeMapping TypeName="NpbModel.TextGTE">
+        <MappingFragment StoreEntitySet="TextGTE">
+          <ScalarProperty Name="TextGTEId" ColumnName="TextGTEId" />
+          <ScalarProperty Name="BatGTEId" ColumnName="BatGTEId" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="No" ColumnName="No" />
+          <ScalarProperty Name="Seq" ColumnName="Seq" />
+          <ScalarProperty Name="F" ColumnName="F" />
+          <ScalarProperty Name="Sec" ColumnName="Sec" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TextGTS">
+      <EntityTypeMapping TypeName="NpbModel.TextGTS">
+        <MappingFragment StoreEntitySet="TextGTS">
+          <ScalarProperty Name="TextGTSId" ColumnName="TextGTSId" />
+          <ScalarProperty Name="BatGTSId" ColumnName="BatGTSId" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="No" ColumnName="No" />
+          <ScalarProperty Name="Seq" ColumnName="Seq" />
+          <ScalarProperty Name="F" ColumnName="F" />
+          <ScalarProperty Name="Sec" ColumnName="Sec" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TextInfoGTE">
+      <EntityTypeMapping TypeName="NpbModel.TextInfoGTE">
+        <MappingFragment StoreEntitySet="TextInfoGTE">
+          <ScalarProperty Name="TextInfoGTEId" ColumnName="TextInfoGTEId" />
+          <ScalarProperty Name="GameInfoGTEId" ColumnName="GameInfoGTEId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TextInfoGTS">
+      <EntityTypeMapping TypeName="NpbModel.TextInfoGTS">
+        <MappingFragment StoreEntitySet="TextInfoGTS">
+          <ScalarProperty Name="TextInfoGTSId" ColumnName="TextInfoGTSId" />
+          <ScalarProperty Name="GameInfoGTSId" ColumnName="GameInfoGTSId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnpireInfoST">
+      <EntityTypeMapping TypeName="NpbModel.UnpireInfoST">
+        <MappingFragment StoreEntitySet="UnpireInfoST">
+          <ScalarProperty Name="UnpireInfoSTId" ColumnName="UnpireInfoSTId" />
+          <ScalarProperty Name="StartingGameSTId" ColumnName="StartingGameSTId" />
+          <ScalarProperty Name="Chief" ColumnName="Chief" />
+          <ScalarProperty Name="First" ColumnName="First" />
+          <ScalarProperty Name="Second" ColumnName="Second" />
+          <ScalarProperty Name="Third" ColumnName="Third" />
+          <ScalarProperty Name="Left" ColumnName="Left" />
+          <ScalarProperty Name="Right" ColumnName="Right" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VsPitcherGL">
+      <EntityTypeMapping TypeName="NpbModel.VsPitcherGL">
+        <MappingFragment StoreEntitySet="VsPitcherGL">
+          <ScalarProperty Name="VsPitcherGLId" ColumnName="VsPitcherGLId" />
+          <ScalarProperty Name="DetailsGLId" ColumnName="DetailsGLId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="NameS" ColumnName="NameS" />
+          <ScalarProperty Name="NameL" ColumnName="NameL" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WinBest10">
+      <EntityTypeMapping TypeName="NpbModel.WinBest10">
+        <MappingFragment StoreEntitySet="WinBest10">
+          <ScalarProperty Name="WinBest10Id" ColumnName="WinBest10Id" />
+          <ScalarProperty Name="WinBest10HeaderId" ColumnName="WinBest10HeaderId" />
+          <ScalarProperty Name="Ranking" ColumnName="Ranking" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+          <ScalarProperty Name="ShortNameTeam" ColumnName="ShortNameTeam" />
+          <ScalarProperty Name="TeamInitial" ColumnName="TeamInitial" />
+          <ScalarProperty Name="Win" ColumnName="Win" />
+          <ScalarProperty Name="GamePitched" ColumnName="GamePitched" />
+          <ScalarProperty Name="EarnedRunAverage" ColumnName="EarnedRunAverage" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WinBest10Header">
+      <EntityTypeMapping TypeName="NpbModel.WinBest10Header">
+        <MappingFragment StoreEntitySet="WinBest10Header">
+          <ScalarProperty Name="WinBest10HeaderId" ColumnName="WinBest10HeaderId" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="GameAssortment" ColumnName="GameAssortment" />
+          <ScalarProperty Name="Season" ColumnName="Season" />
+          <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+          <ScalarProperty Name="VisitorTeam" ColumnName="VisitorTeam" />
+          <ScalarProperty Name="Matchday" ColumnName="Matchday" />
+          <ScalarProperty Name="GameCD" ColumnName="GameCD" />
+          <ScalarProperty Name="League" ColumnName="League" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WinningPitcherRGI">
+      <EntityTypeMapping TypeName="NpbModel.WinningPitcherRGI">
+        <MappingFragment StoreEntitySet="WinningPitcherRGI">
+          <ScalarProperty Name="WinningPitcherRGIId" ColumnName="WinningPitcherRGIId" />
+          <ScalarProperty Name="GameResultInfoRGIId" ColumnName="GameResultInfoRGIId" />
+          <ScalarProperty Name="PlayerCD" ColumnName="PlayerCD" />
+          <ScalarProperty Name="ShortNamePlayer" ColumnName="ShortNamePlayer" />
+          <ScalarProperty Name="TotalWon" ColumnName="TotalWon" />
+          <ScalarProperty Name="TotalLost" ColumnName="TotalLost" />
+          <ScalarProperty Name="TotalSave" ColumnName="TotalSave" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WinPitcherGL">
+      <EntityTypeMapping TypeName="NpbModel.WinPitcherGL">
+        <MappingFragment StoreEntitySet="WinPitcherGL">
+          <ScalarProperty Name="WinPitcherGLId" ColumnName="WinPitcherGLId" />
+          <ScalarProperty Name="GameEndInfoGLId" ColumnName="GameEndInfoGLId" />
+          <ScalarProperty Name="PlayerID" ColumnName="PlayerID" />
+          <ScalarProperty Name="BackNumber" ColumnName="BackNumber" />
+          <ScalarProperty Name="PlayerNameS" ColumnName="PlayerNameS" />
+          <ScalarProperty Name="PlayerNameL" ColumnName="PlayerNameL" />
+          <ScalarProperty Name="Games" ColumnName="Games" />
+          <ScalarProperty Name="Win" ColumnName="Win" />
+          <ScalarProperty Name="Lose" ColumnName="Lose" />
+          <ScalarProperty Name="Save" ColumnName="Save" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamS" ColumnName="TeamS" />
+          <ScalarProperty Name="TeamES" ColumnName="TeamES" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamIconNpb">
+      <EntityTypeMapping TypeName="NpbModel.TeamIconNpb">
+        <MappingFragment StoreEntitySet="TeamIconNpb">
+          <ScalarProperty Name="SortOrd" ColumnName="SortOrd" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedAccountID" ColumnName="ModifiedAccountID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="TeamIcon" ColumnName="TeamIcon" />
+          <ScalarProperty Name="TeamCD" ColumnName="TeamCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

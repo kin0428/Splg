@@ -1,0 +1,46 @@
+﻿@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: JleagueTeamMenu.cshtml
+    // Device       : PC
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-04-14
+    ///                  Menu team info jleague
+    /// ViewBag.JleagueTeamMenu : Using choice team menu Jleague
+    /// ViewBag.JleagueTeamMenu = 1 => Jleague チーム情報トップ : 10_2_5_1; 10_3_5_1
+    /// ViewBag.JleagueTeamMenu = 2 => Jleague 成績・結果 :10_2_5_2; 10_3_5_2
+    /// ViewBag.JleagueTeamMenu = 3 => Jleague 対戦成績: 10_2_5_3; 10_3_5_3
+    /// ViewBag.JleagueTeamMenu = 4 => Jleague 投手: 10_2_5_4; 10_3_5_4
+    /// ViewBag.JleagueTeamMenu = 5 => Jleague ニュース: 10_2_5_5; 10_3_5_5     
+    ///    
+}
+@{
+    string title = string.Format("{0}{1}", "チーム情報",
+    ViewBag.JleagueTeamMenu == 1 ? "トップ"
+    : ViewBag.JleagueTeamMenu == 2 ? "日程・結果"
+    : ViewBag.JleagueTeamMenu == 3 ? "対戦成績"
+    : ViewBag.JleagueTeamMenu == 4 ? "選手"
+    : ViewBag.JleagueTeamMenu == 5 ? "ニュース" : "");
+  string teamName = ViewBag.TeamName;
+    }
+
+<h2 class="jtitle">
+    @title @teamName
+</h2>
+<ul class="team_menu fs14 clear">
+    @if (ViewBag.JleagueMenu == 2)
+    {
+        <li class=@(ViewBag.JleagueTeamMenu == 1 ? "active" : "")><a href="/jleague/j1/teams/@ViewBag.TeamID">チーム情報トップ</a></li>
+        <li class=@(ViewBag.JleagueTeamMenu == 2 ? "active" : "")><a href="/jleague/j1/teams/@ViewBag.TeamID/schedule">日程・結果</a></li>
+        <li class=@(ViewBag.JleagueTeamMenu == 3 ? "active" : "")><a href="/jleague/j1/teams/@ViewBag.TeamID/stats">対戦成績</a></li>
+        <li class=@(ViewBag.JleagueTeamMenu == 4 ? "active" : "")><a href="/jleague/j1/teams/@ViewBag.TeamID/memberlist">選手</a></li>
+        <li class=@(ViewBag.JleagueTeamMenu == 5 ? "active" : "")><a href="/jleague/j1/teams/@ViewBag.TeamID/news">ニュース</a></li>
+    }
+    else if (ViewBag.JleagueMenu == 3)
+    {
+        <li class=@(ViewBag.JleagueTeamMenu == 1 ? "active" : "")><a href="/jleague/j2/teams/@ViewBag.TeamID">チーム情報トップ</a></li>
+        <li class=@(ViewBag.JleagueTeamMenu == 2 ? "active" : "")><a href="/jleague/j2/teams/@ViewBag.TeamID/schedule">日程・結果</a></li>
+        <li class=@(ViewBag.JleagueTeamMenu == 3 ? "active" : "")><a href="/jleague/j2/teams/@ViewBag.TeamID/stats">対戦成績</a></li>
+        <li class=@(ViewBag.JleagueTeamMenu == 4 ? "active" : "")><a href="/jleague/j2/teams/@ViewBag.TeamID/memberlist">選手</a></li>
+        <li class=@(ViewBag.JleagueTeamMenu == 5 ? "active" : "")><a href="/jleague/j2/teams/@ViewBag.TeamID/news">ニュース</a></li>       
+    }
+</ul>        

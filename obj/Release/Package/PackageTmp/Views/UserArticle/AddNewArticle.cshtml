@@ -1,0 +1,89 @@
+﻿@using Splg.Models.UserArticle.ViewModel
+@using Splg.Core.Constant;
+@model Splg.Models.UserArticle.ViewModel.UserArticleInfoViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<p class="block_path02">
+    <a href="/"><span class="icon gui_icon"> </span></a>
+    > <a href="/user_article/">投稿記事トップ</a>
+    > 記事作成
+</p>
+<ul class="block_nav">
+    <li><a class="active" href="/user_article/">投稿記事トップ</a></li>
+    <li><a href="/user_article/1/sport/">プロ野球</a></li>
+    <li><a href="/user_article/2/sport/">Jリーグ</a></li>
+    <li><a href="/user_article/3/sport/">MLB</a></li>
+</ul>
+<div class="block_06">
+    <h2 class="mytitle">記事作成</h2>
+    @Html.Partial("_QuotContent", Model)
+    <div class="block_05_1">
+        <ul class="rel_category">
+            <li class="fs18 bold">関連トピック</li>
+            @if (Model.RelatedTopicList != null && Model.RelatedTopicList.Any())
+            {
+                foreach (var item in Model.RelatedTopicList)
+                {
+                    <li><a href="/user_article/@item.TopicId/topic/">@item.TopicName</a></li>
+                }
+            }
+
+        </ul>
+    </div>
+    <div class="block_04_7">
+        @using (Html.BeginForm("ConfirmUserArticle", "UserArticle", FormMethod.Post, new { @id = "postForm" }))
+        {
+            @Html.ValidationSummary(true)
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.Status)
+            @Html.HiddenFor(model => model.NewsClassId)
+            @Html.HiddenFor(model => model.QuoteUniqueId1)
+            @Html.HiddenFor(model => model.QuoteUniqueId2)
+            @Html.HiddenFor(model => model.QuoteUniqueId3)
+            <table cellpadding="0" cellspacing="0" summary="mypage">
+                <col width="22%" />
+                <col width="78%" />
+                <span id="errorPost" style="color:red"></span>
+                <tbody valign="top">
+                    <tr>
+                        <th>@Html.LabelFor(m => m.Title)</th>
+                        <td>
+                            @Html.TextBoxFor(m => m.Title, new { @class = "ip460", @id = "postTitle", @placeholder = UserArticleConst.TitlePlaceHolderMessage })
+                            <span class="right validation_message">
+                                @Html.ValidationMessageFor(m => m.Title)
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>@Html.LabelFor(m => m.Body)</th>
+                        <td>
+                            @Html.TextAreaFor(model => model.Body, new { @id = "postBody", @class = "txt460", @cols = "40", @rows = "10", @placeholder = UserArticleConst.BodyPlaceHolderMessage })
+                            <span class="right validation_message">
+                                @Html.ValidationMessageFor(m => m.Body)
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>画像</th>
+                        <td>
+                            <div class="img_upl">
+                                <img class="resimg" id="img_preview" src="@Url.Content(Model.ImageLink)" alt="200x200" />
+                            </div>
+                            <div class="block_04_7_btn02">
+                                <a href="javascript:void();" onclick="document.getElementById('image_file').click();">ファイルを選択</a>
+                                <p>最大アップロードサイズ: 5 MB</p><br />
+                                <span id="errorImage" style="color:red"></span>
+                                <input type="file" name="image_file" id="image_file" style="visibility: hidden; width: 1px; height: 1px" onchange="fileSelected();" />
+                                @Html.HiddenFor(model => model.DataURL, new { @id = "dataURL" })
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+                <p class="board_link"><input type="submit" class="send_mail" value="確認画面へ" /></p>
+        }
+    </div>
+
+</div>

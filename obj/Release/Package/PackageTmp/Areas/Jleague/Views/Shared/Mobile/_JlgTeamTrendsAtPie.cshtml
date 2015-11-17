@@ -1,0 +1,66 @@
+﻿@model Splg.Areas.Jleague.Models.ViewModel.JlgTeamTrendsAtPieViewModel
+@using Splg.Core.Models.Flotr2.Dto.PieChart;
+
+<div class="socPropPattern">
+    <form name="socPatternForm">
+        <p class="socPropPattern-hdg">
+            <select id="socPropPattern" name="socPropPattern" class="pulldown socPropPt-pulldpwn" onchange="changePatternSelect()">
+                <option value="0" selected="selected">得点パターン</option>
+                <option value="1">失点パターン</option>
+                <option value="2">時間帯別得点数</option>
+                <option value="3">時間帯別失点数</option>
+                <option value="4">パス成功率</option>
+                <option value="5">パス距離別の総数・割合</option>
+            </select>
+        </p>
+
+        <div class="socHdgMini-left">
+            <img src="@Url.Content(Model.HomeTeamSpec.TeamIconUrl)" alt="@Html.DisplayFor(m => @Model.HomeTeamSpec.TeamName)">
+            <p>@Html.DisplayFor(m => Model.HomeTeamSpec.TeamShortName)</p>
+        </div>
+
+        <div id="socGoalsForHome" class="socPropPattern-graph graphActive">
+            @Html.Action("ShowPieChart", "Chart", new { pieChartDto = Model.HomeChartAtGoalPattern, area = "" })
+        </div>
+        <div id="socGoalsAgainstHome" class="socPropPattern-graph graphActive">
+            @Html.Action("ShowPieChart", "Chart", new { pieChartDto = Model.HomeChartAtLostPattern, area = "" })
+        </div>
+        <div id="socTimeGoalsForHome" class="socPropPattern-graph graphActive">
+            @Html.Action("ShowPieChart", "Chart", new { pieChartDto = Model.HomeChartAtGoalGroupByTimeZone, area = "" })
+        </div>
+        <div id="socTimeGoalsAgainstHome" class="socPropPattern-graph graphActive">
+            @Html.Action("ShowPieChart", "Chart", new { pieChartDto = Model.HomeChartAtLostGroupByTimeZone, area = "" })
+        </div>
+        <div id="socPassSuccessHome" class="socPropPattern-graph graphActive">
+            @Html.Action("ShowPieChart", "Chart", new { pieChartDto = Model.HomeChartAtPassSucceedAverage, area = "" })
+        </div>
+        <div id="socPassDistanceHome" class="socPropPattern-graph graphActive">
+            @Html.Action("ShowPieChart", "Chart", new { pieChartDto = Model.HomeChartAtPassPattern, area = "" })
+        </div>
+
+        <div class="socHdgMini-left">
+            <img src="@Url.Content(Model.AwayTeamSpec.TeamIconUrl)" alt="@Html.DisplayFor(m => @Model.AwayTeamSpec.TeamName)">
+            <p>@Html.DisplayFor(m => Model.AwayTeamSpec.TeamShortName)</p>
+        </div>
+
+        <div id="socGoalsForAway" class="socPropPattern-graph graphActive">
+            @Html.Action("ShowPieChart", "Chart", new { pieChartDto = Model.AwayChartAtGoalPattern, area = "" })
+        </div>
+        <div id="socGoalsAgainstAway" class="socPropPattern-graph graphActive">
+            @Html.Action("ShowPieChart", "Chart", new { pieChartDto = Model.AwayChartAtLostPattern, area = "" })
+        </div>
+        <div id="socTimeGoalsForAway" class="socPropPattern-graph graphActive">
+            @Html.Action("ShowPieChart", "Chart", new { pieChartDto = Model.AwayChartAtGoalGroupByTimeZone, area = "" })
+        </div>
+        <div id="socTimeGoalsAgainstAway" class="socPropPattern-graph graphActive">
+            @Html.Action("ShowPieChart", "Chart", new { pieChartDto = Model.AwayChartAtLostGroupByTimeZone, area = "" })
+        </div>
+        <div id="socPassSuccessAway" class="socPropPattern-graph graphActive">
+            @Html.Action("ShowPieChart", "Chart", new { pieChartDto = Model.AwayChartAtPassSucceedAverage, area = "" })
+        </div>
+        <div id="socPassDistanceAway" class="socPropPattern-graph graphActive">
+            @Html.Action("ShowPieChart", "Chart", new { pieChartDto = Model.AwayChartAtPassPattern, area = "" })
+        </div>
+
+    </form>
+</div>

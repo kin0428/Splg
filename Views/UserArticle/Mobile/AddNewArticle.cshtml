@@ -1,0 +1,64 @@
+﻿@using Splg.Models.UserArticle.ViewModel
+@using Splg.Core.Constant;
+@model Splg.Models.UserArticle.ViewModel.UserArticleInfoViewModel
+
+@{
+    Layout = "~/Views/Shared/Mobile/_Layout.cshtml";
+}
+<script src="~/Scripts/preview_image.js"></script>
+<script src="~/Scripts/section2.js"></script>
+@if (Model != null)
+{
+    <section class="block_9">
+        <h2 class="subtitle2">記事作成</h2>
+        @Html.Partial("_QuotContent", Model)
+        <ul class="rel-topic">
+            <li>関連トピック</li>
+            @if (Model.RelatedTopicList != null && Model.RelatedTopicList.Any())
+            {
+                foreach (var item in Model.RelatedTopicList)
+                {
+                    <li><a href="/user_article/@item.TopicId/topic/">@item.TopicName</a></li>
+                }
+            }
+        </ul>
+        <div class="space"></div>
+        <h2 class="subtitle2">投稿記事</h2>
+        @using (Html.BeginForm("ConfirmUserArticle", "UserArticle", FormMethod.Post, new { @id = "postForm" }))
+        {
+            @Html.ValidationSummary(true)
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.Status)
+            @Html.HiddenFor(model => model.NewsClassId)
+            @Html.HiddenFor(model => model.QuoteUniqueId1)
+            @Html.HiddenFor(model => model.QuoteUniqueId2)
+            @Html.HiddenFor(model => model.QuoteUniqueId3)
+            <dl class="cmt_frm">
+                <dt>@Html.LabelFor(m => m.Title)</dt>
+                <dd>
+                    @Html.TextBoxFor(m => m.Title, new { @class = "cmt_input", @id = "postTitle", @placeholder = UserArticleConst.TitlePlaceHolderMessage })
+                    <span class="right validation_message" >
+                        @Html.ValidationMessageFor(m => m.Title)
+                    </span>
+                </dd>
+                <dt>@Html.LabelFor(m => m.Body)</dt>
+                <dd>
+                    @Html.TextAreaFor(model => model.Body, new { @id = "postBody", @class = "cmt_area", @cols = "15", @rows = "5", @placeholder = UserArticleConst.BodyPlaceHolderMessage })
+                    <span class="right validation_message">
+                        @Html.ValidationMessageFor(m => m.Body)
+                    </span>
+                </dd>
+                <dd>
+                    <div class="cmt_img">
+                        <div><img src="@Url.Content(Model.ImageLink)" id="img_preview" alt=""></div>
+                        <p><a href="javascript:void();" onclick="document.getElementById('image_file').click();">ファイルを選択</a></p>
+                        <span id="errorImage" style="color:red"></span>
+                        <input type="file" name="image_file" id="image_file" style="visibility: hidden; width: 1px; height: 1px" onchange="fileSelected();" />
+                        @Html.HiddenFor(model => model.DataURL, new { @id = "dataURL" })
+                    </div>
+                </dd>
+            </dl>
+            <p class="sig-submit"><input type="submit" class="confirm_button" value="確認画面へ" /></p>
+        }
+    </section>
+}

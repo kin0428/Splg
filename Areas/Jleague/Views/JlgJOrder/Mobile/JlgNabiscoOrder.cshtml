@@ -1,0 +1,64 @@
+﻿@*
+    * Developer	: Tran Sy Huynh
+    *
+*@
+
+@model IEnumerable<Splg.Areas.Jleague.Models.ViewModel.JlgJ12OrderViewModel>
+@{
+    ViewBag.Title = "順位表";
+    ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_NB_ODR;
+    ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_NB_ODR;
+    Layout = "~/Views/Shared/Mobile/_Layout.cshtml";
+}
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        <section class="block_2">
+                @foreach (var group in Model.GroupBy(g => g.GroupID))
+                {
+                    var dateDisplay = string.Empty;
+                    if (group.FirstOrDefault().RankingInfo != null)
+                    {
+                        if (group.FirstOrDefault().RankingInfo.CreatedDate != null)
+                        {
+                            dateDisplay = string.Format("{0}更新", Utils.ParseLocalDateToLongJapanDate(group.FirstOrDefault().RankingInfo.CreatedDate.Value, false));
+                        }
+                    }
+                    int jType = group.Key == "A" ? 1 : 2;
+                    <h2 class="subtitle2">@string.Format("{0}グループ順位", group.Key) <span class="fs8">@dateDisplay</span></h2>
+                    <ul class="team-list">
+                        @foreach (var item in group)
+                        {
+                            if (item.RankingInfo != null)
+                            {
+                                var orange = "";
+                                orange = "orange";
+                                if (item.RankingInfo.Ranking != 1)
+                                {
+                                    orange = "";
+                                }
+                                <li>
+                                    <p class="num fs40 @orange">@item.RankingInfo.Ranking</p>
+                                    <div>
+                                        <dl>
+                                            <dt><a href="@string.Format("/jleague/j{0}/teams/{1}/", jType, item.TeamID)">@item.TeamName</a></dt>
+                                        </dl>
+                                        <ul class="jinfo">
+                                            <li>勝点 @item.RankingInfo.Point</li>
+                                            <li>試合数 @item.RankingInfo.Game</li>
+                                            <li>　勝数 @item.RankingInfo.Win</li>
+                                            <li>　引分数 @item.RankingInfo.Draw</li>
+                                            <li>敗数 @item.RankingInfo.Lose</li>
+                                            <li>失点 @item.RankingInfo.Lost</li>
+                                            <li>　得失点差 @item.RankingInfo.Differ</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                }
+        </section>
+    }
+}

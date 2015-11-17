@@ -1,0 +1,59 @@
+﻿@*
+    *
+    * Developer	: Tran Sy Huynh
+    *
+*@
+@model Splg.Areas.Npb.Models.ViewModel.NpbTeamNewsViewModel
+@using PagedList.Mvc;
+@using Splg;
+@{
+    ViewBag.Title = "ニュース";
+    ViewBag.Name = Constants.NPBNEWS;
+    Layout = "~/Views/Shared/Mobile/_NpbLayout.cshtml";
+}
+<section class="block_0 clear">
+    <h3 class="subtitle3">ニュースリスト</h3>
+    @using (Html.BeginForm("Index",
+                            "NpbNewsList",
+                            FormMethod.Get))
+    {
+        List<SelectListItem> items = new List<SelectListItem>();
+        items.Add(new SelectListItem { Text = "全て", Value = string.Empty, Selected = (ViewBag.teamId == string.Empty) });
+        foreach (var team in Model.TeamList)
+        {
+            items.Add(new SelectListItem { Text = team.Team, Value = Convert.ToString(team.TeamCD), Selected = (ViewBag.teamId == string.Empty) ? false : (team.TeamCD == Convert.ToInt32(ViewBag.teamId)) });
+        }
+        <div class="news-box">
+            @Html.DropDownList("strTeamId", items, new { onchange = @"form.submit();" })
+        </div>
+    }
+    @if (Model.TeamNewsList != null && Model.TeamNewsList.Count() > 0)
+    {
+        <div class="block_3_1">
+            @foreach (var item in Model.TeamNewsList)
+            {
+                var imageLocation = Utils.GetNewsImageLocation(item.Content ?? Constants.IMAGE_DEFAULT);
+                <article>
+                    <figure><img src="@Url.Content(imageLocation)" alt="" /></figure>
+                    <div>
+                        <h3>@Html.RouteLink(item.Headline, "7_1", new { areas = string.Empty, topic = Constants.NPB_TOPIC_NAME, newsItemID = item.NewsItemID, sportID = Constants.NPB_SPORT_ID })</h3>
+                        <p>@item.SentFrom　@item.DeliveryDate.ToString("MM/dd HH:mm")</p>
+                    </div>
+                </article>
+            }
+        </div>
+        <div class="space20"> </div>
+        <nav class="news-control">
+            @if (Model.TeamNewsList.PageNumber > 1)
+            {
+                var nextPage = Model.TeamNewsList.PageNumber - 1;
+                <a class="prev" href="?page=@nextPage&strTeamId=@ViewBag.teamId">前のページ</a>
+            }
+            @if (Model.TeamNewsList.PageNumber < Model.TeamNewsList.PageCount)
+            {
+                var nextPage = Model.TeamNewsList.PageNumber + 1;
+                <a class="next" href="?page=@nextPage&strTeamId=@ViewBag.teamId">次のページ</a>
+            }
+        </nav>
+    }
+</section>

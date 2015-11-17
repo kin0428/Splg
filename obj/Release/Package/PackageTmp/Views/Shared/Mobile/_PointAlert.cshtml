@@ -1,0 +1,14 @@
+﻿@using Splg.Core.Constant;
+@model Splg.Models.Members.InfoModel.MemberModel
+
+<a href="@Url.RouteUrl(RouteNameConst.MyPageToday)">
+    @*<div class="ad_row01">
+            <p class="tcenter black">
+                <span class="orange fs8">所持ポイント</span>
+                <span class="pdl15 fs24 bold">@Html.DisplayFor(m => m.PossesionPoint)</span>
+                <span>pt</span>
+            </p>
+        </div>*@
+    <p class="pointBoard-txt">@Html.DisplayFor(m => m.Nickname)さんの<br>所持ポイント</p>
+    <p class="pointBoard-num clear">@Html.DisplayFor(m => m.PossesionPoint)<span>pt</span></p>
+</a>

@@ -1,0 +1,63 @@
+﻿@model Splg.Areas.Npb.Models.ViewModel.NpbTeamInfoConfrontationResultViewModel
+@using Splg;
+@using Splg.Areas.Npb.Models.ViewModel.InfosModel;
+@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: _NpbTeamInfoResultGameInfos.cshtml
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-04-07 
+}
+@if (Model != null && Model.ResultGameInfos != null && Model.ResultGameInfos.Any())
+{
+    IEnumerable<NpbTeamInfoConfrontationResultInfos> gameInfos = Model.ResultGameInfos;
+    var grpGameInfoMonth = gameInfos.GroupBy(gameInfo =>
+    gameInfo.InMonth).OrderBy(gameInfo => gameInfo.Key);
+    foreach (var gameInfo in grpGameInfoMonth)
+    {
+        <div class="space20">
+    </div>
+        <h3 class="mem_title01">@string.Format("{0}{1}", @gameInfo.Key.ToString(), "月の試合")</h3>
+        <div class="yak_tbl">  
+        <table cellpadding="0" cellspacing="0" summary="table">
+            <col width="15%" />
+            <col width="7%" />
+            <col width="10%" />
+            <col width="38%" />
+            <col width="22%" />
+            <col width="8%" />
+            <tr>
+                <th>日付</th>
+                <th>勝敗</th>
+                <th>スコア</th>
+                <th>責任投手</th>
+                <th>球場名</th>
+                <th>時刻</th>
+            </tr>
+            <tbody>
+                @foreach (var item in gameInfo)
+                {                 
+                    <tr>
+                        <td>@(Splg.Utils.GetDateMMddDayofWeekToJapanTime(Convert.ToDateTime(DateTime.ParseExact(item.GameDate, "yyyyMMdd", null).ToString("yyyy/MM/dd"))))</td>
+                        <td><span class="fs18">@item.WinTeamSymbol</span></td>                                           
+                        <td><span class="fs18 blue "><a href="@Url.Action("Index", "NpbGameInformation", new { area = "Npb" , gameID = @item.GameID}, null)">@(item.ViewTotalScore)</a></span></td>
+                        <td class="tleft">@(item.WinTeamChar)                         
+                            @if (item.WinTeamCD == item.HomeTeam)
+                            {
+                                 <a href="@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.WinTeamCD, playerID = @item.WinningPlayerID }, null)">@item.WinningShortNamePlayer</a>
+                                  <span> &nbsp;&nbsp; @string.Format("{0}", item.AndSymbol)</span>
+                                 <a href="@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.WinTeamCD, playerID = @item.SavingPlayerID }, null)">@item.SavingShortNamePlayer</a>
+                            }
+                            else if (item.WinTeamCD == item.VisitorTeam)
+                            {
+                                  <a href="@Url.Action("Index", "NpbTeamInfoPitcherDetail", new { area = "Npb", teamID = @item.WinTeamCD, playerID = @item.LosingPlayerID }, null)">@item.LosingShortNamePlayer</a>
+                            }
+                        </td>
+                        <td>@item.ShortNameStadium</td>
+                        <td>@(Splg.Utils.FormatTime(item.StartTime))</td>       
+                    </tr>
+                }
+            </tbody>
+        </table>
+</div>
+    }
+}

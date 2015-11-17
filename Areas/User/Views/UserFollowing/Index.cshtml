@@ -1,0 +1,108 @@
+﻿@{
+    //Author : Nojima
+    //FileName : Index.cshtml (3-5)
+    //Created Date : 2015/04/12
+}
+@using Splg.Areas.User.Models.ViewModel;
+@using Splg.Areas.User.Models.InfoModel;
+@model UserFollowingViewModel
+
+@{
+    ViewBag.Title = "他ユーザー　フォローリスト";
+    ViewBag.PageNo = Splg.Areas.User.UserConstant.FOLLOWING_INDEX;
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<script src="~/Scripts/jquery.shorten.1.0.js"></script>
+<script src="~/Scripts/splgCommon.js"></script>
+<script src="~/Areas/User/Scripts/Views/follow_unfolllow.js"></script>
+<script src="~/Areas/User/Scripts/Views/4-4.js"></script>
+
+<div class="block_04">
+    <h2 class="mytitle">@Model.Nickname さんのフォローリスト</h2>
+    @{
+        int totalCount = Model.TotalCount;
+        int viewingCount = 0;
+        if (Model.FollowingMembers != null)
+        {
+            viewingCount = System.Math.Min(Model.FollowingMembers.Count(), UserFollowersViewModel.INITIAL_SIZE);
+        }
+
+        long currentUserMemberId = -1;
+        object currentUser = Session["CurrentUser"];
+
+        if (currentUser != null)
+        {
+            currentUserMemberId = Convert.ToInt64(currentUser.ToString());
+        }
+    <input id="currentUser" type="hidden" data-currentmemberid="@currentUserMemberId" />
+        <h3>
+            <span class="fs14">フォロー </span>
+            <span id="totalCount" class="fs18">@Model.TotalCount</span>
+            <span class="fs14">名</span>
+        </h3>
+
+        <div id="lines">
+
+            @if (Model.FollowingMembers != null)
+            {
+
+                foreach (FollowingMemberForUser m in Model.FollowingMembers)
+                {
+                    string formattedLastExpectedPointDate = "";
+                    if (m.FormattedLastExpectedPointDate != null)
+                    {
+                        formattedLastExpectedPointDate = "最終予想 " + m.FormattedLastExpectedPointDate;
+                    }
+
+                    string displayFollow = "display:none";
+                    string displayUnfollow = "display:none";
+                    if (currentUser != null)
+                    {
+                        displayFollow = m.IsFollowing ? "display:none" : "";
+                        displayUnfollow = m.IsFollowing ? "" : "display:none";
+                    }   
+
+                    @* ログイン会員の場合の対処 *@
+                    if (currentUserMemberId != m.MemberId)
+                    {
+                        <div class="sub_list_row">
+                            <h4>
+                                <a href="/user/@m.MemberId">
+                                    <img class="circle resimg" src="@Url.Content(@m.ProfileImg)" alt="" />
+                                    <span class="fs14 blue">
+                                        @m.Nickname
+                                    </span>
+                                    <span class="fs14">@m.FormattedDisplayPoints pt  </span>
+                                    <span class="fs10 gray2">@formattedLastExpectedPointDate</span>
+                                </a>
+                            </h4>
+                            
+                            <a class="unfollow_link" id="unfollow-@m.MemberId" style="@displayUnfollow">フォロー中</a>
+                            <a class="block_04_7_btn01 follow_link" id="follow-@m.MemberId" style="@displayFollow">フォローする</a>
+                        </div>
+                    }
+                }
+            }
+        </div>
+
+        string displayGetMoreButton = (viewingCount < totalCount) ? "" : "display:none";
+
+        <ul class="" style="float:right;@displayGetMoreButton">
+            <li><a id="GetMoreFollowingsButton" data-other_member_id="@ViewBag.OtherMemberID" data-followingcount="@viewingCount">フォローをもっと見る<span class="icon"> </span></a></li>
+        </ul>
+    }
+
+</div>
+<!--Right Content-->
+@section UserPage{
+    <div class="cat_stitle">
+        <h3>順位表</h3>
+        <p>@Html.ActionLink("一覧で見る", "Index", "NpbOrder", new { area = "Npb" }, null)</p>
+    </div>
+    <div id="npbTop3Ranking">
+        @Html.Action("ShowTopNRanking", "NpbRightContent", new { area = "Npb" })
+    </div>
+    <div class="side_block01">
+        <img class="resimg" src="~/Content/img/tmp/side_img01.jpg" alt="" />
+    </div>
+}

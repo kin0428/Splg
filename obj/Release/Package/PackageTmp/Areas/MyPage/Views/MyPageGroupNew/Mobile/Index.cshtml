@@ -1,0 +1,87 @@
+﻿@{
+    // Developer	: Nojima
+    // Html No      : 4-1
+}
+@using Splg.Areas.MyPage.Models.ViewModel
+@model Splg.Areas.MyPage.Models.ViewModel.MyPageGroupNewViewModel
+@{
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.GROUP_NEW;
+    Layout = "~/Views/Shared/Mobile/_MyPageLayout.cshtml";   
+}
+<script src="~/Scripts/Home.js"></script>
+<script src="~/Areas/MyPage/Scripts/Mobile/3-4-2.js"></script>
+
+
+@if (Model != null)
+{
+    var group_name = Model.NewGroup.GroupName;
+    var search_string = Model.NewGroup.FollowerSearchString;
+
+    int totalCount = Model.TotalCount;
+    int viewingCount = 0;
+
+    	<section class="block_8">
+		<h2 class="subtitle2">グループを作成する</h2>
+		<h3 class="subtitle3">グループ名を入力する</h3>
+		<p class="tcenter"><input class="ip80" type="text" id="group_name" value="@group_name" name="ip01" /></p>
+        <div class="block_8_2">
+            <ul class="my-list" id="group_menber">
+                @foreach (var m in Model.NewGroup.GroupMembers)
+                {
+                    var member_name = m.Nickname;
+                    var member_image = m.ProfileImg;
+                    var member_payofpoints = m.PayOffPoints.ToString("#,##0");
+                    var member_expect = (m.FormattedLastExpectedPointDate == null ? "" : m.FormattedLastExpectedPointDate);
+                    var member_id = m.MemberId;
+
+                    <li class="Group_Member" id="Group_Member-@member_id">
+                        <div class="m-col01"><img class="circle" src="@member_image" alt="" /></div>
+                        <div class="m-col02">
+                            <h4><a href="/user/@member_id">@member_name</a></h4>
+                            <p class="fs8">@member_payofpoints pt 最終更新 @member_expect</p>
+                        </div>
+                        <div class="m-col03"><a class="my-btn01" id="RemoveFromGroup" name="@member_id" href="#">外す</a></div>
+                    </li>
+                }
+            </ul>
+		</div>
+        <p class="my-btn02" id="SaveGroup"><a href="#"><font color="white">作成する</font><font color="black"></font></a></p>
+        <div class="space20"> </div>
+		<div class="block_8_2">
+            <h3 class="subtitle">メンバーを追加する</h3>
+			<p class="search">
+                <input type="text" id="member_search" value="@search_string" name="ip02" />
+                <span class="search-btn"><img src="/Content/img/tmp/search.png" alt="search"></span>
+            </p>
+            <div >
+                <ul class="my-list" id="MemberList">
+                    @foreach (var m in Model.NewGroup.FollowMembers)
+                    {
+                        viewingCount++;
+                        var member_name = m.Nickname;
+                        var member_image = m.ProfileImg;
+                        var member_payofpoints = m.PayOffPoints.ToString("#,##0");
+                        var member_expect = (m.FormattedLastExpectedPointDate == null ? "" : m.FormattedLastExpectedPointDate);
+                        var member_id = m.MemberId;
+                        <li class="following-member" id="sub_list_row-@(member_id)">
+                            <div class="m-col01"><img class="circle" src="@member_image" alt="" /></div>
+                            <div class="m-col02">
+                                <h4><a href="/user/@member_id">@member_name</a></h4>
+                                <p class="fs8">@(member_payofpoints) pt 最終更新 @member_expect</p>
+                            </div>
+                            <div class="m-col03"><a class="my-btn01" id="@member_id" name="AddToGroup" href="#">追加</a></div>
+                        </li>
+                    }
+                </ul>
+            </div>
+            @{
+                string displayGetMoreButton = (viewingCount < totalCount) ? "" : "display:none";
+                <!-- <ul class="board_list"> -->
+                <ul class="" style="float: right;@displayGetMoreButton">
+                    <li><a id="GetMoreFollowingButton" data-followingcount="@viewingCount">もっと見る</a></li>
+                </ul>
+            }
+            </div>
+	</section>
+
+}

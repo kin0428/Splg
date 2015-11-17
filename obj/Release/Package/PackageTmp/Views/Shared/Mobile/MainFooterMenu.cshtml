@@ -1,0 +1,122 @@
+﻿@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: Splg\Views\Shared\Mobile\MainFooterMenu.cshtml
+    // Device       : Mobile
+    // Using        :
+    // todo : sitemapを使用して動的に出力したい
+}
+<footer class="footer">
+    <nav class="foot-nav">
+        <ul class="fmenu">
+            <li>
+                <a href="javascript:void(0)">プロ野球</a>
+                <ul class="subfmenu">
+                    @*画面設計書 (プロ野球TOP画面）: 8-1 *@
+                    <li>@Html.ActionLink("プロ野球トップ", "Index", "NpbTop", new { area = "Npb" }, null)</li>
+                    @*画面設計書 (日程・結果(プロ野球)画面）: 8-2 *@
+                    <li>@Html.ActionLink("日程・結果", "Index", "NpbScheduleResult", new { area = "Npb" }, null)</li>
+
+                    @*画面設計書 (順位表(プロ野球画面））: 8-3 *@
+                    <li>@Html.ActionLink("順位表", "Index", "NpbOrder", new { area = "Npb" }, null)</li>
+
+                    @*画面設計書 (個人成績(プロ野球)画面）: 8-4 *@
+                    <li>@Html.ActionLink("個人成績", "Index", "NpbPersonalResult", new { area = "Npb" }, null)</li>
+
+                    @*画面設計書 (チーム情報(プロ野球)画面）: 8-5*@
+                    <li>@Html.ActionLink("チーム成績", "Index", "NpbTeamInformation", new { area = "Npb" }, null)</li>
+
+                    @*画面設計書 (ニュースリスト(プロ野球)画面）. : 8-7 *@
+                    <li>@Html.ActionLink("ニュース", "Index", "NpbNewsList", new { area = "Npb" }, null)</li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0)">MLB</a>
+                <ul class="subfmenu">
+                    <li><a href="/mlb/">MLBトップ</a></li>
+                    <li><a href="/mlb/schedule">日程・結果</a></li>
+                    <li><a href="/mlb/standings">順位表</a></li>
+                    <li><a href="/mlb/teams">チーム情報</a></li>           
+                    <li><a href="/mlb/news/">ニュース</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0)">サッカー</a>
+                <ul class="subfmenu">
+                    <li>@Html.ActionLink("サッカートップ", "Index", "JlgTop", new { area = "Jleague" }, null)</li>
+                    <li><a href="/jleague/j1">J1</a></li>                  
+                    <li><a href="/jleague/j2">J2</a></li>
+                    <li>@Html.ActionLink("ナビスコC", "NabiscoTop", "JlgTop", new { area = "Jleague" }, null)</li>
+                    <li>@Html.ActionLink("ニュース", "Index", "JlgNews", new { area = "Jleague" }, null)</li>
+                </ul>
+            </li>                
+            <li>
+                <a href="javascript:void(0)">投稿記事</a>
+                <ul class="subfmenu">
+                    <li><a href="/user_article/">投稿記事トップ</a></li>
+                    <li><a href="/user_article/1/sport">プロ野球の投稿記事</a></li>
+                    <li><a href="/user_article/3/sport">MLBの投稿記事</a></li>
+                    <li><a href="/user_article/2/sport">Jリーグの投稿記事</a></li>
+                </ul>             
+            </li>   
+            <li>
+                <a href="javascript:void(0)">賞品の応募</a>
+                <ul class="subfmenu">
+                    <li>@Html.ActionLink("賞品に応募", "Index", "PrizeTop", new { area = "Prize" }, null)</li>       
+                </ul>
+            </li>      
+            <li>
+                @if (Session["CurrentUser"] != null)
+                {
+                   <a href="javascript:void(0)">マイページ</a>               
+                    <ul class="subfmenu">
+                        <li><a href="/mypage/">マイページ</a></li>
+                        <li><a href="/mypage/expectedlist/">予想リスト</a></li>
+                        <li><a href="/mypage/article/">投稿記事</a></li>
+                        <li><a href="/mypage/group/">グループ</a></li>
+                        <li><a href="/mypage/following/">フォロー</a></li>
+                        <li><a href="/mypage/followers/">フォロワー</a></li>
+                        <li><a href="/mypage/setting/">設定</a></li>                   
+                        <li><a href="/logout">ログアウト</a></li>
+                    </ul>
+                }
+                else
+                {
+                  <a href="javascript:void(0)">ユーザー登録(無料)</a>    
+                    <ul class="subfmenu">                      
+                            <li><a href="/signup/">ユーザー登録(無料)</a></li>
+                            <li><a class="login-link" href="javascript:void(0)">ログイン</a></li>                                           
+                    </ul> 
+                }               
+            </li>         
+        </ul>
+    </nav>
+    <div class="fcontent">
+        <p class="flogo"><a href="/"><img src="~/Mobile/Content/img/tmp/flogo.png" alt="スポログ" /></a></p>
+        <div class="fsocial clear">
+            <h3>follow us</h3>
+            <p>
+                <a class="ftwtter icon" href="https://twitter.com/spolog_official">
+                    <span><img src="~/Mobile/Content/img/tmp/icon04.png" alt="tiwtter" /></span></a>
+                <a class="ffb icon" href="https://www.facebook.com/spolog.jp">
+                    <span><img src="~/Mobile/Content/img/tmp/icon05.png" alt="facebook" /></span></a>
+        </p>
+        </div>
+        <p class="flink">
+            <a href="/support/howto">スポログの遊び方</a>
+            <a href="/support/faq">ヘルプ</a>
+            <a href="/support/rules">利用規約</a>
+            <a href="/support/contact">お問い合わせ</a><br />
+            <a href="http://mediano-ltd.co.jp/" target="_blank">運営会社</a>
+            <a href="http://mediano-ltd.co.jp/privacy.html" target="_blank">個人情報保護方針</a>  
+        </p>
+		@if (@ViewBag.MainMenu != null && "Npb".Equals(@ViewBag.MainMenu))
+        {
+            <p class="fcopy"> (C)2015 Data Stadium All Rights Reserved.<br />(C)2015 Mediano Ltd. All Rights Reserved.</p>
+        }
+        else
+        {
+            <p class="fcopy">リーグ及びJクラブのロゴ、エンブレム等の使用に関する権利はすべてJリーグ及びJクラブに帰属します<br />(C)2015 Data Stadium All Rights Reserved.<br />(C)2015 Mediano Ltd. All Rights Reserved.</p>
+       
+        }
+</div>
+</footer>

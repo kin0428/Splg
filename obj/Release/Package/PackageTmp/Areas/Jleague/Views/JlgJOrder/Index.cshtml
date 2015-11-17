@@ -1,0 +1,208 @@
+﻿@*
+    * Developer	: Tran Sy Huynh
+    *
+*@
+
+@model IEnumerable<Splg.Areas.Jleague.Models.ViewModel.JlgJ12OrderViewModel>
+@{
+    if (ViewBag.JType == 1)
+    {
+        ViewBag.Title = "順位表";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J1_ODR;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J1_ODR;
+    }
+    else 
+    {
+        ViewBag.Title = "順位表";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_J2_ODR;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_J2_ODR;
+    }
+    Layout = "~/Views/Shared/_JlgContentsLayout.cshtml";
+
+    var theLastSeasonId = 0;//データに存在する最後のシーズンID
+}
+
+                      <script src="~/Scripts/jquery-ui.min.js"></script>
+                      <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        var dateDisplay = string.Empty;
+        if (Model.FirstOrDefault().RankingInfo != null)
+        {
+            if (Model.FirstOrDefault().RankingInfo.CreatedDate != null)
+            {
+                dateDisplay = string.Format("{0}更新", Utils.ParseLocalDateToLongJapanDate(Model.FirstOrDefault().RankingInfo.CreatedDate.Value, false));
+            }
+        }
+        
+        <div class="jblock_01">
+            <h2 class="jtitle">@string.Format("J{0} 順位表", ViewBag.JType)<span class="fs10">@dateDisplay</span></h2>
+
+            <!--
+                SeasonID	SeasonName	SeasonNameS
+                1	シーズン（通算）	通算
+                2	ファーストステージ	1stステージ
+                3	セカンドステージ	2ndステージ
+            -->
+
+            @{var seasonDefaultStyle = "";}
+
+            @if (ViewBag.JType == 1)
+            {
+                seasonDefaultStyle = "display:none;";
+
+                <ul class ="block_04_3_l3 clear">
+                    <li id="tab-2"><a href="javascript:void(0);">1stステージ</a></li>
+                    <li id="tab-3"><a href="javascript:void(0);">2ndステージ</a></li>
+                    <li id="tab-1"><a href="javascript:void(0);">通年</a></li>
+                </ul>
+            }
+
+<div class="row">
+    <table class="jtbl01" cellpadding="0" cellspacing="0" summary="content1">
+        <col width="7%" />
+        <col width="32%" />
+        <col width="8%" />
+        <col width="7%" />
+        <col width="7%" />
+        <col width="8%" />
+        <col width="7%" />
+        <col width="7%" />
+        <col width="8%" />
+        <tr>
+            <th><span class="fs10">順位</span></th>
+            <th> </th>
+            <th><span class="fs10">試合数</span></th>
+            <th><span class="fs10">勝数</span></th>
+            <th><span class="fs10">引分数</span></th>
+            <th><span class="fs10">敗数</span></th>
+            <th><span class="fs10">失点</span></th>
+            <th><span class="fs10">得失点差</span></th>
+            <th><span class="fs10">勝点</span></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            if (item.SeasonID != 1)
+            {
+                theLastSeasonId = item.SeasonID;
+            }
+
+            if (item.RankingInfo != null)
+            {
+                var seasonClass = "season-" + item.SeasonID;
+                var orange = "";
+                orange = "organge";
+                if (item.RankingInfo.Ranking != 1)
+                {
+                    orange = "";
+                }
+                <tr class="orders @seasonClass" style="@seasonDefaultStyle">
+                    <td>
+                        <span class="roll @orange fi">@item.RankingInfo.Ranking</span>
+                    </td>
+                    <td>
+                        <div class="jteam">
+                            <div><a href="@string.Format("/jleague/j{0}/teams/{1}/", ViewBag.JType, item.TeamID)"><img class="resimg" src="@Url.Content(item.TeamIcon ?? Constants.IMAGE_DEFAULT)" alt="" /></a></div>
+                            <p><a href="@string.Format("/jleague/j{0}/teams/{1}/", ViewBag.JType, item.TeamID)">@item.TeamName</a></p>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="fs18 bold">@item.RankingInfo.Game</span>
+                    </td>
+                    <td>
+                        <span class="fs18 bold">@item.RankingInfo.Win</span>
+                    </td>
+                    <td>
+                        <span class="fs18 bold">@item.RankingInfo.Draw</span>
+                    </td>
+                    <td>
+                        <span class="fs18 bold">@item.RankingInfo.Lose</span>
+                    </td>
+                    <td>
+                        <span class="fs18 bold">@item.RankingInfo.Lost</span>
+                    </td>
+                    <td>
+                        <span class="fs18 bold">@item.RankingInfo.Differ</span>
+                    </td>
+                    <td>
+                        <span class="fs18 bold fi">@item.RankingInfo.Point</span>
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+
+    <div class="ready_box" style="display:none;">
+        <div>
+            <h3>順位情報はありません。</h3>
+        </div>
+    </div>
+</div>
+</div>
+
+    }
+}
+<!-- Right Content -->
+@section JlgPage{
+    @Html.Action("ShowJlgRightRecentNews", "JlgRightRecentNews", new { area = "Jleague", jType = ViewBag.JType })
+}
+
+<script>
+    
+
+    if(@ViewBag.JType == 1){
+    
+        $( ".block_04_3_l3" ).tabs();
+        
+            
+        $(".block_04_3_l3").removeClass('ui-tabs');
+        $(".block_04_3_l3").removeClass('ui-widget');
+        $(".block_04_3_l3").removeClass('ui-content');
+        $(".block_04_3_l3").removeClass('ui-corner-a');
+
+        $('#tab-1').live('click', function (event) {
+            setTabs(1);
+        });
+        $('#tab-2').live('click', function (event) {
+            setTabs(2);
+        });
+        $('#tab-3').live('click', function (event) {
+            setTabs(3);
+        });
+
+        function setTabs(seasonId){
+
+            var sessionIdStr = ".season-" + seasonId;
+
+            $('.orders').hide();
+            $(sessionIdStr).show();
+
+            if($(sessionIdStr).length > 0){
+                $(".ready_box").hide();
+            }
+            else{
+                $(".ready_box").show();
+            }
+
+            for(i = 1;i <= 3; i++){
+
+                tabIdStr = "#tab-" + i;
+
+                if(i == seasonId){
+                    if(!$(tabIdStr).hasClass('active')){
+                        $(tabIdStr).addClass('active');
+                    }
+                }else{
+                    $(tabIdStr).removeClass('active');
+                }
+            }
+        }
+    
+        var theLastSeasonId = @theLastSeasonId ;
+        setTabs(theLastSeasonId);
+    }
+
+</script>

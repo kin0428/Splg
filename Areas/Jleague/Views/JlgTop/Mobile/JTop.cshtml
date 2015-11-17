@@ -1,0 +1,170 @@
+﻿@{
+    // Developer	: Endo
+    // Html No      : 10-1
+}
+@using Splg.Areas.Jleague;
+@using Splg.Areas.Jleague.Models.ViewModel;
+@using Splg.Areas.Jleague.Models.ViewModel.InfosModel;
+@model JlgTopViewModel
+@{
+    ViewBag.Title = "J1TOP";
+    ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_TOP_J1;
+    ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_TOP_J1;
+    Layout = "~/Views/Shared/Mobile/_JleagueLayout.cshtml";
+    var jName = Splg.Areas.Jleague.JlgConstants.JLG_TOP_J1;
+    if (ViewBag.JType == 2)
+    {
+        jName = Splg.Areas.Jleague.JlgConstants.JLG_TOP_J2;
+        ViewBag.Title = "J2TOP";
+        ViewBag.Name = Splg.Areas.Jleague.JlgConstants.JLG_TOP_J2;
+        ViewBag.pageNo = Splg.Areas.Jleague.JlgConstants.JLG_TOP_J2;
+    }
+
+}
+<script src="~/Areas/Jleague/Scripts/Mobile/10-1.js"></script>
+<script src="~/Scripts/Home.js"></script>
+
+@Html.Action("ShowJlgNewsTopViews", "JlgRightContent", new { area = "Jleague" }) 
+
+<!--GameInfo-->
+<nav class="news-panel">
+    <a class="prev" href="#">前の試合</a>
+    <h4 id="gameDate">
+        @Utils.GetMonthAndDayOfWeek(Model.JlgDispGameDate)の試合
+    </h4>
+    <a class="next" href="#">次の試合</a>
+</nav>
+<input type="hidden" id="Page" name="Page" value="1" data-gamedate="@Model.JlgGameDate" data-firstgamedate="@Model.JlgFirstGameDate" data-lastgamedate="@Model.JlgLastGameDate" />
+<div id="jlgGameInfo">
+    @if (ViewBag.JType == 2)
+    {
+        @Html.Action("ShowGameInfo", "JlgTop", new { area = "Jleague", type = 1, gameDate = Model.JlgGameDate, leagueType = 2 })
+    }
+    else
+    {
+        @Html.Action("ShowGameInfo", "JlgTop", new { area = "Jleague", type = 1, gameDate = Model.JlgGameDate, leagueType = 1 })
+    }
+</div>
+<!--End GameInfo-->
+@if (Model != null)
+{
+    if (Model.TopRecentPost != null )
+    {
+        <section class="block_2 clear">
+            <h3 class="subtitle3">新着投稿記事</h3>
+            <ul class="block-list clear">
+                @foreach (var post in Model.TopRecentPost.Take(3))
+                {
+                    string postContent = string.Format("{0}&nbsp;&nbsp;&nbsp;{1}投稿", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                    <li>
+                        <a href="/user/@post.MemberId/">
+                            <figure><img src="@post.ProfileImg" alt="" /></figure>
+                        </a>
+                        <div>
+                            <h4><a href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a></h4>
+                            <p>@Html.Raw(postContent)</p>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <p class="panel-link"><a class="bold" href="/user_article/1/sport/">投稿記事をもっと読む</a></p>
+        </section>
+    }
+}
+@Html.Action("ShowJlgRecentNews", "JlgRightContent", new { area = "Jleague", type = @ViewBag.Name })
+@if (Model != null)
+{
+    <section class="block_2">
+        <h3 class="subtitle2">
+            期待度ランキング</h3>
+
+            @if (Model.TopExpectationsDeviation != null)
+            {
+                <ul class="block-list1 clear">
+                    @{
+                        var intRanking = 1;
+                    }
+                    @foreach (var item in Model.TopExpectationsDeviation)
+                    {
+                        var leagueRank = item.LeagueNameS + item.Ranking + "位";
+                    <li>
+                        @if (intRanking == 1)
+                            {
+                            <p class="p01"><span class="num fs36 orange">1</span></p>
+                            }
+                            else
+                            {
+                            <p class="p01"><span class="num fs36">@intRanking</span></p>
+                            }
+                        <p class="p02">
+                            <a href="@Url.Action("Index", "JlgTeamInfoTop", new { area = "Jleague", teamID = @item.TeamID }, null)">
+                                <img class="resimg" src=@Url.Content(@item.TeamIcon ?? Constants.IMAGE_DEFAULT) alt=@item.TeamName />
+                            </a>
+                        </p>
+                        <div class="p03">
+                            <h4>@Html.ActionLink(@item.TeamName, "Index", "JlgTeamInfoTop", new { area = "Jleague", teamID = @item.TeamID })</h4>
+                            <p>@Html.ActionLink(@leagueRank, "Index", "JlgTeamInfoTop", new { area = "Jleague", teamID = @item.TeamID }, null)</p>
+                        </div>
+                        @if (intRanking == 1)
+                            {
+                            <p class="p04"><span class="num fs36 orange">@Math.Round(@item.DeviationValue)</span></p>
+                            }
+                            else
+                            {
+                            <p class="p04"><span class="num fs36">@Math.Round(@item.DeviationValue)</span></p>
+                            }
+                    </li>
+                            intRanking++;
+                    }
+                </ul>
+                <p class="panel-link">期待度偏差値とは…総予想ポイント数の偏差値</p>
+            }
+            </section>
+    <section class="block_2">
+        <h3 class="subtitle2">裏切度ランキング</h3>
+        @if (Model.TopBetrayalDeviation != null )
+        {
+            <ul class="block-list1 clear">
+                @{
+                    var intRanking = 1;
+                }
+                @foreach (var item in Model.TopBetrayalDeviation)
+                {
+                    var leagueRank = item.LeagueNameS + item.Ranking + "位";
+                    <li>
+                        @if (intRanking == 1)
+                        {
+                            <p class="p01"><span class="num fs36 orange">1</span></p>
+                        }
+                        else
+                        {
+                            <p class="p01"><span class="num fs36">@intRanking</span></p>
+                        }
+                        <p class="p02">
+                            <a href="@Url.Action("Index", "JlgTeamInfoTop", new { area = "Jleague", teamID = @item.TeamID }, null)">
+                                <img class="resimg" src=@Url.Content(@item.TeamIcon ?? Constants.IMAGE_DEFAULT) alt=@item.TeamName />
+                            </a>
+                        </p>
+                        <div class="p03">
+                            <h4>@Html.ActionLink(@item.TeamName, "Index", "JlgTeamInfoTop", new { area = "Jleague", teamID = @item.TeamID })</h4>
+                            <p>@Html.ActionLink(@leagueRank, "Index", "JlgTeamInfoTop", new { area = "Jleague", teamID = @item.TeamID })</p>
+                        </div>
+                        @if (intRanking == 1)
+                        {
+                            <p class="p04"><span class="num fs36 orange">@Math.Round(@item.DeviationValue)</span></p>
+                        }
+                        else
+                        {
+                            <p class="p04"><span class="num fs36">@Math.Round(@item.DeviationValue)</span></p>
+                        }
+                    </li>
+                    intRanking++;
+                }
+            </ul>
+            <p class="panel-link">裏切度偏差値とは・・・負けた試合の総予想ポイント数の偏差値</p>
+        }
+    </section>
+}
+<div class="tcenter">
+    <div class="fb-page" data-href="https://www.facebook.com/spolog.jp" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/spolog.jp"><a href="https://www.facebook.com/spolog.jp">スポログ</a></blockquote></div></div>
+</div>

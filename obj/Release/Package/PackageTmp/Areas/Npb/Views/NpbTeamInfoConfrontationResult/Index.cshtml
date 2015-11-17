@@ -1,0 +1,66 @@
+﻿@using Splg;
+@using Splg.Areas.Npb.Models.ViewModel.InfosModel;
+@model Splg.Areas.Npb.Models.ViewModel.NpbTeamInfoConfrontationResultViewModel
+@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: Index.cshtml
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-03-19
+    // Html No      : 8-5-3
+    ViewBag.Title = "チーム情報　対戦成績";
+    ViewBag.Name = Constants.NPBTEAMINFOSTAT;
+    Layout = "~/Views/Shared/_NpbLayout.cshtml";
+    NpbTeamInfoConfrontationResultInfos teamInfo = new  NpbTeamInfoConfrontationResultInfos();  
+    if(Model.TeamInfo !=null)
+    {
+        teamInfo = Model.TeamInfo;    
+    }   
+}
+@section scripts
+{
+    <script src="~/Areas/Npb/Scripts/Views/NpbTeamInfoConfrontationResult/all.js"></script>
+}
+<div class="content">
+    <!-- InstanceBeginEditable name="content" -->  
+    <div class="evt_block09">      
+        <h2 class="mytitle"><a href="#">チーム情報</a>対戦成績</h2>				
+         @Html.Partial("~/Areas/Npb/Views/Shared/_NpbTeamInfoMenu.cshtml")     
+        @if (Model.TeamInfoMSTs!=null && Model.TeamInfoMSTs.Any())
+        {    
+            <ul class="yak_team">
+            @foreach (var item in Model.TeamInfoMSTs)
+            {
+                <li class=@(item.TeamCD == teamInfo.TeamCD ? "active" : "")>
+                    <img src="@Url.Content(item.TeamIcon ?? Constants.IMAGE_DEFAULT)" class="resimg" alt="logo" />
+                    @if (item.TeamCD == teamInfo.TeamCD)
+                    {
+                        @item.ShortNameTeam
+                    }
+                    else
+                    {
+                          <a onclick="GetResultGameInfos('@teamInfo.TeamCD','@item.TeamCD')" href="javascript:void(0)">@item.ShortNameTeam</a>
+                    }                   
+                </li>                    
+             }
+            </ul>
+        }
+        <div id="resultAjax"></div>        
+        <div id="resultDefault">         
+            @Html.Partial("~/Areas/Npb/Views/Shared/_NpbTeamInfoConfrontationResult.cshtml", Model)
+        </div>
+        <!-- InstanceEndEditable -->
+    </div>
+</div>
+<!--Right Content-->
+@if(Model!= null)
+{
+    @section NpbPage{
+    <div class="cat_stitle">
+        <h3>順位表</h3>
+        <p>@Html.ActionLink("一覧で見る", "Index", "NpbOrder", new { area = "Npb" }, null)</p>
+    </div>
+    <div id="npbTop3Ranking" class="side_board">
+        @Html.Action("ShowTopNRanking", "NpbRightContent", new { area = "Npb", teamID = @ViewBag.TeamID })
+    </div>
+    }
+}

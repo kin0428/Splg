@@ -1,0 +1,100 @@
+﻿@{
+    // Namespace	: Splg.Areas.MyPage.Models.ViewModel
+    // FileName		: _MyPageLayout.cshtml
+    // View         : Mobile
+    // Developer	: Nojima
+    // Update date  : 2015-04-15
+    // Html No      : _MyPageLayout
+}
+@{
+    string[] pageInfo = Utils.GetMyPageTDK(Context.Request.Path, ViewBag.PageNo);
+
+    string[] pageInfo1 = Utils.GetHomeTDK(Context.Request.Path, ViewBag.PageNo);
+}
+<!DOCTYPE html>
+<html>
+<!-- InstanceBegin template="/Templates/templete_sp.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+    <meta charset="UTF-8">
+    <!-- InstanceBeginEditable name="doctitle" -->
+    <title>@pageInfo[0]</title>
+    <!-- InstanceEndEditable -->
+    <meta name="description" content="@pageInfo[1]" />
+    <meta name="keywords" content="@pageInfo[2]" />
+    @if (pageInfo1.Count() > 3)
+    {
+        if (!string.IsNullOrEmpty(pageInfo1[3]) && pageInfo1[3].Equals("none"))
+        {
+            <meta name="robots" content="none" />
+        }
+    }
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="Shortcut Icon" href="~/Mobile/Content/img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="~/Mobile/Content/normalize.css">
+    <link rel="stylesheet" href="~/Mobile/Content/style.css">
+    <script src="~/Mobile/Scripts/jquery.js"></script>
+    <script src="~/Mobile/Scripts/respond.js"></script>
+    <script src="~/Scripts/autoNumeric-2.0.js"></script>
+    <script src="~/Mobile/Scripts/common.js"></script>
+    @RenderSection("scripts", false)
+    <!-- InstanceBeginEditable name="head" -->
+    <!-- InstanceEndEditable -->
+</head>
+<body>
+    <!-- OutLine -->
+    <div class="outside">
+        <!-- side menu -->
+        @Html.Partial("~/Views/Shared/Mobile/Popmenu.cshtml")
+        <!-- side menu -->
+        <!--Popup Login-->
+        @Html.Partial("~/Views/Shared/Mobile/PopupLoginBox.cshtml", new Splg.Models.ViewModel.LoginViewModel())
+        <!--Popup Login-->
+        <!-- container -->
+        <div class="container">
+            <header class="header">
+                <a href="javascript:void(0)" class="head-btn"><span>Site map</span></a>
+                <h1 class="head-logo">
+                    <a href="#">
+                        <img src="~/Mobile/Content/img/tmp/logo.png" alt="スポログ" />
+                    </a>
+                </h1>
+                @if (Session["CurrentUser"] == null)
+                {
+                    <a href="javascript:void(0);" class="head-mem login-link">
+                        <img class="circle resimg" src="~/Mobile/Content/img/tmp/mem.png" alt="name" />
+                    </a>
+                }
+                else
+                {
+                    <a href="/mypage/notice/" class="head-mem">
+                        <img class="circle resimg" src="~/Mobile/Content/img/tmp/mem.png" alt="name" />
+                    </a>
+                }
+            </header>
+            <!-- main -->
+            <main class="content">
+                <!-- InstanceBeginEditable name="content" -->
+                <!-- path -->
+                @Html.Partial("~/Areas/MyPage/Views/Shared/Mobile/_MyPageMenu.cshtml")
+                @RenderBody()
+                <!-- Each page render my section MyPagePage -->
+                @RenderSection("MyPagePage", false)
+                <!-- InstanceEndEditable -->
+            </main>
+            <!-- main -->
+            <!-- footer -->
+            @Html.Partial("~/Views/Shared/Mobile/MainFooterMenu.cshtml")
+            <!-- footer -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- OutLine -->
+</body>
+
+<!-- InstanceBeginEditable name="script" -->
+<!-- InstanceEndEditable -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<![endif]-->
+<!-- InstanceEnd -->
+</html>

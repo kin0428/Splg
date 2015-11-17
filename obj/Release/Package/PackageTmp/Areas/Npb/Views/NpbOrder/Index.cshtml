@@ -1,0 +1,121 @@
+﻿@*
+ * File Name	: ~/Areas/View/NpbOrder/Index.cshtml
+ * Developer	: Tran Sy Huynh
+ *
+ *@
+
+@model IEnumerable<Splg.Areas.Npb.Models.ViewModel.NpbOrderViewModel>
+@{
+    ViewBag.Title = "順位表";
+    ViewBag.Name = Constants.NPBORDER;
+    Layout = "~/Views/Shared/_NpbLayout.cshtml";
+}
+<div class="evt_block08">
+    <h2 class="mytitle">順位表</h2>
+    @if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            var orderType = "セ・リーグ";
+            switch (item.GameAssortment)
+            {
+                case 0:
+                    orderType = "オープン戦";
+                    break;
+                case 1:
+                    orderType = "セ・リーグ";
+                    break;
+                case 2:
+                    orderType = "パ・リーグ";
+                    break;
+                case 26:
+                    orderType = "交流戦";
+                    break;
+            }
+            if (item.officialStatsViewModels != null && item.officialStatsViewModels.Any())
+            {
+                var dateDisplay = string.Empty;
+                if (item.officialStatsViewModels.FirstOrDefault().CreatedDate != null)
+                {
+                    dateDisplay = Utils.ParseLocalDateToLongJapanDate(item.officialStatsViewModels.FirstOrDefault().CreatedDate.Value, false);
+                }
+                <div class="list_team02">
+                    <div class="list_note02">
+                        <h3>@orderType</h3>
+                        <span class="fs10">@string.Format("{0}更新", dateDisplay)</span>
+                    </div>
+                    <table cellpadding="0" cellspacing="0" summary="@orderType">
+                        <col width="30%" />
+                        <col width="10%" />
+                        <col width="8%" />
+                        <col width="8%" />
+                        <col width="10%" />
+                        <col width="9%" />
+                        <col width="10%" />
+                        <col width="16%" />
+                        <thead>
+                            <tr>
+                                <th><span class="fs10">順位</span></th>
+                                <th><span class="fs10">試合数</span></th>
+                                <th><span class="fs10">勝数</span></th>
+                                <th><span class="fs10">負数</span></th>
+                                <th><span class="fs10">引分数</span></th>
+                                <th><span class="fs10">勝率</span></th>
+                                @if (item.GameAssortment != 0)
+                                {
+                                    <th><span class="fs10">残試合</span></th>
+                                }
+                                else
+                                {
+                                    <th><span class="fs10"> </span></th>
+                                }
+                                <th><span class="fs10">ゲーム差</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var itemChild in item.officialStatsViewModels)
+                            {
+                                var orange = ""; 
+							    orange = "organge";
+							    if (itemChild.Ranking != 1)
+							    {
+								    orange = "";
+							    }
+                                var winningPercentage = Convert.ToDouble(@itemChild.WinningPercentage);
+                                <tr>
+                                    <th>
+                                        <span class="list_num02 @orange">@itemChild.Ranking</span>
+                                        <a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = itemChild.TeamID }, null)">
+                                            <span class="list_img02"><img class="resimg" src="@Url.Content(itemChild.TeamIcon ?? Constants.IMAGE_DEFAULT)" alt="" /></span>
+                                        </a>
+                                        <span class="list_name02 fs14">@Html.ActionLink(itemChild.ShortNameTeam, "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = itemChild.TeamID }, null)</span>
+                                    </th>
+                                    <td><span class="fs18 bold">@itemChild.Game</span></td>
+                                    <td><span class="fs18 bold">@itemChild.Win</span></td>
+                                    <td><span class="fs18 bold">@itemChild.Lose</span></td>
+                                    <td><span class="fs18 bold">@itemChild.Draw</span></td>
+                                    <td><span class="fs18 bold">@(winningPercentage < 1 ? winningPercentage.ToString(".000") : winningPercentage.ToString(".00"))</span></td>
+                                    @if (item.GameAssortment != 0)
+                                    {
+                                        <td><span class="fs18 bold">@itemChild.RestGame</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span class="fs18 bold"> </span></td>
+                                    }
+
+                                    <td><span class="list_num03">@itemChild.GameBehind</span></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="space20"></div>
+            }
+        }
+    }
+</div>
+<!--Right Content-->
+@section NpbPage{
+    @Html.Action("ShowNpbRightRecentNews", "NpbRightContent", new { area = "Npb", type = "8-3" })
+}

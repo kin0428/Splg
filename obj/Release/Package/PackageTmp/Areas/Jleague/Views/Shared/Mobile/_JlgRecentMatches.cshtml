@@ -1,0 +1,40 @@
+﻿@model Splg.Areas.Jleague.Models.ViewModel.JlgRecentMatchesViewModel
+@using Splg.Core.Extend;
+
+<div class="socData socLastMatches">
+    <h2 class="socData-hdg">最近５試合の直接対決</h2>
+
+    <div class="socDateInner socLastMatches-vs clear">
+        <div class="socHdgMini-home socLastMatches-hdg">
+            <img src="@Url.Content(Model.HomeTeamSpec.TeamIconUrl)" alt="@Model.HomeTeamSpec.TeamName">
+            <p>@Html.DisplayFor(m => Model.HomeTeamSpec.TeamName)</p>
+        </div>
+
+
+
+        <div class="socHdgMini-away socLastMatches-hdg">
+            <p>@Html.DisplayFor(m => Model.AwayTeamSpec.TeamName)</p>
+            <img src="@Url.Content(Model.AwayTeamSpec.TeamIconUrl)" alt="@Model.AwayTeamSpec.TeamName">
+        </div>
+    </div>
+
+    <table class="socLastMatches-log">
+        <tbody>
+            <tr class="totalScore">
+                <td></td>
+                <td class="scoreHome"><span>@Html.DisplayFor(m => Model.RecentMatchesCounts.WinCount)</span>勝</td>
+                <td class="scoreDraw">@Html.DisplayFor(m => Model.RecentMatchesCounts.DrawCount)<span>引き分け</span></td>
+                <td class="scoreAway"><span>@Html.DisplayFor(m => Model.RecentMatchesCounts.LoseCount)</span>勝</td>
+            </tr>
+            @foreach (var item in Model.RecentMatches)
+            {
+                <tr>
+                    <td class="gameDate">@Html.DisplayFor(m => item.GameDate)</td>
+                    <td>@Html.DisplayFor(m => item.HomeTeamShortName)</td>
+                    <td>@Html.DisplayFor(m => item.HomeScore) - @Html.DisplayFor(m => item.AwayScore)</td>
+                    <td>@Html.DisplayFor(m => item.AwayTeamShortName)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,120 @@
+﻿@{
+    //Author : Huynh
+    //FileName :
+    //Created Date :
+}
+
+@model IEnumerable<Splg.Areas.Jleague.Models.ViewModel.JlgJ12OrderViewModel>
+
+@if (Model != null && Model.Any())
+{
+    int jType = Convert.ToInt32(ViewBag.JType ?? 0);
+    string strJlg = string.Empty;
+    
+    switch (jType)
+    {
+        case 1:
+            strJlg = "J1";
+            break;
+        case 2:
+            strJlg = "J2";
+            break;
+        case 3:
+            strJlg = "jleaguecup";
+            break;
+    }
+    if (jType == 3)
+    {
+        foreach (var group in Model.GroupBy(g => g.GroupID))
+        {
+            var subJlg = (group.Key == "A") ? "j1" : "j2";
+            <div class="cat_stitle">
+                <h3>@string.Format("{0}グループ順位", group.Key)</h3>
+                <p><a href="/jleague/@strJlg/standings/">一覧で見る</a></p>
+            </div>
+            <div class="side_board">
+                <table cellpadding="0" cellspacing="0" summary="順位表">
+                    <col width="48%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <thead>
+                        <tr>
+                            <th>順位</th>
+                            <th>勝点</th>
+                            <th>勝</th>
+                            <th>敗</th>
+                            <th>引</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in group.Take(5))
+                        {
+                            <tr>
+                                @if (item.RankingInfo.Ranking > 1)
+                                {
+                                    <th><span class="fi">@item.RankingInfo.Ranking</span><a href="/jleague/@subJlg/teams/@item.TeamID/">@item.RankingInfo.TeamNameS</a></th>
+                                }
+                                else
+                                {
+                                    <th><span class="organge fi">@item.RankingInfo.Ranking</span><a href="/jleague/@subJlg/teams/@item.TeamID/">@item.RankingInfo.TeamNameS</a></th>
+                                }
+                                <td class="fi">@item.RankingInfo.Point</td>
+                                <td class="fi">@item.RankingInfo.Win</td>
+                                <td class="fi">@item.RankingInfo.Lose</td>
+                                <td class="fi">@item.RankingInfo.Draw</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="cat_stitle">
+            <h3>@string.Format("{0}順位表", strJlg)</h3>
+            <p><a href="/jleague/@strJlg/standings/">一覧で見る</a></p>
+        </div>
+        <div class="side_board">
+            <table cellpadding="0" cellspacing="0" summary="順位表">
+                <col width="48%" />
+                <col width="13%" />
+                <col width="13%" />
+                <col width="13%" />
+                <col width="13%" />
+                <thead>
+                    <tr>
+                        <th>順位</th>
+                        <th>勝点</th>
+                        <th>勝</th>
+                        <th>敗</th>
+                        <th>引</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @if (@item.RankingInfo.Ranking > 1)
+                            {
+                                <th><span class="fi">@item.RankingInfo.Ranking</span><a href="/jleague/@strJlg/teams/@item.TeamID/">@item.RankingInfo.TeamNameS</a></th>
+                            }
+                            else
+                            {
+                                <th><span class="organge fi">@item.RankingInfo.Ranking</span><a href="/jleague/@strJlg/teams/@item.TeamID/">@item.RankingInfo.TeamNameS</a></th>
+                            }
+                            <td class="fi">@item.RankingInfo.Point</td>
+                            <td class="fi">@item.RankingInfo.Win</td>
+                            <td class="fi">@item.RankingInfo.Lose</td>
+                            <td class="fi">@item.RankingInfo.Draw</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    }
+}

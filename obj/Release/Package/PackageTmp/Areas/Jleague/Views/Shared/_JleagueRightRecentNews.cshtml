@@ -1,0 +1,29 @@
+﻿@{
+    //Author : Huynh
+    //FileName :
+    //Created Date :
+}
+
+@model IEnumerable<Splg.Models.BriefNews>
+@using Splg;
+@using Splg.Areas.Jleague;
+
+@if (Model != null)
+{
+    if (Model.Any())
+    {
+        <div class="side_news">
+            <div class="cat_stitle">
+                <h3>Jリーグ 新着ニュース</h3>
+                <p>@Html.ActionLink("一覧で見る", "Index", "JlgNewsList", new { area = "Jleague" }, null)</p>
+            </div>
+            @foreach (var item in Model)
+            {
+                <p class="fs14">@Html.ActionLink(Utils.ShortenString(string.Format("{0} {1}", item.Headline, item.SubHeadline), 20), "Index", "NewsArticleCommon", new { area = "", topic = JlgConstants.JLG_TOPIC_NAME, newsItemID = @item.NewsItemID, sportID = Constants.JLG_SPORT_ID }, null)</p> @*, uniqueID = (ViewBag.JType == 1 ? JlgConstants.JLG_GAMEKIND_J1 : (ViewBag.JType == 2 ? JlgConstants.JLG_GAMEKIND_J2 : JlgConstants.JLG_GAMEKIND_NABISCO)), teamID = Constants.NEWS_DEFAULT_PARAMETER*@
+            }
+        </div>
+        <div style="clear:both;"></div>
+    }
+}
+
+

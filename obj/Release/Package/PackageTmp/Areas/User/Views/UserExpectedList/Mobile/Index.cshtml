@@ -1,0 +1,34 @@
+﻿@{
+    // Developer	: Endo
+    // Html No      : 4-2
+}
+@using Splg.Areas.User.Models.ViewModel;
+@using Splg.Models.Game.InfoModel;
+@model Splg.Areas.User.Models.ViewModel.UserExpectedListViewModel
+@{
+    ViewBag.Title = "予想リスト";
+    ViewBag.PageNo = Splg.Areas.User.UserConstant.EXPECTEDLIST_INDEX;
+    Layout = "~/Views/Shared/Mobile/_UserLayout.cshtml";
+}
+<script src="~/Scripts/jquery.shorten.1.0.js"></script>
+<script src="~/Areas/User/Scripts/Mobile/4-2.js"></script>
+<script src="~/Scripts/Home.js"></script>
+
+
+@if (Model != null)
+{
+    IEnumerable<GameInfoModel> GameInfos = Model.GameInfo;
+
+    <section class="block_8" id="other_member_id" data-other_member_id="@Model.MemberId">
+        <div class="block_8_2">
+            <nav class="my-panel">
+                <a href="#" class="prev" id="prev_month">前の月</a>
+                <h4><span id="user_selected_month"></span></h4>
+                <a href="#" class="next" id="next_month">次の月</a>
+            </nav>
+        </div>
+
+        <div id="GameLists">
+        </div>
+    </section>
+}

@@ -1,0 +1,115 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : _NpbBattingResult.cshtml (Used in 8-5-8, 8-5-9)
+    //Created Date : 2015/03/13
+}
+
+@model Splg.Areas.Npb.Models.HittingStats
+@using Splg;
+
+@if (Model != null)
+{
+    <div class="space"> </div>
+    <h4 class="mem_title01">今シーズンの打者成績</h4>
+    <div class="row">
+        <dl class="feed_row">
+            <dt>打率</dt>
+            <dd class="bold">@Model.BattingAverage.Substring(0,4)</dd>
+        </dl>
+        <dl class="feed_row">
+            <dt>試合数</dt>
+            <dd class="bold">@Model.Game</dd>
+        </dl>
+        <dl class="feed_row">
+            <dt>打席数</dt>
+            <dd class="bold">@Model.PlateAppearance</dd>
+        </dl>
+        <dl class="feed_row">
+            <dt>打数</dt>
+            <dd class="bold">@Model.AtBat</dd>
+        </dl>
+    </div>
+    <div class="row">
+        <dl class="feed_row">
+            <dt>安打</dt>
+            <dd class="bold">@Model.Hit</dd>
+        </dl>
+        <dl class="feed_row">
+            <dt>二塁打</dt>
+            <dd class="bold">@Model.Double</dd>
+        </dl>
+        <dl class="feed_row">
+            <dt>三塁打</dt>
+            <dd class="bold">@Model.Triple</dd>
+        </dl>
+        <dl class="feed_row">
+            <dt>本塁打</dt>
+            <dd class="bold">@Model.Homerun</dd>
+        </dl>
+    </div>
+    <div class="row">
+        <dl class="feed_row">
+            <dt>塁打数</dt>
+            <dd class="bold">@Model.Base</dd>
+        </dl>
+        <dl class="feed_row">
+            <dt>得点</dt>
+            <dd class="bold">@Model.Run</dd>
+        </dl>
+        <dl class="feed_row">
+            <dt>打点</dt>
+            <dd class="bold">@Model.RunsBattingIn</dd>
+        </dl>
+        <dl class="feed_row">
+            <dt>得点圏打率</dt>
+            <dd class="bold">@Model.TBAWRIS</dd>
+        </dl>
+    </div>
+    <div class="row">
+        <dl class="feed_row">
+            <dt>三振</dt>
+            <dd class="bold">@Model.StrikeOut</dd>
+        </dl>
+        <dl class="feed_row">
+            <dt>四球</dt>
+            <dd class="bold">@Model.BaseOnBall</dd>
+        </dl>
+        <dl class="feed_row">
+            <dt>死球</dt>
+            <dd class="bold">@Model.HitByPitch</dd>
+        </dl>
+        <dl class="feed_row">
+            <dt>犠打</dt>
+            <dd class="bold">@Model.SacrificeHit</dd>
+        </dl>
+    </div>
+    <div class="row">
+        <dl class="feed_row">
+            <dt>犠飛</dt>
+            <dd class="bold">@Model.SacrificeFly</dd>
+        </dl>
+        <dl class="feed_row">
+            <dt>盗塁</dt>
+            <dd class="bold">@Model.StolenBase</dd>
+        </dl>
+        <dl class="feed_row">
+            <dt>併殺打</dt>
+            <dd class="bold">@Model.DoublePlay</dd>
+        </dl>
+        <dl class="feed_row">
+            <dt>出塁率</dt>
+            <dd class="bold">@Model.OnBase</dd>
+        </dl>
+    </div>
+    <div class="row">
+        <dl class="feed_row">
+            <dt>長打率</dt>
+            <dd class="bold">@Model.Slugging</dd>
+        </dl>
+        <dl class="feed_row">
+            <dt>OPS</dt>
+            <dd class="bold">@Model.Ops</dd>
+        </dl>
+    </div>
+}
+

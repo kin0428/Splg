@@ -1,0 +1,84 @@
+﻿@{
+    //Author : Nojima
+    //FileName : Index.cshtml (3-2)
+    //Created Date : 2015/04/12
+}
+
+@using Splg.Areas.MyPage.Models.ViewModel;
+@model Splg.Areas.MyPage.Models.ViewModel.MyPageRecentExpectedListViewModel
+
+@{
+    ViewBag.Title = "予想結果";
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.RECENT_EXPECTEDLIST_INDEX;
+    Layout = "~/Views/Shared/_MyPageLayout.cshtml";
+}
+<script src="~/Scripts/jquery.shorten.1.0.js"></script>
+<script src="~/Scripts/splgCommon.js"></script>
+<script src="~/Scripts/cookie.js"></script>
+<script src="~/Areas/MyPage/Scripts/Views/3-10.js"></script>
+
+<!--Popup-->
+<div class="outside_overclay"> </div>
+<div class="add_popup">
+    <p class="pop_exit popclose"><img src="~/Content/img/tmp/close.png" alt="exit" /></p>
+    <h2 class="add_pop_title" id="popTitle">
+        スポログとは？
+    </h2>
+    <p class="add_pagr01" id="content01">
+    </p>
+    <div class="add_image" id="add_image01">
+        <img id="imgPop1" src="~/Content/img/tmp/tutorial_01_01_pc.gif" alt="">
+    </div>
+    <p class="add_pagr01" id="content02">
+    </p>
+    <div class="add_image" id="add_image02">
+        <img id="imgPop2" src="~/Content/img/tmp/tutorial_01_02_pc.gif" alt="">
+    </div>
+    <p class="add_pagr01" id="content03">
+    </p>
+    <p class="board_link" id="nextEvent"><a href="javascript:;">ユーザー登録（無料）</a></p>
+</div>
+<!--Popup--> 
+
+<div class="block_04_cp">
+    @if (Model != null)
+    {
+        <div class="block_02">
+            <div class="add_title">
+                <h2>本日のあなたの試合予想</h2>
+            </div>
+            <div id="group02">
+                @if (Model.GameInfoTdy.Count() > 0)
+                {
+                    @Html.Partial("~/Areas/MyPage/Views/Shared/_MyPageRecentExpectedListInfo.cshtml", Model.GameInfoTdy)
+                }
+                else
+                {
+                    <div class="inner tcenter fs15">
+                        <h3>本日の予想はありません。</h3>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="block_02">
+            <div class="add_title">
+                <h2>昨日のあなたの試合予想</h2>
+            </div>
+            <div id="group01">
+                @if (Model.GameInfoYdy.Count() > 0)
+                {
+                    @Html.Partial("~/Areas/MyPage/Views/Shared/_MyPageRecentExpectedListInfo.cshtml", Model.GameInfoYdy)
+                }
+                else
+                {
+                    <div class="inner tcenter fs15">
+                        <h3>昨日の予想はありません。</h3>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    <p class="add_more_link">
+        <a href="@Url.Action("Index", "MyPageExpectedList", new { area = "MyPage" }, null)">全ての試合予想を見る。</a>
+    </p>
+</div>

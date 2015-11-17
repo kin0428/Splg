@@ -1,0 +1,43 @@
+<script type="text/javascript">
+    function @FunctionName(container) 
+    {
+        graph = Flotr.draw(container, 
+        [
+          @Container
+        ]
+        , 
+        {
+            HtmlText  : @IsHtmlText,
+			fontSize  : @FontSize,
+			shadowSize: @ShadowSize,
+			resolution: @Resolution,
+            colors    : [@Colors],
+            grid	  : 
+			{
+				verticalLines		: @GridIsVisibleVerticalLines,
+                horizontalLines		: @GridIsVisibleHorizontalLines,
+				outlineWidth		: @GridOutlineWidth, 
+            },
+            xaxis	  : { showLabels : @XAxisIsVisibleLabels },
+            yaxis	  : { showLabels : @YAxisIsVisibleLabels },
+            pie : 
+			{
+                show				: @PieIsVisible, 
+                explode				: @PieExplode,
+				sizeRatio			: @PieSizeRatio,
+				fillOpacity			: @PieFillOpacity,
+				startAngle			: 0.754,
+            },
+            mouse	  : { track : @MouseIsTrackable },
+            legend	  : 
+			{
+                position			: '@LegendPosition',
+                backgroundColor		: '@LegendBackgroundColor',
+				labelBoxBorderColor	: '@LegendBorderColor'
+            }
+        }
+		);
+    }
+
+    @FunctionName(document.getElementById("@ContainerId"));
+</script>

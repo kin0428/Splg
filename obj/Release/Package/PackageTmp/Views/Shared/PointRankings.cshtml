@@ -1,0 +1,53 @@
+﻿@{
+    //Author : Huynh
+    //FileName :
+    //Created Date :
+}
+
+@using Splg.Core.Constant;
+@model Splg.Models.ViewModel.HomeRightContentViewModel
+
+
+@if (Model != null)
+{
+    string yearMonth = DateTime.Now.ToString("yyyyMM");
+    <div class="side_block04">
+        <!--template-->
+        <div class="cat_stitle">
+            <h3>ポイントランキング</h3>
+            @if (Model.NewPrizes != null && Model.NewPrizes.Any())
+            {
+                <p><a href="/prize/ranking/">詳細を見る</a></p>
+            }
+        </div>
+        @if (Model.NewPrizes != null && Model.NewPrizes.Any())
+        {
+            foreach (var prize in Model.NewPrizes)
+            {
+                <div class="side_title">
+                    <a href="/prize/@yearMonth/@prize.PrizeID/">
+                        <img src="@prize.PrizeImg" alt="Prize Image" />
+                    </a>
+                    <p>@prize.PrizeName<br /><a href="/prize/@yearMonth/@prize.PrizeID/">@prize.PrizeDescription</a></p>
+                </div>
+            }
+        }
+
+        @if (Model.PointRankings != null && Model.PointRankings.Any())
+        {
+            <ul class="side_list01">
+                @foreach (var item in Model.PointRankings)
+                {
+                    <li>
+                        <span class="side_num organge">@Html.DisplayFor(m => item.Ranking)</span>
+                        <img class="side_mem" src="@item.ProfileImage" alt="" />
+                        @Html.RouteLink(item.Nickname, RouteNameConst.UserTopIndex, new { memberId = item.MemberId })
+                        <span class="side_price">@Html.DisplayFor(m => item.Point) pt</span>
+                    </li>
+                }
+            </ul>
+        }
+    
+    </div>
+}
+

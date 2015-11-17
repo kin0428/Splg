@@ -1,0 +1,39 @@
+﻿@using Splg.Areas.Prize.Models.ViewModel;
+@using Splg.Core.Services;
+@model Splg.Areas.Prize.Models.ViewModel.PrizeTopViewModel
+
+@{
+    ViewBag.Title = "懸賞TOP";
+    ViewBag.PageNo = Splg.Areas.Prize.PrizrConstants.PRIZE_TOP_INDEX;
+    Layout = "~/Views/Shared/Mobile/_PrizeLayout.cshtml";
+}
+
+<script src="~/Scripts/Home.js"></script>
+@Html.Partial("PrizeSubMenu")
+<section class="block_9">
+    <div class="prize_img1">
+        <img src="@Model.RallyViewModel.ImageUrl" alt="@Model.RallyViewModel.RallyName" />
+    </div>
+    <h3 class="subtitle2">スポログ懸賞　概要</h3>
+    <div class="prize_content">
+        <p>
+            @Html.Raw(Html.Encode(Model.RallyViewModel.Description).Replace("\n", "<br />"))
+            <span class="red">※ご応募頂いたポイントの取り消しはできませんので予めご了承ください。</span>
+        </p>
+        <p>みなさんのご参加を心よりお待ちしております！</p>
+        @if (UserService.IsLogined(Session) == true)
+        {
+            <p class="orange fs14">懸賞応募可能ポイント　@Html.DisplayFor(m => Model.AvailablePoint)Pt</p>
+        }
+    </div>
+    <p class="prize_highlight">
+        応募期間 @Html.DisplayFor(m => Model.RallyViewModel.EntryStartDate) ～ @Html.DisplayFor(m => Model.RallyViewModel.EntryEndDate)
+    </p>
+        @Html.Partial("RallyGoodsThumbnail", Model)
+    <div class="block_8_2">
+       <p> 1. Amazon.co.jpは、本プロモーション・調査・プログラム・キャンペーンのスポンサーではありません。</p>
+       <p> 2. Amazon、Amazon.co.jp およびそのロゴはAmazon.com, Inc. またはその関連会社の商標です。</p>
+    </div>
+   
+</section>
+

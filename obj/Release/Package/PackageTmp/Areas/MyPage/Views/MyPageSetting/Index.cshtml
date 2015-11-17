@@ -1,0 +1,382 @@
+﻿@{
+    //Author : Nakahara
+    //FileName : Index.cshtml (3-7)
+    //Created Date : 2015/04/12
+}
+
+@using Splg.Areas.MyPage.Models.ViewModel;
+@model Splg.Areas.MyPage.Models.ViewModel.MyPageSettingViewModel
+
+@{
+    ViewBag.Title = "設定";
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.SETTING_INDEX;
+    Layout = "~/Views/Shared/_MyPageLayout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Areas/MyPage/Css/vendor/jquery.fileupload.css">
+<script src="~/Areas/MyPage/Scripts/vendor/jquery.ui.widget.js"></script>
+<script src="~/Areas/MyPage/Scripts/vendor/jquery.iframe-transport.js"></script>
+<script src="~/Areas/MyPage/Scripts/vendor/jquery.fileupload.js"></script>
+
+<script src="~/Scripts/jquery.shorten.1.0.js"></script>
+<script src="~/Scripts/splgCommon.js"></script>
+<script src="~/Areas/MyPage/Scripts/Views/3-7.js"></script>
+
+@{
+    MyPageSettingViewModel.MemberSettingInfoModel MemberSettingInfo = Model.MemberSettingInfo.FirstOrDefault();
+    MyPageSettingViewModel.SendMailConditionInfoModel SendMailInfo = Model.SendMailInfo.FirstOrDefault();
+    int iSelectedYear = 0;
+    int iSelectedMonth = 0;
+    var checkstart = "";
+    var checkend = "";
+    if (SendMailInfo.MailSendAtStart != 0) { checkstart = "checked = \"checked\""; }
+    if (SendMailInfo.MailSendAtEnd != 0) { checkend = "checked = \"checked\""; }
+
+    string profileIMage = MemberSettingInfo.ProfileImg;
+
+    if (!(profileIMage.ToLower().IndexOf("http") >= 0))
+    {
+        profileIMage = @Url.Content(profileIMage);
+    }
+}
+<div class="block_04">
+    <div class="block_04_7">
+        <h2 class="mytitle">プロフィール設定</h2>
+        <table cellpadding="0" cellspacing="0" summary="mypage">
+            <col width="22%" />
+            <col width="78%" />
+            <tbody valign="top">
+                <tr>
+                    <th>名前</th>
+                    <td><input class="ip460" type="text" name="名前" id="nickname" value=@MemberSettingInfo.Nickname /></td>
+                </tr>
+                <tr>
+                    <th>プロフィール写真</th>
+                    <td>
+                        <div class="img_upl">
+                            <img class="resimg" id="ProfileImg" src="@profileIMage" alt="@MemberSettingInfo.Nickname" />
+                        </div>
+                        <div class="block_04_7_btn02 fileinput-button" style="float:right!important;width:200px!important">
+                            <a>ファイルを選択</a>
+                            @Html.AntiForgeryToken()
+                            <input id="fileupload" type="file" name="files[]" accept="image/*">
+                            <p>最大アップロードサイズ: 5 MB</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>性別</th>
+                    <td>
+                        <ul class="frm_list01">
+                            <li><input type="radio" value="男性" @MemberSettingInfo.GenderCheckedMale name="性別" id="gender_male" /><label for="name01_0">男性</label></li>
+                            <li><input type="radio" value="女性" @MemberSettingInfo.GenderCheckedFeMale name="性別" id="gender_female" /><label for="name01_1">女性</label></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <th>生年月日</th>
+                    <td>
+                        <div class="sel_group">
+                            <span>
+                                <select name="year">
+                                    @{
+                                        int year;
+                                        for (year = 1910; year < 2016; year++)
+                                        {
+                                            var selected_id = "";
+                                            if (year == MemberSettingInfo.BirthdayYear)
+                                            {
+                                                selected_id = "selected=\"selected\" id=\"SelectedYear_" + year + "\"";
+                                                iSelectedYear = year;
+                                            }
+                                            <option value="@year" @selected_id>@year</option>
+                                        }
+                                    }
+                                </select>
+                                年
+                            </span>
+                            <span>
+                                <select name="month">
+                                    @{
+                                        int month;
+                                        var digit2_month = "";
+                                        for (month = 1; month <= 12; month++)
+                                        {
+                                            var selected_id = "";
+                                            digit2_month = ("0" + month).Substring(1);
+                                            if (month == MemberSettingInfo.BirthdayMonth)
+                                            {
+                                                selected_id = "selected=\"selected\" id=\"SelectedMonth_" + month + "\"";
+                                                <option value="@digit2_month" selected="selected" id="SelectedMonth_@month">@digit2_month</option>
+                                                iSelectedMonth = month;
+                                            }
+                                            <option value="@digit2_month" @selected_id>@digit2_month</option>
+                                        }
+                                    }
+                                </select>
+                                月
+                            </span>
+                            <span>
+                                <select name="day">
+                                    @{
+                                        int day;
+                                        var digit2_day = "";
+                                        int days = 31;
+                                        if (iSelectedYear > 0 && iSelectedMonth > 0)
+                                        {
+                                            DateTime dt = Convert.ToDateTime(iSelectedYear + "/" + iSelectedMonth + "/01");
+                                            dt = dt.AddMonths(1).AddDays(-1);
+                                            days = dt.Day;
+                                        }
+                                        for (day = 1; day <= days; day++)
+                                        {
+                                            var selected_id = "";
+                                            digit2_day = ("0" + day).Substring(1);
+                                            if (day == MemberSettingInfo.BirthdayDay)
+                                            {
+                                                selected_id = "selected=\"selected\" id=\"SelectedDay_" + day + "\"";
+                                            }
+                                            <option value="@digit2_day" @selected_id>@digit2_day</option>
+                                        }
+                                    }
+                                </select>
+                                日
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>出身地</th>
+                    <td>
+                        <div class="sel_group">
+                            <span>
+                                <select name="出身地">
+                                    @{
+                                        foreach (var pre in Model.PrefecturesInfo)
+                                        {
+                                            var selected_id = "";
+                                            if (pre.PrefecturesID == MemberSettingInfo.PrefecturesID)
+                                            {
+                                                selected_id = "selected=\"selected\" id=\"" + pre.PrefecturesID + "\"";
+                                            }
+                                            <option value="@pre.PrefecturesID" @selected_id>@pre.PrefecturesName</option>
+                                        }
+                                    }
+                                </select>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>好きなスポーツ</th>
+                    <td>
+                        <ul class="frm_list01">
+                            @{
+                                foreach (var spi in Model.SportsInfo)
+                                {
+                                    var exist = false;
+                                    var checked_id = "";
+                                    foreach (var lp in MemberSettingInfo.LikeSportsID)
+                                    {
+                                        if (spi.SportsID == lp)
+                                        {
+                                            exist = true;
+                                            break;
+                                        }
+                                    }
+                                    if (exist == true)
+                                    {
+                                        checked_id = "checked = \"checked\"";
+                                    }
+                                    <li><input type="checkbox" value=@spi.SportsName name="好きなスポーツ" id="@spi.SportsID" @checked_id /><label for="likesport_@spi.SportsID">@spi.SportsName</label></li>
+                                }
+                            }
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <th>好きなチーム</th>
+                    <td>
+                        <ul class="board_list">
+                            @foreach (var spi in Model.SportsInfo)
+                            {
+                                if (spi.Teams != null)
+                                {
+                                    if (spi.Teams.Count > 0)
+                                    {
+                                        <li>
+                                            <a href="#">@(spi.SportsName)から選択する<span class="icon"> </span></a>
+                                            <div class="subcontent">
+                                                <ul class="frm_list01">
+                                                    @foreach (var t in spi.Teams)
+                                                    {
+                                                        var exist = false;
+                                                        var checked_id = "";
+                                                        foreach (var lt in MemberSettingInfo.LikeTeam)
+                                                        {
+                                                            if (spi.SportsID == lt.SportsID && t.TeamID == lt.TeamID)
+                                                            {
+                                                                exist = true;
+                                                                break;
+                                                            }
+                                                        }
+                                                        if (exist == true)
+                                                        {
+                                                            checked_id = "checked = \"checked\"";
+                                                        }
+                                                        <li>
+                                                            <input type="checkbox" value=@t.TeamName name="好きなチーム" id="@(spi.SportsID +"-" + t.TeamID)" @checked_id />
+                                                            <label for="name02_0">@t.TeamName</label>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    }
+                                }
+                            }
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <th> </th>
+                    <td>
+                        <p class="board_link"><a id="save_settings" href="#">保存する</a></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="block_04">
+    <div class="block_04_7">
+        <h2 class="mytitle">メール設定変更</h2>
+        <table cellpadding="0" cellspacing="0" summary="mypage">
+            <col width="22%" />
+            <col width="78%" />
+            <tbody valign="top">
+                <tr>
+                    <th>予想した試合</th>
+                    <td>
+                        <ul>
+                            <li>
+                                <input type="checkbox" value="予想した試合が開始したら受け取る" name="予想した試合" id="name01_14" @checkstart />
+                                <label for="name01_14">予想した試合が開始したら受け取る</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="予想した試合が終了したら受け取る" name="予想した試合" id="name01_15" @checkend />
+                                <label for="name01_15">予想した試合が終了したら受け取る</label>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <th> </th>
+                    <td>
+                        <p class="board_link"><a id="save_mailsetting" href="#">保存する</a></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="block_04">
+    <div class="block_04_7">
+        <h2 class="mytitle">ログイン情報</h2>
+        <table cellpadding="0" cellspacing="0" summary="mypage">
+            <col width="22%" />
+            <col width="78%" />
+            <tbody valign="top">
+                <tr>
+                    <th>メールアドレス</th>
+                    <td>
+                        <ul>
+                            <li>
+                                @Model.MemberSettingInfo.FirstOrDefault().Mail
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <th> </th>
+                    <td>
+                        <p class="board_link"><a href="/mypage/setting/address/">変更する</a></p>
+                    </td>
+                </tr>
+                @{
+                    //1: FaceBook; 2: Google; 3: Twitter
+                    string snsName = "";
+                    int Sns = 0;
+                    if (Session["Sns"] != null && Int32.TryParse(Session["Sns"].ToString(), out Sns))
+                    {
+                        switch (Sns)
+                        {
+                            case 1:
+                            snsName = "FaceBook";
+                            break;
+                            case 2:
+                            snsName = "Google +";
+                            break;
+                            case 3:
+                            snsName = "Twitter";
+                            break;
+                        }
+                        
+                    }
+                }
+                @if (Sns > 0)
+                {
+                    <tr>
+                        <th></th>
+                        <td>
+                            <ul>
+                                <li>
+                                    @snsName でログイン中
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                }
+                else
+                {
+                    <tr>
+                        <th>パスワード</th>
+                        <td>
+                            <ul>
+                                <li>
+                                    ＊＊＊＊＊＊＊＊
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th> </th>
+                        <td>
+                            <p class="board_link"><a href="/mypage/setting/password/">変更する</a></p>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="block_04">
+    <div class="block_04_7">
+        <h2 class="mytitle">退会</h2>
+        <table cellpadding="0" cellspacing="0" summary="mypage">
+            <col width="22%" />
+            <col width="78%" />
+            <tbody valign="top">
+                <tr>
+                    <th></th>
+                    <td>
+                        <p class="board_link"><a href="/mypage/setting/deleteaccount/">アカウントを削除する</a></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

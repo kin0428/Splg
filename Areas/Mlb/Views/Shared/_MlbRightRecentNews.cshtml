@@ -1,0 +1,26 @@
+﻿@{
+    //Author : ENDO
+    //FileName :
+    //Created Date :
+}
+
+@model IEnumerable<Splg.Models.News.ViewModel.NewsInfoViewModel>
+    @using Splg;
+
+    @if (Model != null)
+    {
+        if (Model.Any())
+        {
+            <div class="side_news">
+                <div class="cat_stitle">
+                    <h3>MLB 新着ニュース</h3>
+                    <p>@Html.ActionLink("一覧で見る", "Index", "MlbNewsList", new { area = "Mlb" }, null)</p>
+                </div>
+                @foreach (var item in Model)
+                {
+                    <p class="fs14">@Html.ActionLink(string.Format("{0} {1}", item.Headline, item.SubHeadline), "Index", "NewsArticleCommon", new { area = "", topic = Constants.MLB_TOPIC_NAME, newsItemID = @item.NewsItemID, sportID = Constants.MLB_SPORT_ID }, null)</p>
+                }
+            </div>
+        }
+    }
+

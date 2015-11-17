@@ -1,0 +1,149 @@
+﻿@{
+    //Author : Nojima
+    //FileName : _JlgTop3Ranking.cshtml
+    //Created Date : 2015/04/28
+}
+@model Splg.Areas.Jleague.Models.ViewModel.JlgTop3RankingViewModel
+
+@if (Model != null)
+{
+    @*----Show J1順位----*@
+    if (Model != null)
+    {
+        if (Model.J1League.Any())
+        {
+            <div class="side_board">
+                <table cellpadding="0" cellspacing="0" summary="順位表">
+                    <col width="48%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <thead>
+                        <tr>
+                            <th><b>J1順位</b></th>
+                            <th>勝</th>
+                            <th>敗</th>
+                            <th>引</th>
+                            <th>差</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.J1League)
+                        {
+                            <tr>
+                                @if (@item.Ranking > 1)
+                                {
+                                    <th><span class="fi bold">@item.Ranking</span>@Html.ActionLink(@item.ShortNameTeam, "Index", "JlgTeamInfoTop", new { area = "Jlg", teamID = @item.TeamCD }, null)</th>
+                                }
+                                else
+                                {
+                                    <th><span class="organge fi bold">@item.Ranking</span>@Html.ActionLink(@item.ShortNameTeam, "Index", "JlgTeamInfoTop", new { area = "Jlg", teamID = @item.TeamCD }, null)</th>
+                                }
+                                <td class="fi bold">@item.Win</td>
+                                <td class="fi bold">@item.Lose</td>
+                                <td class="fi bold">@item.Draw</td>
+                                <td class="fi bold">@item.Score</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+    @*----Show J2順位----*@
+    if (Model.J2League != null)
+    {
+        if (Model.J2League.Any())
+        {
+            <div class="space20"></div>
+            <div class="side_board">
+                <table cellpadding="0" cellspacing="0" summary="順位表">
+                    <col width="48%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <thead>
+                        <tr>
+                            <th><b>パ・リーグ順位</b></th>
+                            <th>勝</th>
+                            <th>敗</th>
+                            <th>引</th>
+                            <th>差</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.J2League)
+                        {
+                            <tr>
+                                @if (@item.Ranking > 1)
+                                {
+                                    <th><span class="fi">@item.Ranking</span>@Html.ActionLink(@item.TeamNameS, "Index", "JlgTeamInfoTop", new { area = "Jlg", teamID = @item.TeamID }, null)</th>
+                                }
+                                else
+                                {
+                                    <th><span class="organge fi">@item.Ranking</span>@Html.ActionLink(@item.TeamNameS, "Index", "JlgTeamInfoTop", new { area = "Jlg", teamID = @item.TeamID }, null)</th>
+                                }
+                                <td class="fi bold">@item.Win</td>
+                                <td class="fi bold">@item.Lose</td>
+                                <td class="fi bold">@item.Draw</td>
+                                <td class="fi bold">@item.Score</td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+    @*----Show ナビスコ順位----*@
+    if (Model.Nabisco != null)
+    {
+        if (Model.Nabisco.Any())
+        {
+            <div class="space20"></div>
+            <div class="side_board">
+                <table cellpadding="0" cellspacing="0" summary="順位表">
+                    <col width="48%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <thead>
+                        <tr>
+                            <th><b>パ・リーグ順位</b></th>
+                            <th>勝</th>
+                            <th>敗</th>
+                            <th>引</th>
+                            <th>差</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Nabisco)
+                        {
+                            <tr>
+                                @if (@item.Ranking > 1)
+                                {
+                                    <th><span class="fi">@item.Ranking</span>@Html.ActionLink(@item.TeamNameS, "Index", "JlgTeamInfoTop", new { area = "Jlg", teamID = @item.TeamID }, null)</th>
+                                }
+                                else
+                                {
+                                    <th><span class="organge fi">@item.Ranking</span>@Html.ActionLink(@item.TeamNameS, "Index", "JlgTeamInfoTop", new { area = "Jlg", teamID = @item.TeamID }, null)</th>
+                                }
+                                <td class="fi bold">@item.Win</td>
+                                <td class="fi bold">@item.Lose</td>
+                                <td class="fi bold">@item.Draw</td>
+                                <td class="fi bold">@item.Score</td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+}

@@ -1,0 +1,96 @@
+﻿@model MvcSiteMapProvider.Web.Html.Models.MenuHelperModel
+@using System.Web.Mvc.Html
+@using MvcSiteMapProvider.Web.Html.Models
+
+@helper  TopMenu(List<SiteMapNodeModel> nodeList)
+{
+    @*<nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">*@
+    
+    // ログイン済か判定
+    bool isLoggedIn = false;
+    if (nodeList != null && nodeList.Any())
+    {
+        var sourceMetaData = nodeList[0].SourceMetadata;
+        if (sourceMetaData["IsLoggedIn"] != null && sourceMetaData["IsLoggedIn"].GetType().Equals(typeof(bool)))
+        {
+            isLoggedIn = Convert.ToBoolean(sourceMetaData["IsLoggedIn"]);
+        }
+    }
+
+    foreach (SiteMapNodeModel node in nodeList)
+    {
+        // 未ログインならば会員用メニューは非表示
+        if (node.Attributes.ContainsKey("isMemberOnly"))
+        {
+            bool isMemberOnly;
+            bool.TryParse(node.Attributes["isMemberOnly"].ToString(), out isMemberOnly);
+            if (isMemberOnly && !isLoggedIn) { continue; }
+        }     
+
+        if (node.Attributes.ContainsKey("cssClassName"))
+        {
+            <li class=@node.Attributes["cssClassName"].ToString()>@Html.DisplayFor(m => node)</li>
+        }
+        else
+        {
+            <li>@Html.DisplayFor(m => node)</li>
+        }
+
+        //string url = node.IsClickable ? node.Url : "#";
+
+        @*if (node.Children.Any())
+        {
+            <ul class="submenu" style="display: none;">
+                <li>@Html.DisplayFor(m => node.Children)</li>
+            </ul>
+        }*@
+
+                @*if (!node.Children.Any())
+                    {
+                        <li><a href="@url">@node.Title</a></li>
+                    }
+                    else
+                    {
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">@node.Title <span class="caret"></span></a>@DropDownMenu(node.Children)</li>
+                    }
+
+                    if (node != nodeList.Last())
+                    {
+                        <li class="divider-vertical"></li>
+                    }*@
+                }
+                @*</ul>
+                            </div>
+                        </div>
+                    </nav>*@
+}
+
+@helper DropDownMenu(SiteMapNodeModelList nodeList)
+{
+                <ul class="dropdown-menu" role="menu">
+                    @foreach (SiteMapNodeModel node in nodeList)
+        {
+            if (node.Title == "Separator")
+            {
+                <li class="divider"></li>
+                continue;
+            }
+
+            string url = node.IsClickable ? node.Url : "#";
+
+            if (!node.Children.Any())
+            {
+                <li><a href="@url">@node.Title</a></li>
+            }
+            else
+            {
+                <li class="dropdown-submenu"><a href="@url">@node.Title</a>@DropDownMenu(node.Children)</li>
+            }
+        }
+                </ul>
+}
+
+@TopMenu(Model.Nodes)

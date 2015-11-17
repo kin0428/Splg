@@ -1,0 +1,27 @@
+﻿@model Splg.Areas.Jleague.Models.JlgScheduleResultViewModel
+@using Splg.Core.Constant;
+
+<section class="block_0 clear">
+    <h3 class="subtitle3">日程を選択する</h3>
+    <nav class="news-panel">
+        @if(Model.JType == JlgConst.JType.J1)
+        {
+            if(Model.SeasonId == 2){
+                <h4 id="h4MonthYear"><span id="season">1stシーズン　</span>第<span id="occasionTitle"> @Model.OccasionNo </span>節</h4>
+            } else {
+                <h4 id="h4MonthYear"><span id="season">2ndシーズン　</span>第<span id="occasionTitle"> @Model.OccasionNo </span>節</h4>
+            }
+        } 
+        else if(Model.JType == JlgConst.JType.Jleaguecup) 
+        {
+            <h4 id="h4MonthYear"><span id="season">予選リーグ　</span>第<span id="occasionTitle"> @Model.OccasionNo </span>節</h4>
+        } 
+        else 
+        { 
+            <h4 id="h4MonthYear"><span id="season"></span>第<span id="occasionTitle"> @Model.OccasionNo </span>節</h4>
+        }
+     </nav>
+    <div class="news-box">
+        <select name="category" id="ddl_occasion"></select>
+    </div>
+</section>   

@@ -1,0 +1,195 @@
+﻿@{
+    //Author : CucHTP
+    //FileName : Index.cshtml (8-1)
+    //Created Date : 2015/03/04
+}
+
+@model Splg.Areas.Npb.Models.NpbTopViewModel
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Name = Constants.NPBTOP;
+    Layout = "~/Views/Shared/_NpbLayout.cshtml";
+}
+<script src="~/Areas/Npb/Scripts/8-1.js"></script>
+
+<!--News Top View-->
+@Html.Action("ShowNpbNewsTopViews", "NpbRightContent", new { area = "Npb" })
+
+<div class="evt_block05">
+    <div class="board_control clear">
+        <span class="board_prev blue">前の試合を見る</span>
+        <h3 id="gameDate">
+            @Utils.GetMonthAndDayOfWeek(DateTime.Now) の試合
+        </h3>
+        <span class="board_next blue">次の試合を見る</span>
+    </div>
+    <input type="hidden" id="Page" name="Page" value="1" data-gamedate="@DateTime.Now.ToShortDateString().Replace("/", "" )" />
+    <div id="npbGameInfo">
+        @Html.Action("ShowGameInfo", "NpbTop", new { area = "Npb", type = 1, gameDate = DateTime.Now.ToShortDateString().Replace("/", "") })
+    </div>
+    <div class="board_control">
+        <span class="board_prev blue">前の試合を見る</span>
+        <span class="board_next blue">次の試合を見る</span>
+    </div>
+    <div class="space20"></div>
+    <div class="evt_block06">
+        @if (Model != null)
+        {
+            if (Model.ListTeamExpectationsDeviation != null && Model.ListTeamExpectationsDeviation.Any())
+            {
+                <div class="list_team">
+                    <div class="list_note clear">
+                        <h4>期待度ランキング</h4>
+                        <p>期待度偏差値とは…総予想ポイント数の偏差値</p>
+                    </div>
+                    <table cellpadding="0" cellspacing="0" summary="listteam">
+                        <col width="9%" />
+                        <col width="55%" />
+                        <col width="15%" />
+                        <col width="21%" />
+                        <thead>
+                            <tr>
+                                <th>順位</th>
+                                <th>ホーム</th>
+                                <th>期待度偏差値</th>
+                                <th>リーグ順位</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                var intRanking = 1;
+                            }
+                            @foreach (var item in Model.ListTeamExpectationsDeviation)
+                            {
+                                var leagueRank = item.LeagueName + item.Ranking + "位";
+                                <tr>
+                                    @if (intRanking == 1)
+                                    {
+                                        <td><span class="list_num organge fi">@intRanking</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span class="list_num fi">@intRanking</span></td>
+                                    }
+                                    <td>
+                                        <p class="list_img">
+                                            <a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamID }, null)">
+                                                <img class="resimg" src=@Url.Content(@item.TeamIcon) alt=@item.TeamName />
+                                            </a>
+                                        </p>
+                                        <p class="list_name">@Html.ActionLink(@item.TeamName, "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamID }, new { @class = "fs18 bold" })</p>
+                                    </td>
+                                    @if (intRanking == 1)
+                                    {
+                                        <td><span class="list_score organge fi">@Math.Round(@item.ExpectationsDeviation)</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span class="list_score fi">@Math.Round(@item.ExpectationsDeviation)</span></td>
+                                    }
+                                    <td>@Html.ActionLink(@leagueRank, "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamID }, null)</td>
+                                </tr>
+                                    intRanking++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            if (Model.ListTeamBetrayalDeviation != null && Model.ListTeamBetrayalDeviation.Any())
+            {
+                <div class="list_team">
+                    <div class="list_note clear">
+                        <h4>裏切度ランキング</h4>
+                        <p>裏切度偏差値とは・・・負けた試合の総予想ポイント数の偏差値</p>
+                    </div>
+                    <table cellpadding="0" cellspacing="0" summary="listteam">
+                        <col width="9%" />
+                        <col width="55%" />
+                        <col width="15%" />
+                        <col width="21%" />
+                        <thead>
+                            <tr>
+                                <th>順位</th>
+                                <th>ホーム</th>
+                                <th>裏切度偏差値</th>
+                                <th>リーグ順位</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                var intRanking = 1;
+                            }
+                            @foreach (var item in Model.ListTeamBetrayalDeviation)
+                            {
+                                var leagueRank = item.LeagueName + item.Ranking + "位";
+                                <tr>
+                                    @if (intRanking == 1)
+                                    {
+                                        <td><span class="list_num organge fi">@intRanking</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span class="list_num fi">@intRanking</span></td>
+                                    }
+                                    <td>
+                                        <p class="list_img">
+                                            <a href="@Url.Action("Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamID }, null)">
+                                                <img class="resimg" src=@Url.Content(@item.TeamIcon) alt=@item.TeamName />
+                                            </a>
+                                        </p>
+                                        <p class="list_name">@Html.ActionLink(@item.TeamName, "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamID }, new { @class = "fs18 bold" })</p>
+                                    </td>
+                                    @if (intRanking == 1)
+                                    {
+                                        <td><span class="list_score organge fi">@Math.Round(@item.BetrayalDeviation)</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span class="list_score fi">@Math.Round(@item.BetrayalDeviation)</span></td>
+                                    }
+                                    <td>@Html.ActionLink(@leagueRank, "Index", "NpbTeamInfoTeamTop", new { area = "Npb", teamID = @item.TeamID }, null)</td>
+                                </tr>
+                                    intRanking++;
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            }
+        }
+        @if (Model.NpbPostedList != null && Model.NpbPostedList.Any())
+        {
+            <div class="cat_stitle">
+                <h3>新着の投稿記事</h3>
+                <p><a href="/user_article/1/sport/">投稿記事をもっと読む</a></p>
+            </div>
+            <ul class="evt_list01">
+                @foreach (var post in Model.NpbPostedList.Take(5))
+                {
+                    string postContent = string.Format("{0}&nbsp;&nbsp;&nbsp;{1}投稿", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                    <li>
+                        <a href="/user/@post.MemberId/"><img src="@post.ProfileImg" alt="icon" /></a>
+                        <a class="bold" href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a>
+						<br />
+						@Html.Raw(postContent)
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</div>
+
+<!--Npb News-->
+@Html.Action("ShowNpbRecentNews", "NpbRightContent", new { area = "Npb", type = @ViewBag.Name })
+
+<!--Right Content-->
+@section NpbPage{
+    <div class="cat_stitle">
+        <h3>順位表</h3>
+        <p>@Html.ActionLink("一覧で見る", "Index", "NpbOrder", new { area = "Npb" }, null)</p>
+    </div>
+    <div id="npbTop3Ranking">
+        @Html.Action("ShowTopNRanking", "NpbRightContent", new { area = "Npb" })
+    </div>
+}

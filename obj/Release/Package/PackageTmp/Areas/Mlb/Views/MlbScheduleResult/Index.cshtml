@@ -1,0 +1,100 @@
+﻿@{
+    //Author : endo
+    //FileName : Index.cshtml (9-2)
+    //Created Date : 2015/04/25
+}
+@using Splg.Areas.Mlb
+@using Splg.Areas.Mlb.Models;
+@using Splg.Areas.Mlb.Models.ViewModels;
+@model MlbScheduleResultViewModel
+@{
+    ViewBag.Title = "日程・結果（MLB）";
+    ViewBag.Name = Splg.Areas.Mlb.MlbConstants.MLB_SCHEDULE_RESULT;
+    Layout = "~/Views/Shared/_MlbLayout.cshtml";
+}
+@{
+    var thisWeekStart = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek);
+    int delta = DayOfWeek.Monday - thisWeekStart.DayOfWeek;
+    DateTime monday = thisWeekStart.AddDays(delta);
+    var strStartDate = monday.ToShortDateString().Replace("/", "");
+    var thisWeekEnd = monday.AddDays(6).AddSeconds(-1);
+    var strEndDate = thisWeekEnd.ToShortDateString().Replace("/", "");
+    var totalWeeks = Utils.TotalWeeksInMonth(monday.Year, monday.Month);
+}
+
+
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/datepicker-ja.js"></script>
+<script src="~/Areas/Mlb/Scripts/9-1.js"></script>
+<script src="~/Areas/Mlb/Scripts/9-2.js"></script>
+
+@Html.Partial("~/Areas/Mlb/Views/Shared/_MlbTeamInfoMenu.cshtml")
+<div class="evt_block05">
+    <div class="board_control clear">
+        <span class="board_prev blue">前の試合を見る</span>
+        <h3 id="gameDate">
+            @Utils.GetMonthAndDayOfWeek(DateTime.Now) の試合
+        </h3>
+        <span class="board_next blue">次の試合を見る</span>
+    </div>
+    <input type="hidden" id="Page" name="Page" value="1" data-gamedate="@DateTime.Now.ToShortDateString().Replace("/", "" )" />
+    <div id="mlbGameInfo">
+        @Html.Action("ShowGameInfo", "MlbTop", new { area = "Mlb", type = 1, gameDate = DateTime.Now.ToShortDateString().Replace("/", "") })
+    </div>
+    <div class="space20"></div>
+</div>
+<div class="evt_block05">
+    <div class="inner_last">
+        <p class="j_rank bold">
+            @for (int i = 1; i <= 12; i++)
+            {
+                string cssClass = string.Empty;
+                if (MlbCommon.GetMonthOfGameDate(i) > 0)
+                {
+                    cssClass = (i.Equals(monday.Month) ? "active" : string.Empty);
+                    <a class="@cssClass" href="javascript:void(0);">
+                        <span class="fs20">@i</span>月
+                    </a>
+                    <span>  /</span>
+                }
+                else
+                {
+                    cssClass = "gray";
+                    <span class="@cssClass fs20">@i</span><span class="@cssClass">月  /</span>
+                }
+            }
+        <p>
+            <div class="space"> </div>
+            <ul class="block_04_3_l3 clear">
+                @if (MlbCommon.GetMonthOfGameDate(DateTime.Now.Month) > 0)
+                {
+                    for (int i = 1; i <= totalWeeks; i++)
+                    {
+                        string weekActive = (i.Equals(Utils.GetWeekInMonth(thisWeekStart)) ? "active" : string.Empty);
+                        <li class="@weekActive"><a href="javascript:void(0);">第<span class="fs18">@i</span>週</a></li>
+                    }
+                }
+            </ul>
+    </div>
+    <input type="hidden" id="Page2" name="Page2" value="2" data-startdate="@strStartDate" data-enddate="@strEndDate" />
+    <div id="mlbGameInfoWeek">
+        @Html.Action("ShowGameInfo", "MlbTop", new { area = "Mlb", type = 2, startDate = strStartDate, endDate = strEndDate })
+    </div>
+    <div class="space20"></div>
+</div>
+
+<!--Mlb News-->
+@Html.Action("ShowMlbRecentNews", "MlbRightContent", new { area = "Mlb", type = @ViewBag.Name })
+<!--Right Content-->
+@section MlbPage{
+    <div class="cat_stitle">
+        <h3>順位表</h3>
+        <p>@Html.ActionLink("一覧で見る", "Index", "MlbOrder", new { area = "Mlb" }, null)</p>
+    </div>
+    <div id="npbTop3Ranking">
+        @Html.Action("ShowTopNRanking", "MlbRightContent", new { area = "Mlb" })
+    </div>
+    <div class="side_cal" id="calendar"></div>
+
+}

@@ -1,0 +1,39 @@
+﻿@{
+    // Developer	: Nojima
+    // Html No      : 3-7-2
+}
+@model Splg.Areas.MyPage.Models.ViewModel.MyPageSettingDeleteAccountViewModel
+
+@{
+    ViewBag.Title = "設定　アカウントの削除";
+    ViewBag.PageNo = Splg.Areas.MyPage.MyPageConstant.SETTING_DELETEACCOUNT;
+    Layout = "~/Views/Shared/Mobile/_MyPageLayout.cshtml";   
+}
+<script src="~/Scripts/Home.js"></script>
+
+
+@if (Model != null)
+{
+<section class="block_7">
+	<h3 class="sigtitle">@Model.Nickname のアカウントを削除しますか？</h3>						
+	<div class="sig-frm">
+		<dl>								
+			<dd>
+                アカウントを削除するとお客様のデータが全て削除されます。
+                <br />
+                一度削除されるとデータは復旧できません。
+                <p>
+                    それでもよろしいでしょうか？
+                </p>
+            </dd>
+		</dl>
+        <dl>
+                    <a href="/mypage/setting/deleteaccount/execute/">削除する</a>
+          
+                    <a href="/mypage/setting/" style="float:right">いいえ</a>
+              
+        </dl>
+	</div>
+</section>
+
+}

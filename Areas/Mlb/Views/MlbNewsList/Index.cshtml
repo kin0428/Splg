@@ -1,0 +1,96 @@
+﻿@*
+    * Author : e-concier
+    * FileName : Index.cshtml (9-5-6)
+    * Created Date : 2015/04/10
+*@
+@model Splg.Areas.Mlb.Models.ViewModels.MlbNewsListViewModel
+@using PagedList.Mvc;
+@using Splg;
+@{
+    ViewBag.Title = "ニュースリスト";
+    ViewBag.Name = Splg.Areas.Mlb.MlbConstants.MLB_NEWS_LIST;
+    Layout = "~/Views/Shared/_MlbLayout.cshtml";
+}
+<div class="block_05">
+    <div class="subtitle06">
+        @using (Html.BeginForm("ニュースリスト",
+                            "MlbNewsList",
+                            FormMethod.Get))
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = "全て", Value = string.Empty, Selected = (ViewBag.teamId == string.Empty) });
+            foreach (var team in Model.TeamList)
+            {
+                items.Add(new SelectListItem { Text = team.TeamName, Value = Convert.ToString(team.TeamID), Selected = (ViewBag.teamId == string.Empty) ? false : (team.TeamID == Convert.ToInt32(ViewBag.teamId)) });
+            }
+            <h2>ＭＬＢ 新着ニュース</h2>
+           
+             
+            @*<span>
+                @Html.DropDownList("strTeamId", items, new { onchange = @"form.submit();" })
+            </span>*@
+            
+        }
+    </div>
+    @if (Model.TeamNewsList != null && Model.TeamNewsList.Count() > 0)
+    {
+        DateTime dayCount = Model.TeamNewsList.FirstOrDefault().DeliveryDate;
+        var ulBegin = "<ul class='news_list'>";
+        var ulEnd = "</ul>";
+        <h3 class="news_title"> @dayCount.ToString("MM/dd") (@Utils.GetWeekDayToJapanTime(dayCount)) </h3>
+        @Html.Raw(ulBegin)
+        foreach (var item in Model.TeamNewsList)
+        {
+            var imageLocation = Utils.GetNewsImageLocation(item.Content ?? Constants.IMAGE_DEFAULT);
+            if (dayCount.Date.CompareTo(item.DeliveryDate.Date) != 0)
+            {
+                dayCount = item.DeliveryDate;
+                @Html.Raw(ulEnd)
+                <h3 class="news_title"> @dayCount.ToString("MM/dd") (@Utils.GetWeekDayToJapanTime(dayCount)) </h3>
+                @Html.Raw(ulBegin)
+            }
+            <li>
+                <p><img class="resimg" src="@Url.Content(imageLocation)" alt="" /></p>
+                <div>
+                    <h4>@Html.RouteLink(item.Headline, "7_1", new { areas = string.Empty, topic = Constants.MLB_TOPIC_NAME, newsItemID = item.NewsItemID, sportID = Constants.MLB_SPORT_ID })</h4>
+                    <p>@Utils.ShortenString(item.newstext, 50)</p>
+                    <p><span class="gray">@item.SentFrom - @item.DeliveryDate.ToString("yyyy/MM/dd hh:mm")</span></p>
+                </div>
+            </li>
+        }
+        @Html.Raw(ulEnd)
+        <div class="board_control">
+            @if (Model.TeamNewsList.PageNumber > 1)
+            {
+                var nextPage = Model.TeamNewsList.PageNumber - 1;
+                <a class="board_prev" href="?page=@nextPage&strTeamId=@ViewBag.teamId">≪前のページ</a>
+            }
+            else
+            {
+                <a class="board_prev">≪前のページ</a>
+            }
+            @if (Model.TeamNewsList.PageNumber < Model.TeamNewsList.PageCount)
+            {
+                var nextPage = Model.TeamNewsList.PageNumber + 1;
+                <a class="board_next" href="?page=@nextPage&strTeamId=@ViewBag.teamId">次のページ≫</a>
+            }
+            else
+            {
+                <a class="board_next">次のページ≫</a>
+            }
+        </div>
+    }
+</div>
+
+<!--Mlb News-->
+@Html.Action("ShowMlbRecentNews", "MlbRightContent", new { area = "Mlb", type = @ViewBag.Name })
+<!--Right Content-->
+@section MlbPage{
+    <div class="cat_stitle">
+        <h3>順位表</h3>
+        <p>@Html.ActionLink("一覧で見る", "Index", "MlbOrder", new { area = "Mlb" }, null)</p>
+    </div>
+    <div id="npbTop3Ranking">
+        @Html.Action("ShowTopNRanking", "MlbRightContent", new { area = "Mlb" })
+    </div>
+}

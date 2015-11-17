@@ -1,0 +1,31 @@
+﻿@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: _NpbMenu.cshtml
+    // Device       :  Mobile
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-04-04
+}
+<!-- path -->
+<ul class="block-path">
+    <li>
+        <a class="active" href="javascript:void(0)">プロ野球</a>
+        <ul>
+            @*画面設計書 (プロ野球TOP画面）: 8-1 *@
+            <li>@Html.ActionLink("プロ野球トップ", "Index", "NpbTop", new { area = "Npb" }, null)</li>
+            @*画面設計書 (日程・結果(プロ野球)画面）: 8-2 *@
+            <li>@Html.ActionLink("日程・結果", "Index", "NpbScheduleResult", new { area = "Npb" }, null)</li>
+
+            @*画面設計書 (順位表(プロ野球画面））: 8-3 *@
+            <li>@Html.ActionLink("順位表", "Index", "NpbOrder", new { area = "Npb" }, null)</li>
+
+            @*画面設計書 (個人成績(プロ野球)画面）: 8-4 *@
+            <li>@Html.ActionLink("個人成績", "Index", "NpbPersonalResult", new { area = "Npb" }, null)</li>
+
+            @*画面設計書 (チーム情報(プロ野球)画面）: 8-5*@
+            <li>@Html.ActionLink("チーム成績", "Index", "NpbTeamInformation", new { area = "Npb" }, null)</li>
+
+            @*画面設計書 (ニュースリスト(プロ野球)画面）. : 8-7 *@
+            <li>@Html.ActionLink("ニュース", "Index", "NpbNewsList", new { area = "Npb" }, null)</li>
+        </ul>
+      </li>
+</ul>

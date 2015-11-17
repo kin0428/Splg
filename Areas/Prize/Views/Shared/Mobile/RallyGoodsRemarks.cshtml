@@ -1,0 +1,21 @@
+﻿@using Splg.Core.Constant;          
+@using Splg.Areas.Prize.Models.ViewModel;
+@model Splg.Areas.Prize.Models.ViewModel.PrizeGoodViewModel
+
+@{
+    foreach (var item in Model.RallyGoodsRemarks)
+    {
+        <div class="block_8_2">	
+            <h3 class="prize_name">
+                @item.Title
+            </h3>
+            <div class="prize_img1">
+                <img src="@item.ImageUrl" alt="@item.Title">
+            </div>
+
+            @Html.Partial("RallyGoodsRemarksText", Model.RallyGoodsRemarksText.Where(x => x.RallyGoodRemarksId == item.RallyGoodRemarksId))
+
+            @Html.Partial("RallyGoodsRemarksLink", Model.RallyGoodsRemarksLink.Where(x => x.RallyGoodRemarksId == item.RallyGoodRemarksId))
+        </div>
+    }
+        }

@@ -1,0 +1,49 @@
+﻿@{
+    //Dev : Sy Huynh
+    //FileName : TeamSubMenu.cshtml
+    //Created Date : 2015/04/09
+}
+@{
+    int sportType = Convert.ToInt32(ViewBag.sportID);
+    string urlBegin = "/" + Constants.NPB_TOPIC_NAME + "/teams/";
+    switch(sportType)
+    {
+        case Constants.NPB_SPORT_ID:
+            urlBegin = "/" + Constants.NPB_TOPIC_NAME + "/teams/";
+            break;
+        case Constants.JLG_SPORT_ID:
+            urlBegin = "/" + Constants.JLG_TOPIC_NAME + "/j1/teams/";
+            if (ViewBag.uniqueID != null)
+            {
+                if (Convert.ToInt32(ViewBag.uniqueID) == 6)
+                {
+                    urlBegin = "/" + Constants.JLG_TOPIC_NAME + "/j2/teams/";
+                }
+            }
+            break;
+        case Constants.MLB_SPORT_ID:
+            urlBegin = "/" + Constants.MLB_TOPIC_NAME + "/teams/";
+            break;
+    }
+    urlBegin = string.Format("{0}{1}/", urlBegin, ViewBag.teamID);
+}
+<h4 class="mytitle">@Utils.GetTeamNameById(sportType, Convert.ToInt32(ViewBag.teamID))　ニュース</h4>
+<ul class="team_menu @(sportType == Constants.JLG_SPORT_ID ? "fs14" : "") clear">
+    <li><a href="@urlBegin">チーム情報トップ</a></li>
+    <li><a href="@string.Format("{0}schedule/", urlBegin)">成績・結果</a></li>
+    @if (sportType != Constants.MLB_SPORT_ID)
+    {
+        <li><a href="@string.Format("{0}stats/", urlBegin)">対戦成績</a></li>
+        if (sportType == Constants.NPB_SPORT_ID)
+        {
+            <li><a href="@string.Format("{0}memberlist/1/", urlBegin)">投手</a></li>
+            <li><a href="@string.Format("{0}memberlist/2/", urlBegin)">捕手・野手</a></li>
+            <li><a href="@string.Format("{0}memberlist/3/", urlBegin)">監督・スタッフ</a></li>
+        }
+        else
+        {
+            <li><a href="@string.Format("{0}memberlist/", urlBegin)">投手</a></li>
+        }
+    }
+    <li class="active"><a href="@string.Format("{0}news/", urlBegin)">ニュース</a></li>
+</ul>

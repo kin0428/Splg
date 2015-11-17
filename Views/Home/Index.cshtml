@@ -1,0 +1,371 @@
+﻿@{
+    // Page : Home.cshtml (Main page of website : Spolog.jp)
+    // Developer	: Tran Sy Huynh
+    // Modified Dev : CucHTP
+    // Modified Date : 2015/05/12
+}
+
+@model Splg.Models.ViewModel.HomeViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/tutorials.js"></script>
+<script src="~/Scripts/cookie.js"></script>
+
+<!--Popup-->
+<div class="outside_overclay"> </div>
+<div class="add_popup">
+    <p class="pop_exit popclose"><img src="~/Content/img/tmp/close.png" alt="exit" /></p>
+    <h2 class="add_pop_title" id="popTitle">
+        スポログとは？
+    </h2>
+    <p class="add_pagr01" id="content01">
+    </p>
+    <div class="add_image" id="add_image01">
+        <img id="imgPop1" src="~/Content/img/tmp/tutorial_01_01_pc.gif" alt="">
+    </div>
+    <p class="add_pagr01" id="content02">
+    </p>
+    <div class="add_image" id="add_image02">
+        <img id="imgPop2" src="~/Content/img/tmp/tutorial_01_02_pc.gif" alt="">
+    </div>
+    <p class="add_pagr01" id="content03">
+    </p>
+    <p class="board_link" id="nextEvent"><a href="javascript:;">ユーザー登録（無料）</a></p>
+</div>
+<!--Popup--> 
+
+@if (Model != null)
+{
+    <div><a href="/prize/"><u>勝敗予想で懸賞に応募！</u></a></div><br/>
+    if (Model.HomeTopNews != null && Model.HomeTopNews.Any())
+    {
+        var firstNews = @Model.HomeTopNews.FirstOrDefault();
+        var imageSports = Utils.GetNewsImageLocation(firstNews.Content ?? Constants.IMAGE_DEFAULT);
+        int topicSportId = Utils.GetSportIDByItpcSubjectCode(firstNews.ItpcSubjectCode);
+        string topicSportName = Constants.NPB_TOPIC_NAME;
+        <div class="block_01 clear">
+            <div class="row">
+                @if (topicSportId == 2)
+                {
+                    topicSportName = Constants.JLG_TOPIC_NAME;
+                }
+                else if (topicSportId == 3)
+                {
+                    topicSportName = Constants.MLB_TOPIC_NAME;
+
+                }
+                <div class="block_01_1">
+                    <h2 class="subtitle01 fi">NEWS TOPICS</h2>
+                    <h3 class="subtitle02">@Html.ActionLink(string.Format("{0} {1}", firstNews.Headline, firstNews.SubHeadline), "Index", "NewsArticleCommon", new { area = string.Empty, topic = topicSportName, newsItemID = firstNews.NewsItemID, sportID = topicSportId }, null)</h3>
+                    <h4><span class="gray2">@firstNews.SentFrom &nbsp; @string.Format("{0} views", firstNews.TotalViews)</span></h4>
+                    <p>@Utils.ShortenString(firstNews.newstext, 50)</p>
+                </div>
+                <div class="block_01_2">
+                    <a href="@Url.Action("Index", "NewsArticleCommon", new { area = string.Empty, topic = topicSportName, newsItemID = firstNews.NewsItemID, sportID = topicSportId }, null)">
+                        <img src="@Url.Content(@imageSports)" class="resimg" alt="" />
+                    </a>
+                </div>
+                <ul class="block_list01">
+                    @foreach (var news in Model.HomeTopNews.Skip(1))
+                    {
+                        topicSportId = Utils.GetSportIDByItpcSubjectCode(news.ItpcSubjectCode);
+                        topicSportName = Constants.NPB_TOPIC_NAME;
+                        if (topicSportId == 2)
+                        {
+                            topicSportName = Constants.JLG_TOPIC_NAME;
+                        }
+                        else if (topicSportId == 3)
+                        {
+                            topicSportName = Constants.MLB_TOPIC_NAME;
+
+                        }
+                        <li>@Html.ActionLink(string.Format("{0} {1}", news.Headline, news.SubHeadline), "Index", "NewsArticleCommon", new { area = string.Empty, topic = topicSportName, newsItemID = news.NewsItemID, sportID = topicSportId }, null)<span>@news.SentFrom &nbsp; @string.Format("{0} views", news.TotalViews)</span></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+    if (Model.HomeGameInfoViewModels != null && Model.HomeGameInfoViewModels.Any())
+    {
+        var lstGameID1 = new List<int>();
+        var lstGameID2 = new List<int>();
+        var lstGameID3 = new List<int>();       
+        //Only get top 2 game of any sports.
+        var lstTop2 = Model.HomeGameInfoViewModels.Take(2);
+        //List game remain.
+        var lstRemain = Model.HomeGameInfoViewModels.Skip(2);        
+        <div class="evt_block05 clear">
+            <h3 class="subtitle03"><span class="organge">TODAY'S PICK UP</span><span class="tnote">特に注目度の高い試合をピックアップ</span></h3>   
+            @if(lstTop2 != null && lstTop2.Any())
+            {
+                <!--Filter sport : Npb-->           
+                var lstGameNpb = lstTop2.Where(x => x.SportID == 1);
+                if (lstGameNpb != null && lstGameNpb.Any())
+                {
+                    foreach (var game in lstGameNpb)
+                    {
+                        lstGameID1.Add(game.GameID);
+                    }
+                    if (lstGameID1.Count > 0)
+                    {
+                        string combindedString = string.Join(",", @lstGameID1.ToArray());
+                        <input type="hidden" id="pTopNpb" name="pTopNpb" value="6" data-listgame="@combindedString" />
+                        <div id="npbGameInfo">
+                            @Html.Action("ShowGameInfo", "NpbTop", new { area = "Npb", type = 6, lstGameID = combindedString })
+                        </div>
+                    }
+                }            
+                <!--Filter sport : Mlb-->           
+                var lstGameMlb = lstTop2.Where(x => x.SportID == 3);
+                if (lstGameMlb != null && lstGameMlb.Any())
+                {
+                    foreach (var game in lstGameMlb)
+                    {
+                        lstGameID2.Add(game.GameID);
+                    }
+                    if (lstGameID2.Count > 0)
+                    {
+                        string combindedString = string.Join(",", @lstGameID2.ToArray());
+                        <input type="hidden" id="pTopMlb" name="pTopMlb" value="6" data-listgame="@combindedString" />
+                        <div id="mlbGameInfo">
+                            @Html.Action("ShowGameInfo", "MlbTop", new { area = "Mlb", type = 6, lstGameID = combindedString })
+                        </div>
+                    }
+                } 
+                <!--Filter sport : Jleague-->           
+                var lstGameJLg = lstTop2.Where(x => x.SportID == 2);
+                if (lstGameJLg != null && lstGameJLg.Any())
+                {
+                    foreach (var game in lstGameJLg)
+                    {
+                        lstGameID3.Add(game.GameID);
+                    }
+                    if (lstGameID3.Count > 0)
+                    {
+                        string combindedString = string.Join(",", @lstGameID3.ToArray());
+                        <input type="hidden" id="pTopJlg" name="pTopJlg" value="6" data-listgame="@combindedString" data-league="0" />
+                        <div id="jlgGameInfo">
+                            @Html.Action("ShowGameInfo", "JlgTop", new { area = "Jleague", type = 6, lstGameID = combindedString, leagueType = 0 })
+                        </div>
+                    }
+                }
+            }
+            @if (lstRemain != null && lstRemain.Any())
+            {
+                <div style="padding-left :20px; padding-right :20px;">
+                    <ul class="board_list" id="show_more_game">
+                        <li><a href="javascript:;">予想締切間近の試合を予想する<span class="icon"> </span></a></li>
+                    </ul>
+                </div>
+
+                var lstRemainNpb = lstRemain.Where(x => x.SportID == 1);
+                var lstRemainMlb = lstRemain.Where(x => x.SportID == 3);
+                var lstRemainJlg = lstRemain.Where(x => x.SportID == 2);
+                <div id="more_game" style="display: none">
+                    @if (lstRemainNpb != null && lstRemainNpb.Any())
+                    {
+                        var lstID1 = new List<int>();
+                        foreach (var game in lstRemainNpb)
+                        {
+                            lstID1.Add(game.GameID);
+                        }
+                        if (lstID1.Count > 0)
+                        {
+                            //Show npb more games.
+                            string combindedString2 = string.Join(",", lstID1.ToArray());
+                            <input type="hidden" id="Page4Npb" name="Page4Npb" value="6" data-listgame="@combindedString2" />
+                            <div id="npbMoreGame">
+                                @Html.Action("ShowGameInfo", "NpbTop", new { area = "Npb", type = 6, lstGameID = combindedString2 })
+                            </div>
+                        }
+                    }
+                    @if (lstRemainMlb != null && lstRemainMlb.Any())
+                    {
+                        var lstID2 = new List<int>();
+                        foreach (var game in lstRemainMlb)
+                        {
+                            lstID2.Add(game.GameID);
+                        }
+                        if (lstID2.Count > 0)
+                        {
+                            //Show mlb more games.
+                            string combindedString2 = string.Join(",", lstID2.ToArray());
+                            <input type="hidden" id="Page4Mlb" name="Page4Mlb" value="6" data-listgame="@combindedString2" />
+                            <div id="mlbMoreGame">
+                                @Html.Action("ShowGameInfo", "MlbTop", new { area = "Mlb", type = 6, lstGameID = combindedString2 })
+                            </div>
+                        }
+                    }
+                    @if (lstRemainJlg != null && lstRemainJlg.Any())
+                    {
+                        var lstID3 = new List<int>();
+                        foreach (var game in lstRemainJlg)
+                        {
+                            lstID3.Add(game.GameID);
+                        }
+                        if (lstID3.Count > 0)
+                        {
+                            //Show Jleague game.
+                            string combindedString2 = string.Join(",", lstID3.ToArray());
+                            <input type="hidden" id="Page4Jlg" name="Page4Jlg" value="6" data-listgame="@combindedString2" data-league="0" />
+                            <div id="jlgMoreGame">
+                                @Html.Action("ShowGameInfo", "JlgTop", new { area = "Jleague", type = 6, lstGameID = combindedString2, leagueType = 0 })
+                            </div>
+                        }
+                    }
+                </div>
+            }
+        </div>
+    }
+    <!-- block topic path type A -->
+    <ul class="block_path01">
+        <li><a class="anchor" onclick="return false" data-target="scroll01" href="#">プロ野球<span class="icon"> </span></a></li>
+        <li><a class="anchor" onclick="return false" data-target="scroll02" href="#">Jリーグ<span class="icon"> </span></a></li>
+        <li><a class="anchor" onclick="return false" data-target="scroll03" href="#">MLB<span class="icon"> </span></a></li>
+        <!-- <li><a class="anchor" onclick="return false" data-target="scroll04" href="#">海外サッカー<span class="icon"> </span></a></li> -->
+    </ul>
+    <!---->
+    if (Model.HomeContentLeagueViewModel != null && Model.HomeContentLeagueViewModel.Any())
+    {
+        foreach(var league in Model.HomeContentLeagueViewModel)
+        {
+        string leagueName = string.Empty;
+        string divClass = string.Format("scroll0{0}",league.SportID);
+        string topicName = string.Empty;      
+        switch(league.SportID)
+        {
+            case 1:
+                leagueName = "プロ野球";
+                topicName = Constants.NPB_TOPIC_NAME;
+                break;
+            case 2:
+                leagueName = "Jリーグ";
+                topicName = Constants.JLG_TOPIC_NAME;
+                break;
+            case 3:
+                leagueName = "MLB";
+                topicName = Constants.MLB_TOPIC_NAME;
+                break;
+            //case 4:
+            //leagueName = "海外サッカー";
+            //topicName = "ws";
+            //break;
+        }
+        <div class="block_03" id="@divClass">
+            <div class="cat_title">
+                <h3>@leagueName 新着ニュース</h3>
+                <p><a href="/@topicName/news/">ニュースをもっと見る</a></p>
+            </div>
+            @if (league.HomeRecentNews != null && league.HomeRecentNews.Any())
+            {
+                var firstNews = league.HomeRecentNews.FirstOrDefault();
+                var imageSports = Utils.GetNewsImageLocation(firstNews.Content ?? Constants.IMAGE_DEFAULT);
+                <div class="row">
+                    <div class="block_03_1">
+					<a href="@Url.Action("Index", "NewsArticleCommon", new { area = "", topic = topicName, newsItemID = firstNews.NewsItemID, sportID = league.SportID }, null)">
+						<img src="@Url.Content(@imageSports)" class="resimg" alt="" />
+					</a>
+                    </div>
+                    <div class="block_03_2">
+                        <h3 class="subtitle02">@Html.ActionLink(string.Format("{0} {1}", firstNews.Headline, firstNews.SubHeadline), "Index", "NewsArticleCommon", new { area = "", topic = topicName, newsItemID = firstNews.NewsItemID, sportID = league.SportID }, null)</h3>
+                        <h4><span class="gray2">@firstNews.SentFrom  @Utils.ParseLocalDateToShortJapanDate(firstNews.DeliveryDate)</span></h4>
+                        <p>@Utils.ShortenString(firstNews.newstext,50)</p>
+                    </div>
+                </div>
+                <ul class="block_list01">
+                    @foreach (var news in league.HomeRecentNews.Skip(1))
+                    {
+                        <li>@Html.ActionLink(string.Format("{0} {1}", news.Headline, news.SubHeadline), "Index", "NewsArticleCommon", new { area = "", topic = topicName, newsItemID = news.NewsItemID, sportID = league.SportID }, null)<span>@news.SentFrom  @Utils.ParseLocalDateToShortJapanDate(news.DeliveryDate)</span></li>
+                    }
+                </ul>
+            }
+            @if (league.HomeRecentMatch != null && league.HomeRecentMatch.Any())
+            {
+                <div class="cat_stitle">
+                    <h3>@Utils.ParseLocalDateToShortJapanDateMMdd(DateTime.ParseExact(league.HomeRecentMatch.FirstOrDefault().MatchDay.ToString(), "yyyyMMdd", null))</h3>
+                    <p><a href="/@topicName/schedule/">カテゴリーの一覧を見る</a></p>
+                </div>
+                <div class="block_03_3">
+                    @foreach (var match in league.HomeRecentMatch)
+                    {
+                        string classScoreName = "fs24 bold";
+                        string classGameName = string.Empty;
+                        if (Utils.GetGameStatus(match.MatchDay, match.GameSetSituationCD, match.Inning) == 1)
+                        {
+                            classScoreName = "fs24 bold blue";
+                            classGameName = "bactive";
+                        }
+                        <div>
+                            <p class="bpanel"><a href="/@topicName/teams/@match.HomeTeamID/">@match.ShortNameHomeTeam</a><span class="@classScoreName">@match.TotalHomeTeamScore - @match.TotalVisitorTeamScore</span><a href="/@topicName/teams/@match.VisitorTeamID/">@match.ShortNameVisitorTeam</a></p>
+                            <p class="blink"><a class="@classGameName" href="/@topicName/game/@match.GameID/">@match.GameStateName</a></p>
+                        </div>
+                    }
+                </div>
+            }
+            @if (league.GameID > 0)
+            {
+                string showMoreURL = "/" + topicName + "/schedule/";
+                if (league.SportID == Constants.JLG_SPORT_ID)
+                {
+                    showMoreURL = "/jleague/j1/schedule/";
+                }
+                
+                <div class="space20"></div>
+                <div class="cat_stitle">
+                    <h3>注目度の高い試合</h3>
+                    <p><a href="@showMoreURL">≫本日の試合をもっと見る</a></p>
+                </div>
+                if (league.SportID == Constants.NPB_SPORT_ID)
+                {
+                    <input type="hidden" id="Page5" name="Page5" value="4" data-gameid="@league.GameID" data-link="1" />
+                    <div class="row" id="npbGameLeague">
+                        @Html.Action("ShowGameInfo", "NpbTop", new { area = "Npb", type = 4, gameID = league.GameID, link = 1 })
+                    </div>
+                }
+                else if (league.SportID == Constants.MLB_SPORT_ID)
+                {
+                    <input type="hidden" id="Page6" name="Page6" value="4" data-gameid="@league.GameID" data-link="1" />
+                    <div class="row" id="mlbGameLeague">
+                        @Html.Action("ShowGameInfo", "MlbTop", new { area = "Mlb", type = 4, gameID = league.GameID, link = 1 })
+                    </div>
+                }
+                else if (league.SportID == Constants.JLG_SPORT_ID)
+                {
+                    <input type="hidden" id="Page7" name="Page7" value="4" data-gameid="@league.GameID" data-link="1" data-league="0" />
+                    <div class="row" id="jlgGameLeague">
+                        @Html.Action("ShowGameInfo", "JlgTop", new { area = "Jleague", type = 4, gameID = league.GameID, leagueType = 0, link = 1 })
+                    </div>
+                }
+
+            }
+            @if (league.HomeRecentPost != null && league.HomeRecentPost.Any())
+            {
+                <div class="cat_stitle">
+                    <h3>最近の投稿記事</h3>
+                    <p><a href="/user_article/@string.Format("{0}",league.SportID)/sport/">投稿記事をもっと読む</a></p>
+                </div>
+                <ul class="evt_list01">
+                    @foreach (var post in league.HomeRecentPost.Take(3))
+                    {
+                        string postContent = string.Format("{0}&nbsp;&nbsp;&nbsp;{1}投稿", Splg.Controllers.PostedController.GetPostContent(post), post.ContributeDate.Value.ToString("MM/dd HH:mm"));
+                        <li>
+                            <a href="/user/@post.MemberId/"><img src="@post.ProfileImg" alt="icon" /></a>
+                            <a class="bold" href="/user_article/@post.TopicID/@post.ContributeId/">@post.Title</a>
+							<br />
+							@Html.Raw(postContent)
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+        }
+    }
+} 
+
+@section HomePage{
+    <div id="show_expected_points">
+        @Html.Action("ShowPointRankings", "RightContent")
+    </div>
+}

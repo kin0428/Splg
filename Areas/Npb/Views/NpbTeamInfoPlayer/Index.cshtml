@@ -1,0 +1,42 @@
+﻿@using Splg;
+@using Splg.Areas.Npb.Models.ViewModel.InfosModel;
+@model Splg.Areas.Npb.Models.ViewModel.NpbTeamInfoPlayerViewModel
+@{
+    // Namespace	: Splg.Areas.Npb.Models.ViewModel
+    // FileName		: Index.cshtml
+    // Developer	: Nguyen Minh Kiet
+    // Update date  : 2015-03-19
+    // Html No      : 8-5-4;8-5-5;8-5-6    
+    ViewBag.Name = Constants.NPBTEAMINFONEWS;
+    Layout = "~/Views/Shared/_NpbLayout.cshtml";
+}
+@if (Model != null)
+{
+    if (Model.TeamInfoCatcherFielderInfos != null && Model.TeamInfoCatcherFielderInfos.Any())
+    {
+       
+       <h2 class="mytitle">捕手・野手</h2>
+        @Html.Partial("~/Areas/Npb/Views/Shared/_NpbTeamInfoCatcherFielder.cshtml", Model);
+    }
+    if (Model.TeamInfoPitchingInfos != null && Model.TeamInfoPitchingInfos.Any())
+    {
+         <h2 class="mytitle">投手</h2>
+        @Html.Partial("~/Areas/Npb/Views/Shared/_NpbTeamInfoPitcher.cshtml", Model);
+    }
+    if (Model.TeamInfoDirectorStaffInfos != null && Model.TeamInfoDirectorStaffInfos.Any())
+    {
+        <h2 class="mytitle">監督・スタッフ</h2>
+        @Html.Partial("~/Areas/Npb/Views/Shared/_NpbTeamInfoDirectorStaff.cshtml", Model);
+    }
+}
+<!--Right Content-->
+@section NpbPage{   
+    <div class="cat_stitle">
+        <h3>順位表</h3>
+        <p>@Html.ActionLink("一覧で見る", "Index", "NpbOrder", new { area = "Npb" }, null)</p>
+    </div>
+    <div id="npbTop3Ranking">
+        @Html.Action("ShowTopNRanking", "NpbRightContent", new { area = "Npb", teamID = @ViewBag.TeamID })
+    </div>
+}
+

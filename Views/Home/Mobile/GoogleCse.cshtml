@@ -1,0 +1,22 @@
+﻿@{
+    // View         : search google on Mobile
+    // Developer	: Nguyen Ho Long Hai
+    Layout = "~/Views/Shared/Mobile/_Layout.cshtml";
+    ViewBag.Title = "キーワード検索";
+}
+@*<script>
+  (function() {
+    var cx = '005334526103246678100:hyyozpx0-8g';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:searchresults-only></gcse:searchresults-only>*@
+<div class="searchresults-only" data-linktarget="_blank">
+</div>
+<gcse:searchresults-only linktarget="_blank"></gcse:searchresults-only>
